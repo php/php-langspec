@@ -1175,10 +1175,10 @@ implementation. Here is the first possible outcome:
                                      |               |
 [VSlot $b *]-->[VStore Arr *]        |               V
                            |         |  [HStore Array [VSlot 0 *][VSlot 1 *]]
-                           V         |                          |          |
-         [HStore Array [VSlot 0 *]]  |                          V          |
-                                |    +---------------->[VStore Int 123]    |
-                                V                          ^               V
+                           V         |                         |          |
+         [HStore Array [VSlot 0 *]]  |                         V          |
+                                |    +---------------->[VStore Int 123]   |
+                                V                          ^              V
                      [VStore Arr *]                        |   [VStore Str 'hi']
                                  |          +--------------+
                                  V          |
@@ -1193,8 +1193,8 @@ Here is the second possible outcome:
 [VSlot $a *]---->[VStore Arr *]---->[HStore Array [VSlot 0 *]]
                                                            |
 [VSlot $x *]-------------------------+  [VStore Arr *]&lt;----+
-                                     |               |
-[VSlot $b *]-->[VStore Arr *]        |               V
+                                     |              |
+[VSlot $b *]-->[VStore Arr *]        |              V
                            |         |  [HStore Array [VSlot 0 *] [VSlot 1 *]]
                            V         |                         |           |
          [HStore Array [VSlot 0 *]]  |                         V           |
@@ -1340,9 +1340,9 @@ outcomes:
 [VSlot $a *]---->[VStore Arr *]---->[HStore Array [VSlot 0 *]]
                                                            |
 [VSlot $b *]-->[VStore Arr *]            [VStore Arr *]&lt;---+
-                             |                       |
-      +----------------------+              +--------+
-      V                                     V
+                           |                         |
+    +----------------------+                +--------+
+    V                                       V
   [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
                          |           |       ^                  |          |
                          |           V       |                  V          |
@@ -1374,34 +1374,38 @@ possible outcome:
 [VSlot $a *]---->[VStore Arr *]---->[HStore Array [VSlot 0 *]]
                                                            |
 [VSlot $b *]-->[VStore Arr *]            [VStore Arr *]&lt;---+
-                          |                          |
-                          V                          V
-  [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
-                         |           |                           |           |
-       +-----------------+           V                           |           |
-       |                     [VStore Int 1]                  +---+           |
-       V                                                     |               V
-  [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore Str 'hi']
-                                            |           |   |
-                                    +-------+           |   |
-                                    |                   V   |
-                                    |    [VStore Str ‘hi’]  |
-                                    V                       |
- [VSlot $x *]--------------------->[VStore Int 123]&lt;--------+
+                           |                         |
+     +---------------------+                 +-------+  
+     |                                       |
+     V                                       V
+   [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
+                          |           |                           |           |
+        +-----------------+           V                           |           |
+        |                     [VStore Int 1]                 +----+           |
+        V                                                    |                V
+   [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore Str 'hi']
+                                             |           |   |
+                                     +-------+           |   |
+                                     |                   V   |
+                                     |    [VStore Str ‘hi’]  |
+                                     V                       |
+  [VSlot $x *]--------------------->[VStore Int 123]&lt;--------+
 </pre>
 
 Here is the third possible outcome:
 <pre>
-[VSlot $a *]---->[VStore Arr *-]---->[HStore Array [VSlot 0 *]]
+[VSlot $a *]---->[VStore Arr *]---->[HStore Array [VSlot 0 *]]
                                                             |
-[VSlot $b *]-->[VStore Arr *]             [VStore Arr *]&lt;---+
-                            |                          |
-                            V                          V
- [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
-                         |           |                           |           |
-       +-----------------+           V                           |           |
-       |                     [VStore Int 1]                  +---+           |
-       V                                                     |               V
+[VSlot $b *]--->[VStore Arr *]             [VStore Arr *]&lt;---+
+                            |                          |
+   +------------------------+              +-----------+
+   |                                       |
+   V                                       V
+ [HStore Array [VSlot 0 *] [VSlot 1 *]]   [HStore Array [VSlot 0 *] [VSlot 1 *]]
+                        |           |                           |           |
+       +----------------+           V                           |           |
+       |                     [VStore Int 1]                  +--+           |
+       V                                                     |              V
    [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore Str 'hi']
                                              |           |   |
                      [VStore Int 123]&lt;-------+           |   |
@@ -1499,12 +1503,12 @@ the integer value 10, and `$p2` is a handle to an array of elements of
 some type(s) or to an instance of some other type.
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Widget [VSlot $p1 *][VSlot $p2 *]]
-                                                          |          |
-                                                          V          V
-                                               [VStore Int 10] [VStore Obj *]
-                                                                         |
-                                                                         V
-                                                                 [HStore ...]
+                                                          |            |
+                                                          V            V
+                                                      [VStore Int 10] [VStore Obj *]
+                                                                                  |
+                                                                                  V
+                                                                               [HStore ...]
 </pre>
 
 Let us consider the result of `$b = clone $a`:
@@ -1512,9 +1516,9 @@ Let us consider the result of `$b = clone $a`:
 [VSlot $a *]-->[VStore Obj *]-->[HStore Widget [VSlot $p1 *][VSlot $p2 *]]
                                                           |            |
 [VSlot $b *]-->[VStore Obj *]                             V            V
-                             |                  [VStore Int 10] [VStore Obj *]
-     +-----------------------+                                              |
-     V                                                                      V
+                           |                  [VStore Int 10] [VStore Obj *]
+     +---------------------+                                              |
+     V                                                                    V
    [HStore Widget [VSlot $p1 *] [VSlot $p2 *]]              +--->[HStore ...]
                              |             |                |
                              V             V                |

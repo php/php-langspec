@@ -2,8 +2,8 @@
 
 1. The format of this document is [Markdown](http://daringfireball.net/projects/markdown/)
 2. Everything in the actual specification document must be ASCII only.
-3. The markdown specification used seems to be *plain markdown* with tables and
-   code blocks (three backticks).
+3. The only allowed extensions to original Markdown are tables and code blocks
+   (indicated by three backticks).
 4. Style
   * Use spaces to indent, not tabs.
   * Use of prefixed `##` is preferred for headers over underlined `===`

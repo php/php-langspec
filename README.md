@@ -2,7 +2,7 @@
 
 This repo will contain the WIP PHP Language Specifications.
 
-So join the conversation, send blank email to:
+To join the conversation, send blank email to:
 
 	standards-subscribe@lists.php.net
 

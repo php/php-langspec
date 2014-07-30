@@ -5571,7 +5571,7 @@ This operator associates left-to-right.
 **Examples**
 
 ```
-0b101111 | 0b101    // 0b101010
+0b101111 ^ 0b101    // 0b101010
 $v1 = 1234; $v2 = -987; // swap two integers having different values
 $v1 = $v1 ^ $v2;
 $v2 = $v1 ^ $v2;

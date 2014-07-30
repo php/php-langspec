@@ -1983,7 +1983,7 @@ Constant Name | Description
 `PHP_ROUND_HALF_EVEN` | `int`; Round halves to even numbers
 `PHP_ROUND_HALF_ODD` |  `int`; Round halves to odd numbers
 `PHP_ROUND_HALF_UP` | `int`; Round halves up
-`PHP_SAPI | `string`; the Server API for this build.
+`PHP_SAPI` | `string`; the Server API for this build.
 `PHP_SHLIB_SUFFIX` |  `string`; build-platform's shared library suffix.
 `PHP_SYSCONFDIR` |  `string`; the PHP system configuration directory.xx
 `PHP_VERSION` | `string`; the current PHP version in the form "major.minor.release[extra]".

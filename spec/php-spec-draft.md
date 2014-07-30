@@ -7646,7 +7646,7 @@ a variable can be called as a function.
 
 ##Anonymous Functions
 
-An *anonymous function*, also known as a *closure*, is a function
+An *anonymous function*, also known as a *closure* when free variables are present in the function body, is a function
 defined with no name. As such, it must be defined in the context of an
 expression whose value is used immediately to call that function, or
 that is saved in a variable for later execution. An anonymous function

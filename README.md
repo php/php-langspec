@@ -14,7 +14,7 @@ It is also mirrored on GitHub:
 
 	https://github.com/php/php-spec
 
-The PHP specificaiton is community-owned and open-source. Pull requests, 
+The PHP specification is community-owned and open-source. Pull requests, 
 issue filings and comments are extremely welcome.
 
 Make sure you understand the [*contribution process*](CONTRIBUTING.md).

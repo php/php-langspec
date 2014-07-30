@@ -8,11 +8,11 @@ To join the conversation, send blank email to:
 
 The upstream url of this repo is:
 
-	git@git.php.net:/php-spec.git
+	git@git.php.net:/php-langspec.git
 
 It is also mirrored on GitHub:
 
-	https://github.com/php/php-spec
+	https://github.com/php/php-langspec
 
 The PHP specification is community-owned and open-source. Pull requests, 
 issue filings and comments are extremely welcome.

@@ -326,19 +326,19 @@ an implementation or on a program; conversely, "must not" is to be
 interpreted as a prohibition.
 
 If a "must" or "must not" requirement that appears outside of a
-constraint is violated, the behavior is undeﬁned. Undeﬁned behavior is
-otherwise indicated in this specification by the words "undeﬁned
-behavior" or by the omission of any explicit deﬁnition of behavior.
+constraint is violated, the behavior is undefined. Undefined behavior is
+otherwise indicated in this specification by the words "undefined
+behavior" or by the omission of any explicit definition of behavior.
 There is no difference in emphasis among these three; they all describe
-"behavior that is undeﬁned".
+"behavior that is undefined".
 
 The word "may" indicates "permission", and is never used to mean
 "might".
 
 A *strictly conforming program* must use only those features of the
 language described in this specification. In particular, it must not
-produce output dependent on any unspeciﬁed, undeﬁned, or
-implementation-deﬁned behavior.
+produce output dependent on any unspecified, undefined, or
+implementation-defined behavior.
 
 A *conforming implementation* must accept any strictly conforming
 program. A conforming implementation may have extensions, provided they
@@ -348,7 +348,7 @@ A *conforming program* is one that is acceptable to a conforming
 implementation.
 
 A conforming implementation must be accompanied by a document that
-deﬁnes all implementation-deﬁned characteristics and all extensions.
+defines all implementation-defined characteristics and all extensions.
 
 Some Syntax sections are followed by a Constraints section, which
 further restricts the grammar. After issuing a diagnostic for a
@@ -419,7 +419,7 @@ function.
 Referred to as *the Engine* throughout this specification.
 
 **value** – precise meaning of the contents of a memory location when
-interpreted as having a speciﬁc type.
+interpreted as having a specific type.
 
 Other terms are defined throughout this specification, as needed, with
 the first usage being typeset *like this*.
@@ -2829,17 +2829,17 @@ computeValues($table, TRUE);
       <i>octal-literal   octal-digit</i>
 
     <i>hexadecimal-literal::</i>
-      <i>hexadecimal-preﬁx   hexadecimal-digit</i>
+      <i>hexadecimal-prefix   hexadecimal-digit</i>
       <i>hexadecimal-literal   hexadecimal-digit</i>
 
-    <i>hexadecimal-preﬁx:: one of</i>
+    <i>hexadecimal-prefix:: one of</i>
       0x  0X
 
     <i>binary-literal::</i>
-      <i>binary-preﬁx   binary-digit</i>
+      <i>binary-prefix   binary-digit</i>
       <i>binary-literal   binary-digit</i>
 
-    <i>binary-preﬁx:: one of</i>
+    <i>binary-prefix:: one of</i>
       0b  0B
 
     <i>digit:: one of</i>
@@ -3285,7 +3285,7 @@ A *null-literal* has the null type.
 **Semantics:**
 
 Operators and punctuators are symbols that have independent syntactic
-and semantic signiﬁcance. *Operators* are used in expressions to
+and semantic significance. *Operators* are used in expressions to
 describe operations involving one or more *operands*, and that yield a
 resulting value, produce a side effect, or some combination thereof.
 *Punctuators* are used for grouping and separating.
@@ -3903,7 +3903,7 @@ class C
 **Syntax**
 
 <pre>
-  <i>postﬁx-expression:</i>
+  <i>postfix-expression:</i>
     <i>primary-expression</i>
     <i>clone-expression</i>
     <i>object-creation-expression</i>
@@ -4145,11 +4145,11 @@ for ($i = -1; $i <= 2; ++$i) { ... $v[$i] } // retrieves via keys -1, 0, 1, 2
 
 <pre>
   <i>subscript-expression:</i>
-    <i>postﬁx-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
-    <i>postﬁx-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
+    <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
+    <i>postfix-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
 </pre>
 
-*postﬁx-expression* is defined in [§§](#general-13); and *expression* is defined
+*postfix-expression* is defined in [§§](#general-13); and *expression* is defined
 in [§§](#general-16).
 
 **Constraints**
@@ -4294,14 +4294,14 @@ $x = $vect1[1];   // calls Vector::offsetGet(1)
 
 <pre>
   <i>function-call-expression:</i>
-    <i>postﬁx-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
+    <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
     <i>assignment-expression</i>
     <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
 </pre>
 
-*postﬁx-expression* is defined in [§§](#general-13); and *assignmment-expression*
+*postfix-expression* is defined in [§§](#general-13); and *assignmment-expression*
 is defined in [§§](#general-15).
 
 
@@ -4324,8 +4324,8 @@ designate an lvalue.
 **Semantics**
 
 An expression of the form *function-call-expression* is a *function
-call*. The postﬁx expression designates the *called function*, and
-*argument-expression-list* speciﬁes the arguments to be passed to that
+call*. The postfix expression designates the *called function*, and
+*argument-expression-list* specifies the arguments to be passed to that
 function. An argument can have any type. In a function call,
 *postfix-expression* is evaluated first, followed by each
 *assignment-expression* in the order left-to-right. There is a sequence
@@ -4406,23 +4406,23 @@ $anon();  // call the anonymous function encapsulated by that object
 
 <pre>
   <i>member-selection-expression:</i>
-    <i>postﬁx-expression</i>  ->  <i>member-selection-designator</i>
+    <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
 
   <i>member-selection-designator:</i>
     <i>name</i>
     <i>expression</i>
 </pre>
 
-*postﬁx-expression* is defined in [§§](#general-13); *name* is defined in
+*postfix-expression* is defined in [§§](#general-13); *name* is defined in
 [§§](#names); and *expression* is defined in [§§](#general-16).
 
 **Constraints**
 
-*postﬁx-expression* must designate an object or be `NULL`, `FALSE`, or an
+*postfix-expression* must designate an object or be `NULL`, `FALSE`, or an
 empty string. 
 
 *name* must designate an instance property, or an instance or static
-method of *postﬁx-expression*'s class type.
+method of *postfix-expression*'s class type.
 
 *expression* must be a value of type `string` (but not a string literal)
 that contains the name of an instance property (**without** the
@@ -4433,21 +4433,21 @@ type.
 
 A *member-selection-expression* designates an instance property or an
 instance or static method of the object designated by
-*postﬁx-expression*. For a property, the value is that of the property,
-and is a modifiable lvalue if *postﬁx-expression* is a modifiable
+*postfix-expression*. For a property, the value is that of the property,
+and is a modifiable lvalue if *postfix-expression* is a modifiable
 lvalue.
 
 When the `->` operator is used in a modifiable lvalue context and *name*
 or *expression* designate a property that is not visible, the property
-is treated as a dynamic property ([§§](#dynamic-members)). If *postﬁx-expression*'s class
+is treated as a dynamic property ([§§](#dynamic-members)). If *postfix-expression*'s class
 type defines a `__set` method ([§§](#method-__set)), it is called to store the
 property's value. When the `->` operator is used in a non-lvalue context
 and *name* or *expression* designate a property that is not visible, the
-property is treated as a dynamic property. If *postﬁx-expression*'s
+property is treated as a dynamic property. If *postfix-expression*'s
 class type defines a `__get` method ([§§](#method-__get)), it is called to retrieve
 the property's value.
 
-If *postﬁx-expression* is `NULL`, `FALSE`, or an empty string, an expression
+If *postfix-expression* is `NULL`, `FALSE`, or an empty string, an expression
 of the form `$p->x = 10` causes an instance of `stdClass` ([§§](#class-stdclass)) to be
 created with a dynamic property x having a value of 10. `$p` is then made
 to refer to this instance.
@@ -5746,7 +5746,7 @@ function factorial($int)
 
 **Constraints**
 
-The left-hand operand of an assignment operator must be a modiﬁable
+The left-hand operand of an assignment operator must be a modifiable
 lvalue.
 
 **Semantics**
@@ -6326,7 +6326,7 @@ than one in a *const-declaration*.
     <i>jump-statement</i>
     <i>declare-statement</i>
     <i>const-declaration</i>
-    <i>function-deﬁnition</i>
+    <i>function-definition</i>
     <i>class-declaration</i>
     <i>interface-declaration</i>
     <i>trait-declaration</i>
@@ -6341,7 +6341,7 @@ in [§§](#labeled-statements); *expression-statement* is defined in [§§](#exp
 *selection-statement* is defined in [§§](#general-18); *iteration-statement* is
 defined in [§§](#general-19); *jump-statement* is defined in [§§](#general-20);
 *declare-statement* is defined in [§§](#the-declare-statement); *const-declaration* is defined
-in [§§](#constants-2); *function-deﬁnition* is defined in [§§](#function-definitions); *class-declaration*
+in [§§](#constants-2); *function-definition* is defined in [§§](#function-definitions); *class-declaration*
 is defined in [§§](#class-declarations); *interface-declaration* is defined in [§§](#interface-declarations);
 *trait-declaration* is defined in [§§](#trait-declarations); *namespace-definition* is
 defined in [§§](#defining-namespaces); *namespace-use-declaration* is defined in [§§](#namespace-use-declarations);
@@ -7559,10 +7559,10 @@ A function is called via the function-call operator `()` ([§§](#function-call
 **Syntax**
 
 <pre>
-  <i>function-deﬁnition:</i>
-    <i>function-deﬁnition-header   compound-statement</i>
+  <i>function-definition:</i>
+    <i>function-definition-header   compound-statement</i>
 
-  <i>function-deﬁnition-header:</i>
+  <i>function-definition-header:</i>
     function  &<sub>opt</sub>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )
 
   <i>parameter-declaration-list:</i>
@@ -8118,8 +8118,8 @@ class Point 
 
 <pre>
   method-declaration:
-    <i>method-modifiers<sub>opt</sub>   function-deﬁnition</i>
-    <i>method-modifiers   function-deﬁnition-header</i>  ;
+    <i>method-modifiers<sub>opt</sub>   function-definition</i>
+    <i>method-modifiers   function-definition-header</i>  ;
 
   <i>method-modifiers:</i>
     <i>method-modifier</i>
@@ -8133,8 +8133,8 @@ class Point 
 </pre>
 
 *visibility-modifier* is described in [§§](#general-23); *static-modifier* is
-described in [§§](#class-members); and *function-deﬁnition* and
-*function-deﬁnition-header* are defined in [§§](#function-definitions).
+described in [§§](#class-members); and *function-definition* and
+*function-definition-header* are defined in [§§](#function-definitions).
 
 **Constraints**
 
@@ -8146,10 +8146,10 @@ than in the corresponding abstract declaration. Furthermore, the
 signature of a method definition must match that of its abstract
 declaration.
 
-The *method-modifiers* preceding a *function-deﬁnition* must not contain
+The *method-modifiers* preceding a *function-definition* must not contain
 the `abstract` modifier.
 
-The *method-modifiers* preceding a *function-deﬁnition-header* must
+The *method-modifiers* preceding a *function-definition-header* must
 contain the `abstract` modifier.
 
 A method must not have the same modifier specified more than once. A
@@ -8181,7 +8181,7 @@ examples of abstract methods and their subsequent definitions.
 **Syntax**
 
 <pre>
-  <i>constructor-deﬁnition:</i>
+  <i>constructor-definition:</i>
     <i>visibility-modifier</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
     <i>visibility-modifier</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
 
@@ -8279,7 +8279,7 @@ class MyRangeException extends Exception
 **Syntax**
 
 <pre>
-  <i>destructor-deﬁnition:</i>
+  <i>destructor-definition:</i>
     <i>visibility-modifier</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
 </pre>
 
@@ -10513,17 +10513,17 @@ The grammar notation is described in [§§](#grammars).
       <i>octal-literal   octal-digit</i>
 
     <i>hexadecimal-literal::</i>
-      <i>hexadecimal-preﬁx   hexadecimal-digit</i>
+      <i>hexadecimal-prefix   hexadecimal-digit</i>
       <i>hexadecimal-literal   hexadecimal-digit</i>
 
-    <i>hexadecimal-preﬁx:: one of</i>
+    <i>hexadecimal-prefix:: one of</i>
       0x  0X
 
     <i>binary-literal::</i>
-      <i>binary-preﬁx   binary-digit</i>
+      <i>binary-prefix   binary-digit</i>
       <i>binary-literal   binary-digit</i>
 
-    <i>binary-preﬁx:: one of</i>
+    <i>binary-prefix:: one of</i>
       0b  0B
 
     <i>digit:: one of</i>
@@ -10794,7 +10794,7 @@ octal-digit
 ####Postfix Operators
 
 <pre>
-  <i>postﬁx-expression:</i>
+  <i>postfix-expression:</i>
     <i>primary-expression</i>
     <i>clone-expression</i>
     <i>object-creation-expression</i>
@@ -10842,18 +10842,18 @@ octal-digit
     <i>expression</i>
 
   <i>subscript-expression:</i>
-    <i>postﬁx-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
-    <i>postﬁx-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
+    <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
+    <i>postfix-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
 
   <i>function-call-expression:</i>
-    <i>postﬁx-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
+    <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
     <i>assignment-expression</i>
     <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
 
   <i>member-selection-expression:</i>
-    <i>postﬁx-expression</i>  ->  <i>member-selection-designator</i>
+    <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
 
   <i>member-selection-designator:</i>
     <i>name</i>
@@ -11132,7 +11132,7 @@ octal-digit
     <i>jump-statement</i>
     <i>declare-statement</i>
     <i>const-declaration</i>
-    <i>function-deﬁnition</i>
+    <i>function-definition</i>
     <i>class-declaration</i>
     <i>interface-declaration</i>
     <i>trait-declaration</i>
@@ -11335,10 +11335,10 @@ octal-digit
 ###Functions
 
 <pre>
-  <i>function-deﬁnition:</i>
-    <i>function-deﬁnition-header   compound-statement</i>
+  <i>function-definition:</i>
+    <i>function-definition-header   compound-statement</i>
 
-  <i>function-deﬁnition-header:</i>
+  <i>function-definition-header:</i>
     function  &<sub>opt</sub>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )
 
   <i>parameter-declaration-list:</i>
@@ -11408,8 +11408,8 @@ octal-digit
     =  <i>constant-expression</i>
     
   method-declaration:
-    <i>method-modifiers<sub>opt</sub>   function-deﬁnition</i>
-    <i>method-modifiers   function-deﬁnition-header</i>  ;
+    <i>method-modifiers<sub>opt</sub>   function-definition</i>
+    <i>method-modifiers   function-definition-header</i>  ;
 
   <i>method-modifiers:</i>
     <i>method-modifier</i>
@@ -11421,11 +11421,11 @@ octal-digit
     abstract
     final
 
-  <i>constructor-deﬁnition:</i>
+  <i>constructor-definition:</i>
     <i>visibility-modifier</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
     <i>visibility-modifier</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
 
-  <i>destructor-deﬁnition:</i>
+  <i>destructor-definition:</i>
     <i>visibility-modifier</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
     
 </pre>

@@ -4367,7 +4367,7 @@ If *postfix-expression* is a string, this is a variable function call
 
 **Examples**
 
-'''
+```
 function square($v) { return $v * $v; } 
 square(5)     // call square directly; it returns 25
 $funct = square;  // assigns the string "square" to $funct
@@ -4398,7 +4398,7 @@ function factorial($int)  // contains a recursive call
 // -----------------------------------------
 $anon = function () { ... };  // store a Closure in $anon
 $anon();  // call the anonymous function encapsulated by that object
-'''
+```
 
 ###Member-Selection Operator
 

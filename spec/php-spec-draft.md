@@ -8343,7 +8343,7 @@ Method Name | Description | Reference
 ------------|-------------|----------
 `__call` | Calls a dynamic method in the context of an instance-method call | [§§](#method-__call)
 `__callStatic` | Calls a dynamic method in the context of a static-method call | [§§](#method-__callstatic)
-__clone |Typically used to make a deep copy ([§§](#)) of an object | [§§](#method-__clone)
+`__clone` | Typically used to make a deep copy ([§§](#)) of an object | [§§](#method-__clone)
 `__construct` | A constructor |   [§§](#constructors)
 `__destruct` | A destructor | [§§](#destructors)
 `__get` | Retrieves the value of a given dynamic property | [§§](#method-__get)

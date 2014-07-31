@@ -1723,7 +1723,7 @@ Boolean values `TRUE` and `FALSE` ([§§](#core-predefined-constants)), respecti
 this type and its values is unspecified.
 
 The library function `is_bool` (§xx) indicates if a given value has type
-bool.
+`bool`.
 
 ###The Integer Type
 
@@ -1755,7 +1755,7 @@ The constants `PHP_INT_SIZE` (§[[6.3](#core-predefined-constants)](#core-predef
 characteristics about type `int`.
 
 The library function `is_int` (§xx) indicates if a given value has type
-int.
+`int`.
 
 ###The Floating-Point Type
 

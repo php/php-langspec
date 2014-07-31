@@ -990,8 +990,8 @@ It is also possible to use byRef assignment to make three or more VSlots
 point to the same VStore. Consider the following example:
 
 ```
-$b = &$a;
-$c = &$b;
+$b =& $a;
+$c =& $b;
 $a = 123;
 ```
 <pre>
@@ -1144,7 +1144,7 @@ as follows:
 -   If `$source`’s VStore has a refcount that is greater than 1, the Engine
     uses an implementation-defined algorithm to decide whether to copy the element
     using value assignment (`$destination = $source`) or byRef
-    assignment (`$destination = &$source`).
+    assignment (`$destination =& $source`).
 
 Note the member-copy assignment `=*` is **not** an operator or language
 construct in the PHP language, but instead it is used internally to
@@ -5851,14 +5851,14 @@ expression having array type, see [§§](#deferred-array-copying).
 
 ```
 $a = 10;
-$b = &$a;   // make $b an alias of $a
+$b =& $a;   // make $b an alias of $a
 ++$a;       // increment $a/$b to 11
 $b = -12;   // sets $a/$b to -12
 $a = "abc";     // sets $a/$b to "abc"
 unset($b);      // removes $b's alias to $a
 // -----------------------------------------
 function &g2() { $t = "xxx"; return $t; } // return byRef
-$b = &g2();     // make $b an alias to "xxx"
+$b =& g2();     // make $b an alias to "xxx"
 ```
 
 ##Compound Assignment

@@ -6319,7 +6319,7 @@ than one in a *const-declaration*.
 
   <i>statement:</i>
     <i>compound-statement</i>
-	<i>labeled-statement</i>
+    <i>labeled-statement</i>
     <i>expression-statement</i>
     <i>selection-statement</i>
     <i>iteration-statement</i>
@@ -6373,17 +6373,17 @@ often referred to as a *block*.
 
 ```
 if (condition)
-{	// braces are needed as the true path has more than one statement
-	// statement-1
-	// statement-2
+{ // braces are needed as the true path has more than one statement
+  // statement-1
+  // statement-2
 }
 else
-{	// braces are optional as the false path has only one statement
-	// statement-3
+{ // braces are optional as the false path has only one statement
+  // statement-3
 }
 // -----------------------------------------
 while (condition)
-{	// the empty block is equivalent to a null statement
+{ // the empty block is equivalent to a null statement
 }
 ```
 
@@ -6450,32 +6450,32 @@ statement is a *null statement*, which has no effect on execution.
 **Examples**
 
 ```
-$i = 10;	// $i is assigned the value 10; result (10) is discarded
-++$i;	// $i is incremented; result (11) is discarded
-$i++;	// $i is incremented; result (11) is discarded
-DoIt();	// function DoIt is called; result (return value) is discarded
+$i = 10;  // $i is assigned the value 10; result (10) is discarded
+++$i; // $i is incremented; result (11) is discarded
+$i++; // $i is incremented; result (11) is discarded
+DoIt(); // function DoIt is called; result (return value) is discarded
 // -----------------------------------------
-$i;		// no side effects, result is discarded. Vacuous but permitted
-123;	// likewise for this one and the two statements following
+$i;   // no side effects, result is discarded. Vacuous but permitted
+123;  // likewise for this one and the two statements following
 34.5 * 12.6 + 11.987;
 TRUE;
 // -----------------------------------------
 function findValue($table, $value)  // where $table is 2x3 array
 {
-	for ($row = 0; $row <= 1; ++$row)
-	{
-		for ($colm = 0; $colm <= 2; ++$colm)
-		{
-			if ($table[$row][$colm] == $value)
-			{
-				// ...
-				goto done;
-			}
-		}
-	}
-	// ...
+  for ($row = 0; $row <= 1; ++$row)
+  {
+    for ($colm = 0; $colm <= 2; ++$colm)
+    {
+      if ($table[$row][$colm] == $value)
+      {
+        // ...
+        goto done;
+      }
+    }
+  }
+  // ...
 done:
-	;     // null statement needed as a label must precede a statement
+  ;     // null statement needed as a label must precede a statement
 }
 ```
 
@@ -6556,9 +6556,9 @@ An `else` clause is associated with the lexically nearest preceding `if` or
 ```
 if ($count > 0)
 {
-	...
-	...
-	...
+  ...
+  ...
+  ...
 }
 // -----------------------------------------
 goto label1;
@@ -6567,28 +6567,28 @@ echo "Unreachable code\n";
 if ($a)
 {
 label1:
-	...
+  ...
 }
 else
 {
-	...
+  ...
 }
 // -----------------------------------------
 if (1)
-	...
-	if (0)
-		...
-else 	// this else does NOT go with the outer if
-	...
+  ...
+  if (0)
+    ...
+else  // this else does NOT go with the outer if
+  ...
 
 if (1)
 {
-	...
-	if (0)
-		...
+  ...
+  if (0)
+    ...
 }
-else 	// this else does go with the outer if
-		...
+else  // this else does go with the outer if
+    ...
 ```
 
 ###The `switch` Statement
@@ -6654,37 +6654,37 @@ $v = 10;
 switch ($v)
 {
 default:
-	echo "default case: \$v is $v\n";
-	break;		// break ends "group" of default statements
+  echo "default case: \$v is $v\n";
+  break;    // break ends "group" of default statements
 case 20:
-	echo "case 20\n";
-	break; 		// break ends "group" of case 20 statements
+  echo "case 20\n";
+  break;    // break ends "group" of case 20 statements
 case 10:
-	echo "case 10\n";	// no break, so control drops into next label's "group"
+  echo "case 10\n"; // no break, so control drops into next label's "group"
 case 30:
-	echo "case 30\n";	// no break, but then none is really needed either
+  echo "case 30\n"; // no break, but then none is really needed either
 }
 // -----------------------------------------
 $v = 30;
 switch ($v)
 {
-case 30.0:	// <===== this case matches with 30
-	echo "case 30.0\n";
-	break;
+case 30.0:  // <===== this case matches with 30
+  echo "case 30.0\n";
+  break;
 default:
-	echo "default case: \$v is $v\n";
-	break;
-case 30:		// <===== rather than this case matching with 30
-	echo "case 30\n";
-	break;
+  echo "default case: \$v is $v\n";
+  break;
+case 30:    // <===== rather than this case matching with 30
+  echo "case 30\n";
+  break;
 }
 // -----------------------------------------
 switch ($v)
 {
-case 10 + $b:	// non-constant expression
-	// ...
-case $v < $a: 	// non-constant expression
-	// ...
+case 10 + $b: // non-constant expression
+  // ...
+case $v < $a:   // non-constant expression
+  // ...
 // ...
 }
 ```
@@ -6741,16 +6741,16 @@ times.
 ```
 $i = 1;
 while ($i <= 10):
-	echo "$i\t".($i * $i)."\n";	// output a table of squares
-	++$i;
+  echo "$i\t".($i * $i)."\n"; // output a table of squares
+  ++$i;
 endwhile;
 // -----------------------------------------
 while (TRUE)
 {
-	// ...
-	if ($done)
-		break;	// break out of the while loop
-	// ...
+  // ...
+  if ($done)
+    break;  // break out of the while loop
+  // ...
 }
 ```
 
@@ -6785,8 +6785,8 @@ statement. The loop body, *statement*, is executed one or more times.
 $i = 1;
 do
 {
-	echo "$i\t".($i * $i)."\n";	// output a table of squares
-	++$i;
+  echo "$i\t".($i * $i)."\n"; // output a table of squares
+  ++$i;
 }
 while ($i <= 10);
 ```
@@ -6855,15 +6855,15 @@ iteration.
 ```
 for ($i = 1; $i <= 10; ++$i)
 {
-	echo "$i\t".($i * $i)."\n";	// output a table of squares
+  echo "$i\t".($i * $i)."\n"; // output a table of squares
 }
 // -----------------------------------------
 // omit 1st and 3rd expressions
 
 $i = 1;
 for (; $i <= 10;):
-	echo "$i\t".($i * $i)."\n";	// output a table of squares
-	++$i;
+  echo "$i\t".($i * $i)."\n"; // output a table of squares
+  ++$i;
 endfor;
 // -----------------------------------------
 // omit all 3 expressions
@@ -6871,17 +6871,17 @@ endfor;
 $i = 1;
 for (;;)
 {
-	if ($i > 10)
-		break;
-	echo "$i\t".($i * $i)."\n";	// output a table of squares
-	++$i;
+  if ($i > 10)
+    break;
+  echo "$i\t".($i * $i)."\n"; // output a table of squares
+  ++$i;
 }
 // -----------------------------------------
 //  use groups of expressions
 
 for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10)
 {
-	echo "$i\t$a\n";
+  echo "$i\t$a\n";
 }
 ```
 
@@ -6954,14 +6954,14 @@ foreach ($colors as $key => $color)
 
 foreach ($colors as $color)
 {
-	$color = "black";
+  $color = "black";
 }
 // -----------------------------------------
 // Modify the the actual element itself
 
-foreach ($colors as &$color)	// note the &
+foreach ($colors as &$color)  // note the &
 {
-	$color = "black";
+  $color = "black";
 }
 ```
 
@@ -7016,22 +7016,22 @@ within a finally-block.
 **Examples**
 
 ```
-function findValue($table, $v)	// where $table is 2x3 array
+function findValue($table, $v)  // where $table is 2x3 array
 {
-	for ($row = 0; $row <= 1; ++$row)
-	{
-		for ($colm = 0; $colm <= 2; ++$colm)
-		{
-			if ($table[$row][$colm] == $v)
-			{
-				echo "$v was found at row $row, column $colm\n";
-				goto done; // not quite the same as break 2!
-			}
-		}
-	}
-	echo "$v was not found\n";
+  for ($row = 0; $row <= 1; ++$row)
+  {
+    for ($colm = 0; $colm <= 2; ++$colm)
+    {
+      if ($table[$row][$colm] == $v)
+      {
+        echo "$v was found at row $row, column $colm\n";
+        goto done; // not quite the same as break 2!
+      }
+    }
+  }
+  echo "$v was not found\n";
 done:
-	;	// note that a label must always precede a statement
+  ; // note that a label must always precede a statement
 }
 ```
 
@@ -7079,9 +7079,9 @@ contained within a finally-block.
 ```
 for ($i = 1; $i <= 5; ++$i)
 {
-	if (($i % 2) == 0)
-		continue;
-	echo "$i is odd\n";
+  if (($i % 2) == 0)
+    continue;
+  echo "$i is odd\n";
 }
 ```
 
@@ -7120,31 +7120,31 @@ within a finally-block.
 $i = 1;
 for (;;)
 {
-	if ($i > 10)
-		break;
-	// ...
-	++$i;
+  if ($i > 10)
+    break;
+  // ...
+  ++$i;
 }
 // -----------------------------------------
 for ($row = 0; $row <= 1; ++$row)
 {
-	for ($colm = 0; $colm <= 2; ++$colm)
-	{
-		if (some-condition-set)
-		{
-			break 2;
-		}
-		// ...
-	}
+  for ($colm = 0; $colm <= 2; ++$colm)
+  {
+    if (some-condition-set)
+    {
+      break 2;
+    }
+    // ...
+  }
 }
 // -----------------------------------------
 for ($i = 10; $i <= 40; $i +=10)
 {
         switch($i)
         {
-        case 10: /* ... */; break;		// breaks to the end of the switch
-        case 20: /* ... */; break 2;	// breaks to the end of the for
-        case 30: /* ... */; break; 		// breaks to the end of the switch
+        case 10: /* ... */; break;    // breaks to the end of the switch
+        case 20: /* ... */; break 2;  // breaks to the end of the for
+        case 30: /* ... */; break;    // breaks to the end of the switch
         }
 }
 ```
@@ -7218,33 +7218,33 @@ Return statements can also be used in the body of anonymous functions.
 **Examples**
 
 ```
-function f() { return 100; }	// f explicitly returns a value
-function g() { 	return; }		// g explicitly returns an implicit NULL
-function h() { }			// h implicitly returns NULL
+function f() { return 100; }  // f explicitly returns a value
+function g() { return; }   // g explicitly returns an implicit NULL
+function h() { }      // h implicitly returns NULL
 // -----------------------------------------
 // j returns one of three dissimilarly-typed values
 function j($x)
 {
-	if ($x > 0)
-	{
-		return "Positive";
-	}
-	else if ($x < 0)
-	{
-		return -1;
-	}
-	// for zero, implied return NULL
+  if ($x > 0)
+  {
+    return "Positive";
+  }
+  else if ($x < 0)
+  {
+    return -1;
+  }
+  // for zero, implied return NULL
 }
 function &compute() { ...; return $value; } // returns $value byRef
 // -----------------------------------------
 class Point 
 {
-	private static $pointCount = 0;
-	public static function getPointCount() 
-	{
-		return self::$pointCount;
-	}
-	...
+  private static $pointCount = 0;
+  public static function getPointCount() 
+  {
+    return self::$pointCount;
+  }
+  ...
 }
 ```
 
@@ -7359,19 +7359,19 @@ implementation-defined.
 ```
 function getTextLines($filename)
 {
-	$infile = fopen($filename, 'r');
-	if ($infile == FALSE) { /* deal with an file-open failure */ }
-	try
-	{
-		while ($textLine = fgets($infile)) 	// while not EOF
-		{
-			yield $textLine;	// leave line terminator attached
-		}
-	}
-	finally
-	{
-		fclose($infile);
-	}
+  $infile = fopen($filename, 'r');
+  if ($infile == FALSE) { /* deal with an file-open failure */ }
+  try
+  {
+    while ($textLine = fgets($infile))  // while not EOF
+    {
+      yield $textLine;  // leave line terminator attached
+    }
+  }
+  finally
+  {
+    fclose($infile);
+  }
 }
 // -----------------------------------------
 class DeviceException extends Exception { ... }
@@ -7381,7 +7381,7 @@ class FloppyDiskException extends RemovableDiskException { ... }
 
 try
 {
-	process(); // call a function that might generate a disk-related exception
+  process(); // call a function that might generate a disk-related exception
 }
 catch (FloppyDiskException $fde) { ... }
 catch (RemovableDiskException $rde) { ... }
@@ -7781,25 +7781,25 @@ and [§§](#trait-declarations).
 ```
 abstract class Vehicle 
 {
-	public abstract function getMaxSpeed();
-	...
+  public abstract function getMaxSpeed();
+  ...
 }
 abstract class Aircraft extends Vehicle 
 {
-	public abstract function getMaxAltitude();
-	...
+  public abstract function getMaxAltitude();
+  ...
 }
 class PassengerJet extends Aircraft 
 {
-	public function getMaxSpeed()
-	{
-		// implement method
-	}
-	public function getMaxAltitude()
-	{
-		// implement method
-	}
-	...
+  public function getMaxSpeed()
+  {
+    // implement method
+  }
+  public function getMaxAltitude()
+  {
+    // implement method
+  }
+  ...
 }
 $pj = new PassengerJet(...);
 echo "\$pj's maximum speed: " . $pj->getMaxSpeed() . "\n";
@@ -7807,9 +7807,9 @@ echo "\$pj's maximum altitude: " . $pj->getMaxAltitude() . "\n";
 // -----------------------------------------
 final class MathLibrary 
 {
-	private function MathLibrary() {}	// disallows instantiation
-	public static function sin() { ... }
-	// ...
+  private function MathLibrary() {} // disallows instantiation
+  public static function sin() { ... }
+  // ...
 }
 $v = MathLibrary::sin(2.34);
 // -----------------------------------------
@@ -7820,15 +7820,15 @@ interface MyCollection
 }
 class MyList implements MyCollection 
 {
-	public function put($item)
-	{
-		// implement method
-	}
-	public function get()
-	{
-		// implement method
-	}
-	...
+  public function put($item)
+  {
+    // implement method
+  }
+  public function get()
+  {
+    // implement method
+  }
+  ...
 }
 ```
 
@@ -7900,32 +7900,32 @@ static method does not operate on a specific instance, it has no `$this`.
 ```
 class Point 
 {
-	private static $pointCount = 0;			// static property
+  private static $pointCount = 0;     // static property
 
-	private $x;							// instance property
-	private $y;							// instance property
+  private $x;             // instance property
+  private $y;             // instance property
 
-	public static function getPointCount()		// static method
-	{
-		return self::$pointCount;			// access static property
-	}
-	public function move($x, $y)				// instance method
-	{
-		$this->x = $x;
-		$this->y = $y;
-	}
-	public function __construct($x = 0, $y = 0)	// instance method
-	{
-		$this->x = $x; 					// access instance property
-		$this->y = $y; 					// access instance property
-		++self::$pointCount; 				// access static property
-	}
-	public function __destruct()				// instance method
-	{
-		--self::$pointCount; 				// access static property
-		...
-	}
-	...
+  public static function getPointCount()    // static method
+  {
+    return self::$pointCount;     // access static property
+  }
+  public function move($x, $y)        // instance method
+  {
+    $this->x = $x;
+    $this->y = $y;
+  }
+  public function __construct($x = 0, $y = 0) // instance method
+  {
+    $this->x = $x;          // access instance property
+    $this->y = $y;          // access instance property
+    ++self::$pointCount;    // access static property
+  }
+  public function __destruct()      // instance method
+  {
+    --self::$pointCount;        // access static property
+    ...
+  }
+  ...
 }
 echo "Point count = " . Point::getPointCount() . "\n";
 $cName = 'Point';
@@ -8246,31 +8246,31 @@ searching for a base-class constructor.
 ```
 class Point 
 {
-	private static $pointCount = 0;
-	private $x;
-	private $y;
-	public function __construct($x = 0, $y = 0)
-	{
-		$this->x = $x;
-		$this->y = $y;
-		++self::$pointCount;
-	}
-	public function __destruct()
-	{
-		--self::$pointCount;
-		...
-	}
-	...
+  private static $pointCount = 0;
+  private $x;
+  private $y;
+  public function __construct($x = 0, $y = 0)
+  {
+    $this->x = $x;
+    $this->y = $y;
+    ++self::$pointCount;
+  }
+  public function __destruct()
+  {
+    --self::$pointCount;
+    ...
+  }
+  ...
 }
 // -----------------------------------------
 class MyRangeException extends Exception 
 {
-	public function __construct($message, ...)
-	{
-		parent::__construct($message);
-		...
-	}
-	...
+  public function __construct($message, ...)
+  {
+    parent::__construct($message);
+    ...
+  }
+  ...
 }
 ```
 
@@ -8339,21 +8339,21 @@ If a class contains a definition for a method having one of the
 following names, that method must have the prescribed visibility,
 signature, and semantics:
 
-Method Name	| Description | Reference
+Method Name | Description | Reference
 ------------|-------------|----------
 `__call` | Calls a dynamic method in the context of an instance-method call | [§§](#method-__call)
 `__callStatic` | Calls a dynamic method in the context of a static-method call | [§§](#method-__callstatic)
 __clone |Typically used to make a deep copy ([§§](#)) of an object | [§§](#method-__clone)
-`__construct` | A constructor | 	[§§](#constructors)
-`__destruct` | A destructor |	[§§](#destructors)
-`__get` | Retrieves the value of a given dynamic property |	[§§](#method-__get)
-`__invoke` | Called when a script calls an object as a function |	[§§](#method-__invoke)
-`__isset` | Reports if a given dynamic property exists |	[§§](#method-__isset)
-`__set` | Sets the value of a given dynamic property |	[§§](#method-__set) 
+`__construct` | A constructor |   [§§](#constructors)
+`__destruct` | A destructor | [§§](#destructors)
+`__get` | Retrieves the value of a given dynamic property | [§§](#method-__get)
+`__invoke` | Called when a script calls an object as a function | [§§](#method-__invoke)
+`__isset` | Reports if a given dynamic property exists |  [§§](#method-__isset)
+`__set` | Sets the value of a given dynamic property |  [§§](#method-__set) 
 `__set_state` | Called when a class is exported by `var_export` (§xx) | [§§](#method-__set_state)
 `__sleep` | Executed before serialization ([§§](#serialization)) of an instance of this class | [§§](#method-__sleep)
-`__toString` | Returns a string representation of the instance on which it is called | 	[§§](#method-__tostring)
-`__unset` | Removes a given dynamic property |	[§§](#method-__unset)
+`__toString` | Returns a string representation of the instance on which it is called |  [§§](#method-__tostring)
+`__unset` | Removes a given dynamic property |  [§§](#method-__unset)
 `__wakeup` | Executed after unserialization ([§§](#serialization)) of an instance of this class | [§§](#method-__wakeup)
 
 ###Method `__call`
@@ -8407,15 +8407,15 @@ restrictions on the spelling of the dynamic method name designated by
 ```
 class Widget
 {
-	public function __call($name, $arguments)
-	{
-		// using the method name and argument list, redirect/process
-		// the method call, as desired.
-	}
-	...
+  public function __call($name, $arguments)
+  {
+    // using the method name and argument list, redirect/process
+    // the method call, as desired.
+  }
+  ...
 }
 $obj = new Widget;
-$obj->iMethod(10, TRUE, "abc");	// $obj->__call('iMethod', array(...))
+$obj->iMethod(10, TRUE, "abc"); // $obj->__call('iMethod', array(...))
 ```
 
 ###Method `__callStatic`
@@ -8528,40 +8528,40 @@ instance having dynamic properties ([§§](#dynamic-members)).
 ```
 class Employee
 {
-	...
-	public function __clone() 
-	{
-		// do what it takes here to make a copy of Employee object properties
-	}
+  ...
+  public function __clone() 
+  {
+    // do what it takes here to make a copy of Employee object properties
+  }
 }
 class Manager extends Employee
 {
-	...
-	public function __clone() 
-	{
-		parent::__clone(); // request cloning of the Employee properties
+  ...
+  public function __clone() 
+  {
+    parent::__clone(); // request cloning of the Employee properties
 
-		// do what it takes here to make a copy of Manager object properties
-	}
-	...
+    // do what it takes here to make a copy of Manager object properties
+  }
+  ...
 }
 // -----------------------------------------
 class Point 
 {
-	private static $pointCount = 0;
-	public function __construct($x = 0, $y = 0) 
-	{
-		...
-		++self::$pointCount;
-	}
-	public function __clone() 
-	{
-		++self::$pointCount; // emulate the constructor
-	}
-	...
+  private static $pointCount = 0;
+  public function __construct($x = 0, $y = 0) 
+  {
+    ...
+    ++self::$pointCount;
+  }
+  public function __clone() 
+  {
+    ++self::$pointCount; // emulate the constructor
+  }
+  ...
 }
-$p1 = new Point;	// created using the constructor
-$p2 = clone $p1; 	// created by cloning
+$p1 = new Point;  // created using the constructor
+$p2 = clone $p1;  // created by cloning
 ```
 
 ###Method `__get`
@@ -8625,7 +8625,7 @@ class Point
         // no-such-property error handling goes here
         return NULL;
     }
-	...
+  ...
 }
 ```
 
@@ -8637,11 +8637,11 @@ called prop:
 ```
 class C
 {
-	public function __get($name)
-	{
-		return $this->$name;    // must not recurse
-	}
-	...
+  public function __get($name)
+  {
+    return $this->$name;    // must not recurse
+  }
+  ...
 }
 $c = new C;
 $x = $c->prop;
@@ -8680,16 +8680,16 @@ initial function call.
 ```
 class C
 {
-	public function __invoke($p)
-	{
-		...
-		return ...;
-	}
-	...
+  public function __invoke($p)
+  {
+    ...
+    return ...;
+  }
+  ...
 }
 $c = new C;
-is_callable($c)		// returns TRUE
-$r = $c(123);		// becomes $r = $c->__invoke(123);	
+is_callable($c) // returns TRUE
+$r = $c(123);   // becomes $r = $c->__invoke(123);
 ```
 
 ###Method `__isset`
@@ -8738,7 +8738,7 @@ class Point
     {
         return isset($this->dynamicProperties[$name]);
     }
-	...
+  ...
 }
 ```
 
@@ -8808,7 +8808,7 @@ class Point
     {
         $this->dynamicProperties[$name] = $value;
     }
-	...
+  ...
 }
 // -----------------------------------------
 class X
@@ -8878,19 +8878,19 @@ below.
 ```
 class Point 
 {
-	private $x;
-	private $y;
-	static public function __set_state(array $properties)
-	{
-		$p = new Point;
-		$p->x = $properties['x'];
-		$p->y = $properties['y'];
-		return $p;
-	}
-	...
+  private $x;
+  private $y;
+  static public function __set_state(array $properties)
+  {
+    $p = new Point;
+    $p->x = $properties['x'];
+    $p->y = $properties['y'];
+    return $p;
+  }
+  ...
 }
 $p = new Point(3, 5);
-$v = var_export($p, TRUE);	// returns string representation of $p
+$v = var_export($p, TRUE);  // returns string representation of $p
 ```
 The string produced looks something like the following:
 
@@ -8899,39 +8899,39 @@ The string produced looks something like the following:
    'x' => 3,
    'y' => 5,
 ))" 
-eval('$z = ' . $v . ";");	// execute the string putting the result in $z
-echo "Point \$z is $z\n";	// Point $z is (3,5)
+eval('$z = ' . $v . ";"); // execute the string putting the result in $z
+echo "Point \$z is $z\n"; // Point $z is (3,5)
 // -----------------------------------------
-class B	// base class of D
+class B // base class of D
 {
-	private $bprop;
-	public function __construct($p)
-	{
-		$this->bprop = $p;
-	}
-	static public function __set_state(array $properties)
-	{
-		$b = new static($properties['bprop']);	// note the static
-		return $b;
-		// Because of the "new static", the return statement
-		//   returns a B when called in a B context, and
-		//   returns a D when called in a D context
-	}
+  private $bprop;
+  public function __construct($p)
+  {
+    $this->bprop = $p;
+  }
+  static public function __set_state(array $properties)
+  {
+    $b = new static($properties['bprop']);  // note the static
+    return $b;
+    // Because of the "new static", the return statement
+    //   returns a B when called in a B context, and
+    //   returns a D when called in a D context
+  }
 }
 class D extends B
 {
-	private $dprop = 123;
-	public function __construct($bp, $dp = NULL)
-	{
-		$this->dprop = $dp;
-		parent::__construct($bp);
-	}
-	static public function __set_state(array $properties)
-	{
-		$d = parent::__set_state($properties); // expects back a D, NOT a B
-		$d->dprop = $properties['dprop'];
-		return $d;
-	}
+  private $dprop = 123;
+  public function __construct($bp, $dp = NULL)
+  {
+    $this->dprop = $dp;
+    parent::__construct($bp);
+  }
+  static public function __set_state(array $properties)
+  {
+    $d = parent::__set_state($properties); // expects back a D, NOT a B
+    $d->dprop = $properties['dprop'];
+    return $d;
+  }
 }
 $b = new B(10);
 $v = var_export($b, TRUE);
@@ -8990,29 +8990,29 @@ instances. For that, a class must implement the interface Serializable
 ```
 class Point 
 {
-	private static $nextId = 1;
-	private $x;
-	private $y;
-	private $id;
-	public function __construct($x = 0, $y = 0) 
-	{
-		$this->x = $x;
-		$this->y = $y;
-		$this->id = self::$nextId++;	// assign the next available id
-	}
-	public function __sleep() 
-	{
-		return array('y', 'x');	// serialize only $y and $x, in that order
-	}
-	public function __wakeup() 
-	{
-		$this->id = self::$nextId++;	// assign a new id
-	}
-	...
+  private static $nextId = 1;
+  private $x;
+  private $y;
+  private $id;
+  public function __construct($x = 0, $y = 0) 
+  {
+    $this->x = $x;
+    $this->y = $y;
+    $this->id = self::$nextId++;  // assign the next available id
+  }
+  public function __sleep() 
+  {
+    return array('y', 'x'); // serialize only $y and $x, in that order
+  }
+  public function __wakeup() 
+  {
+    $this->id = self::$nextId++;  // assign a new id
+  }
+  ...
 }
 $p = new Point(-1, 0);
-$s = serialize($p);		// serialize Point(-1,0)
-$v = unserialize($s);		// unserialize Point(-1,0)
+$s = serialize($p);   // serialize Point(-1,0)
+$v = unserialize($s); // unserialize Point(-1,0)
 ```
 
 ###Method `__toString`
@@ -9050,30 +9050,30 @@ instance having dynamic properties ([§§](#dynamic-members)).
 ```
 class Point 
 {
-	private $x;
-	private $y;
-	public function __construct($x = 0, $y = 0) 
-	{
-		$this->x = $x;
-		$this->y = $y;
-	}
-	public function __toString() 
-	{
-		return '(' . $this->x . ',' . $this->y . ')';
-	}
-	...	
+  private $x;
+  private $y;
+  public function __construct($x = 0, $y = 0) 
+  {
+    $this->x = $x;
+    $this->y = $y;
+  }
+  public function __toString() 
+  {
+    return '(' . $this->x . ',' . $this->y . ')';
+  }
+  ...
 }
 $p1 = new Point(20, 30);
-echo $p1 . "\n";	// implicit call to __toString() returns "(20,30)"
+echo $p1 . "\n";  // implicit call to __toString() returns "(20,30)"
 // -----------------------------------------
 class MyRangeException extends Exception 
 {
-	public function __toString() 
-	{
-		return parent::__toString()
-			. string-representation-of-MyRangeException
-	}
-	...
+  public function __toString() 
+  {
+    return parent::__toString()
+      . string-representation-of-MyRangeException
+  }
+  ...
 }
 ```
 
@@ -9123,7 +9123,7 @@ class Point
     {
         unset($this->dynamicProperties[$name]);
     }
-	...
+  ...
 }
 ```
 
@@ -9204,26 +9204,26 @@ these classes need be defined in order for both `Points` and `ColoredPoints`
 to be serialized and unserialized:
 
 ```
-class Point implements Serializable	// note the interface
+class Point implements Serializable // note the interface
 {
-	private static $nextId = 1;
-	private $x;
-	private $y;
-	private $id;	// transient property; not serialized
-	public function __construct($x = 0, $y = 0) 
-	{
-		$this->x = $x;
-		$this->y = $y;
-		$this->id = self::$nextId++;
-	}
-	public function __toString() 
-	{
-		return 'ID:' . $this->id . '(' . $this->x . ',' . $this->y . ')';
-	}	
-	public function serialize() 
-	{
-		return serialize(array('y' => $this->y, 'x' => $this->x));
-	}
+  private static $nextId = 1;
+  private $x;
+  private $y;
+  private $id;  // transient property; not serialized
+  public function __construct($x = 0, $y = 0) 
+  {
+    $this->x = $x;
+    $this->y = $y;
+    $this->id = self::$nextId++;
+  }
+  public function __toString() 
+  {
+    return 'ID:' . $this->id . '(' . $this->x . ',' . $this->y . ')';
+  }
+  public function serialize() 
+  {
+    return serialize(array('y' => $this->y, 'x' => $this->x));
+  }
 ```
 
 The custom method `serialize` calls the library function `serialize` to
@@ -9233,13 +9233,13 @@ is the order in which the properties are serialized in the resulting
 string. The array is returned.
 
 ```
-	public function unserialize($data)
-	{
-		$data = unserialize($data);
-		$this->x = $data['x'];
-		$this->y = $data['y'];
-		$this->id = self::$nextId++;
-	}
+  public function unserialize($data)
+  {
+    $data = unserialize($data);
+    $this->x = $data['x'];
+    $this->y = $data['y'];
+    $this->id = self::$nextId++;
+  }
 }
 ```
 
@@ -9273,29 +9273,29 @@ The call to the library function `unserialize` calls the custom
 ```
 class ColoredPoint extends Point implements Serializable
 {
-	const RED = 1;
-	const BLUE = 2;
+  const RED = 1;
+  const BLUE = 2;
 
-	private $color;	// an instance property
+  private $color; // an instance property
 
-	public function __construct($x = 0, $y = 0, $color = RED) 
-	{
-		parent::__construct($x, $y);
-		$this->color = $color;
-	}
+  public function __construct($x = 0, $y = 0, $color = RED) 
+  {
+    parent::__construct($x, $y);
+    $this->color = $color;
+  }
 
-	public function __toString() 
-	{
-		return parent::__toString() . $this->color;
-	}	
+  public function __toString() 
+  {
+    return parent::__toString() . $this->color;
+  }
 
-	public function serialize() 
-	{
-		return serialize(array(
-			'color' => $this->color,
-			'baseData' => parent::serialize()
-		));
-	}
+  public function serialize() 
+  {
+    return serialize(array(
+      'color' => $this->color,
+      'baseData' => parent::serialize()
+    ));
+  }
 ```
 
 As with class `Point`, this custom method returns an array of the instance
@@ -9307,9 +9307,9 @@ order of the elements is up to the programmer.
 ```
     public function unserialize($data)
     {
-		$data = unserialize($data);
-		$this->color = $data['color'];
-		parent::unserialize($data['baseData']);
+    $data = unserialize($data);
+    $this->color = $data['color'];
+    parent::unserialize($data['baseData']);
     }
 }
 ```
@@ -9338,8 +9338,8 @@ cannot be instantiated except by the Engine, as described below.
 ```
 class Closure
 {
-	public static bind(Closure $closure, $newthis [, $newscope = "static" ]);
-	public bindTo($newthis [, $newscope = "static" ]);
+  public static bind(Closure $closure, $newthis [, $newscope = "static" ]);
+  public bindTo($newthis [, $newscope = "static" ]);
 }
 
 ```
@@ -9348,8 +9348,8 @@ The class members are defined below:
 
 Name | Purpose
 -----|--------
-`bind` |	Duplicates closure `$closure` with a specific bound object `$newthis` and class scope `$newscope`. Make `$newthis` `NULL` if the closure is to be unbound. `$newscope` is the class scope to which the closure is to be associated, or static to keep the current one. If an object is given, the type of the object will be used instead. This determines the visibility of protected and private methods of the bound object. Returns a new `Closure` object or `FALSE` on failure.
-`bindTo` |	Duplicates the closure designated by the current instance with a new-bound object and class scope. This method is an instance version of bind. 
+`bind` |  Duplicates closure `$closure` with a specific bound object `$newthis` and class scope `$newscope`. Make `$newthis` `NULL` if the closure is to be unbound. `$newscope` is the class scope to which the closure is to be associated, or static to keep the current one. If an object is given, the type of the object will be used instead. This determines the visibility of protected and private methods of the bound object. Returns a new `Closure` object or `FALSE` on failure.
+`bindTo` |  Duplicates the closure designated by the current instance with a new-bound object and class scope. This method is an instance version of bind. 
 
 When the anonymous function-creation operator ([§§](#anonymous-function-creation)) is evaluated,
 the result is an object of type `Closure` (or some unspecified class
@@ -9364,16 +9364,16 @@ which an anonymous function is created. Consider the following scenario:
 ```
 class C
 {
-	public function compute()
-	{
-		$count = 0;
-		$values = array("red" => 3, 10);
-		$callback = function ($p1, $p2) use (&$count, $values)
-		{
-			...
-		};
-		...
-	}
+  public function compute()
+  {
+    $count = 0;
+    $values = array("red" => 3, 10);
+    $callback = function ($p1, $p2) use (&$count, $values)
+    {
+      ...
+    };
+    ...
+  }
 }
 
 ```
@@ -9431,14 +9431,14 @@ class Generator implements Iterator
 ```
 class Generator implements Iterator
 {
-	public function current();
-	public function key();
-	public function next();
-	public function rewind();
-	public function send($value) ;
-	public function throw(Exception $exception) ;
-	public function valid();
-	public function __wakeup();
+  public function current();
+  public function key();
+  public function next();
+  public function rewind();
+  public function send($value) ;
+  public function throw(Exception $exception) ;
+  public function valid();
+  public function __wakeup();
 }
 ```
 
@@ -9467,9 +9467,9 @@ Cartesian point:
 ```
 class Point 
 {
-	private $x;
-	private $y;
-	...
+  private $x;
+  private $y;
+  ...
 }
 $p = new Point(2, 5);
 $s = serialize($p); // properties $x and $y are serialized, in that order
@@ -9489,9 +9489,9 @@ Instead of returning a point, `Point(2, 5`), an instance of
 ```
 __PHP_Incomplete_Class
 {
-	 __PHP_Incomplete_Class_Name => "Point"
-	x:Point:private => 2
-	y:Point:private => 5
+   __PHP_Incomplete_Class_Name => "Point"
+  x:Point:private => 2
+  y:Point:private => 5
 }
 ```
 
@@ -9561,25 +9561,25 @@ derived interface inherits all the members from the base interfaces.
 ```
 interface MyCollection 
 {
-	const MAX_NUMBER_ITEMS = 1000;
-	function put($item);
-	function get();
+  const MAX_NUMBER_ITEMS = 1000;
+  function put($item);
+  function get();
 }
 class MyList implements MyCollection 
 {
-	public function put($item)	{ /* implement method */ }
-	public function get()		{ /* implement method */ }
-	...
+  public function put($item)  { /* implement method */ }
+  public function get()   { /* implement method */ }
+  ...
 }
 class MyQueue implements MyCollection 
 {
-	public function put($item)	{ /* implement method */ }
-	public function get()		{ /* implement method */ }
-	...
+  public function put($item)  { /* implement method */ }
+  public function get()   { /* implement method */ }
+  ...
 }
 function processCollection(MyCollection $p1)
 {
-	... /* can process any object whose class implements MyCollection
+  ... /* can process any object whose class implements MyCollection
 }
 processCollection(new MyList(...));
 processCollection(new MyQueue(...));
@@ -9628,9 +9628,9 @@ nor by an interface that extends it.
 ```
 interface MyCollection 
 {
-	const MAX_NUMBER_ITEMS = 1000;
-	function put($item);
-	function get();
+  const MAX_NUMBER_ITEMS = 1000;
+  function put($item);
+  function get();
 }
 ```
 
@@ -9650,9 +9650,9 @@ An interface method is just like an abstract method ([§§](#methods)).
 ```
 interface MyCollection 
 {
-	const MAX_NUMBER_ITEMS = 1000;
-	function put($item);
-	function get();
+  const MAX_NUMBER_ITEMS = 1000;
+  function put($item);
+  function get();
 }
 ```
 
@@ -9667,21 +9667,21 @@ follows:
 ```
 interface ArrayAccess
 {
-	function offsetExists($offset);
-	function offsetGet($offset);
-	function offsetSet($offset, $value);
-	function offsetUnset($offset);
+  function offsetExists($offset);
+  function offsetGet($offset);
+  function offsetSet($offset, $value);
+  function offsetUnset($offset);
 }
 ```
 
 The interface members are defined below:
 
-Name	|   Purpose
+Name  |   Purpose
 ----    |   -------
-`offsetExists`  |	This instance method returns `TRUE` if the instance contains an element with key `$offset`, otherwise, `FALSE`.
-`offsetGet`	|  This instance method gets the value having key `$offset`. It may return by value or byRef. (Ordinarily, this wouldn't be allowed because a class implementing an interface needs to match the interface's method signatures; however, the Engine gives special treatment to `ArrayAccess` and allows this.) This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a non-lvalue context.
-`offsetSet`	| This instance method sets the value having key `$offset` to $value. It returns no value. This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a modifiable-lvalue context.
-`offsetUnset`	| This instance method unsets the value having key `$offset`. It returns no value.
+`offsetExists`  | This instance method returns `TRUE` if the instance contains an element with key `$offset`, otherwise, `FALSE`.
+`offsetGet` |  This instance method gets the value having key `$offset`. It may return by value or byRef. (Ordinarily, this wouldn't be allowed because a class implementing an interface needs to match the interface's method signatures; however, the Engine gives special treatment to `ArrayAccess` and allows this.) This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a non-lvalue context.
+`offsetSet` | This instance method sets the value having key `$offset` to $value. It returns no value. This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a modifiable-lvalue context.
+`offsetUnset` | This instance method unsets the value having key `$offset`. It returns no value.
 
 ###Interface `Iterator`
 
@@ -9691,11 +9691,11 @@ as a collection. This interface is defined, as follows:
 ```
 interface Iterator extends Traversable
 {
-	function current();
-	function key();
-	function next();
-	function rewind();
-	function valid();
+  function current();
+  function key();
+  function next();
+  function rewind();
+  function valid();
 }
 
 ```
@@ -9718,13 +9718,13 @@ interface is defined, as follows:
 ```
 Interface IteratorAggregate extends Traversable
 {
-	function getIterator();
+  function getIterator();
 }
 ```
 The interface members are defined below:
 
 
-Name	|   Purpose
+Name  |   Purpose
 ----    |   -------
 `getIterator` | This instance method retrieves an iterator, which implements `Iterator` or `Traversable`. It throws an `Exception` on failure.
 
@@ -9749,15 +9749,15 @@ as follows:
 ```
 interface Serializable
 {
-	function serialize();
-	function unserialize ($serialized);
+  function serialize();
+  function unserialize ($serialized);
 
 }
 ```
 
 The interface members are defined below:
 
-Name |	Purpose
+Name |  Purpose
 -----|  -------
 `serialize` | This instance method returns a string representation of the current instance. On failure, it returns `NULL`.
 `unserialize` | This instance method constructs an object from its string form designated by `$serialized`. It does not return a value.
@@ -9899,12 +9899,12 @@ trait T2 { public function compute( ... ) { ... } }
 trait T1 { public function sort( ... ) { ... } }
 trait T4
 {
-	use T3;
-	use T1, T2
-	{
-		T1::compute insteadof T2;	// disambiguate between two computes
-		T3::sort as private sorter;	// make alias with adjusted visibility
-	}
+  use T3;
+  use T1, T2
+  {
+    T1::compute insteadof T2; // disambiguate between two computes
+    T3::sort as private sorter; // make alias with adjusted visibility
+  }
 }
 ```
 
@@ -9952,11 +9952,11 @@ If a member has no explicit visibility, `public` is assumed.
 ```
 trait T
 {
-	private $prop1 = 1000;
-	protected static $prop2;
-	var $prop3;
-	public function compute( ... ) { ... }
-	public static function getData( ... ) { ... }
+  private $prop1 = 1000;
+  protected static $prop2;
+  var $prop3;
+  public function compute( ... ) { ... }
+  public static function getData( ... ) { ... }
 }
 ```
 
@@ -10015,28 +10015,28 @@ defined, as follows:
 ```
 Class Exception
 {
-	private   $string;
-	private   $trace;
-	private   $previous;
+  private   $string;
+  private   $trace;
+  private   $previous;
 
-	protected $message = 'Unknown exception';
-	protected $code = 0;
-	protected $file;
-	protected $line;
+  protected $message = 'Unknown exception';
+  protected $code = 0;
+  protected $file;
+  protected $line;
 
-	public function __construct($message = "", $code = 0,
- 								Exception $previous = NULL);
+  public function __construct($message = "", $code = 0,
+               Exception $previous = NULL);
 
-	final private function __clone();
+  final private function __clone();
 
-	final public  function getMessage();
-	final public  function getCode();
-	final public  function getFile();
-	final public  function getLine();
-	final public  function getTrace();
-	final public  function getPrevious();
-	final public  function getTraceAsString();
-	public function __toString();
+  final public  function getMessage();
+  final public  function getCode();
+  final public  function getFile();
+  final public  function getLine();
+  final public  function getTrace();
+  final public  function getPrevious();
+  final public  function getTraceAsString();
+  public function __toString();
 }
 ```
 
@@ -10045,25 +10045,25 @@ about nested exceptions, see [§§](#tracing-exceptions). 
 
 The class members are defined below:
 
-Name	| Purpose
+Name  | Purpose
 ----    | -------
-`$code`	| `int`; the exception code (as provided by the constructor)
-`$file`	| `string`; the name of the script where the exception was generated
-`$line`	| `int`; the source line number in the script where the exception was generated
-`$message`	| `string`; the exception message (as provided by the constructor)
-`$previous`	| The previous exception in the chain, if this is a nested exception; otherwise, `NULL`
-`$string`	| Work area for `__toString`
-`$trace`	| Work area for function-call tracing
-`__construct`	| Takes three (optional) arguments – `string`: the exception message (defaults to ""), `int`: the exception code (defaults to 0), and `Exception`: the previous exception in the chain (defaults to `NULL`)
-`__clone`	| Present to inhibit the cloning of exception objects
-`__toString`	| `string`; retrieves a string representation of the exception in some unspecified format
-`getCode`	| `mixed`; retrieves the exception code (as set by the constructor). For an exception of type Exception, the returned value has type int; for subclasses of `Exception`, it may have some other type.
-`getFile`	| `string`; retrieves the name of the script where the exception was generated
-`getLine`	| `int`; retrieves the source line number in the script where the exception was generated
-`getMessage`	| `string`; retrieves the exception message
-`getPrevious`	| `Exception`; retrieves the previous exception (as set by the constructor), if one exists; otherwise, `NULL`
-`getTrace`	| `array`; retrieves the function stack trace information as an array (see [§§](#tracing-exceptions))
-`getTraceAsString`	| `string`; retrieves the function stack trace information formatted as a single string in some unspecified format
+`$code` | `int`; the exception code (as provided by the constructor)
+`$file` | `string`; the name of the script where the exception was generated
+`$line` | `int`; the source line number in the script where the exception was generated
+`$message`  | `string`; the exception message (as provided by the constructor)
+`$previous` | The previous exception in the chain, if this is a nested exception; otherwise, `NULL`
+`$string` | Work area for `__toString`
+`$trace`  | Work area for function-call tracing
+`__construct` | Takes three (optional) arguments – `string`: the exception message (defaults to ""), `int`: the exception code (defaults to 0), and `Exception`: the previous exception in the chain (defaults to `NULL`)
+`__clone` | Present to inhibit the cloning of exception objects
+`__toString`  | `string`; retrieves a string representation of the exception in some unspecified format
+`getCode` | `mixed`; retrieves the exception code (as set by the constructor). For an exception of type Exception, the returned value has type int; for subclasses of `Exception`, it may have some other type.
+`getFile` | `string`; retrieves the name of the script where the exception was generated
+`getLine` | `int`; retrieves the source line number in the script where the exception was generated
+`getMessage`  | `string`; retrieves the exception message
+`getPrevious` | `Exception`; retrieves the previous exception (as set by the constructor), if one exists; otherwise, `NULL`
+`getTrace`  | `array`; retrieves the function stack trace information as an array (see [§§](#tracing-exceptions))
+`getTraceAsString`  | `string`; retrieves the function stack trace information formatted as a single string in some unspecified format
 
 ##Tracing Exceptions
 
@@ -10096,15 +10096,15 @@ trace-array[2] is for the call to function `f1`.
 Each element in trace-array is itself an array that contains elements
 with the following key/value pairs:
 
-Key	| Value Type	| Value
+Key | Value Type  | Value
 --- | ----------    | -----
-"args"	| `array`	| The set of arguments passed to the function
-"class"	| `string` |	The name of the function's parent class
-"file"	| `string` |	The name of the script where the function was called
-"function"	| `string` |	The name of the function or class method
-"line"	| `int` |	The line number in the source where the function was called
-"object" |	`object` | The current object
-"type"	| `string` |	Type of call; `->` for an instance method call, `::` for a static method call, ordinary function call, "" is returned.
+"args"  | `array` | The set of arguments passed to the function
+"class" | `string` |  The name of the function's parent class
+"file"  | `string` |  The name of the script where the function was called
+"function"  | `string` |  The name of the function or class method
+"line"  | `int` | The line number in the source where the function was called
+"object" |  `object` | The current object
+"type"  | `string` |  Type of call; `->` for an instance method call, `::` for a static method call, ordinary function call, "" is returned.
 
 As to whether extra elements with other keys are provided is
 unspecified.
@@ -10260,24 +10260,24 @@ runs until the end of the script, or until the lexically next
 Script1.php:
 ```
 namespace NS1;
-...				// __NAMESPACE__ is "NS1"
+...       // __NAMESPACE__ is "NS1"
 namespace NS3\Sub1;
-...				// __NAMESPACE__ is "NS3\Sub1"
+...       // __NAMESPACE__ is "NS3\Sub1"
 ```
 
 Script2.php:
 ```
 namespace NS1
 {
-...				// __NAMESPACE__ is "NS1"
+...       // __NAMESPACE__ is "NS1"
 }
 namespace
 {
-...				// __NAMESPACE__ is ""
+...       // __NAMESPACE__ is ""
 }
 namespace NS3\Sub1;
 {
-...				// __NAMESPACE__ is "NS3\Sub1"
+...       // __NAMESPACE__ is "NS3\Sub1"
 }
 ```
 
@@ -10329,25 +10329,25 @@ in *qualified-name* is the implied alias for *qualified-name*.
 ```
 namespace NS1
 {
-	const CON1 = 100;
-	function f() { ... }
-	class C { ... }
-	interface I { ... }
-	trait T { ... }
+  const CON1 = 100;
+  function f() { ... }
+  class C { ... }
+  interface I { ... }
+  trait T { ... }
 }
 
 namespace NS2
 {
-	use \NS1\C, \NS1\I, \NS1\T;
-	class D extends C implements I
-	{
-		use T;
-	}
-	$v = \NS1\CON1;	// explicit namespace still needed for constants
-	\NS1\f();		// explicit namespace still needed for functions
+  use \NS1\C, \NS1\I, \NS1\T;
+  class D extends C implements I
+  {
+    use T;
+  }
+  $v = \NS1\CON1; // explicit namespace still needed for constants
+  \NS1\f();   // explicit namespace still needed for functions
 
-	use \NS1\C as C2;	// C2 is an alias for the class name \NS1\C
-	$c2 = new C2;
+  use \NS1\C as C2; // C2 is an alias for the class name \NS1\C
+  $c2 = new C2;
 }
 ```
 
@@ -11125,7 +11125,7 @@ octal-digit
 
   <i>statement:</i>
     <i>compound-statement</i>
-	<i>labeled-statement</i>
+    <i>labeled-statement</i>
     <i>expression-statement</i>
     <i>selection-statement</i>
     <i>iteration-statement</i>

@@ -1834,12 +1834,12 @@ unspecified.
 
 The library function `is_object` (§xx) indicates if a given value is an
 object, and the library function
-[`get_class`](http://us2.php.net/manual/en/function.get-class.php)
+[`get_class`](http://php.net/manual/function.get-class.php)
 (§xx) indicates the name of an object's class.
 
 ###Resource Types
 
-A [*resource*](http://www.php.net/manual/en/language.types.resource.php)
+A [*resource*](http://php.net/manual/language.types.resource.php)
 is a descriptor to some sort of external entity. (Examples include
 files, databases, and sockets.)
 
@@ -1859,7 +1859,7 @@ are automatically opened at program start-up:
 
 The library function `is_resource` (§xx) indicates if a given value is a
 resource, and the library function
-[`get_resource_type`](http://us2.php.net/manual/en/function.get-resource-type.php)
+[`get_resource_type`](http://php.net/manual/function.get-resource-type.php)
 (§xx) indicates the type of a resource.
 
 
@@ -2212,7 +2212,7 @@ a script, or from within a block in which that variable has been
 declared (*imported*, that is) using the `global` keyword.
 
 As described in [§§](#predefined-variables),
-[`$GLOBALS`](http://www.php.net/manual/en/reserved.variables.globals.php) is
+[`$GLOBALS`](http://php.net/manual/reserved.variables.globals.php) is
 a superglobal ([§§](#general-5)) array whose elements' key/value pairs contain the
 name and value, respectively, of each global variable currently defined.
 As such, a global variable `gv` can be initialized with the value `v`,
@@ -2364,7 +2364,7 @@ If the source is an object, the conversion is invalid.
 If the source is a resource, the result is the resource's unique ID.
 
 The library function [`intval`
-(§xx)](http://www.php.net/manual/en/function.intval.php) allows values
+(§xx)](http://php.net/manual/function.intval.php) allows values
 to be converted to `int`.
 
 ##Converting to Floating-Point Type
@@ -2386,7 +2386,7 @@ are ignored. For any other string, the result value is 0.
 If the source is an object, the conversion is invalid.
 
 For sources of all other types, the conversion is performed by first
-converting the source value to [`int`](http://www.php.net/manual/en/language.types.integer.php)
+converting the source value to [`int`](http://php.net/manual/language.types.integer.php)
 ([§§](#converting-to-integer-type)) and then to `float`.
 
 If the source is a resource, the result is the resource's unique ID.
@@ -2430,10 +2430,10 @@ If the source value is `NULL`, the result value is an array of zero
 elements.
 
 If the source is an object, the result is
-an [array](http://www.php.net/manual/en/language.types.array.php) of
+an [array](http://php.net/manual/language.types.array.php) of
 zero or more elements, where the elements are key/value pairs
 corresponding to the
-[object](http://www.php.net/manual/en/language.types.object.php)'s
+[object](http://php.net/manual/language.types.object.php)'s
 instance properties. The order of insertion of the elements into the
 array is the lexical order of the instance properties in the
 *class-member-declarations* ([§§](#class-members)) list. The key for a private instance
@@ -3557,7 +3557,7 @@ valid PHP source code.
 
 The PHP source code in the string must not be delimited by opening and
 closing [PHP
-tags](http://us3.php.net/manual/en/language.basic-syntax.phpmode.php).
+tags](http://php.net/manual/language.basic-syntax.phpmode.php).
 
 **Semantics**
 
@@ -3799,7 +3799,7 @@ When called from inside a function, this intrinsic behaves, as follows:
     alias to that variable from the scope of the current call to that
     function. Once the function returns, the global variable is still
     set. (To unset the global variable, use unset on the corresponding
-    [`$GLOBALS`](http://us3.php.net/manual/en/reserved.variables.globals.php) array entry ([§§](#predefined-variables)).)
+    [`$GLOBALS`](http://php.net/manual/reserved.variables.globals.php) array entry ([§§](#predefined-variables)).)
 -   For a variable passed byRef to that function, `unset` removes the
     alias to that variable from the scope of the current call to that
     function. Once the function returns, the passed-in argument variable
@@ -4346,10 +4346,10 @@ if such a parameter exists. The assignment of argument values to
 parameters is defined in terms of simple ([§§](#simple-assignment)) or byRef assignment
 ([§§](#byref-assignment)), depending on how the parameter was declared.  There may be
 more arguments than parameters, in which case, the library functions
-[`func_num_args`](http://www.php.net/manual/en/function.func-num-args.php)
-(§xx), [`func_get_arg`](http://www.php.net/manual/en/function.func-get-arg.php)
+[`func_num_args`](http://php.net/manual/function.func-num-args.php)
+(§xx), [`func_get_arg`](http://php.net/manual/function.func-get-arg.php)
 (§xx),
-and [`func_get_args`](http://www.php.net/manual/en/function.func-get-args.php)
+and [`func_get_args`](http://php.net/manual/function.func-get-args.php)
 (§xx) can be used to get access to the complete argument list that was
 passed. If the number of arguments present in a function call is fewer
 than the number of parameters defined for that function, any parameter
@@ -4878,7 +4878,7 @@ Operator `@` supresses any error messages generated by the evaluation of
 
 If a custom error-handler has been established using the library
 function [`set_error_handler` (§xx), that
-handler](http://us3.php.net/manual/en/function.set-error-handler.php)is
+handler](http://php.net/manual/function.set-error-handler.php) is
 still called.
 
 **Examples**
@@ -4939,7 +4939,7 @@ as a string. If the output is redirected away from `STDOUT`, or
 *dq-char-sequence* is empty or contains only white space, the result of
 the operator is `NULL`.
 
-If [`shell_exec`](http://www.php.net/manual/en/function.shell-exec.php)
+If [`shell_exec`](http://php.net/manual/function.shell-exec.php)
 (§xx) is disabled, this operator is disabled.
 
 **Examples**
@@ -7213,7 +7213,7 @@ terminate.
 Return statements can also be used in the body of anonymous functions.
 
 `return` terminates the execution of source code given to the intrinsic
-[`eval` ([§§](#eval))](http://www.php.net/manual/en/function.eval.php). 
+[`eval` ([§§](#eval))](http://php.net/manual/function.eval.php). 
 
 **Examples**
 
@@ -7438,10 +7438,10 @@ first. As the parser is executing, certain statements are considered
 *tickable*. For every *tick-count* ticks, an event occurs, which can be
 serviced by the function previously registered by the library function 
 [`register_tick_function`
-(§xx)](http://www.php.net/manual/en/function.register-tick-function.php).
+(§xx)](http://php.net/manual/function.register-tick-function.php).
 Tick event monitoring can be disabled by calling the library function 
 [`unregister_tick_function`
-(§xx)](http://www.php.net/manual/en/function.unregister-tick-function.php).
+(§xx)](http://php.net/manual/function.unregister-tick-function.php).
 This facility allows a profiling mechanism to be developed.
 
 Character encoding can be specified on a script-by-script basis using
@@ -7468,9 +7468,9 @@ more *elements*. The elements of an array need not have the same type,
 and the type of an array element can change over its lifetime. An array
 element can have any type (which allows for arrays of arrays). However,
 PHP does not support
-multidimensional [array](http://www.php.net/manual/en/language.types.array.php)s.
+multidimensional [array](http://php.net/manual/language.types.array.php)s.
 
-An [array](http://www.php.net/manual/en/language.types.array.php) is
+An [array](http://php.net/manual/language.types.array.php) is
 represented as an ordered map in which each entry is a key/value pair
 that represents an element. An element key can be an expression of type
 `int` or `string`. Duplicate keys are not permitted. The order of the
@@ -8141,7 +8141,7 @@ described in [§§](#class-members); and *function-definition* and
 When defining a concrete class that inherits from an abstract class, the
 definition of each abstract method inherited by the derived class must
 have the same or a
-less-restricted [visibility](http://www.php.net/manual/en/language.oop5.visibility.php)
+less-restricted [visibility](http://php.net/manual/language.oop5.visibility.php)
 than in the corresponding abstract declaration. Furthermore, the
 signature of a method definition must match that of its abstract
 declaration.
@@ -8195,7 +8195,7 @@ examples of abstract methods and their subsequent definitions.
 **Constraints**
 
 An overriding constructor in a derived class must have the same or a
-less-restricted [visibility](http://www.php.net/manual/en/language.oop5.visibility.php)
+less-restricted [visibility](http://php.net/manual/language.oop5.visibility.php)
 than that being overridden in the base class.
 
 *name* must be the same as that in the *class-declaration* ([§§](#class-declarations)) that
@@ -8289,7 +8289,7 @@ described in [§§](#compound-statements).
 **Constraints**
 
 An overriding destructor in a derived class must have the same or a
-less-restricted [visibility](http://www.php.net/manual/en/language.oop5.visibility.php)
+less-restricted [visibility](http://php.net/manual/language.oop5.visibility.php)
 than that being overridden in the base class.
 
 **Semantics**
@@ -9330,9 +9330,9 @@ $v = unserialize($s);
 ### Class `Closure`
 
 The predefined
-class [`Closure`](http://www.php.net/manual/en/class.closure.php) is used
+class [`Closure`](http://php.net/manual/class.closure.php) is used
 for representing an [anonymous
-function](http://www.php.net/manual/en/functions.anonymous.php). It
+function](http://php.net/manual/functions.anonymous.php). It
 cannot be instantiated except by the Engine, as described below.
 
 ```
@@ -9708,7 +9708,7 @@ Name | Purpose
 `key` |This instance method returns the key of the current element. On failure, it returns `NULL`; otherwise, it returns the scalar value of the key.
 `next` | This instance method moves the current position forward to the next element. It returns no value. From within a `foreach` statement, this method is called after each loop.
 `rewind` |  This instance method resets the current position to the first element. It returns no value. From within a `foreach` statement, this method is called once, at the beginning.
-`valid` | This instance method checks if the current position is valid. It takes no arguments. It returns a bool value of `TRUE` to indicate the current position is valid; `FALSE`, otherwise. This method is called after each call to [`Iterator::rewind()`](http://us2.php.net/manual/en/iterator.rewind.php) and [`Iterator::next()`](http://us2.php.net/manual/en/iterator.next.php).
+`valid` | This instance method checks if the current position is valid. It takes no arguments. It returns a bool value of `TRUE` to indicate the current position is valid; `FALSE`, otherwise. This method is called after each call to [`Iterator::rewind()`](http://php.net/manual/iterator.rewind.php) and [`Iterator::next()`](http://php.net/manual/iterator.next.php).
 
 ###Interface `IteratorAggregate`
 
@@ -10004,7 +10004,7 @@ the situation.
 Prior to the addition of exception handling to PHP, exception-like
 conditions were handled using Error Reporting (§xx). Now, errors can be
 translated to exceptions via the class
-[`ErrorException`](http://www.php.net/manual/en/class.errorexception.php)
+[`ErrorException`](http://php.net/manual/class.errorexception.php)
 (which is not part of this specification).
 
 ##Class `Exception`
@@ -10135,7 +10135,7 @@ When an exception class is defined, typically, its constructors call the
 parent class' constructor as their first operation to ensure the
 base-class part of the new object is initialized appropriately. They
 often also provide an augmented implementation of
-[`__toString()`](http://www.php.net/manual/en/language.oop5.magic.php)
+[`__toString()`](http://php.net/manual/language.oop5.magic.php)
 ([§§](#method-__tostring)).
 
 

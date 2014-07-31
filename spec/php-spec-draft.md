@@ -677,7 +677,7 @@ storing the local variable's value.
 Consider the following example of value assignment ([§§](#simple-assignment)) of scalar
 values to local variables:
 
-```
+```PHP
 $a = 123;
 
 $b = false;
@@ -756,7 +756,7 @@ contents, the abstract model assumes that a string's entire contents
 and that value assignment for a string eagerly copies a string's entire
 contents to the VStore being written to. Consider the following example:
 
-```
+```PHP
 $a = 'gg';
 
 $b = $a;
@@ -989,7 +989,7 @@ before the assignment operation.
 It is also possible to use byRef assignment to make three or more VSlots
 point to the same VStore. Consider the following example:
 
-```
+```PHP
 $b =& $a;
 $c =& $b;
 $a = 123;
@@ -1136,7 +1136,7 @@ VStore points to a different HStore than `$a`'s VStore. Each source array
 element is copied using *member-copy assignment* `=*`, which is defined
 as follows:
 
-```
+```PHP
    $destination =* $source
 ```
 -   If `$source`'s VStore has a refcount equal to 1, the Engine copies the
@@ -1160,7 +1160,7 @@ array point to distinct VStores, each of which contain a handle to the
 same object HStore.
 
 Let's consider another example:
-```
+```PHP
 $x = 123;
 $a = array(array(&$x, 'hi'));
 $b = $a;
@@ -1270,7 +1270,7 @@ To illustrate this, let's see how the previous example would be
 represented under the abstract model assuming the implementation defers
 the copying the array:
 
-```
+```PHP
 $x = 123;
 $a = array(array(&$x, 'hi'));
 $b = $a;
@@ -1422,7 +1422,7 @@ member-copy assignment to copy `$a[0]`'s arrays's elements into `$b[0]`'s
 array.
 
 Finally, let's briefly consider one more example:
-```
+```PHP
 $x = 0;
 $a = array(&$x);
 $b = $a;
@@ -1614,7 +1614,7 @@ which destroys any given set of variables.
 
 The following example demonstrates the three storage durations:
 
-```
+```PHP
 class Point { ... }
 
 $av1 = new Point(0, 1);       // auto variable $av1 created and initialized
@@ -1651,7 +1651,7 @@ variables retain their values from previous calls.
 
 Consider the following recursive function:
 
-```
+```PHP
 function factorial($i)
 {
   if ($i > 1) return $i * factorial($i - 1);
@@ -1891,7 +1891,7 @@ string.
 
 **Examples**
 
-```
+```PHP
 const MAX_HEIGHT = 10.5;              // define two (case-insensitive) c-constants
 const UPPER_LIMIT = MAX_HEIGHT;
 define('COEFFICIENT_1', 2.345, TRUE); // define a case-insensitive d-constant
@@ -2059,7 +2059,7 @@ static storage duration ([§§](#storage-duration)) and is a non-modifiable lval
 
 **Examples**
 
-```
+```PHP
 const MAX_HEIGHT = 10.5;        // define two c-constants
 const UPPER_LIMIT = MAX_HEIGHT;
 define('COEFFICIENT_1', 2.345); // define two d-constants
@@ -2083,7 +2083,7 @@ variable is a modifiable lvalue.
 
 **Examples**
 
-```
+```PHP
 function doit($p1)  // assigned the value TRUE when called
 {
   $count = 10;
@@ -2130,7 +2130,7 @@ array's name. An array element has allocated storage duration ([§§](#storage-d
 
 **Examples**
 
-```
+```PHP
 $colors = ["red", "white", "blue"]; // create array with 3 elements
 $colors[] = "green";                // insert a new element
 ```
@@ -2170,7 +2170,7 @@ is called, a new alias is created.
 
 **Examples**
 
-```
+```PHP
 function f()
 {
   static $fs = 1;
@@ -2235,7 +2235,7 @@ variable.
 
 **Examples**
 
-```
+```PHP
 $colors = array("red", "white", "blue");
 $GLOBALS['done'] = FALSE;
 // -----------------------------------------
@@ -2730,7 +2730,7 @@ equivalent to `Total38()`).
 
 **Examples**
 
-```
+```PHP
 const MAX_VALUE = 100;
 function getData() { ... }
 class Point { ... }
@@ -2804,7 +2804,7 @@ represent the Boolean values True and False, respectively.
 
 **Examples**
 
-```
+```PHP
 $done = FALSE;
 computeValues($table, TRUE);
 ```
@@ -2882,7 +2882,7 @@ notations are considered to have non-negative values.
 
 **Examples**
 
-```
+```PHP
 $count = 10      // decimal 10
 
 0b101010 >> 4    // binary 101010 and decimal 4
@@ -2892,7 +2892,7 @@ $count = 10      // decimal 10
 
 On an implementation using 32-bit int representation
 
-```
+```PHP
 2147483648 -> 2147483648 (too big for int, so is a float)
 
 -2147483648 -> -2147483648 (too big for int, so is a float, negated)
@@ -2942,7 +2942,7 @@ floating-point values for infinity and Not-a-Number, respectively.
 
 **Examples**
 
-```
+```PHP
 $values = array(1.23, 3e12, 543.678E-23);
 ```
 
@@ -3128,7 +3128,7 @@ contain any variable substitution.
 
 **Examples**
 
-```
+```PHP
 $x = 123;
 echo ">\$x.$x"."<"; // → >$x.123<
 // -----------------------------------------
@@ -3206,7 +3206,7 @@ any variable substitution.
 
 **Examples**
 
-```
+```PHP
 $v = 123;
 $s = <<<    ID
 S'o'me "\"t e\txt; \$v = $v"
@@ -3246,7 +3246,7 @@ A nowdoc string literal is a c-constant ([§§](#general-4)).
 
 **Examples**
 
-```
+```PHP
 $v = 123;
 $s = <<<    'ID'
 S'o'me "\"t e\txt; \$v = $v"
@@ -3496,7 +3496,7 @@ For value substitution in string literals, see [§§](#double-quoted-string-lite
 
 **Examples**
 
-```
+```PHP
 $v1 = TRUE;
 $v2 = 123;
 echo  '>>' . $v1 . '|' . $v2 . "<<\n";    // outputs ">>1|123<<"
@@ -3532,7 +3532,7 @@ method ([§§](#method-__isset)), that method is called.
 
 **Examples**
 
-```
+```PHP
 empty("0")  // results in TRUE
 empty("00") // results in FALSE
 $v = [10, 20];
@@ -3574,7 +3574,7 @@ called.
 
 **Examples**
 
-```
+```PHP
 $str = "Hello";
 eval("echo \$str . \"\\n\";");  // → echo $str . "\n";
 ```
@@ -3619,7 +3619,7 @@ status code is made available to the execution environment. If
 
 **Examples**
 
-```
+```PHP
 exit ("Closing down");
 exit (1);
 exit;
@@ -3656,7 +3656,7 @@ method ([§§](#method-__isset)), that method is called.
 
 **Examples**
 
-```
+```PHP
 $v = TRUE;
 isset($v)     // results in TRUE
 $v = NULL;
@@ -3719,7 +3719,7 @@ way, the behavior is unspecified.
 
 **Examples**
 
-```
+```PHP
 list($min, $max, $avg) = array(0, 100, 67);
   // $min is 0, $max is 100, $avg is 67
 list($min, $max, $avg) = array(2 => 67, 1 => 100, 0 => 0);
@@ -3761,7 +3761,7 @@ For value substitution in string literals, see [§§](#double-quoted-string-lite
 
 **Examples**
 
-```
+```PHP
 $v1 = TRUE;
 $v2 = 123;
 print  '>>' . $v1 . '|' . $v2 . "<<\n";   // outputs ">>1|123<<"
@@ -3818,7 +3818,7 @@ method ([§§](#method-__unset)), that method is called.
 
 **Examples**
 
-```
+```PHP
 unset($v);
 unset($v1, $v2, $v3);
 unset($x->m); // if m is a dynamic property, $x's __unset("m") is called
@@ -3867,7 +3867,7 @@ the variable `$this`.
 
 **Examples**
 
-```
+```PHP
 function doit($value, callable $process)  // return type is "Closure"
 {
   return $process($value);
@@ -3956,7 +3956,7 @@ used to make a copy of a Manager object, and behind the scenes, the
 `Manager` object uses clone to copy the properties for the base class,
 `Employee`.
 
-```
+```PHP
 class Employee
 {
   ...
@@ -4030,7 +4030,7 @@ Because a constructor call is a function call, the relevant parts of
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   public function __construct($x = 0, $y = 0) 
@@ -4117,7 +4117,7 @@ stored using byRef assignment ([§§](#assignment)).
 
 **Examples**
 
-```
+```PHP
 $v = [];      // array has 0 elements
 $v = array(TRUE);   // array has 1 element, the Boolean TRUE
 $v = [123, -56];  // array of two ints, with implicit int keys 0 and 1
@@ -4269,7 +4269,7 @@ Note: The brace (`{...}`) form of this operator has been deprecated.
 
 **Examples**
 
-```
+```PHP
 $v = array(10, 20, 30);
 $v[1] = 1.234;    // change the value (and type) of element [1]
 $v[-10] = 19;   // insert a new element with int key -10
@@ -4367,7 +4367,7 @@ If *postfix-expression* is a string, this is a variable function call
 
 **Examples**
 
-```
+```PHP
 function square($v) { return $v * $v; } 
 square(5)     // call square directly; it returns 25
 $funct = square;  // assigns the string "square" to $funct
@@ -4454,7 +4454,7 @@ to refer to this instance.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private $x;
@@ -4506,7 +4506,7 @@ increment or decrement takes place.
 
 **Examples**
 
-```
+```PHP
 $i = 10; $j = $i-- + 100;   // old value of $i (10) is added to 100
 $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 ```
@@ -4554,7 +4554,7 @@ hierarchy, not including the current class. From within a method,
 class inheritance context in which the method is called. This allows
 *late static binding*. Consider the following scenario:
 
-```
+```PHP
 class Base
 {
   public function b()
@@ -4579,7 +4579,7 @@ which for a static qualifier, means the current class context.
 
 **Examples**
 
-```
+```PHP
 final class MathLibrary 
 {
   public static function sin() { ... }
@@ -4632,7 +4632,7 @@ values and the result can be represented as an `int`, the result has type
 
 **Examples**
 
-```
+```PHP
 2**3;   // int with value 8
 2**3.0;   // float with value 8.0
 "2.0"**"3"; // float with value 8.0
@@ -4765,7 +4765,7 @@ digit position containing a letter wraps modulo-26.
 
 **Examples**
 
-```
+```PHP
 $i = 10; $j = --$i + 100;   // new value of $i (9) is added to 100
 $a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
 ```
@@ -4852,7 +4852,7 @@ to `bool`, after which its value is negated.
 
 **Examples**
 
-```
+```PHP
 $v = +10;
 if ($v1 > -5) ...
 $t = TRUE;
@@ -4883,7 +4883,7 @@ still called.
 
 **Examples**
 
-```
+```PHP
 $infile = @fopen("NoSuchFile.txt", 'r');
 ```
 
@@ -4895,7 +4895,7 @@ error message displayed.
 
 Given the following example:
 
-```
+```PHP
 function f() {
   $ret = $y;
   return $ret;
@@ -4906,7 +4906,7 @@ $x = @f();  // without @, get "Undefined variable: y"
 
 The following code shows how this statement is handled:
 
-```
+```PHP
 $origER = error_reporting();
 error_reporting(0);
 $tmp = f();
@@ -4944,7 +4944,7 @@ If [`shell_exec`](http://php.net/manual/function.shell-exec.php)
 
 **Examples**
 
-```
+```PHP
 $result = `ls`;           // result is the output of command ls
 $result = `ls >dirlist.txt`;  // result is NULL
 $d = "dir"; $f = "*.*";
@@ -5007,7 +5007,7 @@ A *cast-type* of `unset` always results in a value of `NULL`. (This use of
 
 **Examples**
 
-```
+```PHP
 (int)(10/3)          // results in the int 3 rather than the float 3.333...
 (array)(16.5)      // results in an array of 1 float; [0] = 16.5
 (int)(float)"123.87E3" // results in the int 123870
@@ -5052,7 +5052,7 @@ expression is treated as `${$o}->pr`.
 
 **Examples**
 
-```
+```PHP
 $color = "red";
 $$color = 123;    // equivalent to $red = 123
 // -----------------------------------------
@@ -5128,7 +5128,7 @@ has been deprecated.
 
 **Examples**
 
-```
+```PHP
 class C1 { ... } $c1 = new C1;
 class C2 { ... } $c2 = new C2;
 class D extends C1 { ... } $d = new D;
@@ -5195,7 +5195,7 @@ These operators associate left-to-right.
 
 **Examples**
 
-```
+```PHP
 -10 * 100;       // int with value -1000
 100 * -3.4e10;   // float with value -3400000000000
 "123" * "2e+5;   // float with value 24600000
@@ -5252,7 +5252,7 @@ These operators associate left-to-right.
 
 **Examples**
 
-```
+```PHP
 -10 + 100;        // int with value 90
 100 + -3.4e10;    // float with value -33999999900
 "123" + "2e+5";   // float with value 200123
@@ -5312,7 +5312,7 @@ These operators associate left-to-right.
 
 **Examples**
 
-```
+```PHP
 1000 >> 2   // 3E8 is shifted right 2 places
 -1000 << 2      // FFFFFC18 is shifted left 5 places
 123 >> 128      // adjusted shift count = 0
@@ -5392,7 +5392,7 @@ These operators associate left-to-right.
 
 **Examples**
 
-```
+```PHP
 "" < "ab"       // result has value TRUE
 "a" > "A"       // result has value TRUE
 "a0" < "ab"     // result has value TRUE
@@ -5491,7 +5491,7 @@ These operators associate left-to-right.
 
 **Examples**
 
-```
+```PHP
 "a" <> "aa" // result has value TRUE
 // -----------------------------------------
 NULL == 0   // result has value TRUE
@@ -5536,7 +5536,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 0b101111 & 0b101          // 0b101
 $lLetter = 0x73;          // letter 's'
 $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
@@ -5570,7 +5570,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 0b101111 ^ 0b101    // 0b101010
 $v1 = 1234; $v2 = -987; // swap two integers having different values
 $v1 = $v1 ^ $v2;
@@ -5606,7 +5606,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 0b101111 | 0b101      // 0b101111
 $uLetter = 0x41;      // letter 'A'
 $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
@@ -5642,7 +5642,7 @@ same semantics as operator `and` ([§§](#logical-and-operator-form-2)).
 
 **Examples**
 
-```
+```PHP
 if ($month > 1 && $month <= 12) ...
 ```
 
@@ -5673,7 +5673,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 if ($month < 1 || $month > 12) ...
 ```
 
@@ -5707,7 +5707,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 for ($i = -5; $i <= 5; ++$i)
   echo "$i is ".(($i & 1 == TRUE) ? "odd\n" : "even\n");
 // -----------------------------------------
@@ -5800,7 +5800,7 @@ character \\0 (U+0000) is stored.
 
 **Examples**
 
-```
+```PHP
 $a = $b = 10    // equivalent to $a = ($b = 10)
 $v = array(10, 20, 30);
 $v[1] = 1.234;    // change the value (and type) of an existing element
@@ -5849,7 +5849,7 @@ expression having array type, see [§§](#deferred-array-copying).
 
 **Examples**
 
-```
+```PHP
 $a = 10;
 $b =& $a;   // make $b an alias of $a
 ++$a;       // increment $a/$b to 11
@@ -5888,7 +5888,7 @@ that `e1` is evaluated once only.
 
 **Examples**
 
-```
+```PHP
 $v = 10;
 $v += 20;   // $v = 30
 $v -= 5;    // $v = 25
@@ -5949,7 +5949,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 f($i++) XOR g($i) // the sequence point makes this well-defined
 ```
 
@@ -6029,7 +6029,7 @@ each value in a key/value pair is yielded byRef.
 
 **Examples**
 
-```
+```PHP
 function getTextFileLines($filename)
 {
   $infile = fopen($filename, 'r');
@@ -6183,7 +6183,7 @@ all files included or required.
 
 **Examples:**
 
-```
+```PHP
 $fileName = 'limits' . '.php'; include $fileName;
 $inc = include('limits.php');
 If ((include 'Positions.php') == 1) ...
@@ -6214,7 +6214,7 @@ Once an include file has been included, a subsequent use of
 
 Point.php:
 
-```
+```PHP
 \\ Point.php:
 <?php ...
 class Point { ... }
@@ -6371,7 +6371,7 @@ often referred to as a *block*.
 
 **Examples**
 
-```
+```PHP
 if (condition)
 { // braces are needed as the true path has more than one statement
   // statement-1
@@ -6449,7 +6449,7 @@ statement is a *null statement*, which has no effect on execution.
 
 **Examples**
 
-```
+```PHP
 $i = 10;  // $i is assigned the value 10; result (10) is discarded
 ++$i; // $i is incremented; result (11) is discarded
 $i++; // $i is incremented; result (11) is discarded
@@ -6553,7 +6553,7 @@ An `else` clause is associated with the lexically nearest preceding `if` or
 `elseif` that is permitted by the syntax.
 
 **Examples**
-```
+```PHP
 if ($count > 0)
 {
   ...
@@ -6649,7 +6649,7 @@ Switches may nested, in which case, each `switch` has its own set of
 
 **Examples**
 
-```
+```PHP
 $v = 10;
 switch ($v)
 {
@@ -6738,7 +6738,7 @@ times.
 
 **Examples**
 
-```
+```PHP
 $i = 1;
 while ($i <= 10):
   echo "$i\t".($i * $i)."\n"; // output a table of squares
@@ -6781,7 +6781,7 @@ statement. The loop body, *statement*, is executed one or more times.
 
 **Examples**
 
-```
+```PHP
 $i = 1;
 do
 {
@@ -6852,7 +6852,7 @@ iteration.
 
 **Examples**
 
-```
+```PHP
 for ($i = 1; $i <= 10; ++$i)
 {
   echo "$i\t".($i * $i)."\n"; // output a table of squares
@@ -6939,7 +6939,7 @@ individual elements.
 
 **Examples**
 
-```
+```PHP
 $colors = array("red", "white", "blue");
 foreach ($colors as $color):
     // ...
@@ -7015,7 +7015,7 @@ within a finally-block.
 
 **Examples**
 
-```
+```PHP
 function findValue($table, $v)  // where $table is 2x3 array
 {
   for ($row = 0; $row <= 1; ++$row)
@@ -7076,7 +7076,7 @@ contained within a finally-block.
 
 **Examples**
 
-```
+```PHP
 for ($i = 1; $i <= 5; ++$i)
 {
   if (($i % 2) == 0)
@@ -7116,7 +7116,7 @@ within a finally-block.
 
 **Examples**
 
-```
+```PHP
 $i = 1;
 for (;;)
 {
@@ -7217,7 +7217,7 @@ Return statements can also be used in the body of anonymous functions.
 
 **Examples**
 
-```
+```PHP
 function f() { return 100; }  // f explicitly returns a value
 function g() { return; }   // g explicitly returns an implicit NULL
 function h() { }      // h implicitly returns NULL
@@ -7289,7 +7289,7 @@ type.
 
 **Examples**
 
-```
+```PHP
 throw new Exception;
 throw new Exception("Some message", 123);
 class MyException extends Exception { ... }
@@ -7356,7 +7356,7 @@ implementation-defined.
 
 **Examples**
 
-```
+```PHP
 function getTextLines($filename)
 {
   $infile = fopen($filename, 'r');
@@ -7453,7 +7453,7 @@ can be used with this directive.
 
 **Examples**
 
-```
+```PHP
 declare(ticks = 1) { ... }
 declare(encoding = 'ISO-8859-1'); // Latin-1 Western European
 declare(encoding = 'ISO-8859-5'); // Latin/Cyrillic
@@ -7535,7 +7535,7 @@ Any function containing `yield` ([§§](#yield-operator)) is a *generator functi
 
 **Examples**
 
-```
+```PHP
 ucf1(); // can call ucf1 before its definition is seen
 function ucf1() { ... }
 ucf1(); // can call ucf1 after its definition is seen
@@ -7778,7 +7778,7 @@ and [§§](#trait-declarations).
 
 **Examples**
 
-```
+```PHP
 abstract class Vehicle 
 {
   public abstract function getMaxSpeed();
@@ -7897,7 +7897,7 @@ static method does not operate on a specific instance, it has no `$this`.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private static $pointCount = 0;     // static property
@@ -7951,7 +7951,7 @@ allocation is used.
 
 Consider the following scenario, which involves dynamic properties:
 
-```
+```PHP
 class Point { ... } // has no public property "color", but has made
                     // provision to support dynamic properties.
 $p = new Point(10, 15);
@@ -7991,7 +7991,7 @@ Consider the following code fragment, in which class Widget has neither
 an instance method called `iMethod` nor a static method called `sMethod`,
 but that class has made provision to deal with dynamic methods:
 
-```
+```PHP
 $obj = new Widget;
 $obj->iMethod(10, TRUE, "abc");
 Widget::sMethod(NULL, 1.234);
@@ -7999,13 +7999,13 @@ Widget::sMethod(NULL, 1.234);
 
 The call to `iMethod` is treated as if it were
 
-```
+```PHP
 $obj->__call('iMethod', array(10, TRUE, "abc"))
 ```
 
 and the call to `sMethod` is treated as if it were
 
-```
+```PHP
 Widget::__callStatic('sMethod', array(NULL, 1.234))
 ```
 
@@ -8043,7 +8043,7 @@ All constants are implicitly `static`.
 
 **Examples:**
 
-```
+```PHP
 const MIN_VAL = 20;
 const LOWER = MIN_VAL;
 // -----------------------------------------
@@ -8100,7 +8100,7 @@ case, the property is actually removed from that instance.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private static $pointCount = 0; // static property with initializer
@@ -8243,7 +8243,7 @@ searching for a base-class constructor.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private static $pointCount = 0;
@@ -8404,7 +8404,7 @@ restrictions on the spelling of the dynamic method name designated by
 
 **Examples**
 
-```
+```PHP
 class Widget
 {
   public function __call($name, $arguments)
@@ -8467,7 +8467,7 @@ restrictions on the spelling of the dynamic method name designated by
 
 **Examples**
 
-```
+```PHP
 class Widget
 {
     public static function __callStatic($name, $arguments)
@@ -8525,7 +8525,7 @@ instance having dynamic properties ([§§](#dynamic-members)).
 
 **Examples**
 
-```
+```PHP
 class Employee
 {
   ...
@@ -8609,7 +8609,7 @@ subscripting can be done correctly on the result.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
     private $dynamicProperties = array();
@@ -8634,7 +8634,7 @@ class Point
 Consider the following class, which does **not** contain a property
 called prop:
 
-```
+```PHP
 class C
 {
   public function __get($name)
@@ -8677,7 +8677,7 @@ initial function call.
 
 **Examples**
 
-```
+```PHP
 class C
 {
   public function __invoke($p)
@@ -8728,7 +8728,7 @@ visible property by that name is found, a dynamic property is assumed.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
     private $dynamicProperties = array();
@@ -8798,7 +8798,7 @@ restrictions on the spelling of the dynamic property name designated by
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
     private $dynamicProperties = array();
@@ -8875,7 +8875,7 @@ below.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private $x;
@@ -8894,7 +8894,7 @@ $v = var_export($p, TRUE);  // returns string representation of $p
 ```
 The string produced looks something like the following:
 
-```
+```PHP
 "Point::__set_state(array(
    'x' => 3,
    'y' => 5,
@@ -8987,7 +8987,7 @@ instances. For that, a class must implement the interface Serializable
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private static $nextId = 1;
@@ -9047,7 +9047,7 @@ instance having dynamic properties ([§§](#dynamic-members)).
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private $x;
@@ -9113,7 +9113,7 @@ visible property by that name is found, a dynamic property is assumed.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
     private $dynamicProperties = array();
@@ -9203,7 +9203,7 @@ extends `Point` by adding a `color` property. The following code shows how
 these classes need be defined in order for both `Points` and `ColoredPoints`
 to be serialized and unserialized:
 
-```
+```PHP
 class Point implements Serializable // note the interface
 {
   private static $nextId = 1;
@@ -9232,7 +9232,7 @@ instance properties to be serialized. The insertion order of the array
 is the order in which the properties are serialized in the resulting
 string. The array is returned.
 
-```
+```PHP
   public function unserialize($data)
   {
     $data = unserialize($data);
@@ -9249,7 +9249,7 @@ without any constructor being called, the `unserialize` method must
 perform the tasks ordinarily done by a constructor. In this case, that
 involves assigning the new object a unique id.
 
-```
+```PHP
 $p = new Point(2, 5);
 $s = serialize($p);
 ```
@@ -9261,7 +9261,7 @@ cooperating program. The program that reads or receives that serialized
 string can convert its contents back into the corresponding variable(s),
 as follows:
 
-```
+```PHP
 $v = unserialize($s);
 ```
 
@@ -9270,7 +9270,7 @@ The call to the library function `unserialize` calls the custom
 `Point(2,5)`.
 
 
-```
+```PHP
 class ColoredPoint extends Point implements Serializable
 {
   const RED = 1;
@@ -9304,7 +9304,7 @@ element, an arbitrary key name is used, and its value is the serialized
 version of the base Point within the current `ColoredPoint` object. The
 order of the elements is up to the programmer.
 
-```
+```PHP
     public function unserialize($data)
     {
     $data = unserialize($data);
@@ -9318,7 +9318,7 @@ As `ColoredPoint` has a base class, it unserializes its own instance
 properties before calling the base class's custom method, so it can
 unserialize the `Point` properties.
 
-```
+```PHP
 $cp = new ColoredPoint(9, 8, ColoredPoint::BLUE);
 $s = serialize($cp);
 ...
@@ -9335,7 +9335,7 @@ for representing an [anonymous
 function](http://php.net/manual/functions.anonymous.php). It
 cannot be instantiated except by the Engine, as described below.
 
-```
+```PHP
 class Closure
 {
   public static bind(Closure $closure, $newthis [, $newscope = "static" ]);
@@ -9361,7 +9361,7 @@ anonymous function defined in the corresponding
 The contents of a `Closure` object are determined based on the context in
 which an anonymous function is created. Consider the following scenario:
 
-```
+```PHP
 class C
 {
   public function compute()
@@ -9391,7 +9391,7 @@ that variable at the time the time the `Closure` object is created (not
 when it is used to call the encapsulated function). In the scenario
 above, this leads to the following, shown as pseudo code:
 
-```
+```PHP
 $this->static = array(["count"]=>&0,["values"]=>array(["red"]=>3,[0]=>10));
 ```
 
@@ -9400,7 +9400,7 @@ instance method, a dynamic property called `this` is present. This
 property is a handle that points to the current instance. In the
 scenario above, this leads to the following, shown as pseudo code:
 
-```
+```PHP
 $this->this = $this;
 ```
 
@@ -9414,7 +9414,7 @@ value. (These values are overridden by the argument values used when the
 anonymous function is called.) In the scenario above, this leads to the
 following, shown as pseudo code:
 
-```
+```PHP
 $property = array("$p1" => ???, "$p2" => ???)
 ```
 
@@ -9428,7 +9428,7 @@ instantiated directly. It is defined, as follows:
 
 class Generator implements Iterator
 
-```
+```PHP
 class Generator implements Iterator
 {
   public function current();
@@ -9464,7 +9464,7 @@ encodes an instance of a class for which there is no definition in
 scope. Consider the following class, which supports a two-dimensional
 Cartesian point:
 
-```
+```PHP
 class Point 
 {
   private $x;
@@ -9479,14 +9479,14 @@ Let us assume that the serialized string is stored in a database from
 where it is retrieved by a separate program. That program contains the
 following code, but does not contain a definition of the class Point:
 
-```
+```PHP
 $v = unserialize($s);
 ```
 
 Instead of returning a point, `Point(2, 5`), an instance of
 `__PHP_Incomplete_Class` results, with the following contents:
 
-```
+```PHP
 __PHP_Incomplete_Class
 {
    __PHP_Incomplete_Class_Name => "Point"
@@ -9558,7 +9558,7 @@ derived interface inherits all the members from the base interfaces.
 
 **Examples**
 
-```
+```PHP
 interface MyCollection 
 {
   const MAX_NUMBER_ITEMS = 1000;
@@ -9625,7 +9625,7 @@ nor by an interface that extends it.
 
 **Examples:**
 
-```
+```PHP
 interface MyCollection 
 {
   const MAX_NUMBER_ITEMS = 1000;
@@ -9647,7 +9647,7 @@ An interface method is just like an abstract method ([§§](#methods)).
 
 **Examples:**
 
-```
+```PHP
 interface MyCollection 
 {
   const MAX_NUMBER_ITEMS = 1000;
@@ -9664,7 +9664,7 @@ This interface allows an instance of an implementing class to be
 accessed using array-like notation. This interface is defined, as
 follows:
 
-```
+```PHP
 interface ArrayAccess
 {
   function offsetExists($offset);
@@ -9688,7 +9688,7 @@ Name  |   Purpose
 This interface allows instances of an implementing class to be treated
 as a collection. This interface is defined, as follows:
 
-```
+```PHP
 interface Iterator extends Traversable
 {
   function current();
@@ -9715,7 +9715,7 @@ Name | Purpose
 This interface allows the creation of an external iterator. This
 interface is defined, as follows:
 
-```
+```PHP
 Interface IteratorAggregate extends Traversable
 {
   function getIterator();
@@ -9733,7 +9733,7 @@ Name  |   Purpose
 This interface is intended as the base interface for all traversable
 classes. This interface is defined, as follows:
 
-```
+```PHP
 Traversable
 {
 }
@@ -9746,7 +9746,7 @@ This interface has no members.
 This interface provides support for custom serialization. It is defined,
 as follows:
 
-```
+```PHP
 interface Serializable
 {
   function serialize();
@@ -9893,7 +9893,7 @@ otherwise, it controls the visibility of the left-hand name.
 
 **Examples**
 
-```
+```PHP
 trait T1 { public function compute( ... ) { ... } }
 trait T2 { public function compute( ... ) { ... } }
 trait T1 { public function sort( ... ) { ... } }
@@ -9949,7 +9949,7 @@ If a member has no explicit visibility, `public` is assumed.
 
 **Examples**
 
-```
+```PHP
 trait T
 {
   private $prop1 = 1000;
@@ -10012,7 +10012,7 @@ translated to exceptions via the class
 Class `Exception` is the base class of all exception types. This class is
 defined, as follows:
 
-```
+```PHP
 Class Exception
 {
   private   $string;
@@ -10258,7 +10258,7 @@ runs until the end of the script, or until the lexically next
 **Examples**
 
 Script1.php:
-```
+```PHP
 namespace NS1;
 ...       // __NAMESPACE__ is "NS1"
 namespace NS3\Sub1;
@@ -10266,7 +10266,7 @@ namespace NS3\Sub1;
 ```
 
 Script2.php:
-```
+```PHP
 namespace NS1
 {
 ...       // __NAMESPACE__ is "NS1"
@@ -10326,7 +10326,7 @@ in *qualified-name* is the implied alias for *qualified-name*.
 
 **Examples**
 
-```
+```PHP
 namespace NS1
 {
   const CON1 = 100;

@@ -372,7 +372,7 @@ Certain features are marked as *deprecated*. While these are normative
 for the current edition of this specification, they are not guaranteed
 to exist in future revisions. Usually, they are old approaches that have
 been superseded by new ones, and use of the old approach is discouraged.
-(Examples of this include the use of braces ({ }) for subscripting, and
+(Examples of this include the use of braces ({ }) for subscripting, and
 the use of old-style constructor names).
 
 #Terms and Definitions
@@ -427,13 +427,13 @@ the first usage being typeset *like this*.
 
 #Basic Concepts
 ##Program Structure
-A PHP *program* consists of one or more source files, known formally as
+A PHP *program* consists of one or more source files, known formally as
 *scripts*.
 
 <pre>
 <i>script:</i>
 <i> script-section</i>
-<i> script   script-section</i>
+<i> script   script-section</i>
 
 <i>script-section:</i>
   <i> text<sub>opt</sub></i> &lt;?php <i>statement-list<sub>opt</sub></i> ?&gt;<sub>opt</sub> <i>text<sub>opt</sub></i>
@@ -535,7 +535,7 @@ the scalar value NULL unless specified otherwise. In addition to
 containing a value, VStores also carry a *type tag* that indicates the
 type ([§§](#types)) of the VStore's value. A VStore's type tag can be changed over
 time. At any given time a VStore's type tag may be one of the following:
-`Null`, `Bool`, `Int`, `Float`, `Str`, `Arr`, `Arr-D` (see [§§](#deferred-array-copying)), `Obj`, or `Res`.
+`Null`, `Bool`, `Int`, `Float`, `Str`, `Arr`, `Arr-D` (see [§§](#deferred-array-copying)), `Obj`, or `Res`.
 
 An HStore represents the contents of a non-scalar value, and it may
 contain zero or more VSlots. At run time, the Engine may add new VSlots
@@ -576,16 +576,16 @@ VStores, and HStores:
 
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
-                                                        |            |
-                                                        V            V
-                                                [VStore Int 1]  [VStore Int 3]
+                                                        |            |
+                                                        V            V
+                                                [VStore Int 1]  [VStore Int 3]
 </pre>
 
 In this picture the VSlot in the upper left corner represents the
 variable `$a`, and it points to a VStore that represents `$a`'s current
 value. This VStore contains a handle to an HStore which represents the
 contents of an object of type Point with two instance properties `$x`
-and `$y`. This HStore contains two VSlots representing instance
+and `$y`. This HStore contains two VSlots representing instance
 properties `$x` and `$y`, and each of these VSlots points to a distinct
 VStore which contains an integer value.
 
@@ -600,7 +600,7 @@ superficial differences between the two models.
 For most operations, the mapping between VSlots and VStores remains the
 same. Only the following program constructs can change a VSlot to point
 to different VStore, all of which are *byRef-aware* operations and all
-of which (except unset) use the & punctuator:
+of which (except unset) use the & punctuator:
 
 -   byRef assignment ([§§](#byref-assignment)).
 -   byRef parameter declaration ([§§](#function-definitions)).
@@ -688,13 +688,13 @@ $b = false;
 [VSlot $b *]-->[VStore Bool false]
 </pre>
 
-Variable `$a` comes into existence and is represented by a newly created
-VSlot pointing to a newly created VStore. Then the integer value 123 is
+Variable `$a` comes into existence and is represented by a newly created
+VSlot pointing to a newly created VStore. Then the integer value 123 is
 written to the VStore. Next, `$b` comes into existence represented by a
 VSlot and corresponding VStore, and the Boolean value false is written
 to the VStore.
 
-Next consider the value assignment `$b = $a`:
+Next consider the value assignment `$b = $a`:
 
 <pre>
 [VSlot $a *]-->[VStore Int 123]
@@ -702,13 +702,13 @@ Next consider the value assignment `$b = $a`:
 [VSlot $b *]-->[VStore Int 123 (Bool false was overwritten)]
 </pre>
 
-The integer value 123 is read from `$a`'s VStore and is written into
+The integer value 123 is read from `$a`'s VStore and is written into
 `$b`'s VStore, overwriting its previous contents. As we can see, the two
 variables are completely self-contained; each has its own VStore
-containing a separate copy of the integer value 123. Value assignment
+containing a separate copy of the integer value 123. Value assignment
 reads the contents of one VStore and overwrites the contents of the
 other VStore, but the relationship of VSlots to VStores remains
-unchanged. Changing the value of `$b` has no effect on `$a`, and vice
+unchanged. Changing the value of `$b` has no effect on `$a`, and vice
 versa.
 
 Using literals or arbitrarily complex expressions on the right hand side
@@ -727,7 +727,7 @@ assignment. Despite this superficial difference, php.net's
 implementation produces the same observable behavior as the abstract
 model presented here.
 
-To illustrate the semantics of value assignment further, consider `++$b`:
+To illustrate the semantics of value assignment further, consider `++$b`:
 
 <pre>
 [VSlot $a *]-->[VStore Int 123]
@@ -735,10 +735,10 @@ To illustrate the semantics of value assignment further, consider `++$b`:
 [VSlot $b *]-->[VStore Int 124 (123 was overwritten)]
 </pre>
 
-Now consider `$a = 99`:
+Now consider `$a = 99`:
 
 <pre>
-[VSlot $a *]-->[VStore Int 99 (123 was overwriten)]
+[VSlot $a *]-->[VStore Int 99 (123 was overwritten)]
 
 [VSlot $b *]-->[VStore Int 124]
 </pre>
@@ -769,7 +769,7 @@ $b = $a;
 </pre>
 
 `$a`'s string value and `$b`'s string values are distinct from each other,
-and mutating `$a`'s string will not affect `$b`. Consider `++$b`, for
+and mutating `$a`'s string will not affect `$b`. Consider `++$b`, for
 example:
 
 <pre>
@@ -809,7 +809,7 @@ To demonstrate value assignment of objects to local variables, consider
 the case in which we have a Point class that supports a two-dimensional
 Cartesian system. An instance of Point contains two instance properties,
 `$x` and `$y`, that store the x- and y-coordinates, respectively. A
-constructor call ([§§](#constructors)) of the form `Point(x, y)` used with operator `new` ([§§](#the-new-operator))
+constructor call ([§§](#constructors)) of the form `Point(x, y)` used with operator `new` ([§§](#the-new-operator))
 creates a new point at the given location, and a method call
 of the form `move(newX, newY)` moves a `Point` to the new location.
 
@@ -818,12 +818,12 @@ Point(1, 3)`:
 
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
-                                                        |            |
-                                                        V            V
-                                                 [VStore Int 1]  [VStore Int 3]
+                                                        |            |
+                                                        V            V
+                                                 [VStore Int 1]  [VStore Int 3]
 </pre>
 
-Variable `$a` is given its own VSlot, which points to a VStore that
+Variable `$a` is given its own VSlot, which points to a VStore that
 contains a handle pointing to an HStore allocated by `new` ([§§](#the-new-operator)) and
 that is initialized by `Point`'s constructor.
 
@@ -831,41 +831,41 @@ Now consider the value assignment `$b = $a`:
 
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
-                                  ^                     |            |
-                                  |                     V            V
-[VSlot $b *]-->[VStore Obj *]-----+             [VStore Int 1] [VStore Int 3]
+                                  ^                     |            |
+                                  |                     V            V
+[VSlot $b *]-->[VStore Obj *]-----+             [VStore Int 1] [VStore Int 3]
 </pre>
 
 `$b`'s VStore contains a handle that points to the same object as does
 `$a`'s VStore's handle. Note that the Point object itself was not copied,
 and note that `$a`'s and `$b`'s VSlots point to distinct VStores.
 
-Let's modify the value of the Point whose handle is stored in `$b` using
+Let's modify the value of the Point whose handle is stored in `$b` using
 `$b->move(4, 6)`:
 
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
-                                  ^                     |            |
-                                  |                     V            V
-[VSlot $b *]-->[VStore Obj *]-----+         [VStore Int 4] [VStore Int 6]
-                                       (1 was overwritten) (3 was overwritten)
+                                  ^                     |            |
+                                  |                     V            V
+[VSlot $b *]-->[VStore Obj *]-----+         [VStore Int 4] [VStore Int 6]
+                                       (1 was overwritten) (3 was overwritten)
 </pre>
 
-As we can see, changing `$b`'s Point changes `$a`'s as well.
+As we can see, changing `$b`'s Point changes `$a`'s as well.
 
 Now, let's make `$a` point to a different object using `$a = new Point(2,
 1)`:
 
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
-                                                        |            |
-[VSlot $b *]-->[VStore Obj *]-----+                     V            V
-                                  |             [VStore Int 2] [VStore Int 1]
-                                  V
-                                [HStore Point [VSlot $x *] [VSlot $y *]]
-                                                        |            |
-                                                        V            V
-                                                [VStore Int 4] [VStore Int 6]
+                                                        |            |
+[VSlot $b *]-->[VStore Obj *]-----+                     V            V
+                                  |             [VStore Int 2] [VStore Int 1]
+                                  V
+                                [HStore Point [VSlot $x *] [VSlot $y *]]
+                                                        |            |
+                                                        V            V
+                                                [VStore Int 4] [VStore Int 6]
 </pre>
 
 Before `$a` can take on the handle of the new `Point`, its handle to the
@@ -874,20 +874,20 @@ pointing to different Points.
 
 We can remove all these handles using `$a = NULL` and `$b = NULL`:
 <pre>
-[VSlot $a *]-->[VStore Null]    [HStore Point [VSlot $x *] [VSlot $y *] (dead)]
-                                                        |            |
-[VSlot $b *]-->[VStore Null]    [VStore Int 2 (dead)]&lt;--+            V
-                                                          [VStore Int 1 (dead)]
-                                                          
-                                [HStore Point [VSlot $x *] [VSlot $y *] (dead)]
-                                                        |            |
-                                [VStore Int 4 (dead)]&lt;--+            V
-                                                        [VStore Int 6 (dead)]
+[VSlot $a *]-->[VStore Null]    [HStore Point [VSlot $x *] [VSlot $y *] (dead)]
+                                                        |            |
+[VSlot $b *]-->[VStore Null]    [VStore Int 2 (dead)]&lt;--+            V
+                                                          [VStore Int 1 (dead)]
+
+                                [HStore Point [VSlot $x *] [VSlot $y *] (dead)]
+                                                        |            |
+                                [VStore Int 4 (dead)]&lt;--+            V
+                                                        [VStore Int 6 (dead)]
 </pre>
 
-By assigning null to `$a`, we remove the only handle to `Point(2,1)`, which
+By assigning null to `$a`, we remove the only handle to `Point(2,1)`, which
 allows that object's destructor ([§§](#destructors)) to run. A similar thing happens
-with `$b`, as it too is the only handle to its Point.
+with `$b`, as it too is the only handle to its Point.
 
 Although the examples above only show with only two instance properties,
 the same mechanics apply for value assignment of all object types, even
@@ -897,7 +897,7 @@ assignment of all resource types.
 
 ####ByRef Assignment for Scalar Types with Local Variables
 Let's begin with the same value assignment ([§§](#simple-assignment)) as in the previous
-subclause, `$a = 123` and `$b = false`:
+subclause, `$a = 123` and `$b = false`:
 
 <pre>
 [VSlot $a *]-->[VStore Int 123]
@@ -909,9 +909,9 @@ Now consider the byRef assignment ([§§](#byref-assignment)) `$b =& $a`, which 
 semantics:
 <pre>
 [VSlot $a *]-->[VStore Int 123]
-                 ^
-                 |
-[VSlot $b *]-----+     [VStore Bool false (dead)]
+                 ^
+                 |
+[VSlot $b *]-----+     [VStore Bool false (dead)]
 </pre>
 
 In this example, byRef assignment changes `$b`'s VSlot point to the same
@@ -922,25 +922,25 @@ have an *alias relationship*. In the example above, after the byRef
 assignment executes the variables `$a` and `$b` will be aliases of each
 other.
 
-Now, let's observe what happens when we change the value of `$b` using
+Now, let's observe what happens when we change the value of `$b` using
 `++$b`:
 <pre>
 [VSlot $a *]-->[VStore Int 124 (123 was overwritten)]
-                 ^
-                 |
+                 ^
+                 |
 [VSlot $b *]-----+
 </pre>
 
 `$b`'s value, which is stored in the VStore that `$b`'s VSlot points, is
-changed to 124. And as that VStore is also aliased by `$a`'s VSlot, the
-value of `$a` is also 124. Indeed, any variable's VSlot that is aliased
-to that VStore will have the value 124.
+changed to 124. And as that VStore is also aliased by `$a`'s VSlot, the
+value of `$a` is also 124. Indeed, any variable's VSlot that is aliased
+to that VStore will have the value 124.
 
-Now consider the value assignment `$a = 99`:
+Now consider the value assignment `$a = 99`:
 <pre>
 [VSlot $a *]-->[VStore Int 99 (124 was overwritten)]
-                 ^
-                 |
+                 ^
+                 |
 [VSlot $b *]-----+
 </pre>
 
@@ -948,9 +948,9 @@ The alias relationship between `$a` and `$b` can be broken explicitly by
 using `unset` on variable `$a` or variable `$b`. For example, consider
 `unset($a)`:
 <pre>
-[VSlot $a (dead)]      [VStore Int 99]
-                         ^
-                         |
+[VSlot $a (dead)]      [VStore Int 99]
+                         ^
+                         |
 [VSlot $b *]-------------+
 </pre>
 
@@ -962,21 +962,21 @@ Other operations can also break an alias relationship between two or
 more variables. For example, `$a = 123` and `$b =& $a`, and `$c = 'hi'`:
 <pre>
 [VSlot $a *]-->[VStore Int 123]
-                 ^
-                 |
+                 ^
+                 |
 [VSlot $b *]-----+
 
 [VSlot $c *]-->[VStore Str 'hi']
 </pre>
 
 After the byRef assignment, `$a` and `$b` now have an alias relationship.
-Next, let's observe what happens for `$b = &$c`:
+Next, let's observe what happens for `$b = &$c`:
 <pre>
 [VSlot $a *]-->[VStore Int 123]
 
 [VSlot $b *]-----+
-                 |
-                 V
+                 |
+                 V
 [VSlot $c *]-->[VStore Str 'hi']
 </pre>
 
@@ -996,10 +996,10 @@ $a = 123;
 ```
 <pre>
 [VSlot $a *]-->[VStore Int 123]
-                 ^   ^
-                 |   |
-[VSlot $b *]-----+   |
-                     |
+                 ^   ^
+                 |   |
+[VSlot $b *]-----+   |
+                     |
 [VSlot $c *]---------+
 </pre>
 
@@ -1022,45 +1022,45 @@ Recall the example from [§§](#value-assignment-of-object-and-resource-types-to
 `$a = new Point(1, 3);`
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
-                                                        |            |
-                                                        V            V
-                                               [VStore Int 1]  [VStore Int 3]
+                                                        |            |
+                                                        V            V
+                                               [VStore Int 1]  [VStore Int 3]
 </pre>
 
 Now consider the byRef assignment ([§§](#byref-assignment)) `$b =& $a`, which has byRef
 semantics:
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Point [VSlot $x *][VSlot $y *]]
-                 ^                                      |           |
-                 |                                      V           V
-[VSlot $b *]-----+                               [VStore Int 1] [VStore Int 3]
+                 ^                                      |           |
+                 |                                      V           V
+[VSlot $b *]-----+                               [VStore Int 1] [VStore Int 3]
 </pre>
 `$a` and `$b` now aliases of each other. Note that byRef assignment
 produces a different result than `$b = `$a where `$a` and `$b` would point
 to distinct VStores pointing to the same HStore.
 
-Let's modify the value of the `Point` aliased by `$a` using `$a->move(4,
+Let's modify the value of the `Point` aliased by `$a` using `$a->move(4,
 6)`:
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Point [VSlot $x *] VSlot $y *]]
-                 ^                                      |           |
-                 |                                      V           V
-[VSlot $b *]-----+                           [VStore Int 4] [VStore Int 6]
-                                        (1 was overwritten) (3 was overwritten)
+                 ^                                      |           |
+                 |                                      V           V
+[VSlot $b *]-----+                           [VStore Int 4] [VStore Int 6]
+                                        (1 was overwritten) (3 was overwritten)
 </pre>
 
 Now, let's change `$a` itself using the value assignment `$a = new
 Point(2, 1)`:
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Point [VSlot $x *][VSlot $y *]]
-                 ^                                      |           |
-                 |                                      V           V
-[VSlot $b *]-----+                             [VStore Int 2] [VStore Int 1]
+                 ^                                      |           |
+                 |                                      V           V
+[VSlot $b *]-----+                             [VStore Int 2] [VStore Int 1]
 
-                               [HStore Point [VSlot $x *]   [VSlot $y *] (dead)]
-                                                       |              |
-                                                       V              V
-                                     [VStore Int 4 (dead)] [VStore Int 6 (dead)]
+                               [HStore Point [VSlot $x *]   [VSlot $y *] (dead)]
+                                                       |              |
+                                                       V              V
+                                     [VStore Int 4 (dead)] [VStore Int 6 (dead)]
 </pre>
 
 As we can see, `$b` continues to have an alias relationship with `$a`.
@@ -1072,10 +1072,10 @@ destructor ([§§](#destructors)) can run.
 
 We can remove these aliases using `unset($a, $b)`:
 <pre>
-[VSlot $a (dead)]       [HStore Point [VSlot $x *] [VSlot $y *] (dead)]
-                                                |            |
-                                                V            V
-[VSlot $b (dead)]             [VStore Int 2 (dead)]  [VStore Int 1 (dead)]
+[VSlot $a (dead)]       [HStore Point [VSlot $x *] [VSlot $y *] (dead)]
+                                                |            |
+                                                V            V
+[VSlot $b (dead)]             [VStore Int 2 (dead)]  [VStore Int 1 (dead)]
 </pre>
 
 Once all the aliases to the VStores are gone, the VStores can be
@@ -1089,21 +1089,21 @@ assignment of other types. Recall the `Point` class from the examples in [§§](
 `$a = array(10, 'B' => new Point(1, 3));`
 <pre>
 [VSlot $a *]-->[VStore Arr *]-->[HStore Array [VSlot 0 *] [VSlot 'B' *]]
-                                                       |             |
-                                                       V             V
-                                             [VStore Int 10]   [VStore Obj *]
-                                                                           |
-                                [HStore Point [VSlot $x *] [VSlot $y *]]&lt;--+
-                                                        |            |
-                                                        V            V
-                                            [VStore Int 1]  [VStore Int 3]
+                                                       |             |
+                                                       V             V
+                                             [VStore Int 10]   [VStore Obj *]
+                                                                           |
+                                [HStore Point [VSlot $x *] [VSlot $y *]]&lt;--+
+                                                        |            |
+                                                        V            V
+                                            [VStore Int 1]  [VStore Int 3]
 </pre>
 
 In the example above, `$a`'s VStore is initialized to contain a handle to
 an HStore for an array containing two elements, where one element is an
 integer and the other is a handle to an HStore for an object.
 
-Now consider the following value assignment `$b = $a`. A conforming
+Now consider the following value assignment `$b = $a`. A conforming
 implementation must implement value assignment of arrays in one of the
 following ways: (1) eager copying, where the implementation makes a copy
 of `$a`'s array during value assignment and changes `$b`'s VSlot to point
@@ -1113,27 +1113,27 @@ describes eager copying, and the subclause that immediately follows ([§§](#def
 describes deferred copying.
 
 To describe the semantics of eager copying, let's begin by considering
-the value assignment `$b = $a`:
+the value assignment `$b = $a`:
 <pre>
 [VSlot $a *]-->[VStore Arr *]-->[HStore Array [VSlot 0 *] [VSlot 'B' *]]
-                                                       |             |
-[VSlot $b *]-->[VStore Arr *]                          V             V
-                           |                    [VStore Int 10]  [VStore Obj *]
-                           V                                                 |
-[HStore Array [VSlot 0 *] [VSlot 'B' *]]                                     |
-                       |             |                                       |
-             +---------+   +---------+                                       |
-             V             V                                                 |
+                                                       |             |
+[VSlot $b *]-->[VStore Arr *]                          V             V
+                           |                    [VStore Int 10]  [VStore Obj *]
+                           V                                                 |
+[HStore Array [VSlot 0 *] [VSlot 'B' *]]                                     |
+                       |             |                                       |
+             +---------+   +---------+                                       |
+             V             V                                                 |
 [VStore Int 10] [VStore Obj *]-->[HStore Point [VSlot $x *] [VSlot $y *]]&lt;---+
-                                                         |            |
-                                                         V            V
-                                                 [VStore Int 1]  [VStore Int 3]
+                                                         |            |
+                                                         V            V
+                                                 [VStore Int 1]  [VStore Int 3]
 </pre>
 
 The value assignment `$b = $a` made a copy of `$a`'s array. Note how
 `$b`'s VSlot points to a different VStore than `$a`'s VSlot, and `$b`'s
 VStore points to a different HStore than `$a`'s VStore. Each source array
-element is copied using *member-copy assignment* `=*`, which is defined
+element is copied using *member-copy assignment* `=*`, which is defined
 as follows:
 
 ```
@@ -1155,7 +1155,7 @@ same semantics as value assignment for all conforming implementations
 because all of the array elements' VStores have a refcount equal to 1.
 The first element VSlots in `$a`'s array and `$b`'s array point
 to distinct VStores, each of which contain a distinct copy of the
-integer value 10. The second element VSlots in `$a`'s array and `$b`'s
+integer value 10. The second element VSlots in `$a`'s array and `$b`'s
 array point to distinct VStores, each of which contain a handle to the
 same object HStore.
 
@@ -1170,43 +1170,43 @@ Eager copying can produce two possible outcomes depending on the
 implementation. Here is the first possible outcome:
 <pre>
 [VSlot $a *]---->[VStore Arr *]---->[HStore Array [VSlot 0 *]]
-                                                           |
-[VSlot $x *]-------------------------+   [VStore Arr *]&lt;---+
-                                     |               |
-[VSlot $b *]-->[VStore Arr *]        |               V
-                           |         |  [HStore Array [VSlot 0 *][VSlot 1 *]]
-                           V         |                          |          |
-         [HStore Array [VSlot 0 *]]  |                          V          |
-                                |    +---------------->[VStore Int 123]    |
-                                V                          ^               V
-                     [VStore Arr *]                        |   [VStore Str 'hi']
-                                 |          +--------------+
-                                 V          |
-                     [HStore Array [VSlot 0 *] [VSlot 1 *]]
-                                                        |
-                                                        V
-                                                     [VStore Str 'hi']
+                                                           |
+[VSlot $x *]-------------------------+   [VStore Arr *]&lt;---+
+                                     |               |
+[VSlot $b *]-->[VStore Arr *]        |               V
+                           |         |  [HStore Array [VSlot 0 *][VSlot 1 *]]
+                           V         |                          |          |
+         [HStore Array [VSlot 0 *]]  |                          V          |
+                                |    +---------------->[VStore Int 123]    |
+                                V                          ^               V
+                     [VStore Arr *]                        |   [VStore Str 'hi']
+                                 |          +--------------+
+                                 V          |
+                     [HStore Array [VSlot 0 *] [VSlot 1 *]]
+                                                        |
+                                                        V
+                                                     [VStore Str 'hi']
 </pre>
 
 Here is the second possible outcome:
 <pre>
 [VSlot $a *]---->[VStore Arr *]---->[HStore Array [VSlot 0 *]]
-                                                           |
-[VSlot $x *]-------------------------+  [VStore Arr *]&lt;----+
-                                     |               |
-[VSlot $b *]-->[VStore Arr *]        |               V
-                           |         |  [HStore Array [VSlot 0 *] [VSlot 1 *]]
-                           V         |                         |           |
-         [HStore Array [VSlot 0 *]]  |                         V           |
-                                |    +---------------->[VStore Int 123]    |
-                                V                                          V
-                     [VStore Arr *]                            [VStore Str 'hi']
-                                 |
-                                 V
-                    [HStore Array [VSlot 0 *] [VSlot 1 *]]
-                                           |           |
-                                           V           V 
-                                  [VStore Int 123]  [VStore Str 'hi']
+                                                           |
+[VSlot $x *]-------------------------+  [VStore Arr *]&lt;----+
+                                     |               |
+[VSlot $b *]-->[VStore Arr *]        |               V
+                           |         |  [HStore Array [VSlot 0 *] [VSlot 1 *]]
+                           V         |                         |           |
+         [HStore Array [VSlot 0 *]]  |                         V           |
+                                |    +---------------->[VStore Int 123]    |
+                                V                                          V
+                     [VStore Arr *]                            [VStore Str 'hi']
+                                 |
+                                 V
+                    [HStore Array [VSlot 0 *] [VSlot 1 *]]
+                                           |           |
+                                           V           V 
+                                  [VStore Int 123]  [VStore Str 'hi']
 </pre>
 
 In both possible outcomes, value assignment with eager copying makes a
@@ -1277,16 +1277,16 @@ $b = $a;
 ```
 <pre>
 [VSlot $a *]--->[VStore Arr *]--->[HStore Array [VSlot 0 *]]
-                                    ^                    |
-                                    |   [VStore Arr *]&lt;--+
-[VSlot $b *]--->[VStore Arr-D *]----+               |
-                                                    V
-                                        [HStore Array [VSlot 0 *] [VSlot 1 *]]
-                                                               |           |
-                                                               V           |
-[VSlot $x *]------------------------------------------>[VStore Int 123]    |
-                                                                           V
-                                                               [VStore Str 'hi']
+                                    ^                    |
+                                    |   [VStore Arr *]&lt;--+
+[VSlot $b *]--->[VStore Arr-D *]----+               |
+                                                    V
+                                        [HStore Array [VSlot 0 *] [VSlot 1 *]]
+                                                               |           |
+                                                               V           |
+[VSlot $x *]------------------------------------------>[VStore Int 123]    |
+                                                                           V
+                                                               [VStore Str 'hi']
 </pre>
 
 As we can see, both `$a`'s VStore (the source VStore) and `$b`'s VStore
@@ -1311,16 +1311,16 @@ deferred array copy relationship is commonly referred to as the
 copy-on-write requirement.
 
 When an array-mutating operation is about to be performed on a given
-VStore X with an “Arr” type tag that participates in a deferred array
+VStore X with an “Arr” type tag that participates in a deferred array
 copy relationship, the engine must find all of the VStores tagged
-“Arr-D” that point to the same array HStore that VStore X points to,
+“Arr-D” that point to the same array HStore that VStore X points to,
 make a copy of the array (using member-copy assignment to copy the
 array's elements as described in [§§](#value-assignment-of-array-types-to-local-variables)), and update all of these
 VStores tagged “Arr-D” to point to the newly created copy (note that
 VStore X remains unchanged). When an array-mutation operation is about
-to be performed on a given VStore X with an “Arr-D” type tag, the engine
+to be performed on a given VStore X with an “Arr-D” type tag, the engine
 must make a copy of the array (as described in [§§](#value-assignment-of-array-types-to-local-variables)), update VStore
-X to point to the newly created copy, and change VStore X's type tag to
+X to point to the newly created copy, and change VStore X's type tag to
 “Arr”. These specific actions that the engine must perform on VStore at
 certain times to satisfy the copy-on-write requirement are collectively
 referred to as “array-separation” or “array-separating the VStore”. An
@@ -1338,18 +1338,18 @@ one of three possible outcomes. Here is the one of the possible
 outcomes:
 <pre>
 [VSlot $a *]---->[VStore Arr *]---->[HStore Array [VSlot 0 *]]
-                                                           |
-[VSlot $b *]-->[VStore Arr *]            [VStore Arr *]&lt;---+
-                             |                       |
-      +----------------------+              +--------+
-      V                                     V
-  [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
-                         |           |       ^                  |          |
-                         |           V       |                  V          |
-                         |   [VStore Int 1]  |            [VStore Int 123] |
-                         V                   |             ^               V
-                       [VStore Arr-D *]-----+              |   [VStore Str 'hi']
-                                                           |
+                                                           |
+[VSlot $b *]-->[VStore Arr *]            [VStore Arr *]&lt;---+
+                             |                       |
+      +----------------------+              +--------+
+      V                                     V
+  [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
+                         |           |       ^                  |          |
+                         |           V       |                  V          |
+                         |   [VStore Int 1]  |            [VStore Int 123] |
+                         V                   |             ^               V
+                       [VStore Arr-D *]-----+              |   [VStore Str 'hi']
+                                                           |
  [VSlot $x *]----------------------------------------------+
 </pre>
 
@@ -1372,42 +1372,42 @@ choose to array-separate `$b[0]`'s VStore as well. Here is the second
 possible outcome:
 <pre>
 [VSlot $a *]---->[VStore Arr *]---->[HStore Array [VSlot 0 *]]
-                                                           |
-[VSlot $b *]-->[VStore Arr *]            [VStore Arr *]&lt;---+
-                          |                          |
-                          V                          V
-  [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
-                         |           |                           |           |
-       +-----------------+           V                           |           |
-       |                     [VStore Int 1]                  +---+           |
-       V                                                     |               V
-  [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore Str 'hi']
-                                            |           |   |
-                                    +-------+           |   |
-                                    |                   V   |
-                                    |    [VStore Str 'hi']  |
-                                    V                       |
+                                                           |
+[VSlot $b *]-->[VStore Arr *]            [VStore Arr *]&lt;---+
+                          |                          |
+                          V                          V
+  [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
+                         |           |                           |           |
+       +-----------------+           V                           |           |
+       |                     [VStore Int 1]                  +---+           |
+       V                                                     |               V
+  [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore Str 'hi']
+                                            |           |   |
+                                    +-------+           |   |
+                                    |                   V   |
+                                    |    [VStore Str 'hi']  |
+                                    V                       |
  [VSlot $x *]--------------------->[VStore Int 123]&lt;--------+
 </pre>
 
 Here is the third possible outcome:
 <pre>
 [VSlot $a *]---->[VStore Arr *-]---->[HStore Array [VSlot 0 *]]
-                                                            |
-[VSlot $b *]-->[VStore Arr *]             [VStore Arr *]&lt;---+
-                            |                          |
-                            V                          V
- [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
-                         |           |                           |           |
-       +-----------------+           V                           |           |
-       |                     [VStore Int 1]                  +---+           |
-       V                                                     |               V
-   [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore Str 'hi']
-                                             |           |   |
-                     [VStore Int 123]&lt;-------+           |   |
-                                                         V   |
-                                          [VStore Str 'hi']  |
-                                                             |
+                                                            |
+[VSlot $b *]-->[VStore Arr *]             [VStore Arr *]&lt;---+
+                            |                          |
+                            V                          V
+ [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
+                         |           |                           |           |
+       +-----------------+           V                           |           |
+       |                     [VStore Int 1]                  +---+           |
+       V                                                     |               V
+   [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore Str 'hi']
+                                             |           |   |
+                     [VStore Int 123]&lt;-------+           |   |
+                                                         V   |
+                                          [VStore Str 'hi']  |
+                                                             |
  [VSlot $x *]--------------------->[VStore Int 123]&lt;--------+
 </pre>
 
@@ -1434,7 +1434,7 @@ echo $a[0], ' ', $b[0];
 ```
 
 For the example above, a conforming implementation could output “2 1”,
-“2 3”, or “3 3” depending on how it implements value assignment for
+“2 3”, or “3 3” depending on how it implements value assignment for
 arrays.
 
 For portability, it is generally recommended that programs written in
@@ -1450,7 +1450,7 @@ where a single zval contains the sole pointer to a given Hashtable and
 deferred array copies are represented as multiple slots pointing to the
 same single zval that holds the array. Despite this superficial
 difference, php.net's implementation produces behavior that is
-compatiable with the abstract model's definition of deferred array copy
+compatible with the abstract model's definition of deferred array copy
 mechanisms.
 
 ####General Value Assignment
@@ -1473,7 +1473,7 @@ object instance properties. Describe how new array elements and object
 instance properties can be created via byref assignment.]**
 
 ###Argument Passing
-Argument passing is defined in terms of simple assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](#simple-assignment)) or byRef assignment ([§§]), [§§](#byref-assignment-of-non-scalar-types-with-local-variables), and [§§](#byref-assignment)), depending on how the parameter is declared. 
+Argument passing is defined in terms of simple assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](#simple-assignment)) or byRef assignment ([§§]), [§§](#byref-assignment-of-non-scalar-types-with-local-variables), and [§§](#byref-assignment)), depending on how the parameter is declared. 
 That is, passing an argument to a function having a corresponding
 parameter is like assigning that argument to that parameter. The
 function-call situations involving missing arguments or
@@ -1482,7 +1482,7 @@ undefined-variable arguments are discussed in ([§§](#function-call-operator)).
 ###Value Returning
 Returning a value from a function is defined in terms of simple
 assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](#simple-assignment)) or byRef assignment ([§§](#byref-assignment-for-scalar-types-with-local-variables), [§§](#byref-assignment-of-non-scalar-types-with-local-variables), and [§§](#byref-assignment)) depending on how the
-function is declared.  That is, returning a value from a function to its
+function is declared.  That is, returning a value from a function to its
 caller is like assigning that value to the user of the caller's return
 value. The function-return situations involving a missing return value
 are discussed in ([§§](#function-call-operator)).
@@ -1495,30 +1495,30 @@ via the handle. The PHP language allows us to do this via operator `clone` ([§�
 
 To demonstrate how the `clone` operator works, consider the case in which
 an instance of class `Widget` contains two instance properties: `$p1` has
-the integer value 10, and `$p2` is a handle to an array of elements of
+the integer value 10, and `$p2` is a handle to an array of elements of
 some type(s) or to an instance of some other type.
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Widget [VSlot $p1 *][VSlot $p2 *]]
-                                                          |          |
-                                                          V          V
+                                                          |          |
+                                                          V          V
                                                [VStore Int 10] [VStore Obj *]
                                                                          |
                                                                          V
-                                                                 [HStore ...]
+                                                                 [HStore ...]
 </pre>
 
 Let us consider the result of `$b = clone $a`:
 <pre>
 [VSlot $a *]-->[VStore Obj *]-->[HStore Widget [VSlot $p1 *][VSlot $p2 *]]
-                                                          |            |
-[VSlot $b *]-->[VStore Obj *]                             V            V
-                             |                  [VStore Int 10] [VStore Obj *]
-     +-----------------------+                                              |
-     V                                                                      V
-   [HStore Widget [VSlot $p1 *] [VSlot $p2 *]]              +--->[HStore ...]
-                             |             |                |
-                             V             V                |
-                 [VStore Int 10] [VStore Obj *]-------------+
+                                                          |            |
+[VSlot $b *]-->[VStore Obj *]                             V            V
+                             |                  [VStore Int 10] [VStore Obj *]
+     +-----------------------+                                              |
+     V                                                                      V
+   [HStore Widget [VSlot $p1 *] [VSlot $p2 *]]              +--->[HStore ...]
+                             |             |                |
+                             V             V                |
+                 [VStore Int 10] [VStore Obj *]-------------+
 </pre>
 
 The clone operator will create another object HStore of the same class
@@ -1569,11 +1569,11 @@ is treated like a function body, in which case, the *variable-name* in
 The scope of a *named-label* ([§§](#labeled-statements)) is the body of the function in
 which the label is defined.
 
-The scope of a class member m ([§§](#class-members)) declared in, or inherited by, a
-class type C is the body of C.
+The scope of a class member m ([§§](#class-members)) declared in, or inherited by, a
+class type C is the body of C.
 
-The scope of an interface member m ([§§](#class-members)) declared in, or inherited by,
-an interface type I is the body of I.
+The scope of an interface member m ([§§](#class-members)) declared in, or inherited by,
+an interface type I is the body of I.
 
 When a trait ([§§](#general-26)) is used by a class or an interface, the trait's
 members ([§§](#trait-members)) take on the scope of a member of that class or
@@ -1660,11 +1660,11 @@ function factorial($i)
 }
 ```
 
-When `factorial` is first called, the local variable parameter `$i` is
+When `factorial` is first called, the local variable parameter `$i` is
 created and initialized with the value of the argument in the call.
 Then, if this function calls itself, the same process is repeated each
 call. Specifically, each time `factorial` calls itself, a new local
-variable parameter `$i` is created and initialized with the value of the
+variable parameter `$i` is created and initialized with the value of the
 argument in the call.
 
 The lifetime of any VStore (§[[4.4.1](#general)](#general)) or HStore (§[[4.4.1](#general)](#general)) can be extended by
@@ -1736,20 +1736,20 @@ must be supported.
 Certain operations on integer values produce a mathematical result that
 cannot be represented as an integer. Examples include the following:
 
--   Incrementing the largest value or decrementing the smallest value.
--   Applying the unary minus to the smallest value.
--   Multiplying, adding, or subtracting two values.
+-   Incrementing the largest value or decrementing the smallest value
+-   Applying the unary minus to the smallest value
+-   Multiplying, adding, or subtracting two values
 
 In such cases, the resulting type and value is implementation-defined,
 but must be one of the following:
 
 -   The computation is done as though the types of the values were `float`
-    with the result having that type.
+    with the result having that type
 -   The result type is int and the value reflects wrap-around (for
-    example adding 1 to the largest value results in the smallest value).
+    example adding 1 to the largest value results in the smallest value).
 -   The computation is done as though the type had some unspecified,
     arithmetic-like object type with the result being mathematically
-    correct.
+    correct
 
 The constants `PHP_INT_SIZE` (§[[6.3](#core-predefined-constants)](#core-predefined-constants)) and `PHP_INT_MAX` (§[[6.3](#core-predefined-constants)](#core-predefined-constants)) define certain
 characteristics about type `int`.
@@ -1761,7 +1761,7 @@ The library function `is_int` (§xx) indicates if a given value has type
 
 There is one floating-point type, `float`, for which the names `double` and
 `real` are synonyms. The `float` type must support at least the range and
-precision of IEEE 754 64-bit double-precision representation.
+precision of IEEE 754 64-bit double-precision representation.
 
 The library function `is_float` (§xx) indicates if a given value has type
 `float`. The library function `is_finite` (§xx) indicates if a given
@@ -1802,7 +1802,7 @@ non-numeric. A *non-numeric string* is a string that is not a numeric
 string.
 
 Only one mutation operation may be performed on a string, offset
-assignment, which involves the simple assignment operator = ([§§](#simple-assignment)).
+assignment, which involves the simple assignment operator = ([§§](#simple-assignment)).
 
 The library function `is_string` (§xx) indicates if a given value has
 type string.
@@ -1820,7 +1820,7 @@ The library function `is_null` (§xx) indicates if a given value is `NULL`.
 
 An array is a data structure that contains a collection of zero or more
 elements whose values are accessed through keys that are of type `int` or
-`string`. Arrays are described in [§§](#arrays).
+`string`. Arrays are described in [§§](#arrays).
 
 The library function `is_array` (§xx) indicates if a given value is an
 array.
@@ -1834,32 +1834,32 @@ unspecified.
 
 The library function `is_object` (§xx) indicates if a given value is an
 object, and the library function
-[`get_class`](http://us2.php.net/manual/en/function.get-class.php)
+[`get_class`](http://php.net/manual/function.get-class.php)
 (§xx) indicates the name of an object's class.
 
 ###Resource Types
 
-A [*resource*](http://www.php.net/manual/en/language.types.resource.php)
+A [*resource*](http://php.net/manual/language.types.resource.php)
 is a descriptor to some sort of external entity. (Examples include
-files, databases, and sockets).
+files, databases, and sockets.)
 
 A resource is an abstract entity whose representation is unspecified.
 Resources are only created or consumed by the implementation; they are
 never created or consumed by PHP code.
 
-Each distinct resource has a unique ID of some unspecified form.
+Each distinct resource has a unique ID of some unspecified form.
 
 When scripts execute in a mode having a command-line interface, the
 following predefined resource constants that correspond to file streams
 are automatically opened at program start-up:
 
--   STDIN, which maps to standard input (php://stdin).
--   STDOUT, which maps to standard output (php://stdout).
--   STDERR, which maps to standard error (php://stderr).
+-   STDIN, which maps to standard input (php://stdin)
+-   STDOUT, which maps to standard output (php://stdout)
+-   STDERR, which maps to standard error (php://stderr)
 
 The library function `is_resource` (§xx) indicates if a given value is a
 resource, and the library function
-[`get_resource_type`](http://us2.php.net/manual/en/function.get-resource-type.php)
+[`get_resource_type`](http://php.net/manual/function.get-resource-type.php)
 (§xx) indicates the type of a resource.
 
 
@@ -1908,13 +1908,13 @@ automatically available to all scripts; their values are not fixed:
  `__CLASS__`                        | `string`; The name of the current class. From within a trait method, the name of the class in which that trait is used. If the current namespace is other than the default, the namespace name and "\\" are prepended, in that order. If used outside all classes, the result is the empty string. 
 `__DIR__`                            |  `string`; The directory name of the script. A directory separator is only appended for the root directory.
 `__FILE__`                           | `string`; The full name of the script.
-`__FUNCTION__`                       | `string`; Inside a function, the name of the current function exactly as it was declared, with the following prepended: If a named namespace exists, that namespace name followed by "\". If used outside all functions, the result is the empty string. For a method, no parent-class prefix is present. (See `__METHOD__` and [§§](#anonymous-functions)).
+`__FUNCTION__`                       | `string`; Inside a function, the name of the current function exactly as it was declared, with the following prepended: If a named namespace exists, that namespace name followed by "\". If used outside all functions, the result is the empty string. For a method, no parent-class prefix is present. (See `__METHOD__` and [§§](#anonymous-functions).)
 `__LINE__`                           | `int`; the number of the current source line
 `__METHOD__`                         | `string`; Inside a method, the name of the current method exactly as it was declared, with the following prepended, in order: If a named namespace exists, that namespace name followed by "\"; the parent class name or trait name followed by `::`. If used outside all methods, the result is the same as for `__FUNCTION__`.
 `__NAMESPACE__`                      | `string`; The name of the current namespace exactly as it was declared. For the default namespace, the result is the empty string.
 `__TRAIT__`                          | `string`; The name of the current trait. From within a trait method, the name of the current trait. If used outside all traits, the result is the empty string.
 
-Constants beginning with __ are reserved for future use by the Engine.
+Constants beginning with __ are reserved for future use by the Engine.
 
 ##Core Predefined Constants
 
@@ -1991,7 +1991,7 @@ Constant Name | Description
 `PHP_ZTS` | `int`; Indicates whether the compiler was built with thread safety enabled.
 `TRUE` |  `bool`; the case-insensitive Boolean value `TRUE`.
 
-The members of the `E_\*` family have values that are powers of 2, so
+The members of the `E_\*` family have values that are powers of 2, so
 they can be combined meaningfully using bitwise operators.
 
 ##User-Defined Constants
@@ -2024,14 +2024,14 @@ the need for a *global-declaration* ([§§](#global-variables)).
 
 The following kinds of variable may exist in a script:
 
--   Constant ([§§](#constants-1)).
--   Local variable ([§§](#local-variables)).
--   Array element ([§§](#array-elements)).
--   Function static ([§§](#function-statics)).
--   Global variable ([§§](#global-variables)).
--   Instance property ([§§](#instance-properties)).
--   Static property ([§§](#static-properties)).
--   Class and interface constant ([§§](#class-and-interface-constants)).
+-   Constant ([§§](#constants-1))
+-   Local variable ([§§](#local-variables))
+-   Array element ([§§](#array-elements))
+-   Function static ([§§](#function-statics))
+-   Global variable ([§§](#global-variables))
+-   Instance property ([§§](#instance-properties))
+-   Static property ([§§](#static-properties))
+-   Class and interface constant ([§§](#class-and-interface-constants))
 
 ##Kinds of Variables
 
@@ -2107,7 +2107,7 @@ for ($i = 1; $i <= 3; ++$i)
   f();
 ```
 
-Unlike the function static equivalent in [§§](#function-statics), function `f` outputs
+Unlike the function static equivalent in [§§](#function-statics), function `f` outputs
 "`$lv = 1`" each time.
 
 See the recursive function example in [§§](#storage-duration).
@@ -2120,7 +2120,7 @@ Arrays ([§§](#arrays)) are created via the array-creation operator ([§§](#ar
 the intrinsic `array` ([§§](#array)). At the same time, one or more elements
 may be created for that array. New elements are inserted into an
 existing array via the simple-assignment operator ([§§](#simple-assignment)) in
-conjunction with the subscript operator `[]` ([§§](#subscript-operator)). Elements can be
+conjunction with the subscript operator `[]` ([§§](#subscript-operator)). Elements can be
 removed by calling the `unset` intrinsic ([§§](#unset)).
 
 **Semantics:**
@@ -2141,7 +2141,7 @@ $colors[] = "green";                // insert a new element
 
 <pre>
   <i>function-static-declaration:</i>
-    static <i>name</i>   <i>function-static-initializer<sub>opt</sub></i> ;
+    static <i>name</i>   <i>function-static-initializer<sub>opt</sub></i> ;
   <i>function-static-initializer:</i>
     = <i>const-expression</i>
 </pre>
@@ -2181,7 +2181,7 @@ for ($i = 1; $i <= 3; ++$i)
   f();
 ```
 
-Unlike the local variable equivalent in [§§](#local-variables), function `f` outputs "`$fs
+Unlike the local variable equivalent in [§§](#local-variables), function `f` outputs "`$fs
 = 1`", "`$fs = 2`", and "`$fs = 3`", as `$fs` retains its value across
 calls.
 
@@ -2195,7 +2195,7 @@ calls.
 
   <i>variable-name-list:</i>
     <i>expression</i>
-    <i>variable-name-list  , expression</i>
+    <i>variable-name-list  , expression</i>
 </pre>
 
 *expression* is defined in [§§](#general-16).
@@ -2212,10 +2212,10 @@ a script, or from within a block in which that variable has been
 declared (*imported*, that is) using the `global` keyword.
 
 As described in [§§](#predefined-variables),
-[`$GLOBALS`](http://www.php.net/manual/en/reserved.variables.globals.php) is
+[`$GLOBALS`](http://php.net/manual/reserved.variables.globals.php) is
 a superglobal ([§§](#general-5)) array whose elements' key/value pairs contain the
 name and value, respectively, of each global variable currently defined.
-As such, a global variable `gv` can be initialized with the value `v`,
+As such, a global variable `gv` can be initialized with the value `v`,
 and possibly be created, using the following form of assignment:
 
 `$GLOBALS['gv'] = v`
@@ -2287,7 +2287,7 @@ The following variables are automatically available to all scripts:
 
 Variable Name |   Description
 -------------   |    -----------
-`$argc` | `int`; The number of command-line arguments passed to the script. This is at least 1. (See `$argv` below).
+`$argc` | `int`; The number of command-line arguments passed to the script. This is at least 1. (See `$argv` below.)
 `$argv` | `array`; An array of `$argc` elements containing the command-line arguments passed to the script as strings. Each element has an `int` key with the keys being numbered sequentially starting at zero through `$argc-1`. `$argv[0]` is the name of the script. It is implementation-defined as to how white space on command lines is handled, whether letter casing is preserved, which characters constitute quotes, or how `$argv[0]`'s string is formatted. As to how command-line arguments are defined, is unspecified.
 `$_COOKIE` |  `array`; The variables passed to the current script via HTTP Cookies.
 `$_ENV` | `array`; A superglobal ([§§](#general-5)) array in which the environment variable names are element keys, and the environment variable value strings are element values. As to how an environment variable is defined, is unspecified.
@@ -2316,11 +2316,11 @@ result are the same as the type and value of the expression.
 The [result type] (http://www.php.net/manual/en/language.types.boolean.php#language.types.boolean.casting) is `bool`.
 
 If the source type is `int` or `float`, then if the source value tests equal
-to 0, the result value is `FALSE`; otherwise, the result value is `TRUE`.
+to 0, the result value is `FALSE`; otherwise, the result value is `TRUE`.
 
 If the source value is `NULL`, the result value is `FALSE`.
 
-If the source is an empty string or the string "0", the result value is
+If the source is an empty string or the string "0", the result value is
 `FALSE`; otherwise, the result value is `TRUE`.
 
 If the source is an array with zero elements, the result value is `FALSE`;
@@ -2330,7 +2330,7 @@ If the source is an object, the result value is `TRUE`.
 
 If the source is a resource, the result value is `TRUE`.
 
-The library function `boolval` (§xx) allows values to be converted to
+The library function `boolval` (§xx) allows values to be converted to
 `bool`.
 
 ##Converting to Integer Type
@@ -2338,33 +2338,33 @@ The library function `boolval` (§xx) allows values to be converted to
 The [result type](http://www.php.net/manual/en/language.types.integer.php#language.types.integer.casting)  is `int`.
 
 If the source type is `bool`, then if the source value is `FALSE`, the
-result value is 0; otherwise, the result value is 1.
+result value is 0; otherwise, the result value is 1.
 
 If the source type is `float`, for the values `INF`, `-INF`, and `NAN`, the
 result value is implementation-defined. For all other values, if the
 precision can be preserved, the fractional part is rounded towards zero
 and the result is well defined; otherwise, the result is undefined.
 
-If the source value is `NULL`, the result value is 0.
+If the source value is `NULL`, the result value is 0.
 
 If the source is a numeric string or leading-numeric string ([§§](#the-string-type))
 having integer format, if the precision can be preserved the result
-value is that string's integer value; otherwise, the result is
+value is that string's integer value; otherwise, the result is
 undefined. If the source is a numeric string or leading-numeric string
 having floating-point format, the string's floating-point value is
 treated as described above for a conversion from `float`. The trailing
-non-numeric characters in leading-numeric strings are ignored.  For any
-other string, the result value is 0.
+non-numeric characters in leading-numeric strings are ignored.  For any
+other string, the result value is 0.
 
-If the source is an array with zero elements, the result value is 0;
-otherwise, the result value is 1.
+If the source is an array with zero elements, the result value is 0;
+otherwise, the result value is 1.
 
 If the source is an object, the conversion is invalid.
 
-If the source is a resource, the result is the resource's unique ID.
+If the source is a resource, the result is the resource's unique ID.
 
-The library function [`intval`
-(§xx)](http://www.php.net/manual/en/function.intval.php) allows values
+The library function [`intval`
+(§xx)](http://php.net/manual/function.intval.php) allows values
 to be converted to `int`.
 
 ##Converting to Floating-Point Type
@@ -2381,17 +2381,17 @@ described above for a conversion from `int`. If the source is a numeric
 string or leading-numeric string having floating-point format, the
 result value is the closest approximation to the string's floating-point
 value. The trailing non-numeric characters in leading-numeric strings
-are ignored. For any other string, the result value is 0.
+are ignored. For any other string, the result value is 0.
 
 If the source is an object, the conversion is invalid.
 
 For sources of all other types, the conversion is performed by first
-converting the source value to [`int`](http://www.php.net/manual/en/language.types.integer.php)
-([§§](#converting-to-integer-type)) and then to `float`.
+converting the source value to [`int`](http://php.net/manual/language.types.integer.php)
+([§§](#converting-to-integer-type)) and then to `float`.
 
-If the source is a resource, the result is the resource's unique ID.
+If the source is a resource, the result is the resource's unique ID.
 
-The library function `floatval` (§xx) allows values to be converted to
+The library function `floatval` (§xx) allows values to be converted to
 float.
 
 ##Converting to String Type
@@ -2399,7 +2399,7 @@ float.
 The [result type](http://www.php.net/manual/en/language.types.string.php#language.types.string.casting) is string.
 
 If the source type is `bool`, then if the source value is `FALSE`, the
-result value is the empty string; otherwise, the result value is "1".
+result value is the empty string; otherwise, the result value is "1".
 
 If the source type is `int` or `float`, then the result value is a string
 containing the textual representation of the source value (as specified
@@ -2416,7 +2416,7 @@ by that method; otherwise, the conversion is invalid.
 If the source is a resource, the result value is an
 implementation-defined string.
 
-The library function `strval` (§xx) allows values to be converted to
+The library function `strval` (§xx) allows values to be converted to
 string.
 
 ##Converting to Array Type
@@ -2430,10 +2430,10 @@ If the source value is `NULL`, the result value is an array of zero
 elements.
 
 If the source is an object, the result is
-an [array](http://www.php.net/manual/en/language.types.array.php) of
+an [array](http://php.net/manual/language.types.array.php) of
 zero or more elements, where the elements are key/value pairs
 corresponding to the
-[object](http://www.php.net/manual/en/language.types.object.php)'s
+[object](http://php.net/manual/language.types.object.php)'s
 instance properties. The order of insertion of the elements into the
 array is the lexical order of the instance properties in the
 *class-member-declarations* ([§§](#class-members)) list. The key for a private instance
@@ -2490,11 +2490,11 @@ transform additional character encoding schemes.
 
 ##Grammars
 
-This specification shows the syntax of the PHP programming language
+This specification shows the syntax of the PHP programming language
 using two grammars. The *lexical grammar* defines how source
 characters are combined to form white space, comments, and tokens. The
 *syntactic grammar* defines how the resulting tokens are combined to
-form PHP programs.
+form PHP programs.
 
 The grammars are presented using *grammar productions*, with each one
 defining a non-terminal symbol and the possible expansions of that
@@ -2516,7 +2516,7 @@ For example, the production:
 </pre>
 
 defines the lexical grammar production *single-line-comment* as being
-the terminals `//` or `#`, followed by an optional *input-characters*. Each
+the terminals `//` or `#`, followed by an optional *input-characters*. Each
 expansion is listed on a separate line.
 
 Although alternatives are usually listed on separate lines, when there
@@ -2563,7 +2563,7 @@ delimited comments ([§§](#comments)).
 
 Lexical processing always results in the creation of the longest
 possible lexical element. (For example, `$a+++++$b` must be parsed as
-`$a++ ++ +$b`, which syntactically is invalid).
+`$a++ ++ +$b`, which syntactically is invalid.)
 
 ##Comments
 
@@ -2599,18 +2599,18 @@ Two forms of comments are supported: *delimited comments* and
 
 **Semantics:**
 
-Except within a string literal or a comment, the characters /\* start a
-delimited comment, which ends with the characters \*/. Except within a
-string literal or a comment, the characters // or \# start a single-line
+Except within a string literal or a comment, the characters /\* start a
+delimited comment, which ends with the characters \*/. Except within a
+string literal or a comment, the characters // or \# start a single-line
 comment, which ends with a new line. That new line is not part of the
 comment. However, if the single-line comment is the last source element
 in an embedded script, the trailing new line can be omitted. (Note: this
-allows for uses like `<?php ... // ... ?>`).
+allows for uses like `<?php ... // ... ?>`).
 
 A delimited comment can occur in any place in a script in which white
 space ([§§](#white-space)) can occur. (For example;
 `/*...*/$c/*...*/=/*...*/567/*...*/;/*...*/` is parsed as `$c=567;`, and
-`$k = $i+++/*...*/++$j;` is parsed as `$k = $i+++ ++$j;`).
+`$k = $i+++/*...*/++$j;` is parsed as `$k = $i+++ ++$j;`).
 
 **Implementation Notes**
 
@@ -2710,10 +2710,10 @@ Names are used to identify the following: constants ([§§](#general-4)), variab
 members ([§§](#class-members)), interfaces ([§§](#interface-declarations)), traits ([§§](#general-26)), namespaces ([§§](#general-28)),
 and names in heredoc ([§§](#heredoc-string-literals)) and nowdoc comments ([§§](#nowdoc-string-literals)).
 
-A *name* begins with an underscore (_), *name-nondigit*, or extended
+A *name* begins with an underscore (_), *name-nondigit*, or extended
 name character in the range U+007f– ** U+00ff. Subsequent characters can
 also include *digit*s. A *variable name* is a name with a leading
-dollar ($).
+dollar ($).
 
 Unless stated otherwise ([§§](#function-definitions), [§§](#class-declarations), [§§](#methods), [§§](#interface-declarations), [§§](#trait-declarations), [§§](#defining-namespaces)),
 names are case-sensitive, and every character in a name is significant.
@@ -2822,22 +2822,22 @@ computeValues($table, TRUE);
 
     <i>decimal-literal::</i>
       <i>nonzero-digit</i>
-      <i>decimal-literal   digit</i>
+      <i>decimal-literal   digit</i>
 
     <i>octal-literal::</i>
       0
-      <i>octal-literal   octal-digit</i>
+      <i>octal-literal   octal-digit</i>
 
     <i>hexadecimal-literal::</i>
-      <i>hexadecimal-prefix   hexadecimal-digit</i>
-      <i>hexadecimal-literal   hexadecimal-digit</i>
+      <i>hexadecimal-prefix   hexadecimal-digit</i>
+      <i>hexadecimal-literal   hexadecimal-digit</i>
 
     <i>hexadecimal-prefix:: one of</i>
       0x  0X
 
     <i>binary-literal::</i>
-      <i>binary-prefix   binary-digit</i>
-      <i>binary-literal   binary-digit</i>
+      <i>binary-prefix   binary-digit</i>
+      <i>binary-literal   binary-digit</i>
 
     <i>binary-prefix:: one of</i>
       0b  0B
@@ -2862,18 +2862,18 @@ computeValues($table, TRUE);
 
 **Semantics:**
 
-The value of a decimal integer literal is computed using base 10; that
-of an octal integer literal, base 8; that of a hexadecimal integer
-literal, base 16; and that of a binary integer literal, base 2.
+The value of a decimal integer literal is computed using base 10; that
+of an octal integer literal, base 8; that of a hexadecimal integer
+literal, base 16; and that of a binary integer literal, base 2.
 
 If the value of an *integer-literal* can be represented in type int,
 that is its type; otherwise, its type is float, as described below.
 
 Using a twos-complement system, can the smallest negative value
-(-2147483648 for 32 bits and -9223372036854775808 for 64 bits) be
+(-2147483648 for 32 bits and -9223372036854775808 for 64 bits) be
 represented as a decimal integer literal? No. Consider the
-expression -5. This is made up of two tokens: a unary minus followed by
-the integer literal 5. As such, **there is no such thing as a
+expression -5. This is made up of two tokens: a unary minus followed by
+the integer literal 5. As such, **there is no such thing as a
 negative-valued decimal integer literal in PHP**. Instead, there is the
 non-negative value, which is then negated. However, if the non-negative
 value is too large to represent as an `int`, it becomes `float`, which is
@@ -2908,23 +2908,23 @@ On an implementation using 32-bit int representation
 
 <pre>
   <i>ﬂoating-literal::</i>
-    <i>fractional-literal   exponent-part<sub>opt</sub></i>
-    <i>digit-sequence   exponent-part</i>
+    <i>fractional-literal   exponent-part<sub>opt</sub></i>
+    <i>digit-sequence   exponent-part</i>
 
   <i>fractional-literal::</i>
     <i>digit-sequence<sub>opt</sub></i> . <i>digit-sequence</i>
     <i>digit-sequence</i> .
 
   <i>exponent-part::</i>
-    e  <i>sign<sub>opt</sub>   digit-sequence</i>
-    E  <i>sign<sub>opt</sub>   digit-sequence</i>
+    e  <i>sign<sub>opt</sub>   digit-sequence</i>
+    E  <i>sign<sub>opt</sub>   digit-sequence</i>
 
   <i>sign:: one of</i>
     +  -
 
   <i>digit-sequence::</i>
     <i>digit</i>
-    <i>digit-sequence   digit</i>
+    <i>digit-sequence   digit</i>
 </pre>
 
 *digit* is defined in [§§](#integer-literals).
@@ -2979,15 +2979,15 @@ The type of a string literal is string.
 
 <pre>
   <i>single-quoted-string-literal::</i>
-    b<i><sub>opt</sub></i>  ' <i>sq-char-sequence<sub>opt</sub></i>  '
+    b<i><sub>opt</sub></i>  ' <i>sq-char-sequence<sub>opt</sub></i>  '
 
   <i>sq-char-sequence::</i>
     <i>sq-char</i>
-    <i>sq-char-sequence   sq-char</i>
+    <i>sq-char-sequence   sq-char</i>
 
   <i>sq-char::</i>
     <i>sq-escape-sequence</i>
-    \<i><sub>opt</sub></i>   any member of the source character set except single-quote (') or backslash (\)
+    \<i><sub>opt</sub></i>   any member of the source character set except single-quote (') or backslash (\)
 
   <i>sq-escape-sequence:: one of</i>
     \'  \\
@@ -2995,13 +2995,13 @@ The type of a string literal is string.
 **Semantics:**
 
 A single-quoted string literal is a string literal delimited by
-single-quotes ('). The literal can contain any source character except
-single-quote (') and backslash (\\), which can only be represented by
+single-quotes ('). The literal can contain any source character except
+single-quote (') and backslash (\\), which can only be represented by
 their corresponding escape sequence.
 
 The optional `b` prefix is reserved for future use in dealing with
 so-called *binary strings*. For now, a *single-quoted-string-literal*
-with a `b` prefix is equivalent to one without.
+with a `b` prefix is equivalent to one without.
 
 A single-quoted string literal is a c-constant ([§§](#general-4)).
 
@@ -3019,16 +3019,16 @@ A single-quoted string literal is a c-constant ([§§](#general-4)).
 
 <pre>
   <i>double-quoted-string-literal::</i>
-    b<i><sub>opt</sub></i>  " <i>dq-char-sequence<sub>opt</sub></i>  "
+    b<i><sub>opt</sub></i>  " <i>dq-char-sequence<sub>opt</sub></i>  "
 
   <i>dq-char-sequence::</i>
     <i>dq-char</i>
-    <i>dq-char-sequence   dq-char</i>
+    <i>dq-char-sequence   dq-char</i>
 
   <i>dq-char::</i>
     <i>dq-escape-sequence</i>
-    any member of the source character set except double-quote (") or backslash (\)
-    \  any member of the source character set except "\$efnrtvxX or
+    any member of the source character set except double-quote (") or backslash (\)
+    \  any member of the source character set except "\$efnrtvxX or
 octal-digit
 
   <i>dq-escape-sequence::</i>
@@ -3045,8 +3045,8 @@ octal-digit
     \   <i>octal-digit   octal-digit   octal-digit</i>
 
   <i>dq-hexadecimal-escape-sequence::</i>
-    \x  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
-    \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
+    \x  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
+    \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
 </pre>
 
 *octal-digit* and *hexadecimal-digit* are defined in [§§](#integer-literals).
@@ -3054,14 +3054,14 @@ octal-digit
 **Semantics:**
 
 A double-quoted string literal is a string literal delimited by
-double-quotes ("). The literal can contain any source character except
-double-quote (") and backslash (\\), which can only be represented by
+double-quotes ("). The literal can contain any source character except
+double-quote (") and backslash (\\), which can only be represented by
 their corresponding escape sequence. Certain other (and sometimes
 non-printable) characters can also be expressed as escape sequences.
 
-The optional `b` prefix is reserved for future use in dealing with
+The optional `b` prefix is reserved for future use in dealing with
 so-called *binary strings*. For now, a *double-quoted-string-literal*
-with a `b` prefix is equivalent to one without.
+with a `b` prefix is equivalent to one without.
 
 An escape sequence represents a single-character encoding, as described
 in the table below:
@@ -3081,21 +3081,21 @@ Escape sequence | Character name
 \xhh or \Xhh  | 1–2-digit hexadecimal digit value hh
 
 Within a double-quoted string literal, except when recognized as the
-start of an escape sequence, a backslash (\\) is retained verbatim.
+start of an escape sequence, a backslash (\\) is retained verbatim.
 
-Within a double-quoted string literal a dollar ($) character not
-escaped by a backslash (\\) is handled, as follows:
+Within a double-quoted string literal a dollar ($) character not
+escaped by a backslash (\\) is handled, as follows:
 
--   If that dollar ($) character plus the character sequence following
+-   If that dollar ($) character plus the character sequence following
     spells a longest-possible variable name:
 -   For a scalar type, that variable name is replaced by the string
-    representation of that variable's value, if such a variable exists. 
+    representation of that variable's value, if such a variable exists. 
     This is known as *variable substitution*. If no such variable is
     currently defined, the value substituted is the empty string. (For
     the purposes of variable substitution, the string representation is
     produced as if the library function `sprintf` was used. In the case of
     a floating-point value, the conversion specifier used is `%.nG`,
-    where the precision `n` is implementation-defined.
+    where the precision `n` is implementation-defined.
 -   For a variable that designates an array, if that variable name is
     followed by characters of the form "`[index]`" without any
     intervening white space, the variable name and these following
@@ -3114,14 +3114,14 @@ escaped by a backslash (\\) is handled, as follows:
     following characters are presumed to refer to the corresponding
     property of that instance, in which case, the value of that property
     is substituted.
--   Otherwise, the dollar ($) is retained verbatim.
+-   Otherwise, the dollar ($) is retained verbatim.
 
 Variable substitution also provides limited support for the evaluation
 of expressions. This is done by enclosing an expression in a pair of
-matching braces ({...}). The opening brace must be followed immediately by
-a dollar ($) without any intervening white space, and that dollar must
+matching braces ({...}). The opening brace must be followed immediately by
+a dollar ($) without any intervening white space, and that dollar must
 begin a variable name. If this is not the case, braces are treated
-verbatim. An opening brace ({) cannot be escaped.
+verbatim. An opening brace ({) cannot be escaped.
 
 A double-quoted string literal is a c-constant ([§§](#general-4)) if it does not
 contain any variable substitution.
@@ -3150,7 +3150,7 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 
 <pre>
   <i>heredoc-string-literal::</i>
-    <<<  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    <<<  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
@@ -3160,11 +3160,11 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 
   <i>hd-char-sequence::</i>
     <i>hd-char</i>
-    <i>hd-char-sequence   hd-char</i>
+    <i>hd-char-sequence   hd-char</i>
 
   <i>hd-char::</i>
     <i>hd-escape-sequence</i>
-    any member of the source character set except backslash (\)
+    any member of the source character set except backslash (\)
     \  any member of the source character set except \$efnrtvxX or
 octal-digit
 
@@ -3187,14 +3187,14 @@ The start and end identifier must be the same. Only horizontal white
 space is permitted between `<<<` and the start identifier. No white
 space is permitted between the start identifier and the new-line that
 follows. No white space is permitted between the new-line and the end
-identifier that follows. Except for an optional semicolon (`;`), no
+identifier that follows. Except for an optional semicolon (`;`), no
 characters—not even comments or white space—are permitted between the
 end identifier and the new-line that terminates that source line.
 
 **Semantics:**
 
 A heredoc string literal is a string literal delimited by
-"`<<< name`" and "`name`". The literal can contain any source
+"`<<< name`" and "`name`". The literal can contain any source
 character. Certain other (and sometimes non-printable) characters can
 also be expressed as escape sequences.
 
@@ -3223,7 +3223,7 @@ Some more text<
 
 <pre>
   <i>nowdoc-string-literal::</i>
-    <<<  '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    <<<  '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 </pre>
 
 *hd-start-identifier*, *hd-char-sequence*, and *hd-end-identifier* are
@@ -3232,13 +3232,13 @@ defined in [§§](#heredoc-string-literals); and *new-line* is defined in [§§]
 **Constraints**
 
 No white space is permitted between the start identifier and its
-enclosing single quotes ('). See also [§§](#heredoc-string-literals).
+enclosing single quotes ('). See also [§§](#heredoc-string-literals).
 
 **Semantics:**
 
 A nowdoc string literal looks like a heredoc string literal
 ([§§](#heredoc-string-literals)) except that in the former the start identifier name is
-enclosed in single quotes ('). The two forms of string literal have the
+enclosed in single quotes ('). The two forms of string literal have the
 same semantics and constraints except that a nowdoc string literal is
 not subject to variable substitution.
 
@@ -3261,7 +3261,7 @@ Some more text<
 
 There is one null-literal value, `NULL`. Its spelling is case-insensitive.
 (Note: Throughout this specification, the convention is to use all
-uppercase).
+uppercase.)
 
 <pre>
   <i>null-literal::</i>
@@ -3303,19 +3303,19 @@ expression.
 A *side effect* is an action that changes the state of the execution
 environment. (Examples of such actions are modifying a variable, writing
 to a device or file, or calling a function that performs such
-operations).
+operations.)
 
 When an expression is evaluated, it produces a result. It might also
 produce a side effect. Only a few operators produce side effects. (For
-example, given the expression statement ([§§](#expression-statements)) `$v = 10`; the
-expression 10 is evaluated to the result 10, and there is no side
+example, given the expression statement ([§§](#expression-statements)) `$v = 10`; the
+expression 10 is evaluated to the result 10, and there is no side
 effect. Then the assignment operator is executed, which results in the
 side effect of `$v` being modified. The result of the whole expression is
 the value of `$v` after the assignment has taken place. However, that
 result is never used. Similarly, given the expression statement `++$v`;
-the expression is evaluated to the result incremented-value-of-`$v`, and
+the expression is evaluated to the result incremented-value-of-`$v`, and
 the side effect is that `$v` is actually incremented. Again, the result
-is never used).
+is never used.)
 
 The occurrence of value computation and side effects is delimited by
 *sequence points*, places in a program's execution at which all the
@@ -3324,30 +3324,30 @@ computations or side effects of future operations have yet begun. There
 is a sequence point at the end of each full expression. The logical and
 ([§§](#logical-and-operator-form-1)), logical or (§[[10.15](#logical-inclusive-or-operator-form-1)](#logical-inclusive-or-operator-form-1)), conditional (§[[10.15](#logical-inclusive-or-operator-form-1)](#logical-inclusive-or-operator-form-1)), and function-call
 ([§§](#function-call-operator)) operators each contain a sequence point. (For example, in the
-following series of expression statements, `$a = 10; ++$a; $b = $a;`,
+following series of expression statements, `$a = 10; ++$a; $b = $a;`,
 there is sequence point at the end of each full expression, so the
 assignment to $a is completed before `$a` is incremented, and the
-increment is completed before the assignment to `$b`).
+increment is completed before the assignment to `$b`).
 
 When an expression contains multiple operators, the *precedence* of
 those operators controls the order in which those operators are applied.
-(For example, the expression `$a - $b / $c` is evaluated as
-`$a - ($b / $c)` because the / operator has higher precedence than the
-binary - operator). The precedence of an operator is determined by the
+(For example, the expression `$a - $b / $c` is evaluated as
+`$a - ($b / $c)` because the / operator has higher precedence than the
+binary - operator). The precedence of an operator is determined by the
 definition of its associated grammar production.
 
 If an operand occurs between two operators having the same precedence,
 the order in which the operations are performed is determined by those
 operators' *associativity*. With *left-associative* operators,
-operations are performed left-to-right. (For example, `$a + $b - $c` is
-evaluated as `($a + $b) - $c.`) With *right-associative* operators,
-operations are performed right-to-left. (For example, `$a = $b = $c` is
-evaluated as `$a = ($b = $c)`).
+operations are performed left-to-right. (For example, `$a + $b - $c` is
+evaluated as `($a + $b) - $c`). With *right-associative* operators,
+operations are performed right-to-left. (For example, `$a = $b = $c` is
+evaluated as `$a = ($b = $c)`).
 
 Precedence and associativity can be controlled using *grouping
-parentheses*. (For example, in the expression `($a - $b) / $c`, the
+parentheses*. (For example, in the expression `($a - $b) / $c`, the
 subtraction is done before the division. Without the grouping
-parentheses, the division would take place first).
+parentheses, the division would take place first.)
 
 While precedence, associativity, and grouping parentheses control the
 order in which operators are applied, they do *not* control the order of
@@ -3355,18 +3355,18 @@ evaluation of the terms themselves. Unless stated explicitly in this
 specification, the order in which the operands in an expression are
 evaluated relative to each other is unspecified. See the discussion
 above about the operators that contain sequence points. (For example, in
-the full expression `$list1[$i] = $list2[$i++]`, whether the value
-of `$i` on the left-hand side is the old or new `$i`, is unspecified.
-Similarly, in the full expression `$j = $i + $i++`, whether the value
-of `$i` is the old or new `$i`, is unspecified. Finally, in the full
-expression `f() + g() \* h()`, the order in which the three functions are
-called, is unspecified).
+the full expression `$list1[$i] = $list2[$i++]`, whether the value
+of `$i` on the left-hand side is the old or new `$i`, is unspecified.
+Similarly, in the full expression `$j = $i + $i++`, whether the value
+of `$i` is the old or new `$i`, is unspecified. Finally, in the full
+expression `f() + g() \* h()`, the order in which the three functions are
+called, is unspecified.)
 
 **Implementation Notes**
 
 An expression that contains no side effects and whose resulting value is
 not used need not be evaluated. For example, the expression statements
-`6;, $i + 6;`, and `$i/$j`; are well formed, but they contain no side
+`6;, $i + 6;`, and `$i/$j`; are well formed, but they contain no side
 effects and their results are not used.
 
 A side effect need not be executed if it can be determined that no other
@@ -3389,7 +3389,7 @@ function, `$a` need not actually be incremented.
     <i>const-expression</i>
     <i>intrinsic</i>
     <i>anonymous-function-creation-expression</i>
-    (  <i>expression</i>  )
+    (  <i>expression</i>  )
     $this
 </pre>
 
@@ -3402,19 +3402,19 @@ is defined in [§§](#general-9); *const-expression* is defined in [§§](#const
 **Semantics**
 
 When the name of a function is used as an expression without the
-function-call operator `()` ([§§](#function-call-operator)), that name is treated as a string
+function-call operator `()` ([§§](#function-call-operator)), that name is treated as a string
 containing that function's name.
 
 The type and value of parenthesized expression are identical to those of
 the un-parenthesized expression.
 
-The variable `$this` is predefined inside any instance method or
+The variable `$this` is predefined inside any instance method or
 constructor when that method is called from within an object
-context. `$this` is a handle ([§§](#general-2)) that points to the calling object or
-to the object being constructed. The type of `$this` is the type of the
-class within which the usage of `$this` occurs. However, at run time, the
+context. `$this` is a handle ([§§](#general-2)) that points to the calling object or
+to the object being constructed. The type of `$this` is the type of the
+class within which the usage of `$this` occurs. However, at run time, the
 type of the object referred to by `$this` may be the type of the
-enclosing class or any type derived from that class.
+enclosing class or any type derived from that class.
 
 ###Intrinsics
 
@@ -3452,7 +3452,7 @@ called *intrinsics*, but they are not keywords; nor are they functions.
 
 <pre>
   <i>array-intrinsic:</i>
-    array ( <i>array-initializer<sub>opt</sub></i>  )
+    array ( <i>array-initializer<sub>opt</sub></i>  )
 </pre>
 
 *array-initializer* is defined in [§§](#array-creation-operator).
@@ -3460,7 +3460,7 @@ called *intrinsics*, but they are not keywords; nor are they functions.
 **Semantics**
 
 This intrinsic creates and initializes an array. It is equivalent to the
-array-creation operator `[]` ([§§](#array-creation-operator)).
+array-creation operator `[]` ([§§](#array-creation-operator)).
 
 ####echo
 
@@ -3473,8 +3473,8 @@ array-creation operator `[]` ([§§](#array-creation-operator)).
     echo  <i>expression-list-two-or-more</i>
 
   <i>expression-list-two-or-more:</i>
-    <i>expression</i>  ,  <i>expression</i>
-    <i>expression-list-two-or-more</i>  ,  <i>expression</i>
+    <i>expression</i>  ,  <i>expression</i>
+    <i>expression-list-two-or-more</i>  ,  <i>expression</i>
 </pre>
 
 *expression* is defined in [§§](#general-16).
@@ -3556,8 +3556,8 @@ empty($v)   // results in FALSE
 valid PHP source code.
 
 The PHP source code in the string must not be delimited by opening and
-closing [PHP
-tags](http://us3.php.net/manual/en/language.basic-syntax.phpmode.php).
+closing [PHP
+tags](http://php.net/manual/language.basic-syntax.phpmode.php).
 
 **Semantics**
 
@@ -3605,7 +3605,7 @@ When *expression* designates an integer, its value must be in the range
 This intrinsic terminates the current script. If *expression* designates
 a string, that string is written to `STDOUT` ([§§](#resource-types)). If *expression*
 designates an integer, that represents the script's *exit status code*.
-Code 255 is reserved by PHP. Code 0 represents "success". The exit
+Code 255 is reserved by PHP. Code 0 represents "success". The exit
 status code is made available to the execution environment. If
 *expression* is omitted or is a string, the exit status code is zero.
 `exit` does not have a resulting value.
@@ -3631,11 +3631,11 @@ exit;
 
 <pre>
   <i>isset-intrinsic:</i>
-    isset  (  <i>expression-list-one-or-more</i>  )
+    isset  (  <i>expression-list-one-or-more</i>  )
 
   <i>expression-list-one-or-more</i>:
     <i>expression</i>
-    <i>expression-list-one-or-mor</i>  ,  <i>expression</i>
+    <i>expression-list-one-or-mor</i>  ,  <i>expression</i>
 </pre>
 
 *expression* is defined in [§§](#general-16).
@@ -3671,7 +3671,7 @@ isset($v1, $v2, $v3)  // results in FALSE
 
 <pre>
   <i>list-intrinsic:</i>
-    list  (  <i>list-expression-list<sub>opt</sub></i>  )
+    list  (  <i>list-expression-list<sub>opt</sub></i>  )
 
   <i>list-expression-list:</i>
   <i>list-or-variable</i>
@@ -3704,10 +3704,10 @@ and the return value from `list` is undefined.
 
 All elements in the source array having keys of type `string` are ignored.
 The element having an `int` key of 0 is assigned to the first target
-variable, the element having an `int` key of 1 is assigned to the second
+variable, the element having an `int` key of 1 is assigned to the second
 target variable, and so on, until all target variables have been
-assigned. Any elements having an `int` key outside the range 0–(*n*-1),
-where *n* is the number of target variables, are ignored. If there are
+assigned. Any elements having an `int` key outside the range 0–(*n*-1),
+where *n* is the number of target variables, are ignored. If there are
 fewer element candidates having int keys than there are target
 variables, the unassigned target variables are unset ([§§](#unset)).
 
@@ -3739,7 +3739,7 @@ list($min, list($max, $avg)) = [0, [1 => 67, 99, 0 => 100], 33];
 <pre>
   <i>print-intrinsic:
     print  <i>expression</i>
-    print  (  <i>expression</i>  )
+    print  (  <i>expression</i>  )
 </pre>
 
 *expression* is defined in [§§](#general-16).
@@ -3754,7 +3754,7 @@ having a `__toString` method.
 After converting its *expression*'s value to a string, if necessary,
 `print` writes the resulting string to `STDOUT` ([§§](#resource-types)). Unlike `echo`
 ([§§](#echo)), `print` can be used in any context allowing an expression. It
-always returns the value 1.
+always returns the value 1.
 
 For value substitution in string literals, see [§§](#double-quoted-string-literals) and
 [§§](#heredoc-string-literals). For conversion to string, see [§§](#converting-to-string-type).
@@ -3777,7 +3777,7 @@ $a > $b ? print "..." : print "...";
 
 <pre>
   <i>unset-intrinsic:</i>
-    unset  (  <i>expression-list-one-or-more</i>  )
+    unset  (  <i>expression-list-one-or-more</i>  )
 </pre>
 
 *expression-list-one-or-more* is defined in [§§](#isset).
@@ -3798,8 +3798,8 @@ When called from inside a function, this intrinsic behaves, as follows:
 -   For a variable declared `global` in that function, `unset` removes the
     alias to that variable from the scope of the current call to that
     function. Once the function returns, the global variable is still
-    set. (To unset the global variable, use unset on the corresponding
-    [`$GLOBALS`](http://us3.php.net/manual/en/reserved.variables.globals.php) array entry ([§§](#predefined-variables))).
+    set. (To unset the global variable, use unset on the corresponding
+    [`$GLOBALS`](http://php.net/manual/reserved.variables.globals.php) array entry ([§§](#predefined-variables))).
 -   For a variable passed byRef to that function, `unset` removes the
     alias to that variable from the scope of the current call to that
     function. Once the function returns, the passed-in argument variable
@@ -3830,15 +3830,15 @@ unset($x->m); // if m is a dynamic property, $x's __unset("m") is called
 
 <pre>
   <i>anonymous-function-creation-expression:</i>
-  function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-use-clause<sub>opt</sub></i>
-      <i>compound-statement</i>
+  function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-use-clause<sub>opt</sub></i>
+      <i>compound-statement</i>
 
   <i>anonymous-function-use-clause:</i>
-    use  (  <i>use-variable-name-list</i>  )
+    use  (  <i>use-variable-name-list</i>  )
 
   <i>use-variable-name-list:</i>
-    &<sub>opt</sub>   <i>variable-name</i>
-    <i>use-variable-name-list</i>  ,  &<sub>opt</sub>  <i>variable-name</i>
+    &<sub>opt</sub>   <i>variable-name</i>
+    <i>use-variable-name-list</i>  ,  &<sub>opt</sub>  <i>variable-name</i>
 </pre>
 
 *parameter-declaration-list* is defined in [§§](#function-definitions); *compound-statement*
@@ -3985,8 +3985,8 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
 
 <pre>
   <i>object-creation-expression:</i>
-    new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
-    new  <i>class-type-designator</i>
+    new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
+    new  <i>class-type-designator</i>
 
   <i>class-type-designator:</i>
     static
@@ -4048,26 +4048,26 @@ $p1 = new $cName(-1, 1); // create Point(-1, 1)
 ###Array Creation Operator
 
 An array is created and initialized by one of two equivalent ways: via
-the array-creation operator `[]`, as described below, or the intrinsic
+the array-creation operator `[]`, as described below, or the intrinsic
 `array` ([§§](#array)).
 
 **Syntax**
 
 <pre>
   <i>array-creation-expression:</i>
-    array  (  <i>array-initializer<sub>opt</sub></i>  )
+    array  (  <i>array-initializer<sub>opt</sub></i>  )
     [ <i>array-initializer<sub>opt</sub></i> ]
 
   <i>array-initializer:</i>
-    <i>array-initializer-list</i>  ,<sub>opt</sub>
+    <i>array-initializer-list</i>  ,<sub>opt</sub>
 
   <i>array-initializer-list:</i>
     <i>array-element-initializer</i>
-    <i>array-element-initializer  ,  array-initializer-list</i>
+    <i>array-element-initializer  ,  array-initializer-list</i>
 
   <i>array-element-initializer:</i>
-    &<sub>opt</sub>   <i>element-value</i>
-    element-key  =>  &<sub>opt</sub>   <i>element-value</i>
+    &<sub>opt</sub>   <i>element-value</i>
+    element-key  =>  &<sub>opt</sub>   <i>element-value</i>
 
   <i>element-key:</i>
     <i>expression</i>
@@ -4080,7 +4080,7 @@ the array-creation operator `[]`, as described below, or the intrinsic
 
 **Constraints**
 
-If *array-element-initializer* contains &, *element-value's expression*
+If *array-element-initializer* contains &, *element-value's expression*
 must be a variable name ([§§](#names)).
 
 **Semantics**
@@ -4102,7 +4102,7 @@ element key of type `int` is associated with the corresponding
 *element-value*. The key associated is one more than the previously
 assigned `int` key for this array, regardless of whether that key was
 provided explicitly or by default. However, if this is the first element
-with an `int` key, key zero is associated.
+with an `int` key, key zero is associated.
 
 Once the element keys have been converted to `int` or `string`, and omitted
 element keys have each been associated by default, if two or more
@@ -4112,7 +4112,7 @@ to initialize that element.
 
 The result of this operator is a handle to the set of array elements.
 
-If *array-element-initializer* contains &, *element-value's* value is
+If *array-element-initializer* contains &, *element-value's* value is
 stored using byRef assignment ([§§](#assignment)).
 
 **Examples**
@@ -4145,8 +4145,8 @@ for ($i = -1; $i <= 2; ++$i) { ... $v[$i] } // retrieves via keys -1, 0, 1, 2
 
 <pre>
   <i>subscript-expression:</i>
-    <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
-    <i>postfix-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
+    <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
+    <i>postfix-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
 </pre>
 
 *postfix-expression* is defined in [§§](#general-13); and *expression* is defined
@@ -4193,7 +4193,7 @@ otherwise, the result is `NULL`.
 If *expression* is omitted, a new element is inserted. Its key has type
 `int` and is one more than the highest, previously assigned, non-negative
 `int` key for this array. If this is the first element with a non-negative
-`int` key, key zero is used. However, if the highest, previously assigned
+`int` key, key zero is used. However, if the highest, previously assigned
 `int` key for this array is `PHP_INT_MAX` ([§§](#)), **no new element is
 inserted**. The type and value of the result is the type and value of
 the new element.
@@ -4204,7 +4204,7 @@ the new element.
     *simple-assignment-expression*.
 -   If the usage context is as the left-hand side of a
     *compound-assignment-expression* ([§§](#compound-assignment)): The expression
-    `e1 op= e2` is evaluated as `e1 = NULL op (e2)`.
+    `e1 op= e2` is evaluated as `e1 = NULL op (e2)`.
 -   If the usage context is as the operand of a postfix- or
     prefix-increment or decrement operator ([§§](#postfix-increment-and-decrement-operators), [§§](#prefix-increment-and-decrement-operators)): The value
     of the new element is `NULL`.
@@ -4232,8 +4232,8 @@ If *expression* is present,
     the type and value of the right-hand side of that
     *simple-assignment-expression*.
 -   If the usage context is as the left-hand side of a
-    *compound-assignment-expression*: The expression `e1 op= e2` is
-    evaluated as `e1 = offsetGet(expression) op (e2)`, which is then
+    *compound-assignment-expression*: The expression `e1 op= e2` is
+    evaluated as `e1 = offsetGet(expression) op (e2)`, which is then
     processed according to the rules for simple assignment immediately
     above.
 -   If the usage context is as the operand of a postfix- or
@@ -4254,8 +4254,8 @@ If *expression* is omitted,
     the type and value of the right-hand side of that
     *simple-assignment-expression*.
 -   If the usage context is as the left-hand side of a
-    *compound-assignment-expression*: The expression `e1 op= e2` is
-    evaluated as `e1 = offsetGet(NULL) op (e2)`, which is then processed
+    *compound-assignment-expression*: The expression `e1 op= e2` is
+    evaluated as `e1 = offsetGet(NULL) op (e2)`, which is then processed
     according to the rules for simple assignment immediately above.
 -   If the usage context is as the operand of a postfix- or
     prefix-increment or decrement operator ([§§](#postfix-increment-and-decrement-operators), [§§](#prefix-increment-and-decrement-operators)): The
@@ -4294,11 +4294,11 @@ $x = $vect1[1];   // calls Vector::offsetGet(1)
 
 <pre>
   <i>function-call-expression:</i>
-    <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
+    <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
     <i>assignment-expression</i>
-    <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
+    <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
 </pre>
 
 *postfix-expression* is defined in [§§](#general-13); and *assignmment-expression*
@@ -4335,7 +4335,7 @@ call is a modifiable lvalue only if the function returns a byRef that
 aliases a modifiable lvalue.
 
 When *postfix-expression* designates an instance method or constructor,
-the instance used in that designation is used as the value of `$this` in
+the instance used in that designation is used as the value of `$this` in
 the invoked method or constructor. However, if no instance was used in
 that designation (for example, in the call `C::instance_method()`) the
 invoked instance has no `$this` defined.
@@ -4344,12 +4344,12 @@ When a function is called, the value of each argument passed to it is
 assigned to the corresponding parameter in that function's definition,
 if such a parameter exists. The assignment of argument values to
 parameters is defined in terms of simple ([§§](#simple-assignment)) or byRef assignment
-([§§](#byref-assignment)), depending on how the parameter was declared.  There may be
+([§§](#byref-assignment)), depending on how the parameter was declared.  There may be
 more arguments than parameters, in which case, the library functions
-[`func_num_args`](http://www.php.net/manual/en/function.func-num-args.php)
-(§xx), [`func_get_arg`](http://www.php.net/manual/en/function.func-get-arg.php)
+[`func_num_args`](http://php.net/manual/function.func-num-args.php)
+(§xx), [`func_get_arg`](http://php.net/manual/function.func-get-arg.php)
 (§xx),
-and [`func_get_args`](http://www.php.net/manual/en/function.func-get-args.php)
+and [`func_get_args`](http://php.net/manual/function.func-get-args.php)
 (§xx) can be used to get access to the complete argument list that was
 passed. If the number of arguments present in a function call is fewer
 than the number of parameters defined for that function, any parameter
@@ -4406,7 +4406,7 @@ $anon();  // call the anonymous function encapsulated by that object
 
 <pre>
   <i>member-selection-expression:</i>
-    <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
+    <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
 
   <i>member-selection-designator:</i>
     <i>name</i>
@@ -4426,7 +4426,7 @@ method of *postfix-expression*'s class type.
 
 *expression* must be a value of type `string` (but not a string literal)
 that contains the name of an instance property (**without** the
-leading `$`) or an instance or static method of that instance's class
+leading `$`) or an instance or static method of that instance's class
 type.
 
 **Semantics**
@@ -4437,19 +4437,19 @@ instance or static method of the object designated by
 and is a modifiable lvalue if *postfix-expression* is a modifiable
 lvalue.
 
-When the `->` operator is used in a modifiable lvalue context and *name*
+When the `->` operator is used in a modifiable lvalue context and *name*
 or *expression* designate a property that is not visible, the property
 is treated as a dynamic property ([§§](#dynamic-members)). If *postfix-expression*'s class
 type defines a `__set` method ([§§](#method-__set)), it is called to store the
-property's value. When the `->` operator is used in a non-lvalue context
+property's value. When the `->` operator is used in a non-lvalue context
 and *name* or *expression* designate a property that is not visible, the
 property is treated as a dynamic property. If *postfix-expression*'s
 class type defines a `__get` method ([§§](#method-__get)), it is called to retrieve
 the property's value.
 
 If *postfix-expression* is `NULL`, `FALSE`, or an empty string, an expression
-of the form `$p->x = 10` causes an instance of `stdClass` ([§§](#class-stdclass)) to be
-created with a dynamic property x having a value of 10. `$p` is then made
+of the form `$p->x = 10` causes an instance of `stdClass` ([§§](#class-stdclass)) to be
+created with a dynamic property x having a value of 10. `$p` is then made
 to refer to this instance.
 
 **Examples**
@@ -4488,20 +4488,20 @@ $c = $p1->color;  // turned into $c = $p1->__get("color");
     <i>unary-expression</i>  ++
 
   <i>postfix-decrement-expression:</i>
-    <i>unary-expression</i>  --
+    <i>unary-expression</i>  --
 </pre>
 
 *unary-expression* is defined in [§§](#general-14).
 
 **Constraints**
 
-The operand of the postfix ++ and -- operators must be a modifiable
+The operand of the postfix ++ and -- operators must be a modifiable
 lvalue that has scalar type.
 
 **Semantics**
 
 These operators behave like their prefix counterparts ([§§](#prefix-increment-and-decrement-operators)) except
-that the value of a postfix ++ or -- expression is the value before any
+that the value of a postfix ++ or -- expression is the value before any
 increment or decrement takes place.
 
 **Examples**
@@ -4517,8 +4517,8 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 
 <pre>
   <i>scope-resolution-expression:</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>member-selection-designator</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>class</i>
+    <i>scope-resolution-qualifier</i>  ::  <i>member-selection-designator</i>
+    <i>scope-resolution-qualifier</i>  ::  <i>class</i>
 
   <i>scope-resolution-qualifier:</i>
     <i>qualified-name</i>
@@ -4539,7 +4539,7 @@ that contains the name of a class or interface type.
 
 **Semantics**
 
-From inside or outside a class or interface, operator `::` allows the
+From inside or outside a class or interface, operator `::` allows the
 selection of a constant. From inside or outside a class, this operator
 allows the selection of a static property, static method, or instance
 method. From within a class, it also allows the selection of an
@@ -4547,10 +4547,10 @@ overridden property or method. For a property, the value is that of the
 property, and is a modifiable lvalue if *member-selection-designator* is
 a modifiable lvalue.
 
-From within a class, `self::m` refers to the member `m` in that class,
-whereas `parent::m` refers to the closest member `m` in the base-class
+From within a class, `self::m` refers to the member `m` in that class,
+whereas `parent::m` refers to the closest member `m` in the base-class
 hierarchy, not including the current class. From within a method,
-`static::m` refers to the member `m` in the class that corresponds to the
+`static::m` refers to the member `m` in the class that corresponds to the
 class inheritance context in which the method is called. This allows
 *late static binding*. Consider the following scenario:
 
@@ -4574,7 +4574,7 @@ $d1->b(); // as $d1 is an instance of Derived, Base::b() calls Derived::f()
 ```
 
 The value of the form of *scope-resolution-expression* ending in `::class`
-is a string containing the fully qualified name of the current class,
+is a string containing the fully qualified name of the current class,
 which for a static qualifier, means the current class context.
 
 **Examples**
@@ -4616,14 +4616,14 @@ class Point
 
 <pre>
   <i>exponentiation-expression:</i>
-    <i>expression  **  expression</i>
+    <i>expression  **  expression</i>
 </pre>
 
 *expression* is defined in [§§](#general-16).
 
 **Semantics**
 
-The `**` operator produces the result of raising the value of the
+The `**` operator produces the result of raising the value of the
 left-hand operand to the power of the right-hand one. If either or both
 operands have non-numeric types, their values are converted to type `int`
 or `float`, as appropriate. If both operands have non-negative integer
@@ -4684,77 +4684,77 @@ These operators associate right-to-left.
 
 **Constraints**
 
-The operand of the prefix `++` or `--` operator must be a modifiable lvalue
+The operand of the prefix `++` or `--` operator must be a modifiable lvalue
 that has scalar type.
 
 **Semantics**
 
 *Arithmetic Operands*
 
-For a prefix `++` operator used with an arithmetic operand, the side
-effect ([§§](#general-10)) of the operator is to increment by 1, as appropriate, the
+For a prefix `++` operator used with an arithmetic operand, the side
+effect ([§§](#general-10)) of the operator is to increment by 1, as appropriate, the
 value of the operand. The result is the value of the operand after it
 has been incremented. If an int operand's value is the largest
 representable for that type, the type and value of the result is
 implementation-defined ([§§](#the-integer-type)).
 
-For a prefix `--` operator used with an arithmetic operand, the side
-effect of the operator is to decrement by 1, as appropriate, the value
+For a prefix `--` operator used with an arithmetic operand, the side
+effect of the operator is to decrement by 1, as appropriate, the value
 of the operand. The result is the value of the operand after it has been
 decremented. If an int operand's value is the smallest representable for
 that type, the type and value of the result is implementation-defined
 ([§§](#the-integer-type)).
 
-For a prefix `++` or `--` operator used with an operand having the value
+For a prefix `++` or `--` operator used with an operand having the value
 `INF`, `-INF`, or `NAN`, there is no side effect, and the result is the
 operand's value.
 
 *Boolean Operands*
 
-For a prefix `++` or `--` operator used with a Boolean-valued operand, there
+For a prefix `++` or `--` operator used with a Boolean-valued operand, there
 is no side effect, and the result is the operand's value.
 
 *NULL-valued Operands*
 
-For a prefix -- operator used with a `NULL`-valued operand, there is no
-side effect, and the result is the operand's value. For a prefix `++`
+For a prefix -- operator used with a `NULL`-valued operand, there is no
+side effect, and the result is the operand's value. For a prefix `++`
 operator used with a `NULL`-valued operand, the side effect is that the
 operand's type is changed to int, the operand's value is set to zero,
-and that value is incremented by 1. The result is the value of the
+and that value is incremented by 1. The result is the value of the
 operand after it has been incremented.
 
 *String Operands*
 
-For a prefix `--` operator used with an operand whose value is an empty
+For a prefix `--` operator used with an operand whose value is an empty
 string, the side effect is that the operand's type is changed to `int`,
-the operand's value is set to zero, and that value is decremented by 1.
+the operand's value is set to zero, and that value is decremented by 1.
 The result is the value of the operand after it has been incremented.
 
-For a prefix `++` operator used with an operand whose value is an empty
+For a prefix `++` operator used with an operand whose value is an empty
 string, the side effect is that the operand's value is changed to the
-string "1". The type of the operand is unchanged. The result is the new
+string "1". The type of the operand is unchanged. The result is the new
 value of the operand.
 
-For a prefix `--` or `++` operator used with a numeric string, the numeric
+For a prefix `--` or `++` operator used with a numeric string, the numeric
 string is treated as the corresponding `int` or `float` value.
 
-For a prefix `--` operator used with a non-numeric string-valued operand,
+For a prefix `--` operator used with a non-numeric string-valued operand,
 there is no side effect, and the result is the operand's value.
 
 For a non-numeric string-valued operand that contains only alphanumeric
-characters, for a prefix `++` operator, the operand is considered to be a
+characters, for a prefix `++` operator, the operand is considered to be a
 pseudo-base-36 number (i.e., with digits 0–9 followed by A–Z or a–z) in
 which letter case is ignored for value purposes. The right-most digit is
-incremented by 1. For the digits 0–8, that means going to 1–9. For the
-letters "A"–"Y" (or "a"–"y"), that means going to "B"–"Z" (or "b"–"z").
-For the digit 9, the digit becomes 0, and the carry is added to the next
-left-most digit, and so on. For the digit "Z" (or "z"), the resulting
-string has an extra digit "A" (or "a") appended. For example, when
+incremented by 1. For the digits 0–8, that means going to 1–9. For the
+letters "A"–"Y" (or "a"–"y"), that means going to "B"–"Z" (or "b"–"z").
+For the digit 9, the digit becomes 0, and the carry is added to the next
+left-most digit, and so on. For the digit "Z" (or "z"), the resulting
+string has an extra digit "A" (or "a") appended. For example, when
 incrementing, "a" -> "b", "X" -> "AA", "AA" -> "AB", "F29" -> "F30", "FZ9" -> "GA0", and "ZZ9" -> "AAA0". A digit position containing a number wraps
 modulo-10, while a digit position containing a letter wraps modulo-26.
 
 For a non-numeric string-valued operand that contains any
-non-alphanumeric characters, for a prefix `++` operator, all characters up
+non-alphanumeric characters, for a prefix `++` operator, all characters up
 to and including the right-most non-alphanumeric character is passed
 through to the resulting string, unchanged. Characters to the right of
 that right-most non-alphanumeric character are treated like a
@@ -4786,68 +4786,68 @@ $a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
 
 **Constraints**
 
-The operand of the unary `+`, unary `-`, and unary `!` operators must have
+The operand of the unary `+`, unary `-`, and unary `!` operators must have
 scalar type.
 
-The operand of the unary `~` operator must have arithmetic type.
+The operand of the unary `~` operator must have arithmetic type.
 
 **Semantics**
 
 *Arithmetic Operands*
 
-For a unary `+` operator used with an arithmetic operand, the type and
+For a unary `+` operator used with an arithmetic operand, the type and
 value of the result is the type and value of the operand.
 
-For a unary `-` operator used with an arithmetic operand, the value of the
+For a unary `-` operator used with an arithmetic operand, the value of the
 result is the negated value of the operand. However, if an int operand's
 original value is the smallest representable for that type, the type and
 value of the result is implementation-defined ([§§](#the-integer-type)).
 
-For a unary `!` operator used with an arithmetic operand, the type of the
+For a unary `!` operator used with an arithmetic operand, the type of the
 result is `bool`. The value of the result is `TRUE` if the value of the
 operand is non-zero; otherwise, the value of the result is `FALSE`. For
 the purposes of this operator, `NAN` is considered a non-zero value. The
-expression `!E` is equivalent to `(E == 0)`.
+expression `!E` is equivalent to `(E == 0)`.
 
-For a unary `~` operator used with an `int` operand, the type of the result
+For a unary `~` operator used with an `int` operand, the type of the result
 is `int`. The value of the result is the bitwise complement of the value
 of the operand (that is, each bit in the result is set if and only if
-the corresponding bit in the operand is clear). For a unary `~` operator
+the corresponding bit in the operand is clear). For a unary `~` operator
 used with a `float` operand, the value of the operand is first converted
 to `int` before the bitwise complement is computed.
 
 *Boolean Operands*
 
-For a unary `+` operator used with a `TRUE`-valued operand, the value of the
-result is 1 and the type is `int`. When used with a `FALSE`-valued operand,
+For a unary `+` operator used with a `TRUE`-valued operand, the value of the
+result is 1 and the type is `int`. When used with a `FALSE`-valued operand,
 the value of the result is zero and the type is `int`.
 
-For a unary `-` operator used with a `TRUE`-valued operand, the value of the
-result is -1 and the type is `int`. When used with a `FALSE`-valued operand,
+For a unary `-` operator used with a `TRUE`-valued operand, the value of the
+result is -1 and the type is `int`. When used with a `FALSE`-valued operand,
 the value of the result is zero and the type is `int`.
 
-For a unary `!` operator used with a `TRUE`-valued operand, the value of the
-result is `FALSE` and the type is `bool`. When used with a `FALSE`-valued
-operand, the value of the result is `TRUE` and the type is `bool`.
+For a unary `!` operator used with a `TRUE`-valued operand, the value of the
+result is `FALSE` and the type is `bool`. When used with a `FALSE`-valued
+operand, the value of the result is `TRUE` and the type is `bool`.
 
 *NULL-valued Operands*
 
-For a unary `+` or unary `-` operator used with a `NULL`-valued operand, the
+For a unary `+` or unary `-` operator used with a `NULL`-valued operand, the
 value of the result is zero and the type is `int`.
 
-For a unary `!` operator used with a `NULL`-valued operand, the value of the
+For a unary `!` operator used with a `NULL`-valued operand, the value of the
 result is `TRUE` and the type is `bool`.
 
 *String Operands*
 
-For a unary `+` or `-` operator used with a numeric string or a
+For a unary `+` or `-` operator used with a numeric string or a
 leading-numeric string, the string is first converted to an `int` or
 `float`, as appropriate, after which it is handled as an arithmetic
 operand. The trailing non-numeric characters in leading-numeric strings
 are ignored. With a non-numeric string, the result has type `int` and
-value 0.
+value 0.
 
-For a unary `!` operator used with a string, the string is first converted
+For a unary `!` operator used with a string, the string is first converted
 to `bool`, after which its value is negated.
 
 **Examples**
@@ -4866,19 +4866,19 @@ $v = ~0b1010101;
 
 <pre>
   <i>error-control-expression:</i>
-    @   <i>expression</i>
+    @   <i>expression</i>
 </pre>
 
 *expression* is defined in [§§](#general-16).
 
 **Semantics**
 
-Operator `@` supresses any error messages generated by the evaluation of
+Operator `@` suppresses any error messages generated by the evaluation of
 *expression*.
 
 If a custom error-handler has been established using the library
-function [`set_error_handler` (§xx), that
-handler](http://us3.php.net/manual/en/function.set-error-handler.php)is
+function [`set_error_handler` (§xx), that
+handler](http://php.net/manual/function.set-error-handler.php) is
 still called.
 
 **Examples**
@@ -4921,10 +4921,10 @@ $x = $tmp;
 
 <pre>
   <i>shell-command-expression:</i>
-    `  <i>dq-char-sequence<sub>opt</sub></i>  `
+    `  <i>dq-char-sequence<sub>opt</sub></i>  `
 </pre>
 
-where \` is the GRAVE ACCENT character U+0060, commonly referred to as a
+where \` is the GRAVE ACCENT character U+0060, commonly referred to as a
 *backtick*.
 
 *dq-char-sequence* is described in [§§](#double-quoted-string-literals).
@@ -4939,8 +4939,8 @@ as a string. If the output is redirected away from `STDOUT`, or
 *dq-char-sequence* is empty or contains only white space, the result of
 the operator is `NULL`.
 
-If [`shell_exec`](http://www.php.net/manual/en/function.shell-exec.php)
-(§xx) is disabled, this operator is disabled.
+If [`shell_exec`](http://php.net/manual/function.shell-exec.php)
+(§xx) is disabled, this operator is disabled.
 
 **Examples**
 
@@ -4958,7 +4958,7 @@ $result = `$d {$f}`;      // result is the output of command dir *.*
 <pre>
   <i>cast-expression:</i>
     <i>unary-expression</i>
-    (  <i>cast-type</i>  ) <i>cast-expression</i>
+    (  <i>cast-type</i>  ) <i>cast-expression</i>
 
   <i>cast-type: one of</i>
     array  binary  bool  boolean  double  int  integer  float  object
@@ -5003,7 +5003,7 @@ A *cast-type* of `string` results in a conversion to type `string`. See [§§](#
 for details.
 
 A *cast-type* of `unset` always results in a value of `NULL`. (This use of
-`unset` should not be confused with the `unset` intrinsic ([§§](#unset))).
+`unset` should not be confused with the `unset` intrinsic ([§§](#unset)).)
 
 **Examples**
 
@@ -5019,8 +5019,8 @@ A *cast-type* of `unset` always results in a value of `NULL`. (This use of
 
 <pre>
   <i>variable-name-creation-expression:</i>
-    $   <i>expression</i>
-    $  {  <i>expression</i>  }
+    $   <i>expression</i>
+    $  {  <i>expression</i>  }
 </pre>
 
 *expression* is defined in [§§](#general-16).
@@ -5043,10 +5043,10 @@ might not be permitted as a variable-name ([§§](#names)) source code token.
 
 This specification documents existing practice rather than ideal
 language design, and **there is one aspect of this operator that behaves
-in a manner that violates the precedence rules**. Consider `o` to be an
-object of some class that has an instance property called `pr`. How is the
+in a manner that violates the precedence rules**. Consider `o` to be an
+object of some class that has an instance property called `pr`. How is the
 non-brace-form expression `$$o->pr` handled with respect to precedence?
-As the operator `->` has higher precedence, the answer would seem to be,
+As the operator `->` has higher precedence, the answer would seem to be,
 "`->` wins over `$`"; however, that is not the case. In fact, the
 expression is treated as `${$o}->pr`.
 
@@ -5084,7 +5084,7 @@ ${$a}[0] = 5;   // $ gets first shot at $a
 <pre>
   <i>instanceof-expression:</i>
     <i>unary-expression</i>
-    <i>instanceof-subject</i>  instanceof   <i>instanceof-type-designator</i>
+    <i>instanceof-subject</i>  instanceof   <i>instanceof-type-designator</i>
 
   <i>instanceof-subject:</i>
     <i>expression</i>
@@ -5108,7 +5108,7 @@ literal.
 
 **Semantics**
 
-Operator `instanceof` returns `TRUE` if the variable designated by
+Operator `instanceof` returns `TRUE` if the variable designated by
 *expression* in *instanceof-subject* is an object having type
 *qualified-name*, is an object whose type is derived from type
 *qualified-name*, or is an object whose type implements interface
@@ -5116,7 +5116,7 @@ Operator `instanceof` returns `TRUE` if the variable designated by
 form of *instanceof-type-designator* is used, *expression* may be a
 string that contains a class or interface name. Alternatively,
 *expression* can designate an instance variable, in which case, operator
-`instanceof` returns `TRUE` if the variable designated by the left-hand
+`instanceof` returns `TRUE` if the variable designated by the left-hand
 *expression* is an instance of the
 [`class`](http://www.php.net/manual/en/language.oop5.basic.php#language.oop5.basic.class)
 type, or of a derived type, of the right-hand *expression*.
@@ -5152,20 +5152,20 @@ $e1 instanceof $iName     // TRUE
 <pre>
   <i>multiplicative-expression:</i>
     <i>instanceof-expression</i>
-    <i>multiplicative-expression</i>  *  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  /  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  %  <i>multiplicative-expression</i>
+    <i>multiplicative-expression</i>  *  <i>multiplicative-expression</i>
+    <i>multiplicative-expression</i>  /  <i>multiplicative-expression</i>
+    <i>multiplicative-expression</i>  %  <i>multiplicative-expression</i>
 </pre>
 
 *instanceof-expression* is defined in [§§](#instanceof-operator).
 
 **Constraints**
 
-The right-hand operand of operator `/` and operator `%` must not be zero.
+The right-hand operand of operator `/` and operator `%` must not be zero.
 
 **Semantics**
 
-The binary `*` operator produces the product of its operands. If either
+The binary `*` operator produces the product of its operands. If either
 or both operands have non-numeric types, their values are converted to
 type `int` or `float`, as appropriate. Then if either operand has type
 `float`, the other is converted to that type, and the result has type
@@ -5175,10 +5175,10 @@ Otherwise, the type and value of the result is implementation-defined
 ([§§](#the-integer-type)).
 
 Division by zero results in a diagnostic followed by a `bool` result
-having value `FALSE`. (The values +/- infinity and NaN cannot be generated
-via this operator; instead, use the predefined constants `INF` and `NAN`).
+having value `FALSE`. (The values +/- infinity and NaN cannot be generated
+via this operator; instead, use the predefined constants `INF` and `NAN`.)
 
-The binary `/` operator produces the quotient from dividing the left-hand
+The binary `/` operator produces the quotient from dividing the left-hand
 operand by the right-hand one. If either or both operands have
 non-numeric types, their values are converted to type `int` or `float`, as
 appropriate. Then if either operand has type `float`, the other is
@@ -5187,7 +5187,7 @@ operands have type `int`, in which case, if the mathematical value of the
 computation can be preserved using type `int`, that is the result type;
 otherwise, the type of the result is `float`.
 
-The binary `%` operator produces the remainder from dividing the left-hand
+The binary `%` operator produces the remainder from dividing the left-hand
 operand by the right-hand one. If the type of both operands is not `int`,
 their values are converted to that type. The result has type `int`.
 
@@ -5211,9 +5211,9 @@ These operators associate left-to-right.
 <pre>
   <i>additive-expression:</i>
     <i>multiplicative-expression</i>
-    <i>additive-expression</i>  +  <i>multiplicative-expression</i>
-    <i>additive-expression</i>  -  <i>multiplicative-expression</i>
-    <i>additive-expression</i>  .  <i>multiplicative-expression</i>
+    <i>additive-expression</i>  +  <i>multiplicative-expression</i>
+    <i>additive-expression</i>  -  <i>multiplicative-expression</i>
+    <i>additive-expression</i>  .  <i>multiplicative-expression</i>
 </pre>
 
 *multiplicative-expression* is defined in [§§](#multiplicative-operators).
@@ -5225,8 +5225,8 @@ type.
 
 **Semantics**
 
-For non-array operands, the binary `+` operator produces the sum of those
-operands, while the binary `- `operator produces the difference of its
+For non-array operands, the binary `+` operator produces the sum of those
+operands, while the binary `- `operator produces the difference of its
 operands when subtracting the right-hand operand from the left-hand one.
 If either or both operands have non-array, non-numeric types, their
 values are converted to type `int` or `float`, as appropriate. Then if
@@ -5236,14 +5236,14 @@ which case, if the resulting value can be represented in type `int` that
 is the result type. Otherwise, the type and value of the result is
 implementation-defined ([§§](#the-integer-type)).
 
-If both operands have array type, the binary `+` operator produces a new
+If both operands have array type, the binary `+` operator produces a new
 array that is the union of the two operands. The result is a copy of the
 left-hand array with elements inserted at its end, in order, for each
 element in the right-hand array whose key does not already exist in the
 left-hand array. Any element in the right-hand array whose key exists in
 the left-hand array is ignored.
 
-The binary `.` operator creates a string that is the concatenation of the
+The binary `.` operator creates a string that is the concatenation of the
 left-hand operand and the right-hand operand, in that order. If either
 or both operands have types other than `string`, their values are
 converted to type `string`. The result has type `string`.
@@ -5278,8 +5278,8 @@ TRUE . NULL;      // string with value "1"
 <pre>
   <i>shift-expression:</i>
     <i>additive-expression</i>
-    <i>shift-expression</i>  <<  <i>additive-expression</i>
-    <i>shift-expression</i>  >>  <i>additive-expression</i>
+    <i>shift-expression</i>  <<  <i>additive-expression</i>
+    <i>shift-expression</i>  >>  <i>additive-expression</i>
 </pre>
 
 *additive-expression* is defined in [§§](#additive-operators).
@@ -5290,23 +5290,23 @@ Each of the operands must have scalar type.
 
 **Semantics**
 
-Given the expression `e1 << e2`, the bits in the value of `e1` are shifted
-left by `e2` positions. Bits shifted off the left end are discarded, and
+Given the expression `e1 << e2`, the bits in the value of `e1` are shifted
+left by `e2` positions. Bits shifted off the left end are discarded, and
 zero bits are shifted on from the right end. Given the expression
-`e1 >> e2`, the bits in the value of `e1` are shifted right by
-`e2` positions. Bits shifted off the right end are discarded, and the sign
+`e1 >> e2`, the bits in the value of `e1` are shifted right by
+`e2` positions. Bits shifted off the right end are discarded, and the sign
 bit is propagated from the left end.
 
 If either operand does not have type `int`, its value is first converted
 to that type.
 
 The type of the result is `int`, and the value of the result is that after
-the shifting is complete. The values of `e1` and `e2` are unchanged.
+the shifting is complete. The values of `e1` and `e2` are unchanged.
 
 If the shift count is negative, the actual shift applied is `n -
-(-shift count % n)`, where `n` is the number of bits per `int`. If the
+(-shift count % n)`, where `n` is the number of bits per `int`. If the
 shift count is greater than the number of bits in an `int`, the actual
-shift applied is shift count `% n`.
+shift applied is shift count `% n`.
 
 These operators associate left-to-right.
 
@@ -5326,19 +5326,19 @@ These operators associate left-to-right.
 <pre>
   <i>relational-expression:</i>
     <i>shift-expression</i>
-    <i>relational-expression</i>  <   <i>shift-expression</i>
-    <i>relational-expression</i>  >   <i>shift-expression</i>
-    <i>relational-expression</i>  <=  <i>shift-expression</i>
-    <i>relational-expression</i>  >=  <i>shift-expression</i>
+    <i>relational-expression</i>  <   <i>shift-expression</i>
+    <i>relational-expression</i>  >   <i>shift-expression</i>
+    <i>relational-expression</i>  <=  <i>shift-expression</i>
+    <i>relational-expression</i>  >=  <i>shift-expression</i>
 </pre>
 
 *shift-expression* is defined in [§§](#bitwise-shift-operators).
 
 **Semantics**
 
-Operator `<` represents *less-than*, operator `>` represents
-*greater-than*, operator `<=` represents *less-than-or-equal-to*, and
-operator `>=` represents *greater-than-or-equal-to*.
+Operator `<` represents *less-than*, operator `>` represents
+*greater-than*, operator `<=` represents *less-than-or-equal-to*, and
+operator `>=` represents *greater-than-or-equal-to*.
 
 The type of the result is `bool`.
 
@@ -5420,22 +5420,22 @@ FALSE < "abc"   // result has value TRUE
 <pre>
   <i>equality-expression:</i>
     <i>relational-expression</i>
-    <i>equality-expression</i>  ==  <i>relational-expression</i>
-    <i>equality-expression</i>  !=  <i>relational-expression</i>
-    <i>equality-expression</i>  <>  <i>relational-expression</i>
-    <i>equality-expression</i>  ===  <i>relational-expression</i>
-    <i>equality-expression</i>  !==  <i>relational-expression</i>
+    <i>equality-expression</i>  ==  <i>relational-expression</i>
+    <i>equality-expression</i>  !=  <i>relational-expression</i>
+    <i>equality-expression</i>  <>  <i>relational-expression</i>
+    <i>equality-expression</i>  ===  <i>relational-expression</i>
+    <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>
 
 *relational-expression* is defined in [§§](#relational-operators).
 
 **Semantics**
 
-Operator `==` represents *value-equality*, operators `!=` and `<>` are
-equivalent and represent *value-inequality*, operator `===` represents
-*same-type-and-value-equality*, and operator `!==` represents
+Operator `==` represents *value-equality*, operators `!=` and `<>` are
+equivalent and represent *value-inequality*, operator `===` represents
+*same-type-and-value-equality*, and operator `!==` represents
 *not-same-type-and-value-equality*. However, when comparing two objects,
-operator `===` represents *identity* and operator `!==` represents
+operator `===` represents *identity* and operator `!==` represents
 *non-identity*. Specifically, in this context, these operators check to
 see if the two operands are the exact same object, not two different
 objects of the same type and value.
@@ -5444,7 +5444,7 @@ The type of the result is `bool`.
 
 The operands are processed using the following steps, in order:
 
-1.  For operators `==`, `!=`, and `<>`, if either operand has the value
+1.  For operators `==`, `!=`, and `<>`, if either operand has the value
     `NULL`, then if the other operand has type string, the `NULL` is
     converted to the empty string (""); otherwise, the `NULL` is converted
     to type bool.
@@ -5459,18 +5459,18 @@ The operands are processed using the following steps, in order:
     unequal, the string having the lower-valued byte compares less-than
     the other string, and the comparison ends. If there are more bytes
     in the strings, the process is repeated for the next pair of bytes.
-3.  If either operand has type bool, for operators `==`, `!=`, and `<>`, the
+3.  If either operand has type bool, for operators `==`, `!=`, and `<>`, the
     other operand is converted to that type. The result is the logical
     comparison of the two operands after any conversion, where `FALSE` is
     defined to be less than `TRUE`.
 4.  If the operands both have arithmetic type, string type, or are
-    resources, for operators `==`, `!=`, and `<>`, they are converted to the
+    resources, for operators `==`, `!=`, and `<>`, they are converted to the
     corresponding arithmetic type ([§§](#converting-to-integer-type) and [§§](#converting-to-floating-point-type)). The result is the
     numerical comparison of the two operands after any conversion.
-5.  If both operands have array type, for operators `==`, `!=`, and `<>`,
+5.  If both operands have array type, for operators `==`, `!=`, and `<>`,
     the arrays are equal if they have the same set of key/value pairs,
     after element type conversion, without regard to the order of
-    insertion of their elements. For operators `===` and `!==` the arrays
+    insertion of their elements. For operators `===` and `!==` the arrays
     are equal if they have the same set of key/value pairs, the
     corresponding values have the same type, and the order of insertion
     of their elements are the same.
@@ -5515,7 +5515,7 @@ TRUE !== 100  // result has value TRUE
 <pre>
   <i>bitwise-AND-expression:</i>
     <i>equality-expression</i>
-    <i>bit-wise-AND-expression</i>  &  <i>equality-expression</i>
+    <i>bit-wise-AND-expression</i>  &  <i>equality-expression</i>
 </pre>
 
 *equality-expression* is defined in [§§](#equality-operators).
@@ -5549,7 +5549,7 @@ $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
 <pre>
   <i>bitwise-exc-OR-expression:</i>
     <i>bitwise-AND-expression</i>
-    <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
+    <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
 </pre>
 
 *bitwise-AND-expression* is defined in [§§](#bitwise-and-operator).
@@ -5585,7 +5585,7 @@ $v1 = $v1 ^ $v2;    // $v1 is now -987, and $v2 is now 1234
 <pre>
   <i>bitwise-inc-OR-expression:</i>
     <i>bitwise-exc-OR-expression</i>
-    <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
+    <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
 </pre>
 
 *bitwise-exc-OR-expression* is defined in [§§](#bitwise-exclusive-or-operator).
@@ -5619,7 +5619,7 @@ $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
 <pre>
   <i>logical-AND-expression-1:</i>
     <i>bitwise-incl-OR-expression</i>
-    <i>logical-AND-expression-1</i>  &&  <i>bitwise-inc-OR-expression</i>
+    <i>logical-AND-expression-1</i>  &&  <i>bitwise-inc-OR-expression</i>
 </pre>
 
 *bitwise-incl-OR-expression* is defined in [§§](#bitwise-inclusive-or-operator).
@@ -5633,11 +5633,11 @@ Each of the operands must have scalar type.
 If either operand does not have type bool, its value is first converted
 to that type.
 
-Given the expression `e1 && e2, e1` is evaluated first. If `e1` is `FALSE`, `e2` is not evaluated, and the result has type `bool`, value `FALSE`. Otherwise, `e2` is evaluated. If `e2` is `FALSE`, the result has type bool, value `FALSE`; otherwise, it has type `bool`, value `TRUE`. There is a sequence point after the evaluation of `e1`.
+Given the expression `e1 && e2, e1` is evaluated first. If `e1` is `FALSE`, `e2` is not evaluated, and the result has type `bool`, value `FALSE`. Otherwise, `e2` is evaluated. If `e2` is `FALSE`, the result has type bool, value `FALSE`; otherwise, it has type `bool`, value `TRUE`. There is a sequence point after the evaluation of `e1`.
 
 This operator associates left-to-right.
 
-Except for the difference in precedence, operator `&&` has exactly the
+Except for the difference in precedence, operator `&&` has exactly the
 same semantics as operator `and` ([§§](#logical-and-operator-form-2)).
 
 **Examples**
@@ -5667,7 +5667,7 @@ Each of the operands must have scalar type.
 If either operand does not have type bool, its value is first converted
 to that type.
 
-Given the expression `e1 || e2`, `e1` is evaluated first. If `e1` is TRUE, `e2` is not evaluated, and the result has type `bool`, value `TRUE`. Otherwise, `e2` is evaluated. If `e2` is `TRUE`, the result has type `bool`, value `TRUE`; otherwise, it has type `bool`, value `FALSE`. There is a sequence point after the evaluation of `e1`.
+Given the expression `e1 || e2`, `e1` is evaluated first. If `e1` is TRUE, `e2` is not evaluated, and the result has type `bool`, value `TRUE`. Otherwise, `e2` is evaluated. If `e2` is `TRUE`, the result has type `bool`, value `TRUE`; otherwise, it has type `bool`, value `FALSE`. There is a sequence point after the evaluation of `e1`.
 
 This operator associates left-to-right.
 
@@ -5684,7 +5684,7 @@ if ($month < 1 || $month > 12) ...
 <pre>
   <i>conditional-expression:</i>
     <i>logical-inc-OR-expression-1</i>
-    <i>logical-inc-OR-expression-1</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
+    <i>logical-inc-OR-expression-1</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
 </pre>
 
 *logical-OR-expression* is defined in [§§](#logical-inclusive-or-operator-form-1); and *expression* is
@@ -5696,10 +5696,10 @@ The first operand must have scalar type.
 
 **Semantics**
 
-Given the expression `e1 ? e2 : e3`, if `e1` is `TRUE`, then and only then is `e2` evaluated, and the result and its type become the result and type of
+Given the expression `e1 ? e2 : e3`, if `e1` is `TRUE`, then and only then is `e2` evaluated, and the result and its type become the result and type of
 the whole expression. Otherwise, then and only then is `e3` evaluated, and
 the result and its type become the result and type of the whole
-expression. There is a sequence point after the evaluation of `e1`. If `e2`
+expression. There is a sequence point after the evaluation of `e1`. If `e2`
 is omitted, the result and type of the whole expression is the value and
 type of `e1` when it was tested.
 
@@ -5759,7 +5759,7 @@ These operators associate right-to-left.
 
 <pre>
   <i>simple-assignment-expression:</i>
-    <i>unary-expression</i>  =  <i>assignment-expression</i>
+    <i>unary-expression</i>  =  <i>assignment-expression</i>
 </pre>
 
 *unary-expression* is defined in [§§](#general-14); *assignment-expression* is
@@ -5792,11 +5792,11 @@ then if the key is a negative-valued `int`, there is no side effect.
 Otherwise, if the key is a non-negative-valued `int`, the left-most single
 character from the right-hand operand is stored at the designated
 location; all other characters in the right-hand operand string are
-ignored.  If the designated location is beyond the end of the
+ignored.  If the designated location is beyond the end of the
 destination string, that string is extended to the new length with
 spaces (U+0020) added as padding beyond the old end and before the newly
 added character. If the right-hand operand is an empty string, the null
-character \\0 (U+0000) is stored.
+character \\0 (U+0000) is stored.
 
 **Examples**
 
@@ -5825,7 +5825,7 @@ $a = new C; // make $a point to the allocated object
 
 <pre>
   <i>byref-assignment-expression:</i>
-    <i>unary-expression</i>  =  &  <i>assignment-expression</i>
+    <i>unary-expression</i>  =  &  <i>assignment-expression</i>
 </pre>
 
 *unary-expression* is defined in [§§](#general-14); *assignment-expression* is
@@ -5867,7 +5867,7 @@ $b =& g2();     // make $b an alias to "xxx"
 
 <pre>
   <i>compound-assignment-expression:</i>
-    <i>unary-expression   compound-assignment-operator   assignment-expression</i>
+    <i>unary-expression   compound-assignment-operator   assignment-expression</i>
 
   <i>compound-assignment-operator: one of</i>
     **=  *=  /=  %=  +=  -=  .=  <<=  >>=  &=  ^=  |=
@@ -5883,8 +5883,8 @@ operator apply to the compound-assignment form as well.
 
 **Semantics**
 
-The expression `e1 op= e2` is equivalent to `e1 = e1 op (e2)`, except
-that `e1` is evaluated once only.
+The expression `e1 op= e2` is equivalent to `e1 = e1 op (e2)`, except
+that `e1` is evaluated once only.
 
 **Examples**
 
@@ -5905,7 +5905,7 @@ $a[$i++] += 50; // $a[1] = 250, $i → 2
 <pre>
   <i>logical-AND-expression-2:</i>
     <i>assignment-expression</i>
-    <i>logical-AND-expression-2</i>  and  <i>assignment-expression</i>
+    <i>logical-AND-expression-2</i>  and  <i>assignment-expression</i>
 </pre>
 
 *assignment-expression* is defined in [§§](#general-15).
@@ -5916,8 +5916,8 @@ Each of the operands must have scalar type.
 
 **Semantics**
 
-Except for the difference in precedence, operator and has exactly the
-same semantics as operator `&&` ([§§](#logical-and-operator-form-1)).
+Except for the difference in precedence, operator and has exactly the
+same semantics as operator `&&` ([§§](#logical-and-operator-form-1)).
 
 ##Logical Exclusive OR Operator
 
@@ -5926,7 +5926,7 @@ same semantics as operator `&&` ([§§](#logical-and-operator-form-1)).
 <pre>
   <i>logical-exc-OR-expression:</i>
     <i>logical-AND-expression-2</i>
-    <i>logical-exc-OR-expression</i>  xor  <i>logical-AND-expression-2</i>
+    <i>logical-exc-OR-expression</i>  xor  <i>logical-AND-expression-2</i>
 </pre>
 
 *logical-AND-expression* is defined in [§§](#logical-and-operator-form-2).
@@ -5940,10 +5940,10 @@ Each of the operands must have scalar type.
 If either operand does not have type `bool`, its value is first converted
 to that type.
 
-Given the expression `e1 xor e2`, `e1` is evaluated first, then `e2`. If
-either `e1` or `e2` is `TRUE`, but not both, the result has type `bool`, value
+Given the expression `e1 xor e2`, `e1` is evaluated first, then `e2`. If
+either `e1` or `e2` is `TRUE`, but not both, the result has type `bool`, value
 `TRUE`. Otherwise, the result has type `bool`, value `FALSE`. There is a
-sequence point after the evaluation of `e1`.
+sequence point after the evaluation of `e1`.
 
 This operator associates left-to-right.
 
@@ -5960,7 +5960,7 @@ f($i++) XOR g($i) // the sequence point makes this well-defined
 <pre>
   <i>logical-inc-OR-expression-2:</i>
     <i>logical-exc-OR-expression</i>
-    <i>logical-inc-OR-expression-2</i>  or  <i>logical-exc-OR-expression</i>
+    <i>logical-inc-OR-expression-2</i>  or  <i>logical-exc-OR-expression</i>
 </pre>
 
 *logical-exc-OR-expression* is defined in [§§](#logical-exclusive-or-operator).
@@ -5971,8 +5971,8 @@ Each of the operands must have scalar type.
 
 **Semantics**
 
-Except for the difference in precedence, operator and has exactly the
-same semantics as operator `||` ([§§](#logical-inclusive-or-operator-form-1)).
+Except for the difference in precedence, operator and has exactly the
+same semantics as operator `||` ([§§](#logical-inclusive-or-operator-form-1)).
 
 ## `yield` Operator
 
@@ -5981,7 +5981,7 @@ same semantics as operator `||` ([§§](#logical-inclusive-or-operator-form-1))
 <pre>
   <i>yield-expression:</i>
     <i>logical-inc-OR-expression-2</i>
-    yield  <i>array-element-initializer</i>
+    yield  <i>array-element-initializer</i>
 </pre>
 
 *logical-inc-OR-expression* is defined in [§§](#logical-inclusive-or-operator-form-2);
@@ -6016,7 +6016,7 @@ If *element-key* is omitted from an *array-element-initializer*, an
 element key of type `int` is associated with the corresponding
 *element-value*. The key associated is one more than the previously
 assigned int key for this collection. However, if this is the first
-element in this collection with an `int` key, key zero is used. If
+element in this collection with an `int` key, key zero is used. If
 *element-key* is provided, it is associated with the corresponding
 *element-value*. The resulting key/value pair is made available by
 `yield`.
@@ -6142,8 +6142,8 @@ configuration directive
 
 <pre>
   <i>include-expression:</i>
-    include  (  <i>include-filename</i>  )
-    include  <i>include-filename</i>
+    include  (  <i>include-filename</i>  )
+    include  <i>include-filename</i>
 
   <i>include-filename:</i>
     <i>expression</i>
@@ -6174,7 +6174,7 @@ it were defined inside that function.
 
 Operator `include` has a side effect of including the designated include
 file. The result produced by this operator is one of the following:
-`FALSE`, which indicates the inclusion attempt failed; the `int` 1, which
+`FALSE`, which indicates the inclusion attempt failed; the `int` 1, which
 indicates the default value for inclusion attempt succeeded; or some
 other value, as returned from the included file ([§§](#the-return-statement)).
 
@@ -6195,8 +6195,8 @@ If ((include 'Positions.php') == 1) ...
 
 <pre>
   <i>include-once-expression:</i>
-    include_once  (  <i>include-filename</i>  )
-    include_once  <i>include-filename</i>
+    include_once  (  <i>include-filename</i>  )
+    include_once  <i>include-filename</i>
 </pre>
 
 *include-filename* is defined in [§§](#the-include-operator).
@@ -6237,7 +6237,7 @@ $c1 = new Circle(9, 7, 2.4);
 
 <pre>
   <i>require-expression:</i>
-    require  (  <i>include-filename</i>  )
+    require  (  <i>include-filename</i>  )
     require  <i>include-filename</i>
 </pre>
 
@@ -6258,7 +6258,7 @@ all files included or required.
 
 <pre>
   <i>require-once-expression:</i>
-    require_once  (  <i>include-filename</i>  )
+    require_once  (  <i>include-filename</i>  )
     require_once  <i>include-filename</i>
 </pre>
 
@@ -6354,11 +6354,11 @@ defined in [§§](#defining-namespaces); *namespace-use-declaration* is defined 
 
 <pre>
   <i>compound-statement:</i>
-    {   <i>statement-list<sub>opt</sub></i>  }
+    {   <i>statement-list<sub>opt</sub></i>  }
 
   <i>statement-list:</i>
     <i>statement</i>
-    <i>statement-list   statement</i>
+    <i>statement-list   statement</i>
 </pre>
 
 *statement* is defined in [§§](#general-17).
@@ -6398,13 +6398,13 @@ while (condition)
     <i>default-label</i>
 
   <i>named-label:</i>
-    <i>name</i>  :  <i>statement</i>
+    <i>name</i>  :  <i>statement</i>
 
   <i>case-label:</i>
-    <i>case   expression   case-default-label-terminator   statement</i>
+    <i>case   expression   case-default-label-terminator   statement</i>
 
   <i>default-label:</i>
-    <i>default  case-default-label-terminator   statement</i>
+    <i>default  case-default-label-terminator   statement</i>
 
   <i>case-default-label-terminator:</i>
     :
@@ -6436,7 +6436,7 @@ execution.
 
 <pre>
    <i>expression-statement:</i>
-     <i>expression<sub>opt</sub></i>  ;
+     <i>expression<sub>opt</sub></i>  ;
 </pre>
 
 *expression* is defined in [§§](#general-16).
@@ -6597,8 +6597,8 @@ else  // this else does go with the outer if
 
 <pre>
   <i>switch-statement:</i>
-    switch  (  <i>expression</i>  )  <i>compound-statement</i>
-    switch  (  <i>expression</i>  )  :   <i>statement-list</i>  endswitch;
+    switch  (  <i>expression</i>  )  <i>compound-statement</i>
+    switch  (  <i>expression</i>  )  :   <i>statement-list</i>  endswitch;
 </pre>
 
 *expression* is defined in [§§](#general-16); and *compound-statement* and
@@ -6713,8 +6713,8 @@ is defined in [§§](#the-foreach-statement).
 
 <pre>
   <i>while-statement:</i>
-    while  (  <i>expression</i>  )  <i>statement</i>
-    while  (  <i>expression</i>  )  :   <i>statement-list</i>  endwhile ;
+    while  (  <i>expression</i>  )  <i>statement</i>
+    while  (  <i>expression</i>  )  :   <i>statement-list</i>  endwhile ;
 </pre>
 
 *expresion* is defined in [§§](#general-16); *statement* is defined in [§§](#general-17); and
@@ -6760,12 +6760,12 @@ while (TRUE)
 
 <pre>
   <i>do-statement:</i>
-    do  <i>statement</i>  while  (  <i>expression</i>  )  ;
+    do  <i>statement</i>  while  (  <i>expression</i>  )  ;
 </pre>
 
-*statement* is defined in [§§](#general-17) and *expresion* is defined in [§§](#general-16).
+*statement* is defined in [§§](#general-17) and *expression* is defined in [§§](#general-16).
 
- (Note: There is no `:/enddo` alternate syntax).
+ (Note: There is no `:/enddo` alternate syntax).
 
 **Constraints**
 
@@ -6891,17 +6891,17 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10)
 
 <pre>
   <i>foreach-statement:</i>
-    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
-    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>   foreach-value</i>  )  :   <i>statement-list</i>  endforeach  ;
+    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
+    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>   foreach-value</i>  )  :   <i>statement-list</i>  endforeach  ;
 
   <i>foreach-collection-name</i>:
     <i>expression</i>
 
   <i>foreach-key:</i>
-    <i>expression</i>  =>
+    <i>expression</i>  =>
 
   <i>foreach-value:<i>
-    &<sub>opt</sub>   <i>expression</i>
+    &<sub>opt</sub>   <i>expression</i>
     <i>list-intrinsic</i>
 </pre>
 
@@ -6924,9 +6924,9 @@ provide alternate styles.
 The *foreach* statement iterates over the set of elements in the
 collection designated by *foreach-collection-name*, starting at the
 beginning, executing *statement* each iteration. On each iteration, if
-the `&` is present in *foreach-value*, the variable designated by the
+the `&` is present in *foreach-value*, the variable designated by the
 corresponding *expression* is made an alias to the current element. If
-the `&` is omitted, the value of the current element is assigned to the
+the `&` is omitted, the value of the current element is assigned to the
 corresponding variable. The loop body, *statement*, is executed zero or
 more times. After the loop terminates, *expression* in *foreach-value*
 has the same meaning it had after the final iteration, if any.
@@ -6990,7 +6990,7 @@ is defined in [§§](#the-return-statement); and *throw-statement* is defined in
 
 <pre>
   <i>goto-statement:</i>
-    goto  <i>name</i>  ;
+    goto  <i>name</i>  ;
 </pre>
 
 *name* is defined in [§§](#names).
@@ -7041,7 +7041,7 @@ done:
 
 <pre>
   <i>continue-statement:</i>
-    continue   <i>breakout-level<sub>opt</sub></i>  ;
+    continue   <i>breakout-level<sub>opt</sub></i>  ;
 
   <i>breakout-level:</i>
     <i>integer-literal</i>
@@ -7054,24 +7054,24 @@ done:
 The breakout level must not be zero, and it must not exceed the level of
 actual enclosing iteration and/or `switch` statements.
 
-A `continue` statement must not attempt to break out of a finally-block
+A `continue` statement must not attempt to break out of a finally-block
 ([§§](#the-try-statement)).
 
 **Semantics**
 
-A `continue` statement terminates the execution of the innermost enclosing
-iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statement.
+A `continue` statement terminates the execution of the innermost enclosing
+iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statement.
 
-A `continue` statement terminates the execution of one or more enclosing
-iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statements. If *breakout-level* is
+A `continue` statement terminates the execution of one or more enclosing
+iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statements. If *breakout-level* is
 greater than one, the next iteration (if any) of the next innermost
-enclosing iteration or switch statement is started; however, if that
+enclosing iteration or switch statement is started; however, if that
 statement is a `for` statement and it has a *for-end-of-loop*, its
 expression group for the current iteration is evaluated first. If
-*breakout-level* is 1, the behavior is the same as for `break 1`. If
-*breakout-level* is omitted, a level of 1 is assumed.
+*breakout-level* is 1, the behavior is the same as for `break 1`. If
+*breakout-level* is omitted, a level of 1 is assumed.
 
-A `continue` statement may break out of a construct that is fully
+A `continue` statement may break out of a construct that is fully
 contained within a finally-block.
 
 **Examples**
@@ -7091,7 +7091,7 @@ for ($i = 1; $i <= 5; ++$i)
 
 <pre>
   <i>break-statement:</i>
-    break  <i>breakout-level<sub>opt</sub></i>  ;
+    break  <i>breakout-level<sub>opt</sub></i>  ;
 </pre>
 
 *breakout-level* is defined in [§§](#the-continue-statement).
@@ -7101,17 +7101,17 @@ for ($i = 1; $i <= 5; ++$i)
 The breakout level must not be zero, and it must not exceed the level of
 actual enclosing iteration and/or `switch` statements.
 
-A `break` statement must not attempt to break out of a finally-block
+A `break` statement must not attempt to break out of a finally-block
 ([§§](#the-try-statement)).
 
 **Semantics**
 
-A `break` statement terminates the execution of one or more enclosing
-iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statements. The number of levels
+A `break` statement terminates the execution of one or more enclosing
+iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statements. The number of levels
 broken out is specified by *breakout-level*. If *breakout-level* is
-omitted, a level of 1 is assumed.
+omitted, a level of 1 is assumed.
 
-A `break` statement may break out of a construct that is fully contained
+A `break` statement may break out of a construct that is fully contained
 within a finally-block.
 
 **Examples**
@@ -7155,7 +7155,7 @@ for ($i = 10; $i <= 40; $i +=10)
 
 <pre>
   <i>return-statement:</i>
-    return  <i>expression<sub>opt</sub></i>  ;
+    return  <i>expression<sub>opt</sub></i>  ;
 </pre>
 
 *expression* is defined in [§§](#general-16).
@@ -7172,7 +7172,7 @@ that function normally, and depending on how the function was defined
 ([§§](#function-calls)), it returns the value of *expression* to the function's caller
 by value or byRef. If *expression* is omitted the value `NULL` is used.
 
-If execution flows into the closing brace (`}`) of a function, `return
+If execution flows into the closing brace (`}`) of a function, `return
 NULL;` is implied.
 
 A function may have any number of `return` statements, whose returned
@@ -7188,7 +7188,7 @@ that.
 
 Using a `return` statement inside a finally-block will override any other
 `return` statement or thrown exception from the try-block and all its
-catch-blocks.   Code execution in the parent stack will continue as if
+catch-blocks.   Code execution in the parent stack will continue as if
 the exception was never thrown.
 
 If an uncaught exception exists when a finally-block is executed, if
@@ -7199,10 +7199,10 @@ In an included file ([§§](#general-16)) a `return` statement may occur outside
 function. This statement terminates processing of that script and
 returns control to the including file. If *expression* is present, that
 is the value returned; otherwise, the value `NULL` is returned. If
-execution flows to the end of the script, `return 1;` is implied. However,
-if execution flows to the end of the top level of a script, `return 0;` is
+execution flows to the end of the script, `return 1;` is implied. However,
+if execution flows to the end of the top level of a script, `return 0;` is
 implied. Likewise, if *expression* is omitted at the top level. (See
-exit ([§§](#exitdie))).
+exit ([§§](#exitdie)).)
 
 Returning from a constructor or destructor behaves just like returning
 from a function.
@@ -7213,7 +7213,7 @@ terminate.
 Return statements can also be used in the body of anonymous functions.
 
 `return` terminates the execution of source code given to the intrinsic
-[`eval` ([§§](#eval))](http://www.php.net/manual/en/function.eval.php).
+[`eval` ([§§](#eval))](http://php.net/manual/function.eval.php).
 
 **Examples**
 
@@ -7264,7 +7264,7 @@ enclosing function, `$a` need not actually be incremented.
 
 <pre>
   <i>throw-statement:</i>
-    throw  <i>expression</i>  ;
+    throw  <i>expression</i>  ;
 </pre>
 
 *expression* is defined in [§§](#general-16).
@@ -7302,16 +7302,16 @@ throw new MyException;
 
 <pre>
   <i>try-statement:</i>
-    try  <i>compound-statement   catch-clauses</i>
-    try  <i>compound-statement   finally-clause</i>
-    try  <i>compound-statement   catch-clauses   finally-clause</i>
+    try  <i>compound-statement   catch-clauses</i>
+    try  <i>compound-statement   finally-clause</i>
+    try  <i>compound-statement   catch-clauses   finally-clause</i>
 
   <i>catch-clauses:</i>
     <i>catch-clause</i>
-    <i>catch-clauses   catch-clause</i>
+    <i>catch-clauses   catch-clause</i>
 
   <i>catch-clause:</i>
-    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
+    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
 
   <i>finally-clause:</i>
     finally   <i>compound-statement</i>
@@ -7396,9 +7396,9 @@ finally { ... }
 
 <pre>
   <i>declare-statement:</i>
-    declare  (  <i>declare-directive</i>  )  <i>statement</i>
-    declare  (  <i>declare-directive</i>  )  :  <i>statement-list</i>  enddeclare  ;
-    declare  (  <i>declare-directive</i>  )  ;
+    declare  (  <i>declare-directive</i>  )  <i>statement</i>
+    declare  (  <i>declare-directive</i>  )  :  <i>statement-list</i>  enddeclare  ;
+    declare  (  <i>declare-directive</i>  )  ;
 
   <i>declare-directive:</i>
     ticks  =  <i>declare-tick-count</i>
@@ -7431,22 +7431,22 @@ Except for white space, a *declare-statement* in a script that specifies
 The first two forms of the `declare` statement are equivalent; they simply
 provide alternate styles.
 
-The `declare` statement sets an *execution directive* for its *statement*
+The `declare` statement sets an *execution directive* for its *statement*
 body, or for the `;`-form, for the remainder of the script or until the
 statement is overridden by another *declare-statement*, whichever comes
 first. As the parser is executing, certain statements are considered
 *tickable*. For every *tick-count* ticks, an event occurs, which can be
-serviced by the function previously registered by the library function 
+serviced by the function previously registered by the library function 
 [`register_tick_function`
-(§xx)](http://www.php.net/manual/en/function.register-tick-function.php).
-Tick event monitoring can be disabled by calling the library function 
+(§xx)](http://php.net/manual/function.register-tick-function.php).
+Tick event monitoring can be disabled by calling the library function 
 [`unregister_tick_function`
-(§xx)](http://www.php.net/manual/en/function.unregister-tick-function.php).
+(§xx)](http://php.net/manual/function.unregister-tick-function.php).
 This facility allows a profiling mechanism to be developed.
 
 Character encoding can be specified on a script-by-script basis using
 the encoding directive. The joint ISO and IEC standard ISO/IEC
-8859 standard series (<http://en.wikipedia.org/wiki/ISO/IEC_8859>)
+8859 standard series (<http://en.wikipedia.org/wiki/ISO/IEC_8859>)
 specifies a number of 8-bit-[character
 encodings](http://en.wikipedia.org/wiki/Character_encoding) whose names
 can be used with this directive.
@@ -7468,9 +7468,9 @@ more *elements*. The elements of an array need not have the same type,
 and the type of an array element can change over its lifetime. An array
 element can have any type (which allows for arrays of arrays). However,
 PHP does not support
-multidimensional [array](http://www.php.net/manual/en/language.types.array.php)s.
+multidimensional [array](http://php.net/manual/language.types.array.php)s.
 
-An [array](http://www.php.net/manual/en/language.types.array.php) is
+An [array](http://php.net/manual/language.types.array.php) is
 represented as an ordered map in which each entry is a key/value pair
 that represents an element. An element key can be an expression of type
 `int` or `string`. Duplicate keys are not permitted. The order of the
@@ -7495,19 +7495,19 @@ arrays. See §xx.
 (Note: Arrays in PHP are quite different from arrays in numerous
 mainstream languages. Specifically, in PHP, array elements need not have
 the same type, the subscript index need not be an integer (so there is
-no concept of a base index of zero or 1), and there is no concept of
-consecutive elements occupying physically adjacent memory locations).
+no concept of a base index of zero or 1), and there is no concept of
+consecutive elements occupying physically adjacent memory locations.)
 
 ##Array Creation and Initialization
 
 An array is created and initialized by one of two equivalent ways: via
-the array-creation operator `[]` ([§§](#array-creation-operator)) or the intrinsic array
+the array-creation operator `[]` ([§§](#array-creation-operator)) or the intrinsic array
 ([§§](#array)).
 
 ##Element Access and Insertion
 
 The value (and possibly the type) of an existing element is changed, and
-new elements are inserted, using the subscript operator `[]` ([§§](#subscript-operator)).
+new elements are inserted, using the subscript operator `[]` ([§§](#subscript-operator)).
 
 
 #Functions
@@ -7552,7 +7552,7 @@ cf2(); // so we can call it
 
 ##Function Calls
 
-A function is called via the function-call operator `()` ([§§](#function-call-operator)).
+A function is called via the function-call operator `()` ([§§](#function-call-operator)).
 
 ##Function Definitions
 
@@ -7560,17 +7560,17 @@ A function is called via the function-call operator `()` ([§§](#function-call
 
 <pre>
   <i>function-definition:</i>
-    <i>function-definition-header   compound-statement</i>
+    <i>function-definition-header   compound-statement</i>
 
   <i>function-definition-header:</i>
-    function  &<sub>opt</sub>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )
+    function  &<sub>opt</sub>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )
 
   <i>parameter-declaration-list:</i>
     <i>parameter-declaration</i>
-    <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
+    <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
 
   <i>parameter-declaration:</i>
-    <i>type-hint<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+    <i>type-hint<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
 
   <i>type-hint:</i>
     array
@@ -7578,7 +7578,7 @@ A function is called via the function-call operator `()` ([§§](#function-call
     <i>qualified-name</i>
 
   <i>default-argument-specifier:</i>
-    =  <i>const-expression</i>
+    =  <i>const-expression</i>
 </pre>
 
 *const-expression* is defined in [§§](#constant-expressions). *qualified-name* is defined in
@@ -7591,7 +7591,7 @@ Each parameter name in a *function-definition* must be distinct.
 A conditionally defined function ([§§](#general-22)) must exist before any calls are
 made to that function.
 
-*parameter-declaration* must not contain `&` if *type-hint* is `array` or
+*parameter-declaration* must not contain `&` if *type-hint* is `array` or
 `callable`.
 
 **Semantics**
@@ -7601,8 +7601,8 @@ are **not** case-sensitive. A function can be defined with zero or more
 parameters, each of which is specified in its own
 *parameter-declaration* in a *parameter-declaration-list*. Each
 parameter has a name, *variable-name*, and optionally, a
-*default-argument-specifier*. An `&` in *parameter-declaration* indicates
-that parameter is passed byRef ([§§](#assignment)) rather than by value. An `&`
+*default-argument-specifier*. An `&` in *parameter-declaration* indicates
+that parameter is passed byRef ([§§](#assignment)) rather than by value. An `&`
 before *name* indicates that the value returned from this function is to
 be returned byRef. Function-value returning is described in [§§](#the-return-statement).
 
@@ -7636,12 +7636,12 @@ type directly or indirectly is accepted.
 
 ##Variable Functions
 
-If a variable name is followed by the function-call operator `()`
+If a variable name is followed by the function-call operator `()`
 ([§§](#function-call-operator)), and the value of that variable is a string containing the
 name of a function currently defined and visible, that function will be
 executed.
 
-The library function `is_callable` (§xx) reports whether the contents of
+The library function `is_callable` (§xx) reports whether the contents of
 a variable can be called as a function.
 
 ##Anonymous Functions
@@ -7665,7 +7665,7 @@ A class is a type that may contain zero or more explicitly declared
 *members*, which can be any combination of *class constants* ([§§](#constants-2));
 data members, called *properties* ([§§](#properties)); and function members, called
 *methods* ([§§](#methods)). (The ability to add properties and methods to an
-instance at runtime is described in [§§](#dynamic-members)). An object (often called an
+instance at runtime is described in [§§](#dynamic-members).) An object (often called an
 *instance*) of a class type is created (i.e., *instantiated*) via the
 new operator ([§§](#the-new-operator)).
 
@@ -7707,7 +7707,7 @@ base class.
 
 When an instance is allocated, new returns a handle that points to that
 object. As such, assignment of a handle does not copy the object itself.
-(See [§§](#cloning-objects) for a discussion of shallow and deep copying).
+(See [§§](#cloning-objects) for a discussion of shallow and deep copying.)
 
 ##Class Declarations
 
@@ -7715,7 +7715,7 @@ object. As such, assignment of a handle does not copy the object itself.
 
 <pre>
   <i>class-declaration:</i>
-    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base   clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
+    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base   clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
 
   <i>class-modifier:</i>
     abstract
@@ -7726,7 +7726,7 @@ object. As such, assignment of a handle does not copy the object itself.
 
   <i>class-interface-clause:</i>
     implements  <i>qualified-name</i>
-    <i>class-interface-clause</i>  ,  <i>qualified-name</i>
+    <i>class-interface-clause</i>  ,  <i>qualified-name</i>
 </pre>
 
 *qualified-name* is defined in [§§](#names). *class-member-declarations* is
@@ -7839,7 +7839,7 @@ class MyList implements MyCollection
 <pre>
   <i>class-member-declarations:</i>
     <i>class-member-declaration</i>
-    <i>class-member-declarations   class-member-declaration</i>
+    <i>class-member-declarations   class-member-declaration</i>
 
    <i>class-member-declaration:</i>
      <i>const-declaration</i>
@@ -7857,10 +7857,10 @@ defined in [§§](#properties); *method-declaration* is defined in [§§](#metho
 **Semantics**
 
 The members of a class are those specified by its
-*class-member-declaration*s, and the members inherited from its base
+*class-member-declarations*, and the members inherited from its base
 class. (A class may also contain dynamic members, as described in [§§](#dynamic-members).
 However, as these have no compile-time names, they can only be accessed
-via method calls).
+via method calls.)
 
 A class may contain the following members:
 
@@ -7869,12 +7869,12 @@ A class may contain the following members:
 -   Methods – the computations and actions that can be performed by the
     class ([§§](#methods), [§§](#methods-with-special-semantics)).
 -   Constructor – the actions required to initialize an instance of the
-    class ([§§](#constructors)).
+    class ([§§](#constructors))
 -   Destructor – the actions to be performed when an instance of the
     class is no longer needed ([§§](#destructors)).
 
 A number of names are reserved for methods with special semantics, which
-user-defined versions must follow. These are described in ([§§](#methods-with-special-semantics)).
+user-defined versions must follow. These are described in ([§§](#methods-with-special-semantics)).
 
 Methods and properties can either be *static* or *instance* members. A
 static member is declared using `static`. An instance member is one that
@@ -7886,10 +7886,10 @@ right-hand operand of the member selection operator ([§§](#member-selection-op
 
 Each instance of a class contains its own, unique set of instance
 properties of that class. An instance member is accessed via the
-`->` operator ([§§](#member-selection-operator)). In contrast, a static property designates
+`->` operator ([§§](#member-selection-operator)). In contrast, a static property designates
 exactly one VSlot for its class, which does not belong to any instance,
 per se. A static property exists whether or not any instances of that
-class exist. A static member is accessed via the `::` operator ([§§](#scope-resolution-operator)).
+class exist. A static member is accessed via the `::` operator ([§§](#scope-resolution-operator)).
 
 When any instance method operates on a given instance of a class, within
 that method that object can be accessed via `$this` ([§§](#general-11)). As a
@@ -7943,7 +7943,7 @@ an instance at runtime. In the case of dynamic properties, if a class
 makes provision to do so by defining a series of special methods, it can
 deal with the allocation and management of storage for those properties,
 by storing them in another object or in a database, for example. (The
-default behavior is for the Engine to allocate a VSlot for each one).
+default behavior is for the Engine to allocate a VSlot for each one.)
 This is called *class-specific dynamic allocation*. Otherwise, the
 Engine takes care of the storage in some unspecified manner. Dynamic
 method handling is only possible when ** class-specific dynamic
@@ -7952,7 +7952,7 @@ allocation is used.
 Consider the following scenario, which involves dynamic properties:
 
 ```
-class Point { ... } // has no public property "color", but has made
+class Point { ... } // has no public property "color", but has made
                     // provision to support dynamic properties.
 $p = new Point(10, 15);
 $p->color = "red"; // create/set the dynamic property "color"
@@ -7968,7 +7968,7 @@ exist) is used in a modifiable lvalue context (as with the assignment of
 ([§§](#method-__set)). This method treats that name as designating a dynamic
 property of the instance being operated on, and sets its value to "red",
 creating the property, if necessary. Similarly, in a non-lvalue context,
-(as with the assignment of color to $v), the Engine generates a call to
+(as with the assignment of color to $v), the Engine generates a call to
 the instance method `__get` ([§§](#method-__get)), which treats that name as
 designating a dynamic property of the instance being operated on, and
 gets its value. In the case of the call to the intrinsic `isset`
@@ -8015,7 +8015,7 @@ Widget::__callStatic('sMethod', array(NULL, 1.234))
 
 <pre>
   <i>const-declaration:</i>
-    const  <i>name</i>  =  <i>const-expression</i>   ;
+    const  <i>name</i>  =  <i>const-expression</i>   ;
 </pre>
 
 *name* is defined in ([§§](#names)). *const-expression* is defined in
@@ -8061,12 +8061,12 @@ $col = Automobile::DEFAULT_COLOR;
 
 <pre>
   <i>property-declaration:</i>
-    <i>property-modifier   name   property-initializer<sub>opt</sub></i>  ;
+    <i>property-modifier   name   property-initializer<sub>opt</sub></i>  ;
 
   <i>property-modifier:</i>
     var
-    <i>visibility-modifier   static-modifier<sub>opt</sub></i>
-    <i>static-modifier   visibility-modifier<sub>opt</sub></i>
+    <i>visibility-modifier   static-modifier<sub>opt</sub></i>
+    <i>static-modifier   visibility-modifier<sub>opt</sub></i>
 
   <i>visibility-modifier:</i>
     public
@@ -8077,7 +8077,7 @@ $col = Automobile::DEFAULT_COLOR;
     static
 
   <i>property-initializer:</i>
-    =  <i>constant-expression</i>
+    =  <i>constant-expression</i>
 </pre>
 
 
@@ -8101,7 +8101,7 @@ case, the property is actually removed from that instance.
 **Examples**
 
 ```
-class Point 
+class Point 
 {
   private static $pointCount = 0; // static property with initializer
   
@@ -8118,12 +8118,12 @@ class Point 
 
 <pre>
   method-declaration:
-    <i>method-modifiers<sub>opt</sub>   function-definition</i>
-    <i>method-modifiers   function-definition-header</i>  ;
+    <i>method-modifiers<sub>opt</sub>   function-definition</i>
+    <i>method-modifiers   function-definition-header</i>  ;
 
   <i>method-modifiers:</i>
     <i>method-modifier</i>
-    <i>method-modifiers   method-modifier</i>
+    <i>method-modifiers   method-modifier</i>
 
   <i>method-modifier:</i>
     <i>visibility-modifier</i>
@@ -8141,7 +8141,7 @@ described in [§§](#class-members); and *function-definition* and
 When defining a concrete class that inherits from an abstract class, the
 definition of each abstract method inherited by the derived class must
 have the same or a
-less-restricted [visibility](http://www.php.net/manual/en/language.oop5.visibility.php)
+less-restricted [visibility](http://php.net/manual/language.oop5.visibility.php)
 than in the corresponding abstract declaration. Furthermore, the
 signature of a method definition must match that of its abstract
 declaration.
@@ -8182,8 +8182,8 @@ examples of abstract methods and their subsequent definitions.
 
 <pre>
   <i>constructor-definition:</i>
-    <i>visibility-modifier</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
-    <i>visibility-modifier</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
+    <i>visibility-modifier</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+    <i>visibility-modifier</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
 
 </pre>
 
@@ -8195,7 +8195,7 @@ examples of abstract methods and their subsequent definitions.
 **Constraints**
 
 An overriding constructor in a derived class must have the same or a
-less-restricted [visibility](http://www.php.net/manual/en/language.oop5.visibility.php)
+less-restricted [visibility](http://php.net/manual/language.oop5.visibility.php)
 than that being overridden in the base class.
 
 *name* must be the same as that in the *class-declaration* ([§§](#class-declarations)) that
@@ -8208,7 +8208,7 @@ to initialize an instance immediately after it has been created. Any
 instance properties not explicitly initialized by a constructor take on
 the value `NULL`. Like a method, a constructor can return a result by
 value or byRef. (Unlike a method, a constructor cannot be abstract or
-static).
+static.)
 
 If *visibility-modifier* is omitted, `public` is assumed. A `private`
 constructor inhibits the creation of an instance of the class type.
@@ -8280,7 +8280,7 @@ class MyRangeException extends Exception
 
 <pre>
   <i>destructor-definition:</i>
-    <i>visibility-modifier</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
+    <i>visibility-modifier</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
 </pre>
 
 *visibility-modifier* is described in [§§](#general-23) and *compound-statement* is
@@ -8289,7 +8289,7 @@ described in [§§](#compound-statements).
 **Constraints**
 
 An overriding destructor in a derived class must have the same or a
-less-restricted [visibility](http://www.php.net/manual/en/language.oop5.visibility.php)
+less-restricted [visibility](http://php.net/manual/language.oop5.visibility.php)
 than that being overridden in the base class.
 
 **Semantics**
@@ -8300,7 +8300,7 @@ instances of all classes are called automatically once there are no
 handles pointing to those instances or in some unspecified order during
 program shutdown. Like a method, a destructor can return a result by
 value or byRef. (Unlike a method, a destructor cannot be abstract or
-static).
+static.)
 
 If *visibility-modifier* is omitted, `public` is assumed.
 
@@ -8361,7 +8361,7 @@ Method Name | Description | Reference
 **Syntax**
 
 <pre>
-  public  function  __call  (  <i>$name</i>  ,  <i>$arguments</i>  )  <i>compound-statement</i>
+  public  function  __call  (  <i>$name</i>  ,  <i>$arguments</i>  )  <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](#compound-statements).
@@ -8380,11 +8380,11 @@ designated by `$name` using the arguments specified by the elements of
 the array designated by `$arguments`. It can return any value deemed
 appropriate.
 
-Typically, `__call` is called implicitly, when the `->` operator
+Typically, `__call` is called implicitly, when the `->` operator
 ([§§](#member-selection-operator)) is used to call an instance method that is not visible. Now
 while `__call` can be called explicitly, the two scenarios do not
 necessarily produce the same result. Consider the expression `p->m(...)`,
-where `p` is an instance and `m` is an instance-method name. If `m` is the
+where `p` is an instance and `m` is an instance-method name. If `m` is the
 name of a visible method, `p->m(...)` does not result in `__call`'s being
 called. Instead, the visible method is used. On the other hand, the
 expression `p->__call('m',array(...))` always calls the named dynamic
@@ -8396,7 +8396,7 @@ visible method by that name is found, a dynamic method is assumed, and
 deliberately a dynamic method with the same name as a visible one, the
 visible method might be added later. This name "duplication" is
 convenient when adding a dynamic method to a class without having to
-worry about a name clash with any method names that class inherits).
+worry about a name clash with any method names that class inherits.)
 
 While a method-name source token has a prescribed syntax, there are no
 restrictions on the spelling of the dynamic method name designated by
@@ -8423,7 +8423,7 @@ $obj->iMethod(10, TRUE, "abc"); // $obj->__call('iMethod', array(...))
 **Syntax**
 
 <pre>
-  public  static  function  __callStatic  (  <i>$name</i>  ,  <i>$arguments</i>  )   <i>compound-statement</i>
+  public  static  function  __callStatic  (  <i>$name</i>  ,  <i>$arguments</i>  )   <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](#compound-statements).
@@ -8442,11 +8442,11 @@ designated by `$name` using the arguments specified by the elements of
 the array designated by `$arguments`. It can return any value deemed
 appropriate.
 
-Typically, `__callStatic` is called implicitly, when the `::` operator
+Typically, `__callStatic` is called implicitly, when the `::` operator
 ([§§](#scope-resolution-operator)) is used to call a static method that is not visible. Now while
 `__callStatic` can be called explicitly, the two scenarios do not
 necessarily produce the same result. Consider the expression `C::m(...)`,
-where `C` is a class and `m` is a static-method name. If `m` is the name of a
+where `C` is a class and `m` is a static-method name. If `m` is the name of a
 visible method, `C::m(...)` does not result in `__callStatic`'s being
 called. Instead, the visible method is used. On the other hand, the
 expression `C::__callStatic('m',array(...))` always calls the named
@@ -8459,7 +8459,7 @@ deliberately a static dynamic method with the same name as a static
 visible one, the visible method might be added later. This name
 "duplication" is convenient when adding a dynamic method to a class
 without having to worry about a name clash with any method names that
-class inherits).
+class inherits.)
 
 While a method-name source token has a prescribed syntax, there are no
 restrictions on the spelling of the dynamic method name designated by
@@ -8470,11 +8470,11 @@ restrictions on the spelling of the dynamic method name designated by
 ```
 class Widget
 {
-    public static function __callStatic($name, $arguments)
-    {
+    public static function __callStatic($name, $arguments)
+    {
       // using the method name and argument list, redirect/process\
       // the method call, as desired.
-    }
+    }
     ...
 }
 
@@ -8486,7 +8486,7 @@ Widget::sMethod(NULL, 1.234); // Widget::__callStatic('sMethod', array(...))
 **Syntax**
 
 <pre>
-  public  function  __clone  (  )  <i>compound-statement</i>
+  public  function  __clone  (  )  <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](#compound-statements).
@@ -8569,7 +8569,7 @@ $p2 = clone $p1;  // created by cloning
 **Syntax**
 
 <pre>
-  public  function  &<sub>opt</sub>  __get  (  <i>$name</i>  )   <i>compound-statement</i>
+  public  function  &<sub>opt</sub>  __get  (  <i>$name</i>  )   <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](#compound-statements).
@@ -8585,11 +8585,11 @@ This instance method gets the value of the dynamic property ([§§](#dynamic-mem
 designated by `$name`. If no such dynamic property currently exists,
 NULL is returned.
 
-Typically, `__get` is called implicitly, when the `->` operator ([§§](#member-selection-operator))
+Typically, `__get` is called implicitly, when the `->` operator ([§§](#member-selection-operator))
 is used in a non-lvalue context and the named property is not visible.
 Now while `__get` can be called explicitly, the two scenarios do not
 necessarily produce the same result. Consider the expression
-`$v = $p->m`, where `p` is an instance and `m` is a property name. If `m` is
+`$v = $p->m`, where `p` is an instance and `m` is a property name. If `m` is
 the name of a visible property, `p->m` does not result in `__get`'s being
 called. Instead, the visible property is used. On the other hand, the
 expression `p->__get('m')` always gets the value of the named dynamic
@@ -8599,8 +8599,8 @@ expressions are equivalent; that is; when handling `p->m` in a non-lvalue
 context, if no visible property by that name is found, a dynamic
 property is assumed, and `__get` is called.
 
-Consider the expression $`v = $p->m = 5`, where `m` is a dynamic
-property. While `__set` ([§§](#method-__set)) is called to assign the value 5 to
+Consider the expression $`v = $p->m = 5`, where `m` is a dynamic
+property. While `__set` ([§§](#method-__set)) is called to assign the value 5 to
 that property, `__get` is not called to retrieve the result after that
 assignment is complete.
 
@@ -8659,7 +8659,7 @@ applies to seemingly self-referential implementations of `__set`
 **Syntax**
 
 <pre>
-public  function  __invoke  ( <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+public  function  __invoke  ( <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
 </pre>
 
 *parameter-declaration-list* is defined in [§§](#function-definitions); *compound-statement*
@@ -8697,7 +8697,7 @@ $r = $c(123);   // becomes $r = $c->__invoke(123);
 **Syntax**
 
 <pre>
-public  function  __isset  (  <i>$name</i>  )  <i>compound-statement</i>
+public  function  __isset  (  <i>$name</i>  )  <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](#compound-statements).
@@ -8715,10 +8715,10 @@ instance method returns `TRUE`; otherwise, `FALSE` is returned.
 Typically, `__isset` is called implicitly, when the intrinsic `isset`
 ([§§](#isset)) is called with an argument that designates a property that
 is not visible. (It can also be called by the intrinsic empty
-([§§](#empty))). Now while `__isset` can be called explicitly, the two
+([§§](#empty)).) Now while `__isset` can be called explicitly, the two
 scenarios do not necessarily produce the same result. Consider the
-expression `isset($p->m)`, where `p` is an instance and `m` is a property
-name. If `m` is the name of a visible property, `__isset` is not called.
+expression `isset($p->m)`, where `p` is an instance and `m` is a property
+name. If `m` is the name of a visible property, `__isset` is not called.
 Instead, the visible property is used. On the other hand, the expression
 `p->__isset('m')` always tests for the named dynamic property, ignoring
 the fact that a visible property having the same name might exist. If `m`
@@ -8751,7 +8751,7 @@ See the Implementation Notes for `__get` ([§§](#method-__get)).
 **Syntax**
 
 <pre>
-public  function  __set  (  <i>$name</i>  ,  <i>$value</i>  )  <i>compound-statement</i>
+public  function  __set  (  <i>$name</i>  ,  <i>$value</i>  )  <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](#compound-statements).
@@ -8768,11 +8768,11 @@ This instance method sets the value of the dynamic property ([§§](#dynamic-mem
 designated by `$name` to `$value`. If no such dynamic property
 currently exists, it is created. No value is returned.
 
-Typically, `__set` is called implicitly, when the `->` operator ([§§](#member-selection-operator))
+Typically, `__set` is called implicitly, when the `->` operator ([§§](#member-selection-operator))
 is used in a modifiable lvalue context and the named property is not
 visible. Now while `__set` can be called explicitly, the two scenarios
 do not necessarily produce the same result. Consider the expression
-`p->m = 5`, where `p` is an instance and `m` is a property name. If `m` is the
+`p->m = 5`, where `p` is an instance and `m` is a property name. If `m` is the
 name of a visible property, `p->m` does not result in `__set`'s being
 called. Instead, the visible property is used. On the other hand, the
 expression `p->__set('m',5)` always sets the value of the named dynamic
@@ -8784,7 +8784,7 @@ property by that name is found, a dynamic property is assumed, and
 deliberately a dynamic property with the same name as a visible one, the
 visible property might be added later. This name "duplication" is
 convenient when adding a dynamic property to a class without having to
-worry about a name clash with any property names that class inherits).
+worry about a name clash with any property names that class inherits.)
 
 The parameter `$value` can have any type including an object type, and
 that type could have a destructor. Any dynamic properties of such types,
@@ -8830,7 +8830,7 @@ See the Implementation Notes for `__get` ([§§](#method-__get)).
 **Syntax**
 
 <pre>
-static public  function  __set_state  ( array  <i>$properties</i>  )  <i>compound-statement</i>
+static public  function  __set_state  ( array  <i>$properties</i>  )  <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](#compound-statements).
@@ -8855,7 +8855,7 @@ general format:
 => value , ))`
 
 where the property names `prop1` through `propN` do not include a
-leading dollar (`$`). This string contains a call to the `__set_state`
+leading dollar (`$`). This string contains a call to the `__set_state`
 method even if no such method is defined for this class or in any of its
 base classes, in which case, a subsequent call to `eval` using this string
 will fail. To allow the string to be used with eval, the method
@@ -8946,7 +8946,7 @@ eval('$z = ' . $v . ";");
 **Syntax**
 
 <pre>
-public  function  __sleep  ( ) <i>compound-statement</i>
+public  function  __sleep  ( ) <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](#compound-statements).
@@ -8960,7 +8960,7 @@ If a class has a `__sleep` method, the library function `serialize` (§xx)
 calls that method to find out which visible instance properties it
 should serialize. (In the absence of a `__sleep` or `serialize` method,
 all such properties are serialized, including any dynamic properties
-([§§](#dynamic-members))). This information is returned by `__sleep` as an array of zero
+([§§](#dynamic-members)).) This information is returned by `__sleep` as an array of zero
 or more elements, where each element's value is distinct and is the name
 of a visible instance property. These properties' values are serialized
 in the order in which the elements are inserted in the array. If
@@ -8972,12 +8972,12 @@ else might be needed before serialization occurs.
 
 Consider a `Point` class that not only contains x- and y-coordinates, it
 also has an `id` property; that is, each distinct `Point` created during a
-program's execution has a unique numerical id. However, there is no need
+program's execution has a unique numerical id. However, there is no need
 to include this when a `Point` is serialized. It can simply be recreated
 when that `Point` is unserialized. This information is transient and need
 not be preserved across program executions. (The same can be true for
 other transient properties, such as those that contain temporary results
-or run-time caches).
+or run-time caches.)
 
 In the absence of methods `__sleep` and `__wakeup`, instances of derived
 classes can be serialized and unserialized. However, it is not possible
@@ -9020,7 +9020,7 @@ $v = unserialize($s); // unserialize Point(-1,0)
 **Syntax**
 
 <pre>
-public  function  __toString  ( )  <i>compound-statement</i>
+public  function  __toString  ( )  <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](#compound-statements).
@@ -9082,7 +9082,7 @@ class MyRangeException extends Exception
 **Syntax**
 
 <pre>
-public  function  __unset  (  <i>$name</i>  )  <i>compound-statement</i>
+public  function  __unset  (  <i>$name</i>  )  <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](#compound-statements).
@@ -9102,8 +9102,8 @@ Typically, `__unset` is called implicitly, when the intrinsic `unset`
 ([§§](#unset)) is called with an argument that designates a property that
 is not visible. Now while `__unset` can be called explicitly, the two
 scenarios do not necessarily produce the same result. Consider the
-expression `unset($p->m)`, where `p` is an instance and `m` is a property
-name. If `m` is the name of a visible property, `__unset` is not called.
+expression `unset($p->m)`, where `p` is an instance and `m` is a property
+name. If `m` is the name of a visible property, `__unset` is not called.
 Instead, the visible property is used. On the other hand, the expression
 `p->__unset('m'))` always removes the named dynamic property, ignoring
 the fact that a visible property having the same name might exist. If `m`
@@ -9136,7 +9136,7 @@ See the Implementation Notes for `__get` ([§§](#method-__get)).
 **Syntax**
 
 <pre>
-public  function  __wakeup  ( )  <i>compound-statement</i>
+public  function  __wakeup  ( )  <i>compound-statement</i>
 </pre>
 
 *compound-statement* is described in [§§](#compound-statements).
@@ -9160,7 +9160,7 @@ properties encoded in the serialized string are restored.
 
 Consider a `Point` class that not only contains x- and y-coordinates, it
 also has an `id` property; that is, each distinct `Point` created during a
-program's execution has a unique numerical id. However, there is no need
+program's execution has a unique numerical id. However, there is no need
 to include this when a `Point` is serialized. It can simply be recreated
 by `__wakeup` when that `Point` is unserialized. This means that
 `__wakeup` must emulate the constructor, as appropriate.
@@ -9177,7 +9177,7 @@ In PHP, variables can be converted into some external form suitable for
 use in file storage or inter-program communication. The process of
 converting to this form is known as *serialization* while that of
 converting back again is known as *unserialization*. These facilities
-are provided by the library functions `serialize` (§xx) and `unserialize`
+are provided by the library functions `serialize` (§xx) and `unserialize`
 (§xx), respectively.
 
 In the case of variables that are objects, on their own, these two
@@ -9193,12 +9193,12 @@ and `unserialize`.
 
 Consider a `Point` class that not only contains x- and y-coordinates, it
 also has an `id` property; that is, each distinct `Point` created during a
-program's execution has a unique numerical id. However, there is no need
+program's execution has a unique numerical id. However, there is no need
 to include this when a `Point` is serialized. It can simply be recreated
 when that `Point` is unserialized. This information is transient and need
 not be preserved across program executions. (The same can be true for
 other transient properties, such as those that contain temporary results
-or run-time caches). Furthermore, consider a class `ColoredPoint` that
+or run-time caches.) Furthermore, consider a class `ColoredPoint` that
 extends `Point` by adding a `color` property. The following code shows how
 these classes need be defined in order for both `Points` and `ColoredPoints`
 to be serialized and unserialized:
@@ -9247,7 +9247,7 @@ The custom method `unserialize` converts the serialized string passed to
 it back into an array. Because a new object is being created, but
 without any constructor being called, the `unserialize` method must
 perform the tasks ordinarily done by a constructor. In this case, that
-involves assigning the new object a unique id.
+involves assigning the new object a unique id.
 
 ```
 $p = new Point(2, 5);
@@ -9255,7 +9255,7 @@ $s = serialize($p);
 ```
 
 The call to the library function `serialize` calls the custom `serialize`
-method. Afterwards, the variable `$s` contains the serialized version of
+method. Afterwards, the variable `$s` contains the serialized version of
 the `Point(2,5)`, and that can be stored in a database or transmitted to a
 cooperating program. The program that reads or receives that serialized
 string can convert its contents back into the corresponding variable(s),
@@ -9266,7 +9266,7 @@ $v = unserialize($s);
 ```
 
 The call to the library function `unserialize` calls the custom
-`unserialize` method. Afterwards, the variable `$s` contains a new
+`unserialize` method. Afterwards, the variable `$s` contains a new
 `Point(2,5)`.
 
 
@@ -9330,9 +9330,9 @@ $v = unserialize($s);
 ### Class `Closure`
 
 The predefined
-class [`Closure`](http://www.php.net/manual/en/class.closure.php) is used
+class [`Closure`](http://php.net/manual/class.closure.php) is used
 for representing an [anonymous
-function](http://www.php.net/manual/en/functions.anonymous.php). It
+function](http://php.net/manual/functions.anonymous.php). It
 cannot be instantiated except by the Engine, as described below.
 
 ```
@@ -9411,7 +9411,7 @@ which corresponds to a parameter. The elements are inserted in that
 array in lexical order of their declaration. Each element's key is the
 corresponding parameter name, and each element value is some unspecified
 value. (These values are overridden by the argument values used when the
-anonymous function is called). In the scenario above, this leads to the
+anonymous function is called.) In the scenario above, this leads to the
 following, shown as pseudo code:
 
 ```
@@ -9448,10 +9448,10 @@ Name | Purpose
 ---- | -------
 `current` | An implementation of the instance method `Iterator::current `([§§](#interface-iterator)).
 `key` | An implementation of the instance method `Iterator::key` ([§§](#interface-iterator)).
-next | An implementation of the instance method Iterator::next ([§§](#interface-iterator)).
+`next` | An implementation of the instance method Iterator::next ([§§](#interface-iterator)).
 `rewind` | An implementation of the instance method `Iterator::rewind` ([§§](#interface-iterator)).
-`send` | This instance method sends the value designated by `$value` to the generator as the result of the current [`yield`](http://us2.php.net/manual/en/ language.generators.syntax.php#control-structures.yield) expression, and resumes execution of the generator. `$value` is the return value of the [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression the generator is currently at. If the generator is not at a [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression when this method is called, it will first be let to advance to the first [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression before sending the value. This method returns the yielded value.
-`throw` | This instance method throws an exception into the generator and resumes execution of the generator. The behavior is as if the current [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression was replaced with throw `$exception`. If the generator is already closed when this method is invoked, the exception will be thrown in the caller's context instead. This method returns the yielded value.
+`send` | This instance method sends the value designated by `$value` to the generator as the result of the current [`yield`](http://us2.php.net/manual/en/ language.generators.syntax.php#control-structures.yield) expression, and resumes execution of the generator. `$value` is the return value of the [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression the generator is currently at. If the generator is not at a [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression when this method is called, it will first be let to advance to the first [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression before sending the value. This method returns the yielded value.
+`throw` | This instance method throws an exception into the generator and resumes execution of the generator. The behavior is as if the current [`yield`](http://us2.php.net/manual/en/language.generators.syntax.php#control-structures.yield) expression was replaced with throw `$exception`. If the generator is already closed when this method is invoked, the exception will be thrown in the caller's context instead. This method returns the yielded value.
 `valid` |  An implementation of the instance method `Iterator::valid` ([§§](#interface-iterator)).
 `__wakeup` | An implementation of the special instance method `__wakeup` ([§§](#method-__wakeup)). As a generator can't be serialized, this method throws an exception of an unspecified type. It returns no value.
 
@@ -9513,7 +9513,7 @@ operator ([§§](#member-selection-operator)) is applied to `NULL`, `FALSE`, or 
 
 A class can implement a set of capabilities—herein called a
 *contract*—through what is called an interface. An *interface* is a set
-of method declarations and constants.  Note that the methods are only
+of method declarations and constants.  Note that the methods are only
 declared, not defined; that is, an interface defines a type consisting
 of abstract methods, where those methods are implemented by client
 classes as they see fit. An interface allows unrelated classes to
@@ -9529,11 +9529,11 @@ inherits all members from its *base interface(s)*.
 
 <pre>
   <i>interface-declaration:</i>
-    interface   <i>name   interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
+    interface   <i>name   interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
 
   <i>interface-base-clause:</i>
     extends   <i>qualified-name</i>
-    <i>interface-base-clause</i>  ,  <i>qualified-name</i>
+    <i>interface-base-clause</i>  ,  <i>qualified-name</i>
 </pre>
 
 *name* and *qualified-name* are defined in [§§](#names).
@@ -9579,7 +9579,7 @@ class MyQueue implements MyCollection
 }
 function processCollection(MyCollection $p1)
 {
-  ... /* can process any object whose class implements MyCollection
+  ... /* can process any object whose class implements MyCollection */
 }
 processCollection(new MyList(...));
 processCollection(new MyQueue(...));
@@ -9592,7 +9592,7 @@ processCollection(new MyQueue(...));
 <pre>
   <i>interface-member-declarations:</i>
     <i>interface-member-declaration</i>
-    <i>interface-member-declarations   interface-member-declaration</i>
+    <i>interface-member-declarations   interface-member-declaration</i>
 
   <i>interface-member-declaration:</i>
     <i>const-declaration</i>
@@ -9679,7 +9679,7 @@ The interface members are defined below:
 Name  |   Purpose
 ----    |   -------
 `offsetExists`  | This instance method returns `TRUE` if the instance contains an element with key `$offset`, otherwise, `FALSE`.
-`offsetGet` |  This instance method gets the value having key `$offset`. It may return by value or byRef. (Ordinarily, this wouldn't be allowed because a class implementing an interface needs to match the interface's method signatures; however, the Engine gives special treatment to `ArrayAccess` and allows this). This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a non-lvalue context.
+`offsetGet` |  This instance method gets the value having key `$offset`. It may return by value or byRef. (Ordinarily, this wouldn't be allowed because a class implementing an interface needs to match the interface's method signatures; however, the Engine gives special treatment to `ArrayAccess` and allows this.) This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a non-lvalue context.
 `offsetSet` | This instance method sets the value having key `$offset` to $value. It returns no value. This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a modifiable-lvalue context.
 `offsetUnset` | This instance method unsets the value having key `$offset`. It returns no value.
 
@@ -9706,9 +9706,9 @@ Name | Purpose
 ---- | -------
 `current` | This instance method returns the element at the current position.
 `key` |This instance method returns the key of the current element. On failure, it returns `NULL`; otherwise, it returns the scalar value of the key.
-`next` | This instance method moves the current position forward to the next element. It returns no value. From within a `foreach` statement, this method is called after each loop.
-`rewind` |  This instance method resets the current position to the first element. It returns no value. From within a `foreach` statement, this method is called once, at the beginning.
-`valid` | This instance method checks if the current position is valid. It takes no arguments. It returns a bool value of `TRUE` to indicate the current position is valid; `FALSE`, otherwise. This method is called after each call to [`Iterator::rewind()`](http://us2.php.net/manual/en/iterator.rewind.php) and [`Iterator::next()`](http://us2.php.net/manual/en/iterator.next.php).
+`next` | This instance method moves the current position forward to the next element. It returns no value. From within a `foreach` statement, this method is called after each loop.
+`rewind` |  This instance method resets the current position to the first element. It returns no value. From within a `foreach` statement, this method is called once, at the beginning.
+`valid` | This instance method checks if the current position is valid. It takes no arguments. It returns a bool value of `TRUE` to indicate the current position is valid; `FALSE`, otherwise. This method is called after each call to [`Iterator::rewind()`](http://php.net/manual/iterator.rewind.php) and [`Iterator::next()`](http://php.net/manual/iterator.next.php).
 
 ###Interface `IteratorAggregate`
 
@@ -9716,7 +9716,7 @@ This interface allows the creation of an external iterator. This
 interface is defined, as follows:
 
 ```
-Interface IteratorAggregate extends Traversable
+Interface IteratorAggregate extends Traversable
 {
   function getIterator();
 }
@@ -9879,7 +9879,7 @@ A *trait-select-insteadof-clause* allows name clashes to be avoided.
 Specifically, the left-hand *name* designates which name to be used from
 of a pair of names. That is, `T1::compute insteadof T2`; indicates that
 calls to method compute, for example, should be satisfied by a method of
-that name in trait `T1` rather than `T2`.
+that name in trait `T1` rather than `T2`.
 
 A *trait-alias-as-clause* allows a (possibly qualified) name to be
 assigned a simple alias name. Specifically, the left-hand *name* in
@@ -9915,7 +9915,7 @@ trait T4
 <pre>
   <i>trait-member-declarations:</i>
     <i>trait-member-declaration</i>
-    <i>trait-member-declarations   trait-member-declaration</i>
+    <i>trait-member-declarations   trait-member-declaration</i>
 
   <i>trait-member-declaration:</i>
     <i>property-declaration</i>
@@ -9968,7 +9968,7 @@ trait T
 An *exception* is some unusual condition in that it is outside the
 ordinary expected behavior. (Examples include dealing with situations in
 which a critical resource is needed, but is unavailable, and detecting
-an out-of-range value for some computation). As such, exceptions require
+an out-of-range value for some computation.) As such, exceptions require
 special handling. This clause describes how exceptions can be created
 and handled.
 
@@ -10004,7 +10004,7 @@ the situation.
 Prior to the addition of exception handling to PHP, exception-like
 conditions were handled using Error Reporting (§xx). Now, errors can be
 translated to exceptions via the class
-[`ErrorException`](http://www.php.net/manual/en/class.errorexception.php)
+[`ErrorException`](http://php.net/manual/class.errorexception.php)
 (which is not part of this specification).
 
 ##Class `Exception`
@@ -10015,9 +10015,9 @@ defined, as follows:
 ```
 Class Exception
 {
-  private   $string;
-  private   $trace;
-  private   $previous;
+  private   $string;
+  private   $trace;
+  private   $previous;
 
   protected $message = 'Unknown exception';
   protected $code = 0;
@@ -10029,13 +10029,13 @@ Class Exception
 
   final private function __clone();
 
-  final public  function getMessage();
-  final public  function getCode();
-  final public  function getFile();
-  final public  function getLine();
-  final public  function getTrace();
-  final public  function getPrevious();
-  final public  function getTraceAsString();
+  final public  function getMessage();
+  final public  function getCode();
+  final public  function getFile();
+  final public  function getLine();
+  final public  function getTrace();
+  final public  function getPrevious();
+  final public  function getTraceAsString();
   public function __toString();
 }
 ```
@@ -10073,25 +10073,25 @@ involved to get to the place where the exception was generated, a record
 of those calls is also retained, and made available by getTrace, through
 what is referred to as the *function stack trace*, or simply, `*trace*`.
 
-Let's refer to the top level of a script as *function-level* 0.
-Function-level 1 is inside any function called from function-level 0.
-Function-level 2 is inside any function called from function-level 1,
+Let's refer to the top level of a script as *function-level* 0.
+Function-level 1 is inside any function called from function-level 0.
+Function-level 2 is inside any function called from function-level 1,
 and so on. The library function `getTrace` returns an array. Exceptions
-generated at function-level 0 involve no function call, in which case,
+generated at function-level 0 involve no function call, in which case,
 the array returned by `getTrace` has zero elements.
 
 Each element of the array returned by `getTrace` provides information
 about a given function level. Let us call this array *trace-array* and
 the number of elements in this array *call-level*. The key for each of
-trace-array's elements has type int, and ranges from 0 to
-call-level - 1. For example, when a top-level script calls function `f1`,
-which calls function `f2`, which calls function `f3`, which then generates
+trace-array's elements has type int, and ranges from 0 to
+call-level - 1. For example, when a top-level script calls function `f1`,
+which calls function `f2`, which calls function `f3`, which then generates
 an exception, there are four function levels, 0–3, and there are three
 lots of trace information, one per call level. That is, trace-array
 contains three elements, and they each correspond to the reverse order
 of the function calls. For example, trace-array[0] is for the call to
-function `f3`, trace-array[1] is for the call to function `f2`, and
-trace-array[2] is for the call to function `f1`.
+function `f3`, trace-array[1] is for the call to function `f2`, and
+trace-array[2] is for the call to function `f1`.
 
 Each element in trace-array is itself an array that contains elements
 with the following key/value pairs:
@@ -10132,10 +10132,10 @@ An exception class is defined simply by having it extend class `Exception`
 ([§§](#methods)), exception objects cannot be cloned.
 
 When an exception class is defined, typically, its constructors call the
-parent class' constructor as their first operation to ensure the
+parent class' constructor as their first operation to ensure the
 base-class part of the new object is initialized appropriately. They
 often also provide an augmented implementation of
-[`__toString()`](http://www.php.net/manual/en/language.oop5.magic.php)
+[`__toString()`](http://php.net/manual/language.oop5.magic.php)
 ([§§](#method-__tostring)).
 
 
@@ -10180,7 +10180,7 @@ purpose, names can have one of the three following forms:
 
 -   Unqualified name: Such names are just simple names without any
     prefix, as in the class name `Point` in the following expression:
-    `$p = new Point(3,5)`. If the current namespace is `NS1`, the name
+    `$p = new Point(3,5)`. If the current namespace is `NS1`, the name
     `Point` resolves to `NS1\Point`. If the current namespace is the
     default namespace ([§§](#general-28)), the name `Point` resolves to `Point`. In the
     case of an unqualified function or constant name, if that name does
@@ -10190,21 +10190,21 @@ purpose, names can have one of the three following forms:
     name and/or one or more levels of sub-namespace names, and,
     possibly, a class, interface, trait, function, or constant name.
     Such names are relative. For example, `D2\Point` could be used to
-    refer to the class Point in the sub-namespace `D2` of the current
+    refer to the class Point in the sub-namespace `D2` of the current
     namespace. One special case of this is when the first component of
     the name is the keyword `namespace`. This means "the current
     namespace".
--   Fully qualified name: Such names begin with a backslash (`\`) and are
+-   Fully qualified name: Such names begin with a backslash (`\`) and are
     followed optionally by a namespace name and one or more levels of
     sub-namespace names, and, finally, a class, interface, trait,
     function, or constant name. Such names are absolute. For example,
     `\Graphics\D2\Point` could be used to refer unambiguously to the
-    class `Point` in namespace `Graphics`, sub-namespace `D2`.
+    class `Point` in namespace `Graphics`, sub-namespace `D2`.
    
 The names of the standard types (such as `Exception`), constants (such as
 `PHP_INT_MAX`), and library functions (such as `is_null`) are defined outside
 any namespace. To refer unambiguously to such names, one can prefix them
-with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`.
+with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`.
 
 ##Defining Namespaces
 
@@ -10212,8 +10212,8 @@ with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`.
 
 <pre>
   <i>namespace-definition:</i>
-    namespace  <i>namespace-name</i>  ;
-    namespace  <i>namespace-name<sub>opt</sub>   compound-statement</i>
+    namespace  <i>namespace-name</i>  ;
+    namespace  <i>namespace-name<sub>opt</sub>   compound-statement</i>
 </pre>
 
 *namespace-name* is defined in [§§](#names), and *compound-statement* is
@@ -10287,14 +10287,14 @@ namespace NS3\Sub1;
 
 <pre>
   <i>namespace-use-declaration:</i>
-    use  <i>namespace-use-clauses</i>  ;
+    use  <i>namespace-use-clauses</i>  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
-    <i>namespace-use-clauses</i>  ,  <i>namespace-use-clause</i>
+    <i>namespace-use-clauses</i>  ,  <i>namespace-use-clause</i>
 
   <i>namespace-use-clause:</i>
-    <i>qualified-name   namespace-aliasing-clause<sub>opt</sub></i>
+    <i>qualified-name   namespace-aliasing-clause<sub>opt</sub></i>
 
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>
@@ -10506,22 +10506,22 @@ The grammar notation is described in [§§](#grammars).
 
     <i>decimal-literal::</i>
       <i>nonzero-digit</i>
-      <i>decimal-literal   digit</i>
+      <i>decimal-literal   digit</i>
 
     <i>octal-literal::</i>
       0
-      <i>octal-literal   octal-digit</i>
+      <i>octal-literal   octal-digit</i>
 
     <i>hexadecimal-literal::</i>
-      <i>hexadecimal-prefix   hexadecimal-digit</i>
-      <i>hexadecimal-literal   hexadecimal-digit</i>
+      <i>hexadecimal-prefix   hexadecimal-digit</i>
+      <i>hexadecimal-literal   hexadecimal-digit</i>
 
     <i>hexadecimal-prefix:: one of</i>
       0x  0X
 
     <i>binary-literal::</i>
-      <i>binary-prefix   binary-digit</i>
-      <i>binary-literal   binary-digit</i>
+      <i>binary-prefix   binary-digit</i>
+      <i>binary-literal   binary-digit</i>
 
     <i>binary-prefix:: one of</i>
       0b  0B
@@ -10548,23 +10548,23 @@ The grammar notation is described in [§§](#grammars).
 
 <pre>
   <i>ﬂoating-literal::</i>
-    <i>fractional-literal   exponent-part<sub>opt</sub></i>
-    <i>digit-sequence   exponent-part</i>
+    <i>fractional-literal   exponent-part<sub>opt</sub></i>
+    <i>digit-sequence   exponent-part</i>
 
   <i>fractional-literal::</i>
     <i>digit-sequence<sub>opt</sub></i> . <i>digit-sequence</i>
     <i>digit-sequence</i> .
 
   <i>exponent-part::</i>
-    e  <i>sign<sub>opt</sub>   digit-sequence</i>
-    E  <i>sign<sub>opt</sub>   digit-sequence</i>
+    e  <i>sign<sub>opt</sub>   digit-sequence</i>
+    E  <i>sign<sub>opt</sub>   digit-sequence</i>
 
   <i>sign:: one of</i>
     +  -
 
   <i>digit-sequence::</i>
     <i>digit</i>
-    <i>digit-sequence   digit</i>
+    <i>digit-sequence   digit</i>
 </pre>
 
 ####String Literals
@@ -10577,30 +10577,30 @@ The grammar notation is described in [§§](#grammars).
     <i>nowdoc-string-literal</i>
 
   <i>single-quoted-string-literal::</i>
-    b<i><sub>opt</sub></i>  ' <i>sq-char-sequence<sub>opt</sub></i>  '
+    b<i><sub>opt</sub></i>  ' <i>sq-char-sequence<sub>opt</sub></i>  '
 
   <i>sq-char-sequence::</i>
     <i>sq-char</i>
-    <i>sq-char-sequence   sq-char</i>
+    <i>sq-char-sequence   sq-char</i>
 
   <i>sq-char::</i>
     <i>sq-escape-sequence</i>
-    \<i><sub>opt</sub></i>   any member of the source character set except single-quote (') or backslash (\)
+    \<i><sub>opt</sub></i>   any member of the source character set except single-quote (') or backslash (\)
 
   <i>sq-escape-sequence:: one of</i>
     \'  \\
 
   <i>double-quoted-string-literal::</i>
-    b<i><sub>opt</sub></i>  " <i>dq-char-sequence<sub>opt</sub></i>  "
+    b<i><sub>opt</sub></i>  " <i>dq-char-sequence<sub>opt</sub></i>  "
 
   <i>dq-char-sequence::</i>
     <i>dq-char</i>
-    <i>dq-char-sequence   dq-char</i>
+    <i>dq-char-sequence   dq-char</i>
 
   <i>dq-char::</i>
     <i>dq-escape-sequence</i>
-    any member of the source character set except double-quote (") or backslash (\)
-    \  any member of the source character set except "\$efnrtvxX or
+    any member of the source character set except double-quote (") or backslash (\)
+    \  any member of the source character set except "\$efnrtvxX or
 octal-digit
 
   <i>dq-escape-sequence::</i>
@@ -10617,11 +10617,11 @@ octal-digit
     \   <i>octal-digit   octal-digit   octal-digit</i>
 
   <i>dq-hexadecimal-escape-sequence::</i>
-    \x  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
-    \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
+    \x  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
+    \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
 
   <i>heredoc-string-literal::</i>
-    <<<  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    <<<  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
@@ -10631,11 +10631,11 @@ octal-digit
 
   <i>hd-char-sequence::</i>
     <i>hd-char</i>
-    <i>hd-char-sequence   hd-char</i>
+    <i>hd-char-sequence   hd-char</i>
 
   <i>hd-char::</i>
     <i>hd-escape-sequence</i>
-    any member of the source character set except backslash (\)
+    any member of the source character set except backslash (\)
     \  any member of the source character set except \$efnrtvxX or
 octal-digit
 
@@ -10649,7 +10649,7 @@ octal-digit
 
 
   <i>nowdoc-string-literal::</i>
-    <<<  '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
+    <<<  '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>     
 </pre>
 
 ####The Null Literal
@@ -10676,7 +10676,7 @@ octal-digit
 <pre>
 <i>script:</i>
 <i> script-section</i>
-<i> script   script-section</i>
+<i> script   script-section</i>
 
 <i>script-section:</i>
   <i> text<sub>opt</sub></i> &lt;?php <i>statement-list<sub>opt</sub></i> ?&gt;<sub>opt</sub> <i>text<sub>opt</sub></i>
@@ -10689,7 +10689,7 @@ octal-digit
 
 <pre>
   <i>function-static-declaration:</i>
-    static <i>name</i>   <i>function-static-initializer<sub>opt</sub></i> ;
+    static <i>name</i>   <i>function-static-initializer<sub>opt</sub></i> ;
   
   <i>function-static-initializer:</i>
     = <i>const-expression</i>
@@ -10699,7 +10699,7 @@ octal-digit
 
   <i>variable-name-list:</i>
     <i>expression</i>
-    <i>variable-name-list  , expression</i>
+    <i>variable-name-list  , expression</i>
 </pre>
     
 ###Expressions
@@ -10714,7 +10714,7 @@ octal-digit
     <i>const-expression</i>
     <i>intrinsic</i>
     <i>anonymous-function-creation-expression</i>
-    (  <i>expression</i>  )
+    (  <i>expression</i>  )
     $this
 
   <i>intrinsic:</i>
@@ -10729,7 +10729,7 @@ octal-digit
     <i>unset-intrinsic</i>
 
   <i>array-intrinsic:</i>
-    array ( <i>array-initializer<sub>opt</sub></i>  )
+    array ( <i>array-initializer<sub>opt</sub></i>  )
 
   <i>echo-intrinsic:</i>
     echo  <i>expression</i>
@@ -10737,8 +10737,8 @@ octal-digit
     echo  <i>expression-list-two-or-more</i>
 
   <i>expression-list-two-or-more:</i>
-    <i>expression</i>  ,  <i>expression</i>
-    <i>expression-list-two-or-more</i>  ,  <i>expression</i>
+    <i>expression</i>  ,  <i>expression</i>
+    <i>expression-list-two-or-more</i>  ,  <i>expression</i>
 
   <i>empty-intrinsic:</i>
     empty ( <i>expression</i>  )
@@ -10753,14 +10753,14 @@ octal-digit
     die   (   <i>expression<sub>opt</sub></i> )
 
   <i>isset-intrinsic:</i>
-    isset  (  <i>expression-list-one-or-more</i>  )
+    isset  (  <i>expression-list-one-or-more</i>  )
 
   <i>expression-list-one-or-more</i>:
     <i>expression</i>
-    <i>expression-list-one-or-mor</i>  ,  <i>expression</i>
+    <i>expression-list-one-or-mor</i>  ,  <i>expression</i>
 
   <i>list-intrinsic:</i>
-    list  (  <i>list-expression-list<sub>opt</sub></i>  )
+    list  (  <i>list-expression-list<sub>opt</sub></i>  )
 
   <i>list-expression-list:</i>
   <i>list-or-variable</i>
@@ -10773,21 +10773,21 @@ octal-digit
 
   <i>print-intrinsic:
     print  <i>expression</i>
-    print  (  <i>expression</i>  )
+    print  (  <i>expression</i>  )
 
   <i>unset-intrinsic:</i>
-    unset  (  <i>expression-list-one-or-more</i>  )
+    unset  (  <i>expression-list-one-or-more</i>  )
     
   <i>anonymous-function-creation-expression:</i>
-  function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-use-clause<sub>opt</sub></i>
-      <i>compound-statement</i>
+  function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-use-clause<sub>opt</sub></i>
+      <i>compound-statement</i>
 
   <i>anonymous-function-use-clause:</i>
-    use  (  <i>use-variable-name-list</i>  )
+    use  (  <i>use-variable-name-list</i>  )
 
   <i>use-variable-name-list:</i>
-    &<sub>opt</sub>   <i>variable-name</i>
-    <i>use-variable-name-list</i>  ,  &<sub>opt</sub>  <i>variable-name</i>
+    &<sub>opt</sub>   <i>variable-name</i>
+    <i>use-variable-name-list</i>  ,  &<sub>opt</sub>  <i>variable-name</i>
                 
 </pre>
 
@@ -10812,8 +10812,8 @@ octal-digit
     clone  <i>expression</i>
 
   <i>object-creation-expression:</i>
-    new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
-    new  <i>class-type-designator</i>
+    new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
+    new  <i>class-type-designator</i>
 
   <i>class-type-designator:</i>
     static
@@ -10821,19 +10821,19 @@ octal-digit
     <i>expression</i>
 
   <i>array-creation-expression:</i>
-    array  (  <i>array-initializer<sub>opt</sub></i>  )
+    array  (  <i>array-initializer<sub>opt</sub></i>  )
     [ <i>array-initializer<sub>opt</sub></i> ]
 
   <i>array-initializer:</i>
-    <i>array-initializer-list</i>  ,<sub>opt</sub>
+    <i>array-initializer-list</i>  ,<sub>opt</sub>
 
   <i>array-initializer-list:</i>
     <i>array-element-initializer</i>
-    <i>array-element-initializer  ,  array-initializer-list</i>
+    <i>array-element-initializer  ,  array-initializer-list</i>
 
   <i>array-element-initializer:</i>
-    &<sub>opt</sub>   <i>element-value</i>
-    element-key  =>  &<sub>opt</sub>   <i>element-value</i>
+    &<sub>opt</sub>   <i>element-value</i>
+    element-key  =>  &<sub>opt</sub>   <i>element-value</i>
 
   <i>element-key:</i>
     <i>expression</i>
@@ -10842,18 +10842,18 @@ octal-digit
     <i>expression</i>
 
   <i>subscript-expression:</i>
-    <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
-    <i>postfix-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
+    <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
+    <i>postfix-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
 
   <i>function-call-expression:</i>
-    <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
+    <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
     <i>assignment-expression</i>
-    <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
+    <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
 
   <i>member-selection-expression:</i>
-    <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
+    <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
 
   <i>member-selection-designator:</i>
     <i>name</i>
@@ -10863,11 +10863,11 @@ octal-digit
     <i>unary-expression</i>  ++
 
   <i>postfix-decrement-expression:</i>
-    <i>unary-expression</i>  --
+    <i>unary-expression</i>  --
 
   <i>scope-resolution-expression:</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>member-selection-designator</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>class</i>
+    <i>scope-resolution-qualifier</i>  ::  <i>member-selection-designator</i>
+    <i>scope-resolution-qualifier</i>  ::  <i>class</i>
 
   <i>scope-resolution-qualifier:</i>
     <i>qualified-name</i>
@@ -10877,7 +10877,7 @@ octal-digit
     static
    
   <i>exponentiation-expression:</i>
-    <i>expression  **  expression</i>                    
+    <i>expression  **  expression</i>                    
 </pre>
 
 ####Unary Operators
@@ -10906,22 +10906,22 @@ octal-digit
     +  -  !  \
 
   <i>error-control-expression:</i>
-    @   <i>expression</i>
+    @   <i>expression</i>
 
   <i>shell-command-expression:</i>
-    `  <i>dq-char-sequence<sub>opt</sub></i>  `
+    `  <i>dq-char-sequence<sub>opt</sub></i>  `
 
   <i>cast-expression:</i>
     <i>unary-expression</i>
-    (  <i>cast-type</i>  ) <i>cast-expression</i>
+    (  <i>cast-type</i>  ) <i>cast-expression</i>
 
   <i>cast-type: one of</i>
     array  binary  bool  boolean  double  int  integer  float  object
     real  string  unset
 
   <i>variable-name-creation-expression:</i>
-    $   <i>expression</i>
-    $  {  <i>expression</i>  }
+    $   <i>expression</i>
+    $  {  <i>expression</i>  }
                         
 </pre>
 
@@ -10930,7 +10930,7 @@ octal-digit
 <pre>
   <i>instanceof-expression:</i>
     <i>unary-expression</i>
-    <i>instanceof-subject</i>  instanceof   <i>instanceof-type-designator</i>
+    <i>instanceof-subject</i>  instanceof   <i>instanceof-type-designator</i>
 
   <i>instanceof-subject:</i>
     <i>expression</i>
@@ -10945,9 +10945,9 @@ octal-digit
 <pre>
   <i>multiplicative-expression:</i>
     <i>instanceof-expression</i>
-    <i>multiplicative-expression</i>  *  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  /  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  %  <i>multiplicative-expression</i>
+    <i>multiplicative-expression</i>  *  <i>multiplicative-expression</i>
+    <i>multiplicative-expression</i>  /  <i>multiplicative-expression</i>
+    <i>multiplicative-expression</i>  %  <i>multiplicative-expression</i>
 </pre>
 
 ####Additive Operators
@@ -10955,9 +10955,9 @@ octal-digit
 <pre>
   <i>additive-expression:</i>
     <i>multiplicative-expression</i>
-    <i>additive-expression</i>  +  <i>multiplicative-expression</i>
-    <i>additive-expression</i>  -  <i>multiplicative-expression</i>
-    <i>additive-expression</i>  .  <i>multiplicative-expression</i>
+    <i>additive-expression</i>  +  <i>multiplicative-expression</i>
+    <i>additive-expression</i>  -  <i>multiplicative-expression</i>
+    <i>additive-expression</i>  .  <i>multiplicative-expression</i>
 </pre>
 
 ####Bitwise Shift Operators
@@ -10965,8 +10965,8 @@ octal-digit
 <pre>
   <i>shift-expression:</i>
     <i>additive-expression</i>
-    <i>shift-expression</i>  <<  <i>additive-expression</i>
-    <i>shift-expression</i>  >>  <i>additive-expression</i>
+    <i>shift-expression</i>  <<  <i>additive-expression</i>
+    <i>shift-expression</i>  >>  <i>additive-expression</i>
 </pre>
 
 ####Relational Operators
@@ -10974,10 +10974,10 @@ octal-digit
 <pre>
   <i>relational-expression:</i>
     <i>shift-expression</i>
-    <i>relational-expression</i>  <   <i>shift-expression</i>
-    <i>relational-expression</i>  >   <i>shift-expression</i>
-    <i>relational-expression</i>  <=  <i>shift-expression</i>
-    <i>relational-expression</i>  >=  <i>shift-expression</i>
+    <i>relational-expression</i>  <   <i>shift-expression</i>
+    <i>relational-expression</i>  >   <i>shift-expression</i>
+    <i>relational-expression</i>  <=  <i>shift-expression</i>
+    <i>relational-expression</i>  >=  <i>shift-expression</i>
 </pre>
 
 ####Equality Operators
@@ -10985,11 +10985,11 @@ octal-digit
 <pre>
   <i>equality-expression:</i>
     <i>relational-expression</i>
-    <i>equality-expression</i>  ==  <i>relational-expression</i>
-    <i>equality-expression</i>  !=  <i>relational-expression</i>
-    <i>equality-expression</i>  <>  <i>relational-expression</i>
-    <i>equality-expression</i>  ===  <i>relational-expression</i>
-    <i>equality-expression</i>  !==  <i>relational-expression</i>
+    <i>equality-expression</i>  ==  <i>relational-expression</i>
+    <i>equality-expression</i>  !=  <i>relational-expression</i>
+    <i>equality-expression</i>  <>  <i>relational-expression</i>
+    <i>equality-expression</i>  ===  <i>relational-expression</i>
+    <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>
 
 ####Bitwise Logical Operators
@@ -10997,15 +10997,15 @@ octal-digit
 <pre>
   <i>bitwise-AND-expression:</i>
     <i>equality-expression</i>
-    <i>bit-wise-AND-expression</i>  &  <i>equality-expression</i>
+    <i>bit-wise-AND-expression</i>  &  <i>equality-expression</i>
 
   <i>bitwise-exc-OR-expression:</i>
     <i>bitwise-AND-expression</i>
-    <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
+    <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
     
   <i>bitwise-inc-OR-expression:</i>
     <i>bitwise-exc-OR-expression</i>
-    <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
+    <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
 </pre>
 
 ####Logical Operators (form 1)
@@ -11013,7 +11013,7 @@ octal-digit
 <pre>
   <i>logical-AND-expression-1:</i>
     <i>bitwise-incl-OR-expression</i>
-    <i>logical-AND-expression-1</i>  &&  <i>bitwise-inc-OR-expression</i>
+    <i>logical-AND-expression-1</i>  &&  <i>bitwise-inc-OR-expression</i>
 
   <i>logical-inc-OR-expression-1:</i>
     <i>logical-AND-expression-1</i>
@@ -11025,7 +11025,7 @@ octal-digit
 <pre>
   <i>conditional-expression:</i>
     <i>logical-inc-OR-expression-1</i>
-    <i>logical-inc-OR-expression-1</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
+    <i>logical-inc-OR-expression-1</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
 </pre>
 
 ####Assignment Operators
@@ -11038,13 +11038,13 @@ octal-digit
     <i>compound-assignment-expression</i>
 
   <i>simple-assignment-expression:</i>
-    <i>unary-expression</i>  =  <i>assignment-expression</i>
+    <i>unary-expression</i>  =  <i>assignment-expression</i>
     
   <i>byref-assignment-expression:</i>
-    <i>unary-expression</i>  =  &  <i>assignment-expression</i>
+    <i>unary-expression</i>  =  &  <i>assignment-expression</i>
     
   <i>compound-assignment-expression:</i>
-    <i>unary-expression   compound-assignment-operator   assignment-expression</i>
+    <i>unary-expression   compound-assignment-operator   assignment-expression</i>
 
   <i>compound-assignment-operator: one of</i>
     **=  *=  /=  %=  +=  -=  .=  <<=  >>=  &=  ^=  |=    
@@ -11055,15 +11055,15 @@ octal-digit
 <pre>
   <i>logical-AND-expression-2:</i>
     <i>assignment-expression</i>
-    <i>logical-AND-expression-2</i>  and  <i>assignment-expression</i>
+    <i>logical-AND-expression-2</i>  and  <i>assignment-expression</i>
 
   <i>logical-exc-OR-expression:</i>
     <i>logical-AND-expression-2</i>
-    <i>logical-exc-OR-expression</i>  xor  <i>logical-AND-expression-2</i>
+    <i>logical-exc-OR-expression</i>  xor  <i>logical-AND-expression-2</i>
 
   <i>logical-inc-OR-expression-2:</i>
     <i>logical-exc-OR-expression</i>
-    <i>logical-inc-OR-expression-2</i>  or  <i>logical-exc-OR-expression</i>
+    <i>logical-inc-OR-expression-2</i>  or  <i>logical-exc-OR-expression</i>
     
 </pre>
 
@@ -11073,7 +11073,7 @@ octal-digit
 <pre>
   <i>yield-expression:</i>
     <i>logical-inc-OR-expression-2</i>
-    yield  <i>array-element-initializer</i>
+    yield  <i>array-element-initializer</i>
 </pre>
 
 ####Script Inclusion Operators
@@ -11087,22 +11087,22 @@ octal-digit
     <i>require-once-expression</i>
 
   <i>include-expression:</i>
-    include  (  <i>include-filename</i>  )
-    include  <i>include-filename</i>
+    include  (  <i>include-filename</i>  )
+    include  <i>include-filename</i>
 
   <i>include-filename:</i>
     <i>expression</i>
     
   <i>include-once-expression:</i>
-    include_once  (  <i>include-filename</i>  )
-    include_once  <i>include-filename</i>
+    include_once  (  <i>include-filename</i>  )
+    include_once  <i>include-filename</i>
     
   <i>require-expression:</i>
-    require  (  <i>include-filename</i>  )
+    require  (  <i>include-filename</i>  )
     require  <i>include-filename</i>
     
   <i>require-once-expression:</i>
-    require_once  (  <i>include-filename</i>  )
+    require_once  (  <i>include-filename</i>  )
     require_once  <i>include-filename</i>
 </pre>
 
@@ -11146,11 +11146,11 @@ octal-digit
 
 <pre>
   <i>compound-statement:</i>
-    {   <i>statement-list<sub>opt</sub></i>  }
+    {   <i>statement-list<sub>opt</sub></i>  }
 
   <i>statement-list:</i>
     <i>statement</i>
-    <i>statement-list   statement</i>
+    <i>statement-list   statement</i>
 </pre>
 
 ####Labeled Statements
@@ -11162,13 +11162,13 @@ octal-digit
     <i>default-label</i>
 
   <i>named-label:</i>
-    <i>name</i>  :  <i>statement</i>
+    <i>name</i>  :  <i>statement</i>
 
   <i>case-label:</i>
-    <i>case   expression   case-default-label-terminator   statement</i>
+    <i>case   expression   case-default-label-terminator   statement</i>
 
   <i>default-label:</i>
-    <i>default  case-default-label-terminator   statement</i>
+    <i>default  case-default-label-terminator   statement</i>
 
   <i>case-default-label-terminator:</i>
     :
@@ -11179,7 +11179,7 @@ octal-digit
 
 <pre>
    <i>expression-statement:</i>
-     <i>expression<sub>opt</sub></i>  ;
+     <i>expression<sub>opt</sub></i>  ;
 
   <i>selection-statement:</i>
     <i>if-statement</i>
@@ -11210,8 +11210,8 @@ octal-digit
     else   :   <i>statement-list</i>
 
   <i>switch-statement:</i>
-    switch  (  <i>expression</i>  )  <i>compound-statement</i>
-    switch  (  <i>expression</i>  )  :   <i>statement-list</i>  endswitch;
+    switch  (  <i>expression</i>  )  <i>compound-statement</i>
+    switch  (  <i>expression</i>  )  :   <i>statement-list</i>  endswitch;
         
 </pre>
 
@@ -11225,11 +11225,11 @@ octal-digit
     <i>foreach-statement</i>
 
   <i>while-statement:</i>
-    while  (  <i>expression</i>  )  <i>statement</i>
-    while  (  <i>expression</i>  )  :   <i>statement-list</i>  endwhile ;
+    while  (  <i>expression</i>  )  <i>statement</i>
+    while  (  <i>expression</i>  )  :   <i>statement-list</i>  endwhile ;
     
   <i>do-statement:</i>
-    do  <i>statement</i>  while  (  <i>expression</i>  )  ;
+    do  <i>statement</i>  while  (  <i>expression</i>  )  ;
 
 
   <i>for-statement:</i>
@@ -11250,17 +11250,17 @@ octal-digit
     <i>for-expression-group</i>   ,   <i>expression</i>
 
   <i>foreach-statement:</i>
-    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
-    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>   foreach-value</i>  )  :   <i>statement-list</i>  endforeach  ;
+    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
+    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>   foreach-value</i>  )  :   <i>statement-list</i>  endforeach  ;
 
   <i>foreach-collection-name</i>:
     <i>expression</i>
 
   <i>foreach-key:</i>
-    <i>expression</i>  =>
+    <i>expression</i>  =>
 
   <i>foreach-value:<i>
-    &<sub>opt</sub>   <i>expression</i>
+    &<sub>opt</sub>   <i>expression</i>
     <i>list-intrinsic</i>
             
 </pre>
@@ -11276,38 +11276,38 @@ octal-digit
     <i>throw-statement</i>
 
   <i>goto-statement:</i>
-    goto  <i>name</i>  ;
+    goto  <i>name</i>  ;
     
   <i>continue-statement:</i>
-    continue   <i>breakout-level<sub>opt</sub></i>  ;
+    continue   <i>breakout-level<sub>opt</sub></i>  ;
 
   <i>breakout-level:</i>
     <i>integer-literal</i>
     
   <i>break-statement:</i>
-    break  <i>breakout-level<sub>opt</sub></i>  ;
+    break  <i>breakout-level<sub>opt</sub></i>  ;
     
   <i>return-statement:</i>
-    return  <i>expression<sub>opt</sub></i>  ;
+    return  <i>expression<sub>opt</sub></i>  ;
     
   <i>throw-statement:</i>
-    throw  <i>expression</i>  ;
+    throw  <i>expression</i>  ;
 </pre>
 
 ####The try Statement
 
 <pre>
   <i>try-statement:</i>
-    try  <i>compound-statement   catch-clauses</i>
-    try  <i>compound-statement   finally-clause</i>
-    try  <i>compound-statement   catch-clauses   finally-clause</i>
+    try  <i>compound-statement   catch-clauses</i>
+    try  <i>compound-statement   finally-clause</i>
+    try  <i>compound-statement   catch-clauses   finally-clause</i>
 
   <i>catch-clauses:</i>
     <i>catch-clause</i>
-    <i>catch-clauses   catch-clause</i>
+    <i>catch-clauses   catch-clause</i>
 
   <i>catch-clause:</i>
-    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
+    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
 
   <i>finally-clause:</i>
     finally   <i>compound-statement</i>
@@ -11317,9 +11317,9 @@ octal-digit
 
 <pre>
   <i>declare-statement:</i>
-    declare  (  <i>declare-directive</i>  )  <i>statement</i>
-    declare  (  <i>declare-directive</i>  )  :  <i>statement-list</i>  enddeclare  ;
-    declare  (  <i>declare-directive</i>  )  ;
+    declare  (  <i>declare-directive</i>  )  <i>statement</i>
+    declare  (  <i>declare-directive</i>  )  :  <i>statement-list</i>  enddeclare  ;
+    declare  (  <i>declare-directive</i>  )  ;
 
   <i>declare-directive:</i>
     ticks  =  <i>declare-tick-count</i>
@@ -11336,17 +11336,17 @@ octal-digit
 
 <pre>
   <i>function-definition:</i>
-    <i>function-definition-header   compound-statement</i>
+    <i>function-definition-header   compound-statement</i>
 
   <i>function-definition-header:</i>
-    function  &<sub>opt</sub>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )
+    function  &<sub>opt</sub>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )
 
   <i>parameter-declaration-list:</i>
     <i>parameter-declaration</i>
-    <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
+    <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
 
   <i>parameter-declaration:</i>
-    <i>type-hint<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+    <i>type-hint<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
 
   <i>type-hint:</i>
     array
@@ -11354,14 +11354,14 @@ octal-digit
     <i>qualified-name</i>
 
   <i>default-argument-specifier:</i>
-    =  <i>const-expression</i>
+    =  <i>const-expression</i>
 </pre>
 
 ###Classes
 
 <pre>
   <i>class-declaration:</i>
-    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base   clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
+    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base   clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
 
   <i>class-modifier:</i>
     abstract
@@ -11372,11 +11372,11 @@ octal-digit
 
   <i>class-interface-clause:</i>
     implements  <i>qualified-name</i>
-    <i>class-interface-clause</i>  ,  <i>qualified-name</i>
+    <i>class-interface-clause</i>  ,  <i>qualified-name</i>
 
   <i>class-member-declarations:</i>
     <i>class-member-declaration</i>
-    <i>class-member-declarations   class-member-declaration</i>
+    <i>class-member-declarations   class-member-declaration</i>
 
    <i>class-member-declaration:</i>
      <i>const-declaration</i>
@@ -11386,15 +11386,15 @@ octal-digit
      <i>destructor-declaration</i>
      
   <i>const-declaration:</i>
-    const  <i>name</i>  =  <i>const-expression</i>   ;
+    const  <i>name</i>  =  <i>const-expression</i>   ;
     
   <i>property-declaration:</i>
-    <i>property-modifier   name   property-initializer<sub>opt</sub></i>  ;
+    <i>property-modifier   name   property-initializer<sub>opt</sub></i>  ;
 
   <i>property-modifier:</i>
     var
-    <i>visibility-modifier   static-modifier<sub>opt</sub></i>
-    <i>static-modifier   visibility-modifier<sub>opt</sub></i>
+    <i>visibility-modifier   static-modifier<sub>opt</sub></i>
+    <i>static-modifier   visibility-modifier<sub>opt</sub></i>
 
   <i>visibility-modifier:</i>
     public
@@ -11405,15 +11405,15 @@ octal-digit
     static
 
   <i>property-initializer:</i>
-    =  <i>constant-expression</i>
+    =  <i>constant-expression</i>
     
   method-declaration:
-    <i>method-modifiers<sub>opt</sub>   function-definition</i>
-    <i>method-modifiers   function-definition-header</i>  ;
+    <i>method-modifiers<sub>opt</sub>   function-definition</i>
+    <i>method-modifiers   function-definition-header</i>  ;
 
   <i>method-modifiers:</i>
     <i>method-modifier</i>
-    <i>method-modifiers   method-modifier</i>
+    <i>method-modifiers   method-modifier</i>
 
   <i>method-modifier:</i>
     <i>visibility-modifier</i>
@@ -11422,11 +11422,11 @@ octal-digit
     final
 
   <i>constructor-definition:</i>
-    <i>visibility-modifier</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
-    <i>visibility-modifier</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
+    <i>visibility-modifier</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+    <i>visibility-modifier</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
 
   <i>destructor-definition:</i>
-    <i>visibility-modifier</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
+    <i>visibility-modifier</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
     
 </pre>
 
@@ -11434,15 +11434,15 @@ octal-digit
 
 <pre>
   <i>interface-declaration:</i>
-    interface   <i>name   interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
+    interface   <i>name   interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
 
   <i>interface-base-clause:</i>
     extends   <i>qualified-name</i>
-    <i>interface-base-clause</i>  ,  <i>qualified-name</i>
+    <i>interface-base-clause</i>  ,  <i>qualified-name</i>
 
   <i>interface-member-declarations:</i>
     <i>interface-member-declaration</i>
-    <i>interface-member-declarations   interface-member-declaration</i>
+    <i>interface-member-declarations   interface-member-declaration</i>
 
   <i>interface-member-declaration:</i>
     <i>const-declaration</i>
@@ -11487,7 +11487,7 @@ octal-digit
 
   <i>trait-member-declarations:</i>
     <i>trait-member-declaration</i>
-    <i>trait-member-declarations   trait-member-declaration</i>
+    <i>trait-member-declarations   trait-member-declaration</i>
 
   <i>trait-member-declaration:</i>
     <i>property-declaration</i>
@@ -11501,18 +11501,18 @@ octal-digit
 
 <pre>
   <i>namespace-definition:</i>
-    namespace  <i>namespace-name</i>  ;
-    namespace  <i>namespace-name<sub>opt</sub>   compound-statement</i>
+    namespace  <i>namespace-name</i>  ;
+    namespace  <i>namespace-name<sub>opt</sub>   compound-statement</i>
 
   <i>namespace-use-declaration:</i>
-    use  <i>namespace-use-clauses</i>  ;
+    use  <i>namespace-use-clauses</i>  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
-    <i>namespace-use-clauses</i>  ,  <i>namespace-use-clause</i>
+    <i>namespace-use-clauses</i>  ,  <i>namespace-use-clause</i>
 
   <i>namespace-use-clause:</i>
-    <i>qualified-name   namespace-aliasing-clause<sub>opt</sub></i>
+    <i>qualified-name   namespace-aliasing-clause<sub>opt</sub></i>
 
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>
@@ -11526,8 +11526,8 @@ of this specification:
 IEC 60559:1989, *Binary floating-point arithmetic for microprocessor
 systems* (previously designated IEC 559:1989). (This standard is widely
 known by its U.S. national designation, ANSI/IEEE Standard 754-1985,
-IEEE Standard for Binary Floating-Point Arithmetic).
+IEEE Standard for Binary Floating-Point Arithmetic.)
 
-The Unicode Consortium. *The Unicode Standard, Version 5.0*,
+The Unicode Consortium. *The Unicode Standard, Version 5.0*,
 [www.Unicode.org](http://www.Unicode.org)).
 

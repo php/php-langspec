@@ -1736,20 +1736,20 @@ must be supported.
 Certain operations on integer values produce a mathematical result that
 cannot be represented as an integer. Examples include the following:
 
--   Incrementing the largest value or decrementing the smallest value
--   Applying the unary minus to the smallest value
--   Multiplying, adding, or subtracting two values
+-   Incrementing the largest value or decrementing the smallest value.
+-   Applying the unary minus to the smallest value.
+-   Multiplying, adding, or subtracting two values.
 
 In such cases, the resulting type and value is implementation-defined,
 but must be one of the following:
 
 -   The computation is done as though the types of the values were `float`
-    with the result having that type
+    with the result having that type.
 -   The result type is int and the value reflects wrap-around (for
     example adding 1 to the largest value results in the smallest value).
 -   The computation is done as though the type had some unspecified,
     arithmetic-like object type with the result being mathematically
-    correct
+    correct.
 
 The constants `PHP_INT_SIZE` (§[[6.3](#core-predefined-constants)](#core-predefined-constants)) and `PHP_INT_MAX` (§[[6.3](#core-predefined-constants)](#core-predefined-constants)) define certain
 characteristics about type `int`.
@@ -1841,7 +1841,7 @@ object, and the library function
 
 A [*resource*](http://php.net/manual/language.types.resource.php)
 is a descriptor to some sort of external entity. (Examples include
-files, databases, and sockets.)
+files, databases, and sockets).
 
 A resource is an abstract entity whose representation is unspecified.
 Resources are only created or consumed by the implementation; they are
@@ -1853,9 +1853,9 @@ When scripts execute in a mode having a command-line interface, the
 following predefined resource constants that correspond to file streams
 are automatically opened at program start-up:
 
--   STDIN, which maps to standard input (php://stdin)
--   STDOUT, which maps to standard output (php://stdout)
--   STDERR, which maps to standard error (php://stderr)
+-   STDIN, which maps to standard input (php://stdin).
+-   STDOUT, which maps to standard output (php://stdout).
+-   STDERR, which maps to standard error (php://stderr).
 
 The library function `is_resource` (§xx) indicates if a given value is a
 resource, and the library function
@@ -1908,7 +1908,7 @@ automatically available to all scripts; their values are not fixed:
  `__CLASS__`                        | `string`; The name of the current class. From within a trait method, the name of the class in which that trait is used. If the current namespace is other than the default, the namespace name and "\\" are prepended, in that order. If used outside all classes, the result is the empty string. 
 `__DIR__`                            |  `string`; The directory name of the script. A directory separator is only appended for the root directory.
 `__FILE__`                           | `string`; The full name of the script.
-`__FUNCTION__`                       | `string`; Inside a function, the name of the current function exactly as it was declared, with the following prepended: If a named namespace exists, that namespace name followed by "\". If used outside all functions, the result is the empty string. For a method, no parent-class prefix is present. (See `__METHOD__` and [§§](#anonymous-functions).)
+`__FUNCTION__`                       | `string`; Inside a function, the name of the current function exactly as it was declared, with the following prepended: If a named namespace exists, that namespace name followed by "\". If used outside all functions, the result is the empty string. For a method, no parent-class prefix is present. (See `__METHOD__` and [§§](#anonymous-functions)).
 `__LINE__`                           | `int`; the number of the current source line
 `__METHOD__`                         | `string`; Inside a method, the name of the current method exactly as it was declared, with the following prepended, in order: If a named namespace exists, that namespace name followed by "\"; the parent class name or trait name followed by `::`. If used outside all methods, the result is the same as for `__FUNCTION__`.
 `__NAMESPACE__`                      | `string`; The name of the current namespace exactly as it was declared. For the default namespace, the result is the empty string.
@@ -2024,14 +2024,14 @@ the need for a *global-declaration* ([§§](#global-variables)).
 
 The following kinds of variable may exist in a script:
 
--   Constant ([§§](#constants-1))
--   Local variable ([§§](#local-variables))
--   Array element ([§§](#array-elements))
--   Function static ([§§](#function-statics))
--   Global variable ([§§](#global-variables))
--   Instance property ([§§](#instance-properties))
--   Static property ([§§](#static-properties))
--   Class and interface constant ([§§](#class-and-interface-constants))
+-   Constant ([§§](#constants-1)).
+-   Local variable ([§§](#local-variables)).
+-   Array element ([§§](#array-elements)).
+-   Function static ([§§](#function-statics)).
+-   Global variable ([§§](#global-variables)).
+-   Instance property ([§§](#instance-properties)).
+-   Static property ([§§](#static-properties)).
+-   Class and interface constant ([§§](#class-and-interface-constants)).
 
 ##Kinds of Variables
 
@@ -2287,7 +2287,7 @@ The following variables are automatically available to all scripts:
 
 Variable Name |   Description
 -------------   |    -----------
-`$argc` | `int`; The number of command-line arguments passed to the script. This is at least 1. (See `$argv` below.)
+`$argc` | `int`; The number of command-line arguments passed to the script. This is at least 1. (See `$argv` below).
 `$argv` | `array`; An array of `$argc` elements containing the command-line arguments passed to the script as strings. Each element has an `int` key with the keys being numbered sequentially starting at zero through `$argc-1`. `$argv[0]` is the name of the script. It is implementation-defined as to how white space on command lines is handled, whether letter casing is preserved, which characters constitute quotes, or how `$argv[0]`'s string is formatted. As to how command-line arguments are defined, is unspecified.
 `$_COOKIE` |  `array`; The variables passed to the current script via HTTP Cookies.
 `$_ENV` | `array`; A superglobal ([§§](#general-5)) array in which the environment variable names are element keys, and the environment variable value strings are element values. As to how an environment variable is defined, is unspecified.
@@ -2563,7 +2563,7 @@ delimited comments ([§§](#comments)).
 
 Lexical processing always results in the creation of the longest
 possible lexical element. (For example, `$a+++++$b` must be parsed as
-`$a++ ++ +$b`, which syntactically is invalid.)
+`$a++ ++ +$b`, which syntactically is invalid).
 
 ##Comments
 
@@ -3261,7 +3261,7 @@ Some more text<
 
 There is one null-literal value, `NULL`. Its spelling is case-insensitive.
 (Note: Throughout this specification, the convention is to use all
-uppercase.)
+uppercase).
 
 <pre>
   <i>null-literal::</i>
@@ -3303,7 +3303,7 @@ expression.
 A *side effect* is an action that changes the state of the execution
 environment. (Examples of such actions are modifying a variable, writing
 to a device or file, or calling a function that performs such
-operations.)
+operations).
 
 When an expression is evaluated, it produces a result. It might also
 produce a side effect. Only a few operators produce side effects. (For
@@ -3315,7 +3315,7 @@ the value of `$v` after the assignment has taken place. However, that
 result is never used. Similarly, given the expression statement `++$v`;
 the expression is evaluated to the result incremented-value-of-`$v`, and
 the side effect is that `$v` is actually incremented. Again, the result
-is never used.)
+is never used).
 
 The occurrence of value computation and side effects is delimited by
 *sequence points*, places in a program's execution at which all the
@@ -3347,7 +3347,7 @@ evaluated as `$a = ($b = $c)`).
 Precedence and associativity can be controlled using *grouping
 parentheses*. (For example, in the expression `($a - $b) / $c`, the
 subtraction is done before the division. Without the grouping
-parentheses, the division would take place first.)
+parentheses, the division would take place first).
 
 While precedence, associativity, and grouping parentheses control the
 order in which operators are applied, they do *not* control the order of
@@ -3360,7 +3360,7 @@ of `$i` on the left-hand side is the old or new `$i`, is unspecified.
 Similarly, in the full expression `$j = $i + $i++`, whether the value
 of `$i` is the old or new `$i`, is unspecified. Finally, in the full
 expression `f() + g() \* h()`, the order in which the three functions are
-called, is unspecified.)
+called, is unspecified).
 
 **Implementation Notes**
 
@@ -5003,7 +5003,7 @@ A *cast-type* of `string` results in a conversion to type `string`. See [§§](#
 for details.
 
 A *cast-type* of `unset` always results in a value of `NULL`. (This use of
-`unset` should not be confused with the `unset` intrinsic ([§§](#unset)).)
+`unset` should not be confused with the `unset` intrinsic ([§§](#unset))).
 
 **Examples**
 
@@ -5176,7 +5176,7 @@ Otherwise, the type and value of the result is implementation-defined
 
 Division by zero results in a diagnostic followed by a `bool` result
 having value `FALSE`. (The values +/- infinity and NaN cannot be generated
-via this operator; instead, use the predefined constants `INF` and `NAN`.)
+via this operator; instead, use the predefined constants `INF` and `NAN`).
 
 The binary `/` operator produces the quotient from dividing the left-hand
 operand by the right-hand one. If either or both operands have
@@ -7202,7 +7202,7 @@ is the value returned; otherwise, the value `NULL` is returned. If
 execution flows to the end of the script, `return 1;` is implied. However,
 if execution flows to the end of the top level of a script, `return 0;` is
 implied. Likewise, if *expression* is omitted at the top level. (See
-exit ([§§](#exitdie)).)
+exit ([§§](#exitdie))).
 
 Returning from a constructor or destructor behaves just like returning
 from a function.
@@ -7496,7 +7496,7 @@ arrays. See §xx.
 mainstream languages. Specifically, in PHP, array elements need not have
 the same type, the subscript index need not be an integer (so there is
 no concept of a base index of zero or 1), and there is no concept of
-consecutive elements occupying physically adjacent memory locations.)
+consecutive elements occupying physically adjacent memory locations).
 
 ##Array Creation and Initialization
 
@@ -7665,7 +7665,7 @@ A class is a type that may contain zero or more explicitly declared
 *members*, which can be any combination of *class constants* ([§§](#constants-2));
 data members, called *properties* ([§§](#properties)); and function members, called
 *methods* ([§§](#methods)). (The ability to add properties and methods to an
-instance at runtime is described in [§§](#dynamic-members).) An object (often called an
+instance at runtime is described in [§§](#dynamic-members)). An object (often called an
 *instance*) of a class type is created (i.e., *instantiated*) via the
 new operator ([§§](#the-new-operator)).
 
@@ -7707,7 +7707,7 @@ base class.
 
 When an instance is allocated, new returns a handle that points to that
 object. As such, assignment of a handle does not copy the object itself.
-(See [§§](#cloning-objects) for a discussion of shallow and deep copying.)
+(See [§§](#cloning-objects) for a discussion of shallow and deep copying).
 
 ##Class Declarations
 
@@ -7860,7 +7860,7 @@ The members of a class are those specified by its
 *class-member-declarations*, and the members inherited from its base
 class. (A class may also contain dynamic members, as described in [§§](#dynamic-members).
 However, as these have no compile-time names, they can only be accessed
-via method calls.)
+via method calls).
 
 A class may contain the following members:
 
@@ -7869,7 +7869,7 @@ A class may contain the following members:
 -   Methods – the computations and actions that can be performed by the
     class ([§§](#methods), [§§](#methods-with-special-semantics)).
 -   Constructor – the actions required to initialize an instance of the
-    class ([§§](#constructors))
+    class ([§§](#constructors)).
 -   Destructor – the actions to be performed when an instance of the
     class is no longer needed ([§§](#destructors)).
 
@@ -7943,7 +7943,7 @@ an instance at runtime. In the case of dynamic properties, if a class
 makes provision to do so by defining a series of special methods, it can
 deal with the allocation and management of storage for those properties,
 by storing them in another object or in a database, for example. (The
-default behavior is for the Engine to allocate a VSlot for each one.)
+default behavior is for the Engine to allocate a VSlot for each one).
 This is called *class-specific dynamic allocation*. Otherwise, the
 Engine takes care of the storage in some unspecified manner. Dynamic
 method handling is only possible when ** class-specific dynamic
@@ -8208,7 +8208,7 @@ to initialize an instance immediately after it has been created. Any
 instance properties not explicitly initialized by a constructor take on
 the value `NULL`. Like a method, a constructor can return a result by
 value or byRef. (Unlike a method, a constructor cannot be abstract or
-static.)
+static).
 
 If *visibility-modifier* is omitted, `public` is assumed. A `private`
 constructor inhibits the creation of an instance of the class type.
@@ -8300,7 +8300,7 @@ instances of all classes are called automatically once there are no
 handles pointing to those instances or in some unspecified order during
 program shutdown. Like a method, a destructor can return a result by
 value or byRef. (Unlike a method, a destructor cannot be abstract or
-static.)
+static).
 
 If *visibility-modifier* is omitted, `public` is assumed.
 
@@ -8396,7 +8396,7 @@ visible method by that name is found, a dynamic method is assumed, and
 deliberately a dynamic method with the same name as a visible one, the
 visible method might be added later. This name "duplication" is
 convenient when adding a dynamic method to a class without having to
-worry about a name clash with any method names that class inherits.)
+worry about a name clash with any method names that class inherits).
 
 While a method-name source token has a prescribed syntax, there are no
 restrictions on the spelling of the dynamic method name designated by
@@ -8459,7 +8459,7 @@ deliberately a static dynamic method with the same name as a static
 visible one, the visible method might be added later. This name
 "duplication" is convenient when adding a dynamic method to a class
 without having to worry about a name clash with any method names that
-class inherits.)
+class inherits).
 
 While a method-name source token has a prescribed syntax, there are no
 restrictions on the spelling of the dynamic method name designated by
@@ -8715,7 +8715,7 @@ instance method returns `TRUE`; otherwise, `FALSE` is returned.
 Typically, `__isset` is called implicitly, when the intrinsic `isset`
 ([§§](#isset)) is called with an argument that designates a property that
 is not visible. (It can also be called by the intrinsic empty
-([§§](#empty)).) Now while `__isset` can be called explicitly, the two
+([§§](#empty))). Now while `__isset` can be called explicitly, the two
 scenarios do not necessarily produce the same result. Consider the
 expression `isset($p->m)`, where `p` is an instance and `m` is a property
 name. If `m` is the name of a visible property, `__isset` is not called.
@@ -8784,7 +8784,7 @@ property by that name is found, a dynamic property is assumed, and
 deliberately a dynamic property with the same name as a visible one, the
 visible property might be added later. This name "duplication" is
 convenient when adding a dynamic property to a class without having to
-worry about a name clash with any property names that class inherits.)
+worry about a name clash with any property names that class inherits).
 
 The parameter `$value` can have any type including an object type, and
 that type could have a destructor. Any dynamic properties of such types,
@@ -8960,7 +8960,7 @@ If a class has a `__sleep` method, the library function `serialize` (§xx)
 calls that method to find out which visible instance properties it
 should serialize. (In the absence of a `__sleep` or `serialize` method,
 all such properties are serialized, including any dynamic properties
-([§§](#dynamic-members)).) This information is returned by `__sleep` as an array of zero
+([§§](#dynamic-members))). This information is returned by `__sleep` as an array of zero
 or more elements, where each element's value is distinct and is the name
 of a visible instance property. These properties' values are serialized
 in the order in which the elements are inserted in the array. If
@@ -8977,7 +8977,7 @@ to include this when a `Point` is serialized. It can simply be recreated
 when that `Point` is unserialized. This information is transient and need
 not be preserved across program executions. (The same can be true for
 other transient properties, such as those that contain temporary results
-or run-time caches.)
+or run-time caches).
 
 In the absence of methods `__sleep` and `__wakeup`, instances of derived
 classes can be serialized and unserialized. However, it is not possible
@@ -9198,7 +9198,7 @@ to include this when a `Point` is serialized. It can simply be recreated
 when that `Point` is unserialized. This information is transient and need
 not be preserved across program executions. (The same can be true for
 other transient properties, such as those that contain temporary results
-or run-time caches.) Furthermore, consider a class `ColoredPoint` that
+or run-time caches). Furthermore, consider a class `ColoredPoint` that
 extends `Point` by adding a `color` property. The following code shows how
 these classes need be defined in order for both `Points` and `ColoredPoints`
 to be serialized and unserialized:
@@ -9411,7 +9411,7 @@ which corresponds to a parameter. The elements are inserted in that
 array in lexical order of their declaration. Each element's key is the
 corresponding parameter name, and each element value is some unspecified
 value. (These values are overridden by the argument values used when the
-anonymous function is called.) In the scenario above, this leads to the
+anonymous function is called). In the scenario above, this leads to the
 following, shown as pseudo code:
 
 ```
@@ -9679,7 +9679,7 @@ The interface members are defined below:
 Name  |   Purpose
 ----    |   -------
 `offsetExists`  | This instance method returns `TRUE` if the instance contains an element with key `$offset`, otherwise, `FALSE`.
-`offsetGet` |  This instance method gets the value having key `$offset`. It may return by value or byRef. (Ordinarily, this wouldn't be allowed because a class implementing an interface needs to match the interface's method signatures; however, the Engine gives special treatment to `ArrayAccess` and allows this.) This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a non-lvalue context.
+`offsetGet` |  This instance method gets the value having key `$offset`. It may return by value or byRef. (Ordinarily, this wouldn't be allowed because a class implementing an interface needs to match the interface's method signatures; however, the Engine gives special treatment to `ArrayAccess` and allows this). This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a non-lvalue context.
 `offsetSet` | This instance method sets the value having key `$offset` to $value. It returns no value. This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a modifiable-lvalue context.
 `offsetUnset` | This instance method unsets the value having key `$offset`. It returns no value.
 
@@ -9968,7 +9968,7 @@ trait T
 An *exception* is some unusual condition in that it is outside the
 ordinary expected behavior. (Examples include dealing with situations in
 which a critical resource is needed, but is unavailable, and detecting
-an out-of-range value for some computation.) As such, exceptions require
+an out-of-range value for some computation). As such, exceptions require
 special handling. This clause describes how exceptions can be created
 and handled.
 
@@ -11526,7 +11526,7 @@ of this specification:
 IEC 60559:1989, *Binary floating-point arithmetic for microprocessor
 systems* (previously designated IEC 559:1989). (This standard is widely
 known by its U.S. national designation, ANSI/IEEE Standard 754-1985,
-IEEE Standard for Binary Floating-Point Arithmetic.)
+IEEE Standard for Binary Floating-Point Arithmetic).
 
 The Unicode Consortium. *The Unicode Standard, Version 5.0*,
 [www.Unicode.org](http://www.Unicode.org)).

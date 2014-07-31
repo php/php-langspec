@@ -1381,10 +1381,10 @@ possible outcome:
        +-----------------+           V                           |           |
        |                     [VStore Int 1]                  +---+           |
        V                                                     |               V
-  [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore Str 'hi']
-                                            |           |   |
-                                    +-------+           |   |
-                                    |                   V   |
+  [VStore Arr *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]]   | [VStore Str 'hi']
+                                          |           |     |
+                                    +-----+           |     |
+                                    |                 V     |
                                     |    [VStore Str ‘hi’]  |
                                     V                       |
  [VSlot $x *]--------------------->[VStore Int 123]&lt;--------+
@@ -1402,10 +1402,10 @@ Here is the third possible outcome:
        +-----------------+           V                           |           |
        |                     [VStore Int 1]                  +---+           |
        V                                                     |               V
-   [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore Str 'hi']
-                                             |           |   |
-                     [VStore Int 123]&lt;-------+           |   |
-                                                         V   |
+   [VStore Arr *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]]   | [VStore Str 'hi']
+                                           |           |     |
+                     [VStore Int 123]&lt;-----+           |     |
+                                                       V     |
                                           [VStore Str 'hi']  |
                                                              |
  [VSlot $x *]--------------------->[VStore Int 123]&lt;--------+

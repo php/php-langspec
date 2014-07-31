@@ -1132,7 +1132,7 @@ the value assignment `$b = $a`:
 
 The value assignment `$b = $a` made a copy of `$a`’s array. Note how
 `$b`’s VSlot points to a different VStore than `$a`’s VSlot, and `$b`’s
-VStore points to a different HStore than `$b`’s VStore. Each source array
+VStore points to a different HStore than `$a`’s VStore. Each source array
 element is copied using *member-copy assignment* `=*`, which is defined
 as follows:
 
@@ -2072,7 +2072,7 @@ define('FAILURE', TRUE);
 
 See Semantics below.
 
-Semantics:
+**Semantics:**
 
 Except for a parameter, a local variable is never defined explicitly;
 instead, it is created when it is first assigned a value. A local
@@ -2724,8 +2724,8 @@ reserved by the PHP language.
 Variable names and function names (when used in a function-call context)
 need not be defined as source tokens; they can also be created at
 runtime using the variable name-creation operator ([§§](#variable-name-creation-operator)). (For
-example, given `$a = "Total"; $b = 3; $c = $b + 5;, ${$a.$b.$c} =
-TRUE;` is equivalent to `$Total38 = TRUE;`, and `${$a.$b.$c}()` is
+example, given `$a = "Total"; $b = 3; $c = $b + 5;`, `${$a.$b.$c} =TRUE;` 
+is equivalent to `$Total38 = TRUE;`, and `${$a.$b.$c}()` is
 equivalent to `Total38()`).
 
 **Examples**
@@ -2937,8 +2937,8 @@ The value of a floating-point literal must be representable by its type.
 
 The type of a *floating-literal* is `float`.
 
-The constants `INF` (§[[6.3](#core-predefined-constants)](#core-predefined-constants)) and `NAN` (§[[6.3](#core-predefined-constants)](#core-predefined-constants)) provide access to the floating-
-point values for infinity and Not-a-Number, respectively.
+The constants `INF` (§[[6.3](#core-predefined-constants)](#core-predefined-constants)) and `NAN` (§[[6.3](#core-predefined-constants)](#core-predefined-constants)) provide access to the 
+floating-point values for infinity and Not-a-Number, respectively.
 
 **Examples**
 
@@ -3187,7 +3187,7 @@ The start and end identifier must be the same. Only horizontal white
 space is permitted between `<<<` and the start identifier. No white
 space is permitted between the start identifier and the new-line that
 follows. No white space is permitted between the new-line and the end
-identifier that follows. Exception for an optional semicolon (`;`), no
+identifier that follows. Except for an optional semicolon (`;`), no
 characters—not even comments or white space—are permitted between the
 end identifier and the new-line that terminates that source line.
 

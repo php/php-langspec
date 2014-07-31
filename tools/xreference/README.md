@@ -1,11 +1,11 @@
 This tool tries to reconstruct the internal cross references that existed
 in the Word document that was used to originally create the draft spec.
 
-If we are lucky, this will only need to be run one time as we convert
-from .docx to .md.
+If we are lucky, this will only need to be run once as we convert from .docx
+to .md.
 
-We first manuallyy grab all of the section numbers from the Word file and
-paste them into a CSV-aware file (like and Excel file). Now we have a
+We first manually grab all of the section numbers from the Word file and
+paste them into a CSV-aware file (like an Excel file). Now we have a
 column of section numbers
 
 Then we run xreference.php. This does the following:

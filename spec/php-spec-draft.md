@@ -9734,8 +9734,8 @@ This interface is intended as the base interface for all traversable
 classes. This interface is defined, as follows:
 
 ```
-Traversable
-{
+interface Traversable
+{ 
 }
 ```
 

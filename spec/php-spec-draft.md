@@ -9785,7 +9785,7 @@ The members of a trait each have visibility ([§§](#general-23)), which applies
 they are used by a given class. The class that uses a trait can change
 the visibility of any of that trait's members, by either widening or
 narrowing that visibility. For example, a private trait member can be
-made public in the using class, and a pubic trait member can be made
+made public in the using class, and a public trait member can be made
 private in that class.
 
 Once implementation comes from both a base class and one or more traits,

@@ -6,6 +6,16 @@ To join the conversation, send blank email to:
 
 	standards-subscribe@lists.php.net
 
+
+Bug reports can be filed at:
+
+	https://bugs.php.net/report.php?package_name=PHP+Language+Specification
+
+and browsed at:
+
+	https://bugs.php.net/search.php?cmd=display&status=Open&package_name%5B%5D=PHP+Language+Specification
+
+
 The upstream url of this repo is:
 
 	git@git.php.net:/php-langspec.git

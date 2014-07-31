@@ -7857,7 +7857,7 @@ defined in [§§](#properties); *method-declaration* is defined in [§§](#metho
 **Semantics**
 
 The members of a class are those specified by its
-*class-member-declaration*s, and the members inherited from its base
+*class-member-declarations*, and the members inherited from its base
 class. (A class may also contain dynamic members, as described in [§§](#dynamic-members).
 However, as these have no compile-time names, they can only be accessed
 via method calls.)

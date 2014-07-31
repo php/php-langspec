@@ -2363,7 +2363,7 @@ If the source is an object, the conversion is invalid.
 
 If the source is a resource, the result is the resource's unique ID.
 
-The library function [`intva`l
+The library function [`intval`
 (§xx)](http://www.php.net/manual/en/function.intval.php) allows values
 to be converted to `int`.
 

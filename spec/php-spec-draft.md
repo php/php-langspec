@@ -9579,7 +9579,7 @@ class MyQueue implements MyCollection
 }
 function processCollection(MyCollection $p1)
 {
-  ... /* can process any object whose class implements MyCollection
+  ... /* can process any object whose class implements MyCollection */
 }
 processCollection(new MyList(...));
 processCollection(new MyQueue(...));

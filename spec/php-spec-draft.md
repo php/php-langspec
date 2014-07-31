@@ -313,9 +313,9 @@ This specification is intended to provide a complete and concise
 definition of the syntax and semantics of the PHP language, suitable for
 use by the following:
 
--   Implementers of a PHP compiler
--   Implementers of a test suite for the PHP language
--   Programmers writing PHP code
+-   Implementers of a PHP compiler.
+-   Implementers of a test suite for the PHP language.
+-   Programmers writing PHP code.
 
 For now, the runtime library has been excluded, as that is documented at
 [www.php.net](http://www.php.net). As such, all forward references to library facilities have placeholders of the form (§xx).
@@ -373,7 +373,7 @@ for the current edition of this specification, they are not guaranteed
 to exist in future revisions. Usually, they are old approaches that have
 been superseded by new ones, and use of the old approach is discouraged.
 (Examples of this include the use of braces ({ }) for subscripting, and
-the use of old-style constructor names.)
+the use of old-style constructor names).
 
 #Terms and Definitions
 For the purposes of this document, the following terms and definitions
@@ -444,7 +444,7 @@ A PHP *program* consists of one or more source files, known formally as
 
 All of the sections in a script are treated as though they belonged to
 one continuous section, except that any intervening text is treated as
-though it were a string literal given to the intrinsic `echo` ([§§](#echo)). 
+though it were a string literal given to the intrinsic `echo` ([§§](#echo)).
 
 A script can import another script via a script inclusion operator ([§§](#script-inclusion-operators)).
 
@@ -587,7 +587,7 @@ value. This VStore contains a handle to an HStore which represents the
 contents of an object of type Point with two instance properties `$x`
 and `$y`. This HStore contains two VSlots representing instance
 properties `$x` and `$y`, and each of these VSlots points to a distinct
-VStore which contains an integer value. 
+VStore which contains an integer value.
 
 ***Implementation Notes:*** php.net’s implementation can be mapped roughly
 onto the abstract memory model as follows: `zval pointer => VSlot, zval
@@ -602,13 +602,13 @@ same. Only the following program constructs can change a VSlot to point
 to different VStore, all of which are *byRef-aware* operations and all
 of which (except unset) use the & punctuator:
 
--   byRef assignment ([§§](#byref-assignment))
--   byRef parameter declaration ([§§](#function-definitions))
--   byRef function return ([§§](#the-return-statement), [§§](#function-definitions))
--   byRef value in a foreach statement ([§§](#the-foreach-statement))
--   byRef initializer for an array element ([§§](#array-creation-operator))
--   byRef variable-use list in an anonymous function ([§§](#anonymous-function-creation))
--   unset ([§§](#unset))
+-   byRef assignment ([§§](#byref-assignment)).
+-   byRef parameter declaration ([§§](#function-definitions)).
+-   byRef function return ([§§](#the-return-statement), [§§](#function-definitions)).
+-   byRef value in a foreach statement ([§§](#the-foreach-statement)).
+-   byRef initializer for an array element ([§§](#array-creation-operator)).
+-   byRef variable-use list in an anonymous function ([§§](#anonymous-function-creation)).
+-   unset ([§§](#unset)).
 
 ###Reclamation and Automatic Memory Management
 The Engine is required to manage the lifetimes of VStores and HStores
@@ -1552,7 +1552,7 @@ The following distinct scopes exist:
     initialization through to the end of that namespace ([§§](#general-28)).
 
 A variable declared or first initialized inside a function, has function
-scope; otherwise, the variable has script scope. 
+scope; otherwise, the variable has script scope.
 
 Superglobals ([§§](#general-5)) are always in scope; they never need explicit
 declaration.
@@ -1567,7 +1567,7 @@ is treated like a function body, in which case, the *variable-name* in
 *parameter-declaration-list* is treated like a parameter.
 
 The scope of a *named-label* ([§§](#labeled-statements)) is the body of the function in
-which the label is defined. 
+which the label is defined.
 
 The scope of a class member m ([§§](#class-members)) declared in, or inherited by, a
 class type C is the body of C.
@@ -1649,7 +1649,7 @@ If function `doit` is called multiple times, each time it is called, its
 automatic variables are created and initialized, whereas its static
 variables retain their values from previous calls.
 
-Consider the following recursive function: 
+Consider the following recursive function:
 
 ```
 function factorial($i)
@@ -1736,20 +1736,20 @@ must be supported.
 Certain operations on integer values produce a mathematical result that
 cannot be represented as an integer. Examples include the following:
 
--   Incrementing the largest value or decrementing the smallest value
--   Applying the unary minus to the smallest value
--   Multiplying, adding, or subtracting two values
+-   Incrementing the largest value or decrementing the smallest value.
+-   Applying the unary minus to the smallest value.
+-   Multiplying, adding, or subtracting two values.
 
 In such cases, the resulting type and value is implementation-defined,
 but must be one of the following:
 
 -   The computation is done as though the types of the values were `float`
-    with the result having that type
+    with the result having that type.
 -   The result type is int and the value reflects wrap-around (for
-    example adding 1 to the largest value results in the smallest value)
+    example adding 1 to the largest value results in the smallest value).
 -   The computation is done as though the type had some unspecified,
     arithmetic-like object type with the result being mathematically
-    correct
+    correct.
 
 The constants `PHP_INT_SIZE` (§[[6.3](#core-predefined-constants)](#core-predefined-constants)) and `PHP_INT_MAX` (§[[6.3](#core-predefined-constants)](#core-predefined-constants)) define certain
 characteristics about type `int`.
@@ -1841,7 +1841,7 @@ object, and the library function
 
 A [*resource*](http://www.php.net/manual/en/language.types.resource.php)
 is a descriptor to some sort of external entity. (Examples include
-files, databases, and sockets.)
+files, databases, and sockets).
 
 A resource is an abstract entity whose representation is unspecified.
 Resources are only created or consumed by the implementation; they are
@@ -1853,9 +1853,9 @@ When scripts execute in a mode having a command-line interface, the
 following predefined resource constants that correspond to file streams
 are automatically opened at program start-up:
 
--   STDIN, which maps to standard input (php://stdin)
--   STDOUT, which maps to standard output (php://stdout)
--   STDERR, which maps to standard error (php://stderr)
+-   STDIN, which maps to standard input (php://stdin).
+-   STDOUT, which maps to standard output (php://stdout).
+-   STDERR, which maps to standard error (php://stderr).
 
 The library function `is_resource` (§xx) indicates if a given value is a
 resource, and the library function
@@ -1908,7 +1908,7 @@ automatically available to all scripts; their values are not fixed:
  `__CLASS__`                        | `string`; The name of the current class. From within a trait method, the name of the class in which that trait is used. If the current namespace is other than the default, the namespace name and "\\" are prepended, in that order. If used outside all classes, the result is the empty string. 
 `__DIR__`                            |  `string`; The directory name of the script. A directory separator is only appended for the root directory.
 `__FILE__`                           | `string`; The full name of the script.
-`__FUNCTION__`                       | `string`; Inside a function, the name of the current function exactly as it was declared, with the following prepended: If a named namespace exists, that namespace name followed by "\". If used outside all functions, the result is the empty string. For a method, no parent-class prefix is present. (See `__METHOD__` and [§§](#anonymous-functions).)
+`__FUNCTION__`                       | `string`; Inside a function, the name of the current function exactly as it was declared, with the following prepended: If a named namespace exists, that namespace name followed by "\". If used outside all functions, the result is the empty string. For a method, no parent-class prefix is present. (See `__METHOD__` and [§§](#anonymous-functions)).
 `__LINE__`                           | `int`; the number of the current source line
 `__METHOD__`                         | `string`; Inside a method, the name of the current method exactly as it was declared, with the following prepended, in order: If a named namespace exists, that namespace name followed by "\"; the parent class name or trait name followed by `::`. If used outside all methods, the result is the same as for `__FUNCTION__`.
 `__NAMESPACE__`                      | `string`; The name of the current namespace exactly as it was declared. For the default namespace, the result is the empty string.
@@ -2014,7 +2014,7 @@ Variables have names as defined in [§§](#names). Distinct variables may have
 the same name provided they are in different scopes ([§§](#scope)).
 
 A constant ([§§](#general-4)) is a variable that, once initialized, its value cannot
-be changed. 
+be changed.
 
 Based on the context in which it is declared, a variable has a scope
 ([§§](#scope)) and a storage duration ([§§](#storage-duration)).
@@ -2024,14 +2024,14 @@ the need for a *global-declaration* ([§§](#global-variables)).
 
 The following kinds of variable may exist in a script:
 
--   Constant ([§§](#constants-1))
--   Local variable ([§§](#local-variables))
--   Array element ([§§](#array-elements))
--   Function static ([§§](#function-statics))
--   Global variable ([§§](#global-variables))
--   Instance property ([§§](#instance-properties))
--   Static property ([§§](#static-properties))
--   Class and interface constant ([§§](#class-and-interface-constants))
+-   Constant ([§§](#constants-1)).
+-   Local variable ([§§](#local-variables)).
+-   Array element ([§§](#array-elements)).
+-   Function static ([§§](#function-statics)).
+-   Global variable ([§§](#global-variables)).
+-   Instance property ([§§](#instance-properties)).
+-   Static property ([§§](#static-properties)).
+-   Class and interface constant ([§§](#class-and-interface-constants)).
 
 ##Kinds of Variables
 
@@ -2044,7 +2044,7 @@ See [§§](#general-4).
 **Constraints:**
 
 Outside of a class or interface, a c-constant can be defined only at the
-top level of a script. 
+top level of a script.
 
 **Semantics:**
 
@@ -2287,7 +2287,7 @@ The following variables are automatically available to all scripts:
 
 Variable Name |   Description
 -------------   |    -----------
-`$argc` | `int`; The number of command-line arguments passed to the script. This is at least 1. (See `$argv` below.)
+`$argc` | `int`; The number of command-line arguments passed to the script. This is at least 1. (See `$argv` below).
 `$argv` | `array`; An array of `$argc` elements containing the command-line arguments passed to the script as strings. Each element has an `int` key with the keys being numbered sequentially starting at zero through `$argc-1`. `$argv[0]` is the name of the script. It is implementation-defined as to how white space on command lines is handled, whether letter casing is preserved, which characters constitute quotes, or how `$argv[0]`'s string is formatted. As to how command-line arguments are defined, is unspecified.
 `$_COOKIE` |  `array`; The variables passed to the current script via HTTP Cookies.
 `$_ENV` | `array`; A superglobal ([§§](#general-5)) array in which the environment variable names are element keys, and the environment variable value strings are element values. As to how an environment variable is defined, is unspecified.
@@ -2478,7 +2478,7 @@ Conceptually speaking, a script is translated using the following steps:
     repertoire and encoding scheme into a sequence of 8-bit characters.
 
 2.  Lexical analysis, which translates a stream of input characters into
-    a stream of tokens. 
+    a stream of tokens.
 
 3.  Syntactic analysis, which translates the stream of tokens into
     executable code.
@@ -2500,7 +2500,7 @@ The grammars are presented using *grammar productions*, with each one
 defining a non-terminal symbol and the possible expansions of that
 non-terminal symbol into sequences of non-terminal or terminal symbols.
 In productions, non-terminal symbols are shown in slanted type *like
-this*, and terminal symbols are shown in a fixed-width font `like this`. 
+this*, and terminal symbols are shown in a fixed-width font `like this`.
 
 The first line of a grammar production is the name of the non-terminal
 symbol being defined, followed by one colon for a syntactic grammar
@@ -2563,12 +2563,12 @@ delimited comments ([§§](#comments)).
 
 Lexical processing always results in the creation of the longest
 possible lexical element. (For example, `$a+++++$b` must be parsed as
-`$a++ ++ +$b`, which syntactically is invalid.)
+`$a++ ++ +$b`, which syntactically is invalid).
 
 ##Comments
 
 Two forms of comments are supported: *delimited comments* and
-*single-line comments*. 
+*single-line comments*.
 
 **Syntax:**
 
@@ -2605,12 +2605,12 @@ string literal or a comment, the characters // or \# start a single-line
 comment, which ends with a new line. That new line is not part of the
 comment. However, if the single-line comment is the last source element
 in an embedded script, the trailing new line can be omitted. (Note: this
-allows for uses like `<?php ... // ... ?>`.)
+allows for uses like `<?php ... // ... ?>`).
 
 A delimited comment can occur in any place in a script in which white
 space ([§§](#white-space)) can occur. (For example;
 `/*...*/$c/*...*/=/*...*/567/*...*/;/*...*/` is parsed as `$c=567;`, and
-`$k = $i+++/*...*/++$j;` is parsed as `$k = $i+++ ++$j;`.)
+`$k = $i+++/*...*/++$j;` is parsed as `$k = $i+++ ++$j;`).
 
 **Implementation Notes**
 
@@ -3261,7 +3261,7 @@ Some more text<
 
 There is one null-literal value, `NULL`. Its spelling is case-insensitive.
 (Note: Throughout this specification, the convention is to use all
-uppercase.)
+uppercase).
 
 <pre>
   <i>null-literal::</i>
@@ -3303,7 +3303,7 @@ expression.
 A *side effect* is an action that changes the state of the execution
 environment. (Examples of such actions are modifying a variable, writing
 to a device or file, or calling a function that performs such
-operations.)
+operations).
 
 When an expression is evaluated, it produces a result. It might also
 produce a side effect. Only a few operators produce side effects. (For
@@ -3315,7 +3315,7 @@ the value of `$v` after the assignment has taken place. However, that
 result is never used. Similarly, given the expression statement `++$v`;
 the expression is evaluated to the result incremented-value-of-`$v`, and
 the side effect is that `$v` is actually incremented. Again, the result
-is never used.)
+is never used).
 
 The occurrence of value computation and side effects is delimited by
 *sequence points*, places in a program's execution at which all the
@@ -3327,13 +3327,13 @@ is a sequence point at the end of each full expression. The logical and
 following series of expression statements, `$a = 10; ++$a; $b = $a;`,
 there is sequence point at the end of each full expression, so the
 assignment to $a is completed before `$a` is incremented, and the
-increment is completed before the assignment to `$b`.)
+increment is completed before the assignment to `$b`).
 
 When an expression contains multiple operators, the *precedence* of
 those operators controls the order in which those operators are applied.
 (For example, the expression `$a - $b / $c` is evaluated as
 `$a - ($b / $c)` because the / operator has higher precedence than the
-binary - operator.) The precedence of an operator is determined by the
+binary - operator). The precedence of an operator is determined by the
 definition of its associated grammar production.
 
 If an operand occurs between two operators having the same precedence,
@@ -3342,12 +3342,12 @@ operators' *associativity*. With *left-associative* operators,
 operations are performed left-to-right. (For example, `$a + $b - $c` is
 evaluated as `($a + $b) - $c.`) With *right-associative* operators,
 operations are performed right-to-left. (For example, `$a = $b = $c` is
-evaluated as `$a = ($b = $c)`.)
+evaluated as `$a = ($b = $c)`).
 
 Precedence and associativity can be controlled using *grouping
 parentheses*. (For example, in the expression `($a - $b) / $c`, the
 subtraction is done before the division. Without the grouping
-parentheses, the division would take place first.)
+parentheses, the division would take place first).
 
 While precedence, associativity, and grouping parentheses control the
 order in which operators are applied, they do *not* control the order of
@@ -3360,7 +3360,7 @@ of `$i` on the left-hand side is the old or new `$i`, is unspecified.
 Similarly, in the full expression `$j = $i + $i++`, whether the value
 of `$i` is the old or new `$i`, is unspecified. Finally, in the full
 expression `f() + g() \* h()`, the order in which the three functions are
-called, is unspecified.)
+called, is unspecified).
 
 **Implementation Notes**
 
@@ -3397,7 +3397,7 @@ function, `$a` need not actually be incremented.
 is defined in [§§](#general-9); *const-expression* is defined in [§§](#constant-expressions);
 *intrinsic* is defined in [§§](#general-12);
 *anonymous-function-creation-expression* is defined in [§§](#anonymous-function-creation); and
-*expression* is defined in [§§](#script-inclusion-operators). 
+*expression* is defined in [§§](#script-inclusion-operators).
 
 **Semantics**
 
@@ -3482,7 +3482,7 @@ array-creation operator `[]` ([§§](#array-creation-operator)).
 **Constraints**
 
 *expression* must not designate an array nor an instance of a type not
-having a `__toString` method ([§§](#method-__tostring)). 
+having a `__toString` method ([§§](#method-__tostring)).
 
 **Semantics**
 
@@ -3548,7 +3548,7 @@ empty($v)   // results in FALSE
     eval (  <i>expression</i>  )
 </pre>
 
-*expression* is defined in [§§](#general-16).   
+*expression* is defined in [§§](#general-16).
 
 **Constraints**
 
@@ -3638,7 +3638,7 @@ exit;
     <i>expression-list-one-or-mor</i>  ,  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-16).   
+*expression* is defined in [§§](#general-16).
 
 **Constraints**
 
@@ -3683,7 +3683,7 @@ isset($v1, $v2, $v3)  // results in FALSE
     <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-16).   
+*expression* is defined in [§§](#general-16).
 
 **Constraints**
 
@@ -3742,12 +3742,12 @@ list($min, list($max, $avg)) = [0, [1 => 67, 99, 0 => 100], 33];
     print  (  <i>expression</i>  )
 </pre>
 
-*expression* is defined in [§§](#general-16).   
+*expression* is defined in [§§](#general-16).
 
 **Constraints**
 
 *expression* must not designate an array or an instance of a type not
-having a `__toString` method. 
+having a `__toString` method.
 
 **Semantics**
 
@@ -3780,7 +3780,7 @@ $a > $b ? print "..." : print "...";
     unset  (  <i>expression-list-one-or-more</i>  )
 </pre>
 
-*expression-list-one-or-more* is defined in [§§](#isset).  
+*expression-list-one-or-more* is defined in [§§](#isset).
 
 **Constraints**
 
@@ -3799,7 +3799,7 @@ When called from inside a function, this intrinsic behaves, as follows:
     alias to that variable from the scope of the current call to that
     function. Once the function returns, the global variable is still
     set. (To unset the global variable, use unset on the corresponding
-    [`$GLOBALS`](http://us3.php.net/manual/en/reserved.variables.globals.php) array entry ([§§](#predefined-variables)).)
+    [`$GLOBALS`](http://us3.php.net/manual/en/reserved.variables.globals.php) array entry ([§§](#predefined-variables))).
 -   For a variable passed byRef to that function, `unset` removes the
     alias to that variable from the scope of the current call to that
     function. Once the function returns, the passed-in argument variable
@@ -4244,7 +4244,7 @@ If *expression* is present,
     or postfix operator. The type and value of the result is the type
     and value returned by `offsetGet`.
 
-If *expression* is omitted, 
+If *expression* is omitted,
 
 -   If the usage context is as the left-hand side of a
     *simple-assignment-expression*: The object's method `offsetSet`
@@ -4265,7 +4265,7 @@ If *expression* is omitted, 
     operator. The type and value of the result is the type and value
     returned by `offsetGet`.
 
-Note: The brace (`{...}`) form of this operator has been deprecated. 
+Note: The brace (`{...}`) form of this operator has been deprecated.
 
 **Examples**
 
@@ -4419,7 +4419,7 @@ $anon();  // call the anonymous function encapsulated by that object
 **Constraints**
 
 *postfix-expression* must designate an object or be `NULL`, `FALSE`, or an
-empty string. 
+empty string.
 
 *name* must designate an instance property, or an instance or static
 method of *postfix-expression*'s class type.
@@ -4680,7 +4680,7 @@ These operators associate right-to-left.
     -- <i>unary-expression</i>
 </pre>
 
-*unary-expression* is defined in [§§](#general-14).   
+*unary-expression* is defined in [§§](#general-14).
 
 **Constraints**
 
@@ -4782,7 +4782,7 @@ $a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
     +  -  !  \
 </pre>
 
-*cast-expression* is defined in [§§](#cast-operator).   
+*cast-expression* is defined in [§§](#cast-operator).
 
 **Constraints**
 
@@ -4796,7 +4796,7 @@ The operand of the unary `~` operator must have arithmetic type.
 *Arithmetic Operands*
 
 For a unary `+` operator used with an arithmetic operand, the type and
-value of the result is the type and value of the operand. 
+value of the result is the type and value of the operand.
 
 For a unary `-` operator used with an arithmetic operand, the value of the
 result is the negated value of the operand. However, if an int operand's
@@ -4869,7 +4869,7 @@ $v = ~0b1010101;
     @   <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-16).   
+*expression* is defined in [§§](#general-16).
 
 **Semantics**
 
@@ -4965,7 +4965,7 @@ $result = `$d {$f}`;      // result is the output of command dir *.*
     real  string  unset
 </pre>
 
-*unary-expression* is defined in [§§](#general-14).   
+*unary-expression* is defined in [§§](#general-14).
 
 **Constraints**
 
@@ -5003,7 +5003,7 @@ A *cast-type* of `string` results in a conversion to type `string`. See [§§](#
 for details.
 
 A *cast-type* of `unset` always results in a value of `NULL`. (This use of
-`unset` should not be confused with the `unset` intrinsic ([§§](#unset)).)
+`unset` should not be confused with the `unset` intrinsic ([§§](#unset))).
 
 **Examples**
 
@@ -5095,7 +5095,7 @@ ${$a}[0] = 5;   // $ gets first shot at $a
 </pre>
 
 *unary-expression* is defined in [§§](#general-14); *expression* is defined in
-[§§](#general-16); and *qualified-name* is defined in [§§](#names). 
+[§§](#general-16); and *qualified-name* is defined in [§§](#names).
 
 **Constraints**
 
@@ -5124,7 +5124,7 @@ type, or of a derived type, of the right-hand *expression*.
 If either *expression* is not an instance, `FALSE` is returned.
 
 Note: This operator supersedes the library function `is_a` (§xx), which
-has been deprecated. 
+has been deprecated.
 
 **Examples**
 
@@ -5157,7 +5157,7 @@ $e1 instanceof $iName     // TRUE
     <i>multiplicative-expression</i>  %  <i>multiplicative-expression</i>
 </pre>
 
-*instanceof-expression* is defined in [§§](#instanceof-operator). 
+*instanceof-expression* is defined in [§§](#instanceof-operator).
 
 **Constraints**
 
@@ -5176,7 +5176,7 @@ Otherwise, the type and value of the result is implementation-defined
 
 Division by zero results in a diagnostic followed by a `bool` result
 having value `FALSE`. (The values +/- infinity and NaN cannot be generated
-via this operator; instead, use the predefined constants `INF` and `NAN`.)
+via this operator; instead, use the predefined constants `INF` and `NAN`).
 
 The binary `/` operator produces the quotient from dividing the left-hand
 operand by the right-hand one. If either or both operands have
@@ -5216,7 +5216,7 @@ These operators associate left-to-right.
     <i>additive-expression</i>  .  <i>multiplicative-expression</i>
 </pre>
 
-*multiplicative-expression* is defined in [§§](#multiplicative-operators). 
+*multiplicative-expression* is defined in [§§](#multiplicative-operators).
 
 **Constraints**
 
@@ -5282,7 +5282,7 @@ TRUE . NULL;      // string with value "1"
     <i>shift-expression</i>  >>  <i>additive-expression</i>
 </pre>
 
-*additive-expression* is defined in [§§](#additive-operators). 
+*additive-expression* is defined in [§§](#additive-operators).
 
 **Constraints**
 
@@ -5295,7 +5295,7 @@ left by `e2` positions. Bits shifted off the left end are discarded, and
 zero bits are shifted on from the right end. Given the expression
 `e1 >> e2`, the bits in the value of `e1` are shifted right by
 `e2` positions. Bits shifted off the right end are discarded, and the sign
-bit is propagated from the left end. 
+bit is propagated from the left end.
 
 If either operand does not have type `int`, its value is first converted
 to that type.
@@ -5332,7 +5332,7 @@ These operators associate left-to-right.
     <i>relational-expression</i>  >=  <i>shift-expression</i>
 </pre>
 
-*shift-expression* is defined in [§§](#bitwise-shift-operators). 
+*shift-expression* is defined in [§§](#bitwise-shift-operators).
 
 **Semantics**
 
@@ -5340,7 +5340,7 @@ Operator `<` represents *less-than*, operator `>` represents
 *greater-than*, operator `<=` represents *less-than-or-equal-to*, and
 operator `>=` represents *greater-than-or-equal-to*.
 
-The type of the result is `bool`. 
+The type of the result is `bool`.
 
 The operands are processed using the following steps, in order:
 
@@ -5427,7 +5427,7 @@ FALSE < "abc"   // result has value TRUE
     <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>
 
-*relational-expression* is defined in [§§](#relational-operators). 
+*relational-expression* is defined in [§§](#relational-operators).
 
 **Semantics**
 
@@ -5440,7 +5440,7 @@ operator `===` represents *identity* and operator `!==` represents
 see if the two operands are the exact same object, not two different
 objects of the same type and value.
 
-The type of the result is `bool`. 
+The type of the result is `bool`.
 
 The operands are processed using the following steps, in order:
 
@@ -5518,7 +5518,7 @@ TRUE !== 100  // result has value TRUE
     <i>bit-wise-AND-expression</i>  &  <i>equality-expression</i>
 </pre>
 
-*equality-expression* is defined in [§§](#equality-operators). 
+*equality-expression* is defined in [§§](#equality-operators).
 
 **Constraints**
 
@@ -5552,7 +5552,7 @@ $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
     <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
 </pre>
 
-*bitwise-AND-expression* is defined in [§§](#bitwise-and-operator). 
+*bitwise-AND-expression* is defined in [§§](#bitwise-and-operator).
 
 **Constraints**
 
@@ -5588,7 +5588,7 @@ $v1 = $v1 ^ $v2;    // $v1 is now -987, and $v2 is now 1234
     <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
 </pre>
 
-*bitwise-exc-OR-expression* is defined in [§§](#bitwise-exclusive-or-operator). 
+*bitwise-exc-OR-expression* is defined in [§§](#bitwise-exclusive-or-operator).
 
 **Constraints**
 
@@ -5622,7 +5622,7 @@ $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
     <i>logical-AND-expression-1</i>  &&  <i>bitwise-inc-OR-expression</i>
 </pre>
 
-*bitwise-incl-OR-expression* is defined in [§§](#bitwise-inclusive-or-operator). 
+*bitwise-incl-OR-expression* is defined in [§§](#bitwise-inclusive-or-operator).
 
 **Constraints**
 
@@ -5656,7 +5656,7 @@ if ($month > 1 && $month <= 12) ...
     <i>logical-inc-OR-expression-1</i>  ||  <i>logical-AND-expression-1</i>
 </pre>
 
-*logical-exc-OR-expression* is defined in [§§](#bitwise-exclusive-or-operator). 
+*logical-exc-OR-expression* is defined in [§§](#bitwise-exclusive-or-operator).
 
 **Constraints**
 
@@ -6149,7 +6149,7 @@ configuration directive
     <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-16).   
+*expression* is defined in [§§](#general-16).
 
 **Constraints:**
 
@@ -6176,7 +6176,7 @@ Operator `include` has a side effect of including the designated include
 file. The result produced by this operator is one of the following:
 `FALSE`, which indicates the inclusion attempt failed; the `int` 1, which
 indicates the default value for inclusion attempt succeeded; or some
-other value, as returned from the included file ([§§](#the-return-statement)). 
+other value, as returned from the included file ([§§](#the-return-statement)).
 
 The library function `get_included_files` (§xx) provides the names of
 all files included or required.
@@ -6199,7 +6199,7 @@ If ((include 'Positions.php') == 1) ...
     include_once  <i>include-filename</i>
 </pre>
 
-*include-filename* is defined in [§§](#the-include-operator).   
+*include-filename* is defined in [§§](#the-include-operator).
 
 **Semantics:**
 
@@ -6241,7 +6241,7 @@ $c1 = new Circle(9, 7, 2.4);
     require  <i>include-filename</i>
 </pre>
 
-*include-filename* is defined in [§§](#the-include-operator).   
+*include-filename* is defined in [§§](#the-include-operator).
 
 **Semantics:**
 
@@ -6262,7 +6262,7 @@ all files included or required.
     require_once  <i>include-filename</i>
 </pre>
 
-*include-filename* is defined in [§§](#the-include-operator).   
+*include-filename* is defined in [§§](#the-include-operator).
 
 **Semantics:**
 
@@ -6287,7 +6287,7 @@ Once an include file has been included, a subsequent use of
 </pre>
 
 *array-creation-expression* is defined in [§§](#array-creation-operator) and *expression* is
-defined in [§§](#general-16).   
+defined in [§§](#general-16).
 
 **Constraints:**
 
@@ -6346,7 +6346,7 @@ is defined in [§§](#class-declarations); *interface-declaration* is defined in
 *trait-declaration* is defined in [§§](#trait-declarations); *namespace-definition* is
 defined in [§§](#defining-namespaces); *namespace-use-declaration* is defined in [§§](#namespace-use-declarations);
 *global-declaration* is defined in [§§](#global-variables); and
-*function-static-declaration* is defined in [§§](#function-statics). 
+*function-static-declaration* is defined in [§§](#function-statics).
 
 ##Compound Statements
 
@@ -6417,7 +6417,7 @@ while (condition)
 **Constraints**
 
 A named label must only be used as the target of a `goto` statement
-([§§](#the-goto-statement)). 
+([§§](#the-goto-statement)).
 
 Named labels must be unique within a function.
 
@@ -6765,7 +6765,7 @@ while (TRUE)
 
 *statement* is defined in [§§](#general-17) and *expresion* is defined in [§§](#general-16).
 
- (Note: There is no `:/enddo` alternate syntax.)
+ (Note: There is no `:/enddo` alternate syntax).
 
 **Constraints**
 
@@ -6993,7 +6993,7 @@ is defined in [§§](#the-return-statement); and *throw-statement* is defined in
     goto  <i>name</i>  ;
 </pre>
 
-*name* is defined in [§§](#names). 
+*name* is defined in [§§](#names).
 
 **Constraints**
 
@@ -7047,7 +7047,7 @@ done:
     <i>integer-literal</i>
 </pre>
 
-*integer-literal* is defined in [§§](#integer-literals). 
+*integer-literal* is defined in [§§](#integer-literals).
 
 **Constraints**
 
@@ -7094,7 +7094,7 @@ for ($i = 1; $i <= 5; ++$i)
     break  <i>breakout-level<sub>opt</sub></i>  ;
 </pre>
 
-*breakout-level* is defined in [§§](#the-continue-statement). 
+*breakout-level* is defined in [§§](#the-continue-statement).
 
 **Constraints**
 
@@ -7158,7 +7158,7 @@ for ($i = 10; $i <= 40; $i +=10)
     return  <i>expression<sub>opt</sub></i>  ;
 </pre>
 
-*expression* is defined in [§§](#general-16). 
+*expression* is defined in [§§](#general-16).
 
 **Constraints**
 
@@ -7170,7 +7170,7 @@ The *expression* in a *return-statement* in a generator function
 A `return` statement from within a function terminates the execution of
 that function normally, and depending on how the function was defined
 ([§§](#function-calls)), it returns the value of *expression* to the function's caller
-by value or byRef. If *expression* is omitted the value `NULL` is used. 
+by value or byRef. If *expression* is omitted the value `NULL` is used.
 
 If execution flows into the closing brace (`}`) of a function, `return
 NULL;` is implied.
@@ -7184,7 +7184,7 @@ defined, with a value of `NULL`.
 A `return` statement is permitted in a try-block ([§§](#the-try-statement)) and a catch-block
 ([§§](#the-try-statement)). However, it is unspecified whether a `return` statement is
 permitted in a finally-block ([§§](#the-try-statement)), and, if so, the semantics of
-that. 
+that.
 
 Using a `return` statement inside a finally-block will override any other
 `return` statement or thrown exception from the try-block and all its
@@ -7202,7 +7202,7 @@ is the value returned; otherwise, the value `NULL` is returned. If
 execution flows to the end of the script, `return 1;` is implied. However,
 if execution flows to the end of the top level of a script, `return 0;` is
 implied. Likewise, if *expression* is omitted at the top level. (See
-exit ([§§](#exitdie)).)
+exit ([§§](#exitdie))).
 
 Returning from a constructor or destructor behaves just like returning
 from a function.
@@ -7213,7 +7213,7 @@ terminate.
 Return statements can also be used in the body of anonymous functions.
 
 `return` terminates the execution of source code given to the intrinsic
-[`eval` ([§§](#eval))](http://www.php.net/manual/en/function.eval.php). 
+[`eval` ([§§](#eval))](http://www.php.net/manual/en/function.eval.php).
 
 **Examples**
 
@@ -7267,14 +7267,14 @@ enclosing function, `$a` need not actually be incremented.
     throw  <i>expression</i>  ;
 </pre>
 
-*expression* is defined in [§§](#general-16). 
+*expression* is defined in [§§](#general-16).
 
 **Constraints**
 
 The type of *expression* must be Exception ([§§](#class-exception)) or a subclass of that
 class.
 
-*expression* must be such that an alias to it can be created. 
+*expression* must be such that an alias to it can be created.
 
 **Semantics**
 
@@ -7343,13 +7343,13 @@ that can handle the run-time type of the exception, the function that
 called the current function is searched for a lexically enclosing
 try-block that encloses the call to the current function. This process
 continues until a catch-block is found that can handle the current
-exception. 
+exception.
 
 If a matching catch-block is located, the Engine prepares to transfer
 control to the first statement of that catch-block. However, before
 execution of that catch-block can start, the Engine first executes, in
 order, any finally-blocks associated with try-blocks nested more deeply
-than the one that caught the exception. 
+than the one that caught the exception.
 
 If no matching catch-block is found, the behavior is
 implementation-defined.
@@ -7496,7 +7496,7 @@ arrays. See §xx.
 mainstream languages. Specifically, in PHP, array elements need not have
 the same type, the subscript index need not be an integer (so there is
 no concept of a base index of zero or 1), and there is no concept of
-consecutive elements occupying physically adjacent memory locations.)
+consecutive elements occupying physically adjacent memory locations).
 
 ##Array Creation and Initialization
 
@@ -7623,7 +7623,7 @@ modifiable lvalue.
 
 A *function-definition* may exist at the top level of a script, inside
 any *compound-statement*, in which case, the function is conditionally
-defined ([§§](#general-22)), or inside a *method-declaration* ([§§](#methods)). 
+defined ([§§](#general-22)), or inside a *method-declaration* ([§§](#methods)).
 
 By default, a parameter will accept an argument of any type. However, by
 specifying a *type-hint*, the types of argument accepted can be
@@ -7632,7 +7632,7 @@ type is accepted. By specifying `callable`, only an argument designating a
 function is accepted. By specifying *qualified-name*, only an instance
 of a class having that type, or being derived from that type, are
 accepted, or only an instance of a class that implements that interface
-type directly or indirectly is accepted.    
+type directly or indirectly is accepted.
 
 ##Variable Functions
 
@@ -7665,9 +7665,9 @@ A class is a type that may contain zero or more explicitly declared
 *members*, which can be any combination of *class constants* ([§§](#constants-2));
 data members, called *properties* ([§§](#properties)); and function members, called
 *methods* ([§§](#methods)). (The ability to add properties and methods to an
-instance at runtime is described in [§§](#dynamic-members).) An object (often called an
+instance at runtime is described in [§§](#dynamic-members)). An object (often called an
 *instance*) of a class type is created (i.e., *instantiated*) via the
-new operator ([§§](#the-new-operator)). 
+new operator ([§§](#the-new-operator)).
 
 PHP supports inheritance ([§§](#class-declarations)), a means by which a *derived class* can
 *extend* and specialize a single *base class*. However, unlike numerous
@@ -7694,7 +7694,7 @@ The members of a class each have a default or explicitly declared
 member with `private` visibility may be accessed only from within its own
 class. A member with `protected` visibility may be accessed only from
 within its own class and from classes derived from that class. Access to
-a member with `public` visibility is unrestricted. 
+a member with `public` visibility is unrestricted.
 
 The *signature* of a method is a combination of the parent class name,
 that method's name, and its parameter list, including type hints and
@@ -7707,7 +7707,7 @@ base class.
 
 When an instance is allocated, new returns a handle that points to that
 object. As such, assignment of a handle does not copy the object itself.
-(See [§§](#cloning-objects) for a discussion of shallow and deep copying.)
+(See [§§](#cloning-objects) for a discussion of shallow and deep copying).
 
 ##Class Declarations
 
@@ -7860,7 +7860,7 @@ The members of a class are those specified by its
 *class-member-declaration*s, and the members inherited from its base
 class. (A class may also contain dynamic members, as described in [§§](#dynamic-members).
 However, as these have no compile-time names, they can only be accessed
-via method calls.)
+via method calls).
 
 A class may contain the following members:
 
@@ -7869,7 +7869,7 @@ A class may contain the following members:
 -   Methods – the computations and actions that can be performed by the
     class ([§§](#methods), [§§](#methods-with-special-semantics)).
 -   Constructor – the actions required to initialize an instance of the
-    class ([§§](#constructors))
+    class ([§§](#constructors)).
 -   Destructor – the actions to be performed when an instance of the
     class is no longer needed ([§§](#destructors)).
 
@@ -7943,7 +7943,7 @@ an instance at runtime. In the case of dynamic properties, if a class
 makes provision to do so by defining a series of special methods, it can
 deal with the allocation and management of storage for those properties,
 by storing them in another object or in a database, for example. (The
-default behavior is for the Engine to allocate a VSlot for each one.)
+default behavior is for the Engine to allocate a VSlot for each one).
 This is called *class-specific dynamic allocation*. Otherwise, the
 Engine takes care of the storage in some unspecified manner. Dynamic
 method handling is only possible when ** class-specific dynamic
@@ -7985,7 +7985,7 @@ instance or the class. However, the illusion of doing that is achieved
 by allowing a call to an instance or static method, but one which is not
 declared in that instance's class, to be accepted, intercepted by a
 method called `__call` ([§§](#method-__call)) or `__callStatic` ([§§](#method-__callstatic)), and
-dealt with under program control. 
+dealt with under program control.
 
 Consider the following code fragment, in which class Widget has neither
 an instance method called `iMethod` nor a static method called `sMethod`,
@@ -8093,7 +8093,7 @@ The visibility modifiers are described in [§§](#general-23). If
 implies public visibility. The `static` modifier is described in [§§](#class-members).
 
 The *property-initializer*s for instance properties are applied prior to
-the class's constructor being called. 
+the class's constructor being called.
 
 An instance property that is visible may be unset ([§§](#unset)), in which
 case, the property is actually removed from that instance.
@@ -8208,14 +8208,14 @@ to initialize an instance immediately after it has been created. Any
 instance properties not explicitly initialized by a constructor take on
 the value `NULL`. Like a method, a constructor can return a result by
 value or byRef. (Unlike a method, a constructor cannot be abstract or
-static.)
+static).
 
 If *visibility-modifier* is omitted, `public` is assumed. A `private`
 constructor inhibits the creation of an instance of the class type.
 
 Constructors can be overridden in a derived class by redeclaring them.
 However, an overriding constructor need not have the same signature as
-defined in the base class. 
+defined in the base class.
 
 Constructors are called by *object-creation-expression*s ([§§](#the-new-operator))
 and from within other constructors.
@@ -8300,11 +8300,11 @@ instances of all classes are called automatically once there are no
 handles pointing to those instances or in some unspecified order during
 program shutdown. Like a method, a destructor can return a result by
 value or byRef. (Unlike a method, a destructor cannot be abstract or
-static.)
+static).
 
-If *visibility-modifier* is omitted, `public` is assumed. 
+If *visibility-modifier* is omitted, `public` is assumed.
 
-Destructors can be overridden in a derived class by redeclaring them. 
+Destructors can be overridden in a derived class by redeclaring them.
 
 Destructors are called by the Engine or from within other destructors.
 
@@ -8396,7 +8396,7 @@ visible method by that name is found, a dynamic method is assumed, and
 deliberately a dynamic method with the same name as a visible one, the
 visible method might be added later. This name "duplication" is
 convenient when adding a dynamic method to a class without having to
-worry about a name clash with any method names that class inherits.)
+worry about a name clash with any method names that class inherits).
 
 While a method-name source token has a prescribed syntax, there are no
 restrictions on the spelling of the dynamic method name designated by
@@ -8459,7 +8459,7 @@ deliberately a static dynamic method with the same name as a static
 visible one, the visible method might be added later. This name
 "duplication" is convenient when adding a dynamic method to a class
 without having to worry about a name clash with any method names that
-class inherits.)
+class inherits).
 
 While a method-name source token has a prescribed syntax, there are no
 restrictions on the spelling of the dynamic method name designated by
@@ -8495,7 +8495,7 @@ Widget::sMethod(NULL, 1.234); // Widget::__callStatic('sMethod', array(...))
 
 This instance method is called by the `clone` operator ([§§](#the-clone-operator)),
 (typically) to make a deep copy ([§§](#)) of the current class component of the instance on which it is
-called. (Method `__clone` cannot be called directly by the program.) 
+called. (Method `__clone` cannot be called directly by the program).
 
 Consider a class `Employee`, from which is derived a class `Manager`. Let us
 assume that both classes contain properties that are objects. To make a
@@ -8518,7 +8518,7 @@ operator, that value will be ignored. The value returned to a
 While cloning creates a new object, it does so without using a
 constructor, in which case, code may need to be added to the `__clone`
 method to emulate what happens in a corresponding constructor. (See the
-`Point` example below.)
+`Point` example below).
 
 An implementation of `__clone` should factor in the possibility of an
 instance having dynamic properties ([§§](#dynamic-members)).
@@ -8715,7 +8715,7 @@ instance method returns `TRUE`; otherwise, `FALSE` is returned.
 Typically, `__isset` is called implicitly, when the intrinsic `isset`
 ([§§](#isset)) is called with an argument that designates a property that
 is not visible. (It can also be called by the intrinsic empty
-([§§](#empty)).) Now while `__isset` can be called explicitly, the two
+([§§](#empty))). Now while `__isset` can be called explicitly, the two
 scenarios do not necessarily produce the same result. Consider the
 expression `isset($p->m)`, where `p` is an instance and `m` is a property
 name. If `m` is the name of a visible property, `__isset` is not called.
@@ -8784,7 +8784,7 @@ property by that name is found, a dynamic property is assumed, and
 deliberately a dynamic property with the same name as a visible one, the
 visible property might be added later. This name "duplication" is
 convenient when adding a dynamic property to a class without having to
-worry about a name clash with any property names that class inherits.)
+worry about a name clash with any property names that class inherits).
 
 The parameter `$value` can have any type including an object type, and
 that type could have a destructor. Any dynamic properties of such types,
@@ -8846,13 +8846,13 @@ key is the name of a property in that class.
 This function supports the library function `var_export` (§xx) when it is
 given an instance of this class type. `var_export` takes a variable and
 produces a string representation of that variable as valid PHP code
-suitable for use with the intrinsic `eval` ([§§](#eval)). 
+suitable for use with the intrinsic `eval` ([§§](#eval)).
 
 For an object, the string returned by `var_export` has the following
 general format:
 
 `classname::__set_state(array('prop1' => value, ..., 'propN'
-=> value , ))` 
+=> value , ))`
 
 where the property names `prop1` through `propN` do not include a
 leading dollar (`$`). This string contains a call to the `__set_state`
@@ -8861,7 +8861,7 @@ base classes, in which case, a subsequent call to `eval` using this string
 will fail. To allow the string to be used with eval, the method
 `__set_state` must be defined, and it must create a new instance of the
 class type, initialize its instance properties using the key/value pairs
-in `$properties`, and it must return that new object. 
+in `$properties`, and it must return that new object.
 
 If a derived class does not define a `__set_state` method, a call to it
 will look for such a method in the base class hierarchy, and that method
@@ -8960,7 +8960,7 @@ If a class has a `__sleep` method, the library function `serialize` (§xx)
 calls that method to find out which visible instance properties it
 should serialize. (In the absence of a `__sleep` or `serialize` method,
 all such properties are serialized, including any dynamic properties
-([§§](#dynamic-members)).) This information is returned by `__sleep` as an array of zero
+([§§](#dynamic-members))). This information is returned by `__sleep` as an array of zero
 or more elements, where each element's value is distinct and is the name
 of a visible instance property. These properties' values are serialized
 in the order in which the elements are inserted in the array. If
@@ -8977,7 +8977,7 @@ to include this when a `Point` is serialized. It can simply be recreated
 when that `Point` is unserialized. This information is transient and need
 not be preserved across program executions. (The same can be true for
 other transient properties, such as those that contain temporary results
-or run-time caches.)
+or run-time caches).
 
 In the absence of methods `__sleep` and `__wakeup`, instances of derived
 classes can be serialized and unserialized. However, it is not possible
@@ -9198,7 +9198,7 @@ to include this when a `Point` is serialized. It can simply be recreated
 when that `Point` is unserialized. This information is transient and need
 not be preserved across program executions. (The same can be true for
 other transient properties, such as those that contain temporary results
-or run-time caches.) Furthermore, consider a class `ColoredPoint` that
+or run-time caches). Furthermore, consider a class `ColoredPoint` that
 extends `Point` by adding a `color` property. The following code shows how
 these classes need be defined in order for both `Points` and `ColoredPoints`
 to be serialized and unserialized:
@@ -9411,7 +9411,7 @@ which corresponds to a parameter. The elements are inserted in that
 array in lexical order of their declaration. Each element's key is the
 corresponding parameter name, and each element value is some unspecified
 value. (These values are overridden by the argument values used when the
-anonymous function is called.) In the scenario above, this leads to the
+anonymous function is called). In the scenario above, this leads to the
 following, shown as pseudo code:
 
 ```
@@ -9679,7 +9679,7 @@ The interface members are defined below:
 Name  |   Purpose
 ----    |   -------
 `offsetExists`  | This instance method returns `TRUE` if the instance contains an element with key `$offset`, otherwise, `FALSE`.
-`offsetGet` |  This instance method gets the value having key `$offset`. It may return by value or byRef. (Ordinarily, this wouldn't be allowed because a class implementing an interface needs to match the interface's method signatures; however, the Engine gives special treatment to `ArrayAccess` and allows this.) This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a non-lvalue context.
+`offsetGet` |  This instance method gets the value having key `$offset`. It may return by value or byRef. (Ordinarily, this wouldn't be allowed because a class implementing an interface needs to match the interface's method signatures; however, the Engine gives special treatment to `ArrayAccess` and allows this). This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a non-lvalue context.
 `offsetSet` | This instance method sets the value having key `$offset` to $value. It returns no value. This method is called when an instance of a class that implements this interface is subscripted ([§§](#subscript-operator)) in a modifiable-lvalue context.
 `offsetUnset` | This instance method unsets the value having key `$offset`. It returns no value.
 
@@ -9795,7 +9795,7 @@ given aliases.
 
 A class member with a given name overrides one with the same name in any
 traits that class uses, which, in turn, overrides any such name from
-base classes. 
+base classes.
 
 Traits can contain both instance and static members, including both
 methods and properties. In the case of a trait with a static property,
@@ -9968,7 +9968,7 @@ trait T
 An *exception* is some unusual condition in that it is outside the
 ordinary expected behavior. (Examples include dealing with situations in
 which a critical resource is needed, but is unavailable, and detecting
-an out-of-range value for some computation.) As such, exceptions require
+an out-of-range value for some computation). As such, exceptions require
 special handling. This clause describes how exceptions can be created
 and handled.
 
@@ -10041,7 +10041,7 @@ Class Exception
 ```
 
 For information about exception trace-back, see [§§](#tracing-exceptions). For information
-about nested exceptions, see [§§](#tracing-exceptions). 
+about nested exceptions, see [§§](#tracing-exceptions).
 
 The class members are defined below:
 
@@ -10120,7 +10120,7 @@ Consider the case in which a function has a default argument value
 defined for a parameter. If that function is called without an argument
 for the parameter having the default value, no corresponding argument
 exists in array-argument. Only arguments present at the function-call
-site have their values recorded in array-argument. 
+site have their values recorded in array-argument.
 
 See also, library functions `debug_backtrace` (§xx) and
 `debug_print_backtrace` (§xx).
@@ -11526,7 +11526,7 @@ of this specification:
 IEC 60559:1989, *Binary floating-point arithmetic for microprocessor
 systems* (previously designated IEC 559:1989). (This standard is widely
 known by its U.S. national designation, ANSI/IEEE Standard 754-1985,
-IEEE Standard for Binary Floating-Point Arithmetic.)
+IEEE Standard for Binary Floating-Point Arithmetic).
 
 The Unicode Consortium. *The Unicode Standard, Version 5.0*,
 [www.Unicode.org](http://www.Unicode.org)).

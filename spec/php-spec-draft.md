@@ -2359,7 +2359,7 @@ and `d` is the float to be converted:
 		if (dmod < 0) {
 			dmod = ceil(dmod) + two_pow_32;
 		}
-		return (int32_t)(unit32_t)dmod;
+		return (int32_t)(uint32_t)dmod;
 	}
 	return (int32_t)d;
 

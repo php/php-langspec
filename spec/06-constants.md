@@ -123,6 +123,9 @@ Constant Name | Description
 `PHP_VERSION` | `string`; the current PHP version in the form "major.minor.release[extra]".
 `PHP_VERSION_ID` |  `int`; the current PHP version
 `PHP_ZTS` | `int`; Indicates whether the compiler was built with thread safety enabled.
+`STDIN` | `resource`; File resource that maps to standard input (`php://stdin`).
+`STDOUT` | `resource`; File resource that maps to standard output (`php://stdout`).
+`STDERR` | `resource`; File resource that maps to standard error (`php://stderr`).
 `TRUE` |  `bool`; the case-insensitive Boolean value `TRUE`.
 
 The members of the `E_\*` family have values that are powers of 2, so

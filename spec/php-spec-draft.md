@@ -337,8 +337,8 @@ The word "may" indicates "permission", and is never used to mean
 
 A *strictly conforming program* must use only those features of the
 language described in this specification. In particular, it must not
-produce output dependent on any unspecified, undefined, or
-implementation-defined behavior.
+produce output or exhibit behavior dependent on any unspecified, 
+undefined, or implementation-defined behavior.
 
 A *conforming implementation* must accept any strictly conforming
 program. A conforming implementation may have extensions, provided they

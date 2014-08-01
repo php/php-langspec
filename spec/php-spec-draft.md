@@ -9931,7 +9931,7 @@ defined in [§§](#methods); *constructor-declaration* is defined in [§§](#nam
 **Semantics**
 
 The members of a trait are those specified by its
-*trait-member-declaration*s, and the members from any other traits it
+<i>trait-member-declaration</i>s, and the members from any other traits it
 uses.
 
 A trait may contain the following members:

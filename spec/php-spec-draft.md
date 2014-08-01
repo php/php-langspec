@@ -1680,7 +1680,7 @@ lifetime of an HStore ends when no VStores have a handle to it.
 
 The meaning of a value is determined by its *type*. PHP's types are
 categorized as *scalar types* and *composite types*. The scalar types
-are Boolean ([§§](#the-boolean-type)), integer ([§§](#the-integer-type)), floating-point ([§§](#the-floating-point-type)), string
+are boolean ([§§](#the-boolean-type)), integer ([§§](#the-integer-type)), floating-point ([§§](#the-floating-point-type)), string
 ([§§](#the-string-type)), and null ([§§](#the-null-type)). The composite types are array ([§§](#array-types)),
 object ([§§](#object-types)), and resource ([§§](#resource-types)).
 

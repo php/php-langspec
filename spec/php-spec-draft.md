@@ -8599,7 +8599,7 @@ expressions are equivalent; that is; when handling `p->m` in a non-lvalue
 context, if no visible property by that name is found, a dynamic
 property is assumed, and `__get` is called.
 
-Consider the expression $`v = $p->m = 5`, where `m` is a dynamic
+Consider the expression `$v = $p->m = 5`, where `m` is a dynamic
 property. While `__set` ([§§](#method-__set)) is called to assign the value 5 to
 that property, `__get` is not called to retrieve the result after that
 assignment is complete.

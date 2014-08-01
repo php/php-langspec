@@ -8605,7 +8605,7 @@ by value.
 
 This instance method gets the value of the dynamic property ([§§](#dynamic-members))
 designated by `$name`. If no such dynamic property currently exists,
-NULL is returned.
+`NULL` is returned.
 
 Typically, `__get` is called implicitly, when the `->` operator ([§§](#member-selection-operator))
 is used in a non-lvalue context and the named property is not visible.

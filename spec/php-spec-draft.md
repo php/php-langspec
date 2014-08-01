@@ -669,8 +669,8 @@ value assignment and byRef assignment.
 
 ####Value Assignment of Scalar Types to a Local Variable
 Value assignment is the primary means by which the programmer can create
-local variables. If a local variable appears on the left-hand side of
-value assignment does not exist, the engine will bring a new local
+local variables. If a local variable that appears on the left-hand side
+of value assignment does not exist, the engine will bring a new local
 variable into existence and create a VSlot and initial VStore for
 storing the local variable's value.
 

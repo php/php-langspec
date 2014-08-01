@@ -28,8 +28,8 @@ Each array has its own *current element pointer* that designates the
 *current array element*. When an array is created, the current element
 is the first element inserted into the array.
 
-Numerous library functions are available to create and/or manipulate
-arrays. See §xx.
+Numerous [library functions](http://php.net/manual/en/ref.array.php) are available to create and/or manipulate
+arrays.
 
 (Note: Arrays in PHP are quite different from arrays in numerous
 mainstream languages. Specifically, in PHP, array elements need not have

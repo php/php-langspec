@@ -1102,7 +1102,7 @@ We can remove these aliases using `unset($a, $b)`:
 
 Once all the aliases to the VStores are gone, the VStores can be
 destroyed, in which case, there are no more pointers to the HStore, and
-its destructor ([§§]estructors](#Destructors)) can be run.
+its destructor ([§§](#destructors)) can be run.
 
 ####Value Assignment of Array Types to Local Variables
 The semantics of value assignment of array types is different from value

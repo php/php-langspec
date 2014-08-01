@@ -2351,17 +2351,17 @@ In C, the above algorithm might be implemented as follows for a 32-bit integer
 size, where double is a 64-bit IEEE 754 double-precision floating-point type,
 and `d` is the float to be converted:
 
-	if (d > INT32_MAX || d < INT32_MIN) {
-		double	two_pow_32 = pow(2., 32.),
-				dmod;
-
-		dmod = fmod(d, two_pow_32);
-		if (dmod < 0) {
-			dmod = ceil(dmod) + two_pow_32;
-		}
-		return (int32_t)(uint32_t)dmod;
-	}
-	return (int32_t)d;
+    if (d > INT32_MAX || d < INT32_MIN) {
+        double  two_pow_32 = pow(2., 32.),
+                dmod;
+    
+        dmod = fmod(d, two_pow_32);
+        if (dmod < 0) {
+            dmod = ceil(dmod) + two_pow_32;
+        }
+        return (int32_t)(uint32_t)dmod;
+    }
+    return (int32_t)d;
 
 Implementations may implement this conversion differently (for example, on some
 architectures there may be hardware support for this specific conversion mode)

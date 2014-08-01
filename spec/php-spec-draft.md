@@ -1058,7 +1058,7 @@ semantics:
 [VSlot $b *]-----+                               [VStore Int 1] [VStore Int 3]
 </pre>
 `$a` and `$b` now aliases of each other. Note that byRef assignment
-produces a different result than `$b = `$a where `$a` and `$b` would point
+produces a different result than `$b = $a` where `$a` and `$b` would point
 to distinct VStores pointing to the same HStore.
 
 Let's modify the value of the `Point` aliased by `$a` using `$a->move(4,

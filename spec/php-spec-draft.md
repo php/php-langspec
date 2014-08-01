@@ -452,12 +452,24 @@ A script can import another script via a script inclusion operator ([§§](#scri
 
 The top level of a script is simply referred to as the *top level*.
 
+The implementation can also accept other sequences as marking of the script beginning along with `<?php`,
+among which the following may be accepted:
+
+Opening tags:
+- `<?`
+- `<script language="php">`
+- `<%`
+
+Closing tags:
+- `</script>`
+- `%>`
+
 ##Program Start-Up
 A program begins execution at the start of a script ([§§](#program-structure)) designated in
 some unspecified manner. This script is called the *start-up script*.
 
 Once a program is executing, it has access to certain environmental
-information ([§§](#predefined-variables)), as follows:
+information ([§§](#predefined-variables)), which may include:
 
 -   The number of *command-line arguments*, via the predefined variable
     `$argc`.
@@ -465,20 +477,30 @@ information ([§§](#predefined-variables)), as follows:
     predefined variable `$argv`.
 -   A series of *environment variable* names and their definitions.
 
+The exact set of the enviornment variables available is implementation-defined
+and can vary depending on the type and build of the Engine and the environment
+in which it executes.
+
 When a top level ([§§](#program-structure)) is the main entry point for a script, it gets
 the global variable environment. When a top level is invoked via
 `include/require` ([§§](#general-16)), it inherits the variable environment of its caller. Thus,
-when looking at one top level in isolation, it's not
+when looking at one script's top level in isolation, it's not
 possible to tell statically whether it will have the global
 variable environment or some local variable environment. It depends on how the
-pseudo-main is invoked and it depends on the runtime state of the program
+script is invoked and it depends on the runtime state of the program
 when it's invoked.
+
+The implementation may accept more than one start-up script, in which case they
+are executed in implementation-defined order and share the global environment.
 
 ##Program Termination
 A program may terminate normally in the following ways:
 
 -   Execution reaches the end of the start-up script ([§§](#program-start-up)).
--   A `return` statement ([§§](#the-return-statement)) in the start-up script is executed.
+    In case of the multiple start-up scripts, the execution reaches the end
+    of the last of them.
+-   A `return` statement ([§§](#the-return-statement)) in the top level of the
+    last start-up script is executed.
 -   The intrinsic `exit` ([§§](#exitdie)) is called explicitly.
 
 The behavior of the first two cases is equivalent to corresponding calls
@@ -492,8 +514,8 @@ exception handler registered by `set_exception_handler`, that is
 equivalent to `exit(255)`. If execution reaches the end of the start-up
 script via an uncaught exception and an uncaught exception handler was
 registered by `set_exception_handler`, that is equivalent to exit(0). It
-is unspecified whether object destructors ([§§](#destructors)) are run. In all other cases, the
-behavior is unspecified.
+is unspecified whether object destructors ([§§](#destructors)) are run.
+In all other cases, the behavior is unspecified.
 
 ##The Memory Model
 ###General

@@ -970,7 +970,7 @@ more variables. For example, `$a = 123` and `$b =& $a`, and `$c = 'hi'`:
 </pre>
 
 After the byRef assignment, `$a` and `$b` now have an alias relationship.
-Next, let's observe what happens for `$b = &$c`:
+Next, let's observe what happens for `$b =& $c`:
 <pre>
 [VSlot $a *]-->[VStore Int 123]
 

@@ -82,7 +82,7 @@ that trait is used.
 
 **Constraints**
 
-The *name*s in *trait-name-list* must designate trait names, excluding
+The *name* items in *trait-name-list* must designate trait names, excluding
 the name of the trait being declared.
 
 The left-hand *name* in *trait-select-insteadof-clause* must
@@ -104,10 +104,10 @@ available to any class that uses that trait.
 Trait names are case-insensitive.
 
 A *trait-declaration* may also use other traits. This is done via one or
-more *trait-use-clause*s, each of which contains a comma-separated list
-of trait names. A *trait-use-clause* ends in a semicolon or a
-brace-delimited set of *trait-select-insteadof-clause*s and
-*trait-alias-as-clause*s.
+more *trait-use-clause* items, each of which contains a comma-separated list
+of trait names. A *trait-use-clause* list ends in a semicolon or a
+brace-delimited set of *trait-select-insteadof-clause* and
+*trait-alias-as-clause* statements.
 
 A *trait-select-insteadof-clause* allows name clashes to be avoided.
 Specifically, the left-hand *name* designates which name to be used from
@@ -118,7 +118,7 @@ that name in trait `T1` rather than `T2`.
 A *trait-alias-as-clause* allows a (possibly qualified) name to be
 assigned a simple alias name. Specifically, the left-hand *name* in
 *trait-alias-as-clause* designates a name made available by
-*trait-use-clauses* ~~ that is to be aliased, and the right-hand *name*
+*trait-use-clauses* - that is to be aliased, and the right-hand *name*
 is the alias.
 
 If *trait-alias-as-clause* contains a visibility-modifier, that controls
@@ -165,7 +165,7 @@ defined in [§§](14-classes.md#methods); *constructor-declaration* is defined i
 **Semantics**
 
 The members of a trait are those specified by its
-*trait-member-declaration*s, and the members from any other traits it
+*trait-member-declaration* clauses, and the members from any other traits it
 uses.
 
 A trait may contain the following members:

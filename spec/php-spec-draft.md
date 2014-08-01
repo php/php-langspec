@@ -955,7 +955,7 @@ using `unset` on variable `$a` or variable `$b`. For example, consider
 </pre>
 
 Unsetting `$a` causes variable `$a` to be destroyed and its corresponding
-alias to the VStore to be removed, leaving `$c`'s VSlot as the only
+alias to the VStore to be removed, leaving `$b`'s VSlot as the only
 pointer remaining to the VStore.
 
 Other operations can also break an alias relationship between two or

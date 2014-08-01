@@ -1026,7 +1026,7 @@ $a = 123;
 </pre>
 
 Like value assignment, byRef assignment provides a means for the
-programmer to created variables. If the local variables that appear on
+programmer to create variables. If the local variables that appear on
 the left- or right-hand side of byRef assignment do not exist, the
 engine will bring new local variables into existence and create a VSlot
 and initial VStore for storing the local variable's value.

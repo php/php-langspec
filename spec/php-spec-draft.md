@@ -3830,7 +3830,7 @@ unset($x->m); // if m is a dynamic property, $x's __unset("m") is called
 
 <pre>
   <i>anonymous-function-creation-expression:</i>
-  function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-use-clause<sub>opt</sub></i>
+  static<sub>opt</sub> function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-use-clause<sub>opt</sub></i>
       <i>compound-statement</i>
 
   <i>anonymous-function-use-clause:</i>
@@ -3862,13 +3862,20 @@ needed. The values used for these variables are those at the time the
 `Closure` object is created, not when it is used to call the function it
 encapsulates.
 
-An anonymous function defined inside an instance method has access to
-the variable `$this`.
+An anonymous function defined inside an instance or static method has its
+*scope* ([§§](#class-closure)) set to the class it was defined in. Otherwise,
+an anonymous function is *unscoped* ([§§](#class-closure)).
+
+An anonymous function defined inside an instance method is is *bound*
+([§§](#class-closure)) to the object on which that method is called, while an
+an anonymous function defined inside a static method, or prefixed with the
+optional `static` modifier is *static* ([§§](#class-closure)), and otherwise
+an anonymous function is *unbound* ([§§](#class-closure)).
 
 **Examples**
 
 ```
-function doit($value, callable $process)  // return type is "Closure"
+function doit($value, callable $process)  // return type is "Closure", unbound
 {
   return $process($value);
 }
@@ -9335,6 +9342,19 @@ for representing an [anonymous
 function](http://php.net/manual/functions.anonymous.php). It
 cannot be instantiated except by the Engine, as described below.
 
+Closures can be *bound*, *unbound* or *static*. If a closure is said to be 
+bound, then it has an object that $this will be bound to when called. If a
+closure is unbound, then it has no object $this will be bound to. If a closure
+is static, then it cannot be bound.
+
+Closures can be *scoped* or *unscoped*. If a closure is said to be *scoped*, it
+has a class *scope* which determines the visibility of the private and protected
+members of objects of tha class, including but not limited to such members on
+`$this`. If a closure is said to be *unscoped*, it has no class scope set.
+
+Closures have an invariant that scoped closures must be bound or static, and
+unbound closures must be unscoped.
+
 ```
 class Closure
 {
@@ -9348,7 +9368,7 @@ The class members are defined below:
 
 Name | Purpose
 -----|--------
-`bind` |  Duplicates closure `$closure` with a specific bound object `$newthis` and class scope `$newscope`. Make `$newthis` `NULL` if the closure is to be unbound. `$newscope` is the class scope to which the closure is to be associated, or static to keep the current one. If an object is given, the type of the object will be used instead. This determines the visibility of protected and private methods of the bound object. Returns a new `Closure` object or `FALSE` on failure.
+`bind` |  Duplicates closure `$closure` with a specific bound object `$newthis` and class scope `$newscope`. Make `$newthis` `NULL` if the closure is to be unbound, or if a scope is specified, static. `$newscope` is the class scope to which the closure is to be associated, or static to keep the current one. If an object is given, the type of the object will be used instead. This determines the visibility of protected and private methods of the bound object. Returns a new `Closure` object or `FALSE` on failure. This function must not violate the invariant that closures must either be both scoped and bound or static, or otherwise both unscoped and unbound.
 `bindTo` |  Duplicates the closure designated by the current instance with a new-bound object and class scope. This method is an instance version of bind. 
 
 When the anonymous function-creation operator ([§§](#anonymous-function-creation)) is evaluated,
@@ -9383,13 +9403,13 @@ in order: `static`, `this`, and `parameter`.
 
 If an *anonymous-function-creation-expression* contains an
 *anonymous-function-use-clause*, a dynamic property called `static` is
-present. This property is an array having an element for each
-*variable-name* in the *use-variable-name-list*, inserted in lexical
-order of their appearance in the use clause. Each element's key is the
-corresponding *variable-name*, and each element value is the value of
-that variable at the time the time the `Closure` object is created (not
-when it is used to call the encapsulated function). In the scenario
-above, this leads to the following, shown as pseudo code:
+present. This is unrelated to whether a closure is said to be *static*. This
+property is an array having an element for each *variable-name* in the
+*use-variable-name-list*, inserted in lexical order of their appearance in the
+use clause. Each element's key is the corresponding *variable-name*, and each
+element value is the value of that variable at the time the time the `Closure`
+object is created (not when it is used to call the encapsulated function). In
+the scenario above, this leads to the following, shown as pseudo code:
 
 ```
 $this->static = array(["count"]=>&0,["values"]=>array(["red"]=>3,[0]=>10));

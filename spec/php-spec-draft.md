@@ -2334,8 +2334,38 @@ result value is 0; otherwise, the result value is 1.
 
 If the source type is `float`, for the values `INF`, `-INF`, and `NAN`, the
 result value is implementation-defined. For all other values, if the
-precision can be preserved, the fractional part is rounded towards zero
-and the result is well defined; otherwise, the result is undefined.
+precision can be preserved (that is, the float is within the range of an
+integer), the fractional part is rounded towards zero. If the precision cannot
+be preserved, the following conversion algorithm is used:
+
+ 1. The floating point remainder (wherein the remainder has the same sign as the
+    dividend) of dividing the float by 2 to the power of the number of bits in
+    an integer (for example, 32), rounded towards zero, is taken.
+ 2. If the remainder is less than zero, it is rounded towards
+    infinity and 2 to the power of the number of bits is added.
+ 3. This result is then converted to an unsigned integer, then converted to a
+    signed integer by treating the unsigned integer as a two's complement
+    representation of the signed integer.
+    
+In C, the above algorithm might be implemented as follows for a 32-bit integer
+size, where double is a 64-bit IEEE 754 double-precision floating-point type,
+and `d` is the float to be converted:
+
+	if (d > INT32_MAX || d < INT32_MIN) {
+		double	two_pow_32 = pow(2., 32.),
+				dmod;
+
+		dmod = fmod(d, two_pow_32);
+		if (dmod < 0) {
+			dmod = ceil(dmod) + two_pow_32;
+		}
+		return (int32_t)(unit32_t)dmod;
+	}
+	return (int32_t)d;
+
+Implementations may implement this conversion differently (for example, on some
+architectures there may be hardware support for this specific conversion mode)
+so long as the observed effect is the same.
 
 If the source value is `NULL`, the result value is 0.
 

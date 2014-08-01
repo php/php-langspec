@@ -9343,8 +9343,8 @@ function](http://php.net/manual/functions.anonymous.php). It
 cannot be instantiated except by the Engine, as described below.
 
 Closures can be *bound*, *unbound* or *static*. If a closure is said to be 
-bound, then it has an object that $this will be bound to when called. If a
-closure is unbound, then it has no object $this will be bound to. If a closure
+bound, then it has an object that `$this` will be bound to when called. If a
+closure is unbound, then it has no object `$this` will be bound to. If a closure
 is static, then it cannot be bound.
 
 Closures can be *scoped* or *unscoped*. If a closure is said to be *scoped*, it

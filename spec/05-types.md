@@ -55,7 +55,7 @@ There is one integer type, `int`, for which the name integer is a synonym.
 This type is binary, signed, and uses twos-complement representation for
 negative values. The range of values that can be stored is
 implementation-defined; however, the range [-2147483648, 2147483647],
-must be supported. This range must be of a fixed size.
+must be supported. This range must be finite.
 
 Certain operations on integer values produce a mathematical result that
 cannot be represented as an integer. Examples include the following:

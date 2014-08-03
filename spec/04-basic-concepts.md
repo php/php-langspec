@@ -34,6 +34,7 @@ Opening tags:
 - `<%`
 
 Closing tags:
+- `?>`
 - `</script>`
 - `%>`
 

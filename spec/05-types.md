@@ -20,8 +20,8 @@ an arbitrary number of elements separate from the array variable itself,
 yet on the other hand, certain array operations do have value semantics.
 
 Variables are not declared to have a particular type. Instead, a
-variable's type is determined at runtime by the context in which it is
-used.
+variable's type is determined at runtime by the value it contains.
+The same variable can contain values of different types at different times.
 
 Useful library functions for interrogating and using type information
 include `gettype` (§xx), `is_type` (§xx), `settype` (§xx), and `var_dump`
@@ -41,17 +41,17 @@ To test for `NULL`, use `is_null` (§xx).
 
 ###The Boolean Type
 
-The Boolean type is `bool`, for which the name boolean is a synonym. This
+The Boolean type is `bool`, for which the name `boolean` is a synonym. This
 type is capable of storing two distinct values, which correspond to the
-Boolean values `TRUE` and `FALSE` ([§§](06-constants.md#core-predefined-constants)), respectively. The representation of
-this type and its values is unspecified.
+Boolean values `true` and `false` ([§§](06-constants.md#core-predefined-constants)), respectively.
+The internal representation of this type and its values is unspecified.
 
 The library function `is_bool` (§xx) indicates if a given value has type
 `bool`.
 
 ###The Integer Type
 
-There is one integer type, `int`, for which the name integer is a synonym.
+There is one integer type, `int`, for which the name `integer` is a synonym.
 This type is binary, signed, and uses twos-complement representation for
 negative values. The range of values that can be stored is
 implementation-defined; however, the range [-2147483648, 2147483647],
@@ -111,7 +111,7 @@ unspecified.
 
 Although a user of a string might choose to ascribe special semantics to
 bytes having the value `U+0000`, from PHP's perspective, such *null bytes*
-are simply just bytes! PHP does not assume strings contain any specific
+have no special meaning. PHP does not assume strings contain any specific
 data or assign special values to any bytes or sequences. However, many
 library functions assume the strings they receive as arguments are UTF-8
 encoded, often without explicitly mentioning that fact.
@@ -164,22 +164,14 @@ object, and the library function
 ###Resource Types
 
 A [*resource*](http://php.net/manual/language.types.resource.php)
-is a descriptor to some sort of external entity. (Examples include
-files, databases, and sockets).
+is a descriptor to some sort of external entity. Examples include
+files, databases, and network sockets.
 
 A resource is an abstract entity whose representation is unspecified.
 Resources are only created or consumed by the implementation; they are
 never created or consumed by PHP code.
 
-Each distinct resource has a unique ID of some unspecified form.
-
-When scripts execute in a mode having a command-line interface, the
-following predefined resource constants that correspond to file streams
-are automatically opened at program start-up:
-
--   STDIN, which maps to standard input (php://stdin).
--   STDOUT, which maps to standard output (php://stdout).
--   STDERR, which maps to standard error (php://stderr).
+Each distinct resource has a unique identity of some unspecified form.
 
 The library function `is_resource` (§xx) indicates if a given value is a
 resource, and the library function

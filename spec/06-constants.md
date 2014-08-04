@@ -2,8 +2,8 @@
 
 ##General
 
-A *constant* is a name ([§§](09-lexical-structure.md#names)) for a value that once given its
-initial value, cannot be changed.
+A *constant* is a named ([§§](09-lexical-structure.md#names)) value. Once defined, the value
+of the constant can not be changed.
 
 A constant can be defined in one of two ways: as a *c-constant* using a
 *const-declaration* ([§§](14-classes.md#constants)), or as a *d-constant* by calling the library
@@ -18,6 +18,8 @@ Specifically:
 -   If `define` is able to define the given name, it returns `TRUE`;
     otherwise, it returns `FALSE`.
 
+The constants can only hold a value of a [scalar type](05-types.md#scalar-types) or a [resource](05-types.md#resource-types).
+
 The library function `defined` (§xx) reports if a given name (specified as
 a string) is defined as a constant. The library function `constant` (§xx)
 returns the value of a given constant whose name is specified as a
@@ -29,7 +31,7 @@ string.
 const MAX_HEIGHT = 10.5;              // define two (case-insensitive) c-constants
 const UPPER_LIMIT = MAX_HEIGHT;
 define('COEFFICIENT_1', 2.345, TRUE); // define a case-insensitive d-constant
-define('FAILURE', TRUE, FALSE);       // define a case-sensitive d-constant
+define('FAILURE', FALSE, FALSE);      // define a case-sensitive d-constant
 ```
 
 ##Context-Dependent Constants
@@ -39,16 +41,17 @@ automatically available to all scripts; their values are not fixed:
 
  Constant Name                    | Description                     
  -----------------                | ---------                            
- `__CLASS__`                        | `string`; The name of the current class. From within a trait method, the name of the class in which that trait is used. If the current namespace is other than the default, the namespace name and "\\" are prepended, in that order. If used outside all classes, the result is the empty string. 
+ `__CLASS__`                        | `string`; The name of the current class. From within a trait method, the name of the class in which that trait is used. If the current namespace is other than the default, the namespace name and `\` are prepended, in that order. If used outside all classes, the value is the empty string. 
+`__COMPILER_HALT_OFFSET__` |  `int`; When the `__halt_compiler();` ([§§](04-basic-concepts.md#__halt_compiler)) construct is used, this constant contains the byte offset in the source file immediately following the `__halt_compiler();` token in this file.
 `__DIR__`                            |  `string`; The directory name of the script. A directory separator is only appended for the root directory.
 `__FILE__`                           | `string`; The full name of the script.
 `__FUNCTION__`                       | `string`; Inside a function, the name of the current function exactly as it was declared, with the following prepended: If a named namespace exists, that namespace name followed by "\". If used outside all functions, the result is the empty string. For a method, no parent-class prefix is present. (See `__METHOD__` and [§§](13-functions.md#anonymous-functions)).
-`__LINE__`                           | `int`; the number of the current source line
-`__METHOD__`                         | `string`; Inside a method, the name of the current method exactly as it was declared, with the following prepended, in order: If a named namespace exists, that namespace name followed by "\"; the parent class name or trait name followed by `::`. If used outside all methods, the result is the same as for `__FUNCTION__`.
+`__LINE__`                           | `int`; the number of the current source line.
+`__METHOD__`                         | `string`; Inside a method, the name of the current method exactly as it was declared, with the following prepended, in order: If a named namespace exists, that namespace name followed by `\`; the parent class name or trait name followed by `::`. If used outside all methods, the result is the same as for `__FUNCTION__`.
 `__NAMESPACE__`                      | `string`; The name of the current namespace exactly as it was declared. For the default namespace, the result is the empty string.
 `__TRAIT__`                          | `string`; The name of the current trait. From within a trait method, the name of the current trait. If used outside all traits, the result is the empty string.
 
-Constants beginning with __ are reserved for future use by the Engine.
+Constant names beginning with __ are reserved for future use by the Engine.
 
 ##Core Predefined Constants
 
@@ -56,14 +59,13 @@ The following constants are automatically available to all scripts:
 
 Constant Name | Description
 -------------   | -----------  
-`__COMPILER_HALT_OFFSET__` |  `int`; When the library function `__HALT_COMPILER__` (§xx) is called, this constant contains the location in the source file immediately following the `__HALT_COMPILER__()`; token.
 `DEFAULT_INCLUDE_PATH` |  `string`; the `fopen` library function (§xx) include path is used if it is not overridden by the `php.ini` setting `include_path`.
 `E_ALL` | `int`; All errors and warnings, as supported.
 `E_COMPILE_ERROR` | `int`; Fatal compile-time errors. This is like an `E_ERROR`, except that `E_COMPILE_ERROR` is generated by the scripting engine.
 `E_COMPILE_WARNING` | `int`; Compile-time warnings (non-fatal errors). This is like an `E_WARNING`, except that `E_COMPILE_WARNING` is generated by the scripting engine.
 `E_CORE_ERROR` |  `int`; Fatal errors that occur during PHP's initial start-up. This is like an `E_ERROR`, except that `E_CORE_ERROR` is generated by the core of PHP.
 `E_CORE_WARNING` |  `int`; Warnings (non-fatal errors) that occur during PHP's initial start-up. This is like an `E_WARNING`, except that `E_CORE_WARNING` is generated by the core of PHP.
-`E_DEPRECATED` |  `int`; Run-time notices. Enable this to receive warnings about code that will not work in future versions.
+`E_DEPRECATED` |  `int`; Deprecation notices. Enable this to receive warnings about code that will not work in future versions.
 `E_ERROR` | `int`; Fatal run-time errors. These indicate errors that cannot be recovered from, such as a memory allocation problem. Execution of the script is halted.
 `E_NOTICE` | `int`; Run-time notices. Indicate that the script encountered something that could indicate an error, but could also happen in the normal course of running a script.
 `E_PARSE` | `int`; Compile-time parse errors.
@@ -74,7 +76,7 @@ Constant Name | Description
 `E_USER_NOTICE` | `int`; User-generated warning message. This is like an `E_NOTICE`, except that `E_USER_NOTICE` is generated in PHP code by using the library function `trigger_error` (§xx).
 `E_USER_WARNING` |  `int`; User-generated warning message. This is like an `E_WARNING`, except that  `E_USER_WARNING` is generated in PHP code by using the library function `trigger_error` (§xx).
 `E_WARNING` | `int`; Run-time warnings (non-fatal errors). Execution of the script is not halted.
-`E_USER_DEPRECATED` | `int`; User-generated warning message. This is like an `E_DEPRECATED`, except that  `E_USER_DEPRECATED` is generated in PHP code by using the library function `trigger_error` (§xx).
+`E_USER_DEPRECATED` | `int`; User-generated warning message. This is like an `E_DEPRECATED`, except that `E_USER_DEPRECATED` is generated in PHP code by using the library function `trigger_error` (§xx).
 `FALSE` |   `bool`; the case-insensitive Boolean value `FALSE`.
 `INF` | `float`; Infinity
 `M_1_PI` |  `float`; 1/pi
@@ -109,19 +111,19 @@ Constant Name | Description
 `PHP_MAJOR_VERSION` | `int`; the current PHP major version
 `PHP_MANDIR`  | `string`; the installation location of the manual pages.
 `PHP_MAXPATHLEN` |  `int`; the maximum length of a fully qualified filename supported by this build.
-`PHP_MINOR_VERSION` | `int`; the current PHP minor version
+`PHP_MINOR_VERSION` | `int`; the current PHP minor version.
 `PHP_OS` | `string`; the current operating system.
 `PHP_PREFIX`  | `string`; the value to which "--prefix" was set when configured.
-`PHP_RELEASE_VERSION` | `int`; the current PHP release version
-`PHP_ROUND_HALF_DOWN` | `int`; Round halves down
-`PHP_ROUND_HALF_EVEN` | `int`; Round halves to even numbers
-`PHP_ROUND_HALF_ODD` |  `int`; Round halves to odd numbers
-`PHP_ROUND_HALF_UP` | `int`; Round halves up
+`PHP_RELEASE_VERSION` | `int`; the current PHP release version.
+`PHP_ROUND_HALF_DOWN` | `int`; Round halves down.
+`PHP_ROUND_HALF_EVEN` | `int`; Round halves to even numbers.
+`PHP_ROUND_HALF_ODD` |  `int`; Round halves to odd numbers.
+`PHP_ROUND_HALF_UP` | `int`; Round halves up.
 `PHP_SAPI` | `string`; the Server API for this build.
 `PHP_SHLIB_SUFFIX` |  `string`; build-platform's shared library suffix.
-`PHP_SYSCONFDIR` |  `string`; the PHP system configuration directory.xx
+`PHP_SYSCONFDIR` |  `string`; the PHP system configuration directory.
 `PHP_VERSION` | `string`; the current PHP version in the form "major.minor.release[extra]".
-`PHP_VERSION_ID` |  `int`; the current PHP version
+`PHP_VERSION_ID` |  `int`; the current PHP version.
 `PHP_ZTS` | `int`; Indicates whether the compiler was built with thread safety enabled.
 `STDIN` | `resource`; File resource that maps to standard input (`php://stdin`).
 `STDOUT` | `resource`; File resource that maps to standard output (`php://stdout`).

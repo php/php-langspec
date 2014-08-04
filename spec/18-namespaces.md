@@ -163,7 +163,7 @@ namespace NS3\Sub1;
 
 **Constraints**
 
-A *namespace-use-declaration* must not occur except at the pseudomain
+A *namespace-use-declaration* must not occur except at the pseudo main
 level or directly in the context of a *namespace-definition* (18.3).
 
 If the same *qualified-name* is imported multiple times in the same
@@ -175,6 +175,35 @@ scope, each occurrence must have a different alias.
 interface, or trait by that name. *namespace-use-clauses* can only
 create aliases for classes, interfaces, or traits; it is not possible to
 use them to create aliases to functions or constants.
+
+Notice that the *qualified-name* is absolut and not relative as in normal context. Following an example to outline the behaviour:
+
+```
+namespace b
+{
+  class B
+  {
+    function foo(){ echo "goodbye"; } 
+  }
+}
+
+namespace a\b
+{
+  class B
+  {
+    function foo(){ echo "hello"; } 
+  }
+}
+
+namespace a
+{
+  $b = new b\B();
+  $b->foo(); //hello
+  use b\B as C;
+  $b = new C();
+  $b->foo(); //goodbye
+}
+```
 
 A *namespace-use-declaration* *imports*—that is, makes available—one or
 more names into a scope, optionally giving them each an alias. Each of

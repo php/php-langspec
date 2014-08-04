@@ -18,6 +18,7 @@ is distributed without any warranty.
   - [Program Structure](04-basic-concepts.md#program-structure)
   - [Program Start-Up](04-basic-concepts.md#program-start-up)
   - [Program Termination](04-basic-concepts.md#program-termination)
+  - [__halt_compiler](04-basic-concepts.md#__halt_compiler)
   - [The Memory Model](04-basic-concepts.md#the-memory-model)
     - [General](04-basic-concepts.md#general)
     - [Reclamation and Automatic Memory Management](04-basic-concepts.md#reclamation-and-automatic-memory-management)

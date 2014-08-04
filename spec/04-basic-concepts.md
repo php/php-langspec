@@ -94,6 +94,37 @@ registered by `set_exception_handler`, that is equivalent to exit(0). It
 is unspecified whether object destructors ([§§](14-classes.md#destructors)) are run.
 In all other cases, the behavior is unspecified.
 
+##__halt_compiler
+
+PHP script files can incorporate data which is to be ignored by the Engine when 
+compiling the script. An example of such files are PHAR (§xx) files.
+
+In order to make the Engine ignore all the data in the script file starting
+from certain point, `__halt_compiler();` construct is used. This construct 
+is not case-sensitive. 
+
+The `__halt_compiler();` construct can only appear on the top level ([§§](#program-structure))
+of the script. The Engine will ignore all text following this construct.
+
+The value of the `__COMPILER_HALT_OFFSET__` [constant](06-constants.md#context-dependent-constants) is set to the byte offset
+immediately following the `;` character in the construct.
+
+**Example**
+
+```
+// open this file
+$fp = fopen(__FILE__, 'r');
+
+// seek file pointer to data
+fseek($fp, __COMPILER_HALT_OFFSET__);
+
+// and output it
+var_dump(stream_get_contents($fp));
+
+// the end of the script execution
+__halt_compiler(); the file data which will be ignored by the Engine
+```
+
 ##The Memory Model
 ###General
 This subclause and those immediately following it describe the abstract

@@ -1167,46 +1167,51 @@ other means.
 The same name can designate different things at different places in a
 program. For each different thing that a name designates, that name is
 visible only within a part of the program called that name's *scope*.
-The following distinct scopes exist:
 
--   Script, which means from the point of declaration/first
-    initialization through to the end of that script, including any
-    included and required files ([§§](10-expressions.md#general-6)).
--   Function, which means from the point of declaration/first
+There are a number of scope types that exist in PHP:
+
+-   Variable scope - the scope which defined what unqualified variables (like `$foo`) are referring to. 
+    Variables defined in one variable scope are not visible in another variable scope.     
+-   Class scope - the scope that defines visibility of the methods and properties, and resolution of keywords like
+    `self`, `parent`, etc. Class scope encompasses the body of that class and any classes derived
+    from it ([§§](14-classes.md#class-declarations)). 
+-   Namespace scope - the scope that defines what unqualified and not-fully-qualified class and function names (e.g. `foo()` or `new Bar()`)
+    refer to. Namespace scoping rules are defined in the [Namespaces chapter](18-namespaces.md#namespaces).
+
+For variable scopes, the following scopes can be distinguished:
+
+-   *Global scope* is the topmost scope of the script, which contains global variables, including pre-defined ones
+    and ones defined outside of any other scope.
+-   *Function scope*, which means from the point of declaration/first
     initialization through to the end of that function ([§§](13-functions.md#function-definitions)).
--   Class, which means the body of that class and any classes derived
-    from it ([§§](14-classes.md#class-declarations)).
--   Interface, which means the body of that interface, any interfaces
-    derived from it, and any classes that implement it ([§§](15-interfaces.md#interface-declarations)).
--   Namespace, which means from the point of declaration/first
-    initialization through to the end of that namespace ([§§](18-namespaces.md#general)).
 
-A variable declared or first initialized inside a function, has function
-scope; otherwise, the variable has script scope.
+[Start-up scripts](#program-start-up) have the global variable scope.
+[Included](10-expressions.md#script-inclusion-operators) scripts have the variable scope matching the scope in 
+the place where the inclusion operator was executed.
 
-Superglobals ([§§](07-variables.md#general)) are always in scope; they never need explicit
-declaration.
+A variable declared or first initialized inside a function, has function scope; 
+otherwise, the variable has the same variable scope as the enclosing script. 
+
+[Global variables](07-variables.md#global-variables) can be brought into the current scope by using `global` keyword.
+Superglobals ([§§](07-variables.md#general)) exist in the global variable scope, however they can be also accessed in any scope; 
+they never need explicit declaration.
 
 Each function has its own function scope. An anonymous function ([§§](13-functions.md#anonymous-functions))
-has its own scope separate from that of any function inside which that
-anonymous function is defined.
+has its own scope separate from that of any function inside which that anonymous function is defined.
 
-The scope of a parameter is the body of the function in which the
-parameter is declared. For the purposes of scope, a catch-block ([§§](11-statements.md#the-try-statement))
-is treated like a function body, in which case, the *variable-name* in
-*parameter-declaration-list* is treated like a parameter.
+The variable scope of a parameter is the body of the function in which the parameter is declared. 
 
 The scope of a *named-label* ([§§](11-statements.md#labeled-statements)) is the body of the function in
 which the label is defined.
 
-The scope of a class member m ([§§](14-classes.md#class-members)) declared in, or inherited by, a
+The class scope of a class member m ([§§](14-classes.md#class-members)) declared in, or inherited by, a
 class type C is the body of C.
 
-The scope of an interface member m ([§§](14-classes.md#class-members)) declared in, or inherited by,
+The class scope of an interface member m ([§§](14-classes.md#class-members)) declared in, or inherited by,
 an interface type I is the body of I.
 
 When a trait ([§§](16-traits.md#general)) is used by a class or an interface, the trait's
-members ([§§](16-traits.md#trait-members)) take on the scope of a member of that class or
+members ([§§](16-traits.md#trait-members)) take on the class scope of a member of that class or
 interface.
 
 ##Storage Duration
@@ -1231,8 +1236,8 @@ following kinds of variables have static storage duration: constants
 properties ([§§](07-variables.md#static-properties)), and class and interface constants ([§§](07-variables.md#class-and-interface-constants)).
 
 A variable having *allocated storage duration* comes into being based on
-program logic by use of the new operator ([§§](10-expressions.md#the-new-operator)). Ordinarily, once
-such storage is no longer needed, it is reclaimed automatically by the
+program logic by use of the new operator ([§§](10-expressions.md#the-new-operator)) or a factory function. 
+Ordinarily, once such storage is no longer needed, it is reclaimed automatically by the
 Engine via its garbage-collection process ([§§](#)) and the use of
 destructors ([§§](14-classes.md#destructors)). The following kinds of variables have allocated
 storage duration: array elements ([§§](07-variables.md#array-elements)) and instance properties

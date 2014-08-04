@@ -244,10 +244,9 @@ of which (except unset) use the & punctuator:
 The Engine is required to manage the lifetimes of VStores and HStores
 using some form of automatic memory management.
 
-When dealing with VStores and HStores, the Engine is required to implement
-some form of automatic memory management. When a VStore or HStore
-is created, memory is allocated for it, and for an HStore that represents
-an object ([§§](05-types.md#object-types)), its constructor ([§§](14-classes.md#constructors)) is invoked.
+When a VStore or HStore is created, memory is allocated for it, and for an
+HStore that represents an object ([§§](05-types.md#object-types)), its
+constructor ([§§](14-classes.md#constructors)) is invoked.
 
 Later, if a VStore or HStore becomes unreachable through any existing
 variable, they become eligible for reclamation to release the memory

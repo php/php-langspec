@@ -18,7 +18,7 @@ and browsed at:
 
 The upstream url of this repo is:
 
-git@git.php.net:/php-langspec.git
+    git@git.php.net:/php-langspec.git
 
 It is also mirrored on GitHub:
 

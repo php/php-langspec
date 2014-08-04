@@ -9,11 +9,11 @@ To join the conversation, send blank email to:
 
 Bug reports can be filed at:
 
-&nbsp;&nbsp;&nbsp;&nbsp;[https://bugs.php.net/report.php?package_name=PHP+Language+Specification]()
+&nbsp;&nbsp;&nbsp;&nbsp;[https://bugs.php.net/report.php?package_name=PHP+Language+Specification](https://bugs.php.net/report.php?package_name=PHP+Language+Specification)
 
 and browsed at:
 
-&nbsp;&nbsp;&nbsp;&nbsp;[https://bugs.php.net/search.php?cmd=display&status=Open&package_name%5B%5D=PHP+Language+Specification]()
+&nbsp;&nbsp;&nbsp;&nbsp;[https://bugs.php.net/search.php?cmd=display&status=Open&package_name%5B%5D=PHP+Language+Specification](https://bugs.php.net/search.php?cmd=display&status=Open&package_name%5B%5D=PHP+Language+Specification)
 
 
 The upstream url of this repo is:
@@ -22,7 +22,7 @@ The upstream url of this repo is:
 
 It is also mirrored on GitHub:
 
-&nbsp;&nbsp;&nbsp;&nbsp;[https://github.com/php/php-langspec]()
+&nbsp;&nbsp;&nbsp;&nbsp;[https://github.com/php/php-langspec](https://github.com/php/php-langspec)
 
 The PHP specification is community-owned and open-source. Pull requests, 
 issue filings and comments are extremely welcome.

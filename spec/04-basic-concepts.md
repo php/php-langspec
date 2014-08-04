@@ -9,10 +9,17 @@ A PHP *program* consists of one or more source files, known formally as
 <i> script   script-section</i>
 
 <i>script-section:</i>
-  <i> text<sub>opt</sub></i> &lt;?php <i>statement-list<sub>opt</sub></i> ?&gt;<sub>opt</sub> <i>text<sub>opt</sub></i>
+  <i> text<sub>opt</sub></i> <i>start-tag</i> <i>statement-list<sub>opt</sub></i> <i>end-tag</i><sub>opt</sub> <i>text<sub>opt</sub></i>
 
+<i>start-tag:</i>
+  &lt;?php
+  &lt;?=
+  
+<i>end-tag:</i>
+  ?&gt;
+  
 <i>text:</i>
-  arbitrary text not containing the sequence &lt;?php
+  arbitrary text not containing any of <i>start-tag</i> sequences
 </pre>
 
 All of the sections in a script are treated as though they belonged to
@@ -25,17 +32,14 @@ A script can import another script via a script inclusion operator ([§§](10-ex
 
 The top level of a script is simply referred to as the *top level*.
 
-The implementation can also accept other sequences as marking of the script beginning along with `<?php`,
-among which the following may be accepted:
+If `<?=` is used as the *start-tag*, the Engine proceeds as if the *statement-list* started with [echo](10-expressions.md#echo)
+statement.
 
-Opening tags:
-- `<?`
-- `<script language="php">`
-- `<%`
+The implementation may also accept other sequences as *start-tag* and *end-tag*, among which the following may be accepted:
+- `<script language="php">` and `</script>`
+- `<%` and `%>`
 
-Closing tags:
-- `</script>`
-- `%>`
+If the implementation accepts one tag from the pairs above, it must also accept the other. 
 
 ##Program Start-Up
 A program begins execution at the start of a script ([§§](#program-structure)) designated in

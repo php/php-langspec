@@ -54,7 +54,7 @@ defined in [§§](18-namespaces.md#defining-namespaces); *namespace-use-declarat
 
 **Semantics**
 
-A *compound statement* allows a group of zero of more statements to be
+A *compound statement* allows a group of zero or more statements to be
 treated syntactically as a single statement. A compound statement is
 often referred to as a *block*.
 
@@ -194,8 +194,8 @@ selects among a set of statements.
 
 <pre>
   <i>if-statement:</i>
-    if   (   <i>expression</i>   )   <i>statement   elseif-clauses-1opt   else-clause-1opt</i>
-    if   (   <i>expression   )   :   <i>statement-list   elseif-clauses-2opt   else-clause-2opt</i>   endif   ;
+    if   (   <i>expression</i>   )   <i>statement   elseif-clauses-1<sub>opt</sub>   else-clause-1<sub>opt</sub></i>
+    if   (   <i>expression   )   :   <i>statement-list   elseif-clauses-2<sub>opt</sub>   else-clause-2<sub>opt</sub></i>   endif   ;
 
   <i>elseif-clauses-1:</i>
     <i>elseif-clause-1</i>
@@ -297,7 +297,7 @@ else  // this else does go with the outer if
 
 The controlling expression *expression* must have scalar type.
 
-The *statement-list* must not contain any *compound-statement*s.
+The *statement-list* must not contain any *compound-statement*'s.
 
 There must be at most one default label.
 
@@ -486,8 +486,8 @@ while ($i <= 10);
 
 <pre>
   <i>for-statement:</i>
-    for   (   <i>for-initializeropt</i>   ;   <i>for-controlopt</i>   ;   <i>for-end-of-loopopt</i>   )   <i>statement</i>
-    for   (   <i>for-initializeropt</i>   ;   <i>for-controlopt</i>   ;   <i>for-end-of-loopopt</i>   )   :   <i>statement-list</i>   endfor   ;
+    for   (   <i>for-initializer<sub>opt</sub></i>   ;   <i>for-control<sub>opt</sub></i>   ;   <i>for-end-of-loop<sub>opt</sub></i>   )   <i>statement</i>
+    for   (   <i>for-initializer<sub>opt</sub></i>   ;   <i>for-control<sub>opt</sub></i>   ;   <i>for-end-of-loop<sub>opt</sub></i>   )   :   <i>statement-list</i>   endfor   ;
 
   <i>for-initializer:</i>
     <i>for-expression-group</i>

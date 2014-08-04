@@ -297,7 +297,7 @@ else  // this else does go with the outer if
 
 The controlling expression *expression* must have scalar type.
 
-The *statement-list* must not contain any *compound-statement*s.
+The *statement-list* must not contain any *compound-statement*'s.
 
 There must be at most one default label.
 

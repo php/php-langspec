@@ -1702,7 +1702,7 @@ The class members are defined below:
 
 Name | Purpose
 -----|--------
-`bind` |  Duplicates closure `$closure` with a specific bound object `$newthis` and class scope `$newscope`. Make `$newthis` `NULL` if the closure is to be unbound, or if a scope is specified, static. `$newscope` is the class scope to which the closure is to be associated, or static to keep the current one. If an object is given, the type of the object will be used instead. This determines the visibility of protected and private methods of the bound object. Returns a new `Closure` object or `FALSE` on failure. This function must not violate the invariant that closures must either be both scoped and bound or static, or otherwise both unscoped and unbound.
+`bind` | Duplicates closure `$closure` with a specific bound object `$newthis` and class scope `$newscope`. If `$newthis` is `NULL` then the closure is to be unbound if no scope is specified, or static if a scope is specified. `$newscope` is the scope the closure is to be given (either a string containing the name of a class, or an object whose class will be used), or `"static"` to keep the current one. Returns a new `Closure` object or `FALSE` on failure. This function must not violate the invariant that closures must either be both scoped and bound or static, or otherwise both unscoped and unbound. This function must prevent binding an object to the new closure if the `$closure` is static, however the new closure may have a different scope.
 `bindTo` |  Duplicates the closure designated by the current instance with a new-bound object and class scope. This method is an instance version of bind. 
 
 When the anonymous function-creation operator ([§§](10-expressions.md#anonymous-function-creation)) is evaluated,

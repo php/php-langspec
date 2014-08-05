@@ -1,0 +1,7 @@
+{
+    "name": "php/php-langspec",
+    "require": {
+        "michelf/php-markdown": "1.4.1"
+    }
+}
+

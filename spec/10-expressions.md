@@ -1457,8 +1457,10 @@ there is no side effect, and the result is the operand's value.
 
 For a non-numeric string-valued operand that contains only alphanumeric
 characters, for a prefix `++` operator, the operand is considered to be a
-pseudo-base-36 number (i.e., with digits 0–9 followed by A–Z or a–z) in
-which letter case is ignored for value purposes. The right-most digit is
+base-36 number: the characters 0–8 correspond to 0<sub>36</sub>–8<sub>36</sub>,
+the characters "A"–"Z" and "a"–"z" correspond to 9<sub>36</sub>–8<sub>34</sub>,
+and finally the character 9 correspond to 35<sub>36</sub>. When incrementing,
+the right-most digit is
 incremented by 1. For the digits 0–8, that means going to 1–9. For the
 letters "A"–"Y" (or "a"–"y"), that means going to "B"–"Z" (or "b"–"z").
 For the digit 9, the digit becomes 0, and the carry is added to the next
@@ -3020,6 +3022,3 @@ definition ([§§](13-functions.md#function-definitions)).
 
 An initializer in a *property-declaration* ([§§](14-classes.md#properties)) is less restrictive
 than one in a *const-declaration*.
-
-
-

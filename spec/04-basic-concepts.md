@@ -54,7 +54,7 @@ information ([§§](07-variables.md#predefined-variables)), which may include:
     predefined variable `$argv`.
 -   A series of *environment variable* names and their definitions.
 
-The exact set of the enviornment variables available is implementation-defined
+The exact set of the environment variables available is implementation-defined
 and can vary depending on the type and build of the Engine and the environment
 in which it executes.
 

@@ -406,7 +406,7 @@ is defined in [§§](#the-foreach-statement).
     while  (  <i>expression</i>  )  :   <i>statement-list</i>  endwhile ;
 </pre>
 
-*expresion* is defined in [§§](10-expressions.md#general-6); *statement* is defined in [§§](#general); and
+*expression* is defined in [§§](10-expressions.md#general-6); *statement* is defined in [§§](#general); and
 *statement-list* is defined in [§§](#compound-statements).
 
 **Constraints**

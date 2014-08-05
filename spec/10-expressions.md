@@ -637,7 +637,7 @@ defined in [§§](#the-clone-operator); *object-creation-expression* is defined 
 *subscript-expression* is defined in [§§](#subscript-operator); *function-call-expression* is defined in [§§](#function-call-operator); *member-selection-expression* is defined in [§§](#member-selection-operator);
 *postfix-increment-expression* and *postfix-decrement-expression* are
 defined in [§§](#postfix-increment-and-decrement-operators); *scope-resolution-expression* is defined in [§§](#scope-resolution-operator);
-and *exponetiation-expression* is defined in [§§](#exponentiation-operator)..
+and *exponentiation-expression* is defined in [§§](#exponentiation-operator)..
 
 **Semantics**
 

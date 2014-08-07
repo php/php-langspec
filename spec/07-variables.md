@@ -56,7 +56,7 @@ static storage duration ([§§](04-basic-concepts.md#storage-duration)) and is a
 
 **Examples**
 
-```
+```PHP
 const MAX_HEIGHT = 10.5;        // define two c-constants
 const UPPER_LIMIT = MAX_HEIGHT;
 define('COEFFICIENT_1', 2.345); // define two d-constants
@@ -80,7 +80,7 @@ variable is a modifiable lvalue.
 
 **Examples**
 
-```
+```PHP
 function doit($p1)  // assigned the value TRUE when called
 {
   $count = 10;
@@ -127,7 +127,7 @@ array's name. An array element has allocated storage duration ([§§](04-basic-c
 
 **Examples**
 
-```
+```PHP
 $colors = ["red", "white", "blue"]; // create array with 3 elements
 $colors[] = "green";                // insert a new element
 ```
@@ -167,7 +167,7 @@ is called, a new alias is created.
 
 **Examples**
 
-```
+```PHP
 function f()
 {
   static $fs = 1;
@@ -232,7 +232,7 @@ variable.
 
 **Examples**
 
-```
+```PHP
 $colors = array("red", "white", "blue");
 $GLOBALS['done'] = FALSE;
 // -----------------------------------------

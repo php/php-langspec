@@ -338,7 +338,7 @@ represent the Boolean values True and False, respectively.
 
 **Examples**
 
-```
+```PHP
 $done = FALSE;
 computeValues($table, TRUE);
 ```
@@ -476,7 +476,7 @@ floating-point values for infinity and Not-a-Number, respectively.
 
 **Examples**
 
-```
+```PHP
 $values = array(1.23, 3e12, 543.678E-23);
 ```
 
@@ -662,7 +662,7 @@ contain any variable substitution.
 
 **Examples**
 
-```
+```PHP
 $x = 123;
 echo ">\$x.$x"."<"; // → >$x.123<
 // -----------------------------------------
@@ -740,7 +740,7 @@ any variable substitution.
 
 **Examples**
 
-```
+```PHP
 $v = 123;
 $s = <<<    ID
 S'o'me "\"t e\txt; \$v = $v"
@@ -780,7 +780,7 @@ A nowdoc string literal is a c-constant ([§§](06-constants.md#general)).
 
 **Examples**
 
-```
+```PHP
 $v = 123;
 $s = <<<    'ID'
 S'o'me "\"t e\txt; \$v = $v"

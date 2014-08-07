@@ -36,8 +36,8 @@ The integer and floating-point types are collectively known as
 a given value is a number or a numeric string ([§§](#the-string-type)).
 
 The library function `is_scalar` (§xx) indicates if a given value has a
-scalar type. However, that function does not consider `NULL` to be scalar.
-To test for `NULL`, use `is_null` (§xx).
+scalar type. However, that function does not consider `null` to be scalar.
+To test for `null`, use `is_null` (§xx).
 
 ###The Boolean Type
 
@@ -133,10 +133,10 @@ type string.
 
 ###The Null Type
 
-The null type has only one possible value, `NULL` ([§§](06-constants.md#core-predefined-constants)). The representation
+The null type has only one possible value, `null` ([§§](06-constants.md#core-predefined-constants)). The representation
 of this type and its value is unspecified.
 
-The library function `is_null` (§xx) indicates if a given value is `NULL`.
+The library function `is_null` (§xx) indicates if a given value is `null`.
 
 ##Composite Types
 

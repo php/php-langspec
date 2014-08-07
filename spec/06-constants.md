@@ -15,8 +15,8 @@ Specifically:
 -   The name of a c-constant is case-insensitive while that for a
     d-constant can be case-sensitive or case-insensitive based on the
     value of the third argument passed to `define`.
--   If `define` is able to define the given name, it returns `TRUE`;
-    otherwise, it returns `FALSE`.
+-   If `define` is able to define the given name, it returns `true`;
+    otherwise, it returns `false`.
 
 The constants can only hold a value of a [scalar type](05-types.md#scalar-types) or a [resource](05-types.md#resource-types).
 
@@ -30,8 +30,8 @@ string.
 ```
 const MAX_HEIGHT = 10.5;              // define two (case-insensitive) c-constants
 const UPPER_LIMIT = MAX_HEIGHT;
-define('COEFFICIENT_1', 2.345, TRUE); // define a case-insensitive d-constant
-define('FAILURE', FALSE, FALSE);      // define a case-sensitive d-constant
+define('COEFFICIENT_1', 2.345, true); // define a case-insensitive d-constant
+define('FAILURE', false, false);      // define a case-sensitive d-constant
 ```
 
 ##Context-Dependent Constants
@@ -77,7 +77,7 @@ Constant Name | Description
 `E_USER_WARNING` |  `int`; User-generated warning message. This is like an `E_WARNING`, except that  `E_USER_WARNING` is generated in PHP code by using the library function `trigger_error` (§xx).
 `E_WARNING` | `int`; Run-time warnings (non-fatal errors). Execution of the script is not halted.
 `E_USER_DEPRECATED` | `int`; User-generated warning message. This is like an `E_DEPRECATED`, except that `E_USER_DEPRECATED` is generated in PHP code by using the library function `trigger_error` (§xx).
-`FALSE` |   `bool`; the case-insensitive Boolean value `FALSE`.
+`false` |   `bool`; the case-insensitive Boolean value `false`.
 `INF` | `float`; Infinity
 `M_1_PI` |  `float`; 1/pi
 `M_2_PI` |  `float`; 2/pi
@@ -97,7 +97,7 @@ Constant Name | Description
 `M_SQRT3` | `float`; sqrt(3)
 `M_SQRTPI` |  `float`; sqrt(pi)
 `NAN` | `float`; Not-a-Number
-`NULL` |  `null`; the case-insensitive value `NULL`.
+`null` |  `null`; the case-insensitive value `null`.
 `PHP_BINARY` |  `string`; the PHP binary path during script execution.
 `PHP_BINDIR` |  `string`; the installation location of the binaries.
 `PHP_CONFIG_FILE_PATH` |  `string`; location from which php.ini values were parsed
@@ -128,7 +128,7 @@ Constant Name | Description
 `STDIN` | `resource`; File resource that maps to standard input (`php://stdin`).
 `STDOUT` | `resource`; File resource that maps to standard output (`php://stdout`).
 `STDERR` | `resource`; File resource that maps to standard error (`php://stderr`).
-`TRUE` |  `bool`; the case-insensitive Boolean value `TRUE`.
+`true` |  `bool`; the case-insensitive Boolean value `true`.
 
 The members of the `E_\*` family have values that are powers of 2, so
 they can be combined meaningfully using bitwise operators.

@@ -14,19 +14,19 @@ result are the same as the type and value of the expression.
 The [result type] (http://www.php.net/manual/en/language.types.boolean.php#language.types.boolean.casting) is `bool`.
 
 If the source type is `int` or `float`, then if the source value tests equal
-to 0, the result value is `FALSE`; otherwise, the result value is `TRUE`.
+to 0, the result value is `false`; otherwise, the result value is `true`.
 
-If the source value is `NULL`, the result value is `FALSE`.
+If the source value is `null`, the result value is `false`.
 
 If the source is an empty string or the string "0", the result value is
-`FALSE`; otherwise, the result value is `TRUE`.
+`false`; otherwise, the result value is `true`.
 
-If the source is an array with zero elements, the result value is `FALSE`;
-otherwise, the result value is `TRUE`.
+If the source is an array with zero elements, the result value is `false`;
+otherwise, the result value is `true`.
 
-If the source is an object, the result value is `TRUE`.
+If the source is an object, the result value is `true`.
 
-If the source is a resource, the result value is `TRUE`.
+If the source is a resource, the result value is `true`.
 
 The library function `boolval` (§xx) allows values to be converted to
 `bool`.
@@ -35,7 +35,7 @@ The library function `boolval` (§xx) allows values to be converted to
 
 The [result type](http://www.php.net/manual/en/language.types.integer.php#language.types.integer.casting)  is `int`.
 
-If the source type is `bool`, then if the source value is `FALSE`, the
+If the source type is `bool`, then if the source value is `false`, the
 result value is 0; otherwise, the result value is 1.
 
 If the source type is `float`, for the values `INF`, `-INF`, and `NAN`, the
@@ -43,7 +43,7 @@ result value is implementation-defined. For all other values, if the
 precision can be preserved, the fractional part is rounded towards zero
 and the result is well defined; otherwise, the result is undefined.
 
-If the source value is `NULL`, the result value is 0.
+If the source value is `null`, the result value is 0.
 
 If the source is a numeric string or leading-numeric string ([§§](05-types.md#the-string-type))
 having integer format, if the precision can be preserved the result
@@ -96,14 +96,14 @@ float.
 
 The [result type](http://www.php.net/manual/en/language.types.string.php#language.types.string.casting) is string.
 
-If the source type is `bool`, then if the source value is `FALSE`, the
+If the source type is `bool`, then if the source value is `false`, the
 result value is the empty string; otherwise, the result value is "1".
 
 If the source type is `int` or `float`, then the result value is a string
 containing the textual representation of the source value (as specified
 by the library function `sprintf` (§xx)).
 
-If the source value is `NULL`, the result value is an empty string.
+If the source value is `null`, the result value is an empty string.
 
 If the source is an array, the result value is the string "Array".
 
@@ -124,7 +124,7 @@ The [result type](http://www.php.net/manual/en/language.types.array.php#language
 If the source type is `bool`, `int`, `float`, or `string`, the result value is
 an array of one element whose type and value is that of the source.
 
-If the source value is `NULL`, the result value is an array of zero
+If the source value is `null`, the result value is an array of zero
 elements.
 
 If the source is an object, the result is
@@ -141,7 +141,7 @@ protected instance property has the form "\\0\*\\0*name*", where *name*
 is that of the property. The key for a public instance property has the
 form "*name*", where *name* is that of the property. The value for each
 key is that from the corresponding property's initializer, if one
-exists, else `NULL`.
+exists, else `null`.
 
 If the source is a resource, the result is an array of one element
 containing the implementation-defined value of the resource.
@@ -152,8 +152,8 @@ The [result type](http://www.php.net/manual/en/language.types.object.php#languag
 
 If the source has any type other than object, the result is an instance
 of the predefined class `stdClass` ([§§](14-classes.md#class-stdclass)). If the value of the source
-is `NULL`, the instance is empty. If the value of the source has a scalar
-type and is non-`NULL`, the instance contains a public property called
+is `null`, the instance is empty. If the value of the source has a scalar
+type and is non-`null`, the instance contains a public property called
 scalar whose value is that of the source. If the value of the source is
 an array, the instance contains a set of public properties whose names
 and values are those of the corresponding key/value pairs in the source.

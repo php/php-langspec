@@ -258,8 +258,8 @@ reserved by the PHP language.
 Variable names and function names (when used in a function-call context)
 need not be defined as source tokens; they can also be created at
 runtime using the variable name-creation operator ([§§](10-expressions.md#variable-name-creation-operator)). (For
-example, given `$a = "Total"; $b = 3; $c = $b + 5;`, `${$a.$b.$c} =TRUE;` 
-is equivalent to `$Total38 = TRUE;`, and `${$a.$b.$c}()` is
+example, given `$a = "Total"; $b = 3; $c = $b + 5;`, `${$a.$b.$c} =true;` 
+is equivalent to `$Total38 = true;`, and `${$a.$b.$c}()` is
 equivalent to `Total38()`).
 
 **Examples**
@@ -327,20 +327,20 @@ in [§§](#the-null-literal).
 
 <pre>
   <i>boolean-literal::</i>
-    TRUE (written in any case combination)
-    FALSE (written in any case combination)
+    true (written in any case combination)
+    false (written in any case combination)
 </pre>
 
 **Semantics:**
 
-The type of a *boolean-literal* is bool. The values `TRUE` and `FALSE`
+The type of a *boolean-literal* is bool. The values `true` and `false`
 represent the Boolean values True and False, respectively.
 
 **Examples**
 
 ```
-$done = FALSE;
-computeValues($table, TRUE);
+$done = false;
+computeValues($table, true);
 ```
 
 #####Integer Literals
@@ -793,13 +793,13 @@ Some more text<
 
 #####The Null Literal
 
-There is one null-literal value, `NULL`. Its spelling is case-insensitive.
+There is one null-literal value, `null`. Its spelling is case-insensitive.
 (Note: Throughout this specification, the convention is to use all
 uppercase).
 
 <pre>
   <i>null-literal::</i>
-    NULL (written in any case combination)
+    null (written in any case combination)
 </pre>
 
 A *null-literal* has the null type.

@@ -1264,7 +1264,7 @@ function doit($p1)
   ...
 }                   // $av2 and $av3 are eligible for destruction
 
-doit(TRUE);
+doit(true);
 
 // At end of script, $av1, $sv1, $sv2, and $sv3 are eligible for destruction
 ```

@@ -62,7 +62,7 @@ Class Exception
   protected $line;
 
   public function __construct($message = "", $code = 0,
-               Exception $previous = NULL);
+               Exception $previous = null);
 
   final private function __clone();
 
@@ -88,17 +88,17 @@ Name  | Purpose
 `$file` | `string`; the name of the script where the exception was generated
 `$line` | `int`; the source line number in the script where the exception was generated
 `$message`  | `string`; the exception message (as provided by the constructor)
-`$previous` | The previous exception in the chain, if this is a nested exception; otherwise, `NULL`
+`$previous` | The previous exception in the chain, if this is a nested exception; otherwise, `null`
 `$string` | Work area for `__toString`
 `$trace`  | Work area for function-call tracing
-`__construct` | Takes three (optional) arguments – `string`: the exception message (defaults to ""), `int`: the exception code (defaults to 0), and `Exception`: the previous exception in the chain (defaults to `NULL`)
+`__construct` | Takes three (optional) arguments – `string`: the exception message (defaults to ""), `int`: the exception code (defaults to 0), and `Exception`: the previous exception in the chain (defaults to `null`)
 `__clone` | Present to inhibit the cloning of exception objects
 `__toString`  | `string`; retrieves a string representation of the exception in some unspecified format
 `getCode` | `mixed`; retrieves the exception code (as set by the constructor). For an exception of type Exception, the returned value has type int; for subclasses of `Exception`, it may have some other type.
 `getFile` | `string`; retrieves the name of the script where the exception was generated
 `getLine` | `int`; retrieves the source line number in the script where the exception was generated
 `getMessage`  | `string`; retrieves the exception message
-`getPrevious` | `Exception`; retrieves the previous exception (as set by the constructor), if one exists; otherwise, `NULL`
+`getPrevious` | `Exception`; retrieves the previous exception (as set by the constructor), if one exists; otherwise, `null`
 `getTrace`  | `array`; retrieves the function stack trace information as an array (see [§§](#tracing-exceptions))
 `getTraceAsString`  | `string`; retrieves the function stack trace information formatted as a single string in some unspecified format
 

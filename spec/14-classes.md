@@ -334,20 +334,20 @@ but that class has made provision to deal with dynamic methods:
 
 ```
 $obj = new Widget;
-$obj->iMethod(10, TRUE, "abc");
-Widget::sMethod(NULL, 1.234);
+$obj->iMethod(10, true, "abc");
+Widget::sMethod(null, 1.234);
 ```
 
 The call to `iMethod` is treated as if it were
 
 ```
-$obj->__call('iMethod', array(10, TRUE, "abc"))
+$obj->__call('iMethod', array(10, true, "abc"))
 ```
 
 and the call to `sMethod` is treated as if it were
 
 ```
-Widget::__callStatic('sMethod', array(NULL, 1.234))
+Widget::__callStatic('sMethod', array(null, 1.234))
 ```
 
 ##Constants
@@ -547,7 +547,7 @@ contains this *constructor-definition*.
 A constructor is a specially named instance method ([§§](#methods)) that is used
 to initialize an instance immediately after it has been created. Any
 instance properties not explicitly initialized by a constructor take on
-the value `NULL`. Like a method, a constructor can return a result by
+the value `null`. Like a method, a constructor can return a result by
 value or byRef. (Unlike a method, a constructor cannot be abstract or
 static).
 
@@ -756,7 +756,7 @@ class Widget
   ...
 }
 $obj = new Widget;
-$obj->iMethod(10, TRUE, "abc"); // $obj->__call('iMethod', array(...))
+$obj->iMethod(10, true, "abc"); // $obj->__call('iMethod', array(...))
 ```
 
 ###Method `__callStatic`
@@ -819,7 +819,7 @@ class Widget
     ...
 }
 
-Widget::sMethod(NULL, 1.234); // Widget::__callStatic('sMethod', array(...))
+Widget::sMethod(null, 1.234); // Widget::__callStatic('sMethod', array(...))
 ```
 
 ###Method `__clone`
@@ -924,7 +924,7 @@ by value.
 
 This instance method gets the value of the dynamic property ([§§](#dynamic-members))
 designated by `$name`. If no such dynamic property currently exists,
-`NULL` is returned.
+`null` is returned.
 
 Typically, `__get` is called implicitly, when the `->` operator ([§§](10-expressions.md#member-selection-operator))
 is used in a non-lvalue context and the named property is not visible.
@@ -964,7 +964,7 @@ class Point
         }
 
         // no-such-property error handling goes here
-        return NULL;
+        return null;
     }
   ...
 }
@@ -1009,8 +1009,8 @@ is described in [§§](11-statements.md#compound-statements).
 **Semantics**
 
 This instance method allows an instance to be used with function-call
-notation. An instance whose class provides this method will return `TRUE`
-when passed to `is_callable` (§xx); otherwise, `FALSE` is returned.
+notation. An instance whose class provides this method will return `true`
+when passed to `is_callable` (§xx); otherwise, `false` is returned.
 
 When an instance is called as a function, the argument list used is made
 available to `__invoke`, whose return value becomes the value of the
@@ -1029,7 +1029,7 @@ class C
   ...
 }
 $c = new C;
-is_callable($c) // returns TRUE
+is_callable($c) // returns true
 $r = $c(123);   // becomes $r = $c->__invoke(123);
 ```
 
@@ -1051,7 +1051,7 @@ by value.
 **Semantics**
 
 If the dynamic property ([§§](#dynamic-members)) designated by `$name` exists, this
-instance method returns `TRUE`; otherwise, `FALSE` is returned.
+instance method returns `true`; otherwise, `false` is returned.
 
 Typically, `__isset` is called implicitly, when the intrinsic `isset`
 ([§§](10-expressions.md#isset)) is called with an argument that designates a property that
@@ -1231,7 +1231,7 @@ class Point
   ...
 }
 $p = new Point(3, 5);
-$v = var_export($p, TRUE);  // returns string representation of $p
+$v = var_export($p, true);  // returns string representation of $p
 ```
 The string produced looks something like the following:
 
@@ -1262,7 +1262,7 @@ class B // base class of D
 class D extends B
 {
   private $dprop = 123;
-  public function __construct($bp, $dp = NULL)
+  public function __construct($bp, $dp = null)
   {
     $this->dprop = $dp;
     parent::__construct($bp);
@@ -1275,10 +1275,10 @@ class D extends B
   }
 }
 $b = new B(10);
-$v = var_export($b, TRUE);
+$v = var_export($b, true);
 eval('$z = ' . $v . ";");
 $d = new D(20, 30);
-$v = var_export($d, TRUE);
+$v = var_export($d, true);
 eval('$z = ' . $v . ";");
 ```
 
@@ -1305,7 +1305,7 @@ all such properties are serialized, including any dynamic properties
 or more elements, where each element's value is distinct and is the name
 of a visible instance property. These properties' values are serialized
 in the order in which the elements are inserted in the array. If
-`__sleep` does not return a value explicitly, `NULL` is returned, and that
+`__sleep` does not return a value explicitly, `null` is returned, and that
 value is serialized.
 
 Besides creating the array of property names, `__sleep` can do whatever
@@ -1702,7 +1702,7 @@ The class members are defined below:
 
 Name | Purpose
 -----|--------
-`bind` | Duplicates closure `$closure` with a specific bound object `$newthis` and class scope `$newscope`. If `$newthis` is `NULL` then the closure is to be unbound if no scope is specified, or static if a scope is specified. `$newscope` is the scope the closure is to be given (either a string containing the name of a class, or an object whose class will be used), or `"static"` to keep the current one. Returns a new `Closure` object or `FALSE` on failure. This function must not violate the invariant that closures must either be both scoped and bound or static, or otherwise both unscoped and unbound. This function must prevent binding an object to the new closure if the `$closure` is static, however the new closure may have a different scope.
+`bind` | Duplicates closure `$closure` with a specific bound object `$newthis` and class scope `$newscope`. If `$newthis` is `null` then the closure is to be unbound if no scope is specified, or static if a scope is specified. `$newscope` is the scope the closure is to be given (either a string containing the name of a class, or an object whose class will be used), or `"static"` to keep the current one. Returns a new `Closure` object or `false` on failure. This function must not violate the invariant that closures must either be both scoped and bound or static, or otherwise both unscoped and unbound. This function must prevent binding an object to the new closure if the `$closure` is static, however the new closure may have a different scope.
 `bindTo` |  Duplicates the closure designated by the current instance with a new-bound object and class scope. This method is an instance version of bind. 
 
 When the anonymous function-creation operator ([§§](10-expressions.md#anonymous-function-creation)) is evaluated,
@@ -1858,6 +1858,6 @@ serialized, in order of serialization.
 This class contains no members. It can be instantiated and used as a
 base class. An instance of this type is automatically created when a
 non-object is converted to an object ([§§](08-conversions.md#converting-to-object-type)), or the member-selection
-operator ([§§](10-expressions.md#member-selection-operator)) is applied to `NULL`, `FALSE`, or an empty string.
+operator ([§§](10-expressions.md#member-selection-operator)) is applied to `null`, `false`, or an empty string.
 
 

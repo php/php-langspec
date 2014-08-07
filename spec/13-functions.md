@@ -28,7 +28,7 @@ ucf1(); // can call ucf1 before its definition is seen
 function ucf1() { ... }
 ucf1(); // can call ucf1 after its definition is seen
 cf1(); // Error; call to non-existent function
-$flag = TRUE;
+$flag = true;
 if ($flag) { function cf1() { ... } } // cf1 now exists
 if ($flag) { cf1(); } // can call cf1 now
 // -----------------------------------------

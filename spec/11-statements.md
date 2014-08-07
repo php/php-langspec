@@ -147,7 +147,7 @@ DoIt(); // function DoIt is called; result (return value) is discarded
 $i;   // no side effects, result is discarded. Vacuous but permitted
 123;  // likewise for this one and the two statements following
 34.5 * 12.6 + 11.987;
-TRUE;
+true;
 // -----------------------------------------
 function findValue($table, $value)  // where $table is 2x3 array
 {
@@ -231,10 +231,10 @@ implicitly convertible to that type.
 The two forms of the `if` statement are equivalent; they simply provide
 alternate styles.
 
-If *expression* tests `TRUE`, the *statement* that follows immediately is
+If *expression* tests `true`, the *statement* that follows immediately is
 executed. Otherwise, if an `elseif` clause is present the *statement*
 immediately following the `elseif` is executed. Otherwise, any other
-`elseif` *expression*s are evaluated. If none of those tests `TRUE`, if an
+`elseif` *expression*s are evaluated. If none of those tests `true`, if an
 `else` clause is present the *statement* immediately following the `else` is
 executed.
 
@@ -419,8 +419,8 @@ implicitly convertible to that type.
 The two forms of the `while` statement are equivalent; they simply provide
 alternate styles.
 
-If *expression* tests `TRUE`, the *statement* that follows immediately is
-executed, and the process is repeated. If *expression* tests `FALSE`,
+If *expression* tests `true`, the *statement* that follows immediately is
+executed, and the process is repeated. If *expression* tests `false`,
 control transfers to the point immediately following the end of the
 `while` statement. The loop body, *statement*, is executed zero or more
 times.
@@ -434,7 +434,7 @@ while ($i <= 10):
   ++$i;
 endwhile;
 // -----------------------------------------
-while (TRUE)
+while (true)
 {
   // ...
   if ($done)
@@ -464,7 +464,7 @@ implicitly convertible to that type.
 **Semantics**
 
 First, *statement* is executed and then *expression* is tested. If its
-value is `TRUE`, the process is repeated. If *expression* tests `FALSE`,
+value is `true`, the process is repeated. If *expression* tests `false`,
 control transfers to the point immediately following the end of the `do`
 statement. The loop body, *statement*, is executed one or more times.
 
@@ -525,17 +525,17 @@ The group of expressions in *for-initializer* is evaluated once,
 left-to-right, for their side effects. Then the group of expressions in
 *for-control* is evaluated left-to-right (with all but the right-most
 one for their side effects only), with the right-most expression's value
-being tested. If that tests `TRUE`, *statement* is executed, and the group
+being tested. If that tests `true`, *statement* is executed, and the group
 of expressions in *for-end-of-loop* is evaluated left-to-right, for
 their side effects only. Then the process is repeated starting with
 *for-control*. If the right-most expression in *for-control* tests
-`FALSE`, control transfers to the point immediately following the end of
+`false`, control transfers to the point immediately following the end of
 the `for` statement. The loop body, *statement*, is executed zero or more
 times.
 
 If *for-initializer* is omitted, no action is taken at the start of the
 loop processing. If *for-control* is omitted, this is treated as if
-*for-control* was an expression with the value `TRUE`. If
+*for-control* was an expression with the value `true`. If
 *for-end-of-loop* is omitted, no action is taken at the end of each
 iteration.
 
@@ -852,23 +852,23 @@ for ($i = 10; $i <= 40; $i +=10)
 **Constraints**
 
 The *expression* in a *return-statement* in a generator function
-([§§](10-expressions.md#yield-operator)) must be the literal `NULL` or be omitted.
+([§§](10-expressions.md#yield-operator)) must be the literal `null` or be omitted.
 
 **Semantics**
 
 A `return` statement from within a function terminates the execution of
 that function normally, and depending on how the function was defined
 ([§§](13-functions.md#function-calls)), it returns the value of *expression* to the function's caller
-by value or byRef. If *expression* is omitted the value `NULL` is used.
+by value or byRef. If *expression* is omitted the value `null` is used.
 
 If execution flows into the closing brace (`}`) of a function, `return
-NULL;` is implied.
+null;` is implied.
 
 A function may have any number of `return` statements, whose returned
 values may have different types.
 
 If an undefined variable is returned byRef, that variable becomes
-defined, with a value of `NULL`.
+defined, with a value of `null`.
 
 A `return` statement is permitted in a try-block ([§§](#the-try-statement)) and a catch-block
 ([§§](#the-try-statement)). However, it is unspecified whether a `return` statement is
@@ -887,7 +887,7 @@ is discarded.
 In an included file ([§§](10-expressions.md#general-6)) a `return` statement may occur outside any
 function. This statement terminates processing of that script and
 returns control to the including file. If *expression* is present, that
-is the value returned; otherwise, the value `NULL` is returned. If
+is the value returned; otherwise, the value `null` is returned. If
 execution flows to the end of the script, `return 1;` is implied. However,
 if execution flows to the end of the top level of a script, `return 0;` is
 implied. Likewise, if *expression* is omitted at the top level. (See
@@ -908,8 +908,8 @@ Return statements can also be used in the body of anonymous functions.
 
 ```
 function f() { return 100; }  // f explicitly returns a value
-function g() { return; }   // g explicitly returns an implicit NULL
-function h() { }      // h implicitly returns NULL
+function g() { return; }   // g explicitly returns an implicit null
+function h() { }      // h implicitly returns null
 // -----------------------------------------
 // j returns one of three dissimilarly-typed values
 function j($x)
@@ -922,7 +922,7 @@ function j($x)
   {
     return -1;
   }
-  // for zero, implied return NULL
+  // for zero, implied return null
 }
 function &compute() { ...; return $value; } // returns $value byRef
 // -----------------------------------------
@@ -1049,7 +1049,7 @@ implementation-defined.
 function getTextLines($filename)
 {
   $infile = fopen($filename, 'r');
-  if ($infile == FALSE) { /* deal with an file-open failure */ }
+  if ($infile == false) { /* deal with an file-open failure */ }
   try
   {
     while ($textLine = fgets($infile))  // while not EOF

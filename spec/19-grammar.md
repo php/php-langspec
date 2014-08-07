@@ -138,8 +138,8 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
 <pre>
   <i>boolean-literal::</i>
-    TRUE (written in any case combination)
-    FALSE (written in any case combination)
+    true (will work written in any case combination, however **lowercase** is the **PSR** standard)
+    false (will work written in any case combination, however **lowercase** is the **PSR** standard)
 </pre>
 
 ####Integer Literals
@@ -303,7 +303,7 @@ octal-digit
 
 <pre>
   <i>null-literal::</i>
-    NULL (written in any case combination)
+    null (will work written in any case combination, however **lowercase** is the **PSR** standard)
 </pre>
 
 ###Operators and Punctuators

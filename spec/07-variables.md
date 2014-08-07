@@ -5,7 +5,7 @@
 A *variable* is a named area of data storage that has a type and a
 value, both of which can change. A variable is represented by a VSlot
 ([§§](04-basic-concepts.md#general)). A variable is created by assigning a value to it ([§§](04-basic-concepts.md#assignment), [§§](10-expressions.md#simple-assignment),
-[§§](10-expressions.md#byref-assignment), [§§](10-expressions.md#the-new-operator), [§§](10-expressions.md#array-creation-operator)).  A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic unset ([§§](10-expressions.md#unset)), or by the Engine. The intrinsic `isset` ([§§](10-expressions.md#isset)) tests if a given variable exists and is not set to `NULL`. A variable that somehow becomes defined, but is not initialized starts out with the value `NULL`.
+[§§](10-expressions.md#byref-assignment), [§§](10-expressions.md#the-new-operator), [§§](10-expressions.md#array-creation-operator)).  A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic unset ([§§](10-expressions.md#unset)), or by the Engine. The intrinsic `isset` ([§§](10-expressions.md#isset)) tests if a given variable exists and is not set to `null`. A variable that somehow becomes defined, but is not initialized starts out with the value `null`.
 
 Variables have names as defined in [§§](09-lexical-structure.md#names). Distinct variables may have
 the same name provided they are in different scopes ([§§](04-basic-concepts.md#scope)).
@@ -60,7 +60,7 @@ static storage duration ([§§](04-basic-concepts.md#storage-duration)) and is a
 const MAX_HEIGHT = 10.5;        // define two c-constants
 const UPPER_LIMIT = MAX_HEIGHT;
 define('COEFFICIENT_1', 2.345); // define two d-constants
-define('FAILURE', TRUE);
+define('FAILURE', true);
 ```
 
 ###Local Variables
@@ -81,7 +81,7 @@ variable is a modifiable lvalue.
 **Examples**
 
 ```
-function doit($p1)  // assigned the value TRUE when called
+function doit($p1)  // assigned the value true when called
 {
   $count = 10;
     ...
@@ -92,7 +92,7 @@ function doit($p1)  // assigned the value TRUE when called
   }
   ...
 }
-doit(TRUE);
+doit(true);
 // -----------------------------------------
 function f()
 {
@@ -234,9 +234,9 @@ variable.
 
 ```
 $colors = array("red", "white", "blue");
-$GLOBALS['done'] = FALSE;
+$GLOBALS['done'] = false;
 // -----------------------------------------
-$min = 10; $max = 100; $average = NULL;
+$min = 10; $max = 100; $average = null;
 global $min, $max;         // allowed, but serves no purpose
 function compute($p)
 {
@@ -250,7 +250,7 @@ function compute($p)
     $result = 3.456;  // initializes a global, creating it, if necessary
   }
 }
-compute(TRUE);
+compute(true);
 echo "\$average = $average\n";  // $average = 55
 echo "\$result = $result\n";  // $result = 3.456
 // -----------------------------------------

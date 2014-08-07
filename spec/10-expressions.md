@@ -203,7 +203,7 @@ For value substitution in string literals, see [§§](09-lexical-structure.md#do
 
 **Examples**
 
-```
+```PHP
 $v1 = TRUE;
 $v2 = 123;
 echo  '>>' . $v1 . '|' . $v2 . "<<\n";    // outputs ">>1|123<<"
@@ -239,7 +239,7 @@ method ([§§](14-classes.md#method-__isset)), that method is called.
 
 **Examples**
 
-```
+```PHP
 empty("0")  // results in TRUE
 empty("00") // results in FALSE
 $v = [10, 20];
@@ -281,7 +281,7 @@ called.
 
 **Examples**
 
-```
+```PHP
 $str = "Hello";
 eval("echo \$str . \"\\n\";");  // → echo $str . "\n";
 ```
@@ -326,7 +326,7 @@ status code is made available to the execution environment. If
 
 **Examples**
 
-```
+```PHP
 exit ("Closing down");
 exit (1);
 exit;
@@ -363,7 +363,7 @@ method ([§§](14-classes.md#method-__isset)), that method is called.
 
 **Examples**
 
-```
+```PHP
 $v = TRUE;
 isset($v)     // results in TRUE
 $v = NULL;
@@ -426,7 +426,7 @@ way, the behavior is unspecified.
 
 **Examples**
 
-```
+```PHP
 list($min, $max, $avg) = array(0, 100, 67);
   // $min is 0, $max is 100, $avg is 67
 list($min, $max, $avg) = array(2 => 67, 1 => 100, 0 => 0);
@@ -468,7 +468,7 @@ For value substitution in string literals, see [§§](09-lexical-structure.md#do
 
 **Examples**
 
-```
+```PHP
 $v1 = TRUE;
 $v2 = 123;
 print  '>>' . $v1 . '|' . $v2 . "<<\n";   // outputs ">>1|123<<"
@@ -525,7 +525,7 @@ method ([§§](14-classes.md#method-__unset)), that method is called.
 
 **Examples**
 
-```
+```PHP
 unset($v);
 unset($v1, $v2, $v3);
 unset($x->m); // if m is a dynamic property, $x's __unset("m") is called
@@ -581,7 +581,7 @@ an anonymous function is *unbound* ([§§](14-classes.md#class-closure)).
 
 **Examples**
 
-```
+```PHP
 function doit($value, callable $process)  // return type is "Closure", unbound
 {
   return $process($value);
@@ -670,7 +670,7 @@ used to make a copy of a Manager object, and behind the scenes, the
 `Manager` object uses clone to copy the properties for the base class,
 `Employee`.
 
-```
+```PHP
 class Employee
 {
   ...
@@ -744,7 +744,7 @@ Because a constructor call is a function call, the relevant parts of
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   public function __construct($x = 0, $y = 0) 
@@ -831,7 +831,7 @@ stored using byRef assignment ([§§](04-basic-concepts.md#assignment)).
 
 **Examples**
 
-```
+```PHP
 $v = [];      // array has 0 elements
 $v = array(TRUE);   // array has 1 element, the Boolean TRUE
 $v = [123, -56];  // array of two ints, with implicit int keys 0 and 1
@@ -983,7 +983,7 @@ Note: The brace (`{...}`) form of this operator has been deprecated.
 
 **Examples**
 
-```
+```PHP
 $v = array(10, 20, 30);
 $v[1] = 1.234;    // change the value (and type) of element [1]
 $v[-10] = 19;   // insert a new element with int key -10
@@ -1081,7 +1081,7 @@ If *postfix-expression* is a string, this is a variable function call
 
 **Examples**
 
-```
+```PHP
 function square($v) { return $v * $v; } 
 square(5)     // call square directly; it returns 25
 $funct = square;  // assigns the string "square" to $funct
@@ -1168,7 +1168,7 @@ to refer to this instance.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private $x;
@@ -1220,7 +1220,7 @@ increment or decrement takes place.
 
 **Examples**
 
-```
+```PHP
 $i = 10; $j = $i-- + 100;   // old value of $i (10) is added to 100
 $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 ```
@@ -1268,7 +1268,7 @@ hierarchy, not including the current class. From within a method,
 class inheritance context in which the method is called. This allows
 *late static binding*. Consider the following scenario:
 
-```
+```PHP
 class Base
 {
   public function b()
@@ -1293,7 +1293,7 @@ which for a static qualifier, means the current class context.
 
 **Examples**
 
-```
+```PHP
 final class MathLibrary 
 {
   public static function sin() { ... }
@@ -1346,7 +1346,7 @@ values and the result can be represented as an `int`, the result has type
 
 **Examples**
 
-```
+```PHP
 2**3;   // int with value 8
 2**3.0;   // float with value 8.0
 "2.0"**"3"; // float with value 8.0
@@ -1479,7 +1479,7 @@ digit position containing a letter wraps modulo-26.
 
 **Examples**
 
-```
+```PHP
 $i = 10; $j = --$i + 100;   // new value of $i (9) is added to 100
 $a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
 ```
@@ -1566,7 +1566,7 @@ to `bool`, after which its value is negated.
 
 **Examples**
 
-```
+```PHP
 $v = +10;
 if ($v1 > -5) ...
 $t = TRUE;
@@ -1597,7 +1597,7 @@ still called.
 
 **Examples**
 
-```
+```PHP
 $infile = @fopen("NoSuchFile.txt", 'r');
 ```
 
@@ -1609,7 +1609,7 @@ error message displayed.
 
 Given the following example:
 
-```
+```PHP
 function f() {
   $ret = $y;
   return $ret;
@@ -1620,7 +1620,7 @@ $x = @f();  // without @, get "Undefined variable: y"
 
 The following code shows how this statement is handled:
 
-```
+```PHP
 $origER = error_reporting();
 error_reporting(0);
 $tmp = f();
@@ -1658,7 +1658,7 @@ If [`shell_exec`](http://php.net/manual/function.shell-exec.php)
 
 **Examples**
 
-```
+```PHP
 $result = `ls`;           // result is the output of command ls
 $result = `ls >dirlist.txt`;  // result is NULL
 $d = "dir"; $f = "*.*";
@@ -1721,7 +1721,7 @@ A *cast-type* of `unset` always results in a value of `NULL`. (This use of
 
 **Examples**
 
-```
+```PHP
 (int)(10/3)          // results in the int 3 rather than the float 3.333...
 (array)(16.5)      // results in an array of 1 float; [0] = 16.5
 (int)(float)"123.87E3" // results in the int 123870
@@ -1766,7 +1766,7 @@ expression is treated as `${$o}->pr`.
 
 **Examples**
 
-```
+```PHP
 $color = "red";
 $$color = 123;    // equivalent to $red = 123
 // -----------------------------------------
@@ -1842,7 +1842,7 @@ has been deprecated.
 
 **Examples**
 
-```
+```PHP
 class C1 { ... } $c1 = new C1;
 class C2 { ... } $c2 = new C2;
 class D extends C1 { ... } $d = new D;
@@ -1909,7 +1909,7 @@ These operators associate left-to-right.
 
 **Examples**
 
-```
+```PHP
 -10 * 100;       // int with value -1000
 100 * -3.4e10;   // float with value -3400000000000
 "123" * "2e+5;   // float with value 24600000
@@ -1966,7 +1966,7 @@ These operators associate left-to-right.
 
 **Examples**
 
-```
+```PHP
 -10 + 100;        // int with value 90
 100 + -3.4e10;    // float with value -33999999900
 "123" + "2e+5";   // float with value 200123
@@ -2026,7 +2026,7 @@ These operators associate left-to-right.
 
 **Examples**
 
-```
+```PHP
 1000 >> 2   // 3E8 is shifted right 2 places
 -1000 << 2      // FFFFFC18 is shifted left 5 places
 123 >> 128      // adjusted shift count = 0
@@ -2106,7 +2106,7 @@ These operators associate left-to-right.
 
 **Examples**
 
-```
+```PHP
 "" < "ab"       // result has value TRUE
 "a" > "A"       // result has value TRUE
 "a0" < "ab"     // result has value TRUE
@@ -2205,7 +2205,7 @@ These operators associate left-to-right.
 
 **Examples**
 
-```
+```PHP
 "a" <> "aa" // result has value TRUE
 // -----------------------------------------
 NULL == 0   // result has value TRUE
@@ -2250,7 +2250,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 0b101111 & 0b101          // 0b101
 $lLetter = 0x73;          // letter 's'
 $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
@@ -2284,7 +2284,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 0b101111 ^ 0b101    // 0b101010
 $v1 = 1234; $v2 = -987; // swap two integers having different values
 $v1 = $v1 ^ $v2;
@@ -2320,7 +2320,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 0b101111 | 0b101      // 0b101111
 $uLetter = 0x41;      // letter 'A'
 $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
@@ -2356,7 +2356,7 @@ same semantics as operator `and` ([§§](#logical-and-operator-form-2)).
 
 **Examples**
 
-```
+```PHP
 if ($month > 1 && $month <= 12) ...
 ```
 
@@ -2387,7 +2387,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 if ($month < 1 || $month > 12) ...
 ```
 
@@ -2421,7 +2421,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 for ($i = -5; $i <= 5; ++$i)
   echo "$i is ".(($i & 1 == TRUE) ? "odd\n" : "even\n");
 // -----------------------------------------
@@ -2514,7 +2514,7 @@ character \\0 (U+0000) is stored.
 
 **Examples**
 
-```
+```PHP
 $a = $b = 10    // equivalent to $a = ($b = 10)
 $v = array(10, 20, 30);
 $v[1] = 1.234;    // change the value (and type) of an existing element
@@ -2563,7 +2563,7 @@ expression having array type, see [§§](04-basic-concepts.md#deferred-array-cop
 
 **Examples**
 
-```
+```PHP
 $a = 10;
 $b =& $a;   // make $b an alias of $a
 ++$a;       // increment $a/$b to 11
@@ -2602,7 +2602,7 @@ that `e1` is evaluated once only.
 
 **Examples**
 
-```
+```PHP
 $v = 10;
 $v += 20;   // $v = 30
 $v -= 5;    // $v = 25
@@ -2663,7 +2663,7 @@ This operator associates left-to-right.
 
 **Examples**
 
-```
+```PHP
 f($i++) XOR g($i) // the sequence point makes this well-defined
 ```
 
@@ -2743,7 +2743,7 @@ each value in a key/value pair is yielded byRef.
 
 **Examples**
 
-```
+```PHP
 function getTextFileLines($filename)
 {
   $infile = fopen($filename, 'r');

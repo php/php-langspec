@@ -49,7 +49,7 @@ derived interface inherits all the members from the base interfaces.
 
 **Examples**
 
-```
+```PHP
 interface MyCollection 
 {
   const MAX_NUMBER_ITEMS = 1000;
@@ -116,7 +116,7 @@ nor by an interface that extends it.
 
 **Examples:**
 
-```
+```PHP
 interface MyCollection 
 {
   const MAX_NUMBER_ITEMS = 1000;
@@ -138,7 +138,7 @@ An interface method is just like an abstract method ([§§](14-classes.md#method
 
 **Examples:**
 
-```
+```PHP
 interface MyCollection 
 {
   const MAX_NUMBER_ITEMS = 1000;
@@ -155,7 +155,7 @@ This interface allows an instance of an implementing class to be
 accessed using array-like notation. This interface is defined, as
 follows:
 
-```
+```PHP
 interface ArrayAccess
 {
   function offsetExists($offset);
@@ -179,7 +179,7 @@ Name  |   Purpose
 This interface allows instances of an implementing class to be treated
 as a collection. This interface is defined, as follows:
 
-```
+```PHP
 interface Iterator extends Traversable
 {
   function current();
@@ -206,7 +206,7 @@ Name | Purpose
 This interface allows the creation of an external iterator. This
 interface is defined, as follows:
 
-```
+```PHP
 Interface IteratorAggregate extends Traversable
 {
   function getIterator();
@@ -224,7 +224,7 @@ Name  |   Purpose
 This interface is intended as the base interface for all traversable
 classes. This interface is defined, as follows:
 
-```
+```PHP
 interface Traversable
 { 
 }
@@ -237,7 +237,7 @@ This interface has no members.
 This interface provides support for custom serialization. It is defined,
 as follows:
 
-```
+```PHP
 interface Serializable
 {
   function serialize();

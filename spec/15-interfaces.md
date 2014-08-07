@@ -169,7 +169,7 @@ The interface members are defined below:
 
 Name  |   Purpose
 ----    |   -------
-`offsetExists`  | This instance method returns `TRUE` if the instance contains an element with key `$offset`, otherwise, `FALSE`.
+`offsetExists`  | This instance method returns `true` if the instance contains an element with key `$offset`, otherwise, `false`.
 `offsetGet` |  This instance method gets the value having key `$offset`. It may return by value or byRef. (Ordinarily, this wouldn't be allowed because a class implementing an interface needs to match the interface's method signatures; however, the Engine gives special treatment to `ArrayAccess` and allows this). This method is called when an instance of a class that implements this interface is subscripted ([§§](10-expressions.md#subscript-operator)) in a non-lvalue context.
 `offsetSet` | This instance method sets the value having key `$offset` to $value. It returns no value. This method is called when an instance of a class that implements this interface is subscripted ([§§](10-expressions.md#subscript-operator)) in a modifiable-lvalue context.
 `offsetUnset` | This instance method unsets the value having key `$offset`. It returns no value.
@@ -196,10 +196,10 @@ The interface members are defined below:
 Name | Purpose
 ---- | -------
 `current` | This instance method returns the element at the current position.
-`key` |This instance method returns the key of the current element. On failure, it returns `NULL`; otherwise, it returns the scalar value of the key.
+`key` |This instance method returns the key of the current element. On failure, it returns `null`; otherwise, it returns the scalar value of the key.
 `next` | This instance method moves the current position forward to the next element. It returns no value. From within a `foreach` statement, this method is called after each loop.
 `rewind` |  This instance method resets the current position to the first element. It returns no value. From within a `foreach` statement, this method is called once, at the beginning.
-`valid` | This instance method checks if the current position is valid. It takes no arguments. It returns a bool value of `TRUE` to indicate the current position is valid; `FALSE`, otherwise. This method is called after each call to [`Iterator::rewind()`](http://php.net/manual/iterator.rewind.php) and [`Iterator::next()`](http://php.net/manual/iterator.next.php).
+`valid` | This instance method checks if the current position is valid. It takes no arguments. It returns a bool value of `true` to indicate the current position is valid; `false`, otherwise. This method is called after each call to [`Iterator::rewind()`](http://php.net/manual/iterator.rewind.php) and [`Iterator::next()`](http://php.net/manual/iterator.next.php).
 
 ###Interface `IteratorAggregate`
 
@@ -207,7 +207,7 @@ This interface allows the creation of an external iterator. This
 interface is defined, as follows:
 
 ```
-Interface IteratorAggregate extends Traversable
+interface IteratorAggregate extends Traversable
 {
   function getIterator();
 }
@@ -250,7 +250,7 @@ The interface members are defined below:
 
 Name |  Purpose
 -----|  -------
-`serialize` | This instance method returns a string representation of the current instance. On failure, it returns `NULL`.
+`serialize` | This instance method returns a string representation of the current instance. On failure, it returns `null`.
 `unserialize` | This instance method constructs an object from its string form designated by `$serialized`. It does not return a value.
 
 

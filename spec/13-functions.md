@@ -23,7 +23,7 @@ Any function containing `yield` ([§§](10-expressions.md#yield-operator)) is a 
 
 **Examples**
 
-```
+```PHP
 ucf1(); // can call ucf1 before its definition is seen
 function ucf1() { ... }
 ucf1(); // can call ucf1 after its definition is seen

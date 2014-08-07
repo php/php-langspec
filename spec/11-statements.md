@@ -60,7 +60,7 @@ often referred to as a *block*.
 
 **Examples**
 
-```
+```PHP
 if (condition)
 { // braces are needed as the true path has more than one statement
   // statement-1
@@ -138,7 +138,7 @@ statement is a *null statement*, which has no effect on execution.
 
 **Examples**
 
-```
+```PHP
 $i = 10;  // $i is assigned the value 10; result (10) is discarded
 ++$i; // $i is incremented; result (11) is discarded
 $i++; // $i is incremented; result (11) is discarded
@@ -242,7 +242,7 @@ An `else` clause is associated with the lexically nearest preceding `if` or
 `elseif` that is permitted by the syntax.
 
 **Examples**
-```
+```PHP
 if ($count > 0)
 {
   ...
@@ -338,7 +338,7 @@ Switches may nested, in which case, each `switch` has its own set of
 
 **Examples**
 
-```
+```PHP
 $v = 10;
 switch ($v)
 {
@@ -427,7 +427,7 @@ times.
 
 **Examples**
 
-```
+```PHP
 $i = 1;
 while ($i <= 10):
   echo "$i\t".($i * $i)."\n"; // output a table of squares
@@ -470,7 +470,7 @@ statement. The loop body, *statement*, is executed one or more times.
 
 **Examples**
 
-```
+```PHP
 $i = 1;
 do
 {
@@ -541,7 +541,7 @@ iteration.
 
 **Examples**
 
-```
+```PHP
 for ($i = 1; $i <= 10; ++$i)
 {
   echo "$i\t".($i * $i)."\n"; // output a table of squares
@@ -628,7 +628,7 @@ individual elements.
 
 **Examples**
 
-```
+```PHP
 $colors = array("red", "white", "blue");
 foreach ($colors as $color):
     // ...
@@ -704,7 +704,7 @@ within a finally-block.
 
 **Examples**
 
-```
+```PHP
 function findValue($table, $v)  // where $table is 2x3 array
 {
   for ($row = 0; $row <= 1; ++$row)
@@ -765,7 +765,7 @@ contained within a finally-block.
 
 **Examples**
 
-```
+```PHP
 for ($i = 1; $i <= 5; ++$i)
 {
   if (($i % 2) == 0)
@@ -805,7 +805,7 @@ within a finally-block.
 
 **Examples**
 
-```
+```PHP
 $i = 1;
 for (;;)
 {
@@ -906,7 +906,7 @@ Return statements can also be used in the body of anonymous functions.
 
 **Examples**
 
-```
+```PHP
 function f() { return 100; }  // f explicitly returns a value
 function g() { return; }   // g explicitly returns an implicit NULL
 function h() { }      // h implicitly returns NULL
@@ -978,7 +978,7 @@ type.
 
 **Examples**
 
-```
+```PHP
 throw new Exception;
 throw new Exception("Some message", 123);
 class MyException extends Exception { ... }
@@ -1045,7 +1045,7 @@ implementation-defined.
 
 **Examples**
 
-```
+```PHP
 function getTextLines($filename)
 {
   $infile = fopen($filename, 'r');
@@ -1142,7 +1142,7 @@ can be used with this directive.
 
 **Examples**
 
-```
+```PHP
 declare(ticks = 1) { ... }
 declare(encoding = 'ISO-8859-1'); // Latin-1 Western European
 declare(encoding = 'ISO-8859-5'); // Latin/Cyrillic

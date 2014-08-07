@@ -119,7 +119,7 @@ and [§§](16-traits.md#trait-declarations).
 
 **Examples**
 
-```
+```PHP
 abstract class Vehicle 
 {
   public abstract function getMaxSpeed();
@@ -238,7 +238,7 @@ static method does not operate on a specific instance, it has no `$this`.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private static $pointCount = 0;     // static property
@@ -292,7 +292,7 @@ allocation is used.
 
 Consider the following scenario, which involves dynamic properties:
 
-```
+```PHP
 class Point { ... } // has no public property "color", but has made
                     // provision to support dynamic properties.
 $p = new Point(10, 15);
@@ -332,7 +332,7 @@ Consider the following code fragment, in which class Widget has neither
 an instance method called `iMethod` nor a static method called `sMethod`,
 but that class has made provision to deal with dynamic methods:
 
-```
+```PHP
 $obj = new Widget;
 $obj->iMethod(10, TRUE, "abc");
 Widget::sMethod(NULL, 1.234);
@@ -340,13 +340,13 @@ Widget::sMethod(NULL, 1.234);
 
 The call to `iMethod` is treated as if it were
 
-```
+```PHP
 $obj->__call('iMethod', array(10, TRUE, "abc"))
 ```
 
 and the call to `sMethod` is treated as if it were
 
-```
+```PHP
 Widget::__callStatic('sMethod', array(NULL, 1.234))
 ```
 
@@ -384,7 +384,7 @@ All constants are implicitly `static`.
 
 **Examples:**
 
-```
+```PHP
 const MIN_VAL = 20;
 const LOWER = MIN_VAL;
 // -----------------------------------------
@@ -441,7 +441,7 @@ case, the property is actually removed from that instance.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private static $pointCount = 0; // static property with initializer
@@ -584,7 +584,7 @@ searching for a base-class constructor.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private static $pointCount = 0;
@@ -745,7 +745,7 @@ restrictions on the spelling of the dynamic method name designated by
 
 **Examples**
 
-```
+```PHP
 class Widget
 {
   public function __call($name, $arguments)
@@ -808,7 +808,7 @@ restrictions on the spelling of the dynamic method name designated by
 
 **Examples**
 
-```
+```PHP
 class Widget
 {
     public static function __callStatic($name, $arguments)
@@ -866,7 +866,7 @@ instance having dynamic properties ([§§](#dynamic-members)).
 
 **Examples**
 
-```
+```PHP
 class Employee
 {
   ...
@@ -950,7 +950,7 @@ subscripting can be done correctly on the result.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
     private $dynamicProperties = array();
@@ -975,7 +975,7 @@ class Point
 Consider the following class, which does **not** contain a property
 called prop:
 
-```
+```PHP
 class C
 {
   public function __get($name)
@@ -1018,7 +1018,7 @@ initial function call.
 
 **Examples**
 
-```
+```PHP
 class C
 {
   public function __invoke($p)
@@ -1069,7 +1069,7 @@ visible property by that name is found, a dynamic property is assumed.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
     private $dynamicProperties = array();
@@ -1139,7 +1139,7 @@ restrictions on the spelling of the dynamic property name designated by
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
     private $dynamicProperties = array();
@@ -1216,7 +1216,7 @@ below.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private $x;
@@ -1235,7 +1235,7 @@ $v = var_export($p, TRUE);  // returns string representation of $p
 ```
 The string produced looks something like the following:
 
-```
+```PHP
 "Point::__set_state(array(
    'x' => 3,
    'y' => 5,
@@ -1328,7 +1328,7 @@ instances. For that, a class must implement the interface Serializable
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private static $nextId = 1;
@@ -1388,7 +1388,7 @@ instance having dynamic properties ([§§](#dynamic-members)).
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
   private $x;
@@ -1454,7 +1454,7 @@ visible property by that name is found, a dynamic property is assumed.
 
 **Examples**
 
-```
+```PHP
 class Point 
 {
     private $dynamicProperties = array();
@@ -1544,7 +1544,7 @@ extends `Point` by adding a `color` property. The following code shows how
 these classes need be defined in order for both `Points` and `ColoredPoints`
 to be serialized and unserialized:
 
-```
+```PHP
 class Point implements Serializable // note the interface
 {
   private static $nextId = 1;
@@ -1573,7 +1573,7 @@ instance properties to be serialized. The insertion order of the array
 is the order in which the properties are serialized in the resulting
 string. The array is returned.
 
-```
+```PHP
   public function unserialize($data)
   {
     $data = unserialize($data);
@@ -1590,7 +1590,7 @@ without any constructor being called, the `unserialize` method must
 perform the tasks ordinarily done by a constructor. In this case, that
 involves assigning the new object a unique id.
 
-```
+```PHP
 $p = new Point(2, 5);
 $s = serialize($p);
 ```
@@ -1602,7 +1602,7 @@ cooperating program. The program that reads or receives that serialized
 string can convert its contents back into the corresponding variable(s),
 as follows:
 
-```
+```PHP
 $v = unserialize($s);
 ```
 
@@ -1611,7 +1611,7 @@ The call to the library function `unserialize` calls the custom
 `Point(2,5)`.
 
 
-```
+```PHP
 class ColoredPoint extends Point implements Serializable
 {
   const RED = 1;
@@ -1645,7 +1645,7 @@ element, an arbitrary key name is used, and its value is the serialized
 version of the base Point within the current `ColoredPoint` object. The
 order of the elements is up to the programmer.
 
-```
+```PHP
     public function unserialize($data)
     {
     $data = unserialize($data);
@@ -1659,7 +1659,7 @@ As `ColoredPoint` has a base class, it unserializes its own instance
 properties before calling the base class's custom method, so it can
 unserialize the `Point` properties.
 
-```
+```PHP
 $cp = new ColoredPoint(9, 8, ColoredPoint::BLUE);
 $s = serialize($cp);
 ...
@@ -1689,7 +1689,7 @@ members of objects of tha class, including but not limited to such members on
 Closures have an invariant that scoped closures must be bound or static, and
 unbound closures must be unscoped.
 
-```
+```PHP
 class Closure
 {
   public static bind(Closure $closure, $newthis [, $newscope = "static" ]);
@@ -1715,7 +1715,7 @@ anonymous function defined in the corresponding
 The contents of a `Closure` object are determined based on the context in
 which an anonymous function is created. Consider the following scenario:
 
-```
+```PHP
 class C
 {
   public function compute()
@@ -1745,7 +1745,7 @@ element value is the value of that variable at the time the time the `Closure`
 object is created (not when it is used to call the encapsulated function). In
 the scenario above, this leads to the following, shown as pseudo code:
 
-```
+```PHP
 $this->static = array(["count"]=>&0,["values"]=>array(["red"]=>3,[0]=>10));
 ```
 
@@ -1754,7 +1754,7 @@ instance method, a dynamic property called `this` is present. This
 property is a handle that points to the current instance. In the
 scenario above, this leads to the following, shown as pseudo code:
 
-```
+```PHP
 $this->this = $this;
 ```
 
@@ -1768,7 +1768,7 @@ value. (These values are overridden by the argument values used when the
 anonymous function is called). In the scenario above, this leads to the
 following, shown as pseudo code:
 
-```
+```PHP
 $property = array("$p1" => ???, "$p2" => ???)
 ```
 
@@ -1782,7 +1782,7 @@ instantiated directly. It is defined, as follows:
 
 class Generator implements Iterator
 
-```
+```PHP
 class Generator implements Iterator
 {
   public function current();
@@ -1818,7 +1818,7 @@ encodes an instance of a class for which there is no definition in
 scope. Consider the following class, which supports a two-dimensional
 Cartesian point:
 
-```
+```PHP
 class Point 
 {
   private $x;
@@ -1833,14 +1833,14 @@ Let us assume that the serialized string is stored in a database from
 where it is retrieved by a separate program. That program contains the
 following code, but does not contain a definition of the class Point:
 
-```
+```PHP
 $v = unserialize($s);
 ```
 
 Instead of returning a point, `Point(2, 5`), an instance of
 `__PHP_Incomplete_Class` results, with the following contents:
 
-```
+```PHP
 __PHP_Incomplete_Class
 {
    __PHP_Incomplete_Class_Name => "Point"

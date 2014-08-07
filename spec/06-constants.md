@@ -27,7 +27,7 @@ string.
 
 **Examples**
 
-```
+```PHP
 const MAX_HEIGHT = 10.5;              // define two (case-insensitive) c-constants
 const UPPER_LIMIT = MAX_HEIGHT;
 define('COEFFICIENT_1', 2.345, TRUE); // define a case-insensitive d-constant

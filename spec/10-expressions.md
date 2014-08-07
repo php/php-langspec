@@ -204,7 +204,7 @@ For value substitution in string literals, see [§§](09-lexical-structure.md#do
 **Examples**
 
 ```
-$v1 = TRUE;
+$v1 = true;
 $v2 = 123;
 echo  '>>' . $v1 . '|' . $v2 . "<<\n";    // outputs ">>1|123<<"
 echo  '>>' , $v1 , '|' , $v2 , "<<\n";    // outputs ">>1|123<<"
@@ -226,12 +226,12 @@ echo "$v3\n";
 
 **Semantics**
 
-This intrinsic returns `TRUE` if the variable or value designated by
+This intrinsic returns `true` if the variable or value designated by
 *expression* is empty, where *empty* means that the variable does not
-exist, or it exists and its value compares equal to `FALSE`. Otherwise,
-the intrinsic returns `FALSE`.
+exist, or it exists and its value compares equal to `false`. Otherwise,
+the intrinsic returns `false`.
 
-The following values are considered empty: `FALSE`, `0`, `0.0`, "", "`0`", `NULL`, `[]`/`array()`, and any uninitialized variable.
+The following values are considered empty: `false`, `0`, `0.0`, "", "`0`", `null`, `[]`/`array()`, and any uninitialized variable.
 
 If this intrinsic is used with an expression that designate a dynamic
 property ([§§](14-classes.md#dynamic-members)), then if the class of that property has an `__isset`
@@ -240,10 +240,10 @@ method ([§§](14-classes.md#method-__isset)), that method is called.
 **Examples**
 
 ```
-empty("0")  // results in TRUE
-empty("00") // results in FALSE
+empty("0")  // results in true
+empty("00") // results in false
 $v = [10, 20];
-empty($v)   // results in FALSE
+empty($v)   // results in false
 ```
 
 ####eval
@@ -273,8 +273,8 @@ This intrinsic evaluates the contents of the string designated by
 
 Execution of a `return` statement ([§§](11-statements.md#the-return-statement)) from within the source code
 terminates the intrinsic, and the value returned becomes the value
-returned by eval. If the source code is ill formed, eval returns `FALSE`;
-otherwise, eval returns `NULL`.
+returned by eval. If the source code is ill formed, eval returns `false`;
+otherwise, eval returns `null`.
 
 The source code is executed in the scope of that from which `eval` is
 called.
@@ -353,9 +353,9 @@ Each *expression* must designate a variable.
 
 **Semantics**
 
-This intrinsic returns `TRUE` if all the variables designated by
-*expression*s are set and their values are not `NULL`. Otherwise, it
-returns `FALSE`.
+This intrinsic returns `true` if all the variables designated by
+*expression*s are set and their values are not `null`. Otherwise, it
+returns `false`.
 
 If this intrinsic is used with an expression that designates a dynamic
 property ([§§](14-classes.md#dynamic-members)), then if the class of that property has an `__isset`
@@ -364,12 +364,12 @@ method ([§§](14-classes.md#method-__isset)), that method is called.
 **Examples**
 
 ```
-$v = TRUE;
-isset($v)     // results in TRUE
-$v = NULL;
-isset($v)     // results in FALSE
-$v1 = TRUE; $v2 = 12.3; $v1 = NULL;
-isset($v1, $v2, $v3)  // results in FALSE
+$v = true;
+isset($v)     // results in true
+$v = null;
+isset($v)     // results in false
+$v1 = true; $v2 = 12.3; $v1 = null;
+isset($v1, $v2, $v3)  // results in false
 ```
 
 ####list
@@ -406,7 +406,7 @@ variable (the "target variable").
 
 This intrinsic assigns zero or more elements of the source array to the
 target variables. On success, it returns a copy of the source array. If
-the source array is actually the value `NULL`, this is consider a failure,
+the source array is actually the value `null`, this is consider a failure,
 and the return value from `list` is undefined.
 
 All elements in the source array having keys of type `string` are ignored.
@@ -469,7 +469,7 @@ For value substitution in string literals, see [§§](09-lexical-structure.md#do
 **Examples**
 
 ```
-$v1 = TRUE;
+$v1 = true;
 $v2 = 123;
 print  '>>' . $v1 . '|' . $v2 . "<<\n";   // outputs ">>1|123<<"
 print ('>>' . $v1 . '|' . $v2 . "<<\n");  // outputs ">>1|123<<"
@@ -731,7 +731,7 @@ the class specified by *class-type-designator*.
 The object is initialized by calling the class's constructor ([§§](14-classes.md#constructors))
 passing it the optional *argument-expression-list*. If the class has no
 constructor, the constructor that class inherits (if any) is used.
-Otherwise, each instance property takes on the value `NULL`.
+Otherwise, each instance property takes on the value `null`.
 
 The result of an *object-creation-expression* is a handle to an object
 of the type specified by *class-type-designator*.
@@ -833,22 +833,22 @@ stored using byRef assignment ([§§](04-basic-concepts.md#assignment)).
 
 ```
 $v = [];      // array has 0 elements
-$v = array(TRUE);   // array has 1 element, the Boolean TRUE
+$v = array(true);   // array has 1 element, the Boolean true
 $v = [123, -56];  // array of two ints, with implicit int keys 0 and 1
 $v = [0 => 123, 1 => -56]; // array of two ints, with explicit int keys 0 and 1
 $i = 10;
 $v = [$i - 10 => 123, $i - 9 => -56]; // key can be a runtime expression
-$v = [NULL, 1 => FALSE, 123, 3 => 34e12, "Hello"];  // implicit & explicit keys
+$v = [null, 1 => false, 123, 3 => 34e12, "Hello"];  // implicit & explicit keys
 $i = 6; $j = 12;
 $v = [7 => 123, 3 => $i, 6 => ++$j];  // keys are in arbitrary order
 $v[4] = 99;   // extends array with a new element
 $v = [2 => 23, 1 => 10, 2 => 46, 1.9 => 6];
      // array has 2, with keys 2 and 1, values 46 and 6, respectively
-$v = ["red" => 10, "4" => 3, 9.2 => 5, "12.8" => 111, NULL => 1];
+$v = ["red" => 10, "4" => 3, 9.2 => 5, "12.8" => 111, null => 1];
      // array has 5 elements, with keys “red”, 4, 9, “12.8”, and “”.
 $c = array("red", "white", "blue");
-$v = array(10, $c, NULL, array(FALSE, NULL, $c));
-$v = array(2 => TRUE, 0 => 123, 1 => 34.5, -1 => "red");
+$v = array(10, $c, null, array(false, null, $c));
+$v = array(2 => true, 0 => 123, 1 => 34.5, -1 => "red");
 foreach($v as $e) { ... } // iterates over keys 2, 0, 1, -1
 for ($i = -1; $i <= 2; ++$i) { ... $v[$i] } // retrieves via keys -1, 0, 1, 2
 ```
@@ -902,7 +902,7 @@ A *subscript-expression* designates a modifiable lvalue if and only if
 
 If *expression* is present, if the designated element exists, the type
 and value of the result is the type and value of that element;
-otherwise, the result is `NULL`.
+otherwise, the result is `null`.
 
 If *expression* is omitted, a new element is inserted. Its key has type
 `int` and is one more than the highest, previously assigned, non-negative
@@ -918,10 +918,10 @@ the new element.
     *simple-assignment-expression*.
 -   If the usage context is as the left-hand side of a
     *compound-assignment-expression* ([§§](#compound-assignment)): The expression
-    `e1 op= e2` is evaluated as `e1 = NULL op (e2)`.
+    `e1 op= e2` is evaluated as `e1 = null op (e2)`.
 -   If the usage context is as the operand of a postfix- or
     prefix-increment or decrement operator ([§§](#postfix-increment-and-decrement-operators), [§§](#prefix-increment-and-decrement-operators)): The value
-    of the new element is `NULL`.
+    of the new element is `null`.
 
 *postfix-expression designates a string*
 
@@ -962,18 +962,18 @@ If *expression* is omitted,
 
 -   If the usage context is as the left-hand side of a
     *simple-assignment-expression*: The object's method `offsetSet`
-    ([§§](15-interfaces.md#interface-arrayaccess)) is called with a first argument of `NULL` and a second
+    ([§§](15-interfaces.md#interface-arrayaccess)) is called with a first argument of `null` and a second
     argument that is the value of the right-hand side of that
     *simple-assignment-expression*. The type and value of the result is
     the type and value of the right-hand side of that
     *simple-assignment-expression*.
 -   If the usage context is as the left-hand side of a
     *compound-assignment-expression*: The expression `e1 op= e2` is
-    evaluated as `e1 = offsetGet(NULL) op (e2)`, which is then processed
+    evaluated as `e1 = offsetGet(null) op (e2)`, which is then processed
     according to the rules for simple assignment immediately above.
 -   If the usage context is as the operand of a postfix- or
     prefix-increment or decrement operator ([§§](#postfix-increment-and-decrement-operators), [§§](#prefix-increment-and-decrement-operators)): The
-    object's method `offsetGet` is called with an argument of `NULL`.
+    object's method `offsetGet` is called with an argument of `null`.
     However, this method has no way of knowing if an increment or
     decrement operator was used, or whether it was a prefix or postfix
     operator. The type and value of the result is the type and value
@@ -987,7 +987,7 @@ Note: The brace (`{...}`) form of this operator has been deprecated.
 $v = array(10, 20, 30);
 $v[1] = 1.234;    // change the value (and type) of element [1]
 $v[-10] = 19;   // insert a new element with int key -10
-$v["red"] = TRUE; // insert a new element with string key "red"
+$v["red"] = true; // insert a new element with string key "red"
 [[2,4,6,8], [5,10], [100,200,300]][0][2]  // designates element with value 6
 ["black", "white", "yellow"][1][2]  // designates substring "i" in "white"
 function f() { return [1000, 2000, 3000]; } 
@@ -998,7 +998,7 @@ f()[2]      // designates element with value 3000
 class MyVector implements ArrayAccess { ... }
 $vect1 = new MyVector(array(10, 'A' => 2.3, "up"));
 $vect1[10] = 987; // calls Vector::offsetSet(10, 987)
-$vect1[] = "xxx"; // calls Vector::offsetSet(NULL, "xxx")
+$vect1[] = "xxx"; // calls Vector::offsetSet(null, "xxx")
 $x = $vect1[1];   // calls Vector::offsetGet(1)
 ```
 
@@ -1072,7 +1072,7 @@ default argument value ([§§](13-functions.md#function-definitions)); otherwise
 that default argument value.
 
 If an undefined variable is passed using byRef, that variable becomes
-defined, with a default value of `NULL`.
+defined, with a default value of `null`.
 
 Direct and indirect recursive function calls are permitted.
 
@@ -1132,7 +1132,7 @@ $anon();  // call the anonymous function encapsulated by that object
 
 **Constraints**
 
-*postfix-expression* must designate an object or be `NULL`, `FALSE`, or an
+*postfix-expression* must designate an object or be `null`, `false`, or an
 empty string.
 
 *name* must designate an instance property, or an instance or static
@@ -1161,7 +1161,7 @@ property is treated as a dynamic property. If *postfix-expression*'s
 class type defines a `__get` method ([§§](14-classes.md#method-__get)), it is called to retrieve
 the property's value.
 
-If *postfix-expression* is `NULL`, `FALSE`, or an empty string, an expression
+If *postfix-expression* is `null`, `false`, or an empty string, an expression
 of the form `$p->x = 10` causes an instance of `stdClass` ([§§](14-classes.md#class-stdclass)) to be
 created with a dynamic property x having a value of 10. `$p` is then made
 to refer to this instance.
@@ -1428,11 +1428,11 @@ operand's value.
 For a prefix `++` or `--` operator used with a Boolean-valued operand, there
 is no side effect, and the result is the operand's value.
 
-*NULL-valued Operands*
+*null-valued Operands*
 
-For a prefix -- operator used with a `NULL`-valued operand, there is no
+For a prefix -- operator used with a `null`-valued operand, there is no
 side effect, and the result is the operand's value. For a prefix `++`
-operator used with a `NULL`-valued operand, the side effect is that the
+operator used with a `null`-valued operand, the side effect is that the
 operand's type is changed to int, the operand's value is set to zero,
 and that value is incremented by 1. The result is the value of the
 operand after it has been incremented.
@@ -1518,8 +1518,8 @@ original value is the smallest representable for that type, the type and
 value of the result is implementation-defined ([§§](05-types.md#the-integer-type)).
 
 For a unary `!` operator used with an arithmetic operand, the type of the
-result is `bool`. The value of the result is `TRUE` if the value of the
-operand is non-zero; otherwise, the value of the result is `FALSE`. For
+result is `bool`. The value of the result is `true` if the value of the
+operand is non-zero; otherwise, the value of the result is `false`. For
 the purposes of this operator, `NAN` is considered a non-zero value. The
 expression `!E` is equivalent to `(E == 0)`.
 
@@ -1532,25 +1532,25 @@ to `int` before the bitwise complement is computed.
 
 *Boolean Operands*
 
-For a unary `+` operator used with a `TRUE`-valued operand, the value of the
-result is 1 and the type is `int`. When used with a `FALSE`-valued operand,
+For a unary `+` operator used with a `true`-valued operand, the value of the
+result is 1 and the type is `int`. When used with a `false`-valued operand,
 the value of the result is zero and the type is `int`.
 
-For a unary `-` operator used with a `TRUE`-valued operand, the value of the
-result is -1 and the type is `int`. When used with a `FALSE`-valued operand,
+For a unary `-` operator used with a `true`-valued operand, the value of the
+result is -1 and the type is `int`. When used with a `false`-valued operand,
 the value of the result is zero and the type is `int`.
 
-For a unary `!` operator used with a `TRUE`-valued operand, the value of the
-result is `FALSE` and the type is `bool`. When used with a `FALSE`-valued
-operand, the value of the result is `TRUE` and the type is `bool`.
+For a unary `!` operator used with a `true`-valued operand, the value of the
+result is `false` and the type is `bool`. When used with a `false`-valued
+operand, the value of the result is `true` and the type is `bool`.
 
-*NULL-valued Operands*
+*null-valued Operands*
 
-For a unary `+` or unary `-` operator used with a `NULL`-valued operand, the
+For a unary `+` or unary `-` operator used with a `null`-valued operand, the
 value of the result is zero and the type is `int`.
 
-For a unary `!` operator used with a `NULL`-valued operand, the value of the
-result is `TRUE` and the type is `bool`.
+For a unary `!` operator used with a `null`-valued operand, the value of the
+result is `true` and the type is `bool`.
 
 *String Operands*
 
@@ -1569,7 +1569,7 @@ to `bool`, after which its value is negated.
 ```
 $v = +10;
 if ($v1 > -5) ...
-$t = TRUE;
+$t = true;
 if (!$t) ...
 $v = ~0b1010101;
 ```
@@ -1601,7 +1601,7 @@ still called.
 $infile = @fopen("NoSuchFile.txt", 'r');
 ```
 
-On open failure, the value returned by `fopen` is `FALSE`, which is
+On open failure, the value returned by `fopen` is `false`, which is
 sufficient to know to handle the error. There is no need to have any
 error message displayed.
 
@@ -1651,7 +1651,7 @@ execution, as though it was being passed to the library function
 written to `STDOUT` ([§§](05-types.md#resource-types)), that output is the result of this operator
 as a string. If the output is redirected away from `STDOUT`, or
 *dq-char-sequence* is empty or contains only white space, the result of
-the operator is `NULL`.
+the operator is `null`.
 
 If [`shell_exec`](http://php.net/manual/function.shell-exec.php)
 (§xx) is disabled, this operator is disabled.
@@ -1660,7 +1660,7 @@ If [`shell_exec`](http://php.net/manual/function.shell-exec.php)
 
 ```
 $result = `ls`;           // result is the output of command ls
-$result = `ls >dirlist.txt`;  // result is NULL
+$result = `ls >dirlist.txt`;  // result is null
 $d = "dir"; $f = "*.*";
 $result = `$d {$f}`;      // result is the output of command dir *.*
 ```
@@ -1716,7 +1716,7 @@ for details.
 A *cast-type* of `string` results in a conversion to type `string`. See [§§](08-conversions.md#converting-to-string-type)
 for details.
 
-A *cast-type* of `unset` always results in a value of `NULL`. (This use of
+A *cast-type* of `unset` always results in a value of `null`. (This use of
 `unset` should not be confused with the `unset` intrinsic ([§§](#unset))).
 
 **Examples**
@@ -1776,9 +1776,9 @@ $$ $ $x = 'Hello';  // equivalent to $xy = Hello
 $v1 = 3;
 $$v1 = 22;        // equivalent to ${3} = 22
 $v2 = 9.543;
-$$v2 = TRUE;    // equivalent to ${9.543} = TRUE
-$v3 = NULL;
-$$v3 = "abc";   // equivalent to ${NULL} = "abc"
+$$v2 = true;    // equivalent to ${9.543} = true
+$v3 = null;
+$$v3 = "abc";   // equivalent to ${null} = "abc"
 // -----------------------------------------
 function f1 () { return 2.5; }
 ${1 + f1()} = 1000;   // equivalent to ${3.5} = 1000
@@ -1822,20 +1822,20 @@ literal.
 
 **Semantics**
 
-Operator `instanceof` returns `TRUE` if the variable designated by
+Operator `instanceof` returns `true` if the variable designated by
 *expression* in *instanceof-subject* is an object having type
 *qualified-name*, is an object whose type is derived from type
 *qualified-name*, or is an object whose type implements interface
-*qualified-name*. Otherwise, it returns `FALSE`. When the *expression*
+*qualified-name*. Otherwise, it returns `false`. When the *expression*
 form of *instanceof-type-designator* is used, *expression* may be a
 string that contains a class or interface name. Alternatively,
 *expression* can designate an instance variable, in which case, operator
-`instanceof` returns `TRUE` if the variable designated by the left-hand
+`instanceof` returns `true` if the variable designated by the left-hand
 *expression* is an instance of the
 [`class`](http://www.php.net/manual/en/language.oop5.basic.php#language.oop5.basic.class)
 type, or of a derived type, of the right-hand *expression*.
 
-If either *expression* is not an instance, `FALSE` is returned.
+If either *expression* is not an instance, `false` is returned.
 
 Note: This operator supersedes the library function `is_a` (§xx), which
 has been deprecated.
@@ -1846,17 +1846,17 @@ has been deprecated.
 class C1 { ... } $c1 = new C1;
 class C2 { ... } $c2 = new C2;
 class D extends C1 { ... } $d = new D;
-$d instanceof C1      // TRUE
-$d instanceof C2      // FALSE
-$d instanceof D       // TRUE
+$d instanceof C1      // true
+$d instanceof C2      // false
+$d instanceof D       // true
 // -----------------------------------------
 interface I1 { ... }
 interface I2 { ... }
 class E1 implements I1, I2 { ... }
 $e1 = new E1;
-$e1 instanceof I1       // TRUE
+$e1 instanceof I1       // true
 $iName = "I2";
-$e1 instanceof $iName     // TRUE
+$e1 instanceof $iName     // true
 ```
 
 ##Multiplicative Operators
@@ -1889,7 +1889,7 @@ Otherwise, the type and value of the result is implementation-defined
 ([§§](05-types.md#the-integer-type)).
 
 Division by zero results in a diagnostic followed by a `bool` result
-having value `FALSE`. (The values +/- infinity and NaN cannot be generated
+having value `false`. (The values +/- infinity and NaN cannot be generated
 via this operator; instead, use the predefined constants `INF` and `NAN`).
 
 The binary `/` operator produces the quotient from dividing the left-hand
@@ -1973,15 +1973,15 @@ These operators associate left-to-right.
 100 - "123";      // int with value 23
 -3.4e10 - "abc";  // float with value -34000000000
 // -----------------------------------------
-[1, 5 => FALSE, "red"] + [4 => -5, 1.23]; // [1, 5 => FALSE, "red", 4 => -5]
+[1, 5 => false, "red"] + [4 => -5, 1.23]; // [1, 5 => false, "red", 4 => -5]
   // dupe key 5 (value 1.23) is ignored
-[NULL] + [1, 5 => FALSE, "red"];          // [NULL, 5 => FALSE, "red"]
+[null] + [1, 5 => false, "red"];          // [null, 5 => false, "red"]
   // dupe key 0 (value 1) is ignored
-[4 => -5, 1.23] + [NULL];                 // [4 => -5, 1.23, 0 => NULL]
+[4 => -5, 1.23] + [null];                 // [4 => -5, 1.23, 0 => null]
 // -----------------------------------------
 -10 . NAN;        // string with value "-10NAN"
 INF . "2e+5";     // string with value "INF2e+5"
-TRUE . NULL;      // string with value "1"
+true . null;      // string with value "1"
 10 + 5 . 12 . 100 - 50;  // int with value 1512050; ((((10 + 5).12).100)-50)
 ```
 
@@ -2058,9 +2058,9 @@ The type of the result is `bool`.
 
 The operands are processed using the following steps, in order:
 
-1.  If either operand has the value `NULL`, then if the other operand has
-    type string, the `NULL` is converted to the empty string ("");
-    otherwise, the `NULL` is converted to type `bool`.
+1.  If either operand has the value `null`, then if the other operand has
+    type string, the `null` is converted to the empty string ("");
+    otherwise, the `null` is converted to type `bool`.
 2.  If both operands are non-numeric strings or one is a numeric string
     and the other a leading-numeric string, the result is the lexical
     comparison of the two operands. Specifically, the strings are
@@ -2074,7 +2074,7 @@ The operands are processed using the following steps, in order:
     in the strings, the process is repeated for the next pair of bytes.
 3.  If either operand has type `bool`, the other operand is converted to
     that type. The result is the logical comparison of the two operands
-    after conversion, where `FALSE` is defined to be less than `TRUE`.
+    after conversion, where `false` is defined to be less than `true`.
 4.  If the operands both have arithmetic type, string type, or are
     resources, they are converted to the corresponding arithmetic type
     ([§§](08-conversions.md#converting-to-integer-type) and [§§](08-conversions.md#converting-to-floating-point-type)). The result is the numerical comparison of the two
@@ -2089,14 +2089,14 @@ The operands are processed using the following steps, in order:
     other one, and the comparison ends; otherwise, the process is
     repeated with the next element. If the next key in the left-hand
     operand does not exist in the right-hand operand, the arrays cannot
-    be compared and `FALSE` is returned. For array comparison, the order
+    be compared and `false` is returned. For array comparison, the order
     of insertion of the elements into those arrays is irrelevant.
 6.  If only one operand has object type, that compares greater-than any
     other operand type.
 7.  If only one operand has array type, that compares greater-than any
     other operand type.
 8.  If the operands have different object types, the result is always
-    `FALSE`.
+    `false`.
 9.  If the operands have the same object type, the result is determined
     by comparing the lexically first-declared instance property in each
     object. If those properties have object type, the comparison is
@@ -2107,24 +2107,24 @@ These operators associate left-to-right.
 **Examples**
 
 ```
-"" < "ab"       // result has value TRUE
-"a" > "A"       // result has value TRUE
-"a0" < "ab"     // result has value TRUE
-"aA <= "abc"    // result has value TRUE
+"" < "ab"       // result has value true
+"a" > "A"       // result has value true
+"a0" < "ab"     // result has value true
+"aA <= "abc"    // result has value true
 // -----------------------------------------
-NULL < [10,2.3] // result has value TRUE
-TRUE > -3.4     // result has value FALSE
-TRUE < -3.4     // result has value FALSE
-TRUE >= -3.4    // result has value TRUE
-FALSE < "abc"   // result has value TRUE
+null < [10,2.3] // result has value true
+true > -3.4     // result has value false
+true < -3.4     // result has value false
+true >= -3.4    // result has value true
+false < "abc"   // result has value true
 // -----------------------------------------
-10 <= 0         // result has value FALSE
-10 >= "-3.4"    // result has value TRUE
-"-5.1" > 0      // result has value FALSE
+10 <= 0         // result has value false
+10 >= "-3.4"    // result has value true
+"-5.1" > 0      // result has value false
 // -----------------------------------------
-[100] < [10,20,30] // result has value TRUE (LHS array is shorter)
-[10,20] >= ["red"=>0,"green"=>0] // result has value FALSE, (key 10 does not exists in RHS)
-["red"=>0,"green"=>0] >= ["green"=>0,"red"=>0] // result has value TRUE (order is irrelevant)
+[100] < [10,20,30] // result has value true (LHS array is shorter)
+[10,20] >= ["red"=>0,"green"=>0] // result has value false, (key 10 does not exists in RHS)
+["red"=>0,"green"=>0] >= ["green"=>0,"red"=>0] // result has value true (order is irrelevant)
 ```
 
 ##Equality Operators
@@ -2159,8 +2159,8 @@ The type of the result is `bool`.
 The operands are processed using the following steps, in order:
 
 1.  For operators `==`, `!=`, and `<>`, if either operand has the value
-    `NULL`, then if the other operand has type string, the `NULL` is
-    converted to the empty string (""); otherwise, the `NULL` is converted
+    `null`, then if the other operand has type string, the `null` is
+    converted to the empty string (""); otherwise, the `null` is converted
     to type bool.
 2.  If both operands are non-numeric strings or one is a numeric string
     and the other a leading-numeric string, the result is the lexical
@@ -2175,8 +2175,8 @@ The operands are processed using the following steps, in order:
     in the strings, the process is repeated for the next pair of bytes.
 3.  If either operand has type bool, for operators `==`, `!=`, and `<>`, the
     other operand is converted to that type. The result is the logical
-    comparison of the two operands after any conversion, where `FALSE` is
-    defined to be less than `TRUE`.
+    comparison of the two operands after any conversion, where `false` is
+    defined to be less than `true`.
 4.  If the operands both have arithmetic type, string type, or are
     resources, for operators `==`, `!=`, and `<>`, they are converted to the
     corresponding arithmetic type ([§§](08-conversions.md#converting-to-integer-type) and [§§](08-conversions.md#converting-to-floating-point-type)). The result is the
@@ -2206,20 +2206,20 @@ These operators associate left-to-right.
 **Examples**
 
 ```
-"a" <> "aa" // result has value TRUE
+"a" <> "aa" // result has value true
 // -----------------------------------------
-NULL == 0   // result has value TRUE
-NULL === 0  // result has value FALSE
-TRUE != 100  // result has value FALSE
-TRUE !== 100  // result has value TRUE
+null == 0   // result has value true
+null === 0  // result has value false
+true != 100  // result has value false
+true !== 100  // result has value true
 // -----------------------------------------
-"10" != 10  // result has value FALSE
-"10" !== 10 // result has value TRUE
+"10" != 10  // result has value false
+"10" !== 10 // result has value true
 // -----------------------------------------
-[10,20] == [10,20.0]  // result has value TRUE
-[10,20] === [10,20.0] // result has value FALSE
-["red"=>0,"green"=>0] === ["red"=>0,"green"=>0] // result has value TRUE
-["red"=>0,"green"=>0] === ["green"=>0,"red"=>0] // result has value FALSE
+[10,20] == [10,20.0]  // result has value true
+[10,20] === [10,20.0] // result has value false
+["red"=>0,"green"=>0] === ["red"=>0,"green"=>0] // result has value true
+["red"=>0,"green"=>0] === ["green"=>0,"red"=>0] // result has value false
 ```
 
 ## Bitwise AND Operator
@@ -2347,7 +2347,7 @@ Each of the operands must have scalar type.
 If either operand does not have type bool, its value is first converted
 to that type.
 
-Given the expression `e1 && e2, e1` is evaluated first. If `e1` is `FALSE`, `e2` is not evaluated, and the result has type `bool`, value `FALSE`. Otherwise, `e2` is evaluated. If `e2` is `FALSE`, the result has type bool, value `FALSE`; otherwise, it has type `bool`, value `TRUE`. There is a sequence point after the evaluation of `e1`.
+Given the expression `e1 && e2, e1` is evaluated first. If `e1` is `false`, `e2` is not evaluated, and the result has type `bool`, value `false`. Otherwise, `e2` is evaluated. If `e2` is `false`, the result has type bool, value `false`; otherwise, it has type `bool`, value `true`. There is a sequence point after the evaluation of `e1`.
 
 This operator associates left-to-right.
 
@@ -2381,7 +2381,7 @@ Each of the operands must have scalar type.
 If either operand does not have type bool, its value is first converted
 to that type.
 
-Given the expression `e1 || e2`, `e1` is evaluated first. If `e1` is TRUE, `e2` is not evaluated, and the result has type `bool`, value `TRUE`. Otherwise, `e2` is evaluated. If `e2` is `TRUE`, the result has type `bool`, value `TRUE`; otherwise, it has type `bool`, value `FALSE`. There is a sequence point after the evaluation of `e1`.
+Given the expression `e1 || e2`, `e1` is evaluated first. If `e1` is true, `e2` is not evaluated, and the result has type `bool`, value `true`. Otherwise, `e2` is evaluated. If `e2` is `true`, the result has type `bool`, value `true`; otherwise, it has type `bool`, value `false`. There is a sequence point after the evaluation of `e1`.
 
 This operator associates left-to-right.
 
@@ -2410,7 +2410,7 @@ The first operand must have scalar type.
 
 **Semantics**
 
-Given the expression `e1 ? e2 : e3`, if `e1` is `TRUE`, then and only then is `e2` evaluated, and the result and its type become the result and type of
+Given the expression `e1 ? e2 : e3`, if `e1` is `true`, then and only then is `e2` evaluated, and the result and its type become the result and type of
 the whole expression. Otherwise, then and only then is `e3` evaluated, and
 the result and its type become the result and type of the whole
 expression. There is a sequence point after the evaluation of `e1`. If `e2`
@@ -2423,7 +2423,7 @@ This operator associates left-to-right.
 
 ```
 for ($i = -5; $i <= 5; ++$i)
-  echo "$i is ".(($i & 1 == TRUE) ? "odd\n" : "even\n");
+  echo "$i is ".(($i & 1 == true) ? "odd\n" : "even\n");
 // -----------------------------------------
 $a = 10 ? : "Hello";  // result is int with value 10
 $a = 0 ? : "Hello";     // result is string with value "Hello"
@@ -2519,7 +2519,7 @@ $a = $b = 10    // equivalent to $a = ($b = 10)
 $v = array(10, 20, 30);
 $v[1] = 1.234;    // change the value (and type) of an existing element
 $v[-10] = 19;   // insert a new element with int key -10
-$v["red"] = TRUE; // insert a new element with string key "red"
+$v["red"] = true; // insert a new element with string key "red"
 $s = "red";
 $s[1] = "X";    // OK; "e" -> "X"
 $s[-5] = "Y";   // warning; string unchanged
@@ -2655,8 +2655,8 @@ If either operand does not have type `bool`, its value is first converted
 to that type.
 
 Given the expression `e1 xor e2`, `e1` is evaluated first, then `e2`. If
-either `e1` or `e2` is `TRUE`, but not both, the result has type `bool`, value
-`TRUE`. Otherwise, the result has type `bool`, value `FALSE`. There is a
+either `e1` or `e2` is `true`, but not both, the result has type `bool`, value
+`true`. Otherwise, the result has type `bool`, value `false`. There is a
 sequence point after the evaluation of `e1`.
 
 This operator associates left-to-right.
@@ -2715,7 +2715,7 @@ calls the generator function implicitly to get the next key/value pair.
 Then the Engine saves the state of the generator for subsequent
 key/value pair requests.
 
-This operator produces the result `NULL` unless the method
+This operator produces the result `null` unless the method
 `Generator->send` ([§§](14-classes.md#class-generator)) was called to provide a result value. This
 operator has the side effect of generating the next value in the
 collection.
@@ -2736,7 +2736,7 @@ element in this collection with an `int` key, key zero is used. If
 `yield`.
 
 If *array-element-initializer* is omitted, default int-key assignment is
-used and each value is `NULL`.
+used and each value is `null`.
 
 If the generator function definition declares that it returns byRef,
 each value in a key/value pair is yielded byRef.
@@ -2747,7 +2747,7 @@ each value in a key/value pair is yielded byRef.
 function getTextFileLines($filename)
 {
   $infile = fopen($filename, 'r');
-  if ($infile == FALSE) { /* deal with the file-open failure */ }
+  if ($infile == false) { /* deal with the file-open failure */ }
 
   try
   {
@@ -2888,7 +2888,7 @@ it were defined inside that function.
 
 Operator `include` has a side effect of including the designated include
 file. The result produced by this operator is one of the following:
-`FALSE`, which indicates the inclusion attempt failed; the `int` 1, which
+`false`, which indicates the inclusion attempt failed; the `int` 1, which
 indicates the default value for inclusion attempt succeeded; or some
 other value, as returned from the included file ([§§](11-statements.md#the-return-statement)).
 
@@ -2922,7 +2922,7 @@ the case of `include_once`, the include file is included once only during
 program execution.
 
 Once an include file has been included, a subsequent use of
-`include_once` on that include file results in a return value of `TRUE`.
+`include_once` on that include file results in a return value of `true`.
 
 **Examples:**
 
@@ -2985,7 +2985,7 @@ the case of `require_once`, the include file is included once only during
 program execution.
 
 Once an include file has been included, a subsequent use of
-`require_once` on that include file results in a return value of TRUE.
+`require_once` on that include file results in a return value of true.
 
 ##Constant Expressions
 

@@ -163,8 +163,7 @@ namespace NS3\Sub1;
 
 **Constraints**
 
-A *namespace-use-declaration* must not occur except at the pseudo main
-level or directly in the context of a *namespace-definition* (18.3).
+A *namespace-use-declaration* must not occur except at the top level or directly in the context of a *namespace-definition* (18.3).
 
 If the same *qualified-name* is imported multiple times in the same
 scope, each occurrence must have a different alias.
@@ -210,7 +209,7 @@ namespace NS2
 }
 ```
 
-Notice that the *qualified-name* is absolut and not relative as in normal context. Following an example to outline the behaviour:
+Notice that the *qualified-name* is absolute and not relative as in normal context. Following an example to outline the behaviour:
 
 ```
 namespace b

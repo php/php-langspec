@@ -130,7 +130,7 @@ Constant Name | Description
 `STDERR` | `resource`; File resource that maps to standard error (`php://stderr`).
 `TRUE` |  `bool`; the case-insensitive Boolean value `TRUE`.
 
-The members of the `E_\*` family have values that are powers of 2, so
+The members of the `E_*` family have values that are powers of 2, so
 they can be combined meaningfully using bitwise operators.
 
 ##User-Defined Constants

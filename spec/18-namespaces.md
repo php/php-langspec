@@ -117,7 +117,7 @@ runs until the end of the script, or until the lexically next
 **Examples**
 
 Script1.php:
-```
+```PHP
 namespace NS1;
 ...       // __NAMESPACE__ is "NS1"
 namespace NS3\Sub1;
@@ -125,7 +125,7 @@ namespace NS3\Sub1;
 ```
 
 Script2.php:
-```
+```PHP
 namespace NS1
 {
 ...       // __NAMESPACE__ is "NS1"
@@ -184,7 +184,7 @@ in *qualified-name* is the implied alias for *qualified-name*.
 
 **Examples**
 
-```
+```PHP
 namespace NS1
 {
   const CON1 = 100;

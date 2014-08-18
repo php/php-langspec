@@ -127,7 +127,7 @@ otherwise, it controls the visibility of the left-hand name.
 
 **Examples**
 
-```
+```PHP
 trait T1 { public function compute( ... ) { ... } }
 trait T2 { public function compute( ... ) { ... } }
 trait T1 { public function sort( ... ) { ... } }
@@ -183,7 +183,7 @@ If a member has no explicit visibility, `public` is assumed.
 
 **Examples**
 
-```
+```PHP
 trait T
 {
   private $prop1 = 1000;

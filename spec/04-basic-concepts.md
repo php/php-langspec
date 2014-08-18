@@ -111,7 +111,7 @@ immediately following the `;` character in the construct.
 
 **Example**
 
-```
+```PHP
 // open this file
 $fp = fopen(__FILE__, 'r');
 
@@ -306,7 +306,7 @@ storing the local variable's value.
 Consider the following example of value assignment ([§§](10-expressions.md#simple-assignment)) of scalar
 values to local variables:
 
-```
+```PHP
 $a = 123;
 
 $b = false;
@@ -385,7 +385,7 @@ contents, the abstract model assumes that a string's entire contents
 and that value assignment for a string eagerly copies a string's entire
 contents to the VStore being written to. Consider the following example:
 
-```
+```PHP
 $a = 'gg';
 
 $b = $a;
@@ -618,7 +618,7 @@ before the assignment operation.
 It is also possible to use byRef assignment to make three or more VSlots
 point to the same VStore. Consider the following example:
 
-```
+```PHP
 $b =& $a;
 $c =& $b;
 $a = 123;
@@ -765,7 +765,7 @@ VStore points to a different HStore than `$a`'s VStore. Each source array
 element is copied using *member-copy assignment* `=*`, which is defined
 as follows:
 
-```
+```PHP
    $destination =* $source
 ```
 -   If `$source`'s VStore has a refcount equal to 1, the Engine copies the
@@ -789,7 +789,7 @@ array point to distinct VStores, each of which contain a handle to the
 same object HStore.
 
 Let's consider another example:
-```
+```PHP
 $x = 123;
 $a = array(array(&$x, 'hi'));
 $b = $a;
@@ -899,7 +899,7 @@ To illustrate this, let's see how the previous example would be
 represented under the abstract model assuming the implementation defers
 the copying the array:
 
-```
+```PHP
 $x = 123;
 $a = array(array(&$x, 'hi'));
 $b = $a;
@@ -1051,7 +1051,7 @@ member-copy assignment to copy `$a[0]`'s arrays's elements into `$b[0]`'s
 array.
 
 Finally, let's briefly consider one more example:
-```
+```PHP
 $x = 0;
 $a = array(&$x);
 $b = $a;
@@ -1248,7 +1248,7 @@ which destroys any given set of variables.
 
 The following example demonstrates the three storage durations:
 
-```
+```PHP
 class Point { ... }
 
 $av1 = new Point(0, 1);       // auto variable $av1 created and initialized
@@ -1285,7 +1285,7 @@ variables retain their values from previous calls.
 
 Consider the following recursive function:
 
-```
+```PHP
 function factorial($i)
 {
   if ($i > 1) return $i * factorial($i - 1);

@@ -10,3 +10,4 @@ use by the following:
 For now, the runtime library has been excluded, as that is documented at
 [www.php.net](http://www.php.net). As such, all forward references to library facilities have placeholders of the form (§xx).
 
+[Next: Conformance](https://github.com/php/php-langspec/blob/master/spec/02-conformance.md#conformance)

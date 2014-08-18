@@ -212,7 +212,7 @@ namespace NS2
 Note that the *qualified-name* is treated as absolute even if it does not start with `\`.
 For example:
 
-```
+```PHP
 namespace b
 {
   class B

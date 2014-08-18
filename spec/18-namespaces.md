@@ -140,7 +140,7 @@ namespace NS3\Sub1;
 }
 ```
 
-##Namespace Use Declarations**
+##Namespace Use Declarations
 
 **Syntax**
 
@@ -163,8 +163,7 @@ namespace NS3\Sub1;
 
 **Constraints**
 
-A *namespace-use-declaration* must not occur except at the pseudomain
-level or directly in the context of a *namespace-definition* (18.3).
+A *namespace-use-declaration* must not occur except at the top level or directly in the context of a *namespace-definition* (18.3).
 
 If the same *qualified-name* is imported multiple times in the same
 scope, each occurrence must have a different alias.
@@ -179,8 +178,8 @@ use them to create aliases to functions or constants.
 A *namespace-use-declaration* *imports*—that is, makes available—one or
 more names into a scope, optionally giving them each an alias. Each of
 those names may designate a namespace, a sub-namespace, a class, an
-interface, or a trait. If a namespace-alias-clause is present, its
-*name* is the alias for *qualified-name*. Otherwise, the right-most name
+interface, or a trait. If a *namespace-alias-clause* is present, its
+*name* is the alias for *qualified-name*. Otherwise, the right-most name component
 in *qualified-name* is the implied alias for *qualified-name*.
 
 **Examples**
@@ -210,3 +209,32 @@ namespace NS2
 }
 ```
 
+Note that the *qualified-name* is treated as absolute even if it does not start with `\`.
+For example:
+
+```
+namespace b
+{
+  class B
+  {
+    function foo(){ echo "goodbye"; } 
+  }
+}
+
+namespace a\b
+{
+  class B
+  {
+    function foo(){ echo "hello"; } 
+  }
+}
+
+namespace a
+{
+  $b = new b\B();
+  $b->foo(); // hello
+  use b\B as C;
+  $b = new C();
+  $b->foo(); // goodbye
+}
+```

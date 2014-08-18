@@ -59,11 +59,11 @@ and can vary depending on the type and build of the Engine and the environment
 in which it executes.
 
 When a top level ([§§](#program-structure)) is the main entry point for a script, it gets
-the global variable environment. When a top level is invoked via
-`include/require` ([§§](10-expressions.md#general-6)), it inherits the variable environment of its caller. Thus,
+the global variable [scope](#scope). When a top level is invoked via
+`include/require` ([§§](10-expressions.md#general-6)), it inherits the variable scope of its caller. Thus,
 when looking at one script's top level in isolation, it's not
 possible to tell statically whether it will have the global
-variable environment or some local variable environment. It depends on how the
+variable scope or some local variable scope. It depends on how the
 script is invoked and it depends on the runtime state of the program
 when it's invoked.
 

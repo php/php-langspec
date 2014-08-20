@@ -199,7 +199,7 @@ namespace NS2
   use \NS1\C, \NS1\I, \NS1\T;
   class D extends C implements I
   {
-    use T;
+      function foo(T $t){}
   }
   $v = \NS1\CON1; // explicit namespace still needed for constants
   \NS1\f();   // explicit namespace still needed for functions

@@ -5,19 +5,20 @@
 The meaning of a value is determined by its *type*. PHP's types are
 categorized as *scalar types* and *composite types*. The scalar types
 are Boolean ([§§](#the-boolean-type)), integer ([§§](#the-integer-type)), floating-point ([§§](#the-floating-point-type)), string
-([§§](#the-string-type)), and null ([§§](#the-null-type)). The composite types are array ([§§](#array-types)),
-object ([§§](#object-types)), and resource ([§§](#resource-types)).
+([§§](#the-string-type)), and null ([§§](#the-null-type)). The composite types are array ([§§](#the-array-type)),
+and object ([§§](#objects)). The resource ([§§](#resources)) is an opaque type whose internal structure is not specified and depends
+on the implementation.
 
 The scalar types are *value types*. That is, a variable of scalar type
-behaves as though it contains its own value. On the
-other hand, the composite types are *handle types*. A variable of
-composite type contains information—in a *handle*—that leads to the
-value. The differences between value and handle types become apparent
+behaves as though it contains its own value.
+
+The composite types can contain other variables, besides the variable itself, e.g.
+array contains its elements and object contains its properties.
+
+The objects are *handle types*. The type contains information — in a *handle* —
+that leads to the value. The differences between value and handle types become apparent
 when it comes to understanding the semantics of assignment, and passing
-arguments to, and returning values from, functions ([§§](04-basic-concepts.md#the-memory-model)). That said,
-array types really are a hybrid; on the one hand, an array may contain
-an arbitrary number of elements separate from the array variable itself,
-yet on the other hand, certain array operations do have value semantics.
+arguments to, and returning values from, functions ([§§](04-basic-concepts.md#the-memory-model)).
 
 Variables are not declared to have a particular type. Instead, a
 variable's type is determined at runtime by the value it contains.
@@ -140,7 +141,7 @@ The library function `is_null` (§xx) indicates if a given value is `NULL`.
 
 ##Composite Types
 
-###Array Types
+###The Array Type
 
 An array is a data structure that contains a collection of zero or more
 elements whose values are accessed through keys that are of type `int` or
@@ -149,19 +150,18 @@ elements whose values are accessed through keys that are of type `int` or
 The library function `is_array` (§xx) indicates if a given value is an
 array.
 
-###Object Types
+###Objects
 
 An *object* is an instance of a class ([§§](14-classes.md#classes)). Each distinct
 *class-declaration* ([§§](14-classes.md#class-declarations)) defines a new class type, and each class
-type is an object type. The representation of object types is
-unspecified.
+type is an object type. The representation of object types is unspecified.
 
 The library function `is_object` (§xx) indicates if a given value is an
 object, and the library function
 [`get_class`](http://php.net/manual/function.get-class.php)
 (§xx) indicates the name of an object's class.
 
-###Resource Types
+###Resources
 
 A [*resource*](http://php.net/manual/language.types.resource.php)
 is a descriptor to some sort of external entity. Examples include

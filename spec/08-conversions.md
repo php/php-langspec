@@ -2,16 +2,19 @@
 
 ##General
 
-Some operators implicitly convert automatically the values of operands
-from one type to another. Explicit conversion is performed using the
-cast operator ([§§](10-expressions.md#cast-operator)).
+Explicit type conversion is performed using the cast operator ([§§](10-expressions.md#cast-operator)).
+If an operation or language construct expects operand of one type and a value of another type is given,
+implict (automatic) conversion will be performed. Same will happen with most internal functions, though some
+functions may do different things depending on argument type and thus would not perform the converstion.
 
 If an expression is converted to its own type, the type and value of the
 result are the same as the type and value of the expression.
 
+Conversions to `resource` and `null` types can not be performed.
+
 ##Converting to Boolean Type
 
-The [result type] (http://www.php.net/manual/en/language.types.boolean.php#language.types.boolean.casting) is `bool`.
+The [result type] (http://www.php.net/manual/en/language.types.boolean.php#language.types.boolean.casting) is [`bool`](05-types.md#the-boolean-type).
 
 If the source type is `int` or `float`, then if the source value tests equal
 to 0, the result value is `FALSE`; otherwise, the result value is `TRUE`.
@@ -33,7 +36,7 @@ The library function `boolval` (§xx) allows values to be converted to
 
 ##Converting to Integer Type
 
-The [result type](http://www.php.net/manual/en/language.types.integer.php#language.types.integer.casting)  is `int`.
+The [result type](http://www.php.net/manual/en/language.types.integer.php#language.types.integer.casting)  is [`int`](05-types.md#the-integer-type).
 
 If the source type is `bool`, then if the source value is `FALSE`, the
 result value is 0; otherwise, the result value is 1.
@@ -57,7 +60,9 @@ other string, the result value is 0.
 If the source is an array with zero elements, the result value is 0;
 otherwise, the result value is 1.
 
-If the source is an object, the conversion is invalid.
+If the source is an object, if the class defines a conversion function,
+the result is determined by that function (this is currently available only to internal classes).
+If not, the conversion is invalid, the result is assumed to be 1 and a non-fatal error is produced.
 
 If the source is a resource, the result is the resource's unique ID.
 
@@ -67,7 +72,7 @@ to be converted to `int`.
 
 ##Converting to Floating-Point Type
 
-The [result type](http://www.php.net/manual/en/language.types.float.php#language.types.float.casting) is `float`.
+The [result type](http://www.php.net/manual/en/language.types.float.php#language.types.float.casting) is [`float`](05-types.md#the-floating-point-type).
 
 If the source type is `int`, if the precision can be preserved the result
 value is the closest approximation to the source value; otherwise, the
@@ -81,20 +86,20 @@ result value is the closest approximation to the string's floating-point
 value. The trailing non-numeric characters in leading-numeric strings
 are ignored. For any other string, the result value is 0.
 
-If the source is an object, the conversion is invalid.
+If the source is an object, if the class defines a conversion function,
+the result is determined by that function (this is currently available only to internal classes).
+If not, the conversion is invalid, the result is assumed to be 1.0 and a non-fatal error is produced.
 
-For sources of all other types, the conversion is performed by first
+For sources of all other types, the conversion result is obtained by first
 converting the source value to [`int`](http://php.net/manual/language.types.integer.php)
 ([§§](#converting-to-integer-type)) and then to `float`.
-
-If the source is a resource, the result is the resource's unique ID.
 
 The library function `floatval` (§xx) allows values to be converted to
 float.
 
 ##Converting to String Type
 
-The [result type](http://www.php.net/manual/en/language.types.string.php#language.types.string.casting) is string.
+The [result type](http://www.php.net/manual/en/language.types.string.php#language.types.string.casting) is [`string`](05-types.md#the-string-type).
 
 If the source type is `bool`, then if the source value is `FALSE`, the
 result value is the empty string; otherwise, the result value is "1".
@@ -103,13 +108,14 @@ If the source type is `int` or `float`, then the result value is a string
 containing the textual representation of the source value (as specified
 by the library function `sprintf` (§xx)).
 
-If the source value is `NULL`, the result value is an empty string.
+If the source value is `NULL`, the result value is the empty string.
 
-If the source is an array, the result value is the string "Array".
+If the source is an array, the coversion is invalid. The result value is
+the string "Array" and a non-fatal error is produced.
 
 If the source is an object, then if that object's class has a
 `__toString` method ([§§](14-classes.md#method-__tostring)), the result value is the string returned
-by that method; otherwise, the conversion is invalid.
+by that method; otherwise, the conversion is invalid and a fatal error is produced.
 
 If the source is a resource, the result value is an
 implementation-defined string.
@@ -119,13 +125,13 @@ string.
 
 ##Converting to Array Type
 
-The [result type](http://www.php.net/manual/en/language.types.array.php#language.types.array.casting) is `array`.
-
-If the source type is `bool`, `int`, `float`, or `string`, the result value is
-an array of one element whose type and value is that of the source.
+The [result type](http://www.php.net/manual/en/language.types.array.php#language.types.array.casting) is [`array`](05-types.md#the-array-type).
 
 If the source value is `NULL`, the result value is an array of zero
 elements.
+
+If the source type is scalar or `resource` and it is non-`NULL`, the result value is
+an array of one element under the key 0 whose value is that of the source.
 
 If the source is an object, the result is
 an [array](http://php.net/manual/language.types.array.php) of
@@ -134,27 +140,29 @@ corresponding to the
 [object](http://php.net/manual/language.types.object.php)'s
 instance properties. The order of insertion of the elements into the
 array is the lexical order of the instance properties in the
-*class-member-declarations* ([§§](14-classes.md#class-members)) list. The key for a private instance
-property has the form "\\0*name*\\0*name*", where the first *name* is
-the class name, and the second name is the property name. The key for a
-protected instance property has the form "\\0\*\\0*name*", where *name*
-is that of the property. The key for a public instance property has the
-form "*name*", where *name* is that of the property. The value for each
-key is that from the corresponding property's initializer, if one
-exists, else `NULL`.
+*class-member-declarations* ([§§](14-classes.md#class-members)) list.
 
-If the source is a resource, the result is an array of one element
-containing the implementation-defined value of the resource.
+For public instance properties, the keys of the array elements would
+be the same as the property name.
+
+The key for a private instance property has the form "\\0*class*\\0*name*",
+where the *class* is the class name, and the *name* is the property name.
+
+The key for a protected instance property has the form "\\0\*\\0*name*",
+where *name* is that of the property.
+
+The value for each key is that from the corresponding property, or `NULL` if
+the property was not initialized.
 
 ##Converting to Object Type
 
-The [result type](http://www.php.net/manual/en/language.types.object.php#language.types.object.casting) is `object`.
+The [result type](http://www.php.net/manual/en/language.types.object.php#language.types.object.casting) is [`object`](05-types.md#objects).
 
 If the source has any type other than object, the result is an instance
 of the predefined class `stdClass` ([§§](14-classes.md#class-stdclass)). If the value of the source
 is `NULL`, the instance is empty. If the value of the source has a scalar
-type and is non-`NULL`, the instance contains a public property called
-scalar whose value is that of the source. If the value of the source is
+type and is non-`NULL`, or is a `resource`, the instance contains a public property called
+`scalar` whose value is that of the source. If the value of the source is
 an array, the instance contains a set of public properties whose names
 and values are those of the corresponding key/value pairs in the source.
 The order of the properties is the order of insertion of the source's

@@ -15,7 +15,7 @@ behaves as though it contains its own value.
 The composite types can contain other variables, besides the variable itself, e.g.
 array contains its elements and object contains its properties.
 
-The objects are *handle types*. The type contains information — in a *handle* —
+The objects and resources are *handle types*. The type contains information — in a *handle* —
 that leads to the value. The differences between value and handle types become apparent
 when it comes to understanding the semantics of assignment, and passing
 arguments to, and returning values from, functions ([§§](04-basic-concepts.md#the-memory-model)).

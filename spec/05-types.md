@@ -56,7 +56,7 @@ There is one integer type, `int`, for which the name `integer` is a synonym.
 This type is binary, signed, and uses twos-complement representation for
 negative values. The range of values that can be stored is
 implementation-defined; however, the range [-2147483648, 2147483647],
-must be supported.
+must be supported. This range must be finite.
 
 Certain operations on integer values produce a mathematical result that
 cannot be represented as an integer. Examples include the following:
@@ -65,16 +65,8 @@ cannot be represented as an integer. Examples include the following:
 -   Applying the unary minus to the smallest value.
 -   Multiplying, adding, or subtracting two values.
 
-In such cases, the resulting type and value is implementation-defined,
-but must be one of the following:
-
--   The computation is done as though the types of the values were `float`
-    with the result having that type.
--   The result type is int and the value reflects wrap-around (for
-    example adding 1 to the largest value results in the smallest value).
--   The computation is done as though the type had some unspecified,
-    arithmetic-like object type with the result being mathematically
-    correct.
+In such cases, the computation is done as though the types of the values were
+`float` with the result having that type.
 
 The constants `PHP_INT_SIZE` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants)) and `PHP_INT_MAX` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants)) define certain
 characteristics about type `int`.

@@ -178,7 +178,7 @@ is distributed without any warranty.
     - [General](11-statements.md#general-3)
     - [The `goto` Statement](11-statements.md#the-goto-statement)
     - [The `continue` Statement](11-statements.md#the-continue-statement)
-  - [The `break` Statement](11-statements.md#the-break-statement)
+    - [The `break` Statement](11-statements.md#the-break-statement)
     - [The `return` Statement](11-statements.md#the-return-statement)
     - [The `throw` Statement](11-statements.md#the-throw-statement)
   - [The `try` Statement](11-statements.md#the-try-statement)

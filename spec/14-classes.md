@@ -1694,6 +1694,7 @@ class Closure
 {
   public static bind(Closure $closure, $newthis [, $newscope = "static" ]);
   public bindTo($newthis [, $newscope = "static" ]);
+  public call($newthis [, ...$parameters ]);
 }
 
 ```
@@ -1704,6 +1705,7 @@ Name | Purpose
 -----|--------
 `bind` | Duplicates closure `$closure` with a specific bound object `$newthis` and class scope `$newscope`. If `$newthis` is `NULL` then the closure is to be unbound if no scope is specified, or static if a scope is specified. `$newscope` is the scope the closure is to be given (either a string containing the name of a class, or an object whose class will be used), or `"static"` to keep the current one. Returns a new `Closure` object or `FALSE` on failure. This function must not violate the invariant that closures must either be both scoped and bound or static, or otherwise both unscoped and unbound. This function must prevent binding an object to the new closure if the `$closure` is static, however the new closure may have a different scope.
 `bindTo` |  Duplicates the closure designated by the current instance with a new-bound object and class scope. This method is an instance version of bind. 
+`call` | Calls the closure (the current instance) with `$this` bound to `$newthis`, the class scope of the class of `$newthis`, and the parameters specified by `$parameters`. This function must fail if `$newthis` is NULL, or if the closure is static.
 
 When the anonymous function-creation operator ([§§](10-expressions.md#anonymous-function-creation)) is evaluated,
 the result is an object of type `Closure` (or some unspecified class

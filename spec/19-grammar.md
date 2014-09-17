@@ -295,7 +295,7 @@ octal-digit
 
 
   <i>nowdoc-string-literal::</i>
-    &lt;&lt;&lt;  \'  <i>hd-start-identifier</i>  \'  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    &lt;&lt;&lt;  '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 </pre>
 
 ####The Null Literal
@@ -611,8 +611,8 @@ octal-digit
 <pre>
   <i>shift-expression:</i>
     <i>additive-expression</i>
-    <i>shift-expression</i>  <<  <i>additive-expression</i>
-    <i>shift-expression</i>  >>  <i>additive-expression</i>
+    <i>shift-expression</i>  &lt;&lt;  <i>additive-expression</i>
+    <i>shift-expression</i>  &gt;&gt;  <i>additive-expression</i>
 </pre>
 
 ####Relational Operators
@@ -620,10 +620,10 @@ octal-digit
 <pre>
   <i>relational-expression:</i>
     <i>shift-expression</i>
-    <i>relational-expression</i>  <   <i>shift-expression</i>
-    <i>relational-expression</i>  >   <i>shift-expression</i>
-    <i>relational-expression</i>  <=  <i>shift-expression</i>
-    <i>relational-expression</i>  >=  <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;   <i>shift-expression</i>
+    <i>relational-expression</i>  &gt;   <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;=  <i>shift-expression</i>
+    <i>relational-expression</i>  &gt;=  <i>shift-expression</i>
 </pre>
 
 ####Equality Operators
@@ -633,7 +633,7 @@ octal-digit
     <i>relational-expression</i>
     <i>equality-expression</i>  ==  <i>relational-expression</i>
     <i>equality-expression</i>  !=  <i>relational-expression</i>
-    <i>equality-expression</i>  <>  <i>relational-expression</i>
+    <i>equality-expression</i>  &lt;&gt;  <i>relational-expression</i>
     <i>equality-expression</i>  ===  <i>relational-expression</i>
     <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>

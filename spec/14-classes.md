@@ -1674,7 +1674,7 @@ The predefined
 class [`Closure`](http://php.net/manual/class.closure.php) is used
 for representing an [anonymous
 function](http://php.net/manual/functions.anonymous.php). It
-cannot be instantiated except by the Engine, as described below.
+cannot be instantiated except by the Engine, as described below. Closure objects are immutable and must not permit the creation or modification of properties.
 
 Closures can be *bound*, *unbound* or *static*. If a closure is said to be 
 bound, then it has an object that `$this` will be bound to when called. If a

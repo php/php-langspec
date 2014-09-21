@@ -2062,10 +2062,16 @@ to that type.
 The type of the result is `int`, and the value of the result is that after
 the shifting is complete. The values of `e1` and `e2` are unchanged.
 
-If the shift count is negative, the actual shift applied is `n -
-(-shift count % n)`, where `n` is the number of bits per `int`. If the
-shift count is greater than the number of bits in an `int`, the actual
-shift applied is shift count `% n`.
+Left shifts where the shift count is greater than the bit width of the integer
+type (e.g. 32 or 64) must always result in 0, even if there is no native
+processor support for this.
+
+Right shifts where the shift count is greater than the bit width of the integer
+type (e.g. 32 or 64) must always result in 0 when `e1` is positive and -1 when
+`e1` is negative, even if there is no native processor support for this.
+
+If the shift count is negative, this results in a diagnostic followed by a
+`bool` result having value `FALSE`.
 
 These operators associate left-to-right.
 

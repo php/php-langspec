@@ -42,7 +42,7 @@ If the source type is `bool`, then if the source value is `FALSE`, the
 result value is 0; otherwise, the result value is 1.
 
 If the source type is `float`, for the values `INF`, `-INF`, and `NAN`, the
-result value is implementation-defined. For all other values, if the
+result value is zero. For all other values, if the
 precision can be preserved (that is, the float is within the range of an
 integer), the fractional part is rounded towards zero. If the precision cannot
 be preserved, the following conversion algorithm is used, where *X* is

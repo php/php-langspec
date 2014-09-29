@@ -40,6 +40,11 @@ The library function `is_scalar` (§xx) indicates if a given value has a
 scalar type. However, that function does not consider `NULL` to be scalar.
 To test for `NULL`, use `is_null` (§xx).
 
+Some objects may support arithmetic and other scalar operations and/or be
+convertible to scalar types (this is currently available only to internal classes).
+Such object types together with scalar types are called *scalar-compatible types*.
+Note that the same object type may be scalar-compatible for one operation but not for another.
+
 ###The Boolean Type
 
 The Boolean type is `bool`, for which the name `boolean` is a synonym. This

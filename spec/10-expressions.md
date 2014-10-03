@@ -29,7 +29,7 @@ The occurrence of value computation and side effects is delimited by
 computations and side effects previously promised are complete, and no
 computations or side effects of future operations have yet begun. There
 is a sequence point at the end of each full expression. The logical and
-([§§](#logical-and-operator-form-1)), logical or (§[[10.15](#logical-inclusive-or-operator-form-1)](#logical-inclusive-or-operator-form-1)), conditional (§[[10.15](#logical-inclusive-or-operator-form-1)](#logical-inclusive-or-operator-form-1)), and function-call
+([§§](#logical-and-operator-form-1)), logical or (§[[10.15](#logical-inclusive-or-operator-form-1)](#logical-inclusive-or-operator-form-1)), conditional (§[[10.15](#logical-inclusive-or-operator-form-1)](#logical-inclusive-or-operator-form-1)), coalesce (§[[10.15](#logical-inclusive-or-operator-form-1)](#logical-inclusive-or-operator-form-1)), and function-call
 ([§§](#function-call-operator)) operators each contain a sequence point. (For example, in the
 following series of expression statements, `$a = 10; ++$a; $b = $a;`,
 there is sequence point at the end of each full expression, so the
@@ -2439,6 +2439,54 @@ function factorial($int)
 }
 ```
 
+##Coalesce Operator
+
+**Syntax**
+
+<pre>
+  <i>coalesce-expression:</i>
+    <i>logical-inc-OR-expression</i>  ??  <i>expression</i>
+</pre>
+
+*logical-OR-expression* is defined in [§§](#logical-inclusive-or-operator-form-1); and *expression* is
+defined in [§§](#general-6).
+
+**Constraints**
+
+The *logical-inc-OR-expression* must designate a variable.
+
+**Semantics**
+
+Given the expression `e1 ?? e2`, if `e1` is set and not `NULL` (i.e. TRUE for
+[isset](#isset)), the result and type of the expression `e1` become the result
+and type of the whole expression. Otherwise, then and only then is `e2`
+evaluated, and the result and its type become the result and type of the whole
+expression. There is a sequence point after the evaluation of `e1`.
+
+This operator associates left-to-right.
+
+**Examples**
+
+```PHP
+$arr = ["foo" => "bar", "qux" => NULL];
+$obj = (object)$arr;
+
+$a = $arr["foo"] ?? "bang"; // "bar" as $arr["foo"] is set and not NULL
+$a = $arr["qux"] ?? "bang"; // "bang" as $arr["qux"] is NULL
+$a = $arr["bing"] ?? "bang"; // "bang" as $arr["bing"] is not set
+
+$a = $obj->foo ?? "bang"; // "bar" as $obj->foo is set and not NULL
+$a = $obj->qux ?? "bang"; // "bang" as $obj->qux is NULL
+$a = $obj->bing ?? "bang"; // "bang" as $obj->bing is not set
+
+$a = NULL ?? $arr["bing"] ?? 2; // 2 as NULL is NULL, and $arr["bing"] is not set
+
+function foo() {
+    echo "executed!", PHP_EOL;
+}
+var_dump(true ?? foo()); // outputs bool(true), "executed!" does not appear as it short-circuits
+```
+
 ##Assignment Operators
 
 ###General
@@ -2448,12 +2496,14 @@ function factorial($int)
 <pre>
   <i>assignment-expression:</i>
     <i>conditional-expression</i>
+    <i>coalesce-expression</i>
     <i>simple-assignment-expression</i>
     <i>byref-assignment-expression</i>
     <i>compound-assignment-expression</i>
 </pre>
 
 *conditional-expression* is defined in [§§](#conditional-operator);
+*coalesce-expression* is defined in [§§](#coalesce-operator);
 *simple-assignment-expression* is defined in [§§](#simple-assignment);
 *byref-assignment-expression* is defined in [§§](#byref-assignment); and
 *compound-assignment-expression* is defined in [§§](#compound-assignment).

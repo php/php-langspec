@@ -2451,10 +2451,6 @@ function factorial($int)
 *logical-OR-expression* is defined in [§§](#logical-inclusive-or-operator-form-1); and *expression* is
 defined in [§§](#general-6).
 
-**Constraints**
-
-The *logical-inc-OR-expression* must designate a variable.
-
 **Semantics**
 
 Given the expression `e1 ?? e2`, if `e1` is set and not `NULL` (i.e. TRUE for
@@ -2463,7 +2459,7 @@ and type of the whole expression. Otherwise, then and only then is `e2`
 evaluated, and the result and its type become the result and type of the whole
 expression. There is a sequence point after the evaluation of `e1`.
 
-This operator associates left-to-right.
+This operator associates right-to-left.
 
 **Examples**
 

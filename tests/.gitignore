@@ -1,6 +1,5 @@
 *.out
 *.diff
-*.phpt
 *.exp
 *.log
 *.sh

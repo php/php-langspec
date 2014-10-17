@@ -25,6 +25,7 @@ The following kinds of variable may exist in a script:
 -   Array element ([§§](#array-elements)).
 -   Function static ([§§](#function-statics)).
 -   Global variable ([§§](#global-variables)).
+-   Object property ([§§](#object-properties)).
 -   Instance property ([§§](#instance-properties)).
 -   Static class property ([§§](#static-properties)).
 -   Class and interface constant ([§§](#class-and-interface-constants)).
@@ -256,6 +257,25 @@ function f()
   $v = 'g';
   global $$v;          // import global $g
   ...
+}
+```
+
+###Object Properties
+
+Object properties are defined for a particular object and can only be accessed on this specific object in contrast to instance properties ([§§](#instance-properties)) which are available for all objects of a particular class (and sub-classes). Object properies have always public [visibility](14-classes.md#general).
+
+**Examples**
+
+```PHP
+$obj = new stdClass();
+$obj->isHungry = true;
+if($obj->isHungry){
+  echo '$obj is hungry';
+}
+
+$obj2 = new stdClass();
+if($obj2->isHungry){      //emits an E_NOTICE "Undefined property: stdClass::$isHungry" 
+  echo '$obj2 is hungry';
 }
 ```
 

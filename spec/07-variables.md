@@ -20,7 +20,7 @@ the need for a *global-declaration* ([§§](#global-variables)).
 
 The following kinds of variable may exist in a script:
 
--   Constant ([§§](#constants)).
+-   Constant ([§§](#constants)).hi
 -   Local variable ([§§](#local-variables)).
 -   Array element ([§§](#array-elements)).
 -   Function static ([§§](#function-statics)).
@@ -178,7 +178,7 @@ Unlike the local variable equivalent in [§§](#local-variables), function `f` o
 = 1`", "`$fs = 2`", and "`$fs = 3`", as `$fs` retains its value across
 calls.
 
-<a name="hiddingNotice"></a>
+<a name="hidingNotice"></a>
 Be also aware that declaring a variable static can hide a local variable and/or a global variable with the same name. The value of the local or global variable is not taken over as initial value of the function static. Subsequent modifications of the function static only modify the function static and do not affect the local nor the global variable. Following an example:
 
 ```PHP
@@ -281,7 +281,7 @@ function f()
 }
 ```
 
-Be also aware that declaring a variable global can hide a local variable and/or a function static with the same name. See ([§§](#hiddingNotice)) for an example.
+Be also aware that declaring a variable global can hide a local variable and/or a function static with the same name. See ([§§](#hidingNotice)) for an example.
 
 ###Instance Properties
 

@@ -37,6 +37,15 @@ class. A member with `protected` visibility may be accessed only from
 within its own class and from classes derived from that class. Access to
 a member with `public` visibility is unrestricted.
 
+Properties, but not methods, of a class can be marked as `readonly`. If the
+property is marked as `public` and `readonly`, it is readable from the public
+context but only writeablee from the protected context (within own class and
+derived classes). If the property is marked as `protected` and `readonly`, it is
+readable from the protected context but only writeable from the private context
+(within own class). Properties cannot be both `private` and `readonly`, nor
+`static` and `readonly. For the purposes of `readonly`, unsetting and obtaining
+a reference to a property are considered to be writing.
+
 The *signature* of a method is a combination of the parent class name,
 that method's name, and its parameter list, including type hints and
 indication for arguments passed using byRef, and whether the resulting
@@ -243,8 +252,8 @@ class Point
 {
   private static $pointCount = 0;     // static property
 
-  private $x;             // instance property
-  private $y;             // instance property
+  readonly protected $x;             // instance property
+  readonly protected $y;             // instance property
 
   public static function getPointCount()    // static method
   {
@@ -406,8 +415,10 @@ $col = Automobile::DEFAULT_COLOR;
 
   <i>property-modifier:</i>
     var
-    <i>visibility-modifier   static-modifier<sub>opt</sub></i>
-    <i>static-modifier   visibility-modifier<sub>opt</sub></i>
+    <i>visibility-modifier   readonly-modifier<sub>opt</sub></i>
+    <i>readonly-modifier   visibility-modifier<sub>opt</sub></i>
+    <i>visibility-modifier     static-modifier<sub>opt</sub></i>
+    <i>static-modifier     visibility-modifier<sub>opt</sub></i>
 
   <i>visibility-modifier:</i>
     public
@@ -416,6 +427,9 @@ $col = Automobile::DEFAULT_COLOR;
 
   <i>static-modifier:</i>
     static
+
+  <i>readonly-modifier:</i>
+    readonly
 
   <i>property-initializer:</i>
     =  <i>constant-expression</i>
@@ -446,8 +460,9 @@ class Point
 {
   private static $pointCount = 0; // static property with initializer
   
-  private $x; // instance property
-  private $y; // instance property
+  public readonly $x; // instance property
+  public readonly $y; // instance property
+  private $cache;     // instance property
   ...
 
 }

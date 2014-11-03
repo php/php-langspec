@@ -1916,6 +1916,11 @@ These operators associate left-to-right.
 100 / 100;       // int with value 1
 100  / "123";    // float with value 0.8130081300813
 "123" % 100;     // int with value 23
+100 / 0;         // results in a diagnostic followed by bool with value false 
+100 / 0.0;       // results in a diagnostic followed by bool with value false
+1.3 / 0;         // results in a diagnostic followed by bool with value false
+1.3 / 0.0;       // results in a diagnostic followed by bool with value false
+100 / "a";       // results in a diagnostic followed by bool with value false (a is converted to 0)        
 ```
 
 ##Additive Operators

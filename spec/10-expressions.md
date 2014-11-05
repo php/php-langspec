@@ -66,7 +66,7 @@ the full expression `$list1[$i] = $list2[$i++]`, whether the value
 of `$i` on the left-hand side is the old or new `$i`, is unspecified.
 Similarly, in the full expression `$j = $i + $i++`, whether the value
 of `$i` is the old or new `$i`, is unspecified. Finally, in the full
-expression `f() + g() \* h()`, the order in which the three functions are
+expression `f() + g() * h()`, the order in which the three functions are
 called, is unspecified).
 
 **Implementation Notes**
@@ -78,7 +78,7 @@ effects and their results are not used.
 
 A side effect need not be executed if it can be determined that no other
 program code relies on its having happened. (For example, in the cases
-of return `$a++`; and return `++$a`;, it is obvious what value must be
+of `return $a++;` and `return ++$a;`, it is obvious what value must be
 returned in each case, but if `$a` is a variable local to the enclosing
 function, `$a` need not actually be incremented.
 
@@ -108,20 +108,12 @@ is defined in [§§](09-lexical-structure.md#general-2); *const-expression* is d
 
 **Semantics**
 
-When the name of a function is used as an expression without the
-function-call operator `()` ([§§](#function-call-operator)), that name is treated as a string
-containing that function's name.
-
 The type and value of parenthesized expression are identical to those of
 the un-parenthesized expression.
 
-The variable `$this` is predefined inside any instance method or
-constructor when that method is called from within an object
-context. `$this` is a handle ([§§](05-types.md#general)) that points to the calling object or
-to the object being constructed. The type of `$this` is the type of the
-class within which the usage of `$this` occurs. However, at run time, the
-type of the object referred to by `$this` may be the type of the
-enclosing class or any type derived from that class.
+The variable `$this` is predefined inside any non-static instance method (including
+constructor) when that method is called from within an object
+context. The value of `$this` is the calling object or the object being constructed. 
 
 ###Intrinsics
 
@@ -130,15 +122,21 @@ enclosing class or any type derived from that class.
 **Syntax**
 <pre>
   <i>intrinsic:</i>
-    <i>array-intrinsic</i>
+    <i>intrisic-construct</i>
+    <i>intrisic-operator</i>
+    
+  <i>intrisic-construct:</i>
     <i>echo-intrinsic</i>
+    <i>list-intrinsic</i>
+    <i>unset-intrinsic</i>
+    
+  <i>intrinsic-operator:</i>
+    <i>array-intrinsic</i>
     <i>empty-intrinsic</i>
     <i>eval-intrinsic</i>
     <i>exit-intrinsic</i>
     <i>isset-intrinsic</i>
-    <i>list-intrinsic</i>
     <i>print-intrinsic</i>
-    <i>unset-intrinsic</i>
 </pre>
 
 *array-intrinsic* is defined in [§§](#array); *echo-intrinsic* is defined
@@ -150,8 +148,14 @@ is defined in [§§](#list); *print-intrinsic* is defined in [§§](#print); and
 
 **Semantics**
 
-The names in this series of subclauses have special meaning and are
-called *intrinsics*, but they are not keywords; nor are they functions.
+The names in this series of sections have special meaning and are
+called *intrinsics*, but they are not keywords; nor are they functions, they
+are language constructs that are interpreted by the Engine.
+
+*intrinsic-operator* can be used as part of an expression, in any place
+other values or expressions could be used. 
+
+*intrisic-construct* can be used only as stand-alone [statement](11-statements.md#statements).
 
 ####array
 
@@ -167,7 +171,7 @@ called *intrinsics*, but they are not keywords; nor are they functions.
 **Semantics**
 
 This intrinsic creates and initializes an array. It is equivalent to the
-array-creation operator `[]` ([§§](#array-creation-operator)).
+array-creation operator [`[]`](#array-creation-operator).
 
 ####echo
 
@@ -176,7 +180,6 @@ array-creation operator `[]` ([§§](#array-creation-operator)).
 <pre>
   <i>echo-intrinsic:</i>
     echo  <i>expression</i>
-    echo  (  <i>expression</i>  )
     echo  <i>expression-list-two-or-more</i>
 
   <i>expression-list-two-or-more:</i>
@@ -188,14 +191,15 @@ array-creation operator `[]` ([§§](#array-creation-operator)).
 
 **Constraints**
 
-*expression* must not designate an array nor an instance of a type not
-having a `__toString` method ([§§](14-classes.md#method-__tostring)).
+*expression* value must be [convertable to a string](08-conversions.md#converting-to-string-type). 
+In particular, it should not be an array and if it is an object, it must implement
+a [`__toString` method](14-classes.md#method-__tostring).
 
 **Semantics**
 
 After converting each of its *expression*s' values to strings, if
-necessary, `echo` concatenates them in lexical order, and writes the
-resulting string to `STDOUT` ([§§](05-types.md#resource-types)). Unlike `print` ([§§](#print)), it does
+necessary, `echo` concatenates them in order given, and writes the
+resulting string to [`STDOUT`](05-types.md#resource-types). Unlike [`print`](#print), it does
 not produce a result.
 
 For value substitution in string literals, see [§§](09-lexical-structure.md#double-quoted-string-literals) and
@@ -227,23 +231,27 @@ echo "$v3\n";
 **Semantics**
 
 This intrinsic returns `TRUE` if the variable or value designated by
-*expression* is empty, where *empty* means that the variable does not
+*expression* is empty, where *empty* means that the variable designated by it does not
 exist, or it exists and its value compares equal to `FALSE`. Otherwise,
 the intrinsic returns `FALSE`.
 
-The following values are considered empty: `FALSE`, `0`, `0.0`, "", "`0`", `NULL`, `[]`/`array()`, and any uninitialized variable.
+The following values are considered empty: `FALSE`, `0`, `0.0`, `""` (empty string), `"0"`, `NULL`, 
+an empty array, and any uninitialized variable.
 
-If this intrinsic is used with an expression that designate a dynamic
-property ([§§](14-classes.md#dynamic-members)), then if the class of that property has an `__isset`
-method ([§§](14-classes.md#method-__isset)), that method is called.
+If this intrinsic is used with an expression that designate a [dynamic
+property](14-classes.md#dynamic-members), then if the class of that property has
+an [`__isset`](14-classes.md#method-__isset), that method is called. 
+If that method returns `TRUE`, the value of the property is retrieved 
+(which may call [__get](4-classes.md#method-__get) if defined) and compared
+to `FALSE` as described above. Otherwise, the result is `FALSE`.
 
 **Examples**
 
 ```PHP
-empty("0")  // results in TRUE
-empty("00") // results in FALSE
+empty("0");  // results in TRUE
+empty("00"); // results in FALSE
 $v = [10, 20];
-empty($v)   // results in FALSE
+empty($v);   // results in FALSE
 ```
 
 ####eval
@@ -259,22 +267,22 @@ empty($v)   // results in FALSE
 
 **Constraints**
 
-*expression* must designate a string, the contents of which must be
-valid PHP source code.
+*expression* must designate a string, or be [convertable to a string](08-conversions.md#converting-to-string-type).
+The contents of the string must be valid PHP source code.
 
 The PHP source code in the string must not be delimited by opening and
-closing [PHP
-tags](http://php.net/manual/language.basic-syntax.phpmode.php).
+closing [PHP tags](04-basic-concepts.md#program-structure). However, the source code
+itself may contain the tags. 
 
 **Semantics**
 
 This intrinsic evaluates the contents of the string designated by
-*expression*, as PHP source code.
+*expression*, as PHP script code.
 
-Execution of a `return` statement ([§§](11-statements.md#the-return-statement)) from within the source code
-terminates the intrinsic, and the value returned becomes the value
-returned by eval. If the source code is ill formed, eval returns `FALSE`;
-otherwise, eval returns `NULL`.
+Execution of a [`return` statement](11-statements.md#the-return-statement) from within the source code
+terminates the execution, and the value returned becomes the value
+returned by `eval`. If the source code is ill formed, `eval` returns `FALSE`;
+otherwise, `eval` returns `NULL`.
 
 The source code is executed in the scope of that from which `eval` is
 called.
@@ -283,7 +291,7 @@ called.
 
 ```PHP
 $str = "Hello";
-eval("echo \$str . \"\\n\";");  // → echo $str . "\n";
+eval("echo \$str . \"\\n\";");  // → echo $str . "\n"; → prints Hello
 ```
 
 ####exit/die
@@ -310,7 +318,7 @@ When *expression* designates an integer, its value must be in the range
 `exit` and `die` are equivalent.
 
 This intrinsic terminates the current script. If *expression* designates
-a string, that string is written to `STDOUT` ([§§](05-types.md#resource-types)). If *expression*
+a string, that string is written to [`STDOUT`](05-types.md#resource-types). If *expression*
 designates an integer, that represents the script's *exit status code*.
 Code 255 is reserved by PHP. Code 0 represents "success". The exit
 status code is made available to the execution environment. If
@@ -319,10 +327,10 @@ status code is made available to the execution environment. If
 
 `exit` performs the following operations, in order:
 
--   Writes the optional string to `STDOUT` ([§§](05-types.md#resource-types)).
+-   Writes the optional string to [`STDOUT`](05-types.md#resource-types).
 -   Calls any functions registered via the library function
     `register_shutdown_function` (§xx) in their order of registration.
--   Invokes destructors ([§§](14-classes.md#destructors)) for all remaining instances.
+-   Invokes [destructors](14-classes.md#destructors) for all remaining instances.
 
 **Examples**
 
@@ -342,7 +350,7 @@ exit;
 
   <i>expression-list-one-or-more</i>:
     <i>expression</i>
-    <i>expression-list-one-or-mor</i>  ,  <i>expression</i>
+    <i>expression-list-one-or-more</i>  ,  <i>expression</i>
 </pre>
 
 *expression* is defined in [§§](#general-6).
@@ -357,19 +365,22 @@ This intrinsic returns `TRUE` if all the variables designated by
 *expression*s are set and their values are not `NULL`. Otherwise, it
 returns `FALSE`.
 
-If this intrinsic is used with an expression that designates a dynamic
-property ([§§](14-classes.md#dynamic-members)), then if the class of that property has an `__isset`
-method ([§§](14-classes.md#method-__isset)), that method is called.
+If this intrinsic is used with an expression that designate a [dynamic
+property](14-classes.md#dynamic-members), then if the class of that property has
+an [`__isset`](14-classes.md#method-__isset), that method is called. 
+If that method returns `TRUE`, the value of the property is retrieved 
+(which may call [`__get`](4-classes.md#method-__get) if defined) and
+if it is not `NULL`, the result is `TRUE`. Otherwise, the result is `FALSE`.
 
 **Examples**
 
 ```PHP
 $v = TRUE;
-isset($v)     // results in TRUE
+isset($v);     // results in TRUE
 $v = NULL;
-isset($v)     // results in FALSE
+isset($v);     // results in FALSE
 $v1 = TRUE; $v2 = 12.3; $v1 = NULL;
-isset($v1, $v2, $v3)  // results in FALSE
+isset($v1, $v2, $v3);  // results in FALSE
 ```
 
 ####list
@@ -381,9 +392,9 @@ isset($v1, $v2, $v3)  // results in FALSE
     list  (  <i>list-expression-list<sub>opt</sub></i>  )
 
   <i>list-expression-list:</i>
-  <i>list-or-variable</i>
-  ,
-  <i>list-expression-list</i>  ,  <i>list-or-variable<sub>opt</sub></i>
+    <i>list-or-variable</i>
+    ,
+    <i>list-expression-list</i>  ,  <i>list-or-variable<sub>opt</sub></i>
 
   <i>list-or-variable:</i>
     <i>list-intrinsic</i>
@@ -395,12 +406,12 @@ isset($v1, $v2, $v3)  // results in FALSE
 **Constraints**
 
 *list-intrinsic* must be used as the left-hand operand in a
-*simple-assignment-expression* ([§§](#simple-assignment)) of which the right-hand
-operand must be an expression that designates an array (the "source
-array").
+[*simple-assignment-expression*](#simple-assignment) of which the right-hand
+operand must be an expression that designates an array (called the *source
+array*).
 
 Each *expression* in *expression-list-one-or-more* must designate a
-variable (the "target variable").
+variable (called the *target variable*).
 
 **Semantics**
 
@@ -413,10 +424,10 @@ All elements in the source array having keys of type `string` are ignored.
 The element having an `int` key of 0 is assigned to the first target
 variable, the element having an `int` key of 1 is assigned to the second
 target variable, and so on, until all target variables have been
-assigned. Any elements having an `int` key outside the range 0–(*n*-1),
-where *n* is the number of target variables, are ignored. If there are
-fewer element candidates having int keys than there are target
-variables, the unassigned target variables are unset ([§§](#unset)).
+assigned. Any other array elements are ignored. If there are
+fewer source array elements having int keys than there are target
+variables, the unassigned target variables are set to `NULL` and
+a non-fatal error is produced.
 
 Any target variable may be a list, in which case, the corresponding
 element is expected to be an array.
@@ -434,7 +445,7 @@ list($min, $max, $avg) = array(2 => 67, 1 => 100, 0 => 0);
 list($min, , $avg) = array(0, 100, 67);
   // $min is 0, $avg is 67
 list($min, $max, $avg) = array(0, 2 => 100, 4 => 67);
-  // $min is 0, $max is unset, $avg is 100
+  // $min is 0, $max is NULL, $avg is 100
 list($min, list($max, $avg)) = [0, [1 => 67, 99, 0 => 100], 33];
   // $min is 0, $max is 100, $avg is 67
 ```
@@ -453,14 +464,15 @@ list($min, list($max, $avg)) = [0, [1 => 67, 99, 0 => 100], 33];
 
 **Constraints**
 
-*expression* must not designate an array or an instance of a type not
-having a `__toString` method.
+*expression* value must be [convertable to a string](08-conversions.md#converting-to-string-type). 
+In particular, it should not be an array and if it is an object, it must implement
+a [`__toString` method](14-classes.md#method-__tostring).
 
 **Semantics**
 
 After converting its *expression*'s value to a string, if necessary,
-`print` writes the resulting string to `STDOUT` ([§§](05-types.md#resource-types)). Unlike `echo`
-([§§](#echo)), `print` can be used in any context allowing an expression. It
+`print` writes the resulting string to [`STDOUT`](05-types.md#resource-types). 
+Unlike [`echo`](#echo), `print` can be used in any context allowing an expression. It
 always returns the value 1.
 
 For value substitution in string literals, see [§§](09-lexical-structure.md#double-quoted-string-literals) and
@@ -495,7 +507,7 @@ Each *expression* must designate a variable.
 
 **Semantics**
 
-This intrinsic unsets ([§§](07-variables.md#general)) the variables designated by each
+This intrinsic [unsets](07-variables.md#general) the variables designated by each
 *expression* in *expression-list-one-or-more*. No value is returned. An
 attempt to unset a non-existent variable (such as a non-existent element
 in an array) is ignored.
@@ -504,9 +516,9 @@ When called from inside a function, this intrinsic behaves, as follows:
 
 -   For a variable declared `global` in that function, `unset` removes the
     alias to that variable from the scope of the current call to that
-    function. Once the function returns, the global variable is still
-    set. (To unset the global variable, use unset on the corresponding
-    [`$GLOBALS`](http://php.net/manual/reserved.variables.globals.php) array entry ([§§](07-variables.md#predefined-variables))).
+    function. The global variable remains set. 
+    (To unset the global variable, use unset on the corresponding
+    [`$GLOBALS`](07-variables.md#predefined-variables) array entry.
 -   For a variable passed byRef to that function, `unset` removes the
     alias to that variable from the scope of the current call to that
     function. Once the function returns, the passed-in argument variable
@@ -519,16 +531,16 @@ When called from inside a function, this intrinsic behaves, as follows:
 Any visible instance property may be unset, in which case, the property
 is removed from that instance.
 
-If this intrinsic is used with an expression that designate a dynamic
-property ([§§](14-classes.md#dynamic-members)), then if the class of that property has an `__unset`
-method ([§§](14-classes.md#method-__unset)), that method is called.
+If this intrinsic is used with an expression that designate a [dynamic
+property](14-classes.md#dynamic-members), then if the class of that property has an [`__unset`
+method](14-classes.md#method-__unset), that method is called.
 
 **Examples**
 
 ```PHP
 unset($v);
 unset($v1, $v2, $v3);
-unset($x->m); // if m is a dynamic property, $x's __unset("m") is called
+unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
 ```
 
 ###Anonymous Function-Creation
@@ -544,7 +556,7 @@ unset($x->m); // if m is a dynamic property, $x's __unset("m") is called
     use  (  <i>use-variable-name-list</i>  )
 
   <i>use-variable-name-list:</i>
-    &<sub>opt</sub>   <i>variable-name</i>
+    &amp;<sub>opt</sub>   <i>variable-name</i>
     <i>use-variable-name-list</i>  ,  &<sub>opt</sub>  <i>variable-name</i>
 </pre>
 
@@ -553,14 +565,14 @@ is defined in [§§](11-statements.md#compound-statements); *variable-name* is d
 
 **Semantics**
 
-This operator returns an object of type `Closure` ([§§](14-classes.md#class-closure)), or a derived
-type thereof, that encapsulates the anonymous function ([§§](13-functions.md#anonymous-functions)) defined
-within. An anonymous function is defined like, and behaves like, a named
-function ([§§](13-functions.md#function-definitions)) except that the former has no name and has an optional
+This operator returns an object of type [`Closure`](14-classes.md#class-closure), or a derived
+type thereof, that encapsulates the [anonymous function](13-functions.md#anonymous-functions) defined
+within. An anonymous function is defined like, and behaves like, a [named
+function](13-functions.md#function-definitions) except that the former has no name and has an optional
 *anonymous-function-use-clause*.
 
 An expression that designates an anonymous function is compatible with
-the type hint `callable` ([§§](13-functions.md#function-definitions)).
+the type hint [`callable`](13-functions.md#function-definitions).
 
 The *use-variable-name-list* is a list of variables from the enclosing
 scope, which are to be made available by name to the body of the
@@ -570,19 +582,19 @@ needed. The values used for these variables are those at the time the
 encapsulates.
 
 An anonymous function defined inside an instance or static method has its
-*scope* ([§§](14-classes.md#class-closure)) set to the class it was defined in. Otherwise,
-an anonymous function is *unscoped* ([§§](14-classes.md#class-closure)).
+[*scope*](14-classes.md#class-closure) set to the class it was defined in. Otherwise,
+an anonymous function is [*unscoped*](14-classes.md#class-closure).
 
-An anonymous function defined inside an instance method is is *bound*
-([§§](14-classes.md#class-closure)) to the object on which that method is called, while an
+An anonymous function defined inside an instance method is is [*bound*](14-classes.md#class-closure)
+to the object on which that method is called, while an
 an anonymous function defined inside a static method, or prefixed with the
-optional `static` modifier is *static* ([§§](14-classes.md#class-closure)), and otherwise
-an anonymous function is *unbound* ([§§](14-classes.md#class-closure)).
+optional `static` modifier is [*static*](14-classes.md#class-closure), and otherwise
+an anonymous function is [*unbound*](14-classes.md#class-closure).
 
 **Examples**
 
 ```PHP
-function doit($value, callable $process)  // return type is "Closure", unbound
+function doit($value, callable $process)
 {
   return $process($value);
 }
@@ -594,19 +606,19 @@ class C
   public function compute(array $values)
   {
     $count = 0;
-          $callback1 = function () use (&$count) // called C::{closure}
+    $callback1 = function () use (&amp;$count) // has C as its scope
     {
       ++$count;
-      ...
+      //...
     };
-    ...
-    $callback2 = function()   // also called C::{closure}
+    //...
+    $callback2 = function()   // also has C as its scope
     {
-      ...
+      //...
     };
-    ...
+    //...
   }
-  ...
+  //...
 }
 ```
 
@@ -660,20 +672,22 @@ These operators associate left-to-right.
 
 **Semantics**
 
-The `clone` operator creates a new object that is a shallow copy of the object designated by *expression*. Then, if the class type of *expression* has a method called `__clone` ([§§](14-classes.md#method-__clone)), that is called to perform a deep copy. The result is a handle that points to the new object.
+The `clone` operator creates a new object that is a shallow copy of the object designated by *expression*.
+Then, if the class type of *expression* has a method called [`__clone`](14-classes.md#method-__clone), that is called to perform a deep copy.
+The result is the new object.
 
 **Examples**
 
 Consider a class `Employee`, from which is derived a class `Manager`. Let us
-assume that both classes contain properties that are objects. clone is
-used to make a copy of a Manager object, and behind the scenes, the
+assume that both classes contain properties that are objects. `clone` is
+used to make a copy of a `Manager` object, and behind the scenes, the
 `Manager` object uses clone to copy the properties for the base class,
 `Employee`.
 
 ```PHP
 class Employee
 {
-  ...
+  //...
   public function __clone() 
   {
     // make a deep copy of Employee object
@@ -681,7 +695,7 @@ class Employee
 }
 class Manager extends Employee
 {
-  ...
+  //...
   public function __clone() 
   {
     $v = parent::__clone();
@@ -703,7 +717,6 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
     new  <i>class-type-designator</i>
 
   <i>class-type-designator:</i>
-    static
     <i>qualified-name</i>
     <i>expression</i>
 </pre>
@@ -716,31 +729,40 @@ defined in [§§](09-lexical-structure.md#names); and *expression* is defined in
 *qualified-name* must name a class.
 
 *expression* must be a value of type `string` (but not be a string
-literal) that contains the name of a class.
+literal) that contains the name of a class, or an object.
 
-*class-type-designator* must not designate an abstract class ([§§](14-classes.md#general)).
+*class-type-designator* must not designate an [abstract class](14-classes.md#general).
 
 The number of arguments in *argument-expression-list* must be at least
-as many as the number of parameters defined for the class's constructor.
+as many as the number of non-optional parameters defined for the class's [constructor](14-classes.md#constructors).
 
 **Semantics**
 
-The `new` operator allocates memory for an object that is an instance of
+The `new` operator creates an object that is an instance of
 the class specified by *class-type-designator*.
 
-The object is initialized by calling the class's constructor ([§§](14-classes.md#constructors))
-passing it the optional *argument-expression-list*. If the class has no
-constructor, the constructor that class inherits (if any) is used.
-Otherwise, each instance property takes on the value `NULL`.
+If the *class-type-designator* is an expression resulting in a string value, 
+that string is used as the class name. If the expression results in an object,
+the class of the object is used as the class for the new object. 
 
-The result of an *object-creation-expression* is a handle to an object
+The *qualified-name* is resolved according to the rules described in 
+[scope resolution operator](10-expressions.md#scope-resolution-operator), including
+support for `self`, `parent` and `static`.
+
+After the object has been created, ach instance property is initialized
+with the values [specified in property definition](14-classes.md#properties),
+or the value `NULL` if no initializer value is provided.
+
+The object is then initialized by calling the class's [constructor](14-classes.md#constructors)
+passing it the optional *argument-expression-list*. If the class has no
+constructor, the constructor that class inherits (if any) is used. The class
+can also specify no constructor definition, in this case the constructor call is omitted.
+
+The result of an *object-creation-expression* is an object
 of the type specified by *class-type-designator*.
 
-From within a method, the use of `static` corresponds to the class in the
-inheritance context in which the method is called.
-
 Because a constructor call is a function call, the relevant parts of
-[§§](#function-call-operator) also apply.
+[function call operator](#function-call-operator) section also apply.
 
 **Examples**
 
@@ -763,7 +785,7 @@ $p1 = new $cName(-1, 1); // create Point(-1, 1)
 
 An array is created and initialized by one of two equivalent ways: via
 the array-creation operator `[]`, as described below, or the intrinsic
-`array` ([§§](#array)).
+[`array`](#array).
 
 **Syntax**
 
@@ -781,7 +803,7 @@ the array-creation operator `[]`, as described below, or the intrinsic
 
   <i>array-element-initializer:</i>
     &<sub>opt</sub>   <i>element-value</i>
-    element-key  =>  &<sub>opt</sub>   <i>element-value</i>
+    <i>element-key</i>  =>  &<sub>opt</sub>   <i>element-value</i>
 
   <i>element-key:</i>
     <i>expression</i>
@@ -795,44 +817,46 @@ the array-creation operator `[]`, as described below, or the intrinsic
 **Constraints**
 
 If *array-element-initializer* contains &, *element-value's expression*
-must be a variable name ([§§](09-lexical-structure.md#names)).
+must designate a variable ([§§](09-lexical-structure.md#names)).
 
 **Semantics**
 
 If *array-initializer* is omitted, the array has zero elements. For
 convenience, an *array-initializer* may have a trailing comma; however,
-this comma has no purpose. An *array-initializer-list* consists of a
-comma-separated list of one or more *array-element-initializer*s, each
+this comma is ignored. An *array-initializer-list* consists of a
+comma-separated list of one or more *array-element-initializer* items, each
 of which is used to provide an *element-value* and an optional
 *element-key*.
 
-If the value of *element-key* is neither `int` nor `string`, keys with `float`
+If the type of *element-key* is neither `int` nor `string`, keys with `float`
 or `bool` values, or strings whose contents match exactly the pattern of
-*decimal-literal* ([§§](09-lexical-structure.md#integer-literals)), are converted to `int` ([§§](08-conversions.md#converting-to-integer-type)), and values
-of all other key types are converted to `string` ([§§](08-conversions.md#converting-to-string-type)).
+[*decimal-literal*](09-lexical-structure.md#integer-literals), are [converted to integer](08-conversions.md#converting-to-integer-type),
+and keys of all other types are [converted to string](08-conversions.md#converting-to-string-type).
 
 If *element-key* is omitted from an *array-element-initializer*, an
 element key of type `int` is associated with the corresponding
-*element-value*. The key associated is one more than the previously
-assigned `int` key for this array, regardless of whether that key was
-provided explicitly or by default. However, if this is the first element
-with an `int` key, key zero is associated.
+*element-value*. The key associated is one more than the largest previously
+assigned non-negative `int` key for this array, regardless of whether that key was
+provided explicitly or by default. If the array has no non-negative `int` keys,
+the key `0` is used. 
+If the largest previously assigned `int` key is the largest integer value that can be represented,
+the new element is not added.
 
 Once the element keys have been converted to `int` or `string`, and omitted
 element keys have each been associated by default, if two or more
-*array-element-initializer*s in an *array-initializer* contain the same
-key, the lexically right-most one is the one whose element-value is used
+*array-element-initializer* elements in an *array-initializer* contain the same
+key, the lexically right-most one is the one whose *element-value* is used
 to initialize that element.
 
-The result of this operator is a handle to the set of array elements.
+The result of this operator is the newly created array value.
 
 If *array-element-initializer* contains &, *element-value's* value is
-stored using byRef assignment ([§§](04-basic-concepts.md#assignment)).
+stored using [byRef assignment](04-basic-concepts.md#assignment).
 
 **Examples**
 
 ```PHP
-$v = [];      // array has 0 elements
+$v = [];      // array has 0 elements, i.e. empty array
 $v = array(TRUE);   // array has 1 element, the Boolean TRUE
 $v = [123, -56];  // array of two ints, with implicit int keys 0 and 1
 $v = [0 => 123, 1 => -56]; // array of two ints, with explicit int keys 0 and 1
@@ -849,8 +873,8 @@ $v = ["red" => 10, "4" => 3, 9.2 => 5, "12.8" => 111, NULL => 1];
 $c = array("red", "white", "blue");
 $v = array(10, $c, NULL, array(FALSE, NULL, $c));
 $v = array(2 => TRUE, 0 => 123, 1 => 34.5, -1 => "red");
-foreach($v as $e) { ... } // iterates over keys 2, 0, 1, -1
-for ($i = -1; $i <= 2; ++$i) { ... $v[$i] } // retrieves via keys -1, 0, 1, 2
+foreach($v as $e) { /* ... */ } // iterates over keys 2, 0, 1, -1
+for ($i = -1; $i <= 2; ++$i) { echo $v[$i]; } // retrieves via keys -1, 0, 1, 2
 ```
 
 ###Subscript Operator
@@ -860,7 +884,7 @@ for ($i = -1; $i <= 2; ++$i) { ... $v[$i] } // retrieves via keys -1, 0, 1, 2
 <pre>
   <i>subscript-expression:</i>
     <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
-    <i>postfix-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
+    <i>postfix-expression</i>  {  <i>expression</i>  }   <b>[Deprecated form]</b>
 </pre>
 
 *postfix-expression* is defined in [§§](#general-3); and *expression* is defined
@@ -882,23 +906,23 @@ being designated must exist.
 
 A *subscript-expression* designates a (possibly non-existent) element of
 an array or string. When *subscript-expression* designates an object of
-a type that implements `ArrayAccess` ([§§](15-interfaces.md#interface-arrayaccess)), the minimal semantics are
+a type that implements [`ArrayAccess`](15-interfaces.md#interface-arrayaccess), the minimal semantics are
 defined below; however, they can be augmented by that object's methods
-`offsetGet` (§[[15.6.1](15-interfaces.md#interface-arrayaccess)](#interface-arrayaccess)) and `offsetSet` (§[[15.6.1](15-interfaces.md#interface-arrayaccess)](#interface-arrayaccess)).
+[`offsetGet`](15-interfaces.md#interface-arrayaccess) and [`offsetSet`](15-interfaces.md#interface-arrayaccess).
 
-The element key is designated by *expression*. If the value of
-*element-key* is neither `int` nor `string`, keys with `float` or `bool` values,
-or strings whose contents match exactly the pattern of *decimal-literal*
-([§§](09-lexical-structure.md#integer-literals)), are converted to `int` ([§§](08-conversions.md#converting-to-integer-type)), and values of all other key
-types are converted to `string` ([§§](08-conversions.md#converting-to-string-type)).
+The element key is designated by *expression*. If the type of *element-key* is neither `int` nor `string`, keys with `float`
+or `bool` values, or strings whose contents match exactly the pattern of
+[*decimal-literal*](09-lexical-structure.md#integer-literals), are [converted to integer](08-conversions.md#converting-to-integer-type),
+and key values of all other types are [converted to string](08-conversions.md#converting-to-string-type).
 
 If both *postfix-expression* and *expression* designate strings,
-*expression* is treated as if it specified the `int` key zero instead.
+*expression* is treated as if it specified the `int` key zero instead
+and a non-fatal error is produces.
 
 A *subscript-expression* designates a modifiable lvalue if and only if
 *postfix-expression* designates a modifiable lvalue.
 
-*postfix-expression designates an array*
+**postfix-expression designates an array**
 
 If *expression* is present, if the designated element exists, the type
 and value of the result is the type and value of that element;
@@ -907,77 +931,87 @@ otherwise, the result is `NULL`.
 If *expression* is omitted, a new element is inserted. Its key has type
 `int` and is one more than the highest, previously assigned, non-negative
 `int` key for this array. If this is the first element with a non-negative
-`int` key, key zero is used. However, if the highest, previously assigned
-`int` key for this array is `PHP_INT_MAX` ([§§](#)), **no new element is
-inserted**. The type and value of the result is the type and value of
-the new element.
+`int` key, key `0` is used. 
+If the largest previously assigned `int` key is the largest integer value that can be represented,
+the new element is not added.
+The result is the added new element, or `NULL` if the element was not added.
 
 -   If the usage context is as the left-hand side of a
-    *simple-assignment-expression* ([§§](#simple-assignment)): The value of the new
+    [*simple-assignment-expression*](#simple-assignment), the value of the new
     element is the value of the right-hand side of that
     *simple-assignment-expression*.
 -   If the usage context is as the left-hand side of a
-    *compound-assignment-expression* ([§§](#compound-assignment)): The expression
+    [*compound-assignment-expression*](#compound-assignment): the expression
     `e1 op= e2` is evaluated as `e1 = NULL op (e2)`.
--   If the usage context is as the operand of a postfix- or
-    prefix-increment or decrement operator ([§§](#postfix-increment-and-decrement-operators), [§§](#prefix-increment-and-decrement-operators)): The value
-    of the new element is `NULL`.
+-   If the usage context is as the operand of a
+    [postfix- or prefix-increment or decrement operator](#postfix-increment-and-decrement-operators), the value
+    of the new element is considered to be `NULL`.
 
-*postfix-expression designates a string*
+**postfix-expression designates a string**
 
-If the designated element exists, the type and value of the result is
-the type and value of that element; otherwise, the result is an empty
-string.
+The *expression* is converted to `int` and the result is the character of the
+string at the position equal to that integer. If the integer is negative or refers
+to a non-existing offset, the result is an empty string.
 
-*postfix-expression designates an object of a type that implements*
-`ArrayAccess`
+If the operator is used as the left-hand side of a [*simple-assignment-expression*](#simple-assignment), 
+the value being assigned is converted to string and the character in the specified offset will be 
+replaced by the first character of the string. If the assigned string is empty, the `'\0'` character is used.
+If the string before the assignment had no such offset, the string is extended to include the offset 
+with `'\0'` characters.
+
+The subscript operator can not be used on a string value in a byRef context or as the operand of the
+[postfix- or prefix-increment or decrement operators](#postfix-increment-and-decrement-operators) or on the left 
+side of [*compound-assignment-expression*](#compound-assignment),
+doing so will result in a fatal error. 
+
+**postfix-expression designates an object of a type that implements `ArrayAccess`**
 
 If *expression* is present,
 
 -   If *subscript-expression* is used in a non-lvalue context, the
     object's method `offsetGet` is called with an argument of
-    *expression*. The type and value of the result is the type and value
-    returned by `offsetGet`.
+    *expression*. The return value of the `offsetGet` is the result.
 -   If the usage context is as the left-hand side of a
-    *simple-assignment-expression*: The object's method `offsetSet` is
+    *simple-assignment-expression*, the object's method `offsetSet` is
     called with a first argument of *expression* and a second argument
     that is the value of the right-hand side of that
-    *simple-assignment-expression*. The type and value of the result is
-    the type and value of the right-hand side of that
-    *simple-assignment-expression*.
+    *simple-assignment-expression*. The value of the right-hand side 
+    is the result.
 -   If the usage context is as the left-hand side of a
-    *compound-assignment-expression*: The expression `e1 op= e2` is
-    evaluated as `e1 = offsetGet(expression) op (e2)`, which is then
+    *compound-assignment-expression*, the expression `e1[e] op= e2` is
+    evaluated as `e1[e] = e1->offsetGet(e) op (e2)`, which is then
     processed according to the rules for simple assignment immediately
     above.
--   If the usage context is as the operand of a postfix- or
-    prefix-increment or decrement operator ([§§](#postfix-increment-and-decrement-operators), [§§](#prefix-increment-and-decrement-operators)): The
-    object's method `offsetGet` is called with an argument of
+-   If the usage context is as the operand of 
+    the [postfix- or prefix-increment or decrement operators](#postfix-increment-and-decrement-operators),
+    the object's method `offsetGet` is called with an argument of
     *expression*. However, this method has no way of knowing if an
     increment or decrement operator was used, or whether it was a prefix
-    or postfix operator. The type and value of the result is the type
-    and value returned by `offsetGet`.
+    or postfix operator. In order for the value to be modified by the increment/decrement, 
+    `offsetGet` must return byRef.
+    The result of the subscript operator value returned by `offsetGet`.
 
 If *expression* is omitted,
 
 -   If the usage context is as the left-hand side of a
-    *simple-assignment-expression*: The object's method `offsetSet`
-    ([§§](15-interfaces.md#interface-arrayaccess)) is called with a first argument of `NULL` and a second
+    *simple-assignment-expression*, the object's method
+    [`offsetSet`](15-interfaces.md#interface-arrayaccess) is called with a first argument of `NULL` and a second
     argument that is the value of the right-hand side of that
     *simple-assignment-expression*. The type and value of the result is
     the type and value of the right-hand side of that
     *simple-assignment-expression*.
 -   If the usage context is as the left-hand side of a
-    *compound-assignment-expression*: The expression `e1 op= e2` is
-    evaluated as `e1 = offsetGet(NULL) op (e2)`, which is then processed
+    *compound-assignment-expression*: The expression `e1[] op= e2` is
+    evaluated as `e1[] = e1->offsetGet(NULL) op (e2)`, which is then processed
     according to the rules for simple assignment immediately above.
--   If the usage context is as the operand of a postfix- or
-    prefix-increment or decrement operator ([§§](#postfix-increment-and-decrement-operators), [§§](#prefix-increment-and-decrement-operators)): The
-    object's method `offsetGet` is called with an argument of `NULL`.
+-   If the usage context is as the operand of
+    the [postfix- or prefix-increment or decrement operators](#postfix-increment-and-decrement-operators),
+    the object's method `offsetGet` is called with an argument of `NULL`.
     However, this method has no way of knowing if an increment or
     decrement operator was used, or whether it was a prefix or postfix
-    operator. The type and value of the result is the type and value
-    returned by `offsetGet`.
+    operator. In order for the value to be modified by the increment/decrement, 
+    `offsetGet` must return byRef.
+    The result of the subscript operator value returned by `offsetGet`.
 
 Note: The brace (`{...}`) form of this operator has been deprecated.
 
@@ -991,11 +1025,11 @@ $v["red"] = TRUE; // insert a new element with string key "red"
 [[2,4,6,8], [5,10], [100,200,300]][0][2]  // designates element with value 6
 ["black", "white", "yellow"][1][2]  // designates substring "i" in "white"
 function f() { return [1000, 2000, 3000]; } 
-f()[2]      // designates element with value 3000
-"red"[1.9]    // designates [1]
-"red"[0][0][0]    // designates [0]
+f()[2];      // designates element with value 3000
+"red"[1.9];    // designates "e"
+"red"[0][0][0];    // designates "r"
 // -----------------------------------------
-class MyVector implements ArrayAccess { ... }
+class MyVector implements ArrayAccess { /* ... */ }
 $vect1 = new MyVector(array(10, 'A' => 2.3, "up"));
 $vect1[10] = 987; // calls Vector::offsetSet(10, 987)
 $vect1[] = "xxx"; // calls Vector::offsetSet(NULL, "xxx")
@@ -1008,6 +1042,7 @@ $x = $vect1[1];   // calls Vector::offsetGet(1)
 
 <pre>
   <i>function-call-expression:</i>
+    <i>qualified-name</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
     <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
@@ -1023,13 +1058,13 @@ is defined in [§§](#general-5).
 
 *postfix-expression* must designate a function, either by being its
 *name*, by being a value of type string (but not a string literal) that
-contains the function's name, or by being a variable whose type is
-`Closure` ([§§](14-classes.md#class-closure)) or a derived type thereof.
+contains the function's name, or by being an object of a type that implements
+[`__invoke`](14-classes.md#method-__invoke) method (including [`Closure`](14-classes.md#class-closure) objects).
 
 The number of arguments present in a function call must be at least as
-many as the number of parameters defined for that function.
+many as the number of non-optional parameters defined for that function.
 
-No calls can be made to a conditionally defined function ([§§](13-functions.md#general)) until
+No calls can be made to a [conditionally defined function](13-functions.md#general) until
 that function exists.
 
 Any argument that matches a parameter passed byRef should (but need not)
@@ -1038,15 +1073,14 @@ designate an lvalue.
 **Semantics**
 
 An expression of the form *function-call-expression* is a *function
-call*. The postfix expression designates the *called function*, and
+call*. The expression designates the *called function*, and
 *argument-expression-list* specifies the arguments to be passed to that
-function. An argument can have any type. In a function call,
+function. An argument can be any value. In a function call,
 *postfix-expression* is evaluated first, followed by each
-*assignment-expression* in the order left-to-right. There is a sequence
-point ([§§](#general)) right before the function is called. For details of the
-type and value of a function call see [§§](11-statements.md#the-return-statement). The value of a function
-call is a modifiable lvalue only if the function returns a byRef that
-aliases a modifiable lvalue.
+*assignment-expression* in the order left-to-right. There is
+a [sequence point](#general)) right before the function is called. For details of the
+result of a function call see [`return` statement](11-statements.md#the-return-statement). 
+The value of a function call is a modifiable lvalue only if the function returns a modifiable value byRef.
 
 When *postfix-expression* designates an instance method or constructor,
 the instance used in that designation is used as the value of `$this` in
@@ -1057,36 +1091,35 @@ invoked instance has no `$this` defined.
 When a function is called, the value of each argument passed to it is
 assigned to the corresponding parameter in that function's definition,
 if such a parameter exists. The assignment of argument values to
-parameters is defined in terms of simple ([§§](#simple-assignment)) or byRef assignment
-([§§](#byref-assignment)), depending on how the parameter was declared.  There may be
-more arguments than parameters, in which case, the library functions
-[`func_num_args`](http://php.net/manual/function.func-num-args.php)
-(§xx), [`func_get_arg`](http://php.net/manual/function.func-get-arg.php)
-(§xx),
+parameters is defined in terms of [simple](#simple-assignment) or
+[byRef assignment](#byref-assignment), depending on how the parameter was declared.
+There may be more arguments than parameters, in which case, the library functions
+[`func_num_args`](http://php.net/manual/function.func-num-args.php),
+[`func_get_arg`](http://php.net/manual/function.func-get-arg.php)
 and [`func_get_args`](http://php.net/manual/function.func-get-args.php)
-(§xx) can be used to get access to the complete argument list that was
+can be used to get access to the complete argument list that was
 passed. If the number of arguments present in a function call is fewer
 than the number of parameters defined for that function, any parameter
 not having a corresponding argument is considered undefined if it has no
-default argument value ([§§](13-functions.md#function-definitions)); otherwise, it is considered defined with
+[default argument value](13-functions.md#function-definitions); otherwise, it is considered defined with
 that default argument value.
 
 If an undefined variable is passed using byRef, that variable becomes
-defined, with a default value of `NULL`.
+defined, with an initial value of `NULL`.
 
 Direct and indirect recursive function calls are permitted.
 
-If *postfix-expression* is a string, this is a variable function call
-([§§](13-functions.md#variable-functions)).
+If *postfix-expression* is a string, this is
+a [variable function call](13-functions.md#variable-functions).
 
 **Examples**
 
 ```PHP
 function square($v) { return $v * $v; } 
-square(5)     // call square directly; it returns 25
+square(5);     // call square directly; it returns 25
 $funct = square;  // assigns the string "square" to $funct
 $funct(-2.3)    // call square indirectly; it returns 5.29
-strlen($lastName) // returns the # of bytes in the string
+strlen($lastName); // returns the # of bytes in the string
 // -----------------------------------------
 function f1() { ... }  function f2() { ... }  function f3() { ... }  
 for ($i = 1; $i <= 2; ++$i) { $f = 'f' . $i;  $f(); }
@@ -1210,7 +1243,7 @@ $c = $p1->color;  // turned into $c = $p1->__get("color");
 **Constraints**
 
 The operand of the postfix ++ and -- operators must be a modifiable
-lvalue that has scalar type.
+lvalue that has scalar-compatible type.
 
 **Semantics**
 
@@ -1232,11 +1265,14 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 <pre>
   <i>scope-resolution-expression:</i>
     <i>scope-resolution-qualifier</i>  ::  <i>member-selection-designator</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>class</i>
+    <i>scope-resolution-qualifier</i>  ::  class
 
   <i>scope-resolution-qualifier:</i>
+    <i>relative-scope</i>
     <i>qualified-name</i>
     <i>expression</i>
+
+  <i>relative-scope</i>:
     self
     parent
     static
@@ -1261,12 +1297,12 @@ overridden property or method. For a property, the value is that of the
 property, and is a modifiable lvalue if *member-selection-designator* is
 a modifiable lvalue.
 
-From within a class, `self::m` refers to the member `m` in that class,
-whereas `parent::m` refers to the closest member `m` in the base-class
-hierarchy, not including the current class. From within a method,
-`static::m` refers to the member `m` in the class that corresponds to the
-class inheritance context in which the method is called. This allows
-*late static binding*. Consider the following scenario:
+*relative-scope* designates the class with relation to the current class scope.
+From within a class, `self` refers to the same class, `parent` refers to the
+class the current class extends from. From within a method, `static` refers
+to the class corresponds to the class inheritance context in which the method is called.
+This allows *late static binding*, when class resolution depends on the dynamic
+call context.
 
 ```PHP
 class Base
@@ -1289,7 +1325,7 @@ $d1->b(); // as $d1 is an instance of Derived, Base::b() calls Derived::f()
 
 The value of the form of *scope-resolution-expression* ending in `::class`
 is a string containing the fully qualified name of the current class,
-which for a static qualifier, means the current class context.
+which for a `static` qualifier, means the current class context.
 
 **Examples**
 
@@ -1330,7 +1366,7 @@ class Point
 
 <pre>
   <i>exponentiation-expression:</i>
-    <i>expression  **  expression</i>
+    <i>expression</i>  **  <i>expression</i>
 </pre>
 
 *expression* is defined in [§§](#general-6).
@@ -1338,8 +1374,12 @@ class Point
 **Semantics**
 
 The `**` operator produces the result of raising the value of the
-left-hand operand to the power of the right-hand one. If either or both
-operands have non-numeric types, their values are converted to type `int`
+left-hand operand to the power of the right-hand one. 
+
+If either of the operands have an object type supporting `**` operation,
+then the object semantics defines the result. The left operand is checked first.
+
+If either or both operands have non-numeric types, their values are converted to type `int`
 or `float`, as appropriate. If both operands have non-negative integer
 values and the result can be represented as an `int`, the result has type
 `int`; otherwise, the result has type `float`.
@@ -1399,25 +1439,23 @@ These operators associate right-to-left.
 **Constraints**
 
 The operand of the prefix `++` or `--` operator must be a modifiable lvalue
-that has scalar type.
+that has scalar-compatible type.
 
 **Semantics**
 
 *Arithmetic Operands*
 
 For a prefix `++` operator used with an arithmetic operand, the side
-effect ([§§](#general)) of the operator is to increment by 1, as appropriate, the
-value of the operand. The result is the value of the operand after it
-has been incremented. If an int operand's value is the largest
-representable for that type, the type and value of the result is
-implementation-defined ([§§](05-types.md#the-integer-type)).
+effect ([§§](#general)) of the operator is to increment the value of the operand by 1.
+The result is the value of the operand after it
+has been incremented. If an `int` operand's value is the largest
+representable for that type, the operand is incremented as if it were `float`.
 
 For a prefix `--` operator used with an arithmetic operand, the side
-effect of the operator is to decrement by 1, as appropriate, the value
-of the operand. The result is the value of the operand after it has been
-decremented. If an int operand's value is the smallest representable for
-that type, the type and value of the result is implementation-defined
-([§§](05-types.md#the-integer-type)).
+effect of the operator is to decrement the value of the operand by 1.
+The result is the value of the operand after it has been
+decremented. If an `int` operand's value is the smallest representable for
+that type, the operand is decremented as if it were `float`.
 
 For a prefix `++` or `--` operator used with an operand having the value
 `INF`, `-INF`, or `NAN`, there is no side effect, and the result is the
@@ -1457,14 +1495,14 @@ there is no side effect, and the result is the operand's value.
 
 For a non-numeric string-valued operand that contains only alphanumeric
 characters, for a prefix `++` operator, the operand is considered to be a
-pseudo-base-36 number (i.e., with digits 0–9 followed by A–Z or a–z) in
+representation of a base-36 number (i.e., with digits 0–9 followed by A–Z or a–z) in
 which letter case is ignored for value purposes. The right-most digit is
 incremented by 1. For the digits 0–8, that means going to 1–9. For the
 letters "A"–"Y" (or "a"–"y"), that means going to "B"–"Z" (or "b"–"z").
 For the digit 9, the digit becomes 0, and the carry is added to the next
 left-most digit, and so on. For the digit "Z" (or "z"), the resulting
 string has an extra digit "A" (or "a") appended. For example, when
-incrementing, "a" -> "b", "X" -> "AA", "AA" -> "AB", "F29" -> "F30", "FZ9" -> "GA0", and "ZZ9" -> "AAA0". A digit position containing a number wraps
+incrementing, "a" -> "b", "Z" -> "AA", "AA" -> "AB", "F29" -> "F30", "FZ9" -> "GA0", and "ZZ9" -> "AAA0". A digit position containing a number wraps
 modulo-10, while a digit position containing a letter wraps modulo-26.
 
 For a non-numeric string-valued operand that contains any
@@ -1477,11 +1515,19 @@ characters, except that the resulting string will not be extended.
 Instead, a digit position containing a number wraps modulo-10, while a
 digit position containing a letter wraps modulo-26.
 
+*Object Operands*
+
+If the operand has an object type supporting the operation,
+then the object semantics defines the result. Otherwise, the operation has
+no effect and the result is the operand.
+
 **Examples**
 
 ```PHP
 $i = 10; $j = --$i + 100;   // new value of $i (9) is added to 100
-$a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
+$a = array(100, 200); $v = ++$a[1]; // new value of $a[1] (201) is assigned
+$a = "^^Z"; ++$a; // $a is now "^^A"
+$a = "^^Z^^"; ++$a; // $a is now "^^Z^^"
 ```
 
 ###Unary Arithmetic Operators
@@ -1493,19 +1539,23 @@ $a = array(100, 200); $v = ++$a[1]; // new value of $ia[1] (201) is assigned
     <i>unary-operator cast-expression</i>
 
   <i>unary-operator: one of</i>
-    +  -  !  \
+    +  -  !  ~
 </pre>
 
 *cast-expression* is defined in [§§](#cast-operator).
 
 **Constraints**
 
-The operand of the unary `+`, unary `-`, and unary `!` operators must have
-scalar type.
+The operand of the unary `+` and unary `-` must have scalar-compatible type.
 
-The operand of the unary `~` operator must have arithmetic type.
+The operand of the unary `~` operator must have arithmetic or string type, or be
+an object supporting `~`.
 
 **Semantics**
+
+For a unary `!` operator the type of the result is `bool`.
+The value of the operand is [converted to type `bool`](08-conversions.md#converting-to-boolean-type)
+and if it is `TRUE` then the of the operator result is `FALSE`, and the result is `TRUE` otherwise.
 
 *Arithmetic Operands*
 
@@ -1514,14 +1564,8 @@ value of the result is the type and value of the operand.
 
 For a unary `-` operator used with an arithmetic operand, the value of the
 result is the negated value of the operand. However, if an int operand's
-original value is the smallest representable for that type, the type and
-value of the result is implementation-defined ([§§](05-types.md#the-integer-type)).
-
-For a unary `!` operator used with an arithmetic operand, the type of the
-result is `bool`. The value of the result is `TRUE` if the value of the
-operand is non-zero; otherwise, the value of the result is `FALSE`. For
-the purposes of this operator, `NAN` is considered a non-zero value. The
-expression `!E` is equivalent to `(E == 0)`.
+original value is the [smallest representable for that type](05-types.md#the-integer-type), the operand is
+treated as if it were `float` and the result will be `float`.
 
 For a unary `~` operator used with an `int` operand, the type of the result
 is `int`. The value of the result is the bitwise complement of the value
@@ -1540,17 +1584,10 @@ For a unary `-` operator used with a `TRUE`-valued operand, the value of the
 result is -1 and the type is `int`. When used with a `FALSE`-valued operand,
 the value of the result is zero and the type is `int`.
 
-For a unary `!` operator used with a `TRUE`-valued operand, the value of the
-result is `FALSE` and the type is `bool`. When used with a `FALSE`-valued
-operand, the value of the result is `TRUE` and the type is `bool`.
-
 *NULL-valued Operands*
 
 For a unary `+` or unary `-` operator used with a `NULL`-valued operand, the
 value of the result is zero and the type is `int`.
-
-For a unary `!` operator used with a `NULL`-valued operand, the value of the
-result is `TRUE` and the type is `bool`.
 
 *String Operands*
 
@@ -1561,17 +1598,24 @@ operand. The trailing non-numeric characters in leading-numeric strings
 are ignored. With a non-numeric string, the result has type `int` and
 value 0.
 
-For a unary `!` operator used with a string, the string is first converted
-to `bool`, after which its value is negated.
+For a unary `~` operator used with a string, the result is the string with each byte
+being bitwise complement of the correstopding byte of the source string.
+
+*Object Operands*
+
+If the operand has an object type supporting the operation,
+then the object semantics defines the result. Otherwise, for `~` the fatal error is issued
+and for `+` and `-` the object is [converted to `int`](08-conversions.md#converting-to-integer-type).
 
 **Examples**
 
 ```PHP
 $v = +10;
-if ($v1 > -5) ...
+if ($v1 > -5) // ...
 $t = TRUE;
-if (!$t) ...
-$v = ~0b1010101;
+if (!$t) // ...
+$v = ~0b1010101; 
+$s = "\x86\x97"; $s = ~$s; // $s is "yh"
 ```
 
 ###Error Control Operator
@@ -1587,12 +1631,11 @@ $v = ~0b1010101;
 
 **Semantics**
 
-Operator `@` suppresses any error messages generated by the evaluation of
+Operator `@` suppresses the reporting of any error messages generated by the evaluation of
 *expression*.
 
 If a custom error-handler has been established using the library
-function [`set_error_handler` (§xx), that
-handler](http://php.net/manual/function.set-error-handler.php) is
+function [`set_error_handler`](http://php.net/manual/function.set-error-handler.php), that handler is
 still called.
 
 **Examples**
@@ -1602,8 +1645,8 @@ $infile = @fopen("NoSuchFile.txt", 'r');
 ```
 
 On open failure, the value returned by `fopen` is `FALSE`, which is
-sufficient to know to handle the error. There is no need to have any
-error message displayed.
+sufficient to know to handle the error. The error message that may have been generated
+by the `fopen` call is suppressed (not displayed and not logged).
 
 **Implementation Notes**
 
@@ -1648,13 +1691,12 @@ where \` is the GRAVE ACCENT character U+0060, commonly referred to as a
 This operator passes *dq-char-sequence* to the command shell for
 execution, as though it was being passed to the library function
 `shell_exec` (§xx). If the output from execution of that command is
-written to `STDOUT` ([§§](05-types.md#resource-types)), that output is the result of this operator
+written to [`STDOUT`](05-types.md#resource-types), that output is the result of this operator
 as a string. If the output is redirected away from `STDOUT`, or
 *dq-char-sequence* is empty or contains only white space, the result of
 the operator is `NULL`.
 
-If [`shell_exec`](http://php.net/manual/function.shell-exec.php)
-(§xx) is disabled, this operator is disabled.
+If [`shell_exec`](http://php.net/manual/function.shell-exec.php) is disabled, this operator is disabled.
 
 **Examples**
 
@@ -1672,7 +1714,7 @@ $result = `$d {$f}`;      // result is the output of command dir *.*
 <pre>
   <i>cast-expression:</i>
     <i>unary-expression</i>
-    (  <i>cast-type</i>  ) <i>cast-expression</i>
+    (  <i>cast-type</i>  ) <i>expression</i>
 
   <i>cast-type: one of</i>
     array  binary  bool  boolean  double  int  integer  float  object
@@ -1681,43 +1723,34 @@ $result = `$d {$f}`;      // result is the output of command dir *.*
 
 *unary-expression* is defined in [§§](#general-4).
 
-**Constraints**
-
-For *binary*, *cast-expression* must designate a string.
-
 **Semantics**
 
-With the exception of the *cast-type*s unset and binary (see below), the
+With the exception of the *cast-type* unset and binary (see below), the
 value of the operand *cast-expression* is converted to the type
 specified by *cast-type*, and that is the type and value of the result.
-This construct is referred to a *cast,* and is used as the verb, "to
+This construct is referred to a *cast*, and is used as the verb, "to
 cast". If no conversion is involved, the type and value of the result
 are the same as those of *cast-expression*.
 
 A cast can result in a loss of information.
 
-A *cast-type* of `array` results in a conversion to type array. See [§§](08-conversions.md#converting-to-array-type)
-for details.
+A *cast-type* of `array` results in a [conversion to type array](08-conversions.md#converting-to-array-type). 
 
 A *cast-type* of `binary` is reserved for future use in dealing with
-so-called *binary strings*. Casting a string to binary results in the
-same string.
+so-called *binary strings*. For now, it is fully equivalent to `string` cast. 
 
-A *cast-type* of `bool` or `boolean` results in a conversion to type `bool`.
-See [§§](08-conversions.md#converting-to-boolean-type) for details.
+A *cast-type* of `bool` or `boolean` results in a [conversion to type `bool`](08-conversions.md#converting-to-boolean-type).
 
-A *cast-type* of `int` or `integer` results in a conversion to type `int`. See [§§](08-conversions.md#converting-to-integer-type) for details.
+A *cast-type* of `int` or `integer` results in a [conversion to type `int`](08-conversions.md#converting-to-integer-type).
 
-A *cast-type* of `float`, `double`, or `real` results in a conversion to type `float`. See [§§](08-conversions.md#converting-to-floating-point-type) for details.
+A *cast-type* of `float`, `double`, or `real` results in a [conversion to type `float`](08-conversions.md#converting-to-floating-point-type).
 
-A *cast-type* of `object` results in a conversion to type `object`. See [§§](08-conversions.md#converting-to-object-type)
-for details.
+A *cast-type* of `object` results in a [conversion to type `object`](08-conversions.md#converting-to-object-type).
 
-A *cast-type* of `string` results in a conversion to type `string`. See [§§](08-conversions.md#converting-to-string-type)
-for details.
+A *cast-type* of `string` results in a [conversion to type `string`](08-conversions.md#converting-to-string-type).
 
 A *cast-type* of `unset` always results in a value of `NULL`. (This use of
-`unset` should not be confused with the `unset` intrinsic ([§§](#unset))).
+`unset` should not be confused with the [`unset` intrinsic](#unset)).
 
 **Examples**
 
@@ -1743,26 +1776,25 @@ A *cast-type* of `unset` always results in a value of `NULL`. (This use of
 
 In the non-brace form, *expression* must be a
 *variable-name-creation-expression* or a *variable-name* that designates
-a scalar value.
+a scalar value or an object convertible to string.
 
 In the brace form, *expression* must be a
 *variable-name-creation-expression* or an expression that designates a
-scalar value.
+scalar value or an object convertible to string.
 
 **Semantics**
 
-The result of this operator is a variable name spelled using the textual
+The result of this operator is a variable name spelled using the string
 representation of the value of *expression* even though such a name
-might not be permitted as a variable-name ([§§](09-lexical-structure.md#names)) source code token.
+might not be permitted as a [variable-name](09-lexical-structure.md#names) source code token.
 
-This specification documents existing practice rather than ideal
-language design, and **there is one aspect of this operator that behaves
-in a manner that violates the precedence rules**. Consider `o` to be an
-object of some class that has an instance property called `pr`. How is the
-non-brace-form expression `$$o->pr` handled with respect to precedence?
-As the operator `->` has higher precedence, the answer would seem to be,
-"`->` wins over `$`"; however, that is not the case. In fact, the
-expression is treated as `${$o}->pr`.
+The operator will consume the following *variable-name-creation-expression* and *variable-name* tokens, and
+also tokens representing [subscript operator](#subscript-operator).
+
+I.e., in example `$$o->pr` the expression is treated as `${$o}->pr`, i.e. it is parsed as
+"take the value of $o, consider it a variable name, and assuming the variable with this name
+is an object take the property 'pr' of it". 
+However, in the expression ``$$a[0]` the tokens `$a[0]` would be treated as the variable name, not just `$a`.
 
 **Examples**
 
@@ -1774,21 +1806,21 @@ $x = 'ab'; $ab = 'fg'; $fg = 'xy';
 $$ $ $x = 'Hello';  // equivalent to $xy = Hello
 // -----------------------------------------
 $v1 = 3;
-$$v1 = 22;        // equivalent to ${3} = 22
+$$v1 = 22;        // equivalent to ${3} = 22, variable name is "3"
 $v2 = 9.543;
 $$v2 = TRUE;    // equivalent to ${9.543} = TRUE
 $v3 = NULL;
-$$v3 = "abc";   // equivalent to ${NULL} = "abc"
+$$v3 = "abc";   // equivalent to ${NULL} = "abc", here we create a variable with empty name
 // -----------------------------------------
 function f1 () { return 2.5; }
 ${1 + f1()} = 1000;   // equivalent to ${3.5} = 1000
 // -----------------------------------------
 $v = array(10, 20); $a = 'v';
-$$a[0] = 5;       // [] has higher precedence than $
+$$a[0] = 5;       // [] has higher precedence than $, $v is now 5
 $v = array(10, 20); $a = 'v';
-${$a[0]} = 5;   // equivalent to above
+${$a[0]} = 5;   // equivalent to above, $v is 5
 $v = array(10, 20); $a = 'v';
-${$a}[0] = 5;   // $ gets first shot at $a
+${$a}[0] = 5;   // $ gets first shot at $a, $v is [5, 20]
 ```
 
 ##`instanceof` Operator
@@ -1813,50 +1845,48 @@ ${$a}[0] = 5;   // $ gets first shot at $a
 
 **Constraints**
 
-The *expression* in *instanceof-subject* must designate a variable.
-
-The *expression* in *instanceof-type-designator* must not be any form of
+The *expression* in *instanceof-type-designator* and *instanceof-subject* must not be any form of
 literal.
-
-*qualified-name* must be the name of a class or interface type.
 
 **Semantics**
 
-Operator `instanceof` returns `TRUE` if the variable designated by
-*expression* in *instanceof-subject* is an object having type
-*qualified-name*, is an object whose type is derived from type
-*qualified-name*, or is an object whose type implements interface
-*qualified-name*. Otherwise, it returns `FALSE`. When the *expression*
-form of *instanceof-type-designator* is used, *expression* may be a
-string that contains a class or interface name. Alternatively,
-*expression* can designate an instance variable, in which case, operator
-`instanceof` returns `TRUE` if the variable designated by the left-hand
-*expression* is an instance of the
-[`class`](http://www.php.net/manual/en/language.oop5.basic.php#language.oop5.basic.class)
-type, or of a derived type, of the right-hand *expression*.
+Operator `instanceof` returns `TRUE` if the value designated by
+*expression* in *instanceof-subject* is an object having the type specified
+by *instanceof-type-designator*, is an object whose type is derived from that type,
+or is an object whose type implements the interface specified by *instanceof-type-designator*.
+Otherwise, it returns `FALSE`.
 
-If either *expression* is not an instance, `FALSE` is returned.
+The type can be specified by *instanceof-type-designator* in one of the three forms:
+  1. *qualified-name* specifies the type name directly.
+  2. When the *expression* form is used, *expression* may have a string value that contains a class or interface name.
+  3. Alternatively, *expression* can designate an object, in which case the type of the object is used as the specified type.
+     Note that an interface can not be specified with this form.
 
-Note: This operator supersedes the library function `is_a` (§xx), which
-has been deprecated.
+Note that `instanceof` will not invoke autoloader if the name of the type given does not
+correspond to the existing class or interface, instead it will return `FALSE`.
 
 **Examples**
 
 ```PHP
-class C1 { ... } $c1 = new C1;
-class C2 { ... } $c2 = new C2;
-class D extends C1 { ... } $d = new D;
-$d instanceof C1      // TRUE
-$d instanceof C2      // FALSE
-$d instanceof D       // TRUE
+class C1 {  }
+$c1 = new C1;
+class C2 {  }
+$c2 = new C2;
+class D extends C1 { };
+$d = new D;
+var_dump($d instanceof C1);      // TRUE
+var_dump($d instanceof C2);      // FALSE
+var_dump($d instanceof D);       // TRUE
 // -----------------------------------------
-interface I1 { ... }
-interface I2 { ... }
-class E1 implements I1, I2 { ... }
+interface I1 { }
+interface I2 { }
+class E1 implements I1, I2 { }
 $e1 = new E1;
-$e1 instanceof I1       // TRUE
+var_dump($e1 instanceof I1);       // TRUE
 $iName = "I2";
-$e1 instanceof $iName     // TRUE
+var_dump($e1 instanceof $iName);   // TRUE
+$e2 = new E1;
+var_dump($e2 instanceof $e1);      // TRUE
 ```
 
 ##Multiplicative Operators
@@ -1879,18 +1909,20 @@ The right-hand operand of operator `/` and operator `%` must not be zero.
 
 **Semantics**
 
+If either of the operands is an object supporting the operation, the result is
+defined by that object's semantics, with the left operand checked first.
+
 The binary `*` operator produces the product of its operands. If either
 or both operands have non-numeric types, their values are converted to
 type `int` or `float`, as appropriate. Then if either operand has type
 `float`, the other is converted to that type, and the result has type
 `float`. Otherwise, both operands have type `int`, in which case, if the
 resulting value can be represented in type `int` that is the result type.
-Otherwise, the type and value of the result is implementation-defined
-([§§](05-types.md#the-integer-type)).
+Otherwise, the result would have type `float`.
 
-Division by zero results in a diagnostic followed by a `bool` result
-having value `FALSE`. (The values +/- infinity and NaN cannot be generated
-via this operator; instead, use the predefined constants `INF` and `NAN`).
+Division by zero results in a non-fatal error and the result value is `FALSE`.
+The values +/- infinity and NaN cannot be generated via this operator;
+instead, use the predefined constants `INF` and `NAN`.
 
 The binary `/` operator produces the quotient from dividing the left-hand
 operand by the right-hand one. If either or both operands have
@@ -1939,28 +1971,33 @@ These operators associate left-to-right.
 
 **Constraints**
 
-If either operand has array type, the other operand must also have array
+If either operand of `+` has array type, the other operand must also have array
 type.
+
+Binary `-` operator can not be applied to arrays.
 
 **Semantics**
 
+If either of the operands is an object supporting the operation, the result is
+defined by that object's semantics, with the left operand checked first.
+
 For non-array operands, the binary `+` operator produces the sum of those
-operands, while the binary `- `operator produces the difference of its
+operands, while the binary `-` operator produces the difference of its
 operands when subtracting the right-hand operand from the left-hand one.
 If either or both operands have non-array, non-numeric types, their
 values are converted to type `int` or `float`, as appropriate. Then if
 either operand has type `float`, the other is converted to that type, and
 the result has type `float`. Otherwise, both operands have type `int`, in
 which case, if the resulting value can be represented in type `int` that
-is the result type. Otherwise, the type and value of the result is
-implementation-defined ([§§](05-types.md#the-integer-type)).
+is the result type.
+Otherwise, the result would have type `float`.
 
 If both operands have array type, the binary `+` operator produces a new
 array that is the union of the two operands. The result is a copy of the
 left-hand array with elements inserted at its end, in order, for each
 element in the right-hand array whose key does not already exist in the
 left-hand array. Any element in the right-hand array whose key exists in
-the left-hand array is ignored.
+the left-hand array is ignored. 
 
 The binary `.` operator creates a string that is the concatenation of the
 left-hand operand and the right-hand operand, in that order. If either
@@ -2005,9 +2042,12 @@ TRUE . NULL;      // string with value "1"
 
 **Constraints**
 
-Each of the operands must have scalar type.
+Each of the operands must have scalar-compatible type.
 
 **Semantics**
+
+If either of the operands is an object supporting the operation, the result is
+defined by that object's semantics, with the left operand checked first.
 
 Given the expression `e1 << e2`, the bits in the value of `e1` are shifted
 left by `e2` positions. Bits shifted off the left end are discarded, and
@@ -2061,13 +2101,41 @@ operator `>=` represents *greater-than-or-equal-to*.
 
 The type of the result is `bool`.
 
-The operands are processed using the following steps, in order:
+The following table shows the result for comparison of different types, with the left
+operand displayed vertically and the right displayed horizontally. 
+The conversions are performed according to [type conversion rules](08-conversions.md).
 
-1.  If either operand has the value `NULL`, then if the other operand has
-    type string, the `NULL` is converted to the empty string ("");
-    otherwise, the `NULL` is converted to type `bool`.
-2.  If both operands are non-numeric strings or one is a numeric string
-    and the other a leading-numeric string, the result is the lexical
+|      | NULL | bool | int | float | string | array | object | resource |
+|:------|:---:|:----:|----:|:-----:|:------:|:-----:|:------:|:--------:|
+| NULL |  =   | ->   | ->  | ->    | ->     |   ->  | <      | <        |
+| bool | <-   | 1    | <-  | <-    | <-     |  <-   | <-     | <-       |
+| int  | <-   | ->   | 2   |   2   | <-     | <     |  3     | <-       |
+| float | <-  | ->   | 2   |  2    | <-     | <     |  3     | <-       |
+| string | <- | ->   | ->  |  ->   | 2, 4   | <     |  3     | 2        |
+| array | <-  | ->   | >   |  >    | >      | 5     |  3     | >        |
+| object | >  | ->   |  3  | 3     | 3      | 3     |  6     | 3        |
+| resource | > | ->  | ->  | ->    | 2      | <     |  3     | 2        |
+
+ - `=` means the result is always "equals", i.e. strict comparisons are always `FALSE` and equality comparisons are always `TRUE`.
+ - `<` means that the left operand is always less than the right operand.
+ - `>` means that the left operand is always greather than the right operand.
+ - `->` means that the left operand is converted to the type of the right operand.
+ - `<-` means that the right operand is converted to the type of the left operand.
+ - A number means one of the cases below:
+
+1.  If either operand has type `bool`, the other operand is converted to
+    that type. The result is the logical comparison of the two operands
+    after conversion, where `FALSE` is defined to be less than `TRUE`.
+2.  If one of the operands has arithmetic type, is a resource, or a numeric string,
+    the operands are converted to the corresponding arithmetic type, with `float` taking precedence over `int`,
+    and resources converting to `int`.
+    The result is the numerical comparison of the two operands after conversion.
+3.  If only one operand has object type, if the object has comparison handler, 
+    that handler defines the result. 
+    Otherwise, if the object can be converted to the other operand's type,
+    it is converted and the result is used for the comparison. Otherwise, the object 
+    compares greater-than any other operand type.
+4.  If both operands are non-numeric strings, the result is the lexical
     comparison of the two operands. Specifically, the strings are
     compared byte-by-byte starting with their first byte. If the two
     bytes compare equal and there are no more bytes in either string,
@@ -2076,36 +2144,25 @@ The operands are processed using the following steps, in order:
     the longer string and the comparison ends. If the two bytes compare
     unequal, the string having the lower-valued byte compares less-than
     the other string, and the comparison ends. If there are more bytes
-    in the strings, the process is repeated for the next pair of bytes.
-3.  If either operand has type `bool`, the other operand is converted to
-    that type. The result is the logical comparison of the two operands
-    after conversion, where `FALSE` is defined to be less than `TRUE`.
-4.  If the operands both have arithmetic type, string type, or are
-    resources, they are converted to the corresponding arithmetic type
-    ([§§](08-conversions.md#converting-to-integer-type) and [§§](08-conversions.md#converting-to-floating-point-type)). The result is the numerical comparison of the two
-    operands after conversion.
+    in the strings, the process is repeated for the next pair of bytes.    
 5.  If both operands have array type, if the arrays have different
     numbers of elements, the one with the fewer is considered less-than
-    the other one—regardless of the keys and values in each—, and the
-    comparison ends. For arrays having the same numbers of elements, if
+    the other one, regardless of the keys and values in each, and the
+    comparison ends. For arrays having the same numbers of elements, the 
+    keys from the left operand are considered one by one, if
     the next key in the left-hand operand exists in the right-hand
     operand, the corresponding values are compared. If they are unequal,
     the array containing the lesser value is considered less-than the
     other one, and the comparison ends; otherwise, the process is
     repeated with the next element. If the next key in the left-hand
     operand does not exist in the right-hand operand, the arrays cannot
-    be compared and `FALSE` is returned. For array comparison, the order
-    of insertion of the elements into those arrays is irrelevant.
-6.  If only one operand has object type, that compares greater-than any
-    other operand type.
-7.  If only one operand has array type, that compares greater-than any
-    other operand type.
-8.  If the operands have different object types, the result is always
-    `FALSE`.
-9.  If the operands have the same object type, the result is determined
-    by comparing the lexically first-declared instance property in each
-    object. If those properties have object type, the comparison is
-    applied recursively.
+    be compared and `FALSE` is returned. If all the values are equal,
+    then the arrays are considered equal.
+6.  When comparing two objects, if any of the object types has its own compare
+    semantics, that would define the result, with the left operand taking precedence.
+    Otherwise, if the objects are of different types, the comparison result is `FALSE`.
+    If the objects are of the same type, the properties of the objects are
+    compares using the array comparison described above.
 
 These operators associate left-to-right.
 
@@ -2141,7 +2198,7 @@ FALSE < "abc"   // result has value TRUE
     <i>relational-expression</i>
     <i>equality-expression</i>  ==  <i>relational-expression</i>
     <i>equality-expression</i>  !=  <i>relational-expression</i>
-    <i>equality-expression</i>  <>  <i>relational-expression</i>
+    <i>equality-expression</i>  &lt;&gt;  <i>relational-expression</i>
     <i>equality-expression</i>  ===  <i>relational-expression</i>
     <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>
@@ -2150,61 +2207,22 @@ FALSE < "abc"   // result has value TRUE
 
 **Semantics**
 
-Operator `==` represents *value-equality*, operators `!=` and `<>` are
-equivalent and represent *value-inequality*, operator `===` represents
-*same-type-and-value-equality*, and operator `!==` represents
-*not-same-type-and-value-equality*. However, when comparing two objects,
-operator `===` represents *identity* and operator `!==` represents
-*non-identity*. Specifically, in this context, these operators check to
-see if the two operands are the exact same object, not two different
-objects of the same type and value.
+Operator `==` represents *value equality*, operators `!=` and `<>` are
+equivalent and represent *value inequality*. 
+
+For operators `==`, `!=`, and `<>`, the operands of different types are converted and 
+compared according to the same rules as in [relational operators](#relational-operators).
+Two objects of different types are always not equal.
+
+Operator `===` represents *same type and value equality*, or *identity*, comparison, and operator `!==` represents
+the opposite of `===`. The values are considered identical if they have the same type and compare as equal, with the 
+additional conditions below:
+- When comparing two objects, identity operators check to
+see if the two operands are the exact same object, not two different objects of the same type and value.
+- Arrays must have the same elements in the same order to be considered identical.
+- Strings are identical if they contain the same characters, unlike value comparison operators no conversions are performed for numeric strings.
 
 The type of the result is `bool`.
-
-The operands are processed using the following steps, in order:
-
-1.  For operators `==`, `!=`, and `<>`, if either operand has the value
-    `NULL`, then if the other operand has type string, the `NULL` is
-    converted to the empty string (""); otherwise, the `NULL` is converted
-    to type bool.
-2.  If both operands are non-numeric strings or one is a numeric string
-    and the other a leading-numeric string, the result is the lexical
-    comparison of the two operands. Specifically, the strings are
-    compared byte-by-byte starting with their first byte. If the two
-    bytes compare equal and there are no more bytes in either string,
-    the strings are equal and the comparison ends; otherwise, if this is
-    the final byte in one string, the shorter string compares less-than
-    the longer string and the comparison ends. If the two bytes compare
-    unequal, the string having the lower-valued byte compares less-than
-    the other string, and the comparison ends. If there are more bytes
-    in the strings, the process is repeated for the next pair of bytes.
-3.  If either operand has type bool, for operators `==`, `!=`, and `<>`, the
-    other operand is converted to that type. The result is the logical
-    comparison of the two operands after any conversion, where `FALSE` is
-    defined to be less than `TRUE`.
-4.  If the operands both have arithmetic type, string type, or are
-    resources, for operators `==`, `!=`, and `<>`, they are converted to the
-    corresponding arithmetic type ([§§](08-conversions.md#converting-to-integer-type) and [§§](08-conversions.md#converting-to-floating-point-type)). The result is the
-    numerical comparison of the two operands after any conversion.
-5.  If both operands have array type, for operators `==`, `!=`, and `<>`,
-    the arrays are equal if they have the same set of key/value pairs,
-    after element type conversion, without regard to the order of
-    insertion of their elements. For operators `===` and `!==` the arrays
-    are equal if they have the same set of key/value pairs, the
-    corresponding values have the same type, and the order of insertion
-    of their elements are the same.
-6.  If only one operand has object type, the two operands are never
-    equal.
-7.  If only one operand has array type, the two operands are never
-    equal.
-8.  If the operands have different object types, the two operands are
-    never equal.
-9.  If the operands have the same object type, the two operands are
-    equal if the instance properties in each object have the same
-    values. Otherwise, the objects are unequal. The instance properties
-    are compared, one at a time, in the lexical order of their
-    declaration. For properties that have object type, the comparison is
-    applied recursively.
 
 These operators associate left-to-right.
 
@@ -2241,9 +2259,12 @@ TRUE !== 100  // result has value TRUE
 
 **Constraints**
 
-Each of the operands must have scalar type.
+Each of the operands must have scalar-compatible type.
 
 **Semantics**
+
+If either of the operands is an object supporting the operation, the result is
+defined by that object's semantics, with the left operand checked first.
 
 If either operand does not have type `int`, its value is first converted
 to that type.
@@ -2275,9 +2296,12 @@ $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
 
 **Constraints**
 
-Each of the operands must have scalar type.
+Each of the operands must have scalar-compatible type.
 
 **Semantics**
+
+If either of the operands is an object supporting the operation, the result is
+defined by that object's semantics, with the left operand checked first.
 
 If either operand does not have type `int`, its value is first converted
 to that type.
@@ -2311,9 +2335,12 @@ $v1 = $v1 ^ $v2;    // $v1 is now -987, and $v2 is now 1234
 
 **Constraints**
 
-Each of the operands must have scalar type.
+Each of the operands must have scalar-compatible type.
 
 **Semantics**
+
+If either of the operands is an object supporting the operation, the result is
+defined by that object's semantics, with the left operand checked first.
 
 If either operand does not have type `int`, its value is first converted
 to that type.
@@ -2343,16 +2370,9 @@ $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
 
 *bitwise-incl-OR-expression* is defined in [§§](#bitwise-inclusive-or-operator).
 
-**Constraints**
-
-Each of the operands must have scalar type.
-
 **Semantics**
 
-If either operand does not have type bool, its value is first converted
-to that type.
-
-Given the expression `e1 && e2, e1` is evaluated first. If `e1` is `FALSE`, `e2` is not evaluated, and the result has type `bool`, value `FALSE`. Otherwise, `e2` is evaluated. If `e2` is `FALSE`, the result has type bool, value `FALSE`; otherwise, it has type `bool`, value `TRUE`. There is a sequence point after the evaluation of `e1`.
+Given the expression `e1 && e2`, `e1` is evaluated first. If `e1` [converts to `bool`](08-conversions.md#converting-to-boolean-type) as `FALSE`, `e2` is not evaluated, and the result has type `bool`, value `FALSE`. Otherwise, `e2` is evaluated. If `e2` converts to `bool` as `FALSE`, the result has type `bool`, value `FALSE`; otherwise, it has type `bool`, value `TRUE`. There is a sequence point after the evaluation of `e1`.
 
 This operator associates left-to-right.
 
@@ -2377,16 +2397,9 @@ if ($month > 1 && $month <= 12) ...
 
 *logical-exc-OR-expression* is defined in [§§](#bitwise-exclusive-or-operator).
 
-**Constraints**
-
-Each of the operands must have scalar type.
-
 **Semantics**
 
-If either operand does not have type bool, its value is first converted
-to that type.
-
-Given the expression `e1 || e2`, `e1` is evaluated first. If `e1` is TRUE, `e2` is not evaluated, and the result has type `bool`, value `TRUE`. Otherwise, `e2` is evaluated. If `e2` is `TRUE`, the result has type `bool`, value `TRUE`; otherwise, it has type `bool`, value `FALSE`. There is a sequence point after the evaluation of `e1`.
+Given the expression `e1 || e2`, `e1` is evaluated first. If `e1` [converts to `bool`](08-conversions.md#converting-to-boolean-type) as `TRUE`, `e2` is not evaluated, and the result has type `bool`, value `TRUE`. Otherwise, `e2` is evaluated. If `e2` converts to `bool` as `TRUE`, the result has type `bool`, value `TRUE`; otherwise, it has type `bool`, value `FALSE`. There is a sequence point after the evaluation of `e1`.
 
 This operator associates left-to-right.
 
@@ -2409,18 +2422,14 @@ if ($month < 1 || $month > 12) ...
 *logical-OR-expression* is defined in [§§](#logical-inclusive-or-operator-form-1); and *expression* is
 defined in [§§](#general-6).
 
-**Constraints**
-
-The first operand must have scalar type.
-
 **Semantics**
-
-Given the expression `e1 ? e2 : e3`, if `e1` is `TRUE`, then and only then is `e2` evaluated, and the result and its type become the result and type of
+Given the expression `e1 ? e2 : e3`, `e1` is evaluated first and [converted to `bool`](08-conversions.md#converting-to-boolean-type) if it has another type.
+If the result is `TRUE`, then and only then is `e2` evaluated, and the result and its type become the result and type of
 the whole expression. Otherwise, then and only then is `e3` evaluated, and
 the result and its type become the result and type of the whole
 expression. There is a sequence point after the evaluation of `e1`. If `e2`
 is omitted, the result and type of the whole expression is the value and
-type of `e1` when it was tested.
+type of `e1` (before the conversion to `bool`).
 
 This operator associates left-to-right.
 
@@ -2552,7 +2561,7 @@ defined in [§§](#general-5).
 
 **Constraints**
 
-*unary-expression* must be a variable name.
+*unary-expression* must designate a variable.
 
 *assignment-expression* must be an lvalue, a call to a function that
 returns a value byRef, or a *new-expression* (see comment below
@@ -2597,13 +2606,12 @@ defined in [§§](#general-5).
 
 **Constraints**
 
-Any constraints that apply to the corresponding postfix or binary
-operator apply to the compound-assignment form as well.
+Any constraints that apply to the corresponding binary operator apply to the compound-assignment form as well.
 
 **Semantics**
 
 The expression `e1 op= e2` is equivalent to `e1 = e1 op (e2)`, except
-that `e1` is evaluated once only.
+that `e1` is evaluated only once.
 
 **Examples**
 
@@ -2629,10 +2637,6 @@ $a[$i++] += 50; // $a[1] = 250, $i → 2
 
 *assignment-expression* is defined in [§§](#general-5).
 
-**Constraints**
-
-Each of the operands must have scalar type.
-
 **Semantics**
 
 Except for the difference in precedence, operator and has exactly the
@@ -2650,17 +2654,13 @@ same semantics as operator `&&` ([§§](#logical-and-operator-form-1)).
 
 *logical-AND-expression* is defined in [§§](#logical-and-operator-form-2).
 
-**Constraints**
-
-Each of the operands must have scalar type.
-
 **Semantics**
 
 If either operand does not have type `bool`, its value is first converted
 to that type.
 
 Given the expression `e1 xor e2`, `e1` is evaluated first, then `e2`. If
-either `e1` or `e2` is `TRUE`, but not both, the result has type `bool`, value
+either `e1` or `e2` [converted to `bool`](08-conversions.md#converting-to-boolean-type) as `TRUE`, but not both, the result has type `bool`, value
 `TRUE`. Otherwise, the result has type `bool`, value `FALSE`. There is a
 sequence point after the evaluation of `e1`.
 
@@ -2669,7 +2669,7 @@ This operator associates left-to-right.
 **Examples**
 
 ```PHP
-f($i++) XOR g($i) // the sequence point makes this well-defined
+f($i++) xor g($i) // the sequence point makes this well-defined
 ```
 
 ##Logical Inclusive OR Operator (form 2)
@@ -2683,10 +2683,6 @@ f($i++) XOR g($i) // the sequence point makes this well-defined
 </pre>
 
 *logical-exc-OR-expression* is defined in [§§](#logical-exclusive-or-operator).
-
-**Constraints**
-
-Each of the operands must have scalar type.
 
 **Semantics**
 
@@ -2713,23 +2709,20 @@ A generator function generates a collection of zero or more key/value
 pairs where each pair represents the next in some series. For example, a
 generator might *yield* random numbers or the series of Fibonacci
 numbers. When a generator function is called explicitly, it returns an
-object of type `Generator` ([§§](14-classes.md#class-generator)), which implements the interface
-`Iterator` ([§§](15-interfaces.md#interface-iterator)). As such, this allows that object to be iterated over
-using the `foreach` statement ([§§](11-statements.md#the-foreach-statement)). During each iteration, the Engine
+object of type [`Generator`](14-classes.md#class-generator), which implements the interface
+[`Iterator`](15-interfaces.md#interface-iterator). As such, this allows that object to be iterated over
+using the [`foreach` statement](11-statements.md#the-foreach-statement). During each iteration, the Engine
 calls the generator function implicitly to get the next key/value pair.
-Then the Engine saves the state of the generator for subsequent
-key/value pair requests.
+Then the Engine saves the state of the generator for subsequent key/value pair requests.
 
-This operator produces the result `NULL` unless the method
-`Generator->send` ([§§](14-classes.md#class-generator)) was called to provide a result value. This
-operator has the side effect of generating the next value in the
-collection.
+The `yield` operator produces the result `NULL` unless the method
+[`Generator->send`](14-classes.md#class-generator) was called to provide a result value. This
+operator has the side effect of generating the next value in the collection.
 
 Before being used, an *element-key* must have, or be converted to, type
-`int` or `string`. Keys with `float` or `bool` values, or strings whose contents
-match exactly the pattern of *decimal-literal* ([§§](09-lexical-structure.md#integer-literals)), are
-converted to `int` ([§§](08-conversions.md#converting-to-integer-type)). Values of all other key types are converted to
-`string` ([§§](08-conversions.md#converting-to-string-type)).
+`int` or `string`. Keys with `float` or `bool` values, or numeric strings, are
+[converted to `int`](08-conversions.md#converting-to-integer-type). Values of all other key types are [converted to
+`string`](08-conversions.md#converting-to-string-type).
 
 If *element-key* is omitted from an *array-element-initializer*, an
 element key of type `int` is associated with the corresponding
@@ -2799,7 +2792,7 @@ described in [§§](#the-include-operator); *include-once-expression* is describ
 [§§](#the-include_once-operator); *require-expression* is described in [§§](#the-require-operator); and
 *require-once-expression* is described in [§§](#the-require_once-operator).
 
-**Semantics:**
+**Semantics**
 
 When creating large applications or building component libraries, it is
 useful to be able to break up the source code into small, manageable
@@ -2852,8 +2845,8 @@ value to its including file.
 The name used to specify an include file may contain an absolute or
 relative path. In the latter case, an implementation may use the
 configuration directive
-[`include_path`](http://www.php.net/manual/en/ini.core.php#ini.include-path)
-(§xx) to resolve the include file's location.
+[`include_path`](http://www.php.net/manual/ini.core.php#ini.include-path)
+ to resolve the include file's location. 
 
 ###The `include` Operator
 
@@ -2861,44 +2854,40 @@ configuration directive
 
 <pre>
   <i>include-expression:</i>
-    include  (  <i>include-filename</i>  )
-    include  <i>include-filename</i>
-
-  <i>include-filename:</i>
-    <i>expression</i>
+    include  (  <i>expression</i>  )
+    include  <i>expression</i>
 </pre>
 
 *expression* is defined in [§§](#general-6).
 
-**Constraints:**
+**Constraints**
 
-*expression* must be a string that designates a file that exists, is
-accessible, and whose format is suitable for inclusion (that is, starts
-with a PHP start-tag, and optionally ends with a PHP end-tag). However,
-if the designated file is not accessible, execution may continue.
+*expresssion* must be convertable to a string, which designates 
+a filename. 
 
-**Semantics:**
+**Semantics**
+Operator `include` results in parsing and executing the designated include
+file. If the filename is invalid or does not specify a readable
+file, a non-fatal error is produced.
 
-When an included file is opened, parsing immediately drops out of PHP
-mode and into HTML mode at the beginning, and switches back again when
-the end of the included file is reached.
+When an included file is opened, parsing begins in HTML mode at the beginning of the file.
+After the included file has been parsed, it is immediately executed. 
 
 Variables defined in an included file take on scope of the source line
 on which the inclusion occurs in the including file. However, functions
-and classes defined in the included file are given global scope.
+and classes defined in the included file are always in global scope.
 
 If inclusion occurs inside a function definition within the including
 file, the complete contents of the included file are treated as though
 it were defined inside that function.
 
-Operator `include` has a side effect of including the designated include
-file. The result produced by this operator is one of the following:
-`FALSE`, which indicates the inclusion attempt failed; the `int` 1, which
-indicates the default value for inclusion attempt succeeded; or some
-other value, as returned from the included file ([§§](11-statements.md#the-return-statement)).
+The result produced by this operator is one of the following:
+  1. If the included file [returned any value](11-statements.md#the-return-statement), that value is the result.
+  2. If the included file has not returned any value, the result is the integer `1`.
+  3. If the inclusion failed for any reason, the result is `FALSE`.
 
-The library function `get_included_files` (§xx) provides the names of
-all files included or required.
+The library function [`get_included_files`](http://php.net/manual/function.get-included-files.php) provides the names of
+all files included by any of the four including operators.
 
 **Examples:**
 
@@ -2914,20 +2903,24 @@ If ((include 'Positions.php') == 1) ...
 
 <pre>
   <i>include-once-expression:</i>
-    include_once  (  <i>include-filename</i>  )
-    include_once  <i>include-filename</i>
+    include_once  (  <i>expression</i>  )
+    include_once  <i>expression</i>
 </pre>
 
-*include-filename* is defined in [§§](#the-include-operator).
+*expression* is defined in [§§](#general-6).
 
-**Semantics:**
+**Semantics**
 
-This operator is identical to operator `include` ([§§](#the-include-operator)) except that in
-the case of `include_once`, the include file is included once only during
+This operator is identical to operator [`include`](#the-include-operator) except that in
+the case of `include_once`, the same include file is included once per
 program execution.
 
 Once an include file has been included, a subsequent use of
-`include_once` on that include file results in a return value of `TRUE`.
+`include_once` on that include file results in a return value of `TRUE` but nothing else
+happens.
+
+The files are identified by the full pathname, so different forms of the filename (such as full
+and relative path) still are considered the same file.
 
 **Examples:**
 
@@ -2956,20 +2949,17 @@ $c1 = new Circle(9, 7, 2.4);
 
 <pre>
   <i>require-expression:</i>
-    require  (  <i>include-filename</i>  )
-    require  <i>include-filename</i>
+    require  (  <i>expression</i>  )
+    require  <i>expression</i>
 </pre>
 
-*include-filename* is defined in [§§](#the-include-operator).
+*expression* is defined in [§§](#general-6).
 
-**Semantics:**
+**Semantics**
 
-This operator is identical to operator `include` ([§§](#the-include-operator)) except that in
+This operator is identical to operator [`include`](#the-include-operator) except that in
 the case of `require`, failure to find/open the designated include file
-terminates program execution.
-
-The library function `get_included_files` (§xx) provides the names of
-all files included or required.
+produces a fatal error.
 
 ###The `require_once` Operator
 
@@ -2977,20 +2967,24 @@ all files included or required.
 
 <pre>
   <i>require-once-expression:</i>
-    require_once  (  <i>include-filename</i>  )
-    require_once  <i>include-filename</i>
+    require_once  (  <i>expression</i>  )
+    require_once  <i>expression</i>
 </pre>
 
-*include-filename* is defined in [§§](#the-include-operator).
+*expression* is defined in [§§](#general-6).
 
-**Semantics:**
+**Semantics**
 
-This operator is identical to operator `require` ([§§](#the-require-operator)) except that in
-the case of `require_once`, the include file is included once only during
+This operator is identical to operator [`require`](#the-require-operator) except that in
+the case of `require_once`, the include file is included once per
 program execution.
 
 Once an include file has been included, a subsequent use of
-`require_once` on that include file results in a return value of TRUE.
+`require_once` on that include file results in a return value of `TRUE` but nothing else
+happens.
+
+The files are identified by the full pathname, so different forms of the filename (such as full
+and relative path) still are considered the same file.
 
 ##Constant Expressions
 
@@ -3008,22 +3002,21 @@ Once an include file has been included, a subsequent use of
 *array-creation-expression* is defined in [§§](#array-creation-operator) and *expression* is
 defined in [§§](#general-6).
 
-**Constraints:**
+**Constraints**
 
-All of the *element-key* and *element-value* *expression*s in
-*array-creation-expression* ([§§](#array-creation-operator)) must be literals.
+All of the *element-key* and *element-value* elements in
+[*array-creation-expression*](#array-creation-operator) must be literals.
 
-*expression* must have a scalar type, and be a literal or the name of an
-existing c-constant ([§§](06-constants.md#general)), that is currently in scope.
+*expression* must have a scalar type, and be a literal or the name of a [c-constant](06-constants.md#general).
 
-**Semantics:**
+**Semantics**
 
 A *const-expression* is the value of a c-constant. A *const-expression*
 is required in several contexts, such as in initializer values in a
-*const-declaration* ([§§](14-classes.md#constants)) and default initial values in a function
-definition ([§§](13-functions.md#function-definitions)).
+[*const-declaration*](14-classes.md#constants) and default initial values in a [function
+definition](13-functions.md#function-definitions).
 
-An initializer in a *property-declaration* ([§§](14-classes.md#properties)) is less restrictive
+An initializer in a [*property-declaration*](14-classes.md#properties) is less restrictive
 than one in a *const-declaration*.
 
 

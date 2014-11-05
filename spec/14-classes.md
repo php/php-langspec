@@ -87,8 +87,13 @@ have the modifier `abstract` must itself have an `abstract`
 not be `parent`, `self`, or `static`.
 
 A concrete class must implement each of the methods from all the
-interfaces ([§§](15-interfaces.md#general)) specified in *class-interface-clause*, using the
-exact same signature as defined in each interface.
+interfaces ([§§](15-interfaces.md#general)) specified in *class-interface-clause*.
+
+For each interface method, the corresponding concrete method must include similar arguments specified
+in the interface method: For each interface method argument, the corresponding concrete method argument
+must have the same type hint if provided (or none if not provided) and must include a default value if
+the interface method argument has a default. The argument names and default values may differ. The
+concrete method may include additional arguments provided each has a default value.
 
 *qualified-name* in *class-interface-clause* must name an interface
 type.

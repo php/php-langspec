@@ -103,7 +103,7 @@ As to how the bytes in a string translate into characters is
 unspecified.
 
 Although a user of a string might choose to ascribe special semantics to
-bytes having the value `U+0000`, from PHP's perspective, such *null bytes*
+bytes having the value `\0`, from PHP's perspective, such *null bytes*
 have no special meaning. PHP does not assume strings contain any specific
 data or assign special values to any bytes or sequences. However, many
 library functions assume the strings they receive as arguments are UTF-8

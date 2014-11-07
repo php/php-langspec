@@ -1006,7 +1006,7 @@ possible outcome:
        +-----------------+           V                           |           |
        |                     [VStore int 1]                 +----+           |
        V                                                    |                V
-  [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore string 'hi']
+  [VStore Arr *]---->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore string 'hi']
                                             |           |   |
                                     +-------+           |   |
                                     |                   V   |
@@ -1027,7 +1027,7 @@ Here is the third possible outcome:
        +----------------+           V                           |           |
        |                     [VStore int 1]                  +--+           |
        V                                                     |              V
-   [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore string 'hi']
+   [VStore Arr *]---->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore string 'hi']
                                              |           |   |
                      [VStore int 123]&lt;-------+           |   |
                                                          V   |

@@ -455,7 +455,7 @@ list($min, list($max, $avg)) = [0, [1 => 67, 99, 0 => 100], 33];
 **Syntax**
 
 <pre>
-  <i>print-intrinsic:
+  <i>print-intrinsic:</i>
     print  <i>expression</i>
     print  (  <i>expression</i>  )
 </pre>

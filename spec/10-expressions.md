@@ -2864,6 +2864,7 @@ configuration directive
  to resolve the include file's location. 
 
 **Examples:**
+
 As mentioned above, script inclusion in PHP is not a text substitution process (unlike C/C++\'s preprocessor and alike). This allows that one can specify namespaces in the included file even though nested namespaces in a single file only are not permitted:
 
 include.php
@@ -2977,6 +2978,7 @@ echo $x;                  // hello
 a filename. 
 
 **Semantics**
+
 Operator `include` results in parsing and executing the designated include
 file. If the filename is invalid or does not specify a readable
 file, a non-fatal error is produced.

@@ -136,10 +136,10 @@ $colors[] = "green";                // insert a new element
   <i>function-static-declaration:</i>
     static <i>variable-name</i> <i>function-static-initializer<sub>opt</sub></i> ;
   <i>function-static-initializer:</i>
-    = <i>const-expression</i>
+    = <i>constant-expression</i>
 </pre>
 
-*variable-name* is defined in ([§§](09-lexical-structure.md#names)), and *const-expression* is defined in
+*variable-name* is defined in ([§§](09-lexical-structure.md#names)), and *constant-expression* is defined in
 ([§§](10-expressions.md#constant-expressions)).
 
 **Constraints:**

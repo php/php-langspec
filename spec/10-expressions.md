@@ -2862,7 +2862,7 @@ configuration directive
 
 **Constraints**
 
-*expresssion* must be convertable to a string, which designates 
+*expression* must be convertable to a string, which designates 
 a filename. 
 
 **Semantics**

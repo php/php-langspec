@@ -705,7 +705,7 @@ We can remove these aliases using `unset($a, $b)`:
 
 Once all the aliases to the VStores are gone, the VStores can be
 destroyed, in which case, there are no more pointers to the HStore, and
-it can be destoyed too.
+it can be destroyed too.
 
 ####Value Assignment of Array Types to Local Variables
 The semantics of value assignment of array types is different from value
@@ -1199,7 +1199,7 @@ counter();
 This example prints `1 2 4 `, since the first assignment does not produce
 byRef semantics even though the function return is declared byRef. 
 If the function is not declared to return byRef, its return never produces
-byRef semantics, regardles of how it is assigned.
+byRef semantics, regardless of how it is assigned.
 
 Passing function's return to another function is considered the same as assigning
 the value to the corresponding function's parameter, with byRef parameters

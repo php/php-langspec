@@ -542,6 +542,7 @@ A single-quoted string literal is always a constant expression.
     <i>dq-simple-escape-sequence</i>
     <i>dq-octal-escape-sequence</i>
     <i>dq-hexadecimal-escape-sequence</i>
+    <i>dq-unicode-escape-sequence</i>
 
   <i>dq-simple-escape-sequence:: one of</i>
     \"   \\   \$   \e   \f   \n   \r   \t   \v
@@ -554,6 +555,13 @@ A single-quoted string literal is always a constant expression.
   <i>dq-hexadecimal-escape-sequence::</i>
     \x  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
     \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
+
+  <i>dq-unicode-escape-sequence::</i>
+    \u{  codepoint-digits  }
+
+  <i>codepoint-digits::</i>
+     <i>hexadecimal-digit</i>
+     <i>codepoint-digits   codepoint-digits</i>
 </pre>
 
 *octal-digit* and *hexadecimal-digit* are defined in [§§](#integer-literals).
@@ -586,13 +594,21 @@ Escape sequence | Character name | Unicode character
 \v  | Vertical Tab | U+000B
 \ooo |  1–3-digit octal digit value ooo
 \xhh or \Xhh  | 1–2-digit hexadecimal digit value hh
+\u{xxxxxx} | UTF-8 encoding of Unicode codepoint U+xxxxxx | U+xxxxxx
 
 Within a double-quoted string literal, except when recognized as the
 start of an escape sequence, a backslash (\\) is retained verbatim.
 
 Within a double-quoted string literal a dollar ($) character not
 escaped by a backslash (\\) is handled using a variable substitution rules
-described below. 
+described below.
+
+The `\u{xxxxxx}` escape sequence produces the UTF-8 encoding of the Unicode 
+codepoint with the hexadecimal number specified within the curly braces.
+Implementations MUST NOT allow Unicode codepoints beyond U+10FFFF as this is
+outside the range UTF-8 can encode (see
+[RFC 3629](http://tools.ietf.org/html/rfc3629#section-3)). If a codepoint 
+larger than U+10FFFF is specified, implementations MUST error.
 
 **Variable substitution**
 
@@ -695,6 +711,7 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
     <i>hd-simple-escape-sequence</i>
     <i>dq-octal-escape-sequence</i>
     <i>dq-hexadecimal-escape-sequence</i>
+    <i>dq-unicode-escape-sequence</i>
 
   <i>hd-simple-escape-sequence:: one of</i>
     \\   \$   \e   \f   \n   \r   \t   \v

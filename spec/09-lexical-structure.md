@@ -561,7 +561,7 @@ A single-quoted string literal is always a constant expression.
 
   <i>codepoint-digits::</i>
      <i>hexadecimal-digit</i>
-     <i>codepoint-digits   codepoint-digits</i>
+     <i>hexadecimal-digit   codepoint-digits</i>
 </pre>
 
 *octal-digit* and *hexadecimal-digit* are defined in [§§](#integer-literals).

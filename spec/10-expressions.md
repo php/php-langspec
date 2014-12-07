@@ -749,7 +749,7 @@ The *qualified-name* is resolved according to the rules described in
 [scope resolution operator](10-expressions.md#scope-resolution-operator), including
 support for `self`, `parent` and `static`.
 
-After the object has been created, ach instance property is initialized
+After the object has been created, each instance property is initialized
 with the values [specified in property definition](14-classes.md#properties),
 or the value `NULL` if no initializer value is provided.
 
@@ -2118,7 +2118,7 @@ The conversions are performed according to [type conversion rules](08-conversion
 
  - `=` means the result is always "equals", i.e. strict comparisons are always `FALSE` and equality comparisons are always `TRUE`.
  - `<` means that the left operand is always less than the right operand.
- - `>` means that the left operand is always greather than the right operand.
+ - `>` means that the left operand is always greater than the right operand.
  - `->` means that the left operand is converted to the type of the right operand.
  - `<-` means that the right operand is converted to the type of the left operand.
  - A number means one of the cases below:
@@ -2274,8 +2274,8 @@ the type of that result is `int`.
 
 However, if both operands are strings, the result is the string composed of the sequence of bytes
 that are the result of bitwise AND operation performed on the bytes of the operand strings 
-in the matching poitions (`result[0] = s1[0] & s2[0]`, etc.).
-If one of the strings is longer than the other, it is cut to the length of the shorer one.
+in the matching positions (`result[0] = s1[0] & s2[0]`, etc.).
+If one of the strings is longer than the other, it is cut to the length of the shorter one.
 
 This operator associates left-to-right.
 
@@ -2314,10 +2314,10 @@ to that type.
 The result of this operator is the bitwise exclusive-OR of the two
 operands, and the type of that result is `int`.
 
-HHowever, if both operands are strings, the result is the string composed of the sequence of bytes
+However, if both operands are strings, the result is the string composed of the sequence of bytes
 that are the result of bitwise XOR operation performed on the bytes of the operand strings 
-in the matching poitions (`result[0] = s1[0] ^ s2[0]`, etc.).
-If one of the strings is longer than the other, it is cut to the length of the shorer one.
+in the matching positions (`result[0] = s1[0] ^ s2[0]`, etc.).
+If one of the strings is longer than the other, it is cut to the length of the shorter one.
 
 This operator associates left-to-right.
 
@@ -2360,7 +2360,7 @@ operands, and the type of that result is `int`.
 
 However, if both operands are strings, the result is the string composed of the sequence of bytes
 that are the result of bitwise OR operation performed on the bytes of the operand strings 
-in the matching poitions (`result[0] = s1[0] | s2[0]`, etc.).
+in the matching positions (`result[0] = s1[0] | s2[0]`, etc.).
 If one of the strings is shorter than the other, it is extended with zero bytes. 
 
 This operator associates left-to-right.

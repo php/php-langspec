@@ -1599,7 +1599,7 @@ are ignored. With a non-numeric string, the result has type `int` and
 value 0.
 
 For a unary `~` operator used with a string, the result is the string with each byte
-being bitwise complement of the correstopding byte of the source string.
+being bitwise complement of the corresponding byte of the source string.
 
 *Object Operands*
 
@@ -2272,6 +2272,11 @@ to that type.
 The result of this operator is the bitwise-AND of the two operands, and
 the type of that result is `int`.
 
+However, if both operands are strings, the result is the string composed of the sequence of bytes
+that are the result of bitwise AND operation performed on the bytes of the operand strings 
+in the matching poitions (`result[0] = s1[0] & s2[0]`, etc.).
+If one of the strings is longer than the other, it is cut to the length of the shorer one.
+
 This operator associates left-to-right.
 
 **Examples**
@@ -2308,6 +2313,11 @@ to that type.
 
 The result of this operator is the bitwise exclusive-OR of the two
 operands, and the type of that result is `int`.
+
+HHowever, if both operands are strings, the result is the string composed of the sequence of bytes
+that are the result of bitwise XOR operation performed on the bytes of the operand strings 
+in the matching poitions (`result[0] = s1[0] ^ s2[0]`, etc.).
+If one of the strings is longer than the other, it is cut to the length of the shorer one.
 
 This operator associates left-to-right.
 
@@ -2347,6 +2357,11 @@ to that type.
 
 The result of this operator is the bitwise inclusive-OR of the two
 operands, and the type of that result is `int`.
+
+However, if both operands are strings, the result is the string composed of the sequence of bytes
+that are the result of bitwise OR operation performed on the bytes of the operand strings 
+in the matching poitions (`result[0] = s1[0] | s2[0]`, etc.).
+If one of the strings is shorter than the other, it is extended with zero bytes. 
 
 This operator associates left-to-right.
 

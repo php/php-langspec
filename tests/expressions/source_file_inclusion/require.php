@@ -8,8 +8,8 @@
 
 error_reporting(-1);
 
-echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ . 
-	"< with namespace >" . __NAMESPACE__ . "<\n";
+echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
+  "< with namespace >" . __NAMESPACE__ . "<\n";
 
 //var_dump(MY_MIN);
 //var_dump(MY_MAX);
@@ -26,25 +26,25 @@ $fileName = 'limits' . '.php';
 $inc = require $fileName;
 var_dump($inc);
 
-echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ . 
-	"< with namespace >" . __NAMESPACE__ . "<\n";
+echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
+  "< with namespace >" . __NAMESPACE__ . "<\n";
 
 // require another existing file that has its own namespace
-	
+
 $inc = require('mycolors.php');
 var_dump($inc);
 
-echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ . 
-	"< with namespace >" . __NAMESPACE__ . "<\n";
+echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
+  "< with namespace >" . __NAMESPACE__ . "<\n";
 
 echo "----------------------------------\n";
 
 // Try to access constants defined in an included file
 
 if (defined("MY_MIN"))
-	echo "MY_MIN is defined with value >" . constant("MY_MIN") . "\n";
+  echo "MY_MIN is defined with value >" . constant("MY_MIN") . "\n";
 else
-	echo "MY_MIN is not defined\n";
+  echo "MY_MIN is not defined\n";
 
 echo "----------------------------------\n";
 
@@ -78,7 +78,7 @@ if ((require('return_with_value.php')) or 987) ;
 
 echo "----------------------------------\n";
 
-// see if included file can access including file's variables, and if including file 
+// see if included file can access including file's variables, and if including file
 // can access the included file's functions and variables
 
 $v1 = 10;

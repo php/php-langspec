@@ -13,10 +13,10 @@ error_reporting(-1);
 
 for ($i = 0; $i <= 10; ++$i)
 {
-	printf("%2d! = %d\n", $i, factorial($i));
+  printf("%2d! = %d\n", $i, factorial($i));
 }
 
 function factorial($int)
 {
-	return ($int > 1) ? $int * factorial($int - 1) : $int;
+  return ($int > 1) ? $int * factorial($int - 1) : $int;
 }

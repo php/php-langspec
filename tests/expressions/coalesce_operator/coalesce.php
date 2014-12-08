@@ -7,18 +7,18 @@ $obj = new StdClass;
 $obj->boo = 7;
 
 $arr = [
-	2 => 7,
-	"foo" => "bar",
-	"foobar" => NULL,
-	"qux" => $obj,
-	"bing" => [
-		"bang"
-	]
+  2 => 7,
+  "foo" => "bar",
+  "foobar" => NULL,
+  "qux" => $obj,
+  "bing" => [
+    "bang"
+  ]
 ];
 
 function foobar() {
-	echo "called\n";
-	return ['a'];
+  echo "called\n";
+  return ['a'];
 }
 
 var_dump($nonexistant_variable ?? 3);

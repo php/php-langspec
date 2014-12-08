@@ -31,9 +31,9 @@ var_dump($a2);
 function f(&$p)
 {
    echo '$p '.(isset($p) ? "is set\n" : "is not set\n");
-	echo "f In:  \$p: $p\n";
-	$p = 200;		// actual argument's value changed
-	echo "f Out: \$p: $p\n";
+  echo "f In:  \$p: $p\n";
+  $p = 200;   // actual argument's value changed
+  echo "f Out: \$p: $p\n";
 }
 
 // pass a variable by reference; f changes its value

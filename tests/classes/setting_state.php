@@ -8,74 +8,74 @@
 
 error_reporting(-1);
 
-class Point 
+class Point
 {
-	private static $pointCount = 0;
+  private static $pointCount = 0;
 
-	private $x;
-	private $y;
-	const CON = 10;
-	protected static $prots;
-	protected $proti;
-	public $pubi;
+  private $x;
+  private $y;
+  const CON = 10;
+  protected static $prots;
+  protected $proti;
+  public $pubi;
 
-	public static function getPointCount() 
-	{
-		return self::$pointCount;
-	}
+  public static function getPointCount()
+  {
+    return self::$pointCount;
+  }
 
-	public function __construct($x = 0, $y = 0) 
-	{
-		$this->x = $x;
-		$this->y = $y;
-		++self::$pointCount;
+  public function __construct($x = 0, $y = 0)
+  {
+    $this->x = $x;
+    $this->y = $y;
+    ++self::$pointCount;
 
-		echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
-	}
+    echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
+  }
 
-	public function move($x, $y) 
-	{
-		$this->x = $x;
-		$this->y = $y;
-	}	
+  public function move($x, $y)
+  {
+    $this->x = $x;
+    $this->y = $y;
+  }
 
-	public function translate($x, $y) 
-	{
-		$this->x += $x;
-		$this->y += $y;
-	}
+  public function translate($x, $y)
+  {
+    $this->x += $x;
+    $this->y += $y;
+  }
 
-	public function __destruct() 
-	{
-		--self::$pointCount;
+  public function __destruct()
+  {
+    --self::$pointCount;
 
-		echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
-	}
+    echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
+  }
 ///*
-	public function __clone() 
-	{
-		++self::$pointCount;
+  public function __clone()
+  {
+    ++self::$pointCount;
 
-		echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
-	}
+    echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
+  }
 //*/
 
-	public function __toString() 
-	{
-		return '(' . $this->x . ',' . $this->y . ')';
-	}	
+  public function __toString()
+  {
+    return '(' . $this->x . ',' . $this->y . ')';
+  }
 ///*
-	static public function __set_state(array $properties)
-	{
-		echo "Inside " . __METHOD__ . "\n";
-		var_dump($properties);
+  static public function __set_state(array $properties)
+  {
+    echo "Inside " . __METHOD__ . "\n";
+    var_dump($properties);
 
-		$p = new Point;
-		$p->x = $properties['x'];
-		$p->y = $properties['y'];
-		var_dump($p);
-		return $p;
-	}
+    $p = new Point;
+    $p->x = $properties['x'];
+    $p->y = $properties['y'];
+    var_dump($p);
+    return $p;
+  }
 //*/
 }
 
@@ -99,48 +99,48 @@ echo "---------------- test with inheritance -------------------\n";
 
 class B
 {
-	private $bprop;
+  private $bprop;
 
-	public function __construct($p)
-	{
-		$this->bprop = $p;
-	}
+  public function __construct($p)
+  {
+    $this->bprop = $p;
+  }
 
-	static public function __set_state(array $properties)
-	{
-		echo "Inside " . __METHOD__ . "\n";
-		var_dump($properties);
+  static public function __set_state(array $properties)
+  {
+    echo "Inside " . __METHOD__ . "\n";
+    var_dump($properties);
 
-		$b = new static($properties['bprop']);
-//		$b->bprop = $properties['bprop'];
-		var_dump($b);
-		echo "about to return from " . __METHOD__ . "\n";
-		return $b;
-	}
+    $b = new static($properties['bprop']);
+//    $b->bprop = $properties['bprop'];
+    var_dump($b);
+    echo "about to return from " . __METHOD__ . "\n";
+    return $b;
+  }
 }
 
 class D extends B
 {
-	private $dprop = 123;
+  private $dprop = 123;
 
-	public function __construct($bp, $dp = NULL)
-	{
-		$this->dprop = $dp;
-		parent::__construct($bp);
-	}
+  public function __construct($bp, $dp = NULL)
+  {
+    $this->dprop = $dp;
+    parent::__construct($bp);
+  }
 ///*
-	static public function __set_state(array $properties)
-	{
-		echo "Inside " . __METHOD__ . "\n";
-		var_dump($properties);
+  static public function __set_state(array $properties)
+  {
+    echo "Inside " . __METHOD__ . "\n";
+    var_dump($properties);
 
-		$d = parent::__set_state($properties);
-		var_dump($d);
-		$d->dprop = $properties['dprop'];
-		var_dump($d);
-		echo "about to return from " . __METHOD__ . "\n";
-		return $d;
-	}
+    $d = parent::__set_state($properties);
+    var_dump($d);
+    $d->dprop = $properties['dprop'];
+    var_dump($d);
+    echo "about to return from " . __METHOD__ . "\n";
+    return $d;
+  }
 //*/
 }
 

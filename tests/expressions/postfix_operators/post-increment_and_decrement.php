@@ -10,34 +10,34 @@ error_reporting(-1);
 
 function incdec($a)
 {
-	echo "--------------------------------------- start incdec ---\n";
-	echo '$a = '.$a." <---> "; var_dump($a);
+  echo "--------------------------------------- start incdec ---\n";
+  echo '$a = '.$a." <---> "; var_dump($a);
 
-	$a--;
-	echo '$a = '.$a." <---> "; var_dump($a);
+  $a--;
+  echo '$a = '.$a." <---> "; var_dump($a);
 
-	$a++;
-	echo '$a = '.$a." <---> "; var_dump($a);
+  $a++;
+  echo '$a = '.$a." <---> "; var_dump($a);
 
-	echo '$a = '.$a++."\n";
-	echo '$a = '.$a." <---> "; var_dump($a);
-	echo "--------------------------------------- end incdec ---\n";
+  echo '$a = '.$a++."\n";
+  echo '$a = '.$a." <---> "; var_dump($a);
+  echo "--------------------------------------- end incdec ---\n";
 }
 
 function incdecrev($a)
 {
-	echo "--------------------------------------- start incdecrev ---\n";
-	echo '$a = '.$a." <---> "; var_dump($a);
+  echo "--------------------------------------- start incdecrev ---\n";
+  echo '$a = '.$a." <---> "; var_dump($a);
 
-	$a++;
-	echo '$a = '.$a." <---> "; var_dump($a);
+  $a++;
+  echo '$a = '.$a." <---> "; var_dump($a);
 
-	$a--;
-	echo '$a = '.$a." <---> "; var_dump($a);
+  $a--;
+  echo '$a = '.$a." <---> "; var_dump($a);
 
-	echo '$a = '.$a--."\n";
-	echo '$a = '.$a." <---> "; var_dump($a);
-	echo "--------------------------------------- end incdecrev ---\n";
+  echo '$a = '.$a--."\n";
+  echo '$a = '.$a." <---> "; var_dump($a);
+  echo "--------------------------------------- end incdecrev ---\n";
 }
 ///*
 // integer values ----------------------------------------------------

@@ -90,7 +90,7 @@ Constant Name | Description
 `M_LOG10E` |  `float`; log_10 e
 `M_LOG2E` | `float`; log_2 e
 `M_PI` |  `float`; Pi
-`M_PI_2` |  `floa`t; pi/2
+`M_PI_2` |  `float`; pi/2
 `M_PI_4` |  `float`; pi/4
 `M_SQRT1_2` | `float`; 1/sqrt(2)
 `M_SQRT2` | `float`; sqrt(2)

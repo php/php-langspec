@@ -294,4 +294,4 @@ Variable Name |   Description
 `$_SERVER` |  `array`; Server and execution environment information, such as headers, paths, and script locations. The entries in this array are taken from the Engine environment, e.g. the webserver.
 `$_SESSION` | `array`; The session variables available to the current script. This global is defined only if a [session](http://php.net/manual/en/book.session.php) is active. 
 
-All `$_*` variabes above are superglobals. The exact set of the variables available may depend on the implementation, the Engine build and the environment.
+All `$_*` variables above are superglobals. The exact set of the variables available may depend on the implementation, the Engine build and the environment.

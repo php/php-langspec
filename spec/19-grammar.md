@@ -194,7 +194,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 ####Floating-Point Literals
 
 <pre>
-  <i>ﬂoating-literal::</i>
+  <i>floating-literal::</i>
     <i>fractional-literal   exponent-part<sub>opt</sub></i>
     <i>digit-sequence   exponent-part</i>
 

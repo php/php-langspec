@@ -90,7 +90,7 @@ A concrete class must implement each of the methods from all the
 interfaces ([§§](15-interfaces.md#general)) specified in *class-interface-clause*.
 
 For each interface method, the corresponding implementing method must be compatible with the interface method, including the following:
-- If the interface method is defined as [retuning byRef](13-functions.md#function-definitions), the implementing method should also return byRef.
+- If the interface method is defined as [returning byRef](13-functions.md#function-definitions), the implementing method should also return byRef.
 - If the interface method is variadic, the implementing method must also be variadic (see also below).
 - The number of required (i.e. having no defaults) arguments of the implementing methods can not be more than the number of required arguments of the interface method (adding non-optional arguments is not allowed).
 - The overall number of arguments for the implementing method should be at least the number of the arguments of the interface method (removing arguments is not allowed).
@@ -1697,7 +1697,7 @@ is static, then it cannot be bound.
 
 Closures can be *scoped* or *unscoped*. If a closure is said to be *scoped*, it
 has a class *scope* which determines the visibility of the private and protected
-members of objects of tha class, including but not limited to such members on
+members of objects of that class, including but not limited to such members on
 `$this`. If a closure is said to be *unscoped*, it has no class scope set.
 
 Closures have an invariant that scoped closures must be bound or static, and

@@ -4,7 +4,7 @@
 
 A *variable* is a named area of data storage that contanis a PHP value. A variable is represented by a VSlot
 ([§§](04-basic-concepts.md#general)). A variable is created by assigning a value to it ([§§](04-basic-concepts.md#assignment), [§§](10-expressions.md#simple-assignment),
-[§§](10-expressions.md#byref-assignment), [§§](10-expressions.md#the-new-operator), [§§](10-expressions.md#array-creation-operator)).  A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic unset ([§§](10-expressions.md#unset)), or by the Engine. The intrinsic `isset` ([§§](10-expressions.md#isset)) tests if a given variable exists and is not set to `NULL`. A variable that somehow becomes defined, but is not initialized starts out with the value `NULL`.
+[§§](10-expressions.md#byref-assignment), [§§](10-expressions.md#the-new-operator), [§§](10-expressions.md#array-creation-operator)).  A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic unset ([§§](10-expressions.md#unset)), or by the Engine. The intrinsic `isset` ([§§](10-expressions.md#isset)) tests if a given variable exists and is not set to `NULL`. A variable that somehow becomes defined, but is not initialized starts out with the value `NULL`. An `E_NOTICE` is emitted in this case.
 
 Variables have names as defined in [§§](09-lexical-structure.md#names). Distinct variables may have
 the same name provided they are in different scopes ([§§](04-basic-concepts.md#scope)).

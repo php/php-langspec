@@ -12,9 +12,9 @@ echo "----------------- closure with no parameters ----------------------\n";
 
 $cl1 = function ()
 {
-	echo "Inside function >>" . __FUNCTION__ . "<<\n";
-	echo "Inside method >>" . __METHOD__ . "<<\n";
-   	// ...
+  echo "Inside function >>" . __FUNCTION__ . "<<\n";
+  echo "Inside method >>" . __METHOD__ . "<<\n";
+    // ...
 };
 
 echo "--\n";
@@ -36,9 +36,9 @@ class C implements I {}
 
 $cl2 = function ($p1, $p2 = 100, array $p3, C $p4, I $p5)
 {
-	echo "Inside function >>" . __FUNCTION__ . "<<\n";
-	echo "Inside method >>" . __METHOD__ . "<<\n";
-   	// ...
+  echo "Inside function >>" . __FUNCTION__ . "<<\n";
+  echo "Inside method >>" . __METHOD__ . "<<\n";
+    // ...
 };
 var_dump($cl2);
 
@@ -56,19 +56,19 @@ echo "----------------- passing a callable to a function ----------------------\
 
 function double($p)
 {
-	return $p * 2;
+  return $p * 2;
 }
 
 function square($p)
 {
-	return $p * $p;
+  return $p * $p;
 }
 
 function doit($value, callable $process)
 {
-	var_dump($process);
+  var_dump($process);
 
-	return $process($value);
+  return $process($value);
 }
 
 $res = doit(10, 'double');
@@ -88,18 +88,18 @@ echo "----------------- using a use clause, #1 ----------------------\n";
 
 function compute(array $values)
 {
-	$count = 0;
-        
-	$callback = function () use (&$count)
-	{
-		echo "Inside method >>" . __METHOD__ . "<<\n";	// called {closure}
-		++$count;
-	};
+  $count = 0;
 
-	$callback();
-	echo "\$count = $count\n";
-	$callback();
-	echo "\$count = $count\n";
+  $callback = function () use (&$count)
+  {
+    echo "Inside method >>" . __METHOD__ . "<<\n";  // called {closure}
+    ++$count;
+  };
+
+  $callback();
+  echo "\$count = $count\n";
+  $callback();
+  echo "\$count = $count\n";
 }
 
 compute([1,2,3]);
@@ -108,75 +108,75 @@ echo "----------------- using a use clause, #2 (instance method) ---------------
 
 class D
 {
-	private function f()
-	{
-		echo "Inside method >>" . __METHOD__ . "<<\n";
-	}
+  private function f()
+  {
+    echo "Inside method >>" . __METHOD__ . "<<\n";
+  }
 
-	public function compute(array $values)
-	{
-		$count = 0;
-        
-		$callback = function ($p1, $p2) use (&$count, $values)
-		{
-			echo "Inside method >>" . __METHOD__ . "<<\n";	// called D::{closure}
-			++$count;
+  public function compute(array $values)
+  {
+    $count = 0;
 
-			$this->f();	// $this is available automatically; can't put it in use clause anyway
-		};
+    $callback = function ($p1, $p2) use (&$count, $values)
+    {
+      echo "Inside method >>" . __METHOD__ . "<<\n";  // called D::{closure}
+      ++$count;
 
-		echo "--\n";
-		var_dump(gettype($callback));
-		echo "--\n";
-		var_dump($callback);
-		echo "--\n";
-		var_dump($callback instanceof Closure);
-		echo "--\n";
+      $this->f(); // $this is available automatically; can't put it in use clause anyway
+    };
 
-		$callback(1,2,3);
-		echo "\$count = $count\n";
-		$callback(5,6,7);
-		echo "\$count = $count\n";
-        
-		$callback2 = function()
-		{
-			echo "Inside method >>" . __METHOD__ . "<<\n";	// ALSO called D::{closure}
-		};
+    echo "--\n";
+    var_dump(gettype($callback));
+    echo "--\n";
+    var_dump($callback);
+    echo "--\n";
+    var_dump($callback instanceof Closure);
+    echo "--\n";
 
-		echo "--\n";
-		var_dump(gettype($callback2));
-		echo "--\n";
-		var_dump($callback2);
-		echo "--\n";
-		var_dump($callback2 instanceof Closure);
-		echo "--\n";
+    $callback(1,2,3);
+    echo "\$count = $count\n";
+    $callback(5,6,7);
+    echo "\$count = $count\n";
 
-		$callback2();
-	}
+    $callback2 = function()
+    {
+      echo "Inside method >>" . __METHOD__ . "<<\n";  // ALSO called D::{closure}
+    };
 
-	public static function stcompute(array $values)
-	{
-		$count = 0;
-        
-		$callback = function ($p1, $p2) use (&$count, $values)
-		{
-			echo "Inside method >>" . __METHOD__ . "<<\n";	// called D::{closure}
-			++$count;
-		};
+    echo "--\n";
+    var_dump(gettype($callback2));
+    echo "--\n";
+    var_dump($callback2);
+    echo "--\n";
+    var_dump($callback2 instanceof Closure);
+    echo "--\n";
 
-		echo "--\n";
-		var_dump(gettype($callback));
-		echo "--\n";
-		var_dump($callback);
-		echo "--\n";
-		var_dump($callback instanceof Closure);
-		echo "--\n";
+    $callback2();
+  }
 
-		$callback(1,2,3);
-		echo "\$count = $count\n";
-		$callback(5,6,7);
-		echo "\$count = $count\n";
-	}
+  public static function stcompute(array $values)
+  {
+    $count = 0;
+
+    $callback = function ($p1, $p2) use (&$count, $values)
+    {
+      echo "Inside method >>" . __METHOD__ . "<<\n";  // called D::{closure}
+      ++$count;
+    };
+
+    echo "--\n";
+    var_dump(gettype($callback));
+    echo "--\n";
+    var_dump($callback);
+    echo "--\n";
+    var_dump($callback instanceof Closure);
+    echo "--\n";
+
+    $callback(1,2,3);
+    echo "\$count = $count\n";
+    $callback(5,6,7);
+    echo "\$count = $count\n";
+  }
 
 }
 
@@ -189,6 +189,6 @@ D::stcompute(["red" => 3, 10]);
 
 echo "----------------- Misc. Stuff ----------------------\n";
 
-//(function () { echo "Hi\n"; })();		// ca't use an anon function directly with ()
+//(function () { echo "Hi\n"; })();   // ca't use an anon function directly with ()
 $v = (function () { echo "Hi\n"; });
 $v();

@@ -2,7 +2,7 @@
 
 error_reporting(-1);
 
-class Point 
+class Point
 {
     private $x;
     private $y;
@@ -10,7 +10,7 @@ class Point
 
     public $dummy = -100;   // for test purposes only
 
-    public function __construct($x = 0, $y = 0) 
+    public function __construct($x = 0, $y = 0)
     {
         $this->x = $x;
         $this->y = $y;
@@ -76,7 +76,7 @@ var_dump($p->__isset('dummy')); // test if dynamic dummy exists
 
 echo "----------------------\n";
 
-$v = $p->x;		// try to get at an invisible property; can't. The runtime sees that x
+$v = $p->x;   // try to get at an invisible property; can't. The runtime sees that x
                 // exists, but is invisible, so it calls __get to search for a dynamic
                 // property of that name, which fails. NULL is returned.
 var_dump($v);
@@ -100,7 +100,7 @@ echo "color: $v\n";
 
 echo "----------------------\n";
 
-var_dump(isset($p->color));	// test if color exists and is accessible, or is dynamic
+var_dump(isset($p->color)); // test if color exists and is accessible, or is dynamic
 
 echo "----------------------\n";
 
@@ -125,7 +125,7 @@ unset($p->dummy);           // request to unset a declared accessible is OK
 var_dump(isset($p->dummy));
 
 var_dump(isset($p->color));
-unset($p->color);           // 
+unset($p->color);           //
 var_dump(isset($p->color));
 
 echo "----------------------\n";

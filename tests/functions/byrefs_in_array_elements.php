@@ -17,18 +17,18 @@ var_dump($x);
 var_dump($y);
 var_dump($z);
 
-$a = array($x, $y, $z);		// $a contains copies of the 3 variables
+$a = array($x, $y, $z);   // $a contains copies of the 3 variables
 var_dump($a);
 
 $a[1] = NULL;
 var_dump($a);
-var_dump($y);				// $y is unchanged
+var_dump($y);       // $y is unchanged
 
-$a = array(&$x, &$y, &$z);	// $a contains byRefs to the 3 variables
+$a = array(&$x, &$y, &$z);  // $a contains byRefs to the 3 variables
 var_dump($a);
 
-$a[1] = NULL;				// change $y via a byRefs to it
+$a[1] = NULL;       // change $y via a byRefs to it
 var_dump($a);
-var_dump($y);				// $y is changed
+var_dump($y);       // $y is changed
 
-var_dump($a[0]);			// get int(10) as that is the type/value of the underlying thing
+var_dump($a[0]);      // get int(10) as that is the type/value of the underlying thing

@@ -10,26 +10,26 @@ error_reporting(-1);
 
 function DoIt($a)
 {
-	echo "--- start DoIt -------------------------\n\n";
-	echo "     original: "; var_dump($a);
-	$b = +$a;
-//	echo "after unary +: "; var_dump($b);
-	$c = -$a;
-//	echo "after unary -: "; var_dump($c);
-	$d = !$a;
-//	echo "after unary !: "; var_dump($d);
-	$e = ($a == 0);
-//	echo "after $a == 0: "; var_dump($e);
+  echo "--- start DoIt -------------------------\n\n";
+  echo "     original: "; var_dump($a);
+  $b = +$a;
+//  echo "after unary +: "; var_dump($b);
+  $c = -$a;
+//  echo "after unary -: "; var_dump($c);
+  $d = !$a;
+//  echo "after unary !: "; var_dump($d);
+  $e = ($a == 0);
+//  echo "after $a == 0: "; var_dump($e);
 /*
-	$f = ~$a;
-	echo "after unary ~: "; var_dump($f);
-	printf(" before Hex: %08X\n", $a);
-	printf(" after  Hex: %08X\n", $f);
+  $f = ~$a;
+  echo "after unary ~: "; var_dump($f);
+  printf(" before Hex: %08X\n", $a);
+  printf(" after  Hex: %08X\n", $f);
 
-	echo " before (int): ".(int)$a;
-	printf("; before (int) Hex: %08X\n", $a);
+  echo " before (int): ".(int)$a;
+  printf("; before (int) Hex: %08X\n", $a);
 */
-	echo "\n--- end DoIt -------------------------\n\n";
+  echo "\n--- end DoIt -------------------------\n\n";
 }
 
 ///*
@@ -56,14 +56,14 @@ DoIt(-NAN);
 ///*
 // NULL operand
 
-DoIt(NULL);			// ~ not supported, so disable cod eblock in DoIt when testing
+DoIt(NULL);     // ~ not supported, so disable cod eblock in DoIt when testing
 //*/
 
 //*
 // Boolean operands
 
-DoIt(TRUE);			// ~ not supported, so disable code block in DoIt when testing
-DoIt(FALSE);		// ~ not supported, so disable code block in DoIt when testing
+DoIt(TRUE);     // ~ not supported, so disable code block in DoIt when testing
+DoIt(FALSE);    // ~ not supported, so disable code block in DoIt when testing
 //*/
 
 ///*

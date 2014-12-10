@@ -10,27 +10,27 @@ error_reporting(-1);
 
 $month = 6;
 if ($month > 1 && $month <= 12)
-	echo "\$month $month is in-bounds\n";
+  echo "\$month $month is in-bounds\n";
 else
-	echo "\$month $month is out-of-bounds\n";
+  echo "\$month $month is out-of-bounds\n";
 
 $month = 14;
 if ($month > 1 && $month <= 12)
-	echo "\$month $month is in-bounds\n";
+  echo "\$month $month is in-bounds\n";
 else
-	echo "\$month $month is out-of-bounds\n";
+  echo "\$month $month is out-of-bounds\n";
 
 $month = 6;
 if ($month < 1 || $month > 12)
-	echo "\$month $month is out-of-bounds\n";
+  echo "\$month $month is out-of-bounds\n";
 else
-	echo "\$month $month is in-bounds\n";
+  echo "\$month $month is in-bounds\n";
 
 $month = 14;
 if ($month < 1 || $month > 12)
-	echo "\$month $month is out-of-bounds\n";
+  echo "\$month $month is out-of-bounds\n";
 else
-	echo "\$month $month is in-bounds\n";
+  echo "\$month $month is in-bounds\n";
 
 // sequence point
 

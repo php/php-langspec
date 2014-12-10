@@ -11,7 +11,7 @@ error_reporting(-1);
 $i = 1;
 do
 {
-	echo "$i\t".($i * $i)."\n";	// output a table of squares
-	++$i;
+  echo "$i\t".($i * $i)."\n"; // output a table of squares
+  ++$i;
 }
 while ($i <= 10);

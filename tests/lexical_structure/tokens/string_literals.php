@@ -24,7 +24,7 @@ echo '>xxx    // this comment-like thingy really is part of the string literal
 yyy
 zzz'."<\n";
 
-echo var_dump('\e');	// Length should be 2
+echo var_dump('\e');  // Length should be 2
 //*/
 
 ///*
@@ -41,21 +41,21 @@ zzz"."<\n";
 
 // the \e test is to prove that HHVM has a bug in that it doesn't recognize this escape sequence
 
-echo var_dump("\e");	// Length should be 1
-echo var_dump("\033");	// Length should be 1
-echo var_dump("\x1B");	// Length should be 1
-echo var_dump("\X1b");	// Length should be 1
+echo var_dump("\e");  // Length should be 1
+echo var_dump("\033");  // Length should be 1
+echo var_dump("\x1B");  // Length should be 1
+echo var_dump("\X1b");  // Length should be 1
 //*/
 
 ///*
 // check all the scalar types for substitution
 
-$a = 435;			var_dump("$a");
-$b = -12.34E23;		var_dump("$b");
-$c = FALSE;			var_dump("$c");
-$d = TRUE;			var_dump("$d");
-$e = NULL;			var_dump("$e");
-$f = "blue sky";	var_dump("$f");
+$a = 435;     var_dump("$a");
+$b = -12.34E23;   var_dump("$b");
+$c = FALSE;     var_dump("$c");
+$d = TRUE;      var_dump("$d");
+$e = NULL;      var_dump("$e");
+$f = "blue sky";  var_dump("$f");
 echo ">$a|$b|$c|$d|$e|$f<\n";
 
 $s = sprintf("%d|%G|%s|%s|%s|%s", $a, $b, $c, $d, $e, $f);
@@ -64,11 +64,11 @@ echo ">$s<\n";
 $fpvalues = array(24.543567891234565, -2345e25, 6E-200, NAN, INF);
 foreach ($fpvalues as $fpval)
 {
-	echo ">$fpval<--- o/p from string substition\n";
-	$s = sprintf("%.14G", $fpval);
-	echo ">$s<--- using o/p from sprintf with hard-coded precision\n";
-//	$s = sprintf("%.*G", 14, $fpval);
-//	echo ">$s<--- using o/p from sprintf with variable precision\n";
+  echo ">$fpval<--- o/p from string substition\n";
+  $s = sprintf("%.14G", $fpval);
+  echo ">$s<--- using o/p from sprintf with hard-coded precision\n";
+//  $s = sprintf("%.*G", 14, $fpval);
+//  echo ">$s<--- using o/p from sprintf with variable precision\n";
 }
 
 $fpval = NAN;
@@ -102,13 +102,13 @@ echo ">$1|$&<\n";
 $colors = array("red", "white", "blue");
 echo "\colors contains >$colors<\n";
 echo "\colors[1] contains >$colors[1]<\n";
-echo "\colors[1] contains >$colors [1]<\n";		// whitespace permitted, but semantics change
-//echo "\colors[1] contains >$colors[ 1]<\n";	// whitespace not permitted
-//echo "\colors[1] contains >$colors[1 ]<\n";	// whitespace not permitted
+echo "\colors[1] contains >$colors [1]<\n";   // whitespace permitted, but semantics change
+//echo "\colors[1] contains >$colors[ 1]<\n"; // whitespace not permitted
+//echo "\colors[1] contains >$colors[1 ]<\n"; // whitespace not permitted
 var_dump("$colors[1]");
-var_dump("$colors[01]");		// invalid index
-var_dump("$colors[0x1]");		// invalid index
-var_dump("$colors[0X1]");		// invalid index
+var_dump("$colors[01]");    // invalid index
+var_dump("$colors[0x1]");   // invalid index
+var_dump("$colors[0X1]");   // invalid index
 
 $index = 2;
 echo "\$colors[$index] contains >$colors[$index]<\n";
@@ -129,10 +129,10 @@ class C {
 }
 $myC = new C();
 
-//echo "\$myC = >$myC<\n";	// can't use an object instance
+//echo "\$myC = >$myC<\n";  // can't use an object instance
 echo "\$myC->p1 = >$myC->p1<\n";
-//echo "\$myC ->p1 = >$myC ->p1<\n";	// whitespace not permitted
-//echo "\$myC-> p1 = >$myC-> p1<\n";	// whitespace not permitted
+//echo "\$myC ->p1 = >$myC ->p1<\n";  // whitespace not permitted
+//echo "\$myC-> p1 = >$myC-> p1<\n";  // whitespace not permitted
 
 //echo "\colors[$indices[$myC->p1]] contains >$colors[$indices[$myC->p1]]<\n"; // not permitted
 //*/
@@ -149,4 +149,4 @@ echo ">{$z}X|$z X|{$zz}_|$zz _|{$zzz}3|$zzz 3|{$zzzz}+|$zzzz +<\n";
 echo ">{}|{q}|}|{<\n";
 
 $a = 10;
-echo "{$a  }\n";		// trailing white space is ignored
+echo "{$a  }\n";    // trailing white space is ignored

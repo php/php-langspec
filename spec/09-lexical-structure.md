@@ -609,6 +609,12 @@ Implementations MUST NOT allow Unicode codepoints beyond U+10FFFF as this is
 outside the range UTF-8 can encode (see
 [RFC 3629](http://tools.ietf.org/html/rfc3629#section-3)). If a codepoint 
 larger than U+10FFFF is specified, implementations MUST error.
+Implementations MUST pass through `\u` verbatim and not interpret it as an
+escape sequence if it is not followed by an opening `{`, but if it is,
+implementations MUST produce an error if there is no terminating `}` or the
+contents are not a valid codepoint. Implementations MUST support leading zeroes,
+but MUST NOT support leading or trailing whitespace for the codepoint between
+the opening and terminating braces.
 
 **Variable substitution**
 

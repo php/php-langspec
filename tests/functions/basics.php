@@ -47,7 +47,7 @@ function f2($p1, $p2)
 	// A NULL value doesn't prove the argument wasn't passed; find a better test
 
 	echo "f2: \$p1 = ".($p1 == NULL ? "NULL" : $p1).
-		", \$p2 = ".($p2 == NULL ? "NULL" : $p2)."\n"; 
+		", \$p2 = ".($p2 == NULL ? "NULL" : $p2)."\n";
 }
 
 // if fewer arguments are passed than there are paramaters declared, a warning is issued

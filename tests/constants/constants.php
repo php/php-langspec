@@ -19,7 +19,7 @@ function trace($name, $value, $b = FALSE)
 }
 
 ///*
-// define some constants with simple (single-token) scalar initial values 
+// define some constants with simple (single-token) scalar initial values
 
 trace("STATUS1", TRUE);
 trace("MIN", 10);
@@ -30,7 +30,7 @@ trace("C1", NULL);
 //*/
 
 ///*
-// try to define some constants with multiple-token scalar initial values 
+// try to define some constants with multiple-token scalar initial values
 
 // involving literals only
 
@@ -80,7 +80,7 @@ echo "    TRUE's value:" . TRUE . "\n";	// however, this shows the old value, 1
 //*/
 
 ///*
-// try to define some constants with non-scalar initial values 
+// try to define some constants with non-scalar initial values
 
 trace("COLORS", [10, 20]);	// Constants may only evaluate to scalar values
 
@@ -117,8 +117,8 @@ class MyClass
 
 ///*
 // Note: As opposed to defining constants using define(), constants defined using the
-// const keyword must be declared at the top-level scope because they are defined at 
-// compile-time. This means that they cannot be declared inside functions, loops or 
+// const keyword must be declared at the top-level scope because they are defined at
+// compile-time. This means that they cannot be declared inside functions, loops or
 // if statements.
 
 //	const CON50;			// not permitted; OK

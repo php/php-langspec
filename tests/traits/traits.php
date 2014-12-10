@@ -21,7 +21,7 @@ class C1 { use T1; }
 
 echo "========== Test Overriding and Collisions Between Traits =====\n";
 
-trait T2a 
+trait T2a
 {
 	function f()
 	{
@@ -31,7 +31,7 @@ trait T2a
 	}
 }
 
-trait T2b 
+trait T2b
 {
 //	function f($p1, $p2) // signatures not factored in when looking for name clashes
 	function f()
@@ -79,7 +79,7 @@ $c2->h();		// call T2a::f via its alias h
 
 echo "===================== Changing Visibility =========================\n";
 
-trait T3 
+trait T3
 {
 	public function m1() { echo "Inside " . __METHOD__ . "\n"; }
 	protected function m2() { echo "Inside " . __METHOD__ . "\n"; }
@@ -108,7 +108,7 @@ $c3->m4();			// accessible, by default
 echo "===================== Traits using other Traits =========================\n";
 
 
-trait Tx1 
+trait Tx1
 {
 	function k()
 	{
@@ -118,7 +118,7 @@ trait Tx1
 	}
 }
 
-trait Tx2 
+trait Tx2
 {
 	function m()
 	{
@@ -233,12 +233,12 @@ trait T7
 		echo "Inside " . __CLASS__ . "\n";
 		echo "Inside " . __METHOD__ . "\n";
 	}
-} 
+}
 
 T7::f(); 	// calls f like a static function with class name being the trait name
 
 echo "-------\n";
-T7::g(); 
+T7::g();
 
 /*
 echo "-------\n";

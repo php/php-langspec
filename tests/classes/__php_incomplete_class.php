@@ -8,12 +8,12 @@
 
 error_reporting(-1);
 
-class Point 
+class Point
 {
 	private $x;
 	private $y;
 
-	public function __construct($x = 0, $y = 0) 
+	public function __construct($x = 0, $y = 0)
 	{
 		$this->x = $x;
 		$this->y = $y;
@@ -21,7 +21,7 @@ class Point
 		echo "\nInside " . __METHOD__ . ", $this\n\n";
 	}
 
-	public function __toString() 
+	public function __toString()
 	{
 		return '(' . $this->x . ',' . $this->y . ')';
 	}	
@@ -37,7 +37,7 @@ var_dump($s);
 
 echo "------\n";
 
-$v = unserialize($s);	// without a __wakeup method, any instance property present 
+$v = unserialize($s);	// without a __wakeup method, any instance property present
 						// in the string takes on its default value.
 var_dump($v);
 

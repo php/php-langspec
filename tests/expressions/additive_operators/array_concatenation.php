@@ -41,7 +41,7 @@ NULL   + [1, 5 => FALSE, "red"];
 [1, 5 => FALSE, "red"] + "123";
 
 // So we conclude that if one operand is an array and the other not, the array
-// is not converted to a string and concatenated, and neither is the non-array 
+// is not converted to a string and concatenated, and neither is the non-array
 // converted to an array and merged with the other array.
 */
 

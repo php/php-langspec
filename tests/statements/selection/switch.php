@@ -157,7 +157,7 @@ endswitch;
 //*/
 
 ///*
-// use  strings for label values 
+// use  strings for label values
 
 $v = "white";
 switch ($v)
@@ -173,7 +173,7 @@ default:
 	break;
 }
 
-// use Booleans for label values 
+// use Booleans for label values
 
 $v = TRUE;
 switch ($v)
@@ -190,7 +190,7 @@ default:
 }
 //*/
 
-// use Booleans for label values 
+// use Booleans for label values
 
 ///*
 $v = 22;

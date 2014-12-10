@@ -11,7 +11,6 @@ key: 2, value: f
 object(Generator)#1 (0) {
 }
 This type is an instance of Generator
-This type is not an instance of Continuation 
 ===========================
 >Once upon a time,<
 >in a land<

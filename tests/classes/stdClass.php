@@ -10,21 +10,21 @@ error_reporting(E_ALL^ E_WARNING);
 
 function displayClass($o)
 {
-//	var_dump($o);
-	echo "\nType is >" . get_class($o) . "<\n";
-	$a = (array)$o;
-//	var_dump($a);
-	if (count($a) == 0)
-	{
-		echo "    Instance has no properties\n";
-	}
-	else
-	{
-		foreach ($a as $name => $value)
-		{
-	    	echo "    Property >$name< with value $value\n";
-		}
-	}
+//  var_dump($o);
+    echo "\nType is >" . get_class($o) . "<\n";
+    $a = (array)$o;
+//  var_dump($a);
+    if (count($a) == 0)
+    {
+        echo "    Instance has no properties\n";
+    }
+    else
+    {
+        foreach ($a as $name => $value)
+        {
+            echo "    Property >$name< with value $value\n";
+        }
+    }
 }
 
 echo "====== explicit conversions of certain values to type object ======\n";

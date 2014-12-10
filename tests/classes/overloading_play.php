@@ -60,32 +60,32 @@ $obj = new PropertyTest;
 
 echo "----------------------\n";
 
-$v = $obj->declared;	// get visible property
+$v = $obj->declared;    // get visible property
 echo "declared: $v\n";
-$obj->declared = 987;	// set visible property
-$v = $obj->declared;	// get visible property
+$obj->declared = 987;   // set visible property
+$v = $obj->declared;    // get visible property
 echo "declared: $v\n";
 
 echo "----------------------\n";
 
-$v = $obj->hidden;		// try to get invisible property; can't
-						// Runtime sees that hidden exists, but is invisible,
-						// so calls __get to search for dynamic property, which fails.
+$v = $obj->hidden;      // try to get invisible property; can't
+                        // Runtime sees that hidden exists, but is invisible,
+                        // so calls __get to search for dynamic property, which fails.
 var_dump($v);
 
 echo "----------------------\n";
 
-var_dump(isset($obj->hidden));	// test if hidden exists and is accesible, or is dynamic
+var_dump(isset($obj->hidden));  // test if hidden exists and is accesible, or is dynamic
 
 echo "----------------------\n";
 
-$obj->hidden = "Hello";	// set dynamic invisible property
-$v = $obj->hidden;		// get dynamic invisible property
+$obj->hidden = "Hello"; // set dynamic invisible property
+$v = $obj->hidden;      // get dynamic invisible property
 echo "hidden: $v\n";
 
 echo "----------------------\n";
 
-var_dump(isset($obj->hidden));	// test if hidden exists and is accesible, or is dynamic
+var_dump(isset($obj->hidden));  // test if hidden exists and is accesible, or is dynamic
 
 echo "----------------------\n";
 

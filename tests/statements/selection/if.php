@@ -17,8 +17,8 @@ $count = 5;
 
 if ($count > 0)
 {
-	processTransaction();
-	postMessage();
+    processTransaction();
+    postMessage();
 }
 
 // despite the indenting that suggests the true path has 2 statements, in the
@@ -26,8 +26,8 @@ if ($count > 0)
 // is always executed.
 
 if (0)
-	echo "Line 1\n";
-	echo "Line 2\n";	// always executed
+    echo "Line 1\n";
+    echo "Line 2\n";    // always executed
 
 // use if with all scalar types + array
 
@@ -36,22 +36,22 @@ $scalarValueList = array(10, -100, 0, 1.234, 0.0, TRUE, FALSE, NULL, 'xx', "", $
 
 foreach ($scalarValueList as $e)
 {
-	if ($e)
-	{
-		echo ">$e< is TRUE\t"; var_dump($e);
-	}
-	else
-	{
-		echo ">$e< is FALSE\t"; var_dump($e);
-	}
+    if ($e)
+    {
+        echo ">$e< is TRUE\t"; var_dump($e);
+    }
+    else
+    {
+        echo ">$e< is FALSE\t"; var_dump($e);
+    }
 }
 
 // use if with an instance of a class
 
 class Name
 {
-	var $firstName;
-	var $lastName;
+    var $firstName;
+    var $lastName;
 }
 
 $aName = new Name();
@@ -59,11 +59,11 @@ var_dump($aName);
 
 if ($aName)
 {
-	echo ">\$aName< is TRUE\n";
+    echo ">\$aName< is TRUE\n";
 }
 else
 {
-	echo ">\$aName< is FALSE\n";
+    echo ">\$aName< is FALSE\n";
 }
 
 // see what happens if I jump into a if statement
@@ -74,61 +74,61 @@ echo "Unreachable code\n";
 
 if ($colors)
 {
-label1:	echo "TRUE path\n";
+label1: echo "TRUE path\n";
 }
 else
 {
-	echo "FALSE path\n";
+    echo "FALSE path\n";
 }
 
 // show that when elses are nested, an else matches the lexically nearest preceding if that is allowed by the syntax
 
 if (1)
-	echo "Path 1\n";
-	if (0)
-		echo "Path 2\n";
-else 	// this else does NOT go with the outer if
-	echo "Path 3\n";
+    echo "Path 1\n";
+    if (0)
+        echo "Path 2\n";
+else    // this else does NOT go with the outer if
+    echo "Path 3\n";
 
 if (1)
 {
-	echo "Path 1\n";
-	if (0)
-		echo "Path 2\n";
+    echo "Path 1\n";
+    if (0)
+        echo "Path 2\n";
 }
-else 	// this else does go with the outer if
-	echo "Path 3\n";
+else    // this else does go with the outer if
+    echo "Path 3\n";
 
 // test elseif
 
 $a = 10;
 if ($a < 0)
-	; // ...
+    ; // ...
 elseif ($a == 0)
-	; // ...
+    ; // ...
 elseif ($a < 10)
-	; // ...
+    ; // ...
 else
-	; // ...
+    ; // ...
 
 // test alternate syntax
 
 if ($a < 0)  : // ...
-	++$a; // ...
+    ++$a; // ...
 endif  ; // ...
 
 if ($a < 0)  : // ...
-	++$a; // ...
+    ++$a; // ...
 else   /*...*/ :
-	--$a; // ...
+    --$a; // ...
 endif  ; // ...
 
 if ($a < 0):
-	; // ...
+    ; // ...
 elseif ($a == 0)  :
-	; // ...
+    ; // ...
 elseif ($a < 10):
-	; // ...
+    ; // ...
 else:
-	; // ...
+    ; // ...
 endif;

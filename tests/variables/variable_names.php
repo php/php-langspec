@@ -22,15 +22,15 @@ ${TRUE} = 104;
 ${FALSE} = 105;
 ${NULL} = 106;
 
-${total} = 1000;		// allowed after warning: Use of undefined constant total - assumed 'total'
-//${t o tal} = 1000;	// disallowed; ill-formed expression
-//${+} = 1000;			// disallowed; ill-formed expression
-${10 + 4} = 1000;		// allowed
-${'ab' . 'xy'} = 1000;	// allowed
+${total} = 1000;        // allowed after warning: Use of undefined constant total - assumed 'total'
+//${t o tal} = 1000;    // disallowed; ill-formed expression
+//${+} = 1000;          // disallowed; ill-formed expression
+${10 + 4} = 1000;       // allowed
+${'ab' . 'xy'} = 1000;  // allowed
 
 function f1 () { return 2.5; }
 
-${1 + f1()} = 1000;		// allowed
+${1 + f1()} = 1000;     // allowed
 
 function print_globals() {
   $globals = array();

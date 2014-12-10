@@ -33,10 +33,10 @@ echo "--------- undefined parameter -------------\n";
 
 function f($p)
 {
-	var_dump($p);
-	var_dump(isset($p));
-	unset($p);
-	var_dump(isset($p));
+    var_dump($p);
+    var_dump(isset($p));
+    unset($p);
+    var_dump(isset($p));
 }
 
 f();
@@ -51,15 +51,15 @@ class X1
 
 class X2
 {
-	public function __isset($name)
-	{
-		echo "Inside " . __METHOD__ . " with \$name $name\n";
-	}
+    public function __isset($name)
+    {
+        echo "Inside " . __METHOD__ . " with \$name $name\n";
+    }
 
-	public function __unset($name)
-	{
-		echo "Inside " . __METHOD__ . " with \$name $name\n";
-	}
+    public function __unset($name)
+    {
+        echo "Inside " . __METHOD__ . " with \$name $name\n";
+    }
 }
 
 $x1 = new X1;
@@ -80,55 +80,55 @@ $gl = 100;
 
 function g1()
 {
-	global $gl;
-	var_dump(isset($gl));
-	unset($gl);				// unsets local "version" in current scope
-	var_dump(isset($gl));
+    global $gl;
+    var_dump(isset($gl));
+    unset($gl);             // unsets local "version" in current scope
+    var_dump(isset($gl));
 }
 
 g1();
-var_dump(isset($gl));		// still set
+var_dump(isset($gl));       // still set
 
 echo "---------- unsetting inside a function (\$GLOBALS) ------------\n";
 
 function g2()
 {
-	var_dump(isset($GLOBALS['gl']));
-	unset($GLOBALS['gl']);				// unsets global "version"
-	var_dump(isset($GLOBALS['gl']));
+    var_dump(isset($GLOBALS['gl']));
+    unset($GLOBALS['gl']);              // unsets global "version"
+    var_dump(isset($GLOBALS['gl']));
 }
 
 g2();
-var_dump(isset($gl));		// no longer set
+var_dump(isset($gl));       // no longer set
 
 echo "---------- unsetting inside a function (pass-by-ref) ------------\n";
 
 function g3($p1, &$p2)
 {
-	var_dump(isset($p1, $p2));
-	unset($p1, $p2);			// unsets local "version" in current scope
-	var_dump(isset($p1, $p2));
+    var_dump(isset($p1, $p2));
+    unset($p1, $p2);            // unsets local "version" in current scope
+    var_dump(isset($p1, $p2));
 }
 
 $v1 = 10;
 $v2 = 20;
 g3($v1, $v2);
-var_dump(isset($v1));		// still set
+var_dump(isset($v1));       // still set
 var_dump($v1);
-var_dump(isset($v2));		// still set, even though passed in by reference and unset
+var_dump(isset($v2));       // still set, even though passed in by reference and unset
 var_dump($v2);
 
 echo "---------- unsetting inside a function (static) ------------\n";
 
 function g4()
 {
-	static $count = 0;
-	++$count;
-	echo "count = $count\n";
+    static $count = 0;
+    ++$count;
+    echo "count = $count\n";
 
-	var_dump(isset($count));
-	unset($count);			// unsets local "version" in current scope
-	var_dump(isset($count));
+    var_dump(isset($count));
+    unset($count);          // unsets local "version" in current scope
+    var_dump(isset($count));
 }
 
 g4();
@@ -138,18 +138,18 @@ echo "---------- unsetting a property ------------\n";
 
 class C
 {
-	const CON1 = 123;
-	public $prop = 10;
-	public static $sprop = -5;
+    const CON1 = 123;
+    public $prop = 10;
+    public static $sprop = -5;
 }
 
 $c1 = new C;
 var_dump($c1);
 var_dump(isset($c1->prop));
-unset($c1->prop);			// remove it from this instance
+unset($c1->prop);           // remove it from this instance
 var_dump(isset($c1->prop));
 
-//unset(C::$sprop);			// Attempt to unset static property
+//unset(C::$sprop);         // Attempt to unset static property
 
 var_dump($c1);
 
@@ -163,23 +163,23 @@ echo "---------- unsetting \$this ------------\n";
 
 class D
 {
-	public function f()
-	{
-		echo "Inside ". __METHOD__ . "\n";
+    public function f()
+    {
+        echo "Inside ". __METHOD__ . "\n";
 
-		var_dump(isset($this));
-		unset($this);
-		var_dump(isset($this));
+        var_dump(isset($this));
+        unset($this);
+        var_dump(isset($this));
 
-		$this->g();		// use $this to call sibling instance method
-	}
+        $this->g();     // use $this to call sibling instance method
+    }
 
-	private function g()
-	{
-		echo "Inside ". __METHOD__ . "\n";
-		
-		var_dump(isset($this));
-	}
+    private function g()
+    {
+        echo "Inside ". __METHOD__ . "\n";
+        
+        var_dump(isset($this));
+    }
 }
 
 $d = new D;

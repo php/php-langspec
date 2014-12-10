@@ -86,7 +86,7 @@ var_dump($p->__isset('dummy')); // test if dynamic dummy exists
 
 echo "----------------------\n";
 
-$v = $p->x;		// try to get at an invisible property; can't. The runtime sees that x
+$v = $p->x;     // try to get at an invisible property; can't. The runtime sees that x
                 // exists, but is invisible, so it calls __get to search for a dynamic
                 // property of that name, which fails. NULL is returned.
 var_dump($v);
@@ -110,7 +110,7 @@ echo "color: $v\n";
 
 echo "----------------------\n";
 
-var_dump(isset($p->color));	// test if color exists and is accessible, or is dynamic
+var_dump(isset($p->color)); // test if color exists and is accessible, or is dynamic
 
 echo "----------------------\n";
 

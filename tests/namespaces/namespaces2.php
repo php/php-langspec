@@ -16,7 +16,7 @@ echo "Inside method " . __METHOD__ . "\n";
 
 //namespace NSX; //Cannot mix bracketed namespace declarations with unbracketed namespace declarations
 
-//namespace NS2_nested {}	// Namespace declarations cannot be nested
+//namespace NS2_nested {}   // Namespace declarations cannot be nested
 }
 
 //namespace NSY; //Cannot mix bracketed namespace declarations with unbracketed namespace declarations

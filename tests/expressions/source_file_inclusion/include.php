@@ -8,8 +8,8 @@
 
 error_reporting(-1);
 
-echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ . 
-	"< with namespace >" . __NAMESPACE__ . "<\n";
+echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
+    "< with namespace >" . __NAMESPACE__ . "<\n";
 
 //var_dump(MY_MIN);
 //var_dump(MY_MAX);
@@ -26,25 +26,25 @@ $fileName = 'limits' . '.php';
 $inc = include $fileName;
 var_dump($inc);
 
-echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ . 
-	"< with namespace >" . __NAMESPACE__ . "<\n";
+echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
+    "< with namespace >" . __NAMESPACE__ . "<\n";
 
 // Include another existing file that has its own namespace
-	
+    
 $inc = include('mycolors.php');
 var_dump($inc);
 
-echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ . 
-	"< with namespace >" . __NAMESPACE__ . "<\n";
+echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
+    "< with namespace >" . __NAMESPACE__ . "<\n";
 
 echo "----------------------------------\n";
 
 // Try to access constants defined in an included file
 
 if (defined("MY_MIN"))
-	echo "MY_MIN is defined with value >" . constant("MY_MIN") . "\n";
+    echo "MY_MIN is defined with value >" . constant("MY_MIN") . "\n";
 else
-	echo "MY_MIN is not defined\n";
+    echo "MY_MIN is not defined\n";
 
 echo "----------------------------------\n";
 

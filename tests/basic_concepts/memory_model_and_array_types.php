@@ -10,56 +10,56 @@ error_reporting(-1);
 
 class Point 
 {
-	private static $pointCount = 0;
+    private static $pointCount = 0;
 
-	private $x;
-	private $y;
+    private $x;
+    private $y;
 
-	public static function getPointCount() 
-	{
-		return self::$pointCount;
-	}
+    public static function getPointCount()
+    {
+        return self::$pointCount;
+    }
 
-	public function __construct($x = 0, $y = 0) 
-	{
-		$this->x = $x;
-		$this->y = $y;
-		++self::$pointCount;
+    public function __construct($x = 0, $y = 0)
+    {
+        $this->x = $x;
+        $this->y = $y;
+        ++self::$pointCount;
 
-		echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
-	}
+        echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
+    }
 
-	public function move($x, $y) 
-	{
-		$this->x = $x;
-		$this->y = $y;
-	}	
+    public function move($x, $y)
+    {
+        $this->x = $x;
+        $this->y = $y;
+    }   
 
-	public function translate($x, $y) 
-	{
-		$this->x += $x;
-		$this->y += $y;
-	}
+    public function translate($x, $y)
+    {
+        $this->x += $x;
+        $this->y += $y;
+    }
 
-	public function __destruct() 
-	{
-		--self::$pointCount;
+    public function __destruct()
+    {
+        --self::$pointCount;
 
-		echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
-	}
+        echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
+    }
 ///*
-	public function __clone() 
-	{
-		++self::$pointCount;
+    public function __clone()
+    {
+        ++self::$pointCount;
 
-		echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
-	}
+        echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
+    }
 //*/
 
-	public function __toString() 
-	{
-		return '(' . $this->x . ',' . $this->y . ')';
-	}	
+    public function __toString()
+    {
+        return '(' . $this->x . ',' . $this->y . ')';
+    }   
 }
 
 ///*

@@ -10,8 +10,8 @@ error_reporting(-1);
 
 function trace($text, $pdc)
 {
-	echo "$text: ";
-	var_dump($pdc);
+    echo "$text: ";
+    var_dump($pdc);
 }
 
 trace("__LINE__", __LINE__);
@@ -49,21 +49,21 @@ echo "-----------------------------------------\n";
 
 function ComputeResult()
 {
-	echo "Inside ComputeResult\n";
-	trace("__FUNCTION__", __FUNCTION__);
-	trace("__METHOD__", __METHOD__);
-	trace("__CLASS__", __CLASS__);
-	trace("__TRAIT__", __TRAIT__);
-	trace("__NAMESPACE__", __NAMESPACE__);
+    echo "Inside ComputeResult\n";
+    trace("__FUNCTION__", __FUNCTION__);
+    trace("__METHOD__", __METHOD__);
+    trace("__CLASS__", __CLASS__);
+    trace("__TRAIT__", __TRAIT__);
+    trace("__NAMESPACE__", __NAMESPACE__);
 
-	function Inner()
-	{
-		echo "Inside ComputeResult\n";
-		trace("__FUNCTION__", __FUNCTION__);
-		trace("__METHOD__", __METHOD__);
-	}
+    function Inner()
+    {
+        echo "Inside ComputeResult\n";
+        trace("__FUNCTION__", __FUNCTION__);
+        trace("__METHOD__", __METHOD__);
+    }
 
-	Inner();
+    Inner();
 }
 
 ComputeResult();
@@ -72,48 +72,48 @@ echo "-----------------------------------------\n";
 
 class Date
 {
-	public function __construct()
-	{
-		echo "Inside " . __METHOD__ . "\n";
-		trace("__CLASS__", __CLASS__);
-		trace("__FUNCTION__", __FUNCTION__);
-		trace("__TRAIT__", __TRAIT__);
-		trace("__NAMESPACE__", __NAMESPACE__);
+    public function __construct()
+    {
+        echo "Inside " . __METHOD__ . "\n";
+        trace("__CLASS__", __CLASS__);
+        trace("__FUNCTION__", __FUNCTION__);
+        trace("__TRAIT__", __TRAIT__);
+        trace("__NAMESPACE__", __NAMESPACE__);
 
-		// ...
-	}
+        // ...
+    }
 
-	function __destruct()
-	{
-		echo "Inside " . __METHOD__ . "\n";
-		trace("__FUNCTION__", __FUNCTION__);
+    function __destruct()
+    {
+        echo "Inside " . __METHOD__ . "\n";
+        trace("__FUNCTION__", __FUNCTION__);
 
-		// ...
-	}
+        // ...
+    }
 
-	public function setDay($day)
-	{
-		echo "Inside " . __METHOD__ . "\n";
-		trace("__FUNCTION__", __FUNCTION__);
-		trace("__LINE__", __LINE__);
+    public function setDay($day)
+    {
+        echo "Inside " . __METHOD__ . "\n";
+        trace("__FUNCTION__", __FUNCTION__);
+        trace("__LINE__", __LINE__);
 
-		$this->priv1();
-		$this->spf1();
-	}
+        $this->priv1();
+        $this->spf1();
+    }
 
 // public vs. private doesn't matter
 
-	private function priv1()
-	{
-		echo "Inside " . __METHOD__ . "\n";
-		trace("__FUNCTION__", __FUNCTION__);
-	}
+    private function priv1()
+    {
+        echo "Inside " . __METHOD__ . "\n";
+        trace("__FUNCTION__", __FUNCTION__);
+    }
 
-	static public function spf1()
-	{
-		echo "Inside " . __METHOD__ . "\n";
-		trace("__FUNCTION__", __FUNCTION__);
-	}
+    static public function spf1()
+    {
+        echo "Inside " . __METHOD__ . "\n";
+        trace("__FUNCTION__", __FUNCTION__);
+    }
 
 }
 
@@ -124,12 +124,12 @@ echo "-----------------------------------------\n";
 
 class DatePlus extends Date
 {
-	public function xx()
-	{
-		trace("__CLASS__", __CLASS__);
-		echo "Inside " . __METHOD__ . "\n";
-		trace("__FUNCTION__", __FUNCTION__);
-	}
+    public function xx()
+    {
+        trace("__CLASS__", __CLASS__);
+        echo "Inside " . __METHOD__ . "\n";
+        trace("__FUNCTION__", __FUNCTION__);
+    }
 }
 
 $datePlus1 = new DatePlus;

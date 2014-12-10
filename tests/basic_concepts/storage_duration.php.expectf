@@ -33,25 +33,26 @@ Inside Point::__construct, (2,3), point count = 7
 
 ---------------- after $av1 reinit -------------------
 
-Inside Point::__destruct, (1,1), point count = 6
+Inside Point::__destruct, (%d,%d), point count = 6
 
 
-Inside Point::__destruct, (2,1), point count = 5
+Inside Point::__destruct, (%d,%d), point count = 5
 
 
-Inside Point::__destruct, (2,3), point count = 4
+Inside Point::__destruct, (%d,%d), point count = 4
 
 ---------------- after call to func -------------------
 $result = 3628800
 ---------------- end -------------------
 
-Inside Point::__destruct, (0,2), point count = 3
+Inside Point::__destruct, (%d,%d), point count = 3
 
 
-Inside Point::__destruct, (0,1), point count = 2
+Inside Point::__destruct, (%d,%d), point count = 2
 
 
-Inside Point::__destruct, (1,2), point count = 1
+Inside Point::__destruct, (%d,%d), point count = 1
 
 
-Inside Point::__destruct, (2,2), point count = 0
+Inside Point::__destruct, (%d,%d), point count = 0
+

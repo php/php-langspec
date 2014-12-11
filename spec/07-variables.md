@@ -4,10 +4,51 @@
 
 A *variable* is a named area of data storage that contanis a PHP value. A variable is represented by a VSlot
 ([§§](04-basic-concepts.md#general)). A variable is created by assigning a value to it ([§§](04-basic-concepts.md#assignment), [§§](10-expressions.md#simple-assignment),
-[§§](10-expressions.md#byref-assignment), [§§](10-expressions.md#the-new-operator), [§§](10-expressions.md#array-creation-operator)).  A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic unset ([§§](10-expressions.md#unset)), or by the Engine. The intrinsic `isset` ([§§](10-expressions.md#isset)) tests if a given variable exists and is not set to `NULL`. A variable that somehow becomes defined, but is not initialized starts out with the value `NULL`. Additonally an `E_NOTICE` is emitted except for the following two cases:
+[§§](10-expressions.md#byref-assignment), [§§](10-expressions.md#the-new-operator), [§§](10-expressions.md#array-creation-operator)).  A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic unset ([§§](10-expressions.md#unset)), or by the Engine. The intrinsic `isset` ([§§](10-expressions.md#isset)) tests if a given variable exists and is not set to `NULL`. A variable that somehow becomes defined, but is not initialized starts out with the value `NULL`. An  `E_NOTICE` is emitted (stating that the corresponding variable was undefined) additonally, except for the following two cases:
 
 -   The variable was defined during a call to a function, in which the variable was passed by reference as argument.
 -   The variable was defined during an assignment, in which the variable was the right hand side of the assignment and was assigned by reference.
+
+Following some examples to outline how PHP behaves.
+
+**Examples**
+
+````PHP
+$a = 1;   // $a got defined and has the initial value 1
+
+$b = $c;  // $b got defined and has the initial value corresponding to the 
+          // value of $c, $c in turn was not defined and thus was defined 
+          // implicitly by PHP with the initial value `NULL`. In addition, 
+          // an `E_NOTICE` was emitted stating $b was undefined 
+
+$d = $c; // $d got defined and has the initial value corresponding to the 
+          // value of $c which is `NULL`
+
+$d + $e;  // $e was not defined and was defined implicitly by PHP with the 
+          // initial value `NULL`. In addition, an `E_NOTICE`s was emitted
+          // stating that $e was undefined.
+
+$f = &$g; // $f got defined and has the reference of $g as initial value,
+          // $g in turn was not defined and thus was defined implicitly by
+          // PHP with the initial value `NULL`. An `E_NOTICE` was not 
+          // emitted since $g was assigned to $f by reference.
+
+function foo($x){}
+
+foo($h);  // $h was not defined and thus was defined implicitly by PHP with the
+          // initial value `NULL` (hence `NULL` was passed to foo). In 
+          // addition an `E_NOTICE` was emitted stating that $h was undefined.
+
+function bar(&$x){}
+
+bar(&$i); // $i was not defined and thus was defined implicitly by PHP with the
+          // initial value `NULL` (hence `NULL` was passed to bar). An 
+          // `E_NOTICE` was not emitted since $i was passed by reference.
+
+$j = $k;  // $j got defined and has the initial value corresponding to the
+          // value of $k which is `NULL`.
+
+````
 
 Variables have names as defined in [§§](09-lexical-structure.md#names). Distinct variables may have
 the same name provided they are in different scopes ([§§](04-basic-concepts.md#scope)).

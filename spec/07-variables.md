@@ -38,23 +38,26 @@ $f = &$g; // $f got defined and has the reference of $g as initial value,
           // `E_NOTICE` was not emitted since $g was assigned to $f by 
           // reference.
 
+$h = $g;  // $h got defined and has the initial value corresponding to the
+          // value of $g which is `NULL`.
+
 function foo($x){}
 
-foo($h);  // $h was not defined and `NULL` was used instead. In addition, an 
-          // `E_NOTICE` was emitted stating that $h was undefined.
+foo($i);  // $i was not defined and `NULL` was used instead. In addition, an 
+          // `E_NOTICE` was emitted stating that $i was undefined.
 
-$i = $h;  // $i got defined and has the initial value corresponding to the 
-          // value of $h, $h in turn is still not defined and `NULL` was used 
-          // instead. Another `E_NOTICE` was emitted stating $h was undefined.
+$j = $i;  // $j got defined and has the initial value corresponding to the 
+          // value of $i, $i in turn is still not defined and `NULL` was used 
+          // instead. Another `E_NOTICE` was emitted stating $i was undefined.
 
 function bar(&$x){}
 
-bar($j);  // $j was not defined and thus was defined implicitly by PHP with the
+bar($k);  // $k was not defined and thus was defined implicitly by PHP with the
           // initial value `NULL` (see point 2 above). An `E_NOTICE` was not 
-          // emitted since $j was passed by reference.
+          // emitted since $k was passed by reference.
 
-$k = $j;  // $k got defined and has the initial value corresponding to the
-          // value of $j which is `NULL`.
+$l = $k;  // $l got defined and has the initial value corresponding to the
+          // value of $k which is `NULL`.
 
 ````
 

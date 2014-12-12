@@ -6,14 +6,11 @@ A *variable* is a named area of data storage that contanis a PHP value. A variab
 ([§§](04-basic-concepts.md#general)). A variable is created by assigning a value to it ([§§](04-basic-concepts.md#assignment), [§§](10-expressions.md#simple-assignment),
 [§§](10-expressions.md#byref-assignment), [§§](10-expressions.md#the-new-operator), [§§](10-expressions.md#array-creation-operator)).  A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic unset ([§§](10-expressions.md#unset)), or by the Engine. The intrinsic `isset` ([§§](10-expressions.md#isset)) tests if a given variable exists and is not set to `NULL`. If a variable is used which was not defined so far then PHP uses `NULL` instead and emits an `E_NOTICE` (stating that the corresponding variable was undefined) except for the following three cases:
 
--   The variable is used as single expression in a statement.
--   The variable is used during a call to a function/method, in which the variable is passed by reference as argument.
--   The variable is used during an assignment, in which the variable is the right hand side of the assignment and was assigned by reference.
+1.   The variable is used as single expression in a statement.
+2.   The variable is used during a call to a function/method, in which the variable is passed by reference as argument.
+3.   The variable is used during an assignment, in which the variable is the right hand side of the assignment and was assigned by reference.
 
-Moreover, the undefined variable gets defined implicitly by PHP with the initial value `NULL` in the following cases:
-
-1.  The variable is used during a call to a function/method (regardless if passed by value or by reference).
-2.  The variable is used during an assignment, in which the variable is the right hand side of the assignment and was assigned by reference.
+Moreover, the undefined variable gets defined implicitly by PHP with the initial value `NULL` in the latter two cases:
 
 Following some examples to outline how PHP behaves.
 
@@ -37,23 +34,23 @@ $d + $e;  // $e was not defined and `NULL` was used instead. In addition, an
 
 $f = &$g; // $f got defined and has the reference of $g as initial value,
           // $g in turn was not defined but was implicitly defined by
-          // PHP with the initial value `NULL` (see point 2. above). An 
+          // PHP with the initial value `NULL` (see point 3 above). An 
           // `E_NOTICE` was not emitted since $g was assigned to $f by 
           // reference.
 
 function foo($x){}
 
-foo($h);  // $h was not defined and thus was defined implicitly by PHP with the
-          // initial value `NULL` (see point 1. above). In addition, an 
+foo($h);  // $h was not defined and `NULL` was used instead. In addition, an 
           // `E_NOTICE` was emitted stating that $h was undefined.
 
 $i = $h;  // $i got defined and has the initial value corresponding to the 
-          // value of $h which is `NULL`.
+          // value of $h, $h in turn is still not defined and `NULL` was used 
+          // instead. Another `E_NOTICE` was emitted stating $h was undefined.
 
 function bar(&$x){}
 
 bar($j);  // $j was not defined and thus was defined implicitly by PHP with the
-          // initial value `NULL` (see point 1 above). An `E_NOTICE` was not 
+          // initial value `NULL` (see point 2 above). An `E_NOTICE` was not 
           // emitted since $j was passed by reference.
 
 $k = $j;  // $k got defined and has the initial value corresponding to the

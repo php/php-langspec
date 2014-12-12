@@ -10,7 +10,7 @@ A *variable* is a named area of data storage that contanis a PHP value. A variab
 2.   The variable is used during a call to a function/method, in which the variable is passed by reference as argument.
 3.   The variable is used during an assignment, in which the variable is the right hand side of the assignment and was assigned by reference.
 
-Moreover, the undefined variable gets defined implicitly by PHP with the initial value `NULL` in the latter two cases:
+Moreover, the undefined variable gets defined implicitly by PHP with the initial value `NULL` in the latter two cases.
 
 Following some examples to outline how PHP behaves.
 

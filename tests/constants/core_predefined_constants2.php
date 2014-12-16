@@ -10,8 +10,8 @@ error_reporting(-1);
 
 function trace($text, $pdc)
 {
-	echo "$text: ";
-	var_dump($pdc);
+    echo "$text: ";
+    var_dump($pdc);
 }
 
 trace("PHP_VERSION", PHP_VERSION);

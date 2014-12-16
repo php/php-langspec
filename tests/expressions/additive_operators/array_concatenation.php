@@ -13,11 +13,11 @@ $oper = array([1, 5 => FALSE, "red"], [NULL], [4 => -5, 1.23]);
 
 foreach ($oper as $e1)
 {
-	foreach ($oper as $e2)
-	{
-		echo ">$e1< + >$e2<, result: "; var_dump($e1 + $e2);
-	}
-	echo "-------------------------------------\n";
+    foreach ($oper as $e2)
+    {
+        echo ">$e1< + >$e2<, result: "; var_dump($e1 + $e2);
+    }
+    echo "-------------------------------------\n";
 }
 //*/
 
@@ -48,10 +48,10 @@ NULL   + [1, 5 => FALSE, "red"];
 ///*
 // show that a new array is created and that the operand-arrays are unchanged
 
-$a1 = [1, 5 => FALSE, "red"];	// [0], [5], [6]
-$a2 = [4 => -5, 1.23];			// [4], [5]
+$a1 = [1, 5 => FALSE, "red"];   // [0], [5], [6]
+$a2 = [4 => -5, 1.23];          // [4], [5]
 
-$a3 = $a1 + $a2;	// [0], [5], [6], [4]
+$a3 = $a1 + $a2;    // [0], [5], [6], [4]
 var_dump($a3);
 $a3[0] = 11;
 $a3[6] = 99;

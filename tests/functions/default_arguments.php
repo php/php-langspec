@@ -13,14 +13,14 @@ error_reporting(-1);
 ///*
 function f1($p1 = 10, $p2 = 1.23, $p3 = TRUE, $p4 = NULL, $p5 = "abc", $p6 = [1,2,3,array()])
 {
-	$argList = func_get_args();
-	echo "f1: # arguments passed is ".count($argList)."\n";
+    $argList = func_get_args();
+    echo "f1: # arguments passed is ".count($argList)."\n";
 
-	foreach ($argList as $k => $e)
-	{
-		echo "\targ[$k] = >$e<\n";
-	}
-	echo "\$p1: $p1, \$p2: $p2, \$p3: $p3, \$p4: $p4, \$p5: $p5, \$p6: $p6\n";
+    foreach ($argList as $k => $e)
+    {
+        echo "\targ[$k] = >$e<\n";
+    }
+    echo "\$p1: $p1, \$p2: $p2, \$p3: $p3, \$p4: $p4, \$p5: $p5, \$p6: $p6\n";
 }
 
 f1();
@@ -37,16 +37,16 @@ f1(1, 2, 3, 4, 5, 6, 7);
 
 function f2($p1 = 100, $p2 = 1.23, $p3)
 {
-	$argList = func_get_args();
-	echo "f2: # arguments passed is ".count($argList)."\n";
+    $argList = func_get_args();
+    echo "f2: # arguments passed is ".count($argList)."\n";
 
-	foreach ($argList as $k => $e)
-	{
-		echo "\targ[$k] = >$e<\n";
-	}
-	echo "\$p1: ".($p1 == NULL ? "NULL" : $p1).
-		", \$p2: ".($p2 == NULL ? "NULL" : $p2).
-		", \$p3: ".($p3 == NULL ? "NULL" : $p3)."\n";
+    foreach ($argList as $k => $e)
+    {
+        echo "\targ[$k] = >$e<\n";
+    }
+    echo "\$p1: ".($p1 == NULL ? "NULL" : $p1).
+        ", \$p2: ".($p2 == NULL ? "NULL" : $p2).
+        ", \$p3: ".($p3 == NULL ? "NULL" : $p3)."\n";
 }
 
 f2();
@@ -59,16 +59,16 @@ f2(10, 20, 30);
 
 function f3($p1 = 100, $p2, $p3 = "abc")
 {
-	$argList = func_get_args();
-	echo "f3: # arguments passed is ".count($argList)."\n";
+    $argList = func_get_args();
+    echo "f3: # arguments passed is ".count($argList)."\n";
 
-	foreach ($argList as $k => $e)
-	{
-		echo "\targ[$k] = >$e<\n";
-	}
-	echo "\$p1: ".($p1 == NULL ? "NULL" : $p1).
-		", \$p2: ".($p2 == NULL ? "NULL" : $p2).
-		", \$p3: ".($p3 == NULL ? "NULL" : $p3)."\n";
+    foreach ($argList as $k => $e)
+    {
+        echo "\targ[$k] = >$e<\n";
+    }
+    echo "\$p1: ".($p1 == NULL ? "NULL" : $p1).
+        ", \$p2: ".($p2 == NULL ? "NULL" : $p2).
+        ", \$p3: ".($p3 == NULL ? "NULL" : $p3)."\n";
 }
 
 f3();
@@ -81,16 +81,16 @@ f3(10, 20, 30);
 
 function f4($p1, $p2 = 1.23, $p3 = "abc")
 {
-	$argList = func_get_args();
-	echo "f4: # arguments passed is ".count($argList)."\n";
+    $argList = func_get_args();
+    echo "f4: # arguments passed is ".count($argList)."\n";
 
-	foreach ($argList as $k => $e)
-	{
-		echo "\targ[$k] = >$e<\n";
-	}
-	echo "\$p1: ".($p1 == NULL ? "NULL" : $p1).
-		", \$p2: ".($p2 == NULL ? "NULL" : $p2).
-		", \$p3: ".($p3 == NULL ? "NULL" : $p3)."\n";
+    foreach ($argList as $k => $e)
+    {
+        echo "\targ[$k] = >$e<\n";
+    }
+    echo "\$p1: ".($p1 == NULL ? "NULL" : $p1).
+        ", \$p2: ".($p2 == NULL ? "NULL" : $p2).
+        ", \$p3: ".($p3 == NULL ? "NULL" : $p3)."\n";
 }
 
 f4();

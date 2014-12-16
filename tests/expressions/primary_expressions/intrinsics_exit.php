@@ -29,9 +29,9 @@ $p1 = new Point2(5, 3);
 $p2 = new Point2;
 $p3 = new Point2;
 
-exit("goodbye\n");	// writes "goodbye", then destructors are called.
-//exit(99);			// writes nothing
-//exit();			// writes nothing
-//exit;				// writes nothing
+exit("goodbye\n");  // writes "goodbye", then destructors are called.
+//exit(99);         // writes nothing
+//exit();           // writes nothing
+//exit;             // writes nothing
 
 echo "end of script\n";

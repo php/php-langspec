@@ -36,7 +36,7 @@ $c =& $a;
 
 echo "After '\$c =& \$a', \$c is $c, and \$a is $a\n";
 
-$a = STDOUT;	// this causes $c to also alias 99
+$a = STDOUT;    // this causes $c to also alias 99
 
 echo "After '\$a = STDOUT', \$c is $c, and \$a is $a\n";
 
@@ -51,11 +51,11 @@ echo "----------------- resource value argument passing ----------------------\n
 
 function f1($b)
 {
-	echo "\tInside function " . __FUNCTION__ . ", \$b is $b\n";
+    echo "\tInside function " . __FUNCTION__ . ", \$b is $b\n";
 
-	$b = STDOUT;
+    $b = STDOUT;
 
-	echo "After '\$b = STDOUT', \$b is $b\n";
+    echo "After '\$b = STDOUT', \$b is $b\n";
 }
 
 $a = STDIN;
@@ -73,11 +73,11 @@ echo "----------------- resource byRef argument passing ----------------------\n
 
 function g1(&$b)
 {
-	echo "\tInside function " . __FUNCTION__ . ", \$b is $b\n";
+    echo "\tInside function " . __FUNCTION__ . ", \$b is $b\n";
 
-	$b = STDOUT;
+    $b = STDOUT;
 
-	echo "After '\$b = STDOUT', \$b is $b\n";
+    echo "After '\$b = STDOUT', \$b is $b\n";
 }
 
 $a = STDIN;
@@ -95,11 +95,11 @@ echo "----------------- resource value returning ----------------------\n";
 
 function f2()
 {
-	$b = STDOUT;
+    $b = STDOUT;
 
-	echo "After '\$b = STDOUT', \$b is $b\n";
+    echo "After '\$b = STDOUT', \$b is $b\n";
 
-	return $b;
+    return $b;
 }
 
 $a = f2();
@@ -113,11 +113,11 @@ echo "----------------- resource byRef returning ----------------------\n";
 
 function & g2()
 {
-	$b = STDOUT;
+    $b = STDOUT;
 
-	echo "After '\$b = STDOUT', \$b is $b\n";
+    echo "After '\$b = STDOUT', \$b is $b\n";
 
-	return $b;
+    return $b;
 }
 
 $a = g2();

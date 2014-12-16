@@ -11,12 +11,12 @@ error_reporting(-1);
 include_once 'Point.inc';
 include_once 'Circle.inc';
 use \Graphics\D2\Point;
-//use \Graphics\D2\Point as Point;		// "as Point" is redundant
-use \Graphics\D2\Circle as Circle;		// "as Circle" is redundant
+//use \Graphics\D2\Point as Point;      // "as Point" is redundant
+use \Graphics\D2\Circle as Circle;      // "as Circle" is redundant
 
-$p1 = new \Graphics\D2\Point(3, 5);		// works with/without use clause
+$p1 = new \Graphics\D2\Point(3, 5);     // works with/without use clause
 echo "\$p1 = $p1\n";
-$p1 = new Graphics\D2\Point(4, 6);		// works with/without use clause
+$p1 = new Graphics\D2\Point(4, 6);      // works with/without use clause
 echo "\$p1 = $p1\n";
 $p1 = new Point(-3, 8);
 echo "\$p1 = $p1\n";

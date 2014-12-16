@@ -115,8 +115,8 @@ echo "--------- undefined parameter -------------\n";
 
 function f($p)
 {
-	var_dump($p);
-	var_dump(empty($p));
+    var_dump($p);
+    var_dump(empty($p));
 }
 
 f();
@@ -137,12 +137,12 @@ class X1
 
 class X2
 {
-	public function __isset($name)
-	{
-		echo "Inside " . __METHOD__ . " with \$name $name\n";
-//		return FALSE;
-		return TRUE;
-	}
+    public function __isset($name)
+    {
+        echo "Inside " . __METHOD__ . " with \$name $name\n";
+//      return FALSE;
+        return TRUE;
+    }
 }
 
 $x1 = new X1;

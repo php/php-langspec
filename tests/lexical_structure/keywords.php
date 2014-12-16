@@ -12,7 +12,7 @@ $colors = array("red", "white", "blue");
 
 foreach ($colors as $a)
 {
-	echo $a.' ';
+    echo $a.' ';
 }
 echo "\n";
 
@@ -20,6 +20,6 @@ echo "\n";
 
 fOREacH ($colors As $a)
 {
-	eChO $a.' ';
+    eChO $a.' ';
 }
 ECHO "\n";

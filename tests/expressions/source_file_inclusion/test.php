@@ -10,8 +10,8 @@ error_reporting(-1);
 
 function test()
 {
-	echo "Inside test() in " . __FILE__ . "\n";
-	echo "\$v1: $v1, \$v2: $v2\n";
+    echo "Inside test() in " . __FILE__ . "\n";
+    echo "\$v1: $v1, \$v2: $v2\n";
 }
 
 $local1 = 100;

@@ -38,7 +38,7 @@ echo "Index: $index; Color: $color\n";
 foreach ($colors as $color)
 {
     echo $color."\n";
-	$color = "black";
+    $color = "black";
     echo $color."\n";
 }
 var_dump($colors);
@@ -48,7 +48,7 @@ var_dump($colors);
 foreach ($colors as &  $color)  // note the &
 {
     echo $color."\n";
-	$color = "black";
+    $color = "black";
     echo $color."\n";
 }
 var_dump($colors);
@@ -56,7 +56,7 @@ var_dump($colors);
 foreach ($colors as $index => & $color)
 {
     echo $color."\n";
-	$color = "green";
+    $color = "green";
     echo $color."\n";
 }
 var_dump($colors);

@@ -10,9 +10,9 @@ error_reporting(-1);
 
 interface XIterator extends Traversable
 {
-	function current();
-	function key();
-	function next();
-	function rewind();
-	function valid();
+    function current();
+    function key();
+    function next();
+    function rewind();
+    function valid();
 }

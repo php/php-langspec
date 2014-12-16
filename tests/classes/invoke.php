@@ -11,12 +11,12 @@ error_reporting(-1);
 class C
 {
 ///*
-	public function __invoke($p)
-	{
-		echo "Inside " . __METHOD__ . " with arg $p\n";
+    public function __invoke($p)
+    {
+        echo "Inside " . __METHOD__ . " with arg $p\n";
 
-		return "xxx";
-	}
+        return "xxx";
+    }
 //*/
 }
 

@@ -5,7 +5,7 @@ error_reporting(-1);
 /*
 abstract class AC {}
 
-new AC;		// Cannot instantiate abstract class AC 
+new AC;     // Cannot instantiate abstract class AC
 */
 
 interface i1 {}

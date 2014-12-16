@@ -9,11 +9,11 @@
 error_reporting(-1);
 
 function f() {
-	// During
-	var_dump(error_reporting());
-	$ret = $y;
-	//error_reporting(123);
-	return $ret;
+    // During
+    var_dump(error_reporting());
+    $ret = $y;
+    //error_reporting(123);
+    return $ret;
 }
 
 // Before

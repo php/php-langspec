@@ -12,28 +12,28 @@ error_reporting(-1);
 
 function f($p1, $p2, $p3, $p4, $p5)
 {
-	echo "f: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n"; 
+    echo "f: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n";
 }
 
 $i = 0;
-f($i, ++$i, $i, $i = 12, --$i);		// arguments are evaluated L->R
+f($i, ++$i, $i, $i = 12, --$i);     // arguments are evaluated L->R
 // f: $p1 = 0, $p2 = 1, $p3 = 1, $p4 = 12, $p5 = 11
 
 function g($p1, $p2, $p3, $p4, $p5)
 {
-	echo "g: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n"; 
+    echo "g: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n";
 }
 
 function h($p1, $p2, $p3, $p4, $p5)
 {
-	echo "h: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n"; 
+    echo "h: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n";
 }
 
 // Create a table of function designators
 
-$funcTable = array(f, g, h);	// list of 3 functions
-var_dump($funcTable);			// array of 3 strings
-var_dump($funcTable[0]);		// a string
+$funcTable = array(f, g, h);    // list of 3 functions
+var_dump($funcTable);           // array of 3 strings
+var_dump($funcTable[0]);        // a string
 
 // Call all 3 functions indirectly through table
 
@@ -45,5 +45,5 @@ $funcTable[2](100,200,300,400,500);
 // that compared with the argument list expressions.
 
 $i = 1;
-$funcTable[$i++]($i, ++$i, $i, $i = 12, --$i);	// function designator side effect done first
+$funcTable[$i++]($i, ++$i, $i, $i = 12, --$i);  // function designator side effect done first
 // g: $p1 = 2, $p2 = 3, $p3 = 3, $p4 = 12, $p5 = 11

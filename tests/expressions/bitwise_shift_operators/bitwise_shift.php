@@ -14,7 +14,7 @@ $NumBitsPerInt = ($i32 < 0) ? 32 : 64;
 // Shift a positive value right and left using both in- and out-of-range counts
 
 $v = 1000;
-for ($i = -$NumBitsPerInt - 1; $i <= $NumBitsPerInt + 1; ++$i)
+for ($i = 0; $i <= $NumBitsPerInt + 1; ++$i)
 {
 	printf("%d(%08X): >> %2d = %08X\t<< %2d = %08X\n", $v, $v, $i, $v >> $i, $i, $v << $i);
 }
@@ -22,7 +22,7 @@ for ($i = -$NumBitsPerInt - 1; $i <= $NumBitsPerInt + 1; ++$i)
 // Shift a negative value right and left using both in- and out-of-range counts
 
 $v = -1000;
-for ($i = -$NumBitsPerInt - 1; $i <= $NumBitsPerInt + 1; ++$i)
+for ($i = 0; $i <= $NumBitsPerInt + 1; ++$i)
 {
 	printf("%d(%08X): >> %2d = %08X\t<< %2d = %08X\n", $v, $v, $i, $v >> $i, $i, $v << $i);
 }
@@ -33,20 +33,4 @@ $scalarValueList = array(10, -100, 0, 1.234, 0.0, TRUE, FALSE, NULL, "123", 'xx'
 foreach ($scalarValueList as $v)
 {
 	printf("%d(%08X): >> %2d = %08X\t<< %2d = %08X\n", $v, $v, 3, $v >> 3, 5, $v << 5);
-}
-
-// Figure out the algorithm the implementations use for negative and too-large shift counts
-
-for ($i = -129; $i <= 129; ++$i)
-{
-	$rem = $i % $NumBitsPerInt;
-	if ($rem == 0 || $i > 0)
-	{
-		echo "$i, ".$rem."\n";
-	}
-	else  	// have a negative shift
-	{
-		$r = $NumBitsPerInt - (-$i % $NumBitsPerInt);
-		echo "$i, ".$r."\n";
-	}
 }

@@ -284,14 +284,14 @@ cannot be used as a name.
 
 <pre>
   <i>keyword:: one of</i>
-    abstract   and   as   break   callable   case   catch   class   clone   
-    const   continue   declare   default   do   echo   else   elseif   
-    enddeclare   endfor   endforeach   endif   endswitch   endwhile
-    extends   final   finally   for   foreach   function   global
+    abstract   and   as   bool   boolean   break   callable   case   catch   
+    class   clone   const   continue   declare   default   do   echo   else   
+    elseif   enddeclare   endfor   endforeach   endif   endswitch   endwhile
+    extends   final   finally   float   for   foreach   function   global
     goto   if   implements   include   include_once   instanceof
-    insteadof   interface   namespace   new or   print   private
-    protected   public   require   require_once   return static   switch
-    throw   trait   try   use   var   while   xor   yield
+    insteadof   int   integer   interface   namespace   new or   print   
+    private   protected   public   require   require_once   return   static
+    string   switch    throw   trait   try   use   var   while   xor   yield
 </pre>
 
 **Semantics**

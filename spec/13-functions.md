@@ -63,6 +63,12 @@ A function is called via the function-call operator `()` ([§§](10-expressions.
   <i>type-hint:</i>
     array
     callable
+    int
+    integer
+    float
+    string
+    bool
+    boolean
     <i>qualified-name</i>
 
   <i>default-argument-specifier:</i>
@@ -117,10 +123,67 @@ By default, a parameter will accept an argument of any type. However, by
 specifying a *type-hint*, the types of argument accepted can be
 restricted. By specifying `array`, only an argument designating an array
 type is accepted. By specifying `callable`, only an argument designating a
-function is accepted. By specifying *qualified-name*, only an instance
-of a class having that type, or being derived from that type, are
-accepted, or only an instance of a class that implements that interface
-type directly or indirectly is accepted.
+function is accepted. By specifying `int`, `integer`, `float`, `string`, `bool`
+or `boolean`, the scalar type hint rules specified in the next section are used.
+By specifying *qualified-name*, only an instance of a class having that type, or
+being derived from that type, are accepted, or only an instance of a class that
+implements that interface type directly or indirectly is accepted.
+
+##Scalar Type Hints
+
+All conversions are performed using the usual rules for type conversion 
+specified in ([§§](08-conversions.md)).
+
+###`int` and `integer`
+
+If the argument passed is an integer, the argument is accepted.
+
+If the argument passed is a float, is not NaN and fits within the range of an
+integer (i.e. is not smaller than the minimum integer value or greater than the
+maximum integer value), then it is converted to an integer and accepted.
+
+If the argument passed is a string that does not represent a floating-point NAN
+value and represents a value that fits within the range of an integer, then
+it is converted to an integer and accepted.
+
+If the argument passed is a boolean or NULL, it is converted and accepted.
+
+If the argument passed is any other value, it is rejected.
+
+###`float`
+
+If the argument passed is a float, the argument is accepted.
+
+If the argument passed is an integer, the argument is converted to an integer
+and accepted.
+
+If the argument passed is a string that represents a floating-point value, then
+it is converted to a float and accepted.
+
+If the argument passed is a boolean or NULL, it is converted and accepted.
+
+If the argument passed is any other value, it is rejected.
+
+###`string`
+
+If the argument passed is a string, the argument is accepted.
+
+If the argument passed is an integer, float, boolean or NULL, it is converted
+and accepted.
+
+If the argument passed is an object which can be converted, it is converted and
+accepted.
+
+If the argument passed is any other value, it is rejected.
+
+###`bool` and `boolean`
+
+If the argument passed is a boolean, the argument is accepted.
+
+If the argument passed is an integer, float, string or NULL, it is converted and
+accepted.
+
+If the argument passed is any other value, it is rejected.
 
 ##Variable Functions
 

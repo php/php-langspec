@@ -117,7 +117,8 @@ type is accepted. By specifying `callable`, only an argument designating a
 function is accepted. By specifying *qualified-name*, only an instance
 of a class having that type, or being derived from that type, are
 accepted, or only an instance of a class that implements that interface
-type directly or indirectly is accepted.
+type directly or indirectly is accepted. If a parameter has a type declaration, NULL
+is not accepted unless it has a default value that evaluates to NULL.
 
 ##Variable Functions
 

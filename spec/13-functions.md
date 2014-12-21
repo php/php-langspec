@@ -66,10 +66,10 @@ A function is called via the function-call operator `()` ([§§](10-expressions.
     <i>qualified-name</i>
 
   <i>default-argument-specifier:</i>
-    =  <i>const-expression</i>
+    =  <i>constant-expression</i>
 </pre>
 
-*const-expression* is defined in [§§](10-expressions.md#constant-expressions). *qualified-name* is defined in
+*constant-expression* is defined in [§§](10-expressions.md#constant-expressions). *qualified-name* is defined in
 [§§](09-lexical-structure.md#names).
 
 **Constraints**

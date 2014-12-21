@@ -93,7 +93,7 @@ function, `$a` need not actually be incremented.
     <i>variable-name</i>
     <i>qualified-name</i>
     <i>literal</i>
-    <i>const-expression</i>
+    <i>constant-expression</i>
     <i>intrinsic</i>
     <i>anonymous-function-creation-expression</i>
     (  <i>expression</i>  )
@@ -101,7 +101,7 @@ function, `$a` need not actually be incremented.
 </pre>
 
 *variable-name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names); *literal*
-is defined in [§§](09-lexical-structure.md#general-2); *const-expression* is defined in [§§](#constant-expressions);
+is defined in [§§](09-lexical-structure.md#general-2); *constant-expression* is defined in [§§](#constant-expressions);
 *intrinsic* is defined in [§§](#general-2);
 *anonymous-function-creation-expression* is defined in [§§](#anonymous-function-creation); and
 *expression* is defined in [§§](#script-inclusion-operators).
@@ -3053,9 +3053,6 @@ and relative path) still are considered the same file.
 <pre>
   <i>constant-expression:</i>
     <i>array-creation-expression</i>
-    <i>const-expression</i>
-
-  <i>const-expression:</i>
     <i>expression</i>
 </pre>
 
@@ -3071,13 +3068,10 @@ All of the *element-key* and *element-value* elements in
 
 **Semantics**
 
-A *const-expression* is the value of a c-constant. A *const-expression*
+A *constant-expression* is the value of a c-constant. A *constant-expression*
 is required in several contexts, such as in initializer values in a
 [*const-declaration*](14-classes.md#constants) and default initial values in a [function
 definition](13-functions.md#function-definitions).
-
-An initializer in a [*property-declaration*](14-classes.md#properties) is less restrictive
-than one in a *const-declaration*.
 
 
 

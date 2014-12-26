@@ -83,6 +83,8 @@ have the modifier `abstract` must itself have an `abstract`
 
 *class-base-clause* must not name a final class.
 
+*name* must not be `parent`, `self`, or `static`.
+
 *qualified-name* in *class-base-clause* must name a class type, and must
 not be `parent`, `self`, or `static`.
 

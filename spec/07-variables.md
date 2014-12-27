@@ -4,11 +4,16 @@
 
 A *variable* is a named area of data storage that contanis a PHP value. A variable is represented by a VSlot
 ([§§](04-basic-concepts.md#general)). A variable is created by assigning a value to it ([§§](04-basic-concepts.md#assignment), [§§](10-expressions.md#simple-assignment),
-[§§](10-expressions.md#byref-assignment), [§§](10-expressions.md#the-new-operator), [§§](10-expressions.md#array-creation-operator)).  A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic unset ([§§](10-expressions.md#unset)), or by the Engine. The intrinsic `isset` ([§§](10-expressions.md#isset)) tests if a given variable exists and is not set to `NULL`. If a variable is used which was not defined so far then PHP uses `NULL` instead and emits an `E_NOTICE` (stating that the corresponding variable was undefined) except for the following three cases:
+[§§](10-expressions.md#byref-assignment), [§§](10-expressions.md#the-new-operator), [§§](10-expressions.md#array-creation-operator)).  A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic unset ([§§](10-expressions.md#unset)), or by the Engine. The intrinsic `isset` ([§§](10-expressions.md#isset)) tests if a given variable exists and is not set to `NULL`. If a variable, which is not defined so far, is used in an expression then PHP uses `NULL` instead and emits an `E_NOTICE` (stating that the corresponding variable was undefined) except for the following cases:
 
-1.   The variable is used as single expression in a statement.
+1.   The variable is used as single expression
+       a. in a statement.
+       b. as argument of [isset](10-expressions.md#isset).
+       c. as argument of [empty](10-expressions.md#empty).
+       d. as the left hand side of the [coalesce operator ??](10-expressions.md#coalesce-operator).
 2.   The variable is used during a call to a function/method, in which the variable is passed by reference as argument.
 3.   The variable is used during an assignment, in which the variable is the right hand side of the assignment and was assigned by reference.
+
 
 Moreover, the undefined variable gets defined implicitly by PHP with the initial value `NULL` in the latter two cases.
 

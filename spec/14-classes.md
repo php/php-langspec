@@ -56,7 +56,7 @@ object. As such, assignment of a handle does not copy the object itself.
 
 <pre>
   <i>class-declaration:</i>
-    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
+    <i>class-modifier<sub>opt</sub></i>  class  <i>qualified-name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
 
   <i>class-modifier:</i>
     abstract
@@ -70,10 +70,12 @@ object. As such, assignment of a handle does not copy the object itself.
     <i>class-interface-clause</i>  ,  <i>qualified-name</i>
 </pre>
 
-*qualified-name* is defined in [§§](09-lexical-structure.md#names). *class-member-declarations* is
+*class-member-declarations* is
 defined in [§§](#class-members). *trait-use-clauses* ~~ is defined in [§§](16-traits.md#trait-declarations)
 
 **Constraints**
+
+*qualified-name* must be a valid <i>name</i>, as defined in [§§](09-lexical-structure.md#names) and must not be 'self', 'parent', or a reserved keyword ([§§](09-lexical-structure.md#names))
 
 A class must not be derived directly or indirectly from itself.
 
@@ -83,10 +85,7 @@ have the modifier `abstract` must itself have an `abstract`
 
 *class-base-clause* must not name a final class.
 
-*name* must not be `parent`, `self`, or `static`.
-
-*qualified-name* in *class-base-clause* must name a class type, and must
-not be `parent`, `self`, or `static`.
+*qualified-name* in *class-base-clause* must name an existing class.
 
 A concrete class must implement each of the methods from all the
 interfaces ([§§](15-interfaces.md#general)) specified in *class-interface-clause*.

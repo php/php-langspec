@@ -56,7 +56,7 @@ object. As such, assignment of a handle does not copy the object itself.
 
 <pre>
   <i>class-declaration:</i>
-    <i>class-modifier<sub>opt</sub></i>  class  <i>qualified-name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
+    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
 
   <i>class-modifier:</i>
     abstract
@@ -75,9 +75,9 @@ defined in [§§](#class-members). *trait-use-clauses* ~~ is defined in [§§](1
 
 **Constraints**
 
-*qualified-name* must be a valid <i>name</i>, as defined in [§§](09-lexical-structure.md#names) and must not be 'self', 'parent', or a reserved keyword ([§§](09-lexical-structure.md#names))
+*name* must be a valid <i>name</i>, as defined in [§§](09-lexical-structure.md#names), and must not be 'self', 'parent', or a reserved keyword ([§§](09-lexical-structure.md#keywords))
 
-A class must not be derived directly or indirectly from itself.
+*qualified-name* must be a valid <i>qualified-name</i>, as defined in [§§](09-lexical-structure.md#names) and its *name* element must not be 'self', 'parent', or a reserved keyword ([§§](09-lexical-structure.md#keywords))
 
 A *class-declaration* containing any *class-member-declarations* that
 have the modifier `abstract` must itself have an `abstract`
@@ -86,6 +86,8 @@ have the modifier `abstract` must itself have an `abstract`
 *class-base-clause* must not name a final class.
 
 *qualified-name* in *class-base-clause* must name an existing class.
+
+A class must not be derived directly or indirectly from itself.
 
 A concrete class must implement each of the methods from all the
 interfaces ([§§](15-interfaces.md#general)) specified in *class-interface-clause*.

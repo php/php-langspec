@@ -16,13 +16,13 @@ echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
 
 // Try to include a non-existant file
 
-$fileName = 'unknown.php';
+$fileName = 'unknown.inc';
 $inc = include $fileName;
 echo "include file " . ($inc == 1 ? "does" : "does not") . " exist\n";
 
 // Include an existing file that has its own namespace
 
-$fileName = 'limits' . '.php';
+$fileName = 'limits' . '.inc';
 $inc = include $fileName;
 var_dump($inc);
 
@@ -31,7 +31,7 @@ echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
 
 // Include another existing file that has its own namespace
 	
-$inc = include('mycolors.php');
+$inc = include('mycolors.inc');
 var_dump($inc);
 
 echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
@@ -50,31 +50,31 @@ echo "----------------------------------\n";
 
 // Include a file that has no return statement
 
-$inc = include('return_none.php');
+$inc = include('return_none.inc');
 var_dump($inc);
 
 // Include a file that has a return statement without a return value
 
-$inc = include('return_without_value.php');
+$inc = include('return_without_value.inc');
 var_dump($inc);
 
 // Include a file that has a return statement with a return value
 
-$inc = include('return_with_value.php');
+$inc = include('return_with_value.inc');
 var_dump($inc);
 
 echo "----------------------------------\n";
 
 // see how low the precedence of include is
 
-//if (include('return_with_value.php') == 987) ;
-if ((include('return_with_value.php')) == 987) ;
-//if (include('return_with_value.php') | 987) ;
-if ((include('return_with_value.php')) | 987) ;
-//if (include('return_with_value.php') && 987) ;
-if ((include('return_with_value.php')) && 987) ;
-//if (include('return_with_value.php') or 987) ;
-if ((include('return_with_value.php')) or 987) ;
+//if (include('return_with_value.inc') == 987) ;
+if ((include('return_with_value.inc')) == 987) ;
+//if (include('return_with_value.inc') | 987) ;
+if ((include('return_with_value.inc')) | 987) ;
+//if (include('return_with_value.inc') && 987) ;
+if ((include('return_with_value.inc')) && 987) ;
+//if (include('return_with_value.inc') or 987) ;
+if ((include('return_with_value.inc')) or 987) ;
 
 echo "----------------------------------\n";
 
@@ -87,7 +87,7 @@ echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ . "<\n";
 
 echo "----------------------------------\n";
 
-$inc = include 'test.php';
+$inc = include 'test.inc';
 var_dump($inc);
 
 echo "----------------------------------\n";

@@ -16,13 +16,13 @@ echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
 
 // Try to require a non-existant file
 
-$fileName = 'unknown.php';
+$fileName = 'unknown.inc';
 //$inc = require $fileName;
 //echo "require file " . ($inc == 1 ? "does" : "does not") . " exist\n";
 
 // require an existing file that has its own namespace
 
-$fileName = 'limits' . '.php';
+$fileName = 'limits' . '.inc';
 $inc = require $fileName;
 var_dump($inc);
 
@@ -31,7 +31,7 @@ echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
 
 // require another existing file that has its own namespace
 	
-$inc = require('mycolors.php');
+$inc = require('mycolors.inc');
 var_dump($inc);
 
 echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
@@ -50,31 +50,31 @@ echo "----------------------------------\n";
 
 // require a file that has no return statement
 
-$inc = require('return_none.php');
+$inc = require('return_none.inc');
 var_dump($inc);
 
 // require a file that has a return statement without a return value
 
-$inc = require('return_without_value.php');
+$inc = require('return_without_value.inc');
 var_dump($inc);
 
 // require a file that has a return statement with a return value
 
-$inc = require('return_with_value.php');
+$inc = require('return_with_value.inc');
 var_dump($inc);
 
 echo "----------------------------------\n";
 
 // see how low the precedence of require is
 
-//if (require('return_with_value.php') == 987) ;
-if ((require('return_with_value.php')) == 987) ;
-//if (require('return_with_value.php') | 987) ;
-if ((require('return_with_value.php')) | 987) ;
-//if (require('return_with_value.php') && 987) ;
-if ((require('return_with_value.php')) && 987) ;
-//if (require('return_with_value.php') or 987) ;
-if ((require('return_with_value.php')) or 987) ;
+//if (require('return_with_value.inc') == 987) ;
+if ((require('return_with_value.inc')) == 987) ;
+//if (require('return_with_value.inc') | 987) ;
+if ((require('return_with_value.inc')) | 987) ;
+//if (require('return_with_value.inc') && 987) ;
+if ((require('return_with_value.inc')) && 987) ;
+//if (require('return_with_value.inc') or 987) ;
+if ((require('return_with_value.inc')) or 987) ;
 
 echo "----------------------------------\n";
 
@@ -87,7 +87,7 @@ echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ . "<\n";
 
 echo "----------------------------------\n";
 
-$inc = require 'test.php';
+$inc = require 'test.inc';
 var_dump($inc);
 
 echo "----------------------------------\n";

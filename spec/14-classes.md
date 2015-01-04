@@ -38,8 +38,8 @@ within its own class and from classes derived from that class. Access to
 a member with `public` visibility is unrestricted.
 
 The *signature* of a method is a combination of the parent class name,
-that method's name, and its parameter list, including type hints and
-indication for arguments passed using byRef, and whether the resulting
+that method's name, and its argument list, including argument type declarations and
+indication for arguments passed byRef, and whether the resulting
 value is returned byRef.
 
 Methods and properties from a base class can be *overridden* in a
@@ -373,10 +373,10 @@ Widget::__callStatic('sMethod', array(NULL, 1.234))
 
 <pre>
   <i>const-declaration:</i>
-    const  <i>name</i>  =  <i>const-expression</i>   ;
+    const  <i>name</i>  =  <i>constant-expression</i>   ;
 </pre>
 
-*name* is defined in ([§§](09-lexical-structure.md#names)). *const-expression* is defined in
+*name* is defined in ([§§](09-lexical-structure.md#names)). *constant-expression* is defined in
 ([§§](10-expressions.md#constant-expressions)).
 
 **Constraints:**

@@ -338,7 +338,7 @@ octal-digit
     static <i>name</i>   <i>function-static-initializer<sub>opt</sub></i> ;
 
   <i>function-static-initializer:</i>
-    = <i>const-expression</i>
+    = <i>constant-expression</i>
 
   <i>global-declaration:</i>
     global <i>variable-name-list</i> ;
@@ -357,7 +357,7 @@ octal-digit
     <i>variable-name</i>
     <i>qualified-name</i>
     <i>literal</i>
-    <i>const-expression</i>
+    <i>constant-expression</i>
     <i>intrinsic</i>
     <i>anonymous-function-creation-expression</i>
     (  <i>expression</i>  )
@@ -757,9 +757,6 @@ octal-digit
 <pre>
   <i>constant-expression:</i>
     <i>array-creation-expression</i>
-    <i>const-expression</i>
-
-  <i>const-expression:</i>
     <i>expression</i>
 </pre>
 
@@ -992,15 +989,15 @@ octal-digit
     <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
 
   <i>parameter-declaration:</i>
-    <i>type-hint<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+    <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
 
-  <i>type-hint:</i>
+  <i>type-declaration:</i>
     array
     callable
     <i>qualified-name</i>
 
   <i>default-argument-specifier:</i>
-    =  <i>const-expression</i>
+    =  <i>constant-expression</i>
 </pre>
 
 ###Classes
@@ -1032,7 +1029,7 @@ octal-digit
      <i>destructor-declaration</i>
 
   <i>const-declaration:</i>
-    const  <i>name</i>  =  <i>const-expression</i>   ;
+    const  <i>name</i>  =  <i>constant-expression</i>   ;
 
   <i>property-declaration:</i>
     <i>property-modifier   name   property-initializer<sub>opt</sub></i>  ;

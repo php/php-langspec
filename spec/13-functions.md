@@ -58,18 +58,18 @@ A function is called via the function-call operator `()` ([§§](10-expressions.
     <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
 
   <i>parameter-declaration:</i>
-    <i>type-hint<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+    <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
 
-  <i>type-hint:</i>
+  <i>type-declaration:</i>
     array
     callable
     <i>qualified-name</i>
 
   <i>default-argument-specifier:</i>
-    =  <i>const-expression</i>
+    =  <i>constant-expression</i>
 </pre>
 
-*const-expression* is defined in [§§](10-expressions.md#constant-expressions). *qualified-name* is defined in
+*constant-expression* is defined in [§§](10-expressions.md#constant-expressions). *qualified-name* is defined in
 [§§](09-lexical-structure.md#names).
 
 **Constraints**
@@ -78,9 +78,6 @@ Each parameter name in a *function-definition* must be distinct.
 
 A conditionally defined function ([§§](#general)) must exist before any calls are
 made to that function.
-
-*parameter-declaration* must not contain `&` if *type-hint* is `array` or
-`callable`.
 
 **Semantics**
 
@@ -114,13 +111,14 @@ any *compound-statement*, in which case, the function is conditionally
 defined ([§§](#general)), or inside a *method-declaration* ([§§](14-classes.md#methods)).
 
 By default, a parameter will accept an argument of any type. However, by
-specifying a *type-hint*, the types of argument accepted can be
+specifying a *type-declaration*, the types of argument accepted can be
 restricted. By specifying `array`, only an argument designating an array
 type is accepted. By specifying `callable`, only an argument designating a
 function is accepted. By specifying *qualified-name*, only an instance
 of a class having that type, or being derived from that type, are
 accepted, or only an instance of a class that implements that interface
-type directly or indirectly is accepted.
+type directly or indirectly is accepted. If a parameter has a type declaration, NULL
+is not accepted unless it has a default value that evaluates to NULL.
 
 ##Variable Functions
 

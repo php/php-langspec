@@ -30,3 +30,5 @@ for php in $tests; do
     exit 1;
   fi
 done
+
+find $1 \( -name "*.inc" -or -name "*.txt" \) -type f -exec cp --parents {} $2 \;

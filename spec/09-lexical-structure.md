@@ -66,7 +66,7 @@ expansions given on a single line. For example,
 
 ##Lexical analysis
 
-##General
+###General
 
 The production *input-file* is the root of the lexical structure for a
 script. Each script must conform to this production.
@@ -99,7 +99,7 @@ Lexical processing always results in the creation of the longest
 possible lexical element. (For example, `$a+++++$b` must be parsed as
 `$a++ ++ +$b`, which syntactically is invalid).
 
-##Comments
+###Comments
 
 Two forms of comments are supported: *delimited comments* and
 *single-line comments*.

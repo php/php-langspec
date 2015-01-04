@@ -31,4 +31,4 @@ for php in $tests; do
   fi
 done
 
-find $1 \( -name "*.inc" -or -name "*.txt" \) -type f -exec cp --parents {} $2 \;
+find $1 \( -name "*.inc" -or -name "*.txt" \) -not -path "$1/phpt/*" -type f -exec cp --parents {} $2 \;

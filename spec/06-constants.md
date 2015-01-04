@@ -17,8 +17,9 @@ Specifically:
     value of the third argument passed to `define`.
 -   If `define` is able to define the given name, it returns `TRUE`;
     otherwise, it returns `FALSE`.
+-   `define` cannot create array constants.
 
-The constants can only hold a value of a [scalar type](05-types.md#scalar-types) or a [resource](05-types.md#resource-types).
+The constants can only hold a value of a [scalar type](05-types.md#scalar-types), an array or a [resource](05-types.md#resource-types).
 
 The library function `defined` (§xx) reports if a given name (specified as
 a string) is defined as a constant. The library function `constant` (§xx)

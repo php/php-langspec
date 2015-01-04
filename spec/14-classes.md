@@ -373,10 +373,10 @@ Widget::__callStatic('sMethod', array(NULL, 1.234))
 
 <pre>
   <i>const-declaration:</i>
-    const  <i>name</i>  =  <i>const-expression</i>   ;
+    const  <i>name</i>  =  <i>constant-expression</i>   ;
 </pre>
 
-*name* is defined in ([§§](09-lexical-structure.md#names)). *const-expression* is defined in
+*name* is defined in ([§§](09-lexical-structure.md#names)). *constant-expression* is defined in
 ([§§](10-expressions.md#constant-expressions)).
 
 **Constraints:**

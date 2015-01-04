@@ -1,6 +1,3 @@
---TEST--
-PHP Spec test generated from ./expressions/source_file_inclusion/return_with_value.php
---FILE--
 <?php
 
 /*
@@ -11,7 +8,15 @@ PHP Spec test generated from ./expressions/source_file_inclusion/return_with_val
 
 error_reporting(-1);
 
-// has explicit return value, so when included, that value is returned
+function test()
+{
+	echo "Inside test() in " . __FILE__ . "\n";
+	echo "\$v1: $v1, \$v2: $v2\n";
+}
 
-return 987;
---EXPECT--
+$local1 = 100;
+var_dump($local1);
+
+echo "====\n";
+print_r(get_included_files());
+echo "====\n";

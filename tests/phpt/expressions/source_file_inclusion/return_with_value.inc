@@ -1,6 +1,3 @@
---TEST--
-PHP Spec test generated from ./expressions/source_file_inclusion/return_without_value.php
---FILE--
 <?php
 
 /*
@@ -11,7 +8,6 @@ PHP Spec test generated from ./expressions/source_file_inclusion/return_without_
 
 error_reporting(-1);
 
-// return without a value, so when included, NULL is returned
+// has explicit return value, so when included, that value is returned
 
-return;
---EXPECT--
+return 987;

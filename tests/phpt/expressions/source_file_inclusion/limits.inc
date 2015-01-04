@@ -1,6 +1,3 @@
---TEST--
-PHP Spec test generated from ./expressions/source_file_inclusion/limits.php
---FILE--
 <?php
 
 /*
@@ -21,6 +18,3 @@ const MY_MIN = 10;
 const MY_MAX = 50;
 
 // ?>
---EXPECTF--
-================= xxx =================
-Inside file >%s/expressions/source_file_inclusion/limits.php< at line >14< with namespace >MyInclude<

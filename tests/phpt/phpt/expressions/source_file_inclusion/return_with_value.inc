@@ -1,6 +1,3 @@
---TEST--
-PHP Spec test generated from ./expressions/source_file_inclusion/return_none.php
---FILE--
 <?php
 
 /*
@@ -11,5 +8,6 @@ PHP Spec test generated from ./expressions/source_file_inclusion/return_none.php
 
 error_reporting(-1);
 
-// no return statement, so when included, int(1) is returned
---EXPECT--
+// has explicit return value, so when included, that value is returned
+
+return 987;

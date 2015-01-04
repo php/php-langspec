@@ -1,6 +1,3 @@
---TEST--
-PHP Spec test generated from ./expressions/source_file_inclusion/mycolors.php
---FILE--
 <?php
 
 namespace MyColors;
@@ -19,5 +16,3 @@ echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
 const RED = 1;
 const WHITE = 2;
 const BLUE = 3;
---EXPECTF--
-Inside file >%s/expressions/source_file_inclusion/mycolors.php< at line >13< with namespace >MyColors<

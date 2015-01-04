@@ -1,5 +1,5 @@
 --TEST--
-PHP Spec test generated from ./exception_handling/exception_class_(experiment_1).php
+PHP Spec test generated from ./exception_handling/exception_class_experiment_1.php
 --FILE--
 <?php
 
@@ -157,13 +157,13 @@ fL1(10);
 --EXPECTF--
 L0: In try-block
 L0: In catch-block
-$e = >exception 'Exception' with message 'L0 Message' in %s/exception_handling/exception_class_(experiment_1).php:139
+$e = >exception 'Exception' with message 'L0 Message' in %s/exception_handling/exception_class_experiment_1.php:139
 Stack trace:
 #0 {main}<
 getMessage:       >L0 Message<
 getCode:          >-1<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class_(experiment_1).php<
+getFile:          >%s/exception_handling/exception_class_experiment_1.php<
 getLine:          >139<
 getTraceAsString: >#0 {main}<
 array(0) {
@@ -175,22 +175,22 @@ L0: Beyond try/catch/finally blocks
 L0: Calling fL1
 fL1: In try-block
 fL1: In catch-block
-$e = >exception 'MyEx' in %s/exception_handling/exception_class_(experiment_1).php:66
+$e = >exception 'MyEx' in %s/exception_handling/exception_class_experiment_1.php:66
 Stack trace:
-#0 %s/exception_handling/exception_class_(experiment_1).php(152): fL1(10)
+#0 %s/exception_handling/exception_class_experiment_1.php(152): fL1(10)
 #1 {main}<
 getMessage:       ><
 getCode:          >0<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class_(experiment_1).php<
+getFile:          >%s/exception_handling/exception_class_experiment_1.php<
 getLine:          >66<
-getTraceAsString: >#0 %s/exception_handling/exception_class_(experiment_1).php(152): fL1(10)
+getTraceAsString: >#0 %s/exception_handling/exception_class_experiment_1.php(152): fL1(10)
 #1 {main}<
 array(1) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_(experiment_1).php"
+    string(%d) "%s/exception_handling/exception_class_experiment_1.php"
     ["line"]=>
     int(152)
     ["function"]=>
@@ -204,7 +204,7 @@ array(1) {
 }
 Trace Info:
 Key[0]:
-  Key[file] => >%s/exception_handling/exception_class_(experiment_1).php<
+  Key[file] => >%s/exception_handling/exception_class_experiment_1.php<
   Key[line] => >152<
   Key[function] => >fL1<
   Key[args]:
@@ -215,24 +215,24 @@ fL1: Beyond try/catch/finally blocks
 fL1: Calling fL2
 fL2: In try-block
 fL2: In catch-block
-$e = >exception 'Exception' with message 'fL2 Message' in %s/exception_handling/exception_class_(experiment_1).php:93
+$e = >exception 'Exception' with message 'fL2 Message' in %s/exception_handling/exception_class_experiment_1.php:93
 Stack trace:
-#0 %s/exception_handling/exception_class_(experiment_1).php(81): fL2(2.3, -4.5)
-#1 %s/exception_handling/exception_class_(experiment_1).php(152): fL1(10)
+#0 %s/exception_handling/exception_class_experiment_1.php(81): fL2(2.3, -4.5)
+#1 %s/exception_handling/exception_class_experiment_1.php(152): fL1(10)
 #2 {main}<
 getMessage:       >fL2 Message<
 getCode:          >234<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class_(experiment_1).php<
+getFile:          >%s/exception_handling/exception_class_experiment_1.php<
 getLine:          >93<
-getTraceAsString: >#0 %s/exception_handling/exception_class_(experiment_1).php(81): fL2(2.3, -4.5)
-#1 %s/exception_handling/exception_class_(experiment_1).php(152): fL1(10)
+getTraceAsString: >#0 %s/exception_handling/exception_class_experiment_1.php(81): fL2(2.3, -4.5)
+#1 %s/exception_handling/exception_class_experiment_1.php(152): fL1(10)
 #2 {main}<
 array(2) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_(experiment_1).php"
+    string(%d) "%s/exception_handling/exception_class_experiment_1.php"
     ["line"]=>
     int(81)
     ["function"]=>
@@ -248,7 +248,7 @@ array(2) {
   [1]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_(experiment_1).php"
+    string(%d) "%s/exception_handling/exception_class_experiment_1.php"
     ["line"]=>
     int(152)
     ["function"]=>
@@ -262,14 +262,14 @@ array(2) {
 }
 Trace Info:
 Key[0]:
-  Key[file] => >%s/exception_handling/exception_class_(experiment_1).php<
+  Key[file] => >%s/exception_handling/exception_class_experiment_1.php<
   Key[line] => >81<
   Key[function] => >fL2<
   Key[args]:
     Key[0] => >2.3<
     Key[1] => >-4.5<
 Key[1]:
-  Key[file] => >%s/exception_handling/exception_class_(experiment_1).php<
+  Key[file] => >%s/exception_handling/exception_class_experiment_1.php<
   Key[line] => >152<
   Key[function] => >fL1<
   Key[args]:
@@ -280,26 +280,26 @@ fL2: Beyond try/catch/finally blocks
 fL2: Calling fL3
 fL3: In try-block
 fL3: In catch-block
-$e = >exception 'Exception' with message 'fL3 Message' in %s/exception_handling/exception_class_(experiment_1).php:119
+$e = >exception 'Exception' with message 'fL3 Message' in %s/exception_handling/exception_class_experiment_1.php:119
 Stack trace:
-#0 %s/exception_handling/exception_class_(experiment_1).php(107): fL3('xyz', NULL, true)
-#1 %s/exception_handling/exception_class_(experiment_1).php(81): fL2(2.3, -4.5)
-#2 %s/exception_handling/exception_class_(experiment_1).php(152): fL1(10)
+#0 %s/exception_handling/exception_class_experiment_1.php(107): fL3('xyz', NULL, true)
+#1 %s/exception_handling/exception_class_experiment_1.php(81): fL2(2.3, -4.5)
+#2 %s/exception_handling/exception_class_experiment_1.php(152): fL1(10)
 #3 {main}<
 getMessage:       >fL3 Message<
 getCode:          >345<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class_(experiment_1).php<
+getFile:          >%s/exception_handling/exception_class_experiment_1.php<
 getLine:          >119<
-getTraceAsString: >#0 %s/exception_handling/exception_class_(experiment_1).php(107): fL3('xyz', NULL, true)
-#1 %s/exception_handling/exception_class_(experiment_1).php(81): fL2(2.3, -4.5)
-#2 %s/exception_handling/exception_class_(experiment_1).php(152): fL1(10)
+getTraceAsString: >#0 %s/exception_handling/exception_class_experiment_1.php(107): fL3('xyz', NULL, true)
+#1 %s/exception_handling/exception_class_experiment_1.php(81): fL2(2.3, -4.5)
+#2 %s/exception_handling/exception_class_experiment_1.php(152): fL1(10)
 #3 {main}<
 array(3) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_(experiment_1).php"
+    string(%d) "%s/exception_handling/exception_class_experiment_1.php"
     ["line"]=>
     int(107)
     ["function"]=>
@@ -317,7 +317,7 @@ array(3) {
   [1]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_(experiment_1).php"
+    string(%d) "%s/exception_handling/exception_class_experiment_1.php"
     ["line"]=>
     int(81)
     ["function"]=>
@@ -333,7 +333,7 @@ array(3) {
   [2]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_(experiment_1).php"
+    string(%d) "%s/exception_handling/exception_class_experiment_1.php"
     ["line"]=>
     int(152)
     ["function"]=>
@@ -347,7 +347,7 @@ array(3) {
 }
 Trace Info:
 Key[0]:
-  Key[file] => >%s/exception_handling/exception_class_(experiment_1).php<
+  Key[file] => >%s/exception_handling/exception_class_experiment_1.php<
   Key[line] => >107<
   Key[function] => >fL3<
   Key[args]:
@@ -355,14 +355,14 @@ Key[0]:
     Key[1] => ><
     Key[2] => >1<
 Key[1]:
-  Key[file] => >%s/exception_handling/exception_class_(experiment_1).php<
+  Key[file] => >%s/exception_handling/exception_class_experiment_1.php<
   Key[line] => >81<
   Key[function] => >fL2<
   Key[args]:
     Key[0] => >2.3<
     Key[1] => >-4.5<
 Key[2]:
-  Key[file] => >%s/exception_handling/exception_class_(experiment_1).php<
+  Key[file] => >%s/exception_handling/exception_class_experiment_1.php<
   Key[line] => >152<
   Key[function] => >fL1<
   Key[args]:

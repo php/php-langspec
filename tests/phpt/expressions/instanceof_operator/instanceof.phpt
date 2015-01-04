@@ -36,9 +36,9 @@ var_dump($c1 instanceof $clName);	// TRUE; can be a string
 $clName = "C2";
 var_dump($c1 instanceof $clName);	// FALSE; can be a string
 
-var_dump($c2 instanceof $c2b);		// 
-var_dump($d instanceof $c1);		// 
-var_dump($c1 instanceof $d);		// 
+var_dump($c2 instanceof $c2b);		//
+var_dump($d instanceof $c1);		//
+var_dump($c1 instanceof $d);		//
 
 echo "--------------------\n";
 

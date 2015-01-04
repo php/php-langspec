@@ -11,7 +11,7 @@ PHP Spec test generated from ./expressions/postfix_operators/member_selection_op
 
 error_reporting(-1);
 
-class Point 
+class Point
 {
 	private $x;
 	private $y;
@@ -21,7 +21,7 @@ class Point
 	public function getY()		{ return $this->y; }
 	public function setY($y)	{ $this->y = $y;   }
 
-	public function __construct($x = 0, $y = 0) 
+	public function __construct($x = 0, $y = 0)
 	{
 		$name = "x";
 		$this->$name = $x;	// member name as the value of a string is permitted
@@ -30,19 +30,19 @@ class Point
 		$this->y = $y;
 	}
 
-	public function move($x, $y) 
+	public function move($x, $y)
 	{
 		$this->x = $x;
 		$this->y = $y;
 	}	
 
-	public function translate($x, $y) 
+	public function translate($x, $y)
 	{
 		$this->x += $x;
 		$this->y += $y;
 	}
 
-	public function __toString() 
+	public function __toString()
 	{
 		return '(' . $this->x . ',' . $this->y . ')';
 	}

@@ -157,7 +157,7 @@ echo "\$result = $result\n";
 
 echo "---------------- instance/static properties & constants -------------------\n";
 
-class Point 
+class Point
 {
 	const MAX_COUNT = 1000;
 

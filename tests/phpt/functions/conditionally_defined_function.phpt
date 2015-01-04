@@ -15,7 +15,7 @@ error_reporting(-1);
 
 ucf1();		// can call ucf1 before its definition is seen
 
-function ucf1() 
+function ucf1()
 {
 		echo "Inside unconditionally defined function ucf1\n";
 }
@@ -45,9 +45,9 @@ else
 //	cf1();	// Error; call to undefined function
 }
 
-function ucf2() 
+function ucf2()
 {
-	function cf2() 
+	function cf2()
 	{
 		echo "Inside conditionally defined function cf2\n";
 	}

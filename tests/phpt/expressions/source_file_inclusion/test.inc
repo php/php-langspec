@@ -1,6 +1,3 @@
---TEST--
-PHP Spec test generated from ./expressions/source_file_inclusion/test.php
---FILE--
 <?php
 
 /*
@@ -23,11 +20,3 @@ var_dump($local1);
 echo "====\n";
 print_r(get_included_files());
 echo "====\n";
---EXPECTF--
-int(100)
-====
-Array
-(
-    [0] => %s/expressions/source_file_inclusion/test.php
-)
-====

@@ -11,7 +11,7 @@ PHP Spec test generated from ./lexical_structure/tokens/array_literals.php
 
 error_reporting(-1);
 
-class X 
+class X
 {
 	private $prop10 = array();
 	private $prop11 = array(10, "a" => "red", TRUE);

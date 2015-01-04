@@ -92,7 +92,7 @@ echo "----------------- using a use clause, #1 ----------------------\n";
 function compute(array $values)
 {
 	$count = 0;
-        
+
 	$callback = function () use (&$count)
 	{
 		echo "Inside method >>" . __METHOD__ . "<<\n";	// called {closure}
@@ -119,7 +119,7 @@ class D
 	public function compute(array $values)
 	{
 		$count = 0;
-        
+
 		$callback = function ($p1, $p2) use (&$count, $values)
 		{
 			echo "Inside method >>" . __METHOD__ . "<<\n";	// called D::{closure}
@@ -140,7 +140,7 @@ class D
 		echo "\$count = $count\n";
 		$callback(5,6,7);
 		echo "\$count = $count\n";
-        
+
 		$callback2 = function()
 		{
 			echo "Inside method >>" . __METHOD__ . "<<\n";	// ALSO called D::{closure}
@@ -160,7 +160,7 @@ class D
 	public static function stcompute(array $values)
 	{
 		$count = 0;
-        
+
 		$callback = function ($p1, $p2) use (&$count, $values)
 		{
 			echo "Inside method >>" . __METHOD__ . "<<\n";	// called D::{closure}
@@ -200,7 +200,7 @@ $v();
 --
 string(6) "object"
 --
-object(Closure)#1 (0) {
+object(Closure%S)#%d (0) {
 }
 --
 bool(true)
@@ -208,7 +208,7 @@ bool(true)
 Inside function >>{closure}<<
 Inside method >>{closure}<<
 ----------------- closure with 4 parameters ----------------------
-object(Closure)#2 (1) {
+object(Closure%S)#%d (1) {
   ["parameter"]=>
   array(5) {
     ["$p1"]=>
@@ -226,7 +226,7 @@ object(Closure)#2 (1) {
 --
 string(6) "object"
 --
-object(Closure)#2 (1) {
+object(Closure%S)#%d (1) {
   ["parameter"]=>
   array(5) {
     ["$p1"]=>
@@ -253,7 +253,7 @@ Result of calling doit using function double = 20
 string(6) "square"
 Result of calling doit using function square = 100
 -------
-object(Closure)#3 (1) {
+object(Closure%S)#%d (1) {
   ["parameter"]=>
   array(1) {
     ["$p"]=>
@@ -262,7 +262,7 @@ object(Closure)#3 (1) {
 }
 Result of calling doit using double closure = 10
 -------
-object(Closure)#3 (1) {
+object(Closure%S)#%d (1) {
   ["parameter"]=>
   array(1) {
     ["$p"]=>
@@ -280,7 +280,7 @@ $count = 2
 --
 string(6) "object"
 --
-object(Closure)#4 (3) {
+object(Closure%S)#%d (3) {
   ["static"]=>
   array(2) {
     ["count"]=>
@@ -294,7 +294,7 @@ object(Closure)#4 (3) {
     }
   }
   ["this"]=>
-  object(D)#3 (0) {
+  object(D)#%d (0) {
   }
   ["parameter"]=>
   array(2) {
@@ -316,9 +316,9 @@ $count = 2
 --
 string(6) "object"
 --
-object(Closure)#5 (1) {
+object(Closure%S)#%d (1) {
   ["this"]=>
-  object(D)#3 (0) {
+  object(D)#%d (0) {
   }
 }
 --
@@ -329,7 +329,7 @@ Inside method >>D::{closure}<<
 --
 string(6) "object"
 --
-object(Closure)#5 (2) {
+object(Closure%S)#%d (2) {
   ["static"]=>
   array(2) {
     ["count"]=>

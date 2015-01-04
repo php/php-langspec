@@ -44,7 +44,7 @@ var_dump((string)INF);
 var_dump((string)-INF);
 var_dump((string)NAN);
 --EXPECTF--
-string(1) "C"
+string(%d) "%s"
 bool(false)
 bool(false)
 bool(false)

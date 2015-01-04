@@ -15,7 +15,7 @@ error_reporting(-1);
 
 function f($p1, $p2, $p3, $p4, $p5)
 {
-	echo "f: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n"; 
+	echo "f: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n";
 }
 
 $i = 0;
@@ -24,12 +24,12 @@ f($i, ++$i, $i, $i = 12, --$i);		// arguments are evaluated L->R
 
 function g($p1, $p2, $p3, $p4, $p5)
 {
-	echo "g: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n"; 
+	echo "g: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n";
 }
 
 function h($p1, $p2, $p3, $p4, $p5)
 {
-	echo "h: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n"; 
+	echo "h: \$p1 = $p1, \$p2 = $p2, \$p3 = $p3, \$p4 = $p4, \$p5 = $p5\n";
 }
 
 // Create a table of function designators

@@ -27,7 +27,7 @@ class C
     echo "isset\n";
     return isset($this->$name);    // must not recurse
   }
-  
+
   public function __unset($name) {
     echo "unset\n";
     unset($this->$name);    // must not recurse

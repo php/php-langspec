@@ -22,7 +22,7 @@ function trace($name, $value, $b = FALSE)
 }
 
 ///*
-// define some constants with simple (single-token) scalar initial values 
+// define some constants with simple (single-token) scalar initial values
 
 trace("STATUS1", TRUE);
 trace("MIN", 10);
@@ -33,7 +33,7 @@ trace("C1", NULL);
 //*/
 
 ///*
-// try to define some constants with multiple-token scalar initial values 
+// try to define some constants with multiple-token scalar initial values
 
 // involving literals only
 
@@ -83,12 +83,12 @@ echo "    TRUE's value:" . TRUE . "\n";	// however, this shows the old value, 1
 //*/
 
 ///*
-// try to define some constants with non-scalar initial values 
+// try to define some constants with non-scalar initial values
 
-trace("COLORS", [10, 20]);	// Constants may only evaluate to scalar values
+trace("COLORS", [10, 20]);	// Works from PHP 7 onwards
 
 class C {}
-trace("MY_OBJECT", new C);	// Constants may only evaluate to scalar values
+trace("MY_OBJECT", new C);	// Constants may only evaluate to scalar values or arrays
 
 $infile = fopen("Testfile.txt", 'r');
 if ($infile == FALSE)
@@ -120,8 +120,8 @@ class MyClass
 
 ///*
 // Note: As opposed to defining constants using define(), constants defined using the
-// const keyword must be declared at the top-level scope because they are defined at 
-// compile-time. This means that they cannot be declared inside functions, loops or 
+// const keyword must be declared at the top-level scope because they are defined at
+// compile-time. This means that they cannot be declared inside functions, loops or
 // if statements.
 
 //	const CON50;			// not permitted; OK
@@ -201,11 +201,11 @@ Notice: Constant MY_COLOR already defined in %s/constants/constants.php on line 
 define MY_COLOR failed; value is >red<
 define TRUE succeeded; value is >999<
     TRUE's value:1
+define COLORS succeeded
+Notice: Array to string conversion in %s/constants/constants.php on line 16
+; value is >Array<
 
-Warning: Constants may only evaluate to scalar values in %s/constants/constants.php on line 13
-define COLORS failed; not defined
-
-Warning: Constants may only evaluate to scalar values in %s/constants/constants.php on line 13
+Warning: Constants may only evaluate to scalar values or arrays in %s/constants/constants.php on line 13
 define MY_OBJECT failed; not defined
 
 Warning: fopen(Testfile.txt): failed to open stream: No such file or directory in %s/constants/constants.php on line 90

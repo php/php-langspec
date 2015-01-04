@@ -11,19 +11,19 @@ PHP Spec test generated from ./lexical_structure/tokens/point2.php
 
 error_reporting(-1);
 
-class Point2 
+class Point2
 {
 	private static $pointCount = 0;
 
 	public $x;
 	public $y;
 
-	public static function getPointCount() 
+	public static function getPointCount()
 	{
 		return self::$pointCount;
 	}
 
-	public function __construct($x = 0, $y = 0) 
+	public function __construct($x = 0, $y = 0)
 	{
 //		echo "Inside " . __METHOD__ . "\n";
 		
@@ -32,21 +32,21 @@ class Point2
 		++self::$pointCount;
 	}
 
-	public function __destruct() 
+	public function __destruct()
 	{
 		--self::$pointCount;
 
 		echo "Inside " . __METHOD__ . ", pointCount now " . $this->getPointCount() . "\n";
 	}
 
-	public function __clone() 
+	public function __clone()
 	{
 		++self::$pointCount;
 
 		echo "Inside " . __METHOD__ . ", point count = " . self::$pointCount . "\n";
 	}
 
-	public function __toString() 
+	public function __toString()
 	{
 		return '(' . $this->x . ',' . $this->y . ')';
 	}	

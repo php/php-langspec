@@ -72,8 +72,8 @@ var_dump($a2);
 
 // following tests have different values for $a2, and give results like the case above
 
-// g(-123); 
-   g($a2 = -123); 
+// g(-123);
+   g($a2 = -123);
 var_dump($a2);
    $a2 = -123;
    g($a2);

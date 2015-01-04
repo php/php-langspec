@@ -23,7 +23,7 @@ class Point
 		$this->y = $y;
 	}
 
-	public function __toString() 
+	public function __toString()
 	{
 		return '(' . $this->x . ',' . $this->y . ')';
 	}	
@@ -46,7 +46,7 @@ echo "--------------------\n";
 
 function f() { return 10; }
 
-class X 
+class X
 {
 //	const Cprop1 = 10 + 12 - 5.6;		// invalid
 //	const Cprop2 = f();					// invalid

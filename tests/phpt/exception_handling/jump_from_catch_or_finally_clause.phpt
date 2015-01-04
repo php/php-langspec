@@ -32,7 +32,7 @@ function f()
 //			continue;		// allowed
 //			goto end;		// allowed
 //			return msg();	// expression is evaluated, but value actually returned
-							// when both returns exist is 20, from finally block, 
+							// when both returns exist is 20, from finally block,
 		}
 //*/
 		finally

@@ -262,15 +262,15 @@ array(1) {
   int(-3)
 }
 array(1) {
-  [%i]=>
+  [0]=>
   int(21)
 }
 array(1) {
-  [-9223372036854775808]=>
+  [0]=>
   int(-1)
 }
 array(1) {
-  [-9223372036854775808]=>
+  [0]=>
   int(123)
 }
 ================= arrays some of whose elements are arrays, and so on =================

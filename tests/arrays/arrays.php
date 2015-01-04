@@ -143,11 +143,11 @@ $v = array(FALSE => -4);	// FALSE as key becomes key 0
 var_dump($v);
 $v = array("" => -3);
 var_dump($v);
-$v = array(INF => 21);	// INF as key becomes key 0/IntMin/0 (imp-def?)
+$v = array(INF => 21);	// INF as key becomes key 0
 var_dump($v);
-$v = array(-INF => -1);	// -INF as key becomes key 0/IntMin/IntMin (imp-def?)
+$v = array(-INF => -1);	// -INF as key becomes key 0
 var_dump($v);
-$v = array(NAN => 123);	// NAN as key becomes key of IntMin/IntMin/IntMin (imp-def?)
+$v = array(NAN => 123);	// NAN as key becomes key of 0
 var_dump($v);
 
 echo "================= arrays some of whose elements are arrays, and so on =================\n";

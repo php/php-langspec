@@ -17,7 +17,6 @@ Specifically:
     value of the third argument passed to `define`.
 -   If `define` is able to define the given name, it returns `TRUE`;
     otherwise, it returns `FALSE`.
--   `define` cannot create array constants.
 
 The constants can only hold a value of a [scalar type](05-types.md#scalar-types), an array or a [resource](05-types.md#resource-types).
 

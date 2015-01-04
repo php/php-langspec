@@ -24,11 +24,11 @@ Notice: Constant MY_COLOR already defined in %s/constants/constants.php on line 
 define MY_COLOR failed; value is >red<
 define TRUE succeeded; value is >999<
     TRUE's value:1
+define COLORS succeeded
+Notice: Array to string conversion in %s/constants/constants.php on line 16
+; value is >Array<
 
-Warning: Constants may only evaluate to scalar values in %s/constants/constants.php on line 13
-define COLORS failed; not defined
-
-Warning: Constants may only evaluate to scalar values in %s/constants/constants.php on line 13
+Warning: Constants may only evaluate to scalar values or arrays in %s/constants/constants.php on line 13
 define MY_OBJECT failed; not defined
 
 Warning: fopen(Testfile.txt): failed to open stream: No such file or directory in %s/constants/constants.php on line 90

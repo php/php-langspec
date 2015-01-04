@@ -82,10 +82,10 @@ echo "    TRUE's value:" . TRUE . "\n";	// however, this shows the old value, 1
 ///*
 // try to define some constants with non-scalar initial values
 
-trace("COLORS", [10, 20]);	// Constants may only evaluate to scalar values
+trace("COLORS", [10, 20]);	// Works from PHP 7 onwards
 
 class C {}
-trace("MY_OBJECT", new C);	// Constants may only evaluate to scalar values
+trace("MY_OBJECT", new C);	// Constants may only evaluate to scalar values or arrays
 
 $infile = fopen("Testfile.txt", 'r');
 if ($infile == FALSE)

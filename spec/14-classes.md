@@ -75,9 +75,9 @@ defined in [§§](#class-members). *trait-use-clauses* ~~ is defined in [§§](1
 
 **Constraints**
 
-*name* must be a valid <i>name</i>, as defined in [§§](09-lexical-structure.md#names), and must not be 'self', 'parent', or a reserved keyword ([§§](09-lexical-structure.md#keywords))
+*name* must be a [valid name](09-lexical-structure.md#names), and must not be 'self', 'parent', or a [reserved keyword](09-lexical-structure.md#keywords).
 
-*qualified-name* must be a valid <i>qualified-name</i>, as defined in [§§](09-lexical-structure.md#names) and its *name* element must not be 'self', 'parent', or a reserved keyword ([§§](09-lexical-structure.md#keywords))
+*qualified-name* must be a valid [qualified-name](09-lexical-structure.md#names) and its *name* element must not be 'self', 'parent', or a [reserved keyword](09-lexical-structure.md#keywords).
 
 A *class-declaration* containing any *class-member-declarations* that
 have the modifier `abstract` must itself have an `abstract`
@@ -90,7 +90,7 @@ have the modifier `abstract` must itself have an `abstract`
 A class must not be derived directly or indirectly from itself.
 
 A concrete class must implement each of the methods from all the
-interfaces ([§§](15-interfaces.md#general)) specified in *class-interface-clause*.
+[interfaces](15-interfaces.md#general) specified in *class-interface-clause*.
 
 For each interface method, the corresponding implementing method must be compatible with the interface method, including the following:
 - If the interface method is defined as [retuning byRef](13-functions.md#function-definitions), the implementing method should also return byRef.

@@ -56,7 +56,7 @@ object. As such, assignment of a handle does not copy the object itself.
 
 <pre>
   <i>class-declaration:</i>
-    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base   clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
+    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
 
   <i>class-modifier:</i>
     abstract
@@ -70,12 +70,14 @@ object. As such, assignment of a handle does not copy the object itself.
     <i>class-interface-clause</i>  ,  <i>qualified-name</i>
 </pre>
 
-*qualified-name* is defined in [§§](09-lexical-structure.md#names). *class-member-declarations* is
+*class-member-declarations* is
 defined in [§§](#class-members). *trait-use-clauses* ~~ is defined in [§§](16-traits.md#trait-declarations)
 
 **Constraints**
 
-A class must not be derived directly or indirectly from itself.
+*name* must be a [valid name](09-lexical-structure.md#names), and must not be 'self', 'parent', or a [reserved keyword](09-lexical-structure.md#keywords).
+
+*qualified-name* must be a valid [qualified-name](09-lexical-structure.md#names) and its *name* element must not be 'self', 'parent', or a [reserved keyword](09-lexical-structure.md#keywords).
 
 A *class-declaration* containing any *class-member-declarations* that
 have the modifier `abstract` must itself have an `abstract`
@@ -83,14 +85,15 @@ have the modifier `abstract` must itself have an `abstract`
 
 *class-base-clause* must not name a final class.
 
-*qualified-name* in *class-base-clause* must name a class type, and must
-not be `parent`, `self`, or `static`.
+*qualified-name* in *class-base-clause* must name an existing class.
+
+A class must not be derived directly or indirectly from itself.
 
 A concrete class must implement each of the methods from all the
-interfaces ([§§](15-interfaces.md#general)) specified in *class-interface-clause*.
+[interfaces](15-interfaces.md#general) specified in *class-interface-clause*.
 
 For each interface method, the corresponding implementing method must be compatible with the interface method, including the following:
-- If the interface method is defined as [retuning byRef](13-functions.md#function-definitions), the implementing method should also return byRef.
+- If the interface method is defined as [returning byRef](13-functions.md#function-definitions), the implementing method should also return byRef.
 - If the interface method is variadic, the implementing method must also be variadic (see also below).
 - The number of required (i.e. having no defaults) arguments of the implementing methods can not be more than the number of required arguments of the interface method (adding non-optional arguments is not allowed).
 - The overall number of arguments for the implementing method should be at least the number of the arguments of the interface method (removing arguments is not allowed).
@@ -1697,7 +1700,7 @@ is static, then it cannot be bound.
 
 Closures can be *scoped* or *unscoped*. If a closure is said to be *scoped*, it
 has a class *scope* which determines the visibility of the private and protected
-members of objects of tha class, including but not limited to such members on
+members of objects of the class, including but not limited to such members on
 `$this`. If a closure is said to be *unscoped*, it has no class scope set.
 
 Closures have an invariant that scoped closures must be bound or static, and

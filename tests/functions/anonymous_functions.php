@@ -89,7 +89,7 @@ echo "----------------- using a use clause, #1 ----------------------\n";
 function compute(array $values)
 {
 	$count = 0;
-        
+
 	$callback = function () use (&$count)
 	{
 		echo "Inside method >>" . __METHOD__ . "<<\n";	// called {closure}
@@ -116,7 +116,7 @@ class D
 	public function compute(array $values)
 	{
 		$count = 0;
-        
+
 		$callback = function ($p1, $p2) use (&$count, $values)
 		{
 			echo "Inside method >>" . __METHOD__ . "<<\n";	// called D::{closure}
@@ -137,7 +137,7 @@ class D
 		echo "\$count = $count\n";
 		$callback(5,6,7);
 		echo "\$count = $count\n";
-        
+
 		$callback2 = function()
 		{
 			echo "Inside method >>" . __METHOD__ . "<<\n";	// ALSO called D::{closure}
@@ -157,7 +157,7 @@ class D
 	public static function stcompute(array $values)
 	{
 		$count = 0;
-        
+
 		$callback = function ($p1, $p2) use (&$count, $values)
 		{
 			echo "Inside method >>" . __METHOD__ . "<<\n";	// called D::{closure}

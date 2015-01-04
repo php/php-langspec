@@ -70,7 +70,7 @@ var_dump($c1);
 //var_dump((string)$c1);
 
 class D
-{ 
+{
 	public function __toString()
 	{
 		return "AAA";

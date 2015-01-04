@@ -8,7 +8,7 @@
 
 error_reporting(-1);
 
-// trying to see if the supposed initial value for $message in Exception 
+// trying to see if the supposed initial value for $message in Exception
 // ('Unknown exception') is ever used. I can;t get it to appear.
 // If I construct a Exception, the passed-in or default "" gets used. If I subclass
 // Exception, whether I define a constructor for that class or not, the base
@@ -16,7 +16,7 @@ error_reporting(-1);
 
 class MyEx extends Exception {
 
-	public function __construct() {}	// does nothing; possibly the superclass's 
+	public function __construct() {}	// does nothing; possibly the superclass's
 										// constructor isn't called implicitly either
 }
 

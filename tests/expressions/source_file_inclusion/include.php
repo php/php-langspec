@@ -8,7 +8,7 @@
 
 error_reporting(-1);
 
-echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ . 
+echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
 	"< with namespace >" . __NAMESPACE__ . "<\n";
 
 //var_dump(MY_MIN);
@@ -26,7 +26,7 @@ $fileName = 'limits' . '.php';
 $inc = include $fileName;
 var_dump($inc);
 
-echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ . 
+echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
 	"< with namespace >" . __NAMESPACE__ . "<\n";
 
 // Include another existing file that has its own namespace
@@ -34,7 +34,7 @@ echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
 $inc = include('mycolors.php');
 var_dump($inc);
 
-echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ . 
+echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
 	"< with namespace >" . __NAMESPACE__ . "<\n";
 
 echo "----------------------------------\n";
@@ -78,7 +78,7 @@ if ((include('return_with_value.php')) or 987) ;
 
 echo "----------------------------------\n";
 
-// see if included file can access including file's variables, and if including file 
+// see if included file can access including file's variables, and if including file
 // can access the included file's functions and variables
 
 $v1 = 10;

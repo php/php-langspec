@@ -8,7 +8,7 @@
 
 error_reporting(-1);
 
-class Point 
+class Point
 {
 	private static $pointCount = 0;
 	private static $nextId = 1;
@@ -22,12 +22,12 @@ class Point
 //	const CON = 10;				// excluded from serialization
 //	protected static $prots;	// excluded from serialization
 
-	public static function getPointCount() 
+	public static function getPointCount()
 	{
 		return self::$pointCount;
 	}
 
-	public function __construct($x = 0, $y = 0) 
+	public function __construct($x = 0, $y = 0)
 	{
 		$this->x = $x;
 		$this->y = $y;
@@ -37,31 +37,31 @@ class Point
 		echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
 	}
 
-	public function move($x, $y) 
+	public function move($x, $y)
 	{
 		$this->x = $x;
 		$this->y = $y;
 	}	
 
-	public function translate($x, $y) 
+	public function translate($x, $y)
 	{
 		$this->x += $x;
 		$this->y += $y;
 	}
 
-	public function __destruct() 
+	public function __destruct()
 	{
 		--self::$pointCount;
 
 		echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
 	}
 
-	public function __toString() 
+	public function __toString()
 	{
 		return 'ID:' . $this->id . '(' . $this->x . ',' . $this->y . ')';
 	}	
 ///*
-	public function __sleep() 
+	public function __sleep()
 	{
 		echo "\nInside " . __METHOD__ . ", $this, point count = " . self::$pointCount . "\n\n";
 		
@@ -74,7 +74,7 @@ class Point
 	}
 //*/
 ///*
-	public function __wakeup() 
+	public function __wakeup()
 	{
 		echo "\nInside " . __METHOD__ . ", $this, \$nextId, = " . self::$nextId . "\n\n";
 		
@@ -99,7 +99,7 @@ var_dump($s);
 
 echo "------\n";
 
-$v = unserialize($s);	// without a __wakeup method, any instance property present 
+$v = unserialize($s);	// without a __wakeup method, any instance property present
 						// in the string takes on its default value.
 var_dump($v);
 
@@ -128,7 +128,7 @@ class ColoredPoint extends Point
 
 	private $color;
 
-	public function __construct($x = 0, $y = 0, $color = RED) 
+	public function __construct($x = 0, $y = 0, $color = RED)
 	{
 		parent::__construct($x, $y);
 		$this->color = $color;
@@ -136,19 +136,19 @@ class ColoredPoint extends Point
 		echo "\nInside " . __METHOD__ . ", $this\n\n";
 	}
 
-	public function __toString() 
+	public function __toString()
 	{
 		return parent::__toString() . $this->color;
 	}	
 
-// while this method returns an array containing the names of the two inherited, private 
+// while this method returns an array containing the names of the two inherited, private
 // properties and adds to that the one private property from the current class,
 // serialize runs in the context o fthe type of the object given it. If that type is
-// ColoredPoint, serialize doesn;t knopw what to do when it comes across the names of the 
+// ColoredPoint, serialize doesn;t knopw what to do when it comes across the names of the
 // inherited, private	properties.
 
 /*
-	public function __sleep() 
+	public function __sleep()
 	{
 		echo "\nInside " . __METHOD__ . ", $this\n\n";
 		

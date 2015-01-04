@@ -16,7 +16,7 @@ class Point implements Serializable
 	private $y;
 	private $id;
 
-	public function __construct($x = 0, $y = 0) 
+	public function __construct($x = 0, $y = 0)
 	{
 		$this->x = $x;
 		$this->y = $y;
@@ -25,18 +25,18 @@ class Point implements Serializable
 		echo "\nInside " . __METHOD__ . ", $this\n\n";
 	}
 
-	public function __toString() 
+	public function __toString()
 	{
 		return 'ID:' . $this->id . '(' . $this->x . ',' . $this->y . ')';
 	}	
 
-	public function serialize() 
+	public function serialize()
 	{
 		echo "\nInside " . __METHOD__ . ", $this\n\n";
 		
 		return serialize(array('y' => $this->y, 'x' => $this->x));
 	}
-    
+
     public function unserialize($data)
     {
 		$data = unserialize($data);
@@ -70,7 +70,7 @@ class ColoredPoint extends Point implements Serializable
 
 	private $color;
 
-	public function __construct($x = 0, $y = 0, $color = RED) 
+	public function __construct($x = 0, $y = 0, $color = RED)
 	{
 		parent::__construct($x, $y);
 		$this->color = $color;
@@ -78,12 +78,12 @@ class ColoredPoint extends Point implements Serializable
 		echo "\nInside " . __METHOD__ . ", $this\n\n";
 	}
 
-	public function __toString() 
+	public function __toString()
 	{
 		return parent::__toString() . $this->color;
 	}	
 
-	public function serialize() 
+	public function serialize()
 	{
 		echo "\nInside " . __METHOD__ . ", $this\n\n";
 		
@@ -92,7 +92,7 @@ class ColoredPoint extends Point implements Serializable
 			'baseData' => parent::serialize()
 		));
 	}
-    
+
     public function unserialize($data)
     {
 		$data = unserialize($data);

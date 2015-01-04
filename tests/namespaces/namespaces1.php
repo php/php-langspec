@@ -31,7 +31,7 @@ namespace NS3\Sub1;		// define a level-2 namespace who's prefix is not an existi
 echo "Inside namespace " . __NAMESPACE__ . "\n";
 
 //class NS3\Sub1\C1 	// prefix not allowed in definition
-class C1 
+class C1
 {
 //	const NS3\Sub1\CON = 123; 	// prefix not allowed in definition
 	const CON = 123;

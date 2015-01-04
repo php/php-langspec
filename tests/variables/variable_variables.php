@@ -49,7 +49,7 @@ const CON = 'v';
 //$ CON = 5;				// syntax error, unexpected 'CON' (T_STRING),
 						// expecting variable (T_VARIABLE) or '$'
 
-// Without the {}, the operand of $ must begin with a variable name (which 
+// Without the {}, the operand of $ must begin with a variable name (which
 // excludes constants) // or another $
 //*/
 
@@ -145,7 +145,7 @@ var_dump($v);
 unset($v, $a);
 //*/
 
-class C1 
+class C1
 {
 	public static $pr1 = 'v';
 	public $pr2;
@@ -163,7 +163,7 @@ var_dump(C1::$pr1);
 ${C1::$pr1} = 5;	// okay with {}
 //$C1::$pr1 = 5;	// error: Undefined variable: C1, as longest token that can be formed
 				// is $C1
-//$ C1::$pr1 = 5;	// insert space so sees 2 tokens: $ and C1. error: syntax error, 
+//$ C1::$pr1 = 5;	// insert space so sees 2 tokens: $ and C1. error: syntax error,
 				// unexpected 'C1' (T_STRING), expecting variable (T_VARIABLE) or '$'
 				// Doesn't seem to accept a qualified name here (which would exclude a
 				// namespace prefix as well)

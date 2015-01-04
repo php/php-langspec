@@ -572,7 +572,7 @@ function](13-functions.md#function-definitions) except that the former has no na
 *anonymous-function-use-clause*.
 
 An expression that designates an anonymous function is compatible with
-the type hint [`callable`](13-functions.md#function-definitions).
+the pseudo-type [`callable`](13-functions.md#function-definitions).
 
 The *use-variable-name-list* is a list of variables from the enclosing
 scope, which are to be made available by name to the body of the

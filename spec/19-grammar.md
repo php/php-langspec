@@ -989,9 +989,9 @@ octal-digit
     <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
 
   <i>parameter-declaration:</i>
-    <i>type-hint<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+    <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
 
-  <i>type-hint:</i>
+  <i>type-declaration:</i>
     array
     callable
     <i>qualified-name</i>

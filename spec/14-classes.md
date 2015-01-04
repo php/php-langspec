@@ -38,8 +38,8 @@ within its own class and from classes derived from that class. Access to
 a member with `public` visibility is unrestricted.
 
 The *signature* of a method is a combination of the parent class name,
-that method's name, and its parameter list, including type hints and
-indication for arguments passed using byRef, and whether the resulting
+that method's name, and its argument list, including argument type declarations and
+indication for arguments passed byRef, and whether the resulting
 value is returned byRef.
 
 Methods and properties from a base class can be *overridden* in a

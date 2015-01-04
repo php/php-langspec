@@ -58,9 +58,9 @@ A function is called via the function-call operator `()` ([§§](10-expressions.
     <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
 
   <i>parameter-declaration:</i>
-    <i>type-hint<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+    <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
 
-  <i>type-hint:</i>
+  <i>type-declaration:</i>
     array
     callable
     <i>qualified-name</i>
@@ -78,9 +78,6 @@ Each parameter name in a *function-definition* must be distinct.
 
 A conditionally defined function ([§§](#general)) must exist before any calls are
 made to that function.
-
-*parameter-declaration* must not contain `&` if *type-hint* is `array` or
-`callable`.
 
 **Semantics**
 
@@ -114,7 +111,7 @@ any *compound-statement*, in which case, the function is conditionally
 defined ([§§](#general)), or inside a *method-declaration* ([§§](14-classes.md#methods)).
 
 By default, a parameter will accept an argument of any type. However, by
-specifying a *type-hint*, the types of argument accepted can be
+specifying a *type-declaration*, the types of argument accepted can be
 restricted. By specifying `array`, only an argument designating an array
 type is accepted. By specifying `callable`, only an argument designating a
 function is accepted. By specifying *qualified-name*, only an instance

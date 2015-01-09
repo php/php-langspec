@@ -407,18 +407,20 @@ isset($v1, $v2, $v3);  // results in FALSE
 
 *list-intrinsic* must be used as the left-hand operand in a
 [*simple-assignment-expression*](#simple-assignment) of which the right-hand
-operand must be an expression that designates an array (called the *source
-array*).
+operand must be an expression that designates an array or object implementing
+the `ArrayAccess` interface (called the *source array*).
 
-Each *expression* in *expression-list-one-or-more* must designate a
-variable (called the *target variable*).
+Each *expression* in *list-or-variable* must designate a variable (called
+the *target variable*).
+
+At least on the elements of the *list-expression-list* must be non-empty.
 
 **Semantics**
 
-This intrinsic assigns zero or more elements of the source array to the
-target variables. On success, it returns a copy of the source array. If
-the source array is actually the value `NULL`, this is consider a failure,
-and the return value from `list` is undefined.
+This intrinsic assigns one or more elements of the source array to the
+target variables. On success, it returns a copy of the source array. If the
+source array is not an array or object implementing `ArrayAccess` no
+assignments are performed and the return value is `NULL`.
 
 All elements in the source array having keys of type `string` are ignored.
 The element having an `int` key of 0 is assigned to the first target
@@ -428,6 +430,8 @@ assigned. Any other array elements are ignored. If there are
 fewer source array elements having int keys than there are target
 variables, the unassigned target variables are set to `NULL` and
 a non-fatal error is produced.
+
+The assignments must occur in this order. 
 
 Any target variable may be a list, in which case, the corresponding
 element is expected to be an array.
@@ -448,6 +452,11 @@ list($min, $max, $avg) = array(0, 2 => 100, 4 => 67);
   // $min is 0, $max is NULL, $avg is 100
 list($min, list($max, $avg)) = [0, [1 => 67, 99, 0 => 100], 33];
   // $min is 0, $max is 100, $avg is 67
+
+list($arr[1], $arr[0]) = [0, 1];
+  // $arr is [1 => 0, 0 => 1], in this order
+list($arr2[], $arr2[]) = [0, 1];
+  // $arr2 is [0, 1]
 ```
 
 ####print

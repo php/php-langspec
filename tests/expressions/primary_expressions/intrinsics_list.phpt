@@ -1,5 +1,5 @@
 --TEST--
-PHP Spec test generated from ./expressions/primary_expressions/intrinsics_list.php
+list() intrinsic
 --FILE--
 <?php
 
@@ -97,7 +97,7 @@ print_r($v);
 echo "--------- test with non-numeric array -------------\n";
 
 $v = list($min, $max, $avg) = ["x" => 10, "a" => 20, "y" => 30];
-	// Undefined offset: 2, 1, 0
+	// Undefined offset: 0, 1, 2
 echo "\$min: $min, \$max: $max, \$avg: $avg\n";
 print_r($v);
 
@@ -129,7 +129,8 @@ $v = list($a[0], $a[2], $a[4]) = array(0, 100, 67);
 print_r($a);
 print_r($v);
 
-echo "--------- test with no variables -------------\n";
+// All of the following are invalid
+/*echo "--------- test with no variables -------------\n";
 
 $v = list() = array(0, 100, 67);
 print_r($v);
@@ -138,7 +139,7 @@ $v = list(,) = array(0, 100, 67);
 print_r($v);
 
 $v = list(,,) = array(0, 100, 67);
-print_r($v);
+print_r($v);*/
 --EXPECTF--
 --------- test with full and omitted LHS vars -------------
 $min: 0, $max: 100, $avg: 67
@@ -223,11 +224,11 @@ Array
 )
 --------- test with non-numeric array -------------
 
-Notice: Undefined %s: 2 in %s/expressions/primary_expressions/intrinsics_list.php on line 96
+Notice: Undefined %s: 0 in %s/expressions/primary_expressions/intrinsics_list.php on line 96
 
 Notice: Undefined %s: 1 in %s/expressions/primary_expressions/intrinsics_list.php on line 96
 
-Notice: Undefined %s: 0 in %s/expressions/primary_expressions/intrinsics_list.php on line 96
+Notice: Undefined %s: 2 in %s/expressions/primary_expressions/intrinsics_list.php on line 96
 $min: , $max: , $avg: 
 Array
 (
@@ -279,28 +280,9 @@ Array
 --------- test with target vars being array elements -------------
 Array
 (
-    [4] => 67
+    [0] => 0
     [2] => 100
-    [0] => 0
-)
-Array
-(
-    [0] => 0
-    [1] => 100
-    [2] => 67
-)
---------- test with no variables -------------
-Array
-(
-    [0] => 0
-    [1] => 100
-    [2] => 67
-)
-Array
-(
-    [0] => 0
-    [1] => 100
-    [2] => 67
+    [4] => 67
 )
 Array
 (

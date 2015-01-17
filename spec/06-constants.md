@@ -106,9 +106,9 @@ Constant Name | Description
 `PHP_EOL` | `string`; the end-of-line terminator for this platform.
 `PHP_EXTENSION_DIR` | `string`; The directory to be searched by the library function dl (§xx) when looking for runtime extensions.
 `PHP_EXTRA_VERSION` | `string`; the current PHP extra version.
-`PHP_INT_MAX` | `int`; the maximum representable value for an integer.
-`PHP_INT_MIN` | `int`; the minimum representable value for an integer. 
-`PHP_INT_SIZE` |  `int`; the number of bytes used to represent an integer.
+`PHP_INT_MAX` | `int`; the maximum representable value for a native integer on this platform. (This does not correspond to the maximum size of a PHP integer, which is unlimited.)
+`PHP_INT_MIN` | `int`; the minimum representable value for a native integer on this platform. (This does not correspond to the maximum size of a PHP integer, which is unlimited.) 
+`PHP_INT_SIZE` |  `int`; the number of bytes used to represent the native integer size of this platform. (This does not correspond to the maximum size of a PHP integer, which is unlimited.)
 `PHP_MAJOR_VERSION` | `int`; the current PHP major version
 `PHP_MANDIR`  | `string`; the installation location of the manual pages.
 `PHP_MAXPATHLEN` |  `int`; the maximum length of a fully qualified filename supported by this build.

@@ -58,23 +58,22 @@ The library function `is_bool` (§xx) indicates if a given value has type
 ###The Integer Type
 
 There is one integer type, `int`, for which the name `integer` is a synonym.
-This type is binary, signed, and uses twos-complement representation for
-negative values. The range of values that can be stored is
-implementation-defined; however, the range [-2147483648, 2147483647],
-must be supported. This range must be finite.
+This type is a binary, signed, arbitrary-precision integer. Its range is
+limited only by available memory.
 
-Certain operations on integer values produce a mathematical result that
-cannot be represented as an integer. Examples include the following:
+Implementations MAY choose to implement this type with an underlying native
+integer type and a separate arbitrary-precision integer type, switching between
+the two types as and where appropriate, so long as the observed behaviour is
+identical and the two types are indistinguishable, i.e. they are, for all
+intents and purposes, the same type and are reported as such.
 
--   Incrementing the largest value or decrementing the smallest value.
--   Applying the unary minus to the smallest value.
--   Multiplying, adding, or subtracting two values.
-
-In such cases, the computation is done as though the types of the values were
-`float` with the result having that type.
+Bitwise operations MUST use two's-complement arithmetic, however implementations
+MAY choose not to use a two's-complement underlying representation.
 
 The constants `PHP_INT_SIZE` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants)), `PHP_INT_MAX` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants)) and `PHP_INT_MIN` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants))
-define certain characteristics about type `int`.
+exist for backwards-compatibility reasons, and indicate the native integer
+size of the machine (usually 32-bit or 64-bit). They do not, however, represent
+the actual range and size of the PHP integer type, which is unlimited.
 
 The library function `is_int` (§xx) indicates if a given value has type
 `int`.

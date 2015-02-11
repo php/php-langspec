@@ -20,7 +20,7 @@ the need for a *global-declaration* ([§§](#global-variables)).
 
 The following kinds of variable may exist in a script:
 
--   Constant ([§§](#constants)).hi
+-   Constant ([§§](#constants)).
 -   Local variable ([§§](#local-variables)).
 -   Array element ([§§](#array-elements)).
 -   Function static ([§§](#function-statics)).

@@ -4,67 +4,7 @@
 
 A *variable* is a named area of data storage that contanis a PHP value. A variable is represented by a VSlot
 ([§§](04-basic-concepts.md#general)). A variable is created by assigning a value to it ([§§](04-basic-concepts.md#assignment), [§§](10-expressions.md#simple-assignment),
-[§§](10-expressions.md#byref-assignment), [§§](10-expressions.md#the-new-operator), [§§](10-expressions.md#array-creation-operator)).  A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic unset ([§§](10-expressions.md#unset)), or by the Engine. The intrinsic `isset` ([§§](10-expressions.md#isset)) tests if a given variable exists and is not set to `NULL`. If a variable, which is not defined so far, is used in an expression then PHP uses `NULL` instead and emits an `E_NOTICE` (stating that the corresponding variable was undefined) except for the following cases:
-
-1.   The variable is used as single expression
-       a. in a statement.
-       b. as argument of [isset](10-expressions.md#isset).
-       c. as argument of [empty](10-expressions.md#empty).
-       d. as the left hand side of the [coalesce operator ??](10-expressions.md#coalesce-operator).
-2.   The variable is used during a call to a function/method, in which the variable is passed by reference as argument.
-3.   The variable is used during an assignment, in which the variable is the right hand side of the assignment and was assigned by reference.
-
-
-Moreover, the undefined variable gets defined implicitly by PHP with the initial value `NULL` in the latter two cases.
-
-Following some examples to outline how PHP behaves.
-
-**Examples**
-
-````PHP
-$a;       // simply ignored by PHP
-$a = 1;   // $a got defined and has the initial value 1
-
-$b = $c;  // $b got defined and has the initial value corresponding to the 
-          // value of $c, $c in turn was undefined and `NULL` was used 
-          // instead. In addition, an `E_NOTICE` was emitted stating $c was 
-          // undefined. 
-
-$d = $c;  // $d got defined and has the initial value corresponding to the 
-          // value of $c, $c was still undefined and `NULL` was used instead.
-          // Another `E_NOTICE` was emitted stating $c was undefined. 
-
-$d + $e;  // $e was not defined and `NULL` was used instead. In addition, an 
-          // `E_NOTICE` was emitted stating that $e was undefined.
-
-$f = &$g; // $f got defined and has the reference of $g as initial value,
-          // $g in turn was not defined but was implicitly defined by
-          // PHP with the initial value `NULL` (see point 3 above). An 
-          // `E_NOTICE` was not emitted since $g was assigned to $f by 
-          // reference.
-
-$h = $g;  // $h got defined and has the initial value corresponding to the
-          // value of $g which is `NULL`.
-
-function foo($x){}
-
-foo($i);  // $i was not defined and `NULL` was used instead. In addition, an 
-          // `E_NOTICE` was emitted stating that $i was undefined.
-
-$j = $i;  // $j got defined and has the initial value corresponding to the 
-          // value of $i, $i in turn is still not defined and `NULL` was used 
-          // instead. Another `E_NOTICE` was emitted stating $i was undefined.
-
-function bar(&$x){}
-
-bar($k);  // $k was not defined and thus was defined implicitly by PHP with the
-          // initial value `NULL` (see point 2 above). An `E_NOTICE` was not 
-          // emitted since $k was passed by reference.
-
-$l = $k;  // $l got defined and has the initial value corresponding to the
-          // value of $k which is `NULL`.
-
-````
+[§§](10-expressions.md#byref-assignment), [§§](10-expressions.md#the-new-operator), [§§](10-expressions.md#array-creation-operator)).  A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic unset ([§§](10-expressions.md#unset)), or by the Engine. The intrinsic `isset` ([§§](10-expressions.md#isset)) tests if a given variable exists and is not set to `NULL`. If a variable, which is not defined so far (hence undefined), is used in an expression then different strategies are applied which determine whether the variable is defined implicitly or a substitution value is used instead and whether an `E_NOTICE` is omitted or not. The strategies depend on the kind of the variable as well as on the context where the undefined variable is being used. The strategies are elaborated in the sub-sections of the different kinds of variables [§§](#kinds-of-variables) below.
 
 Variables have names as defined in [§§](09-lexical-structure.md#names). Distinct variables may have
 the same name provided they are in different scopes ([§§](04-basic-concepts.md#scope)).
@@ -110,6 +50,10 @@ A constant defined outside of a class or interface is a superglobal
 ([§§](#general)). A constant has static storage duration ([§§](04-basic-concepts.md#storage-duration)) 
 and is a non-modifiable lvalue.
 
+**Undefined Constants**
+
+PHP does not define undefined constants implicitly and uses the name of the undefined constant as string as substitution value. Moreover, an  `E_NOTICE`, stating that the corresponding constant was undefined, is emitted. 
+
 **Examples**
 
 ```PHP
@@ -117,6 +61,16 @@ const MAX_HEIGHT = 10.5;        // define two c-constants
 const UPPER_LIMIT = MAX_HEIGHT;
 define('COEFFICIENT_1', 2.345); // define two d-constants
 define('FAILURE', TRUE);
+
+//examples of undefined constants
+echo NON_EXISTING_CONSTANT;     // uses 'NON_EXISTING_CONSTANT' as substitution
+                                // value and emits an E_NOTICE stating that the
+                                // constant was undefined.
+
+echo NON_EXISTING_CONSTANT;     // same here, the constant is still undefined 
+                                // and 'NON_EXISTING_CONSTANT' is used as 
+                                // substitution value and an E_NOTICE is 
+                                // emitted again.
 ```
 
 ###Local Variables
@@ -133,6 +87,10 @@ variable can be assigned to as a parameter in the parameter list of a
 function definition ([§§](13-functions.md#function-definitions)) or inside any compound statement ([§§](11-statements.md#compound-statements)). It
 has function scope ([§§](04-basic-concepts.md#scope)) and automatic storage duration ([§§](04-basic-concepts.md#storage-duration)). A local
 variable is a modifiable lvalue.
+
+**Undefined Local Variables**
+
+The same rule as for undefined global variables apply [§§](#undefined-global-variables).
 
 **Examples**
 
@@ -181,11 +139,40 @@ removed by calling the `unset` intrinsic ([§§](10-expressions.md#unset)).
 The scope ([§§](04-basic-concepts.md#scope)) of an array element is the same as the scope of that
 array's name. An array element has allocated storage duration ([§§](04-basic-concepts.md#storage-duration)).
 
+**Undefined Array Elements**
+
+Similar to undefined global variables [§§](#undefined-global-variables), a distinction is made based on the context where an undefined array element is used. 
+
+***byValue Context***
+
+If one tries to access an undefined array element, one uses an undefined offset respectively, then `NULL` is used as substitution value and an `E_NOTICE` is emitted, stating that an undefined offset was used. PHP does not implicitly create the undefined offset and a subsequent access results in another `E_NOTICE`.
+
+***byRef Context***
+
+PHP defines implicitly an undefined array element when it is accessed byRef, a VSlot for the corresponding undefined offset is created and `NULL` is assigned to it respectively. Notice, an `E_NOTICE` is **not** emitted in such a case.
+
 **Examples**
 
 ```PHP
 $colors = ["red", "white", "blue"]; // create array with 3 elements
 $colors[] = "green";                // insert a new element
+
+echo $colors[100];      // element with offset 100 is undefined and NULL is 
+                        // used as substitution value. Moreover, an E_NOTICE, 
+                        // stating that an undefined offset was used, is 
+                        // emitted.
+
+echo $colors[100];      // element with offset 100 is still undefined and NULL 
+                        // is used as substitution value instead. Another 
+                        // E_NOTICE is emitted.
+
+$b = &colors[100];      // a VSlot for $b is created which points to the array 
+                        // element with the offset 100. An array element with 
+                        // offset 100 was undefined but implicitly defined 
+                        // because the assignment was byRef. Thus a VSlot for 
+                        // the array element with offset 100 was created and 
+                        // NULL was assigned to it. An E_NOTICE was *not* 
+                        // emitted.
 ```
 
 ###Function Statics
@@ -220,6 +207,10 @@ declaration is called, that execution is dealing with an alias ([§§](04-basic-
 to that static variable. If that alias is passed to the `unset` intrinsic
 ([§§](10-expressions.md#unset)), only that alias is destroyed. The next time that function
 is called, a new alias is created.
+
+**Undefined Function Statics**
+
+A function statics are explicitly defined and thus cannot be undefined.
 
 **Examples**
 
@@ -285,6 +276,83 @@ global variable. If that alias is passed to the `unset` intrinsic
 ([§§](10-expressions.md#unset)), only that alias is destroyed. The next time that function
 is called, a new alias is created with the current value of the global
 variable.
+<a name="undefined-global-variables"></a>
+
+**Undefined Global Variables**
+A distinction is made based on the context where an undefined global variable is used. 
+
+***byVal Context***
+
+PHP does not implicitly define an undefined global variable and uses `NULL` as substitution value instead. Furthermore, an `E_NOTICE`, stating that the corresponding variable was undefined, is emitted except for the following cases: 
+
+1.   The variable is used as single expression
+       a. in a statement.
+       b. as argument of [isset](10-expressions.md#isset).
+       c. as argument of [empty](10-expressions.md#empty).
+       d. as the left hand side of the [coalesce operator ??](10-expressions.md#coalesce-operator).
+
+Since undefined global variables are not defined implicitly, they stay undefined, a VSlot is not created for undefined variables used in a byValue context respectively.
+
+***byRef Context***
+
+If the undefined variable is used in a byRef context [§§](04-basic-concepts#byRef) then PHP defines the variable implicitly. Hence, a VSlot is created for it and `NULL` is stored in it. Notice, an `E_NOTICE` is **not** emitted in such a case.
+
+***Examples of Undefined Variables***
+
+Following some examples which outlines the behaviour with undefined global variables.
+
+````PHP
+// The following 4 cases outline the exceptions of undefined variables
+// used in byValue context where no E_NOTICE is emitted.
+$a;        
+isset($a);
+empty($a);
+$a ?? 'default Value';
+
+$a = 1;    // a VSlot for $a was created and 1 was assigned.
+
+$b = $c;   // a VSlot for $b was created and the value of $c was assigned to
+           // it. But because $c in turn was undefined, NULL was used as 
+           // substitution value instead. In addition, an E_NOTICE was 
+           // emitted stating that $c was undefined. 
+
+$d = $c;   // a VSlot for $d was created and the value of $c was assigned to 
+           // it. But since $c is still undefined, NULL was used as 
+           // substitution value instead and another E_NOTICE was emitted 
+           // stating $c was undefined. 
+
+$d + $e;   // $e was undefined and `NULL` was used as substitution value 
+           // instead. In addition, an E_NOTICE was emitted stating that 
+           // $e was undefined.
+
+$f = &$g;  // a VSlot for $f was created which points to the VSlot of $g.
+           // $g in turn was undefined but was defined implicitly because the 
+           // assignment was byRef. Thus a VSlot for $g was created and `NULL` // was assigned to it. An E_NOTICE was *not* emitted.
+
+$h = $g;   // a VSlot for $h was created and the value of $g (which is NULL) 
+           // was assigned to it.
+
+function foo($x){}
+
+foo($i);   // $i was undefined and NULL was used as substitution value 
+           // instead. In addition, an E_NOTICE was emitted stating that $i 
+           // was undefined.
+
+$j = $i;   // a VSlot for $j was created and the value of $i was assigned to 
+           // it. But because $i in turn was still undefined, NULL was used 
+           // as substitution value instead. Another E_NOTICE was emitted 
+           // stating that $i was undefined.
+
+function bar(&$x){}
+
+bar($k);   // $k was undefined but implicitly defined because it was passed to 
+           // the function bar byRef. Thus a VSlot for $k was created and 
+           // NULL was assigned to it. An `E_NOTICE` was *not* emitted.
+
+$l = $k;   // a VSlot for $l was created and the value of $k (which is NULL) 
+           // was assigned to it.
+
+````
 
 **Examples**
 

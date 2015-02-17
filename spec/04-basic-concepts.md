@@ -1258,6 +1258,8 @@ There are a number of scope types that exist in PHP:
 
 -   Variable scope - the scope which defined what unqualified variables (like `$foo`) are referring to. 
     Variables defined in one variable scope are not visible in another variable scope.     
+-   Instance scope - the scope which defined what unqualified identifiers (like `$this->foo`) are referring to. 
+    dynamic properties ([§§](14-classes.md#dynamic-members)) defined for an instance are not visible in another instance of the same class.
 -   Class scope - the scope that defines visibility of the methods and properties, and resolution of keywords like
     `self`, `parent`, etc. Class scope encompasses the body of that class and any classes derived
     from it ([§§](14-classes.md#class-declarations)). 

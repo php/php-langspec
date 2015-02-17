@@ -260,24 +260,9 @@ function f()
 }
 ```
 
-###Object Properties
+###Dynamic Properties
 
-Object properties are defined for a particular object and can only be accessed on this specific object in contrast to instance properties ([§§](#instance-properties)) which are available for all objects of a particular class (and sub-classes). Object properies have always public [visibility](14-classes.md#general).
-
-**Examples**
-
-```PHP
-$obj = new stdClass();
-$obj->isHungry = true;
-if($obj->isHungry){
-  echo '$obj is hungry';
-}
-
-$obj2 = new stdClass();
-if($obj2->isHungry){      //emits an E_NOTICE "Undefined property: stdClass::$isHungry" 
-  echo '$obj2 is hungry';
-}
-```
+These are described in ([§§](14-classes.md#dynamic-members)). They have instance scope ([§§](04-basic-concepts.md#scope)) and allocation storage duration ([§§](04-basic-concepts.md#storage-duration)). Dynamic properties have always public [visibility](14-classes.md#general).
 
 ###Instance Properties
 

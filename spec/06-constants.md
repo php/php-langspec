@@ -12,7 +12,7 @@ Specifically:
 
 -   The name of a c-constant must comply with the lexical grammar for a
     name while that for a d-constant can contain any source character.
--   The name of a c-constant is case-insensitive while that for a
+-   The name of a c-constant is case-sensitive while that for a
     d-constant can be case-sensitive or case-insensitive based on the
     value of the third argument passed to `define`.
 -   If `define` is able to define the given name, it returns `TRUE`;
@@ -29,7 +29,7 @@ string.
 **Examples**
 
 ```PHP
-const MAX_HEIGHT = 10.5;              // define two (case-insensitive) c-constants
+const MAX_HEIGHT = 10.5;              // define two (case-sensitive) c-constants
 const UPPER_LIMIT = MAX_HEIGHT;
 define('COEFFICIENT_1', 2.345, TRUE); // define a case-insensitive d-constant
 define('FAILURE', FALSE, FALSE);      // define a case-sensitive d-constant
@@ -38,7 +38,7 @@ define('FAILURE', FALSE, FALSE);      // define a case-sensitive d-constant
 ##Context-Dependent Constants
 
 The following constants—sometimes referred to as *magic constants*—are
-automatically available to all scripts; their values are not fixed:
+automatically available to all scripts; their values are not fixed and they are case-insensitive:
 
  Constant Name                    | Description                     
  -----------------                | ---------                            
@@ -56,7 +56,7 @@ Constant names beginning with __ are reserved for future use by the Engine.
 
 ##Core Predefined Constants
 
-The following constants are automatically available to all scripts:
+The following constants are automatically available to all scripts; they are case-sensitive with the exception of `NULL`, `true` and `false`:
 
 Constant Name | Description
 -------------   | -----------  

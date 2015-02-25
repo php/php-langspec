@@ -18,15 +18,17 @@ var_dump(((($i) + (10))));
 $a = [100, 200];
 var_dump($a[0]);
 var_dump(($a[0]));		// redundant grouping parens
-var_dump(($a)[0]);		// redundant grouping parens
+
+// This is not supported in PHP 5.x
+//var_dump(($a)[0]);		// redundant grouping parens
 
 $z = [[2,4,6,8], [5,10], [100,200,300]];
 var_dump($z[0][2]);
-var_dump(($z[0])[2]);	// redundant grouping parens
+
+// This is not supported in PHP 5.x
+//var_dump(($z[0])[2]);	// redundant grouping parens
 --EXPECT--
 int(110)
 int(100)
 int(100)
-int(100)
-int(6)
 int(6)

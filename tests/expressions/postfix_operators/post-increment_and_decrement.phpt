@@ -1,5 +1,5 @@
 --TEST--
-PHP Spec test generated from ./expressions/postfix_operators/post-increment_and_decrement.php
+Postscript increment and decrement
 --FILE--
 <?php
 
@@ -110,7 +110,7 @@ incdecrev("9223372036854775807");
 //*/
 
 ///*
-// test if number bases other than decimal are supported
+// test that number bases other than decimal are not supported
 
 incdec("012");
 incdecrev("012");
@@ -475,31 +475,31 @@ $a = 11 <---> int(11)
 --------------------------------------- end incdecrev ---
 --------------------------------------- start incdec ---
 $a = 0x12 <---> string(4) "0x12"
-$a = 17 <---> int(17)
-$a = 18 <---> int(18)
-$a = 18
-$a = 19 <---> int(19)
+$a = 0x12 <---> string(4) "0x12"
+$a = 0x13 <---> string(4) "0x13"
+$a = 0x13
+$a = 0x14 <---> string(4) "0x14"
 --------------------------------------- end incdec ---
 --------------------------------------- start incdecrev ---
 $a = 0x12 <---> string(4) "0x12"
-$a = 19 <---> int(19)
-$a = 18 <---> int(18)
-$a = 18
-$a = 17 <---> int(17)
+$a = 0x13 <---> string(4) "0x13"
+$a = 0x13 <---> string(4) "0x13"
+$a = 0x13
+$a = 0x13 <---> string(4) "0x13"
 --------------------------------------- end incdecrev ---
 --------------------------------------- start incdec ---
 $a = 0X12 <---> string(4) "0X12"
-$a = 17 <---> int(17)
-$a = 18 <---> int(18)
-$a = 18
-$a = 19 <---> int(19)
+$a = 0X12 <---> string(4) "0X12"
+$a = 0X13 <---> string(4) "0X13"
+$a = 0X13
+$a = 0X14 <---> string(4) "0X14"
 --------------------------------------- end incdec ---
 --------------------------------------- start incdecrev ---
 $a = 0X12 <---> string(4) "0X12"
-$a = 19 <---> int(19)
-$a = 18 <---> int(18)
-$a = 18
-$a = 17 <---> int(17)
+$a = 0X13 <---> string(4) "0X13"
+$a = 0X13 <---> string(4) "0X13"
+$a = 0X13
+$a = 0X13 <---> string(4) "0X13"
 --------------------------------------- end incdecrev ---
 --------------------------------------- start incdec ---
 $a = 0b101 <---> string(5) "0b101"

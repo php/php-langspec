@@ -1,5 +1,5 @@
 --TEST--
-PHP Spec test generated from ./expressions/unary_operators/pre-increment_and_decrement.php
+Prefix increment and decrement
 --FILE--
 <?php
 
@@ -500,35 +500,35 @@ $a = 14 <---> int(14)
 --------------------------------------- end incdecrev ---
 --------------------------------------- start incdec ---
 $a = 0x12 <---> string(4) "0x12"
-$a = 17 <---> int(17)
-$a = 16 <---> int(16)
-$a = 17 <---> int(17)
-$a = 18
-$a = 18 <---> int(18)
+$a = 0x12 <---> string(4) "0x12"
+$a = 0x12 <---> string(4) "0x12"
+$a = 0x13 <---> string(4) "0x13"
+$a = 0x14
+$a = 0x14 <---> string(4) "0x14"
 --------------------------------------- end incdec ---
 --------------------------------------- start incdecrev ---
 $a = 0x12 <---> string(4) "0x12"
-$a = 19 <---> int(19)
-$a = 20 <---> int(20)
-$a = 19 <---> int(19)
-$a = 20
-$a = 20 <---> int(20)
+$a = 0x13 <---> string(4) "0x13"
+$a = 0x14 <---> string(4) "0x14"
+$a = 0x14 <---> string(4) "0x14"
+$a = 0x15
+$a = 0x15 <---> string(4) "0x15"
 --------------------------------------- end incdecrev ---
 --------------------------------------- start incdec ---
 $a = 0X12 <---> string(4) "0X12"
-$a = 17 <---> int(17)
-$a = 16 <---> int(16)
-$a = 17 <---> int(17)
-$a = 18
-$a = 18 <---> int(18)
+$a = 0X12 <---> string(4) "0X12"
+$a = 0X12 <---> string(4) "0X12"
+$a = 0X13 <---> string(4) "0X13"
+$a = 0X14
+$a = 0X14 <---> string(4) "0X14"
 --------------------------------------- end incdec ---
 --------------------------------------- start incdecrev ---
 $a = 0X12 <---> string(4) "0X12"
-$a = 19 <---> int(19)
-$a = 20 <---> int(20)
-$a = 19 <---> int(19)
-$a = 20
-$a = 20 <---> int(20)
+$a = 0X13 <---> string(4) "0X13"
+$a = 0X14 <---> string(4) "0X14"
+$a = 0X14 <---> string(4) "0X14"
+$a = 0X15
+$a = 0X15 <---> string(4) "0X15"
 --------------------------------------- end incdecrev ---
 --------------------------------------- start incdec ---
 $a = 0b101 <---> string(5) "0b101"

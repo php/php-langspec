@@ -35,7 +35,7 @@ $s = array(
 );
 
 foreach ($s as $e) {
-	echo ">$e< is ".(is_numeric($e) ? "numeric\n" : "not numeric\t\t***\n");
+	echo ">$e< is ".(is_numeric($e) ? "numeric\n" : "not numeric\n");
 }
 
 sprintf($t, ",%b,%B", 0b1010, 0b1010);
@@ -49,24 +49,24 @@ bool(false)
 bool(false)
 bool(false)
 bool(false)
->< is not numeric		***
+>< is not numeric
 >0< is numeric
 >00< is numeric
 >0377< is numeric
->0xEEFFAA00< is numeric
->0X1234EF< is numeric
+>0xEEFFAA00< is not numeric
+>0X1234EF< is not numeric
 > 0< is numeric
 >  00< is numeric
 >   0377< is numeric
->    0xEEFFAA00< is numeric
->     0X1234EF< is numeric
->0 < is not numeric		***
->00  < is not numeric		***
->0377   < is not numeric		***
->0xEEFFAA00    < is not numeric		***
->0X1234EF     < is not numeric		***
->0b1010< is not numeric		***
->0B111111111111111< is not numeric		***
+>    0xEEFFAA00< is not numeric
+>     0X1234EF< is not numeric
+>0 < is not numeric
+>00  < is not numeric
+>0377   < is not numeric
+>0xEEFFAA00    < is not numeric
+>0X1234EF     < is not numeric
+>0b1010< is not numeric
+>0B111111111111111< is not numeric
 >+0< is numeric
 >+1234567890< is numeric
 >-187654321< is numeric
@@ -79,38 +79,38 @@ bool(false)
 >9E-21< is numeric
 >-123.762e21< is numeric
 >+876.432E37< is numeric
->INF< is not numeric		***
->INf< is not numeric		***
->InF< is not numeric		***
->Inf< is not numeric		***
->iNF< is not numeric		***
->iNf< is not numeric		***
->inF< is not numeric		***
->inf< is not numeric		***
->+INF< is not numeric		***
->+INf< is not numeric		***
->+InF< is not numeric		***
->+Inf< is not numeric		***
->+iNF< is not numeric		***
->+iNf< is not numeric		***
->+inF< is not numeric		***
->+inf< is not numeric		***
->-INF< is not numeric		***
->-INf< is not numeric		***
->-InF< is not numeric		***
->-Inf< is not numeric		***
->-iNF< is not numeric		***
->-iNf< is not numeric		***
->-inF< is not numeric		***
->-inf< is not numeric		***
->NAN< is not numeric		***
->NAn< is not numeric		***
->NaN< is not numeric		***
->Nan< is not numeric		***
->nAN< is not numeric		***
->nAn< is not numeric		***
->naN< is not numeric		***
->nan< is not numeric		***
+>INF< is not numeric
+>INf< is not numeric
+>InF< is not numeric
+>Inf< is not numeric
+>iNF< is not numeric
+>iNf< is not numeric
+>inF< is not numeric
+>inf< is not numeric
+>+INF< is not numeric
+>+INf< is not numeric
+>+InF< is not numeric
+>+Inf< is not numeric
+>+iNF< is not numeric
+>+iNf< is not numeric
+>+inF< is not numeric
+>+inf< is not numeric
+>-INF< is not numeric
+>-INf< is not numeric
+>-InF< is not numeric
+>-Inf< is not numeric
+>-iNF< is not numeric
+>-iNf< is not numeric
+>-inF< is not numeric
+>-inf< is not numeric
+>NAN< is not numeric
+>NAn< is not numeric
+>NaN< is not numeric
+>Nan< is not numeric
+>nAN< is not numeric
+>nAn< is not numeric
+>naN< is not numeric
+>nan< is not numeric
 
 Notice: Undefined variable: t in %s/types/string/numeric_strings.php on line 38
 

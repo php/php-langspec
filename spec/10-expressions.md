@@ -1050,7 +1050,7 @@ $x = $vect1[1];   // calls Vector::offsetGet(1)
     <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
 </pre>
 
-*postfix-expression* is defined in [§§](#general-3); and *assignmment-expression*
+*postfix-expression* is defined in [§§](#general-3); and *assignment-expression*
 is defined in [§§](#general-5).
 
 

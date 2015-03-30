@@ -81,6 +81,10 @@ while (condition)
 **Syntax**
 
 <pre>
+  <i>labeled-statement-list:</i>
+    <i>labeled-statement</i>
+    <i>labeled-statement-list labeled-statement</i>
+    
   <i>labeled-statement:</i>
     <i>named-label</i>
     <i>case-label</i>
@@ -286,18 +290,17 @@ else  // this else does go with the outer if
 
 <pre>
   <i>switch-statement:</i>
-    switch  (  <i>expression</i>  )  <i>compound-statement</i>
-    switch  (  <i>expression</i>  )  :   <i>statement-list</i>  endswitch;
+    switch  (  <i>expression</i>  )  {   <i>labeled-statement-list<sub>opt</sub></i>  }
+    switch  (  <i>expression</i>  )  :   <i>labeled-statement-list<sub>opt</sub></i>  endswitch;
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#general-6); and *compound-statement* and
-*statement-list* are defined in [§§](#compound-statements).
+*expression* is defined in [§§](10-expressions.md#general-6); and *labeled-statement-list* is defined in[§§](#labeled-statements).
 
 **Constraints**
 
-The controlling expression *expression* must have scalar type.
+The *labeled-statement-list* in the second alternative (in the alternative syntax) must not contain any *compound-statement*'s.
 
-The *statement-list* must not contain any *compound-statement*'s.
+The expression of the case labels [§§](#labeled-statements) within the *labeled-statement-list* cannot be of an object type in the case where the *expression* evaluates to a numeric type. 
 
 There must be at most one default label.
 

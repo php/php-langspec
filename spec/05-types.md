@@ -123,12 +123,10 @@ string.
 
 <pre>
   <i>str-numeric::</i>
-    <i>str-whitespace<sub>opt</sub></i>
-    <i>sign<sub>opt</sub></i>
-    <i>str-number</i>
+    <i>str-whitespace<sub>opt</sub>   sign<sub>opt</sub>   str-number</i>
 
   <i>str-whitespace::</i>
-    <i>str-whitespace<sub>opt</sub> str-whitespace-char</i>
+    <i>str-whitespace<sub>opt</sub>   str-whitespace-char</i>
 
   <i>str-whitespace-char::</i>
     <i>new-line</i>

@@ -130,7 +130,7 @@ otherwise, it controls the visibility of the left-hand name.
 ```PHP
 trait T1 { public function compute( ... ) { ... } }
 trait T2 { public function compute( ... ) { ... } }
-trait T1 { public function sort( ... ) { ... } }
+trait T3 { public function sort( ... ) { ... } }
 trait T4
 {
   use T3;

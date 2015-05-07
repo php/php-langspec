@@ -125,7 +125,7 @@ by the library function `sprintf` (§xx)).
 
 If the source value is `NULL`, the result value is the empty string.
 
-If the source is an array, the coversion is invalid. The result value is
+If the source is an array, the conversion is invalid. The result value is
 the string "Array" and a non-fatal error is produced.
 
 If the source is an object, then if that object's class has a

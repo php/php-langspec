@@ -2104,17 +2104,29 @@ These operators associate left-to-right.
     <i>relational-expression</i>  >   <i>shift-expression</i>
     <i>relational-expression</i>  <=  <i>shift-expression</i>
     <i>relational-expression</i>  >=  <i>shift-expression</i>
+    <i>relational-expression</i>  <=> <i>shift-expression</i>
 </pre>
 
 *shift-expression* is defined in [§§](#bitwise-shift-operators).
 
 **Semantics**
 
+Operator `<=>` represents comparison operator between two expressions, with the
+result being an integer less than `0` if the expression on the left is less than the expression on the right 
+(i.e. if `$a < $b` would return `TRUE`), as defined below by the semantics of the operator `<`, 
+integer `0` if those expressions are equal (as defined by the semantics of the `==` operator)
+and integer greater than `0` otherwise. 
+
 Operator `<` represents *less-than*, operator `>` represents
 *greater-than*, operator `<=` represents *less-than-or-equal-to*, and
 operator `>=` represents *greater-than-or-equal-to*.
 
 The type of the result is `bool`.
+
+Note that *greater-than* semantics is implemented as the reverse of *less-than*, i.e.
+`$a > $b` is the same as `$b < $a`. This may lead to confusing results if the operands
+are not well-ordered - such as comparing two objects not having comparison semantics, or 
+comparing arrays.
 
 The following table shows the result for comparison of different types, with the left
 operand displayed vertically and the right displayed horizontally. 
@@ -2202,6 +2214,10 @@ FALSE < "abc"   // result has value TRUE
 [100] < [10,20,30] // result has value TRUE (LHS array is shorter)
 [10,20] >= ["red"=>0,"green"=>0] // result has value FALSE, (key 10 does not exists in RHS)
 ["red"=>0,"green"=>0] >= ["green"=>0,"red"=>0] // result has value TRUE (order is irrelevant)
+// ------------------------------------
+function order_func($a, $b) {
+    return ($a->$x <=> $b->x) ?: ($a->y <=> $b->y) ?: ($a->z <=> $b->z);
+}
 ```
 
 ##Equality Operators

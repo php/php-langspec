@@ -464,7 +464,7 @@ list($arr2[], $arr2[]) = [0, 1];
 **Syntax**
 
 <pre>
-  <i>print-intrinsic:
+  <i>print-intrinsic:</i>
     print  <i>expression</i>
     print  (  <i>expression</i>  )
 </pre>
@@ -2911,7 +2911,7 @@ It is important to understand that unlike the C/C++ (or similar)
 preprocessor, script inclusion in PHP is not a text substitution
 process. That is, the contents of an included file are not treated as if
 they directly replaced the inclusion operation source in the including
-file.
+file. See examples below for more information.
 
 An inclusion expression can be written to look like a function call;
 however, that is not the case, even though an included file can return a
@@ -2922,6 +2922,103 @@ relative path. In the latter case, an implementation may use the
 configuration directive
 [`include_path`](http://www.php.net/manual/ini.core.php#ini.include-path)
  to resolve the include file's location. 
+
+**Examples:**
+
+As mentioned above, script inclusion in PHP is not a text substitution process (unlike C/C++\'s preprocessor and alike). This allows that one can specify namespaces in the included file even though nested namespaces in a single file only are not permitted:
+
+include.php
+````
+namespace foo;
+$x = 'hello';
+foo();
+````
+
+index.php
+```
+namespace bar {
+  include 'include.php'; // this is fine does not result in a nested namespace
+  echo $x;               // hello
+  \foo\foo();            // function foo is still member of the foo namespace 
+
+  //namespace baz{}      // would fail, nesting namespaces are not allowed
+}
+```
+
+
+Moreover, nested classes in a single file are not permitted whereas classes defined in an included file does not result in a nested class (in a conditionally defined class though) - the same applies for nested interfaces or traits:
+
+include.php
+```` 
+namespace foo;
+class Foo{}
+````
+
+index.php
+````
+class Bar{
+  function bar(){
+    include 'include.php'; // this is fine, does not result in a nested class
+  }
+  //class Foo1{}       // would fail, nested classes are not allowed
+  //interface Foo2{}   // would fail as well
+  //trait Foo3{}       // and would fail as well
+}
+new Foo();             // fails, \Foo could not be found
+new \foo\Foo();        // fails, definition for class Foo was not loaded yet
+$bar = new Bar();
+$bar->bar();           
+new Foo();             // still fails, include != use statement
+new \foo\Foo();        // succeeds, definition for class Foo was loaded
+````
+
+
+c-constants ([§§](06-constants.md#general)) can not be defined within a function or method (in contrast to d-constants [§§](06-constants.md#general)). As in the other examples above, this is perfectly legal when it happens through a file inclusion in which the constant does not lose its scope. Consider the following example:
+
+include.php
+```` 
+namespace foo;
+const X = 2;
+````
+
+index.php
+````
+class Bar{
+  function bar(){
+    include 'include.php';
+  }
+}
+echo X;                // emits an E_NOTICE: Use of undefined constant X ...
+echo \foo\X;           // same as above since the inclusion did not happen yet
+$bar = new Bar();
+$bar->bar();           
+echo X;                // still fails, include != use statement
+echo \foo\X;           // succeeds, X was defined through the inclusion
+````
+
+
+In contrast to constants, functions, classes, interfaces and traits, variables defined at the top level of a file might change their meaning (being a global variable) when the corresponding file is included by another file. This is the case when the inclusion happens in a local scope. In this case the variables become local variables of the corresponding scope. Following an example as illustration:
+
+include.php
+```` 
+namespace foo;
+$x = 'hello';
+````
+
+index.php
+````
+function bar(){
+  include 'include.php';  // introduces the local variable $x
+  $x = 'hi';              // modification is only local
+  return $x;
+}
+echo bar();               // hi
+echo $x;                  // emits an E_NOTICE: Undefined variable: x ...
+
+include 'include.php';    // introduces the global variable $x
+echo $x;                  // hello
+````
+
 
 ###The `include` Operator
 
@@ -2941,6 +3038,7 @@ configuration directive
 a filename. 
 
 **Semantics**
+
 Operator `include` results in parsing and executing the designated include
 file. If the filename is invalid or does not specify a readable
 file, a non-fatal error is produced.

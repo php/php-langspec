@@ -82,18 +82,18 @@ while (condition)
 
 <pre>
   <i>labeled-statement:</i>
-    <i>named-label</i>
-    <i>case-label</i>
-    <i>default-label</i>
+    <i>named-label-statement</i>
+    <i>case-statement</i>
+    <i>default-statement</i>
 
-  <i>named-label:</i>
+  <i>named-label-statement:</i>
     <i>name</i>  :  <i>statement</i>
 
-  <i>case-label:</i>
-    <i>case   expression   case-default-label-terminator   statement</i>
+  <i>case-statement:</i>
+    case   <i>expression   case-default-label-terminator   statement</i>
 
-  <i>default-label:</i>
-    <i>default  case-default-label-terminator   statement</i>
+  <i>default-statement:</i>
+    default  <i>case-default-label-terminator   statement</i>
 
   <i>case-default-label-terminator:</i>
     :
@@ -105,13 +105,11 @@ while (condition)
 
 **Constraints**
 
-A named label must only be used as the target of a `goto` statement
-([§§](#the-goto-statement)).
+A named label can be used as the target of a [`goto` statement](#the-goto-statement).
 
 Named labels must be unique within a function.
 
-A case and default label must only occur inside a `switch` statement
-([§§](#the-switch-statement)).
+A case and default labeled statements must only occur inside a [`switch` statement](#the-switch-statement).
 
 **Semantics**
 
@@ -195,7 +193,7 @@ selects among a set of statements.
 <pre>
   <i>if-statement:</i>
     if   (   <i>expression</i>   )   <i>statement   elseif-clauses-1<sub>opt</sub>   else-clause-1<sub>opt</sub></i>
-    if   (   <i>expression   )   :   <i>statement-list   elseif-clauses-2<sub>opt</sub>   else-clause-2<sub>opt</sub></i>   endif   ;
+    if   (   <i>expression</i>   )   :   <i>statement-list   elseif-clauses-2<sub>opt</sub>   else-clause-2<sub>opt</sub></i>   endif   ;
 
   <i>elseif-clauses-1:</i>
     <i>elseif-clause-1</i>
@@ -221,22 +219,20 @@ selects among a set of statements.
 *expression* is defined in [§§](10-expressions.md#general-6); *statement* is defined in [§§](#general);
 and *statement-list* is defined in [§§](#compound-statements).
 
-**Constraints**
-
-The controlling expression *expression* must have type `bool` or be
-implicitly convertible to that type.
-
 **Semantics**
 
 The two forms of the `if` statement are equivalent; they simply provide
 alternate styles.
 
-If *expression* tests `TRUE`, the *statement* that follows immediately is
-executed. Otherwise, if an `elseif` clause is present the *statement*
-immediately following the `elseif` is executed. Otherwise, any other
-`elseif` *expression*s are evaluated. If none of those tests `TRUE`, if an
+The result of the controlling expression *expression* will be [converted to type `bool`](08-conversions.md#converting-to-boolean-type) 
+if it does not have this type.
+
+If *expression* is `TRUE`, the *statement* that follows immediately is
+executed. Otherwise, if an `elseif` clause is present its *expression* is evaluated
+in turn, and if it is `TRUE`, the *statement* immediately following the `elseif` is executed. 
+This repeats for every `elseif` clause in turn. If none of those tests `TRUE`, if an
 `else` clause is present the *statement* immediately following the `else` is
-executed.
+executed. 
 
 An `else` clause is associated with the lexically nearest preceding `if` or
 `elseif` that is permitted by the syntax.
@@ -286,18 +282,18 @@ else  // this else does go with the outer if
 
 <pre>
   <i>switch-statement:</i>
-    switch  (  <i>expression</i>  )  <i>compound-statement</i>
-    switch  (  <i>expression</i>  )  :   <i>statement-list</i>  endswitch;
+    switch  (  <i>expression</i>  )  { <i>case-statements<sub>opt</sub></i> }
+    switch  (  <i>expression</i>  )  :   <i>case-statements<sub>opt</sub></i>  endswitch;
+
+  <i>case-statements:</i>
+    <i>case-statement</i> <i>statement-list<sub>opt</sub></i> <i>case-statements<sub>opt</sub></i>
+    <i>default-statement</i> <i>statement-list<sub>opt</sub></i> <i>case-statements<sub>opt</sub></i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#general-6); and *compound-statement* and
+*expression* is defined in [§§](10-expressions.md#general-6); *case-statement* and *default-statement* are defined in [§§](#labeled-statements) and *compound-statement* and
 *statement-list* are defined in [§§](#compound-statements).
 
 **Constraints**
-
-The controlling expression *expression* must have scalar type.
-
-The *statement-list* must not contain any *compound-statement*'s.
 
 There must be at most one default label.
 
@@ -307,33 +303,34 @@ The two forms of the `switch` statement are equivalent; they simply
 provide alternate styles.
 
 Based on the value of its *expression*, a `switch` statement transfers
-control to a case label (§[[11.3](#labeled-statements)](#labeled-statements)); to a default label (§[[11.3](#labeled-statements)](#labeled-statements)), if one
+control to a [case label](#labeled-statements), to a [default label](#labeled-statements), if one
 exists; or to the statement immediately following the end of the `switch`
 statement. A case or default label is only reachable directly within its
 closest enclosing `switch` statement.
 
 On entry to the `switch` statement, the controlling expression is
-evaluated and then compared with the value of the case-label-expression
-values, in lexical order. If one matches, control transfers to the
+evaluated and then compared with the value of the case label *expression*
+values, in lexical order, using the same semantics as `==`. 
+If one matches, control transfers to the
 statement following the corresponding case label. If there is no match,
 then if there is a default label, control transfers to the statement
 following that; otherwise, control transfers to the statement
 immediately following the end of the `switch` statement. If a `switch`
 contains more than one case label whose values compare equal to the
-controlling expression, the first in lexical order is consider the
+controlling expression, the first in lexical order is considered the
 match.
 
 An arbitrary number of statements can be associated with any case or
-default label. In the absence of a `break` statement ([§§](#the-break-statement)) at the end
-of a set of such statements, control drops through into any following
-case or default label. Thus, if all cases and the default end in break
+default label. In the absence of a [`break` statement](#the-break-statement) at the end
+of a set of such statements, the execution continues into any following
+statements, ignoring the associated labels. If all cases and the default end in `break`
 and there are no duplicate-valued case labels, the order of case and
 default labels is insignificant.
 
 Case-label values can be runtime expressions, and the types of sibling
 case-label values need not be the same.
 
-Switches may nested, in which case, each `switch` has its own set of
+Switches may be nested, in which case, each `switch` has its own set of
 `switch` clauses.
 
 **Examples**
@@ -349,7 +346,7 @@ case 20:
   echo "case 20\n";
   break;    // break ends "group" of case 20 statements
 case 10:
-  echo "case 10\n"; // no break, so control drops into next label's "group"
+  echo "case 10\n"; // no break, so execution continues to the next label's "group"
 case 30:
   echo "case 30\n"; // no break, but then none is really needed either
 }
@@ -409,20 +406,18 @@ is defined in [§§](#the-foreach-statement).
 *expression* is defined in [§§](10-expressions.md#general-6); *statement* is defined in [§§](#general); and
 *statement-list* is defined in [§§](#compound-statements).
 
-**Constraints**
-
-The controlling expression *expression* must have type `bool` or be
-implicitly convertible to that type.
-
 **Semantics**
 
 The two forms of the `while` statement are equivalent; they simply provide
 alternate styles.
 
+The result of the controlling expression *expression* is [converted to type `bool`](08-conversions.md#converting-to-boolean-type) 
+if it does not have this type.
+
 If *expression* tests `TRUE`, the *statement* that follows immediately is
 executed, and the process is repeated. If *expression* tests `FALSE`,
 control transfers to the point immediately following the end of the
-`while` statement. The loop body, *statement*, is executed zero or more
+`while` statement. The loop body is executed zero or more
 times.
 
 **Examples**
@@ -454,7 +449,7 @@ while (TRUE)
 
 *statement* is defined in [§§](#general) and *expression* is defined in [§§](10-expressions.md#general-6).
 
- (Note: There is no `:/enddo` alternate syntax).
+(Note: There is no alternate syntax).
 
 **Constraints**
 
@@ -463,8 +458,12 @@ implicitly convertible to that type.
 
 **Semantics**
 
-First, *statement* is executed and then *expression* is tested. If its
-value is `TRUE`, the process is repeated. If *expression* tests `FALSE`,
+First, *statement* is executed and then *expression* is evaluated. 
+
+The result of the controlling expression *expression* is [converted to type `bool`](08-conversions.md#converting-to-boolean-type) 
+if it does not have this type.
+
+If the value tests `TRUE`, the process is repeated. If *expression* tests `FALSE`,
 control transfers to the point immediately following the end of the `do`
 statement. The loop body, *statement*, is executed one or more times.
 
@@ -510,12 +509,6 @@ Note: Unlike C/C++, PHP does not support a comma operator, per se.
 However, the syntax for the `for` statement has been extended from that of
 C/C++ to achieve the same results in this context.
 
-**Constraints**
-
-The controlling expression—the right-most *expression* in
-*for-control*—must have type `bool` or be implicitly convertible to that
-type.
-
 **Semantics**
 
 The two forms of the `for` statement are equivalent; they simply provide
@@ -525,10 +518,11 @@ The group of expressions in *for-initializer* is evaluated once,
 left-to-right, for their side effects. Then the group of expressions in
 *for-control* is evaluated left-to-right (with all but the right-most
 one for their side effects only), with the right-most expression's value
-being tested. If that tests `TRUE`, *statement* is executed, and the group
+being [converted to type `bool`](08-conversions.md#converting-to-boolean-type).
+If the result is `TRUE`, *statement* is executed, and the group
 of expressions in *for-end-of-loop* is evaluated left-to-right, for
 their side effects only. Then the process is repeated starting with
-*for-control*. If the right-most expression in *for-control* tests
+*for-control*. Once the right-most expression in *for-control* is
 `FALSE`, control transfers to the point immediately following the end of
 the `for` statement. The loop body, *statement*, is executed zero or more
 times.
@@ -581,7 +575,7 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10)
 <pre>
   <i>foreach-statement:</i>
     foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
-    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>   foreach-value</i>  )  :   <i>statement-list</i>  endforeach  ;
+    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )  :  <i>statement-list</i>  endforeach  ;
 
   <i>foreach-collection-name</i>:
     <i>expression</i>
@@ -595,15 +589,14 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10)
 </pre>
 
 *statement* is defined in [§§](#general); *statement-list* is defined in [§§](#compound-statements);
-*variable-name* is defined in [§§](09-lexical-structure.md#names); *list-intrinsic* is defined in
-[§§](10-expressions.md#list); and *expression* is defined in [§§](10-expressions.md#general-6).
+*list-intrinsic* is defined in [§§](10-expressions.md#list); and *expression* is defined in [§§](10-expressions.md#general-6).
 
 **Constraints**
 
-The variable designated by *foreach-collection-name* must be a
-collection.
+The result of the expression *foreach-collection-name* must be a
+collection, i.e. either array or object implementing [Traversable](http://php.net/Traversable).
 
-Each *expression* must designate a variable name.
+*expression* in *foreach-value* and *foreach-key* should designate a variable.
 
 **Semantics**
 
@@ -617,8 +610,8 @@ the `&` is present in *foreach-value*, the variable designated by the
 corresponding *expression* is made an alias to the current element. If
 the `&` is omitted, the value of the current element is assigned to the
 corresponding variable. The loop body, *statement*, is executed zero or
-more times. After the loop terminates, *expression* in *foreach-value*
-has the same meaning it had after the final iteration, if any.
+more times. After the loop terminates, the variable designated by *expression* 
+in *foreach-value* has the same value as it had after the final iteration, if any.
 
 If *foreach-key* is present, the variable designated by its *expression*
 is assigned the current element's key value.
@@ -686,21 +679,20 @@ is defined in [§§](#the-return-statement); and *throw-statement* is defined in
 
 **Constraints**
 
-The name in a `goto` statement must be that of a named label located
+The name in a `goto` statement must be that of a [named label](#labeled-statements) located
 somewhere in the current script. Control must not be transferred into or
-out of a function, or into an iteration statement ([§§](#iteration-statements)) or a `switch`
-statement ([§§](#the-switch-statement)).
+out of a function, or into an [iteration statement](#iteration-statements) or a [`switch`
+statement](#the-switch-statement).
 
 A `goto` statement must not attempt to transfer control out of a
-finally-block ([§§](#the-try-statement)).
+[finally-block](#the-try-statement).
 
 **Semantics**
 
-A `goto` statement transfers control unconditionally to the named label
-([§§](#labeled-statements)).
+A `goto` statement transfers control unconditionally to the [named label](#labeled-statements).
 
 A `goto` statement may break out of a construct that is fully contained
-within a finally-block.
+within a [finally-block](#the-try-statement).
 
 **Examples**
 
@@ -740,24 +732,24 @@ done:
 
 **Constraints**
 
-The breakout level must not be zero, and it must not exceed the level of
+The breakout level must be greater than zero, and it must not exceed the level of
 actual enclosing iteration and/or `switch` statements.
 
-A `continue` statement must not attempt to break out of a finally-block
-([§§](#the-try-statement)).
+A `continue` statement must not attempt to break out of a [finally-block](#the-try-statement).
 
 **Semantics**
 
 A `continue` statement terminates the execution of the innermost enclosing
 iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statement.
+*breakout-level* specifies which of these statements is targeted, with innermost being assigned
+number `1` and containing statements having levels increasing by 1.
 
 A `continue` statement terminates the execution of one or more enclosing
-iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statements. If *breakout-level* is
-greater than one, the next iteration (if any) of the next innermost
-enclosing iteration or switch statement is started; however, if that
-statement is a `for` statement and it has a *for-end-of-loop*, its
-expression group for the current iteration is evaluated first. If
-*breakout-level* is 1, the behavior is the same as for `break 1`. If
+[iteration](#iteration-statements) or [`switch`](#the-switch-statement) statements,
+up to the specified level. If the statement at the *breakout-level* is an iteration statement,
+the next iteration (if any) of the next innermost enclosing iteration or switch statement is started. 
+If that statement is a `for` statement and it has a *for-end-of-loop*, its
+end-of-loop expression group for the current iteration is evaluated first. If
 *breakout-level* is omitted, a level of 1 is assumed.
 
 A `continue` statement may break out of a construct that is fully
@@ -787,16 +779,15 @@ for ($i = 1; $i <= 5; ++$i)
 
 **Constraints**
 
-The breakout level must not be zero, and it must not exceed the level of
+The breakout level must be greater than zero, and it must not exceed the level of
 actual enclosing iteration and/or `switch` statements.
 
-A `break` statement must not attempt to break out of a finally-block
-([§§](#the-try-statement)).
+A `break` statement must not attempt to break out of a [finally-block](#the-try-statement).
 
 **Semantics**
 
 A `break` statement terminates the execution of one or more enclosing
-iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statements. The number of levels
+[iteration](#iteration-statements) or []`switch`](#the-switch-statement) statements. The number of levels
 broken out is specified by *breakout-level*. If *breakout-level* is
 omitted, a level of 1 is assumed.
 
@@ -851,14 +842,14 @@ for ($i = 10; $i <= 40; $i +=10)
 
 **Constraints**
 
-The *expression* in a *return-statement* in a generator function
-([§§](10-expressions.md#yield-operator)) must be the literal `NULL` or be omitted.
+The *expression* in a *return-statement* in a [generator function](10-expressions.md#yield-operator)
+must be the literal `NULL` or be omitted.
 
 **Semantics**
 
 A `return` statement from within a function terminates the execution of
-that function normally, and depending on how the function was defined
-([§§](13-functions.md#function-calls)), it returns the value of *expression* to the function's caller
+that function normally, and depending on how the [function was defined](13-functions.md#function-calls),
+it returns the value of *expression* to the function's caller
 by value or byRef. If *expression* is omitted the value `NULL` is used.
 
 If execution flows into the closing brace (`}`) of a function, `return
@@ -870,28 +861,28 @@ values may have different types.
 If an undefined variable is returned byRef, that variable becomes
 defined, with a value of `NULL`.
 
-A `return` statement is permitted in a try-block ([§§](#the-try-statement)) and a catch-block
-([§§](#the-try-statement)). However, it is unspecified whether a `return` statement is
-permitted in a finally-block ([§§](#the-try-statement)), and, if so, the semantics of
-that.
+A `return` statement is permitted in a [try-block](#the-try-statement)
+and a [catch-block](#the-try-statement) and in [finally-block](#the-try-statement). 
 
 Using a `return` statement inside a finally-block will override any other
 `return` statement or thrown exception from the try-block and all its
-catch-blocks.   Code execution in the parent stack will continue as if
+catch-blocks. Code execution in the parent stack will continue as if
 the exception was never thrown.
 
 If an uncaught exception exists when a finally-block is executed, if
 that finally-block executes a `return` statement, the uncaught exception
 is discarded.
 
-In an included file ([§§](10-expressions.md#general-6)) a `return` statement may occur outside any
-function. This statement terminates processing of that script and
+
+
+A `return` statement may occur in a script outside any function. In an [included file](10-expressions.md#general-6),
+such statement terminates processing of that script file and
 returns control to the including file. If *expression* is present, that
 is the value returned; otherwise, the value `NULL` is returned. If
 execution flows to the end of the script, `return 1;` is implied. However,
 if execution flows to the end of the top level of a script, `return 0;` is
-implied. Likewise, if *expression* is omitted at the top level. (See
-exit ([§§](10-expressions.md#exitdie))).
+implied. Likewise, if *expression* is omitted at the top level. (See also
+[`exit`](10-expressions.md#exitdie)).
 
 Returning from a constructor or destructor behaves just like returning
 from a function.
@@ -901,8 +892,8 @@ terminate.
 
 Return statements can also be used in the body of anonymous functions.
 
-`return` terminates the execution of source code given to the intrinsic
-[`eval` ([§§](10-expressions.md#eval))](http://php.net/manual/function.eval.php).
+`return` also terminates the execution of source code given to the intrinsic
+[`eval`](10-expressions.md#eval).
 
 **Examples**
 
@@ -939,9 +930,9 @@ class Point
 
 **Implementation Notes**
 
-Although *expression* is a full expression ([§§](10-expressions.md#general)), and there is a
-sequence point ([§§](10-expressions.md#general)) at the end of that expression, as stated in
-[§§](10-expressions.md#general), a side effect need not be executed if it can be determined that
+Although *expression* is a [full expression](10-expressions.md#general), and there is a
+[sequence point](10-expressions.md#general) at the end of that expression,
+a side effect need not be executed if it can be determined that
 no other program code relies on its having happened. (For example, in
 the cases of `return $a++;` and `return ++$a;`, it is obvious what value
 must be returned in each case, but if `$a` is a variable local to the
@@ -960,7 +951,7 @@ enclosing function, `$a` need not actually be incremented.
 
 **Constraints**
 
-The type of *expression* must be Exception ([§§](17-exception-handling.md#class-exception)) or a subclass of that
+The type of *expression* must be [Exception](17-exception-handling.md#class-exception) or a subclass of that
 class.
 
 *expression* must be such that an alias to it can be created.
@@ -969,8 +960,8 @@ class.
 
 A `throw` statement throws an exception immediately and unconditionally.
 Control never reaches the statement immediately following the throw. See
-[§§](17-exception-handling.md#general) and [§§](#the-try-statement) for more details of throwing and catching exceptions,
-and how uncaught exceptions are dealt with.
+[exception handling](17-exception-handling.md#general) and [try-statement](#the-try-statement)
+for more details of throwing and catching exceptions, and how uncaught exceptions are dealt with.
 
 Rather than handle an exception, a catch-block may (re-)throw the same
 exception that it caught, or it can throw an exception of a different
@@ -1000,24 +991,24 @@ throw new MyException;
     <i>catch-clauses   catch-clause</i>
 
   <i>catch-clause:</i>
-    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
+    catch  (  <i>qualified-name</i> <i>variable-name</i> )  <i>compound-statement</i>
 
   <i>finally-clause:</i>
     finally   <i>compound-statement</i>
 </pre>
 
-*compound-statement* is defined in [§§](#compound-statements) and
-*parameter-declaration-list* is defined in [§§](13-functions.md#function-definitions).
+*compound-statement* is defined in [§§](#compound-statements);
+*variable-name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names).
 
 **Constraints**
 
 In a *catch-clause*, *parameter-declaration-list* must contain only one
-parameter, and its type must be `Exception` ([§§](17-exception-handling.md#class-exception)) or a type derived from
+parameter, and its type must be [`Exception`](17-exception-handling.md#class-exception) or a type derived from
 that class, and that parameter must not be passed byRef.
 
 **Semantics**
 
-In a *catch-clause*, *identifier* designates an *exception variable*
+In a *catch-clause*, *variable-name* designates an *exception variable*
 passed in by value. This variable corresponds to a local variable with a
 scope that extends over the catch-block. During execution of the
 catch-block, the exception variable represents the exception currently
@@ -1034,13 +1025,17 @@ try-block that encloses the call to the current function. This process
 continues until a catch-block is found that can handle the current
 exception.
 
+The matching is done by considering the class specified by *qualified-name*
+and comparing it to the type of the exception. If the exception is an
+[instance of](10-expressions.md#instanceof-operator) this class then the clause matches.
+
 If a matching catch-block is located, the Engine prepares to transfer
 control to the first statement of that catch-block. However, before
 execution of that catch-block can start, the Engine first executes, in
 order, any finally-blocks associated with try-blocks nested more deeply
 than the one that caught the exception.
 
-If no matching catch-block is found, the behavior is
+If no matching catch-block is found, the exception is uncaught and the behavior is
 implementation-defined.
 
 **Examples**
@@ -1090,25 +1085,20 @@ finally { ... }
     declare  (  <i>declare-directive</i>  )  ;
 
   <i>declare-directive:</i>
-    ticks  =  <i>declare-tick-count</i>
-    encoding  =  <i>declare-character-encoding</i>
+    ticks  =  <i>literal</i>
+    encoding  =  <i>literal</i>
 
-  <i>declare-tick-count</i>
-    <i>expression</i>
-
-  <i>declare-character-encoding:</i>
-    <i>expression</i>
 </pre>
 
 *statement* is defined in [§§](#general); *statement-list* is defined in [§§](#compound-statements);
-and *expression* is defined in [§§](10-expressions.md#the-include-operator).
+and *literal* is defined in [§§](09-lexical-structure.md#literals).
 
 **Constraints**
 
-*tick-count* must designate a value that is, or can be converted, to an
+The literal for *ticks* must designate a value that is, or can be converted, to an
 integer having a non-negative value.
 
-*character-encoding* must designate a string whose value names an
+The literal for *encoding* must designate a string whose value names an
 8-bit-[character
 encoding](http://en.wikipedia.org/wiki/Character_encoding).
 
@@ -1126,16 +1116,14 @@ statement is overridden by another *declare-statement*, whichever comes
 first. As the parser is executing, certain statements are considered
 *tickable*. For every *tick-count* ticks, an event occurs, which can be
 serviced by the function previously registered by the library function 
-[`register_tick_function`
-(§xx)](http://php.net/manual/function.register-tick-function.php).
+[`register_tick_function`](http://php.net/manual/function.register-tick-function.php).
 Tick event monitoring can be disabled by calling the library function 
-[`unregister_tick_function`
-(§xx)](http://php.net/manual/function.unregister-tick-function.php).
+[`unregister_tick_function`](http://php.net/manual/function.unregister-tick-function.php).
 This facility allows a profiling mechanism to be developed.
 
 Character encoding can be specified on a script-by-script basis using
-the encoding directive. The joint ISO and IEC standard ISO/IEC
-8859 standard series (<http://en.wikipedia.org/wiki/ISO/IEC_8859>)
+the encoding directive. The joint ISO and IEC standard [ISO/IEC
+8859 standard series](http://en.wikipedia.org/wiki/ISO/IEC_8859)
 specifies a number of 8-bit-[character
 encodings](http://en.wikipedia.org/wiki/Character_encoding) whose names
 can be used with this directive.

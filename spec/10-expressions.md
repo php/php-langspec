@@ -2518,6 +2518,9 @@ Given the expression `e1 ?? e2`, if `e1` is set and not `NULL` (i.e. TRUE for
 evaluated, and the result becomes the result of the whole
 expression. There is a sequence point after the evaluation of `e1`.
 
+Note that the semantics of `??` is similar to `isset` so that uninitialized variables will not produce
+warnings when used in `e1`.
+
 This operator associates right-to-left.
 
 **Examples**

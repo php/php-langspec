@@ -45,6 +45,9 @@ apply:
     <dt>lvalue, non-modifiable</dt>
     <dd>an lvalue whose value cannot be changed.</dd>
 
+    <dt>notice</dt>
+    <dd>an informational message informing user of the code that may not work as intended.</dd>
+
     <dt>parameter</dt>
     <dd>a variable declared in the parameter list of a function that is
     intended to map to a corresponding argument in a call to that

@@ -52,7 +52,11 @@ and is a non-modifiable lvalue.
 
 **Undefined Constants**
 
-PHP does not define undefined constants implicitly and uses the name of the undefined constant as string as substitution value. Moreover, an  `E_NOTICE`, stating that the corresponding constant was undefined, is emitted. 
+PHP does not define undefined constants implicitly -- forward usages of constants are also classified as undefined constants here. A distinction between class/interface constants and top level constants is made.
+
+For top level constants: the name of the undefined constant (as string) is used as substitution value. Moreover, an  `E_NOTICE` is emitted stating that the corresponding constant was undefined.
+
+For class/interface constants: an `E_FATAL_ERROR` is produced stating that the corresponding constant was undefined.
 
 **Examples**
 
@@ -71,6 +75,17 @@ echo NON_EXISTING_CONSTANT;     // same here, the constant is still undefined
                                 // and 'NON_EXISTING_CONSTANT' is used as 
                                 // substitution value and an E_NOTICE is 
                                 // emitted again.
+
+echo MAX_LENGTH;                // same here due to a forward usage 
+                                // (MAX_LENGTH is defined further below).
+                                // 'MAX_LENGTH' is used as substitution 
+                                // value and an E_NOTICE is emitted.
+
+const MAX_LENGTH = 7.5;
+
+echo Exception::MESSAGE;        // undefined class constant. Emits an 
+                                // E_FATAL_ERROR and stops execution.
+
 ```
 
 ###Local Variables
@@ -286,10 +301,10 @@ A distinction is made based on the context where an undefined global variable is
 PHP does not implicitly define an undefined global variable and uses `NULL` as substitution value instead. Furthermore, an `E_NOTICE`, stating that the corresponding variable was undefined, is emitted except for the following cases: 
 
 1.   The variable is used as single expression
-       a. in a statement.
-       b. as argument of [isset](10-expressions.md#isset).
-       c. as argument of [empty](10-expressions.md#empty).
-       d. as the left hand side of the [coalesce operator ??](10-expressions.md#coalesce-operator).
+       1.  in a statement.
+       2.  as argument of [isset](10-expressions.md#isset).
+       3.  as argument of [empty](10-expressions.md#empty).
+       4.  as the left hand side of the [coalesce operator ??](10-expressions.md#coalesce-operator).
 
 Since undefined global variables are not defined implicitly, they stay undefined, a VSlot is not created for undefined variables used in a byValue context respectively.
 

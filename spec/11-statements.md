@@ -1087,6 +1087,7 @@ finally { ... }
   <i>declare-directive:</i>
     ticks  =  <i>literal</i>
     encoding  =  <i>literal</i>
+    strict_types  =  <i>literal</i>
 
 </pre>
 
@@ -1105,6 +1106,10 @@ encoding](http://en.wikipedia.org/wiki/Character_encoding).
 Except for white space, a *declare-statement* in a script that specifies
 *character-encoding* must be the first thing in that script.
 
+The literal for *strict_types* should be either `0` or `1`. Only the statement-less
+form can be used for *strict_types* declare. The *strict_types* declare should be the first statement
+in the script, excepting other declare statements.
+
 **Semantics**
 
 The first two forms of the `declare` statement are equivalent; they simply
@@ -1113,7 +1118,9 @@ provide alternate styles.
 The `declare` statement sets an *execution directive* for its *statement*
 body, or for the `;`-form, for the remainder of the script or until the
 statement is overridden by another *declare-statement*, whichever comes
-first. As the parser is executing, certain statements are considered
+first. 
+
+*ticks*: as the parser is executing, certain statements are considered
 *tickable*. For every *tick-count* ticks, an event occurs, which can be
 serviced by the function previously registered by the library function 
 [`register_tick_function`](http://php.net/manual/function.register-tick-function.php).
@@ -1121,12 +1128,17 @@ Tick event monitoring can be disabled by calling the library function
 [`unregister_tick_function`](http://php.net/manual/function.unregister-tick-function.php).
 This facility allows a profiling mechanism to be developed.
 
-Character encoding can be specified on a script-by-script basis using
+*encoding*: character encoding can be specified on a script-by-script basis using
 the encoding directive. The joint ISO and IEC standard [ISO/IEC
 8859 standard series](http://en.wikipedia.org/wiki/ISO/IEC_8859)
 specifies a number of 8-bit-[character
 encodings](http://en.wikipedia.org/wiki/Character_encoding) whose names
-can be used with this directive.
+can be used with this directive. 
+This directive applies only to the file it appears in, and does not affect the included files.
+
+*strict_types*: if set to `1`, scalar type checking for function calls will be
+checked using [strict mode](13-functions.md#type-check-modes). If set to `0`, the coercive mode (default) is used. 
+This directive applies only to the file it appears in, and does not affect the included files.
 
 **Examples**
 

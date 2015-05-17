@@ -64,7 +64,14 @@ A function is called via the function-call operator [`()`](10-expressions.md#fun
   <i>type-declaration:</i>
     array
     callable
+	<i>scalar-type</i>
     <i>qualified-name</i>
+
+  <i>scalar-type:</i>
+	bool
+	float
+    int
+	string
 
   <i>default-argument-specifier:</i>
     =  <i>constant-expression</i>
@@ -113,6 +120,8 @@ A *function-definition* may exist at the top level of a script, inside
 any *compound-statement*, in which case, the function is [conditionally
 defined](#general), or inside a [*method-declaration* section of a class](14-classes.md#methods).
 
+## Parameter typing
+
 By default, a parameter will accept an argument of any type. However, by
 specifying a *type-declaration*, the types of argument accepted can be
 restricted. By specifying `array`, only an argument of the `array`
@@ -121,8 +130,6 @@ function (see below) is accepted. By specifying *qualified-name*, only an instan
 of a class having that type, or being derived from that type, are
 accepted, or only an instance of a class that implements that interface
 type directly or indirectly is accepted. The check is the same as for [`instanceof` operator](10-expressions.md#instanceof-operator).
-
-If a parameter has a type declaration, `NULL` is not accepted unless it has a default value that evaluates to `NULL`.
 
 `callable` pseudo-type accepts the following:
 * A string value containing the name of a function defined at the moment of the call.
@@ -135,6 +142,73 @@ that can be called on an object designated by the first element, from the contex
 
 The library function [`is_callable`](http://php.net/is_callable) reports whether the contents of
 a variable can be called as a function.
+
+Parameters typed with *scalar-type* are accepted if they pass the type check for this [scalar type](05-types.md#scalar-types),
+as described below. Once the checks have been passed, the parameter types are always of the scalar type
+specified (or `NULL` if `NULL` is allowed). 
+
+If a parameter has a type declaration, `NULL` is not accepted unless it has a default value that evaluates to `NULL`.
+
+The default value for a typed parameter must be of the type specified, or `NULL`,
+and conversion is not be performed for defaults, regardless of the mode.
+
+## Type check modes
+
+The type checking can be performed in two modes, strict and coercive (default). 
+The difference between modes exists only for scalar typed parameters (`int`, `float`, `string` and `bool`). 
+
+For coercive mode, if the value passed is of the same type as the parameter, it is accepted.
+If not, the [conversion](08-conversions.md#general) is attempted. If the conversion succeeds, 
+the converted value is the value assigned to the parameter. If the conversion fails, a fatal error
+is produced.
+
+For strict mode, the parameter must be exactly of the type that is declared (e.g., string `"1"` is not
+accepted as a value for parameter typed as `int`). The only exception is that `int` values will be accepted
+for `float` typed parameter and [converted to `float`](08-conversions.md#converting-to-floating-point-type).
+Note that the strict mode applies not only to user-defined but also to internal functions, 
+please consult [the manual](http://php.net/manual/) for appropriate parameter types. If the types do not match,
+a fatal error is produced.
+
+Note that if the parameter is passed byRef, and conversion happened,
+then the value will be re-assigned with the newly converted value.
+
+The mode is set by the [`declare` statement](11-statements.md#the-declare-statement).
+
+Note that the type check mode is controleed by the caller, not the callee. While the check is performed in the 
+function being called, the caller defines whether the check is strict. Same function can be called with both
+strict and coercive mode checks from different contexts. 
+
+**Examples**
+
+```PHP
+// coercive mode by default
+function accept_int(int $a) { return $a+1; }
+accept_int(1); // ok
+accept_int("123"); // ok
+accept_int("123.34"); // ok
+accept_int("123.34 and some"); // ok + notice
+accept_int("not 123"); // fatal error!
+accept_int(null); // fatal error
+
+function accept_int_or_not(int $a = null) { return $a+1; }
+accept_int_or_not(null); // ok
+
+function convert_int(int &$a) { return $a+1; }
+$a = "12";
+convert_int($a);
+var_dump($a); // $a is now int
+
+// Now in strict mode
+declare(strict_types=1);
+function accept_int(int $a) { return $a+1; }
+function accept_float(float $a) { return $a+1; }
+accept_int(1); // ok
+accept_float(1); // ok
+accept_int(1.5); // fatal error
+accept_int("123"); // fatal error
+echo substr("123", "1"); // fatal error
+
+```
 
 ##Variable Functions
 

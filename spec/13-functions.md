@@ -5,21 +5,22 @@
 When a function is called, information may be passed to it by the caller
 via an *argument list*, which contains one or more *argument
 expressions*, or more simply, *arguments*. These correspond by position
-to the *parameters* in a *parameter list* in the called function's
-definition ([§§](#function-definitions)).
+to the *parameters* in a *parameter list* in the called [function's
+definition](#function-definitions).
 
 An *unconditionally defined function* is a function whose definition is
 at the top level of a script. A *conditionally defined function* is a
-function whose definition occurs inside a compound statement (which is
-inside a function definition); that is, it is a *nested function*. There
-is no limit on the depth of levels of function nesting. Consider the
+function whose definition occurs inside a compound statement,
+such as the body of another function (a *nested function*), conditional statement, etc.
+There is no limit on the depth of levels of function nesting. Consider the
 case of an *outer function*, and an *inner function* defined within it.
 Until the outer function is called at least once, its inner function
-cannot exist. Even if the outer function is called, if its runtime logic
+does not exist. Even if the outer function is called, if its runtime logic
 bypasses the definition of the inner function, that inner function still
-does not exist.
+does not exist. The conditionally defined function comes into existance when
+the execution flow reaches the point where the function is defined.
 
-Any function containing `yield` ([§§](10-expressions.md#yield-operator)) is a *generator function*.
+Any function containing [`yield`](10-expressions.md#yield-operator) is a *generator function*.
 
 **Examples**
 
@@ -40,7 +41,7 @@ cf2(); // so we can call it
 
 ##Function Calls
 
-A function is called via the function-call operator `()` ([§§](10-expressions.md#function-call-operator)).
+A function is called via the function-call operator [`()`](10-expressions.md#function-call-operator).
 
 ##Function Definitions
 
@@ -76,7 +77,7 @@ A function is called via the function-call operator `()` ([§§](10-expressions.
 
 Each parameter name in a *function-definition* must be distinct.
 
-A conditionally defined function ([§§](#general)) must exist before any calls are
+A [conditionally defined function](#general) must exist before any calls are
 made to that function.
 
 **Semantics**
@@ -87,48 +88,60 @@ parameters, each of which is specified in its own
 *parameter-declaration* in a *parameter-declaration-list*. Each
 parameter has a name, *variable-name*, and optionally, a
 *default-argument-specifier*. An `&` in *parameter-declaration* indicates
-that parameter is passed byRef ([§§](04-basic-concepts.md#assignment)) rather than by value. An `&`
+that parameter is passed [byRef](04-basic-concepts.md#assignment) rather than by value. An `&`
 before *name* indicates that the value returned from this function is to
-be returned byRef. Function-value returning is described in [§§](11-statements.md#the-return-statement).
+be returned byRef. Function-value returning is described in [`return` statement description](11-statements.md#the-return-statement).
 
 When the function is called, if there exists a parameter for which there
 is a corresponding argument, the argument is assigned to the parameter 
-variable using value assignment, while for passing-byRef, the argument is 
-assigned to the parameter variable using byRef assignment ([§§](04-basic-concepts.md#assignment), [§§](04-basic-concepts.md#argument-passing)). If that parameter has no corresponding argument, but the parameter has a 
-default argument value, for passing-by-value or passing-byRef, the default 
+variable using value assignment, while for passing byRef, the argument is 
+[assigned](04-basic-concepts.md#argument-passing) to the parameter variable using [byRef assignment](04-basic-concepts.md#assignment).
+If that parameter has no corresponding argument, but the parameter has a 
+default argument value, for passing by value or byRef, the default 
 value is assigned to the parameter variable using value assignment. 
 Otherwise, if the parameter has no corresponding argument and the parameter 
-does not have a default value, the parameter variable is non-existent and no corresponding VSlot ([§§](04-basic-concepts.md#the-memory-model)) exists.  After all possible parameters have been 
+does not have a default value, the parameter variable is non-existent and no corresponding
+[VSlot](04-basic-concepts.md#the-memory-model) exists.  After all possible parameters have been 
 assigned initial values or aliased to arguments, the body of the function, 
-*compound-statement*, is executed. This execution may terminate normally 
-(§[[4.3](04-basic-concepts.md#program-termination)](#program-termination), [§§](11-statements.md#the-return-statement)) or abnormally (§[[4.3](04-basic-concepts.md#program-termination)](#program-termination)).
+*compound-statement*, is executed. This execution may terminate [normally](04-basic-concepts.md#program-termination),
+with [`return` statement](11-statements.md#the-return-statement) or [abnormally](04-basic-concepts.md#program-termination).
 
 Each parameter is a variable local to the parent function, and is a
 modifiable lvalue.
 
 A *function-definition* may exist at the top level of a script, inside
-any *compound-statement*, in which case, the function is conditionally
-defined ([§§](#general)), or inside a *method-declaration* ([§§](14-classes.md#methods)).
+any *compound-statement*, in which case, the function is [conditionally
+defined](#general), or inside a [*method-declaration* section of a class](14-classes.md#methods).
 
 By default, a parameter will accept an argument of any type. However, by
 specifying a *type-declaration*, the types of argument accepted can be
-restricted. By specifying `array`, only an argument designating an array
+restricted. By specifying `array`, only an argument of the `array`
 type is accepted. By specifying `callable`, only an argument designating a
-function is accepted. By specifying *qualified-name*, only an instance
+function (see below) is accepted. By specifying *qualified-name*, only an instance
 of a class having that type, or being derived from that type, are
 accepted, or only an instance of a class that implements that interface
-type directly or indirectly is accepted. If a parameter has a type declaration, NULL
-is not accepted unless it has a default value that evaluates to NULL.
+type directly or indirectly is accepted. The check is the same as for [`instanceof` operator](10-expressions.md#instanceof-operator).
+
+If a parameter has a type declaration, `NULL` is not accepted unless it has a default value that evaluates to `NULL`.
+
+`callable` pseudo-type accepts the following:
+* A string value containing the name of a function defined at the moment of the call.
+* An array value having two elements under indexes `0` and `1`. First element can be either string or object. 
+If the first element is a string, the second element must be a string naming a method in a class designated by the first element. 
+If the first element is an object, the second element must be a string naming a method
+that can be called on an object designated by the first element, from the context of the function being called.
+* An instance of the [`Closure`](14-classes.md#class-closure) class.
+* An instance of a class implementing [`__invoke`](14-classes.md#method-__invoke).
+
+The library function [`is_callable`](http://php.net/is_callable) reports whether the contents of
+a variable can be called as a function.
 
 ##Variable Functions
 
-If a variable name is followed by the function-call operator `()`
-([§§](10-expressions.md#function-call-operator)), and the value of that variable is a string containing the
-name of a function currently defined and visible, that function will be
-executed.
-
-The library function `is_callable` (§xx) reports whether the contents of
-a variable can be called as a function.
+If a variable name is followed by the function-call operator [`()`](10-expressions.md#function-call-operator),
+and the value of that variable designates the function currently defined and visible (see description above),
+that function will be executed. If the variable does not designate a function or this function can not be called,
+a fatal error is produced.
 
 ##Anonymous Functions
 
@@ -136,10 +149,7 @@ An *anonymous function*, also known as a *closure*, is a function
 defined with no name. As such, it must be defined in the context of an
 expression whose value is used immediately to call that function, or
 that is saved in a variable for later execution. An anonymous function
-is defined via the anonymous function-creation operator ([§§](10-expressions.md#anonymous-function-creation)).
+is defined via the [anonymous function creation operator](10-expressions.md#anonymous-function-creation).
 
-For both `__FUNCTION__` and `__METHOD__` ([§§](06-constants.md#context-dependent-constants)), an anonymous
-function's name is `{closure}`. All anonymous functions created in the
-same scope have the same name.
-
-
+For both [`__FUNCTION__` and `__METHOD__`](06-constants.md#context-dependent-constants), an anonymous
+function's name is reported as `{closure}`. 

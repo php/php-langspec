@@ -3007,7 +3007,7 @@ class Bar{
     include 'include.php';
   }
 }
-echo X;                // emits an E_NOTICE: Use of undefined constant X ...
+echo X;                // emits a notice: Use of undefined constant X ...
 echo \foo\X;           // same as above since the inclusion did not happen yet
 $bar = new Bar();
 $bar->bar();           
@@ -3032,7 +3032,7 @@ function bar(){
   return $x;
 }
 echo bar();               // hi
-echo $x;                  // emits an E_NOTICE: Undefined variable: x ...
+echo $x;                  // emits a notice: Undefined variable: x ...
 
 include 'include.php';    // introduces the global variable $x
 echo $x;                  // hello

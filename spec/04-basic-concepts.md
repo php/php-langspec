@@ -1309,7 +1309,7 @@ three kinds: automatic, static, and allocated.
 
 A variable having *automatic storage duration* comes into being and is
 initialized at its declaration or on its first use, if it has no
-declaration (notice that this is simplified; for more details see [§§](07-variables.md#local-variables) for more information).
+declaration (notice that this is simplified; for more details see [§§](07-variables.md#local-variables)).
 Its lifetime is delimited by an enclosing scope ([§§](#scope)). The
 automatic variable's lifetime ends at the end of that scope. Automatic
 variables lend themselves to being stored on a stack where they can help

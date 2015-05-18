@@ -114,9 +114,7 @@ library functions assume the strings they receive as arguments are UTF-8
 encoded, often without explicitly mentioning that fact.
 
 A *numeric string* is a string whose content exactly matches the pattern
-defined using integer format by the production [*integer-literal*](09-lexical-structure.md#integer-literals)
-or using floating-point format by the production
-[*floating-literal*](09-lexical-structure.md#floating-point-literals), where leading whitespace is permitted.
+defined by the *str-numeric* production below.
 A *leading-numeric string* is a string whose initial characters follow
 the requirements of a numeric string, and whose trailing characters are
 non-numeric. A *non-numeric string* is a string that is not a numeric

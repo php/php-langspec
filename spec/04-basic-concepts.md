@@ -24,9 +24,9 @@ A PHP *program* consists of one or more source files, known formally as
 
 All of the sections in a script are treated as though they belonged to
 one continuous section, except that any intervening text is treated as
-though it were a string literal given to the intrinsic `echo` ([§§](10-expressions.md#echo)).
+though it were a string literal given to the [intrinsic `echo`](10-expressions.md#echo).
 
-A script can import another script via a script inclusion operator ([§§](10-expressions.md#script-inclusion-operators)).
+A script can import another script via a [script inclusion operator](10-expressions.md#script-inclusion-operators).
 
 *statement-list* is defined in [§§](11-statements.md#compound-statements).
 
@@ -42,11 +42,11 @@ The implementation may also accept other sequences as *start-tag* and *end-tag*,
 If the implementation accepts one tag from the pairs above, it must also accept the other. 
 
 ##Program Start-Up
-A program begins execution at the start of a script ([§§](#program-structure)) designated in
+A program begins execution at the start of a [script](#program-structure) designated in
 some unspecified manner. This script is called the *start-up script*.
 
-Once a program is executing, it has access to certain environmental
-information ([§§](07-variables.md#predefined-variables)), which may include:
+Once a program is executing, it has access to certain [environmental
+information](07-variables.md#predefined-variables), which may include:
 
 -   The number of *command-line arguments*, via the predefined variable
     `$argc`.
@@ -58,9 +58,9 @@ The exact set of the environment variables available is implementation-defined
 and can vary depending on the type and build of the Engine and the environment
 in which it executes.
 
-When a top level ([§§](#program-structure)) is the main entry point for a script, it gets
+When a [top level](#program-structure) is the main entry point for a script, it gets
 the global variable [scope](#scope). When a top level is invoked via
-`include/require` ([§§](10-expressions.md#general-6)), it inherits the variable scope of its caller. Thus,
+[`include/require`](10-expressions.md#general-6), it inherits the variable scope of its caller. Thus,
 when looking at one script's top level in isolation, it's not
 possible to tell statically whether it will have the global
 variable scope or some local variable scope. It depends on how the
@@ -73,12 +73,12 @@ are executed in implementation-defined order and share the global environment.
 ##Program Termination
 A program may terminate normally in the following ways:
 
--   Execution reaches the end of the start-up script ([§§](#program-start-up)).
+-   Execution reaches the end of the [start-up script](#program-start-up).
     In case of the multiple start-up scripts, the execution reaches the end
     of the last of them.
--   A `return` statement ([§§](11-statements.md#the-return-statement)) in the top level of the
+-   A [`return` statement](11-statements.md#the-return-statement) in the top level of the
     last start-up script is executed.
--   The intrinsic `exit` ([§§](10-expressions.md#exitdie)) is called explicitly.
+-   The intrinsic [`exit`](10-expressions.md#exitdie) is called explicitly.
 
 The behavior of the first two cases is equivalent to corresponding calls
 to exit.
@@ -91,7 +91,7 @@ exception handler registered by `set_exception_handler`, that is
 equivalent to `exit(255)`. If execution reaches the end of the start-up
 script via an uncaught exception and an uncaught exception handler was
 registered by `set_exception_handler`, that is equivalent to exit(0). It
-is unspecified whether object destructors ([§§](14-classes.md#destructors)) are run.
+is unspecified whether [object destructors](14-classes.md#destructors) are run.
 In all other cases, the behavior is unspecified.
 
 ##__halt_compiler
@@ -103,7 +103,7 @@ In order to make the Engine ignore all the data in the script file starting
 from certain point, `__halt_compiler();` construct is used. This construct 
 is not case-sensitive. 
 
-The `__halt_compiler();` construct can only appear on the top level ([§§](#program-structure))
+The `__halt_compiler();` construct can only appear on the [top level](#program-structure)
 of the script. The Engine will ignore all text following this construct.
 
 The value of the `__COMPILER_HALT_OFFSET__` [constant](06-constants.md#context-dependent-constants) is set to the byte offset
@@ -163,7 +163,7 @@ Multiple VStores may simultaneously contain handles that point to the same HStor
 When a VStore is created it initially contains
 the value `NULL` unless specified otherwise. In addition to
 containing a value, VStores also carry a *type tag* that indicates the
-type ([§§](05-types.md#types)) of the VStore's value. 
+[type](05-types.md#types) of the VStore's value. 
 A VStore's type tag can be changed over time. The tags for the values include
 types matching the Engine types, and may include other tags defined by
 the implementation, provided that these tags are not exposed to the user.
@@ -235,15 +235,15 @@ superficial differences between the two models.
 For most operations, the mapping between VSlots and VStores remains the
 same. Only the following program constructs can change a VSlot to point
 to different VStore, all of which are *byRef-aware* operations and all
-of which (except unset) use the & punctuator:
+of which (except `unset`) use the & punctuator:
 
--   byRef assignment ([§§](10-expressions.md#byref-assignment)).
--   byRef parameter declaration ([§§](13-functions.md#function-definitions)).
--   byRef function return ([§§](11-statements.md#the-return-statement), [§§](13-functions.md#function-definitions)).
--   byRef value in a foreach statement ([§§](11-statements.md#the-foreach-statement)).
--   byRef initializer for an array element ([§§](10-expressions.md#array-creation-operator)).
--   byRef variable-use list in an anonymous function ([§§](10-expressions.md#anonymous-function-creation)).
--   unset ([§§](10-expressions.md#unset)).
+-   [byRef assignment](10-expressions.md#byref-assignment).
+-   [byRef parameter declaration](13-functions.md#function-definitions).
+-   [byRef function return](11-statements.md#the-return-statement).
+-   [byRef value in a foreach statement](11-statements.md#the-foreach-statement).
+-   [byRef initializer for an array element](10-expressions.md#array-creation-operator).
+-   [byRef variable-use list in an anonymous function](10-expressions.md#anonymous-function-creation).
+-   [unset](10-expressions.md#unset).
 
 ###Reclamation and Automatic Memory Management
 The Engine is required to manage the lifetimes of VStores and HStores
@@ -255,10 +255,10 @@ VSlot, they become eligible for reclamation to release the memory
 they occupy. The engine may reclaim a VStore or HStore at any time
 between when it becomes eligible for reclamation and the end of the script execution. 
 
-Before reclaiming an HStore that represents an object ([§§](05-types.md#object-types)),
-the Engine should invoke the object's destructor ([§§](14-classes.md#constructors)) if one is defined.
+Before reclaiming an HStore that represents an [object](05-types.md#object-types),
+the Engine should invoke the object's [destructor](14-classes.md#constructors) if one is defined.
 
-The Engine must reclaim each VSlot when the storage duration ([§§](#storage-duration)) of its
+The Engine must reclaim each VSlot when the [storage duration](#storage-duration) of its
 corresponding variable ends, when the variable is explicitly [unset](10-expressions.md#unset) by the
 programmer, or when the script exits, whichever comes first. In the case where
 a VSlot is contained within an HStore, the engine must immediately reclaim the VSlot when it is
@@ -305,7 +305,7 @@ of value assignment does not exist, the engine will bring a new local
 variable into existence and create a VSlot and initial VStore for
 storing the local variable's value.
 
-Consider the following example of value assignment ([§§](10-expressions.md#simple-assignment)) of scalar
+Consider the following example of value [assignment](10-expressions.md#simple-assignment) of scalar
 values to local variables:
 
 ```PHP
@@ -431,7 +431,8 @@ To demonstrate value assignment of objects to local variables, consider
 the case in which we have a Point class that supports a two-dimensional
 Cartesian system. An instance of Point contains two instance properties,
 `$x` and `$y`, that store the x- and y-coordinates, respectively. A
-constructor call ([§§](14-classes.md#constructors)) of the form `Point(x, y)` used with operator `new` ([§§](10-expressions.md#the-new-operator))
+[constructor call](14-classes.md#constructors) of the form `Point(x, y)` 
+used with operator [`new`](10-expressions.md#the-new-operator)
 creates a new point at the given location, and a method call
 of the form `move(newX, newY)` moves a `Point` to the new location.
 
@@ -446,7 +447,7 @@ Point(1, 3)`:
 </pre>
 
 Variable `$a` is given its own VSlot, which points to a VStore that
-contains a handle pointing to an HStore allocated by `new` ([§§](10-expressions.md#the-new-operator)) and
+contains a handle pointing to an HStore allocated by [`new`](10-expressions.md#the-new-operator) and
 that is initialized by `Point`'s constructor.
 
 Now consider the value assignment `$b = $a`:
@@ -518,7 +519,7 @@ of arbitrary type. Likewise, the same mechanics apply to value
 assignment of all resource types.
 
 ####ByRef Assignment for Scalar Types with Local Variables
-Let's begin with the same value assignment ([§§](10-expressions.md#simple-assignment)) as in the previous
+Let's begin with the same value [assignment](10-expressions.md#simple-assignment) as in the previous
 section, `$a = 123` and `$b = false`:
 
 <pre>
@@ -527,7 +528,7 @@ section, `$a = 123` and `$b = false`:
 [VSlot $b *]-->[VStore bool false]
 </pre>
 
-Now consider the byRef assignment ([§§](10-expressions.md#byref-assignment)) `$b =& $a`, which has byRef
+Now consider the [byRef assignment](10-expressions.md#byref-assignment) `$b =& $a`, which has byRef
 semantics:
 <pre>
 [VSlot $a *]-->[VStore int 123]
@@ -643,7 +644,7 @@ side of byRef assignment.
 ByRef assignment of non-scalar types works using the same mechanism as
 byRef assignment for scalar types. Nevertheless, it is worthwhile to
 describe a few examples to clarify the semantics of byRef assignment.
-Recall the example from [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable)) using the `Point` class:
+Recall the [example using the `Point` class](#value-assignment-of-object-and-resource-types-to-a-local-variable):
 
 `$a = new Point(1, 3);`
 <pre>
@@ -653,7 +654,7 @@ Recall the example from [§§](#value-assignment-of-object-and-resource-types-to
                                                   [VStore int 1]  [VStore int 3]
 </pre>
 
-Now consider the byRef assignment ([§§](10-expressions.md#byref-assignment)) `$b =& $a`, which has byRef
+Now consider the [byRef assignment](10-expressions.md#byref-assignment) `$b =& $a`, which has byRef
 semantics:
 <pre>
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *][VSlot $y *]]
@@ -709,7 +710,7 @@ it can be destoyed too.
 
 ####Value Assignment of Array Types to Local Variables
 The semantics of value assignment of array types is different from value
-assignment of other types. Recall the `Point` class from the examples in [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), and consider the following value assignments ([§§](10-expressions.md#simple-assignment)) and their abstract implementation:
+assignment of other types. Recall the `Point` class from [the examples](#value-assignment-of-object-and-resource-types-to-a-local-variable), and consider the following [value assignments](10-expressions.md#simple-assignment) and their abstract implementation:
 
 `$a = array(10, 'B' => new Point(1, 3));`
 <pre>
@@ -734,8 +735,8 @@ following ways: (1) eager copying, where the implementation makes a copy
 of `$a`'s array during value assignment and changes `$b`'s VSlot to point
 to the copy; or (2) deferred copying, where the implementation uses a
 deferred copy mechanism that meets certain requirements. This section
-describes eager copying, and the section that immediately follows ([§§](#deferred-array-copying))
-describes deferred copying.
+describes eager copying, and the section that immediately follows
+describes [deferred copying](#deferred-array-copying).
 
 To describe the semantics of eager copying, let's begin by considering
 the value assignment `$b = $a`:
@@ -857,7 +858,7 @@ of elements. As to how an HStore accommodates all of them, is
 unspecified and unimportant to the abstract model.
 
 ####Deferred Array Copying
-As mentioned in the previous section ([§§](#value-assignment-of-array-types-to-local-variables)), an implementation may
+As mentioned in the [previous section](#value-assignment-of-array-types-to-local-variables), an implementation may
 choose to use a deferred copy mechanism instead of eagerly making a copy
 for value assignment of arrays. An implementation may use any deferred
 copy mechanism desired so long as it conforms to the abstract model's
@@ -872,7 +873,7 @@ acceptable performance), and as such it is common for an implementation
 to use a deferred array copy mechanism in order to reduce the cost of
 value assignment for arrays.
 
-Unlike conforming deferred string copy mechanisms discussed in [§§](#value-assignment-of-scalar-types-to-a-local-variable)
+Unlike conforming deferred string copy mechanisms discussed [before](#value-assignment-of-scalar-types-to-a-local-variable)
 that must produce the same observable behavior as eager string copying,
 deferred array copy mechanisms are allowed in some cases to exhibit
 observably different behavior than eager array copying. Thus, for
@@ -939,12 +940,12 @@ When an array-mutating operation is about to be performed on a given
 VStore X with an “array” type tag that participates in a deferred array
 copy relationship, the engine must find all of the VStores tagged
 “Arr-D” that point to the same array HStore that VStore X points to,
-make a copy of the array (using member-copy assignment to copy the
-array's elements as described in [§§](#value-assignment-of-array-types-to-local-variables)), and update all of these
+make a copy of the array (using [member-copy assignment to copy the
+array's elements](#value-assignment-of-array-types-to-local-variables)), and update all of these
 VStores tagged “Arr-D” to point to the newly created copy (note that
 VStore X remains unchanged). When an array-mutation operation is about
 to be performed on a given VStore X with an “Arr-D” type tag, the engine
-must make a copy of the array (as described in [§§](#value-assignment-of-array-types-to-local-variables)), update VStore
+must [make a copy of the array](#value-assignment-of-array-types-to-local-variables), update VStore
 X to point to the newly created copy, and change VStore X's type tag to
 “array”. These specific actions that the engine must perform on VStore at
 certain times to satisfy the copy-on-write requirement are collectively
@@ -1164,18 +1165,19 @@ Will result in:
 </pre>
 
 ###Argument Passing
-Argument passing is defined in terms of simple assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](10-expressions.md#simple-assignment)) or byRef assignment ([§§](#byref-assignment-for-scalar-types-with-local-variables), [§§](#byref-assignment-of-non-scalar-types-with-local-variables), and [§§](10-expressions.md#byref-assignment)), depending on how the parameter is declared. 
+Argument passing is defined in terms of [simple assignment](#assignment) or [byRef assignment](#byref-assignment-for-scalar-types-with-local-variables), depending on how the parameter is declared. 
 That is, passing an argument to a function having a corresponding
 parameter is like assigning that argument to that parameter. The
-function-call situations involving missing arguments or
-undefined-variable arguments are discussed in ([§§](10-expressions.md#function-call-operator)).
+function call situations involving missing arguments or
+undefined variable arguments are discussed in section describing
+[the function call operator](10-expressions.md#function-call-operator).
 
 ###Value Returning
-Returning a value from a function is defined in terms of simple
-assignment ([§§](#value-assignment-of-scalar-types-to-a-local-variable), [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable), [§§](#value-assignment-of-array-types-to-local-variables), and [§§](10-expressions.md#simple-assignment)) or byRef assignment ([§§](#byref-assignment-for-scalar-types-with-local-variables), [§§](#byref-assignment-of-non-scalar-types-with-local-variables), and [§§](10-expressions.md#byref-assignment)) depending on how the function is declared. That is, returning a value from a function to its
+Returning a value from a function is defined in terms of [simple assignment](#assignment) or [byRef assignment](#byref-assignment-for-scalar-types-with-local-variables), depending on how the function is declared. 
+That is, returning a value from a function to its
 caller is like assigning that value to the user of the caller's return
 value. The function-return situations involving a missing return value
-are discussed in ([§§](10-expressions.md#function-call-operator)).
+are discussed in section describing [the function call operator](10-expressions.md#function-call-operator).
 
 Note that to achieve byRef assignment semantics, both function return and
 assignment of the return value should be byRef. For example:
@@ -1206,9 +1208,10 @@ the value to the corresponding function's parameter, with byRef parameters
 treated as byRef assignments. 
 
 ###Cloning objects
-When an object instance is allocated, operator `new` ([§§](10-expressions.md#the-new-operator)) returns a handle
-that points to that object. As described in [§§](#value-assignment-of-object-and-resource-types-to-a-local-variable)), value assignment of a handle to an object does not copy the object HStore itself. Instead, it creates a copy of the handle. 
-The copying of the HStore itself is performed via operator `clone` ([§§](10-expressions.md#the-clone-operator)).
+When an object instance is allocated, operator [`new`](10-expressions.md#the-new-operator) returns a handle
+that points to that object. As described [above](#value-assignment-of-object-and-resource-types-to-a-local-variable),
+value assignment of a handle to an object does not copy the object HStore itself. Instead, it creates a copy of the handle. 
+The copying of the HStore itself is performed via [operator `clone`](10-expressions.md#the-clone-operator).
 
 To demonstrate how the `clone` operator works, consider the case in which
 an instance of class `Widget` contains two instance properties: `$p1` has
@@ -1239,13 +1242,13 @@ Let us consider the result of `$b = clone $a`:
 
 The clone operator will create another object HStore of the same class
 as the original and copy `$a`'s object's instance properties using
-member-copy assignment `=*` ([§§](#value-assignment-of-array-types-to-local-variables)). For the example shown above, the
+[member-copy assignment](#value-assignment-of-array-types-to-local-variables)). For the example shown above, the
 handle to the newly created HStore stored into `$b` using value
 assignment. Note that the clone operator will not recursively clone
 objects held in `$a`'s instance properties; hence the object copying
 performed by the clone operator is often referred to as a *shallow
 copy*. If a *deep copy* of an object is desired, the programmer must
-achieve this manually by using the method `__clone` ([§§](14-classes.md#method-__clone)) which
+achieve this manually by using the [method `__clone`](14-classes.md#method-__clone) which
 is called after the initial shallow copy has been performed. 
 
 ##Scope
@@ -1259,8 +1262,8 @@ There are a number of scope types that exist in PHP:
 -   Variable scope - the scope which defined what unqualified variables (like `$foo`) are referring to. 
     Variables defined in one variable scope are not visible in another variable scope.     
 -   Class scope - the scope that defines visibility of the methods and properties, and resolution of keywords like
-    `self`, `parent`, etc. Class scope encompasses the body of that class and any classes derived
-    from it ([§§](14-classes.md#class-declarations)). 
+    `self`, `parent`, etc. Class scope encompasses [the body of that class](14-classes.md#class-declarations) and any classes derived
+    from it. 
 -   Namespace scope - the scope that defines what unqualified and not-fully-qualified class and function names (e.g. `foo()` or `new Bar()`)
     refer to. Namespace scoping rules are defined in the [Namespaces chapter](18-namespaces.md#namespaces).
 
@@ -1269,7 +1272,7 @@ For variable scopes, the following scopes can be distinguished:
 -   *Global scope* is the topmost scope of the script, which contains global variables, including pre-defined ones
     and ones defined outside of any other scope.
 -   *Function scope*, which means from the point of declaration/first
-    initialization through to the end of that function ([§§](13-functions.md#function-definitions)).
+    initialization through to the end of that [function's body](13-functions.md#function-definitions).
 
 [Start-up scripts](#program-start-up) have the global variable scope.
 [Included](10-expressions.md#script-inclusion-operators) scripts have the variable scope matching the scope in 
@@ -1279,25 +1282,25 @@ A variable declared or first initialized inside a function, has function scope;
 otherwise, the variable has the same variable scope as the enclosing script. 
 
 [Global variables](07-variables.md#global-variables) can be brought into the current scope by using `global` keyword.
-Superglobals ([§§](07-variables.md#general)) exist in the global variable scope, however they can be also accessed in any scope; 
+[Superglobals](07-variables.md#general) exist in the global variable scope, however they can be also accessed in any scope; 
 they never need explicit declaration.
 
-Each function has its own function scope. An anonymous function ([§§](13-functions.md#anonymous-functions))
+Each function has its own function scope. An [anonymous function](13-functions.md#anonymous-functions)
 has its own scope separate from that of any function inside which that anonymous function is defined.
 
 The variable scope of a parameter is the body of the function in which the parameter is declared. 
 
-The scope of a *named-label* ([§§](11-statements.md#labeled-statements)) is the body of the function in
+The scope of a []*named-label*](11-statements.md#labeled-statements) is the body of the function in
 which the label is defined.
 
-The class scope of a class member m ([§§](14-classes.md#class-members)) declared in, or inherited by, a
+The class scope of a [class member m](14-classes.md#class-members) that is declared in, or inherited by, a
 class type C is the body of C.
 
-The class scope of an interface member m ([§§](14-classes.md#class-members)) declared in, or inherited by,
+The class scope of an [interface member m](14-classes.md#class-members) that is declared in, or inherited by,
 an interface type I is the body of I.
 
-When a trait ([§§](16-traits.md#general)) is used by a class or an interface, the trait's
-members ([§§](16-traits.md#trait-members)) take on the class scope of a member of that class or
+When a [trait](16-traits.md#general) is used by a class or an interface, the [trait's
+members](16-traits.md#trait-members) take on the class scope of a member of that class or
 interface.
 
 ##Storage Duration
@@ -1309,28 +1312,28 @@ three kinds: automatic, static, and allocated.
 
 A variable having *automatic storage duration* comes into being and is
 initialized at its declaration or on its first use, if it has no
-declaration. Its lifetime is delimited by an enclosing scope ([§§](#scope)). The
+declaration. Its lifetime is delimited by an enclosing [scope](#scope). The
 automatic variable's lifetime ends at the end of that scope. Automatic
 variables lend themselves to being stored on a stack where they can help
-support argument passing and recursion. Local variables ([§§](07-variables.md#local-variables)), which
-include function parameters ([§§](13-functions.md#function-definitions)), have automatic storage duration.
+support argument passing and recursion. [Local variables](07-variables.md#local-variables), which
+include [function parameters](13-functions.md#function-definitions), have automatic storage duration.
 
 A variable having *static storage duration* comes into being and is
 initialized before its first use, and lives until program shutdown. The
-following kinds of variables have static storage duration: constants
-([§§](07-variables.md#constants)), function statics ([§§](07-variables.md#function-statics)), global variables ([§§](07-variables.md#global-variables)), static
-properties ([§§](07-variables.md#static-properties)), and class and interface constants ([§§](07-variables.md#class-and-interface-constants)).
+following kinds of variables have static storage duration: [constants](07-variables.md#constants),
+[function statics](07-variables.md#function-statics), [global variables](07-variables.md#global-variables),
+[static properties](07-variables.md#static-properties),
+and class and interface [constants](07-variables.md#class-and-interface-constants).
 
 A variable having *allocated storage duration* comes into being based on
-program logic by use of the new operator ([§§](10-expressions.md#the-new-operator)) or a factory function. 
+program logic by use of the [new operator](10-expressions.md#the-new-operator) or a factory function. 
 Ordinarily, once such storage is no longer needed, it is reclaimed automatically by the
-Engine via its garbage-collection process ([§§](#)) and the use of
-destructors ([§§](14-classes.md#destructors)). The following kinds of variables have allocated
-storage duration: array elements ([§§](07-variables.md#array-elements)) and instance properties
-([§§](07-variables.md#instance-properties)).
+Engine via its garbage-collection process and the use of
+[destructors](14-classes.md#destructors). The following kinds of variables have allocated
+storage duration: [array elements](07-variables.md#array-elements) and [instance properties](07-variables.md#instance-properties).
 
 Although all three storage durations have default ends-of-life, their
-lives can be shortened by calling the intrinsic unset ([§§](10-expressions.md#unset)),
+lives can be shortened by calling the intrinsic [`unset`](10-expressions.md#unset),
 which destroys any given set of variables.
 
 The following example demonstrates the three storage durations:
@@ -1388,10 +1391,7 @@ call. Specifically, each time `factorial` calls itself, a new local
 variable parameter `$i` is created and initialized with the value of the
 argument in the call.
 
-The lifetime of any VStore (§[[4.4.1](#general)](#general)) or HStore (§[[4.4.1](#general)](#general)) can be extended by
+The lifetime of any VStore or HStore can be extended by
 the Engine as long as needed. Conceptually, the lifetime of a VStore ends
-when it is no longer pointed to by any VSlots ([§§](#general)). Conceptually, the
+when it is no longer pointed to by any VSlots. Conceptually, the
 lifetime of an HStore ends when no VStores have a handle to it.
-
-
-

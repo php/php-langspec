@@ -2605,8 +2605,10 @@ function factorial($int)
     <i>logical-inc-OR-expression</i>  ??  <i>expression</i>
 </pre>
 
-*logical-OR-expression* is defined in [§§](#logical-inclusive-or-operator-form-1); and *expression* is
-defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*logical-OR-expression*](#logical-inclusive-or-operator-form-1)
+* [*expression*](#general-6)
 
 **Semantics**
 

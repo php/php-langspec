@@ -28,7 +28,7 @@ though it were a string literal given to the [intrinsic `echo`](10-expressions.m
 
 A script can import another script via a [script inclusion operator](10-expressions.md#script-inclusion-operators).
 
-*statement-list* is defined in [§§](11-statements.md#compound-statements).
+*statement-list* is defined in [statements section](11-statements.md#compound-statements).
 
 The top level of a script is simply referred to as the *top level*.
 
@@ -941,7 +941,7 @@ VStore X with an “array” type tag that participates in a deferred array
 copy relationship, the engine must find all of the VStores tagged
 “Arr-D” that point to the same array HStore that VStore X points to,
 make a copy of the array (using [member-copy assignment to copy the
-array's elements](#value-assignment-of-array-types-to-local-variables)), and update all of these
+array's elements](#value-assignment-of-array-types-to-local-variables), and update all of these
 VStores tagged “Arr-D” to point to the newly created copy (note that
 VStore X remains unchanged). When an array-mutation operation is about
 to be performed on a given VStore X with an “Arr-D” type tag, the engine
@@ -1242,7 +1242,7 @@ Let us consider the result of `$b = clone $a`:
 
 The clone operator will create another object HStore of the same class
 as the original and copy `$a`'s object's instance properties using
-[member-copy assignment](#value-assignment-of-array-types-to-local-variables)). For the example shown above, the
+[member-copy assignment](#value-assignment-of-array-types-to-local-variables). For the example shown above, the
 handle to the newly created HStore stored into `$b` using value
 assignment. Note that the clone operator will not recursively clone
 objects held in `$a`'s instance properties; hence the object copying

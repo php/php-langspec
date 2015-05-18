@@ -2,11 +2,11 @@
 
 ##General
 
-A *constant* is a named ([§§](09-lexical-structure.md#names)) value. Once defined, the value
+A *constant* is a [named](09-lexical-structure.md#names) value. Once defined, the value
 of the constant can not be changed.
 
 A constant can be defined in one of two ways: as a *c-constant* using a
-*const-declaration* ([§§](14-classes.md#constants)), or as a *d-constant* by calling the library
+[*const-declaration*](14-classes.md#constants), or as a *d-constant* by calling the library
 function `define` (§xx). However, the two approaches differ slightly.
 Specifically:
 
@@ -42,10 +42,10 @@ automatically available to all scripts; their values are not fixed and they are 
  Constant Name                    | Description                     
  -----------------                | ---------                            
  `__CLASS__`                        | `string`; The name of the current class. From within a trait method, the name of the class in which that trait is used. If the current namespace is other than the default, the namespace name and `\` are prepended, in that order. If used outside all classes, the value is the empty string. 
-`__COMPILER_HALT_OFFSET__` |  `int`; When the `__halt_compiler();` ([§§](04-basic-concepts.md#__halt_compiler)) construct is used, this constant contains the byte offset in the source file immediately following the `__halt_compiler();` token in this file.
+`__COMPILER_HALT_OFFSET__` |  `int`; When the [`__halt_compiler();`](04-basic-concepts.md#__halt_compiler) construct is used, this constant contains the byte offset in the source file immediately following the `__halt_compiler();` token in this file.
 `__DIR__`                            |  `string`; The directory name of the script. A directory separator is only appended for the root directory.
 `__FILE__`                           | `string`; The full name of the script.
-`__FUNCTION__`                       | `string`; Inside a function, the name of the current function exactly as it was declared, with the following prepended: If a named namespace exists, that namespace name followed by "\". If used outside all functions, the result is the empty string. For a method, no parent-class prefix is present. (See `__METHOD__` and [§§](13-functions.md#anonymous-functions)).
+`__FUNCTION__`                       | `string`; Inside a function, the name of the current function exactly as it was declared, with the following prepended: If a named namespace exists, that namespace name followed by "\". If used outside all functions, the result is the empty string. For a method, no parent-class prefix is present. (See `__METHOD__` and [anonymous functions](13-functions.md#anonymous-functions)).
 `__LINE__`                           | `int`; the number of the current source line.
 `__METHOD__`                         | `string`; Inside a method, the name of the current method exactly as it was declared, with the following prepended, in order: If a named namespace exists, that namespace name followed by `\`; the parent class name or trait name followed by `::`. If used outside all methods, the result is the same as for `__FUNCTION__`.
 `__NAMESPACE__`                      | `string`; The name of the current namespace exactly as it was declared. For the default namespace, the result is the empty string.
@@ -136,8 +136,8 @@ they can be combined meaningfully using bitwise operators.
 
 ##User-Defined Constants
 
-A constant may be defined inside or outside of functions ([§§](14-classes.md#constants)), inside
-a class ([§§](14-classes.md#constants)), or inside an interface ([§§](15-interfaces.md#constants)).
+A constant may be defined inside or outside of functions, inside
+a [class](14-classes.md#constants), or inside an [interface](15-interfaces.md#constants).
 
 
 

@@ -14,7 +14,7 @@ operations).
 
 When an expression is evaluated, it produces a result. It might also
 produce a side effect. Only a few operators produce side effects. (For
-example, given the expression statement ([§§](11-statements.md#expression-statements)) `$v = 10`; the
+example, given the [expression statement](11-statements.md#expression-statements) `$v = 10`; the
 expression 10 is evaluated to the result 10, and there is no side
 effect. Then the assignment operator is executed, which results in the
 side effect of `$v` being modified. The result of the whole expression is
@@ -28,9 +28,10 @@ The occurrence of value computation and side effects is delimited by
 *sequence points*, places in a program's execution at which all the
 computations and side effects previously promised are complete, and no
 computations or side effects of future operations have yet begun. There
-is a sequence point at the end of each full expression. The logical and
-([§§](#logical-and-operator-form-1)), logical or (§[[10.15](#logical-inclusive-or-operator-form-1)](#logical-inclusive-or-operator-form-1)), conditional (§[[10.15](#logical-inclusive-or-operator-form-1)](#logical-inclusive-or-operator-form-1)), coalesce (§[[10.15](#logical-inclusive-or-operator-form-1)](#logical-inclusive-or-operator-form-1)), and function-call
-([§§](#function-call-operator)) operators each contain a sequence point. (For example, in the
+is a sequence point at the end of each full expression. The [logical and](#logical-and-operator-form-1),
+[logical or](#logical-inclusive-or-operator-form-1), 
+[conditional](#logical-inclusive-or-operator-form-1), [coalesce](#coalesce-operator) and [function call](#function-call-operator)
+operators each contain a sequence point. (For example, in the
 following series of expression statements, `$a = 10; ++$a; $b = $a;`,
 there is sequence point at the end of each full expression, so the
 assignment to $a is completed before `$a` is incremented, and the
@@ -100,11 +101,15 @@ function, `$a` need not actually be incremented.
     $this
 </pre>
 
-*variable-name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names); *literal*
-is defined in [§§](09-lexical-structure.md#general-2); *constant-expression* is defined in [§§](#constant-expressions);
-*intrinsic* is defined in [§§](#general-2);
-*anonymous-function-creation-expression* is defined in [§§](#anonymous-function-creation); and
-*expression* is defined in [§§](#script-inclusion-operators).
+**Defined elsewhere**
+
+* [*variable-name*](09-lexical-structure.md#names) 
+* [*qualified-name*](09-lexical-structure.md#names) 
+* [*literal*](09-lexical-structure.md#general-2)
+* [*constant-expression*](#constant-expressions)
+* [*intrinsic*](#general-2)
+* [*anonymous-function-creation-expression*](#anonymous-function-creation)
+* [*expression*](#script-inclusion-operators)
 
 **Semantics**
 
@@ -139,12 +144,17 @@ context. The value of `$this` is the calling object or the object being construc
     <i>print-intrinsic</i>
 </pre>
 
-*array-intrinsic* is defined in [§§](#array); *echo-intrinsic* is defined
-in [§§](#echo); *empty-intrinsic* is defined in [§§](#empty);
-*eval-intrinsic* is defined in [§§](#eval); *exit-intrinsic* is defined in
-[§§](#exitdie); *isset-intrinsic* is defined in [§§](#isset); *list-intrinsic*
-is defined in [§§](#list); *print-intrinsic* is defined in [§§](#print); and
-*unset-intrinsic* is defined in [§§](#unset).
+**Defined elsewhere**
+
+* [*array-intrinsic*](#array)
+* [*echo-intrinsic*](#echo)
+* [*empty-intrinsic*](#empty)
+* [*eval-intrinsic*](#eval)
+* [*exit-intrinsic*](#exitdie)
+* [*isset-intrinsic*](#isset)
+* [*list-intrinsic*](#list)
+* [*print-intrinsic*](#print)
+* [*unset-intrinsic*](#unset)
 
 **Semantics**
 
@@ -166,7 +176,9 @@ other values or expressions could be used.
     array ( <i>array-initializer<sub>opt</sub></i>  )
 </pre>
 
-*array-initializer* is defined in [§§](#array-creation-operator).
+**Defined elsewhere**
+
+* [*array-initializer*](#array-creation-operator)
 
 **Semantics**
 
@@ -187,7 +199,9 @@ array-creation operator [`[]`](#array-creation-operator).
     <i>expression-list-two-or-more</i>  ,  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -202,8 +216,8 @@ necessary, `echo` concatenates them in order given, and writes the
 resulting string to [`STDOUT`](05-types.md#resource-types). Unlike [`print`](#print), it does
 not produce a result.
 
-For value substitution in string literals, see [§§](09-lexical-structure.md#double-quoted-string-literals) and
-[§§](09-lexical-structure.md#heredoc-string-literals). For conversion to string, see [§§](08-conversions.md#converting-to-string-type).
+See also: [double quioted strings](09-lexical-structure.md#double-quoted-string-literals) and
+[heredoc documents](09-lexical-structure.md#heredoc-string-literals), [conversion to string](08-conversions.md#converting-to-string-type).
 
 **Examples**
 
@@ -226,7 +240,9 @@ echo "$v3\n";
     empty ( <i>expression</i>  )
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Semantics**
 
@@ -263,7 +279,9 @@ empty($v);   // results in FALSE
     eval (  <i>expression</i>  )
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -306,7 +324,9 @@ eval("echo \$str . \"\\n\";");  // → echo $str . "\n"; → prints Hello
     die   (   <i>expression<sub>opt</sub></i> )
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -353,7 +373,9 @@ exit;
     <i>expression-list-one-or-more</i>  ,  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -401,7 +423,9 @@ isset($v1, $v2, $v3);  // results in FALSE
     <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -469,7 +493,9 @@ list($arr2[], $arr2[]) = [0, 1];
     print  (  <i>expression</i>  )
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -484,8 +510,8 @@ After converting its *expression*'s value to a string, if necessary,
 Unlike [`echo`](#echo), `print` can be used in any context allowing an expression. It
 always returns the value 1.
 
-For value substitution in string literals, see [§§](09-lexical-structure.md#double-quoted-string-literals) and
-[§§](09-lexical-structure.md#heredoc-string-literals). For conversion to string, see [§§](08-conversions.md#converting-to-string-type).
+See also: [double quioted strings](09-lexical-structure.md#double-quoted-string-literals) and
+[heredoc documents](09-lexical-structure.md#heredoc-string-literals), [conversion to string](08-conversions.md#converting-to-string-type).
 
 **Examples**
 
@@ -508,7 +534,9 @@ $a > $b ? print "..." : print "...";
     unset  (  <i>expression-list-one-or-more</i>  )
 </pre>
 
-*expression-list-one-or-more* is defined in [§§](#isset).
+**Defined elsewhere**
+
+* [*expression-list-one-or-more*](#isset)
 
 **Constraints**
 
@@ -569,8 +597,12 @@ unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
     <i>use-variable-name-list</i>  ,  &<sub>opt</sub>  <i>variable-name</i>
 </pre>
 
-*parameter-declaration-list* and *return-type* are defined in [§§](13-functions.md#function-definitions); *compound-statement*
-is defined in [§§](11-statements.md#compound-statements); *variable-name* is defined in [§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*parameter-declaration-list*](13-functions.md#function-definitions)
+* [*return-type*](13-functions.md#function-definitions)
+* [*compound-statement*](11-statements.md#compound-statements)
+* [*variable-name*](09-lexical-structure.md#names)
 
 **Semantics**
 
@@ -652,13 +684,19 @@ class C
     <i>exponentiation-expression</i>
 </pre>
 
-*primary-expression* is defined in [§§](#general-1); *clone-expression* is
-defined in [§§](#the-clone-operator); *object-creation-expression* is defined in [§§](#the-new-operator);
-*array-creation-expression* is defined in [§§](#array-creation-operator);
-*subscript-expression* is defined in [§§](#subscript-operator); *function-call-expression* is defined in [§§](#function-call-operator); *member-selection-expression* is defined in [§§](#member-selection-operator);
-*postfix-increment-expression* and *postfix-decrement-expression* are
-defined in [§§](#postfix-increment-and-decrement-operators); *scope-resolution-expression* is defined in [§§](#scope-resolution-operator);
-and *exponentiation-expression* is defined in [§§](#exponentiation-operator)..
+**Defined elsewhere**
+
+* [*primary-expression*](#general-1)
+* [*clone-expression*](#the-clone-operator)
+* [*object-creation-expression*](#the-new-operator)
+* [*array-creation-expression*](#array-creation-operator)
+* [*subscript-expression*](#subscript-operator)
+* [*function-call-expression*](#function-call-operator)
+* [*member-selection-expression*](#member-selection-operator)
+* [*postfix-increment-expression*](#postfix-increment-and-decrement-operators)
+* [*postfix-decrement-expression*](#postfix-increment-and-decrement-operators)
+* [*scope-resolution-expression*](#scope-resolution-operator)
+* [*exponentiation-expression*](#exponentiation-operator)
 
 **Semantics**
 
@@ -673,7 +711,9 @@ These operators associate left-to-right.
     clone  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -730,8 +770,11 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
     <i>expression</i>
 </pre>
 
-*argument-expression-list* is defined in [§§](#function-call-operator); *qualified-name* is
-defined in [§§](09-lexical-structure.md#names); and *expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*argument-expression-list*](#function-call-operator)
+* [*qualified-name*](09-lexical-structure.md#names)
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -821,12 +864,14 @@ the array-creation operator `[]`, as described below, or the intrinsic
     <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Constraints**
 
 If *array-element-initializer* contains &, *element-value's expression*
-must designate a variable ([§§](09-lexical-structure.md#names)).
+must designate a [variable](09-lexical-structure.md#names).
 
 **Semantics**
 
@@ -896,8 +941,10 @@ for ($i = -1; $i <= 2; ++$i) { echo $v[$i]; } // retrieves via keys -1, 0, 1, 2
     <i>postfix-expression</i>  {  <i>expression</i>  }   <b>[Deprecated form]</b>
 </pre>
 
-*postfix-expression* is defined in [§§](#general-3); and *expression* is defined
-in [§§](#general-6).
+**Defined elsewhere**
+
+* [*postfix-expression*](#general-3)
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -1059,9 +1106,10 @@ $x = $vect1[1];   // calls Vector::offsetGet(1)
     <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
 </pre>
 
-*postfix-expression* is defined in [§§](#general-3); and *assignment-expression*
-is defined in [§§](#general-5).
+**Defined elsewhere**
 
+* [*postfix-expression*](#general-3)
+* [*assignment-expression*](#general-5)
 
 **Constraints**
 
@@ -1087,7 +1135,7 @@ call*. The expression designates the *called function*, and
 function. An argument can be any value. In a function call,
 *postfix-expression* is evaluated first, followed by each
 *assignment-expression* in the order left-to-right. There is
-a [sequence point](#general)) right before the function is called. For details of the
+a [sequence point](#general) right before the function is called. For details of the
 result of a function call see [`return` statement](11-statements.md#the-return-statement). 
 The value of a function call is a modifiable lvalue only if the function returns a modifiable value byRef.
 
@@ -1169,8 +1217,11 @@ $anon();  // call the anonymous function encapsulated by that object
     <i>expression</i>
 </pre>
 
-*postfix-expression* is defined in [§§](#general-3); *name* is defined in
-[§§](09-lexical-structure.md#names); and *expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*postfix-expression*](#general-3)
+* [*name*](09-lexical-structure.md#names)
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -1195,16 +1246,16 @@ lvalue.
 
 When the `->` operator is used in a modifiable lvalue context and *name*
 or *expression* designate a property that is not visible, the property
-is treated as a dynamic property ([§§](14-classes.md#dynamic-members)). If *postfix-expression*'s class
-type defines a `__set` method ([§§](14-classes.md#method-__set)), it is called to store the
+is treated as a [dynamic property](14-classes.md#dynamic-members). If *postfix-expression*'s class
+type defines a [`__set` method](14-classes.md#method-__set), it is called to store the
 property's value. When the `->` operator is used in a non-lvalue context
 and *name* or *expression* designate a property that is not visible, the
 property is treated as a dynamic property. If *postfix-expression*'s
-class type defines a `__get` method ([§§](14-classes.md#method-__get)), it is called to retrieve
+class type defines a [`__get` method](14-classes.md#method-__get), it is called to retrieve
 the property's value.
 
 If *postfix-expression* is `NULL`, `FALSE`, or an empty string, an expression
-of the form `$p->x = 10` causes an instance of `stdClass` ([§§](14-classes.md#class-stdclass)) to be
+of the form `$p->x = 10` causes an instance of [`stdClass`](14-classes.md#class-stdclass) to be
 created with a dynamic property x having a value of 10. `$p` is then made
 to refer to this instance.
 
@@ -1247,7 +1298,9 @@ $c = $p1->color;  // turned into $c = $p1->__get("color");
     <i>unary-expression</i>  --
 </pre>
 
-*unary-expression* is defined in [§§](#general-4).
+**Defined elsewhere**
+
+* [*unary-expression*](#general-4)
 
 **Constraints**
 
@@ -1256,7 +1309,7 @@ lvalue that has scalar-compatible type.
 
 **Semantics**
 
-These operators behave like their prefix counterparts ([§§](#prefix-increment-and-decrement-operators)) except
+These operators behave like their [prefix counterparts](#prefix-increment-and-decrement-operators) except
 that the value of a postfix ++ or -- expression is the value before any
 increment or decrement takes place.
 
@@ -1287,7 +1340,9 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
     static
 </pre>
 
-*member-selection-designator* is defined in [§§](#member-selection-operator).
+**Defined elsewhere**
+
+* [*member-selection-designator*](#member-selection-operator)
 
 **Constraints**
 
@@ -1378,7 +1433,9 @@ class Point
     <i>expression</i>  **  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Semantics**
 
@@ -1419,13 +1476,16 @@ values and the result can be represented as an `int`, the result has type
     <i>variable-name-creation-expression</i>
 </pre>
 
-*postfix-expression* is defined in [§§](#general-3);
-*prefix-increment-expression* and *prefix-decrement-expression* are
-defined in [§§](#prefix-increment-and-decrement-operators); *unary-op-expression* is defined in [§§](#unary-arithmetic-operators);
-*error-control-expression* is defined in [§§](#error-control-operator);
-*shell-command-expression* is defined in [§§](#shell-command-operator); *cast-expression* is
-defined in [§§](#cast-operator) and *variable-name-creation-expression* is defined in
-[§§](#variable-name-creation-operator).
+**Defined elsewhere**
+
+* [*postfix-expression*](#general-3)
+* [*prefix-increment-expression*](#prefix-increment-and-decrement-operators)
+* [*prefix-decrement-expression*](#prefix-increment-and-decrement-operators)
+* [*unary-op-expression*](#unary-arithmetic-operators)
+* [*error-control-expression*](#error-control-operator)
+* [*shell-command-expression*](#shell-command-operator)
+* [*cast-expression*](#cast-operator)
+* [*variable-name-creation-expression*](#variable-name-creation-operator)
 
 **Semantics**
 
@@ -1443,7 +1503,9 @@ These operators associate right-to-left.
     -- <i>unary-expression</i>
 </pre>
 
-*unary-expression* is defined in [§§](#general-4).
+**Defined elsewhere**
+
+* [*unary-expression*](#general-4)
 
 **Constraints**
 
@@ -1454,8 +1516,8 @@ that has scalar-compatible type.
 
 *Arithmetic Operands*
 
-For a prefix `++` operator used with an arithmetic operand, the side
-effect ([§§](#general)) of the operator is to increment the value of the operand by 1.
+For a prefix `++` operator used with an arithmetic operand, the [side
+effect](#general) of the operator is to increment the value of the operand by 1.
 The result is the value of the operand after it
 has been incremented. If an `int` operand's value is the largest
 representable for that type, the operand is incremented as if it were `float`.
@@ -1551,7 +1613,9 @@ $a = "^^Z^^"; ++$a; // $a is now "^^Z^^"
     +  -  !  ~
 </pre>
 
-*cast-expression* is defined in [§§](#cast-operator).
+**Defined elsewhere**
+
+* [*cast-expression*](#cast-operator)
 
 **Constraints**
 
@@ -1636,7 +1700,9 @@ $s = "\x86\x97"; $s = ~$s; // $s is "yh"
     @   <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Semantics**
 
@@ -1693,7 +1759,9 @@ $x = $tmp;
 where \` is the GRAVE ACCENT character U+0060, commonly referred to as a
 *backtick*.
 
-*dq-char-sequence* is described in [§§](09-lexical-structure.md#double-quoted-string-literals).
+**Defined elsewhere**
+
+* [*dq-char-sequence*](09-lexical-structure.md#double-quoted-string-literals)
 
 **Semantics**
 
@@ -1730,7 +1798,9 @@ $result = `$d {$f}`;      // result is the output of command dir *.*
     real  string  unset
 </pre>
 
-*unary-expression* is defined in [§§](#general-4).
+**Defined elsewhere**
+
+* [*unary-expression*](#general-4)
 
 **Semantics**
 
@@ -1759,7 +1829,7 @@ A *cast-type* of `object` results in a [conversion to type `object`](08-conversi
 A *cast-type* of `string` results in a [conversion to type `string`](08-conversions.md#converting-to-string-type).
 
 A *cast-type* of `unset` always results in a value of `NULL`. (This use of
-`unset` should not be confused with the [`unset` intrinsic](#unset)).
+`unset` should not be confused with the [`unset` intrinsic](#unset).
 
 **Examples**
 
@@ -1779,7 +1849,9 @@ A *cast-type* of `unset` always results in a value of `NULL`. (This use of
     $  {  <i>expression</i>  }
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -1849,8 +1921,11 @@ ${$a}[0] = 5;   // $ gets first shot at $a, $v is [5, 20]
     <i>expression</i>
 </pre>
 
-*unary-expression* is defined in [§§](#general-4); *expression* is defined in
-[§§](#general-6); and *qualified-name* is defined in [§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*unary-expression*](#general-4)
+* [*expression*](#general-6)
+* [*qualified-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -1910,7 +1985,9 @@ var_dump($e2 instanceof $e1);      // TRUE
     <i>multiplicative-expression</i>  %  <i>multiplicative-expression</i>
 </pre>
 
-*instanceof-expression* is defined in [§§](#instanceof-operator).
+**Defined elsewhere**
+
+* [*instanceof-expression*](#instanceof-operator)
 
 **Constraints**
 
@@ -1976,7 +2053,9 @@ These operators associate left-to-right.
     <i>additive-expression</i>  .  <i>multiplicative-expression</i>
 </pre>
 
-*multiplicative-expression* is defined in [§§](#multiplicative-operators).
+**Defined elsewhere**
+
+* [*multiplicative-expression*](#multiplicative-operators)
 
 **Constraints**
 
@@ -2047,7 +2126,9 @@ TRUE . NULL;      // string with value "1"
     <i>shift-expression</i>  >>  <i>additive-expression</i>
 </pre>
 
-*additive-expression* is defined in [§§](#additive-operators).
+**Defined elsewhere**
+
+* [*additive-expression*](#additive-operators)
 
 **Constraints**
 
@@ -2107,7 +2188,9 @@ These operators associate left-to-right.
     <i>relational-expression</i>  <=> <i>shift-expression</i>
 </pre>
 
-*shift-expression* is defined in [§§](#bitwise-shift-operators).
+**Defined elsewhere**
+
+* [*shift-expression*](#bitwise-shift-operators)
 
 **Semantics**
 
@@ -2234,7 +2317,9 @@ function order_func($a, $b) {
     <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>
 
-*relational-expression* is defined in [§§](#relational-operators).
+**Defined elsewhere**
+
+* [*relational-expression*](#relational-operators)
 
 **Semantics**
 
@@ -2286,7 +2371,9 @@ TRUE !== 100  // result has value TRUE
     <i>bit-wise-AND-expression</i>  &  <i>equality-expression</i>
 </pre>
 
-*equality-expression* is defined in [§§](#equality-operators).
+**Defined elsewhere**
+
+* [*equality-expression*](#equality-operators)
 
 **Constraints**
 
@@ -2328,7 +2415,9 @@ $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
     <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
 </pre>
 
-*bitwise-AND-expression* is defined in [§§](#bitwise-and-operator).
+**Defined elsewhere**
+
+* [*bitwise-AND-expression*](#bitwise-and-operator)
 
 **Constraints**
 
@@ -2372,7 +2461,9 @@ $v1 = $v1 ^ $v2;    // $v1 is now -987, and $v2 is now 1234
     <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
 </pre>
 
-*bitwise-exc-OR-expression* is defined in [§§](#bitwise-exclusive-or-operator).
+**Defined elsewhere**
+
+* [*bitwise-exc-OR-expression*](#bitwise-exclusive-or-operator)
 
 **Constraints**
 
@@ -2414,7 +2505,9 @@ $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
     <i>logical-AND-expression-1</i>  &&  <i>bitwise-inc-OR-expression</i>
 </pre>
 
-*bitwise-incl-OR-expression* is defined in [§§](#bitwise-inclusive-or-operator).
+**Defined elsewhere**
+
+* [*bitwise-incl-OR-expression*](#bitwise-inclusive-or-operator)
 
 **Semantics**
 
@@ -2423,7 +2516,7 @@ Given the expression `e1 && e2`, `e1` is evaluated first. If `e1` [converts to `
 This operator associates left-to-right.
 
 Except for the difference in precedence, operator `&&` has exactly the
-same semantics as operator `and` ([§§](#logical-and-operator-form-2)).
+same semantics as operator [`and`](#logical-and-operator-form-2).
 
 **Examples**
 
@@ -2441,7 +2534,9 @@ if ($month > 1 && $month <= 12) ...
     <i>logical-inc-OR-expression-1</i>  ||  <i>logical-AND-expression-1</i>
 </pre>
 
-*logical-exc-OR-expression* is defined in [§§](#bitwise-exclusive-or-operator).
+**Defined elsewhere**
+
+* [*logical-exc-OR-expression*](#bitwise-exclusive-or-operator)
 
 **Semantics**
 
@@ -2465,8 +2560,10 @@ if ($month < 1 || $month > 12) ...
     <i>logical-inc-OR-expression-1</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
 </pre>
 
-*logical-OR-expression* is defined in [§§](#logical-inclusive-or-operator-form-1); and *expression* is
-defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*logical-OR-expression*](#logical-inclusive-or-operator-form-1)
+* [*expression*](#general-6)
 
 **Semantics**
 Given the expression `e1 ? e2 : e3`, `e1` is evaluated first and [converted to `bool`](08-conversions.md#converting-to-boolean-type) if it has another type.
@@ -2560,11 +2657,13 @@ var_dump(true ?? foo()); // outputs bool(true), "executed!" does not appear as i
     <i>compound-assignment-expression</i>
 </pre>
 
-*conditional-expression* is defined in [§§](#conditional-operator);
-*coalesce-expression* is defined in [§§](#coalesce-operator);
-*simple-assignment-expression* is defined in [§§](#simple-assignment);
-*byref-assignment-expression* is defined in [§§](#byref-assignment); and
-*compound-assignment-expression* is defined in [§§](#compound-assignment).
+**Defined elsewhere**
+
+* [*conditional-expression*](#conditional-operator)
+* [*simple-assignment-expression*](#simple-assignment)
+* [*byref-assignment-expression*](#byref-assignment)
+* [*compound-assignment-expression*](#compound-assignment)
+* [*coalesce-expression*](#coalesce-operator)
 
 **Constraints**
 
@@ -2584,8 +2683,10 @@ These operators associate right-to-left.
     <i>unary-expression</i>  =  <i>assignment-expression</i>
 </pre>
 
-*unary-expression* is defined in [§§](#general-4); *assignment-expression* is
-defined in [§§](#general-5).
+**Defined elsewhere**
+
+* [*unary-expression*](#general-4)
+* [*assignment-expression*](#general-5)
 
 **Constraints**
 
@@ -2596,10 +2697,10 @@ must have type `string`.
 **Semantics**
 
 If *assignment-expression* designates an expression having value type,
-see [§§](04-basic-concepts.md#value-assignment-of-object-and-resource-types-to-a-local-variable). If *assignment-expression*
-designates an expression having handle type, see [§§](04-basic-concepts.md#byref-assignment-for-scalar-types-with-local-variables). If
-*assignment-expression* designates an expression having array type, see
-[§§](04-basic-concepts.md#value-assignment-of-array-types-to-local-variables).
+see  [assignment for scalar types](04-basic-concepts.md#byref-assignment-for-scalar-types-with-local-variables)
+If *assignment-expression* designates an expression having handle type, see [assignment for object and resource types](04-basic-concepts.md#value-assignment-of-object-and-resource-types-to-a-local-variable).
+If *assignment-expression* designates an expression having array type, see
+[assignment of array types](04-basic-concepts.md#value-assignment-of-array-types-to-local-variables).
 
 The type and value of the result is the type and value of the left-hand
 operand after the store (if any [see below]) has taken place. The result
@@ -2650,8 +2751,10 @@ $a = new C; // make $a point to the allocated object
     <i>unary-expression</i>  =  &  <i>assignment-expression</i>
 </pre>
 
-*unary-expression* is defined in [§§](#general-4); *assignment-expression* is
-defined in [§§](#general-5).
+**Defined elsewhere**
+
+* [*unary-expression*](#general-4)
+* [*assignment-expression*](#general-5)
 
 **Constraints**
 
@@ -2663,11 +2766,12 @@ regarding this).
 
 **Semantics**
 
-*unary-expression* becomes an alias for *assignment-expression*. If
-*assignment-expression* designates an expression having value type, see
-[§§](04-basic-concepts.md#value-assignment-of-object-and-resource-types-to-a-local-variable). If *assignment-expression* designates an expression having
-handle type, see [§§](04-basic-concepts.md#byref-assignment-of-non-scalar-types-with-local-variables). If *assignment-expression* designates an
-expression having array type, see [§§](04-basic-concepts.md#deferred-array-copying).
+*unary-expression* becomes an alias for *assignment-expression*.
+If *assignment-expression* designates an expression having value type,
+see  [byRef assignment for scalar types](04-basic-concepts.md#byref-assignment-for-scalar-types-with-local-variables)
+If *assignment-expression* designates an expression having handle type, see [byRef assignment for non-scalar types](04-basic-concepts.md#byref-assignment-of-non-scalar-types-with-local-variables).
+If *assignment-expression* designates an expression having array type, see
+[defreed array copying](04-basic-concepts.md#deferred-array-copying).
 
 **Examples**
 
@@ -2695,8 +2799,10 @@ $b =& g2();     // make $b an alias to "xxx"
     **=  *=  /=  %=  +=  -=  .=  <<=  >>=  &=  ^=  |=
 </pre>
 
-*unary-expression* is defined in [§§](#general-4); *assignment-expression* is
-defined in [§§](#general-5).
+**Defined elsewhere**
+
+* [*unary-expression*](#general-4)
+* [*assignment-expression*](#general-5)
 
 **Constraints**
 
@@ -2729,12 +2835,14 @@ $a[$i++] += 50; // $a[1] = 250, $i → 2
     <i>logical-AND-expression-2</i>  and  <i>assignment-expression</i>
 </pre>
 
-*assignment-expression* is defined in [§§](#general-5).
+**Defined elsewhere**
+
+* [*assignment-expression*](#general-5)
 
 **Semantics**
 
 Except for the difference in precedence, operator and has exactly the
-same semantics as operator `&&` ([§§](#logical-and-operator-form-1)).
+same semantics as [operator `&&`](#logical-and-operator-form-1).
 
 ##Logical Exclusive OR Operator
 
@@ -2746,7 +2854,9 @@ same semantics as operator `&&` ([§§](#logical-and-operator-form-1)).
     <i>logical-exc-OR-expression</i>  xor  <i>logical-AND-expression-2</i>
 </pre>
 
-*logical-AND-expression* is defined in [§§](#logical-and-operator-form-2).
+**Defined elsewhere**
+
+* [*logical-AND-expression*](#logical-and-operator-form-2)
 
 **Semantics**
 
@@ -2776,12 +2886,14 @@ f($i++) xor g($i) // the sequence point makes this well-defined
     <i>logical-inc-OR-expression-2</i>  or  <i>logical-exc-OR-expression</i>
 </pre>
 
-*logical-exc-OR-expression* is defined in [§§](#logical-exclusive-or-operator).
+**Defined elsewhere**
+
+* [*logical-exc-OR-expression*](#logical-exclusive-or-operator)
 
 **Semantics**
 
 Except for the difference in precedence, operator and has exactly the
-same semantics as operator `||` ([§§](#logical-inclusive-or-operator-form-1)).
+same semantics as [operator `||`](#logical-inclusive-or-operator-form-1).
 
 ## `yield` Operator
 
@@ -2793,8 +2905,10 @@ same semantics as operator `||` ([§§](#logical-inclusive-or-operator-form-1)).
     yield  <i>array-element-initializer</i>
 </pre>
 
-*logical-inc-OR-expression* is defined in [§§](#logical-inclusive-or-operator-form-2);
-*array-element-initializer* is defined in [§§](#array-creation-operator).
+**Defined elsewhere**
+
+* [*logical-inc-OR-expression*](#logical-inclusive-or-operator-form-2)
+* [*array-element-initializer*](#array-creation-operator)
 
 **Semantics**
 
@@ -2881,10 +2995,13 @@ foreach (series(1, 5, "X") as $key => $val) { /* process each key/val pair */ }
     <i>require-once-expression</i>
 </pre>
 
-*yield-expression* is described in [§§](#yield-operator); *include-expression* is
-described in [§§](#the-include-operator); *include-once-expression* is described in
-[§§](#the-include_once-operator); *require-expression* is described in [§§](#the-require-operator); and
-*require-once-expression* is described in [§§](#the-require_once-operator).
+**Defined elsewhere**
+
+* [*yield-expression*](#yield-operator)
+* [*include-expression*](#the-include-operator)
+* [*include-once-expression*](#the-include_once-operator)
+* [*require-expression*](#the-require-operator)
+* [*require-once-expression*](#the-require_once-operator)
 
 **Semantics**
 
@@ -2904,7 +3021,7 @@ including file and an included file, either, or neither.
 
 Using the series-of-constants example, an include file called
 `Positions.php` might define the constants `TOP`, `BOTTOM`, `LEFT`, and `RIGHT`,
-in their own namespace ([§§](18-namespaces.md#general)), Positions. Using the set-of-classes
+in their own [namespace](18-namespaces.md#general), Positions. Using the set-of-classes
 example, to support two-dimensional geometry applications, an include
 file called `Point.php` might define the class `Point`. An include file
 called `Line.php` might define the class Line (where a `Line` is represented
@@ -2914,16 +3031,16 @@ and a radius).
 
 If a number of the scripts making up an application each use one or more
 of the Position constants, they can each include the corresponding
-include file via the `include` operator ([§§](#the-include-operator)). However, most include
+include file via the [`include` operator](#the-include-operator). However, most include
 files behave the same way each time they are included, so it is
 generally a waste of time including the same include file more than once
 into the same scope. In the case of the geometry example, any attempt to
 include the same include file more than once will result in a fatal
 "attempted class type redefinition" error. However, this can be avoided
-by using the `include_once` operator ([§§](#the-include_once-operator)) instead.
+by using the [`include_once` operator](#the-include_once-operator) instead.
 
-The `require` operator ([§§](#the-require-operator)) is a variant of the `include` operator,
-and the `require_once` operator ([§§](#the-require_once-operator)) is a variant of the
+The [`require` operator](#the-require-operator) is a variant of the `include` operator,
+and the [`require_once` operator](#the-require_once-operator) is a variant of the
 `include_once` operator.
 
 It is important to understand that unlike the C/C++ (or similar)
@@ -2992,7 +3109,7 @@ new \foo\Foo();        // succeeds, definition for class Foo was loaded
 ````
 
 
-c-constants ([§§](06-constants.md#general)) can not be defined within a function or method (in contrast to d-constants [§§](06-constants.md#general)). As in the other examples above, this is perfectly legal when it happens through a file inclusion in which the constant does not lose its scope. Consider the following example:
+[c-constants](06-constants.md#general) can not be defined within a function or method (in contrast to [d-constants](06-constants.md#general). As in the other examples above, this is perfectly legal when it happens through a file inclusion in which the constant does not lose its scope. Consider the following example:
 
 include.php
 ```` 
@@ -3049,7 +3166,9 @@ echo $x;                  // hello
     include  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -3099,7 +3218,9 @@ If ((include 'Positions.php') == 1) ...
     include_once  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Semantics**
 
@@ -3145,7 +3266,9 @@ $c1 = new Circle(9, 7, 2.4);
     require  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Semantics**
 
@@ -3163,7 +3286,9 @@ produces a fatal error.
     require_once  <i>expression</i>
 </pre>
 
-*expression* is defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*expression*](#general-6)
 
 **Semantics**
 
@@ -3188,8 +3313,10 @@ and relative path) still are considered the same file.
     <i>expression</i>
 </pre>
 
-*array-creation-expression* is defined in [§§](#array-creation-operator) and *expression* is
-defined in [§§](#general-6).
+**Defined elsewhere**
+
+* [*array-creation-expression*](#array-creation-operator) 
+* [*expression*](#general-6)
 
 **Constraints**
 
@@ -3204,6 +3331,3 @@ A *constant-expression* is the value of a c-constant. A *constant-expression*
 is required in several contexts, such as in initializer values in a
 [*const-declaration*](14-classes.md#constants) and default initial values in a [function
 definition](13-functions.md#function-definitions).
-
-
-

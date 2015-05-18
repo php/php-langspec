@@ -558,7 +558,7 @@ unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
 
 <pre>
   <i>anonymous-function-creation-expression:</i>
-  static<sub>opt</sub> function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-use-clause<sub>opt</sub></i>
+  static<sub>opt</sub> function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  ) <i>return-type<sub>opt</sub></i> <i>anonymous-function-use-clause<sub>opt</sub></i>
       <i>compound-statement</i>
 
   <i>anonymous-function-use-clause:</i>
@@ -569,7 +569,7 @@ unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
     <i>use-variable-name-list</i>  ,  &<sub>opt</sub>  <i>variable-name</i>
 </pre>
 
-*parameter-declaration-list* is defined in [§§](13-functions.md#function-definitions); *compound-statement*
+*parameter-declaration-list* and *return-type* are defined in [§§](13-functions.md#function-definitions); *compound-statement*
 is defined in [§§](11-statements.md#compound-statements); *variable-name* is defined in [§§](09-lexical-structure.md#names).
 
 **Semantics**

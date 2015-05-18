@@ -52,7 +52,7 @@ A function is called via the function-call operator [`()`](10-expressions.md#fun
     <i>function-definition-header   compound-statement</i>
 
   <i>function-definition-header:</i>
-    function  &<sub>opt</sub>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )
+    function  &<sub>opt</sub>   <i>name</i> <i>return-type<sub>opt</sub></i> (  <i>parameter-declaration-list<sub>opt</sub></i>  )
 
   <i>parameter-declaration-list:</i>
     <i>parameter-declaration</i>
@@ -60,6 +60,9 @@ A function is called via the function-call operator [`()`](10-expressions.md#fun
 
   <i>parameter-declaration:</i>
     <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+
+  <i>return-type:</i>
+    : <i>type-declaration</i>
 
   <i>type-declaration:</i>
     array
@@ -87,6 +90,9 @@ Each parameter name in a *function-definition* must be distinct.
 A [conditionally defined function](#general) must exist before any calls are
 made to that function.
 
+For generator functions, if the the return type is specified, it can only be one of:
+`Generator`, `Iterator` or `Traversable`.
+
 **Semantics**
 
 A *function-definition* defines a function called *name*. Function names
@@ -97,7 +103,7 @@ parameter has a name, *variable-name*, and optionally, a
 *default-argument-specifier*. An `&` in *parameter-declaration* indicates
 that parameter is passed [byRef](04-basic-concepts.md#assignment) rather than by value. An `&`
 before *name* indicates that the value returned from this function is to
-be returned byRef. Function-value returning is described in [`return` statement description](11-statements.md#the-return-statement).
+be returned byRef. Returning values is described in [`return` statement description](11-statements.md#the-return-statement).
 
 When the function is called, if there exists a parameter for which there
 is a corresponding argument, the argument is assigned to the parameter 
@@ -144,13 +150,20 @@ The library function [`is_callable`](http://php.net/is_callable) reports whether
 a variable can be called as a function.
 
 Parameters typed with *scalar-type* are accepted if they pass the type check for this [scalar type](05-types.md#scalar-types),
-as described below. Once the checks have been passed, the parameter types are always of the scalar type
+as [described below](#type-check-modes). Once the checks have been passed, the parameter types are always of the scalar type
 specified (or `NULL` if `NULL` is allowed). 
 
 If a parameter has a type declaration, `NULL` is not accepted unless it has a default value that evaluates to `NULL`.
 
 The default value for a typed parameter must be of the type specified, or `NULL`,
 and conversion is not be performed for defaults, regardless of the mode.
+
+## Return typing
+
+If the function is defined with *return-type* declaration, the value returned by the function should
+be compatible with the defined type, using the same rules as for parameter type checks. `NULL` values
+are not allowed for typed returns. If the value of the [`return` statement](11-statements.md#the-return-statement)
+does not pass the type check, a fatal error is produced.
 
 ## Type check modes
 
@@ -174,9 +187,11 @@ then the value will be re-assigned with the newly converted value.
 
 The mode is set by the [`declare` statement](11-statements.md#the-declare-statement).
 
-Note that the type check mode is controleed by the caller, not the callee. While the check is performed in the 
-function being called, the caller defines whether the check is strict. Same function can be called with both
-strict and coercive mode checks from different contexts. 
+Note that the type check mode is for the function call controleed by the caller, not the callee. 
+While the check is performed in the function being called, the caller defines whether the check is strict.
+Same function can be called with both strict and coercive mode checks from different contexts. 
+
+The check for the return type is always defined by the script that the function was defined in.
 
 **Examples**
 

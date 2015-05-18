@@ -2691,7 +2691,7 @@ If *assignment-expression* designates an expression having value type,
 see  [byRef assignment for scalar types](04-basic-concepts.md#byref-assignment-for-scalar-types-with-local-variables)
 If *assignment-expression* designates an expression having handle type, see [byRef assignment for non-scalar types](04-basic-concepts.md#byref-assignment-of-non-scalar-types-with-local-variables).
 If *assignment-expression* designates an expression having array type, see
-[defreed array copying](04-basic-concepts.md#deferred-array-copying).
+[deferred array copying](04-basic-concepts.md#deferred-array-copying).
 
 **Examples**
 

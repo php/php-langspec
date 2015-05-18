@@ -2,7 +2,7 @@
 
 ##General
 
-Explicit type conversion is performed using the cast operator ([§§](10-expressions.md#cast-operator)).
+Explicit type conversion is performed using the [cast operator](10-expressions.md#cast-operator).
 If an operation or language construct expects operand of one type and a value of another type is given,
 implict (automatic) conversion will be performed. Same will happen with most internal functions, though some
 functions may do different things depending on argument type and thus would not perform the conversion.
@@ -63,7 +63,7 @@ so long as the result is the same.
 
 If the source value is `NULL`, the result value is 0.
 
-If the source is a numeric string or leading-numeric string ([§§](05-types.md#the-string-type))
+If the source is a [numeric string or leading-numeric string](05-types.md#the-string-type)
 having integer format, if the precision can be preserved the result
 value is that string's integer value; otherwise, the result is
 undefined. If the source is a numeric string or leading-numeric string
@@ -81,8 +81,7 @@ If not, the conversion is invalid, the result is assumed to be 1 and a non-fatal
 
 If the source is a resource, the result is the resource's unique ID.
 
-The library function [`intval`
-(§xx)](http://php.net/manual/function.intval.php) allows values
+The library function [`intval`](http://php.net/manual/function.intval.php) allows values
 to be converted to `int`.
 
 ##Converting to Floating-Point Type
@@ -93,7 +92,7 @@ If the source type is `int`, if the precision can be preserved the result
 value is the closest approximation to the source value; otherwise, the
 result is undefined.
 
-If the source is a numeric string or leading-numeric string ([§§](05-types.md#the-string-type))
+If the source is a [numeric string or leading-numeric string](05-types.md#the-string-type)
 having integer format, the string's integer value is treated as
 described above for a conversion from `int`. If the source is a numeric
 string or leading-numeric string having floating-point format, the
@@ -106,8 +105,7 @@ the result is determined by that function (this is currently available only to i
 If not, the conversion is invalid, the result is assumed to be 1.0 and a non-fatal error is produced.
 
 For sources of all other types, the conversion result is obtained by first
-converting the source value to [`int`](http://php.net/manual/language.types.integer.php)
-([§§](#converting-to-integer-type)) and then to `float`.
+[converting the source value to `int`](#converting-to-integer-type) and then to `float`.
 
 The library function `floatval` (§xx) allows values to be converted to
 float.
@@ -129,7 +127,7 @@ If the source is an array, the conversion is invalid. The result value is
 the string "Array" and a non-fatal error is produced.
 
 If the source is an object, then if that object's class has a
-`__toString` method ([§§](14-classes.md#method-__tostring)), the result value is the string returned
+[`__toString` method](14-classes.md#method-__tostring), the result value is the string returned
 by that method; otherwise, the conversion is invalid and a fatal error is produced.
 
 If the source is a resource, the result value is an
@@ -155,7 +153,7 @@ corresponding to the
 [object](http://php.net/manual/language.types.object.php)'s
 instance properties. The order of insertion of the elements into the
 array is the lexical order of the instance properties in the
-*class-member-declarations* ([§§](14-classes.md#class-members)) list.
+[*class-member-declarations*](14-classes.md#class-members) list.
 
 For public instance properties, the keys of the array elements would
 be the same as the property name.
@@ -174,7 +172,7 @@ the property was not initialized.
 The [result type](http://www.php.net/manual/en/language.types.object.php#language.types.object.casting) is [`object`](05-types.md#objects).
 
 If the source has any type other than object, the result is an instance
-of the predefined class `stdClass` ([§§](14-classes.md#class-stdclass)). If the value of the source
+of the predefined class [`stdClass`](14-classes.md#class-stdclass). If the value of the source
 is `NULL`, the instance is empty. If the value of the source has a scalar
 type and is non-`NULL`, or is a `resource`, the instance contains a public property called
 `scalar` whose value is that of the source. If the value of the source is
@@ -182,6 +180,3 @@ an array, the instance contains a set of public properties whose names
 and values are those of the corresponding key/value pairs in the source.
 The order of the properties is the order of insertion of the source's
 elements.
-
-
-

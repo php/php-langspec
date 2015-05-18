@@ -4,9 +4,8 @@
 
 The meaning of a value is determined by its *type*. PHP's types are
 categorized as *scalar types* and *composite types*. The scalar types
-are Boolean ([§§](#the-boolean-type)), integer ([§§](#the-integer-type)), floating-point ([§§](#the-floating-point-type)), string
-([§§](#the-string-type)), and null ([§§](#the-null-type)). The composite types are array ([§§](#the-array-type)),
-and object ([§§](#objects)). The resource ([§§](#resources)) is an opaque type whose internal structure is not specified and depends
+are [Boolean](#the-boolean-type), [integer](#the-integer-type), [floating point](#the-floating-point-type), [string](#the-string-type), and [null](#the-null-type). The composite types are [array](#the-array-type),
+and [object](#objects). The [resource](#resources) is an opaque type whose internal structure is not specified and depends
 on the implementation.
 
 The scalar types are *value types*. That is, a variable of scalar type
@@ -17,8 +16,8 @@ array contains its elements and object contains its properties.
 
 The objects and resources are *handle types*. The type contains information — in a *handle* —
 that leads to the value. The differences between value and handle types become apparent
-when it comes to understanding the semantics of assignment, and passing
-arguments to, and returning values from, functions ([§§](04-basic-concepts.md#the-memory-model)).
+when it comes to understanding the [semantics](04-basic-concepts.md#the-memory-model) of assignment, and passing
+arguments to, and returning values from, functions.
 
 Variables are not declared to have a particular type. Instead, a
 variable's type is determined at runtime by the value it contains.
@@ -34,7 +33,7 @@ include `gettype` (§xx), `is_type` (§xx), `settype` (§xx), and `var_dump`
 
 The integer and floating-point types are collectively known as
 *arithmetic types*. The library function `is_numeric` (§xx) indicates if
-a given value is a number or a numeric string ([§§](#the-string-type)).
+a given value is a number or a numeric [string](#the-string-type).
 
 The library function `is_scalar` (§xx) indicates if a given value has a
 scalar type. However, that function does not consider `NULL` to be scalar.
@@ -49,7 +48,7 @@ Note that the same object type may be scalar-compatible for one operation but no
 
 The Boolean type is `bool`, for which the name `boolean` is a synonym. This
 type is capable of storing two distinct values, which correspond to the
-Boolean values `true` and `false` ([§§](06-constants.md#core-predefined-constants)), respectively.
+Boolean values [`true` and `false`](06-constants.md#core-predefined-constants), respectively.
 The internal representation of this type and its values is unspecified.
 
 The library function `is_bool` (§xx) indicates if a given value has type
@@ -73,8 +72,8 @@ cannot be represented as an integer. Examples include the following:
 In such cases, the computation is done as though the types of the values were
 `float` with the result having that type.
 
-The constants `PHP_INT_SIZE` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants)), `PHP_INT_MAX` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants)) and `PHP_INT_MIN` (§[[6.3](06-constants.md#core-predefined-constants)](#core-predefined-constants))
-define certain characteristics about type `int`.
+The constants [`PHP_INT_SIZE`, `PHP_INT_MIN` and `PHP_INT_MAX`](06-constants.md#core-predefined-constants) define certain
+characteristics about type `int`.
 
 The library function `is_int` (§xx) indicates if a given value has type
 `int`.
@@ -97,7 +96,7 @@ function `is_nan` (§xx) indicates if a given floating-point value is a
 A string is a set of contiguous bytes that represents a sequence of zero
 or more characters.
 
-Conceptually, a string can be considered as an array ([§§](#array-types)) of
+Conceptually, a string can be considered as an [array](#array-types) of
 bytes—the *elements*—whose keys are the `int` values starting at zero. The
 type of each element is `string`. However, a string is *not* considered a
 collection, so it cannot be iterated over.
@@ -115,7 +114,9 @@ library functions assume the strings they receive as arguments are UTF-8
 encoded, often without explicitly mentioning that fact.
 
 A *numeric string* is a string whose content exactly matches the pattern
-defined by the *str-numeric* production defined in the following.
+defined using integer format by the production [*integer-literal*](09-lexical-structure.md#integer-literals)
+or using floating-point format by the production
+[*floating-literal*](09-lexical-structure.md#floating-point-literals), where leading whitespace is permitted.
 A *leading-numeric string* is a string whose initial characters follow
 the requirements of a numeric string, and whose trailing characters are
 non-numeric. A *non-numeric string* is a string that is not a numeric
@@ -141,14 +142,14 @@ string.
 </pre>
 
 Only one mutation operation may be performed on a string, offset
-assignment, which involves the simple assignment operator = ([§§](10-expressions.md#simple-assignment)).
+assignment, which involves the simple assignment [operator =](10-expressions.md#simple-assignment).
 
 The library function `is_string` (§xx) indicates if a given value has
 type string.
 
 ###The Null Type
 
-The null type has only one possible value, `NULL` ([§§](06-constants.md#core-predefined-constants)). The representation
+The null type has only one possible value, [`NULL`](06-constants.md#core-predefined-constants). The representation
 of this type and its value is unspecified.
 
 The library function `is_null` (§xx) indicates if a given value is `NULL`.
@@ -159,15 +160,15 @@ The library function `is_null` (§xx) indicates if a given value is `NULL`.
 
 An array is a data structure that contains a collection of zero or more
 elements whose values are accessed through keys that are of type `int` or
-`string`. Arrays are described in [§§](12-arrays.md#arrays).
+`string`. See more details in [arrays chapter](12-arrays.md#arrays).
 
 The library function `is_array` (§xx) indicates if a given value is an
 array.
 
 ###Objects
 
-An *object* is an instance of a class ([§§](14-classes.md#classes)). Each distinct
-*class-declaration* ([§§](14-classes.md#class-declarations)) defines a new class type, and each class
+An *object* is an instance of a [class](14-classes.md#classes). Each distinct
+[]*class-declaration*](14-classes.md#class-declarations) defines a new class type, and each class
 type is an object type. The representation of object types is unspecified.
 
 The library function `is_object` (§xx) indicates if a given value is an

@@ -2,7 +2,7 @@
 
 ##Scripts
 
-A script ([§§](04-basic-concepts.md#program-structure)) is an ordered sequence of characters. Typically, a
+A [script](04-basic-concepts.md#program-structure) is an ordered sequence of characters. Typically, a
 script has a one-to-one correspondence with a file in a file system, but
 this correspondence is not required.
 
@@ -83,17 +83,20 @@ script. Each script must conform to this production.
     <i>token</i>
 </pre>
 
-*comment* is defined in [§§](#comments); *white-space* is defined in [§§](#white-space), and
-*token* is defined in [§§](#tokens).
+**Defined elsewhere**
+
+* [*comment*](#comments)
+* [*white-space*](#white-space)
+* [*token*](#tokens)
 
 **Semantics**
 
 The basic elements of a script are comments, white space, and tokens.
 
 The lexical processing of a script involves the reduction of that script
-into a sequence of tokens ([§§](#tokens)) that becomes the input to the
-syntactic analysis. Tokens can be separated by white space ([§§](#white-space)) and
-delimited comments ([§§](#comments)).
+into a sequence of [tokens](#tokens) that becomes the input to the
+syntactic analysis. Tokens can be separated by [white space](#white-space) and
+delimited [comments](#comments).
 
 Lexical processing always results in the creation of the longest
 possible lexical element. (For example, `$a+++++$b` must be parsed as
@@ -141,8 +144,8 @@ comment. However, if the single-line comment is the last source element
 in an embedded script, the trailing new line can be omitted. (Note: this
 allows for uses like `<?php ... // ... ?>`).
 
-A delimited comment can occur in any place in a script in which white
-space ([§§](#white-space)) can occur. (For example;
+A delimited comment can occur in any place in a script in which [white
+space](#white-space) can occur. (For example;
 `/*...*/$c/*...*/=/*...*/567/*...*/;/*...*/` is parsed as `$c=567;`, and
 `$k = $i+++/*...*/++$j;` is parsed as `$k = $i+++ ++$j;`).
 
@@ -169,7 +172,9 @@ new-line, space, horizontal tab, vertical tab, and form-feed characters.
     Horizontal-tab character (U+0009)
 </pre>
 
-*new-line* is defined in [§§](#comments).
+**Defined elsewhere**
+
+* [*new-line*](#comments)
 
 **Semantics**
 
@@ -193,9 +198,13 @@ There are several kinds of source *tokens*:
     <i>operator-or-punctuator</i>
 </pre>
 
-*variable-name* and *name* are defined in [§§](#names); *keyword* is defined
-in [§§](#keywords); *literal* is defined in [§§](#general-2); and
-*operator-or-punctuator* is defined in [§§](#operators-and-punctuators).
+**Defined elsewhere**
+
+* [*variable-name*](#names)
+* [*name*](#names)
+* [*keyword*](#keywords)
+* [*literal*](#general-2)
+* [*operator-or-punctuator*](#operators-and-punctuators)
 
 ####Names
 
@@ -235,28 +244,34 @@ in [§§](#keywords); *literal* is defined in [§§](#general-2); and
     N   O   P   Q   R   S   T   U   V   W   X   Y   Z
 </pre>
 
-*digit* is defined in [§§](#integer-literals)
+**Defined elsewhere**
+
+* [*digit*](#integer-literals)
 
 **Semantics**
 
-Names are used to identify the following: constants ([§§](06-constants.md#general)), variables
-([§§](07-variables.md#general)), labels ([§§](11-statements.md#labeled-statements)), functions ([§§](13-functions.md#function-definitions)), classes ([§§](14-classes.md#class-declarations)), class
-members ([§§](14-classes.md#class-members)), interfaces ([§§](15-interfaces.md#interface-declarations)), traits ([§§](16-traits.md#general)), namespaces ([§§](18-namespaces.md#general)),
-and names in heredoc ([§§](#heredoc-string-literals)) and nowdoc comments ([§§](#nowdoc-string-literals)).
+Names are used to identify the following: [constants](06-constants.md#general),
+[variables](07-variables.md#general), [labels](11-statements.md#labeled-statements),
+[functions](13-functions.md#function-definitions), [classes](14-classes.md#class-declarations),
+[class members](14-classes.md#class-members), [interfaces](15-interfaces.md#interface-declarations),
+[traits](16-traits.md#general), [namespaces](18-namespaces.md#general),
+and names in [heredoc](#heredoc-string-literals) and [nowdoc comments](#nowdoc-string-literals).
 
 A *name* begins with an underscore (_), *name-nondigit*, or extended
 name character in the range U+007f–-U+00ff. Subsequent characters can
 also include *digits*. A *variable name* is a name with a leading
 dollar ($).
 
-Unless stated otherwise ([§§](13-functions.md#function-definitions), [§§](14-classes.md#class-declarations), [§§](14-classes.md#methods), [§§](15-interfaces.md#interface-declarations), [§§](16-traits.md#trait-declarations), [§§](18-namespaces.md#defining-namespaces)),
-names are case-sensitive, and every character in a name is significant.
+Unless stated otherwise ([functions](13-functions.md#function-definitions),
+[classes](14-classes.md#class-declarations), [methods](14-classes.md#methods),
+[interfaces](15-interfaces.md#interface-declarations), [traits](16-traits.md#trait-declarations),
+[namespaces](18-namespaces.md#defining-namespaces), names are case-sensitive, and every character in a name is significant.
 
 Names beginning with two underscores (__) are reserved by the PHP language and should not be defined by the user code.
 
 Variable names and function names (when used in a function-call context)
 need not be defined as source tokens; they can also be created at
-runtime using the variable name-creation operator ([§§](10-expressions.md#variable-name-creation-operator)). (For
+runtime using the [variable name-creation operator](10-expressions.md#variable-name-creation-operator). (For
 example, given `$a = "Total"; $b = 3; $c = $b + 5;`, `${$a.$b.$c} = TRUE;` 
 is equivalent to `$Total38 = TRUE;`, and `${$a.$b.$c}()` is
 equivalent to `Total38()`).
@@ -313,8 +328,11 @@ The source code representation of a value is called a *literal*.
     <i>string-literal</i>
 </pre>
 
-*integer-literal* is defined in [§§](#integer-literals); *floating-literal* is defined in [§§](#floating-point-literals);
-*string-literal* is defined in [§§](#string-literals).
+**Defined elsewhere**
+
+* [*integer-literal*](#integer-literals)
+* [*floating-literal*](#floating-point-literals)
+* [*string-literal*](#string-literals)
 
 #####Integer Literals
 
@@ -435,7 +453,9 @@ On an implementation using 32-bit int representation
     <i>digit-sequence   digit</i>
 </pre>
 
-*digit* is defined in [§§](#integer-literals).
+**Defined elsewhere**
+
+* [*digit*](#integer-literals)
 
 **Constraints**
 
@@ -468,10 +488,13 @@ $values = array(1.23, 3e12, 543.678E-23);
     <i>heredoc-string-literal</i>
     <i>nowdoc-string-literal</i>
 </pre>
-*single-quoted-string-literal* is defined in [§§](#single-quoted-string-literals);
-*double-quoted-string-literal* is defined in [§§](#double-quoted-string-literals);
-*heredoc-string-literal* is defined in [§§](#heredoc-string-literals); and
-*nowdoc-string-literal* is defined in [§§](#nowdoc-string-literals).
+
+**Defined elsewhere**
+
+* [*single-quoted-string-literal*](#single-quoted-string-literals)
+* [*double-quoted-string-literal*](#double-quoted-string-literals)
+* [*heredoc-string-literal*](#heredoc-string-literals)
+* [*nowdoc-string-literal*](#nowdoc-string-literals)
 
 **Semantics**
 
@@ -556,7 +579,10 @@ A single-quoted string literal is always a constant expression.
     \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
 </pre>
 
-*octal-digit* and *hexadecimal-digit* are defined in [§§](#integer-literals).
+**Defined elsewhere**
+
+* [*octal-digit*](#integer-literals)
+* [*hexadecimal-digit*](#integer-literals)
 
 **Semantics**
 
@@ -617,9 +643,14 @@ The variable substitution accepts the following syntax:
         
 </pre>
 
-*variable-name* and *name* are defined in [§§](#names). *integer-literal* is defined in [§§](#integer-literals).
-*expression* is defined in [§§](10-expressions.md#general-6) and works the same way as
-in [variable name creation operator](10-expressions.md#variable-name-creation-operator).
+**Defined elsewhere**
+
+* [*variable-name*](#names)
+* [*name*](#names)
+* [*integer-literal*](#integer-literals)
+* [*expression*](10-expressions.md#general-6) 
+
+*expression* works the same way as in [variable name creation operator](10-expressions.md#variable-name-creation-operator).
 
 After the variable defined by the syntax above is evaluated, its value is converted
 to string according to the rules of [string conversion](08-conversions.md#converting-to-string-type)
@@ -700,9 +731,12 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
     \\   \$   \e   \f   \n   \r   \t   \v
 </pre>
 
-*name* is defined in [§§](#names); *new-line* is defined in [§§](#comments); and
-*dq-octal-escape-sequence* and *dq-hexadecimal-escape-sequence* are
-defined in [§§](#double-quoted-string-literals).
+**Defined elsewhere**
+
+* [*name*](#names)
+* [*new-line*](#comments)
+* [*dq-octal-escape-sequence*](#double-quoted-string-literals)
+* [*dq-hexadecimal-escape-sequence*](#double-quoted-string-literals)
 
 **Constraints**
 
@@ -722,7 +756,7 @@ character. Certain other (and sometimes non-printable) characters can
 also be expressed as escape sequences.
 
 A heredoc literal supports variable substitution as defined for
-double-quoted string literals ([§§](#double-quoted-string-literals)).
+[double-quoted string literals](#double-quoted-string-literals).
 
 A heredoc string literal is a constant expression if it does not contain
 any variable substitution.
@@ -749,18 +783,21 @@ echo ">$s<";
     &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line name</i>  ;<i><sub>opt</sub>   new-line</i>
 </pre>
 
-*hd-char-sequence* is defined in [§§](#heredoc-string-literals) and *new-line* is defined in [§§](#comments).
+**Defined elsewhere**
+
+* [*hd-char-sequence*](#heredoc-string-literals)
+* [*new-line*](#comments)
 
 **Constraints**
 
 The start and end identifier names must be the same.
 No white space is permitted between the start identifier name and its
-enclosing single quotes (`'`). See also [§§](#heredoc-string-literals). 
+enclosing single quotes (`'`). See also [heredoc string literal](#heredoc-string-literals). 
 
 **Semantics**
 
-A nowdoc string literal looks like a heredoc string literal
-([§§](#heredoc-string-literals)) except that in the former the start identifier name is
+A nowdoc string literal looks like a [heredoc string literal](#heredoc-string-literals)
+except that in the former the start identifier name is
 enclosed in single quotes (`'`). The two forms of string literal have the
 same semantics and constraints except that a nowdoc string literal is
 not subject to variable substitution (like the single-quoted string).
@@ -799,5 +836,3 @@ and semantic significance. *Operators* are used in expressions to
 describe operations involving one or more *operands*, and that yield a
 resulting value, produce a side effect, or some combination thereof.
 *Punctuators* are used for grouping and separating.
-
-

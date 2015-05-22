@@ -70,8 +70,10 @@ A function is called via the function-call operator [`()`](10-expressions.md#fun
     =  <i>constant-expression</i>
 </pre>
 
-*constant-expression* is defined in [§§](10-expressions.md#constant-expressions). *qualified-name* is defined in
-[§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*constant-expression*](10-expressions.md#constant-expressions)
+* [*qualified-name*](09-lexical-structure.md#names)
 
 **Constraints**
 

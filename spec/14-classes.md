@@ -727,6 +727,8 @@ an overriding concrete class must declare one. Nevertheless, the constraints on 
 
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*method-modifiers*](#methods)
+* [*return-type*](13-functions.md#function-definitions)
+* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -788,6 +790,8 @@ $obj->iMethod(10, TRUE, "abc"); // $obj->__call('iMethod', array(...))
 
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*method-modifiers*](#methods)
+* [*return-type*](13-functions.md#function-definitions)
+* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -939,6 +943,8 @@ $p2 = clone $p1;  // created by cloning
 
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*method-modifiers*](#methods)
+* [*return-type*](13-functions.md#function-definitions)
+* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1036,6 +1042,7 @@ restrictions on the spelling of the dynamic property name designated by
 * [*parameter-declaration-list*](13-functions.md#function-definitions)
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*method-modifiers*](#methods)
+* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1080,6 +1087,7 @@ $r = $c(123);   // becomes $r = $c->__invoke(123);
 
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*method-modifiers*](#methods)
+* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1142,6 +1150,7 @@ See the Implementation Notes for [`__get`](#method-__get).
 
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*method-modifiers*](#methods)
+* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1213,6 +1222,7 @@ See the Implementation Notes for [`__get`](#method-__get).
 
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*method-modifiers*](#methods)
+* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1334,6 +1344,7 @@ var_dump($z);
 
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*method-modifiers*](#methods)
+* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1417,6 +1428,7 @@ $v = unserialize($s); // unserialize Point(-1,0)
 
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*method-modifiers*](#methods)
+* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1482,6 +1494,7 @@ class MyRangeException extends Exception
 
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*method-modifiers*](#methods)
+* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1544,6 +1557,7 @@ See the Implementation Notes for [`__get`](#method-__get).
 
 * [*compound-statement*](11-statements.md#compound-statements)
 * [*method-modifiers*](#methods)
+* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 

@@ -25,17 +25,24 @@
     <i>function-static-declaration</i>
 </pre>
 
-*compound-statement* is defined in [§§](#compound-statements); *labeled-statement* is defined
-in [§§](#labeled-statements); *expression-statement* is defined in [§§](#expression-statements);
-*selection-statement* is defined in [§§](#general-1); *iteration-statement* is
-defined in [§§](#general-2); *jump-statement* is defined in [§§](#general-3);
-*declare-statement* is defined in [§§](#the-declare-statement); *const-declaration* is defined
-in [§§](14-classes.md#constants); *function-definition* is defined in [§§](13-functions.md#function-definitions); *class-declaration*
-is defined in [§§](14-classes.md#class-declarations); *interface-declaration* is defined in [§§](15-interfaces.md#interface-declarations);
-*trait-declaration* is defined in [§§](16-traits.md#trait-declarations); *namespace-definition* is
-defined in [§§](18-namespaces.md#defining-namespaces); *namespace-use-declaration* is defined in [§§](18-namespaces.md#namespace-use-declarations);
-*global-declaration* is defined in [§§](07-variables.md#global-variables); and
-*function-static-declaration* is defined in [§§](07-variables.md#function-statics).
+**Defined elsewhere**
+
+* [*compound-statement*](#compound-statements)
+* [*labeled-statement*](#labeled-statements)
+* [*expression-statement*](#expression-statements)
+* [*selection-statement*](#general-1)
+* [*iteration-statement*](#general-2)
+* [*jump-statement*](#general-3)
+* [*declare-statement*](#the-declare-statement)
+* [*const-declaration*](14-classes.md#constants)
+* [*function-definition*](13-functions.md#function-definitions)
+* [*class-declaration*](14-classes.md#class-declarations)
+* [*interface-declaration*](15-interfaces.md#interface-declarations)
+* [*trait-declaration*](16-traits.md#trait-declarations)
+* [*namespace-definition*](18-namespaces.md#defining-namespaces)
+* [*namespace-use-declaration*](18-namespaces.md#namespace-use-declarations)
+* [*global-declaration*](07-variables.md#global-variables)
+* [*function-static-declaration*](07-variables.md#function-statics)
 
 ##Compound Statements
 
@@ -50,7 +57,9 @@ defined in [§§](18-namespaces.md#defining-namespaces); *namespace-use-declarat
     <i>statement-list   statement</i>
 </pre>
 
-*statement* is defined in [§§](#general).
+**Defined elsewhere**
+
+* [*statement*](#general)
 
 **Semantics**
 
@@ -100,8 +109,11 @@ while (condition)
     ;
 </pre>
 
-*name* is defined in [§§](09-lexical-structure.md#names); *statement* is defined in [§§](#general); and
-*expression* is defined in [§§](10-expressions.md#general-6).
+**Defined elsewhere**
+
+* [*name*](09-lexical-structure.md#names)
+* [*statement*](#general)
+* [*expression*](10-expressions.md#general-6)
 
 **Constraints**
 
@@ -126,7 +138,9 @@ execution.
      <i>expression<sub>opt</sub></i>  ;
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#general-6).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#general-6)
 
 **Semantics**
 
@@ -178,8 +192,10 @@ done:
     <i>switch-statement</i>
 </pre>
 
-*if-statement* is defined in [§§](#the-if-statement) and *switch-statement* is defined
-in [§§](#the-switch-statement).
+**Defined elsewhere**
+
+* [*if-statement*](#the-if-statement)
+* [*switch-statement*](#the-switch-statement)
 
 **Semantics**
 
@@ -216,8 +232,11 @@ selects among a set of statements.
     else   :   <i>statement-list</i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#general-6); *statement* is defined in [§§](#general);
-and *statement-list* is defined in [§§](#compound-statements).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#general-6)
+* [*statement*](#general)
+* [*statement-list*](#compound-statements)
 
 **Semantics**
 
@@ -290,8 +309,13 @@ else  // this else does go with the outer if
     <i>default-statement</i> <i>statement-list<sub>opt</sub></i> <i>case-statements<sub>opt</sub></i>
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#general-6); *case-statement* and *default-statement* are defined in [§§](#labeled-statements) and *compound-statement* and
-*statement-list* are defined in [§§](#compound-statements).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#general-6)
+* [*case-statement*]](#labeled-statements)  
+* [*default-statement](#labeled-statements) 
+* [*compound-statement*](#compound-statements)
+* [*statement-list*](#compound-statements)
 
 **Constraints**
 
@@ -389,9 +413,12 @@ case $v < $a:   // non-constant expression
     <i>foreach-statement</i>
 </pre>
 
-*while-statement* is defined in [§§](#the-while-statement); *do-statement* is defined in
-[§§](#the-do-statement); *for-statement* is defined in [§§](#the-for-statement); and *foreach-statement*
-is defined in [§§](#the-foreach-statement).
+**Defined elsewhere**
+
+* [*while-statement*](#the-while-statement)
+* [*do-statement*](#the-do-statement)
+* [*for-statement*](#the-for-statement)
+* [*foreach-statement*](#the-foreach-statement)
 
 ##The `while` Statement
 
@@ -403,8 +430,11 @@ is defined in [§§](#the-foreach-statement).
     while  (  <i>expression</i>  )  :   <i>statement-list</i>  endwhile ;
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#general-6); *statement* is defined in [§§](#general); and
-*statement-list* is defined in [§§](#compound-statements).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#general-6)
+* [*statement*](#general)
+* [*statement-list*](#compound-statements)
 
 **Semantics**
 
@@ -447,9 +477,12 @@ while (TRUE)
     do  <i>statement</i>  while  (  <i>expression</i>  )  ;
 </pre>
 
-*statement* is defined in [§§](#general) and *expression* is defined in [§§](10-expressions.md#general-6).
-
 (Note: There is no alternate syntax).
+
+**Defined elsewhere**
+
+* [*statement*](#general)
+* [*expression*](10-expressions.md#general-6)
 
 **Constraints**
 
@@ -502,12 +535,15 @@ while ($i <= 10);
     <i>for-expression-group</i>   ,   <i>expression</i>
 </pre>
 
-*statement* is defined in [§§](#general); *statement-list* is defined in [§§](#compound-statements);
-and *expression* is defined in [§§](10-expressions.md#general-6).
-
 Note: Unlike C/C++, PHP does not support a comma operator, per se.
 However, the syntax for the `for` statement has been extended from that of
 C/C++ to achieve the same results in this context.
+
+**Defined elsewhere**
+
+* [*statement*](#general)
+* [*statement-list*](#compound-statements)
+* [*expression*](10-expressions.md#general-6)
 
 **Semantics**
 
@@ -588,8 +624,12 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10)
     <i>list-intrinsic</i>
 </pre>
 
-*statement* is defined in [§§](#general); *statement-list* is defined in [§§](#compound-statements);
-*list-intrinsic* is defined in [§§](10-expressions.md#list); and *expression* is defined in [§§](10-expressions.md#general-6).
+**Defined elsewhere**
+
+* [*statement*](#general)
+* [*statement-list*](#compound-statements)
+* [*list-intrinsic*](10-expressions.md#list)
+* [*expression*](10-expressions.md#general-6)
 
 **Constraints**
 
@@ -662,9 +702,13 @@ foreach ($colors as &$color)  // note the &
     <i>throw-statement</i>
 </pre>
 
-*goto-statement* is defined in [§§](#the-goto-statement); *continue-statement* is defined
-in [§§](#the-continue-statement); *break-statement* is defined in [§§](#the-break-statement); *return-statement*
-is defined in [§§](#the-return-statement); and *throw-statement* is defined in [§§](#the-throw-statement).
+**Defined elsewhere**
+
+* [*goto-statement*](#the-goto-statement)
+* [*continue-statement*](#the-continue-statement)
+* [*break-statement*](#the-break-statement)
+* [*return-statement*](#the-return-statement)
+* [*throw-statement*](#the-throw-statement)
 
 ###The `goto` Statement
 
@@ -675,7 +719,9 @@ is defined in [§§](#the-return-statement); and *throw-statement* is defined in
     goto  <i>name</i>  ;
 </pre>
 
-*name* is defined in [§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -728,7 +774,9 @@ done:
     <i>integer-literal</i>
 </pre>
 
-*integer-literal* is defined in [§§](09-lexical-structure.md#integer-literals).
+**Defined elsewhere**
+
+* [*integer-literal*](09-lexical-structure.md#integer-literals)
 
 **Constraints**
 
@@ -740,7 +788,7 @@ A `continue` statement must not attempt to break out of a [finally-block](#the-t
 **Semantics**
 
 A `continue` statement terminates the execution of the innermost enclosing
-iteration ([§§](#iteration-statements)) or `switch` ([§§](#the-switch-statement)) statement.
+[iteration](#iteration-statements) or [`switch`](#the-switch-statement) statement.
 *breakout-level* specifies which of these statements is targeted, with innermost being assigned
 number `1` and containing statements having levels increasing by 1.
 
@@ -775,7 +823,9 @@ for ($i = 1; $i <= 5; ++$i)
     break  <i>breakout-level<sub>opt</sub></i>  ;
 </pre>
 
-*breakout-level* is defined in [§§](#the-continue-statement).
+**Defined elsewhere**
+
+* [*breakout-level*](#the-continue-statement)
 
 **Constraints**
 
@@ -838,7 +888,9 @@ for ($i = 10; $i <= 40; $i +=10)
     return  <i>expression<sub>opt</sub></i>  ;
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#general-6).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#general-6)
 
 **Constraints**
 
@@ -872,8 +924,6 @@ the exception was never thrown.
 If an uncaught exception exists when a finally-block is executed, if
 that finally-block executes a `return` statement, the uncaught exception
 is discarded.
-
-
 
 A `return` statement may occur in a script outside any function. In an [included file](10-expressions.md#general-6),
 such statement terminates processing of that script file and
@@ -947,7 +997,9 @@ enclosing function, `$a` need not actually be incremented.
     throw  <i>expression</i>  ;
 </pre>
 
-*expression* is defined in [§§](10-expressions.md#general-6).
+**Defined elsewhere**
+
+* [*expression*](10-expressions.md#general-6)
 
 **Constraints**
 
@@ -997,8 +1049,11 @@ throw new MyException;
     finally   <i>compound-statement</i>
 </pre>
 
-*compound-statement* is defined in [§§](#compound-statements);
-*variable-name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*compound-statement*](#compound-statements)
+* [*variable-name*](09-lexical-structure.md#names)
+* [*qualified-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -1091,8 +1146,11 @@ finally { ... }
 
 </pre>
 
-*statement* is defined in [§§](#general); *statement-list* is defined in [§§](#compound-statements);
-and *literal* is defined in [§§](09-lexical-structure.md#literals).
+**Defined elsewhere**
+
+* [*statement*](#general)
+* [*statement-list*](#compound-statements)
+* [*literal*](09-lexical-structure.md#literals)
 
 **Constraints**
 
@@ -1147,4 +1205,3 @@ declare(ticks = 1) { ... }
 declare(encoding = 'ISO-8859-1'); // Latin-1 Western European
 declare(encoding = 'ISO-8859-5'); // Latin/Cyrillic
 ```
-

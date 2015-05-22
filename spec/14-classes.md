@@ -100,6 +100,7 @@ For each interface method, the corresponding implementing method must be *compat
 - The number of required (i.e. having no defaults) arguments of the implementing methods can not be more than the number of required arguments of the interface method (adding non-optional arguments is not allowed).
 - The overall number of arguments for the implementing method should be at least the number of the arguments of the interface method (removing arguments is not allowed).
 - Each argument of the implementing method must be compatible with corresponding argument of the prototype method. 
+- If the interface method defines the return type, the implementing method must have the same return type.
 
 Compatible arguments are defined as follows:
 - Parameter names do not matter.
@@ -543,7 +544,6 @@ examples of abstract methods and their subsequent definitions.
 <pre>
   <i>constructor-definition:</i>
     <i>method-modifiers</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
-    <i>method-modifiers</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
 
 </pre>
 
@@ -552,7 +552,6 @@ examples of abstract methods and their subsequent definitions.
 * [*method-modifiers*](#methods)
 * [*parameter-declaration-list*](13-functions.md#function-definitions)
 * [*compound-statement*](11-statements.md#compound-statements)
-* [*name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -560,9 +559,6 @@ An overriding constructor in a derived class must have the same or a
 less-restricted [visibility](#general) than the one in the base class.
 
 *method-modifiers* can not contain `static`. 
-
-*name* must be the same as that in the [*class-declaration*](#class-declarations) that
-contains this *constructor-definition*.
 
 **Semantics**
 
@@ -595,16 +591,6 @@ bottom-up. A constructor should not call its base-class constructor more
 than once. A call to a base-class constructor searches for the nearest
 constructor in the class hierarchy. Not every level of the hierarchy
 needs to have a constructor.
-
-Prior to the addition of the `__construct` form of constructor, a
-class's constructor was called the same as its class name. For example,
-class `Point`'s constructor was called `Point`. Although this old-style form
-is supported, its use is deprecated. In any event, both
-`parent::__construct(...)` and `parent::name(...)` (where `name` is the name
-of the parent class type) will find an old- or a new-style constructor
-in the base class, if one exists. If both forms exist, the new-style one
-is used. The same is true of an *object-creation-expression* when
-searching for a base-class constructor.
 
 **Examples**
 
@@ -734,7 +720,7 @@ an overriding concrete class must declare one. Nevertheless, the constraints on 
 **Syntax**
 
 <pre>
-  <i>method-modifiers</i> function  __call  (  <i>$name</i>  ,  <i>$arguments</i>  )  <i>compound-statement</i>
+  <i>method-modifiers</i> function  __call  (  <i>$name</i>  ,  <i>$arguments</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**
@@ -795,7 +781,7 @@ $obj->iMethod(10, TRUE, "abc"); // $obj->__call('iMethod', array(...))
 **Syntax**
 
 <pre>
-  <i>method-modifiers</i>  function  __callStatic  (  <i>$name</i>  ,  <i>$arguments</i>  )   <i>compound-statement</i>
+  <i>method-modifiers</i>  function  __callStatic  (  <i>$name</i>  ,  <i>$arguments</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**
@@ -946,7 +932,7 @@ $p2 = clone $p1;  // created by cloning
 **Syntax**
 
 <pre>
-  <i>method-modifiers</i> function  &<sub>opt</sub>  __get  (  <i>$name</i>  )   <i>compound-statement</i>
+  <i>method-modifiers</i> function  &<sub>opt</sub>  __get  (  <i>$name</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**
@@ -1042,7 +1028,7 @@ restrictions on the spelling of the dynamic property name designated by
 **Syntax**
 
 <pre>
-  <i>method-modifiers</i>  function  __invoke  ( <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+  <i>method-modifiers</i>  function  __invoke  ( <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**
@@ -1087,7 +1073,7 @@ $r = $c(123);   // becomes $r = $c->__invoke(123);
 **Syntax**
 
 <pre>
-  <i>method-modifiers</i>  function  __isset  (  <i>$name</i>  )  <i>compound-statement</i>
+  <i>method-modifiers</i>  function  __isset  (  <i>$name</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**
@@ -1149,7 +1135,7 @@ See the Implementation Notes for [`__get`](#method-__get).
 **Syntax**
 
 <pre>
-  <i>method-modifiers</i>  function  __set  (  <i>$name</i>  ,  <i>$value</i>  )  <i>compound-statement</i>
+  <i>method-modifiers</i>  function  __set  (  <i>$name</i>  ,  <i>$value</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**
@@ -1220,7 +1206,7 @@ See the Implementation Notes for [`__get`](#method-__get).
 **Syntax**
 
 <pre>
-  <i>method-modifiers</i>  function  __set_state  ( array  <i>$properties</i>  )  <i>compound-statement</i>
+  <i>method-modifiers</i>  function  __set_state  ( array  <i>$properties</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**
@@ -1341,7 +1327,7 @@ var_dump($z);
 **Syntax**
 
 <pre>
-  <i>method-modifiers</i>  function  __sleep  ( ) <i>compound-statement</i>
+  <i>method-modifiers</i>  function  __sleep  ( )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**
@@ -1424,7 +1410,7 @@ $v = unserialize($s); // unserialize Point(-1,0)
 **Syntax**
 
 <pre>
-  <i>method-modifiers</i>  function  __toString  ( )  <i>compound-statement</i>
+  <i>method-modifiers</i>  function  __toString  ( )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**
@@ -1489,7 +1475,7 @@ class MyRangeException extends Exception
 **Syntax**
 
 <pre>
-  <i>method-modifiers</i>  function  __unset  (  <i>$name</i>  )  <i>compound-statement</i>
+  <i>method-modifiers</i>  function  __unset  (  <i>$name</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**
@@ -1551,7 +1537,7 @@ See the Implementation Notes for [`__get`](#method-__get).
 **Syntax**
 
 <pre>
-  <i>method-modifiers</i>  function  __wakeup  ( )  <i>compound-statement</i>
+  <i>method-modifiers</i>  function  __wakeup  ( )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
 **Defined elsewhere**

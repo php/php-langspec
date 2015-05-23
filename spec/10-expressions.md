@@ -254,7 +254,7 @@ the intrinsic returns `FALSE`.
 The following values are considered empty: `FALSE`, `0`, `0.0`, `""` (empty string), `"0"`, `NULL`, 
 an empty array, and any uninitialized variable.
 
-If this intrinsic is used with an expression that designate a [dynamic
+If this intrinsic is used with an expression that designates a [dynamic
 property](14-classes.md#dynamic-members), then if the class of that property has
 an [`__isset`](14-classes.md#method-__isset), that method is called. 
 If that method returns `TRUE`, the value of the property is retrieved 

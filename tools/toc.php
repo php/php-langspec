@@ -21,6 +21,9 @@ $files = scandir($dir);
 $output = "";
 
 foreach ($files as $file) {
+    if(pathinfo($file, PATHINFO_EXTENSION) != 'md') {
+        continue;
+    }
     if ($file == '00-specification-for-php.md' || $file == 'php-spec-draft.md') {
         continue;
     }

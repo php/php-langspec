@@ -335,7 +335,7 @@ and sets its value to "red", creating the property, if necessary. Similarly, in 
 (as with the assignment of color to $v), the Engine generates a call to
 the instance method [`__get`](#method-__get), which treats that name as
 designating a dynamic property of the instance being operated on, and
-gets its value. In the case of the call to the intrinsic [`isset`](10-expressions.md#isset)),
+gets its value. In the case of the call to the intrinsic [`isset`](10-expressions.md#isset),
 this generates a call to the instance method [`__isset`](#method-__isset),
 while a call to the intrinsic [`unset`](10-expressions.md#unset) generates a
 call to the instance method [`__unset`](#method-__unset). By defining these
@@ -963,7 +963,7 @@ The *method-modifiers* must not contain `static` and must define public visibili
 This instance method gets the value of the [dynamic property](#dynamic-members)
 designated by `$name`. It is up to the implementor to define the return value.
 
-Typically, `__get` is called implicitly, when the [`->` operator](10-expressions.md#member-selection-operator))
+Typically, `__get` is called implicitly, when the [`->` operator](10-expressions.md#member-selection-operator)
 is used in a non-lvalue context and the named property is not visible.
 
 While `__get` can be called explicitly, the two scenarios do not
@@ -979,7 +979,7 @@ context, if no visible property by that name is found, a dynamic
 property is assumed, and `__get` is called.
 
 Consider the expression `$v = $p->m = 5`, where `m` is a dynamic
-property. While [`__set`](#method-__set)) is called to assign the value 5 to
+property. While [`__set`](#method-__set) is called to assign the value 5 to
 that property, `__get` is not called to retrieve the result after that
 assignment is complete.
 
@@ -1355,7 +1355,7 @@ The *method-modifiers* must not contain `static` and must define public visibili
 
 **Semantics**
 
-The instance methods `__sleep` and [`__wakeup`](#method-__wakeup)) support
+The instance methods `__sleep` and [`__wakeup`](#method-__wakeup) support
 [serialization](#serialization).
 
 If a class has a `__sleep` method, the library function `serialize` (§xx)
@@ -1503,7 +1503,7 @@ The *method-modifiers* must not contain `static` and must define public visibili
 
 **Semantics**
 
-If the [dynamic property](#dynamic-members)) designated by `$name` exists, it is
+If the [dynamic property](#dynamic-members) designated by `$name` exists, it is
 removed by this instance method; otherwise, the call has no effect. No
 value is expected to be returned.
 
@@ -1565,7 +1565,7 @@ The *method-modifiers* must not contain `static` and must define public visibili
 
 **Semantics**
 
-The instance methods [`__sleep`](#method-__sleep)) and `__wakeup` support
+The instance methods [`__sleep`](#method-__sleep) and `__wakeup` support
 [serialization](#serialization).
 
 When the library function `unserialize` (§xx) is called on the string
@@ -1851,6 +1851,8 @@ $property = array("$p1" => ???, "$p2" => ???)
 It is possible for all three dynamic properties to be absent, in which
 case, the `Closure` object is empty.
 
+Closure objects can not be serialized or unserialized.
+
 ###Class `Generator`
 
 This class supports the [`yield` operator](10-expressions.md#yield-operator). This class cannot be
@@ -1866,7 +1868,6 @@ class Generator implements Iterator
   public function send($value) ;
   public function throw(Exception $exception) ;
   public function valid();
-  public function __wakeup();
 }
 ```
 
@@ -1881,7 +1882,8 @@ Name | Purpose
 `send` | This instance method sends the value designated by `$value` to the generator as the result of the current [`yield`](10-expressions.md#yield-operator) expression, and resumes execution of the generator. `$value` is the return value of the `yield` expression the generator is currently at. If the generator is not at a `yield` expression when this method is called, it will first be let to advance to the first `yield` expression before sending the value. This method returns the yielded value.
 `throw` | This instance method throws an exception into the generator and resumes execution of the generator. The behavior is as if the current `yield` expression was replaced with throw `$exception`. If the generator is already closed when this method is invoked, the exception will be thrown in the caller's context instead. This method returns the yielded value.
 `valid` |  An implementation of the instance method [`Iterator::valid`](15-interfaces.md#interface-iterator).
-`__wakeup` | An implementation of the special instance method [`__wakeup`](#method-__wakeup). As a generator can't be serialized, this method throws an exception of an unspecified type. It returns no value.
+
+Generator objects can not be serialized or unserialized.
 
 ###Class `__PHP_Incomplete_Class`
 
@@ -1922,9 +1924,8 @@ __PHP_Incomplete_Class
 }
 ```
 
-The three [dynamic properties](#dynamic-members) contain the name of the unknown
-class, and the name, visibility, and value of each property that was
-serialized, in order of serialization.
+Object of this class can be serialized, however, any attemt to call its method or access its property
+for any other operation except serialization will result in a fatal error.
 
 ###Class `stdClass`
 

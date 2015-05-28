@@ -203,6 +203,7 @@ is distributed without any warranty.
   - [Methods](14-classes.md#methods)
   - [Constructors](14-classes.md#constructors)
   - [Destructors](14-classes.md#destructors)
+  - [Inheritance](14-classes.md#inheritance)
   - [Methods with Special Semantics](14-classes.md#methods-with-special-semantics)
     - [General](14-classes.md#general-1)
     - [Method `__call`](14-classes.md#method-__call)

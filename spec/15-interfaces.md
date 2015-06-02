@@ -2,8 +2,8 @@
 
 ##General
 
-A class can implement a set of capabilities—herein called a
-*contract*—through what is called an interface. An *interface* is a set
+A class can implement a set of capabilities — herein called a
+*contract* — through what is called an interface. An *interface* is a set
 of method declarations and constants.  Note that the methods are only
 declared, not defined; that is, an interface defines a type consisting
 of abstract methods, where those methods are implemented by client
@@ -27,14 +27,16 @@ inherits all members from its *base interface(s)*.
     <i>interface-base-clause</i>  ,  <i>qualified-name</i>
 </pre>
 
-*name* and *qualified-name* are defined in [§§](09-lexical-structure.md#names).
-*interface-member-declarations* is defined in [§§](#interface-members).
+**Defined elsewhere**
+
+* [*name*](#class-members)(09-lexical-structure.md#names)
+* [*interface-member-declarations*](#interface-members)
 
 **Constraints**
 
 An interface must not be derived directly or indirectly from itself.
 
-*qualified-name* must name an interface type.
+Every qualified-name* must name an interface type.
 
 **Semantics**
 
@@ -90,31 +92,30 @@ processCollection(new MyQueue(...));
     <i>method-declaration</i>
 </pre>
 
-*const-declaration* is defined in [§§](14-classes.md#constants) and *method-declaration* is
-defined in [§§](14-classes.md#methods).
+* [*const-declaration*](14-classes.md#constants)
+* [*method-declaration*](14-classes.md#methods)
 
 **Semantics**
 
 The members of an interface are those specified by its
-*interface-member-declaration*s, and the members inherited from its base
+*interface-member-declaration*, and the members inherited from its base
 interfaces.
 
 An interface may contain the following members:
 
--   Constants – the constant values associated with the interface
-    ([§§](#constants)).
--   Methods – placeholders for the computations and actions that can be
-    performed by implementers of the interface ([§§](#methods)).
+-   [Constants](#constants) – the constant values associated with the interface.
+-   [Methods](#methods) – placeholders for the computations and actions that can be
+    performed by implementers of the interface.
 
 ##Constants
 
-**Semantics:**
+**Semantics**
 
-An interface constant is just like a class constant ([§§](14-classes.md#constants)), except that
+An interface constant is just like a class [constant](14-classes.md#constants), except that
 an interface constant cannot be overridden by a class that implements it
 nor by an interface that extends it.
 
-**Examples:**
+**Examples**
 
 ```PHP
 interface MyCollection 
@@ -132,11 +133,11 @@ interface MyCollection
 All methods declared in an interface must be implicitly or explicitly
 public, and they must not be declared `abstract`.
 
-**Semantics:**
+**Semantics**
 
-An interface method is just like an abstract method ([§§](14-classes.md#methods)).
+An interface method is just like an [abstract method](14-classes.md#methods).
 
-**Examples:**
+**Examples**
 
 ```PHP
 interface MyCollection 
@@ -170,8 +171,8 @@ The interface members are defined below:
 Name  |   Purpose
 ----    |   -------
 `offsetExists`  | This instance method returns `TRUE` if the instance contains an element with key `$offset`, otherwise, `FALSE`.
-`offsetGet` |  This instance method gets the value having key `$offset`. It may return by value or byRef. (Ordinarily, this wouldn't be allowed because a class implementing an interface needs to match the interface's method signatures; however, the Engine gives special treatment to `ArrayAccess` and allows this). This method is called when an instance of a class that implements this interface is subscripted ([§§](10-expressions.md#subscript-operator)) in a non-lvalue context.
-`offsetSet` | This instance method sets the value having key `$offset` to $value. It returns no value. This method is called when an instance of a class that implements this interface is subscripted ([§§](10-expressions.md#subscript-operator)) in a modifiable-lvalue context.
+`offsetGet` |  This instance method gets the value having key `$offset`. It may return by value or byRef. (Ordinarily, this wouldn't be allowed because a class implementing an interface needs to match the interface's method signatures; however, the Engine gives special treatment to `ArrayAccess` and allows this). This method is called when an instance of a class that implements this interface is [subscripted](10-expressions.md#subscript-operator) in a non-lvalue context.
+`offsetSet` | This instance method sets the value having key `$offset` to $value. It returns no value. This method is called when an instance of a class that implements this interface is [subscripted](10-expressions.md#subscript-operator) in a modifiable-lvalue context.
 `offsetUnset` | This instance method unsets the value having key `$offset`. It returns no value.
 
 ###Interface `Iterator`
@@ -252,6 +253,3 @@ Name |  Purpose
 -----|  -------
 `serialize` | This instance method returns a string representation of the current instance. On failure, it returns `NULL`.
 `unserialize` | This instance method constructs an object from its string form designated by `$serialized`. It does not return a value.
-
-
-

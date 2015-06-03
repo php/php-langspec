@@ -213,7 +213,7 @@ class MyList implements MyCollection
 * [*const-declaration*](#constants)
 * [*property-declaration*](#properties)
 * [*method-declaration*](#methods)
-* [*constructor-declaration*](09-lexical-structure.md#names)
+* [*constructor-declaration*](#constructors)
 * [*destructor-declaration*](#destructors)
 
 **Semantics**

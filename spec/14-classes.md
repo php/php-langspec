@@ -542,7 +542,7 @@ examples of abstract methods and their subsequent definitions.
 **Syntax**
 
 <pre>
-  <i>constructor-definition:</i>
+  <i>constructor-declaration:</i>
     <i>method-modifiers</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
 
 </pre>
@@ -630,7 +630,7 @@ class MyRangeException extends Exception
 **Syntax**
 
 <pre>
-  <i>destructor-definition:</i>
+  <i>destructor-declaration:</i>
     <i>method-modifiers</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
 </pre>
 

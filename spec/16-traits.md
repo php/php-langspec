@@ -2,10 +2,10 @@
 
 ##General
 
-PHP's class model allows single inheritance only ([§§](14-classes.md#general)) with contracts
-being enforced separately via interfaces ([§§](15-interfaces.md#general)). A *trait* can provide
+PHP's class model allows [single inheritance](14-classes.md#general) only with contracts
+being enforced separately via [interfaces](15-interfaces.md#general). A *trait* can provide
 both implementation and contracts. Specifically, a class can inherit
-from a base class while getting implementation from one or more traits.
+from a base class while also using code from one or more traits.
 At the same time, that class can implement contracts from one or more
 interfaces as well as from one or more traits. The use of a trait by a
 class does not involve any inheritance hierarchy, so unrelated classes
@@ -15,7 +15,7 @@ state information that can be reused.
 Traits are designed to support classes; a trait cannot be instantiated
 directly.
 
-The members of a trait each have visibility ([§§](14-classes.md#general)), which applies once
+The members of a trait each have [visibility](14-classes.md#general), which applies once
 they are used by a given class. The class that uses a trait can change
 the visibility of any of that trait's members, by either widening or
 narrowing that visibility. For example, a private trait member can be
@@ -23,7 +23,7 @@ made public in the using class, and a public trait member can be made
 private in that class.
 
 Once implementation comes from both a base class and one or more traits,
-name conflicts can occur. However, trait usage provides a means of
+name conflicts can occur. However, trait usage provides the means for
 disambiguating such conflicts. Names gotten from a trait can also be
 given aliases.
 
@@ -51,13 +51,13 @@ that trait is used.
     <i>trait-use-clauses   trait-use-clause</i>
 
   <i>trait-use-clause:</i>
-    use   <i>trait-name-list   trait-use-terminator</i>
+    use   <i>trait-name-list   trait-use-specification</i>
 
   <i>trait-name-list:</i>
     <i>qualified-name</i>
     <i>trait-name-list</i>   ,   <i>qualified-name</i>
 
-  <i>trait-use-terminator:</i>
+  <i>trait-use-specification:</i>
     ;
     {   <i>trait-select-and-alias-clauses<sub>opt</sub></i>   }
 
@@ -66,19 +66,22 @@ that trait is used.
     <i>trait-select-and-alias-clauses   trait-select-and-alias-clause</i>
 
   <i>trait-select-and-alias-clause:</i>
-    <i>trait-select-insteadof-clause</i>
-    <i>trait-alias-as-clause</i>
+    <i>trait-select-insteadof-clause</i> ;
+    <i>trait-alias-as-clause</i> ;
 
   <i>trait-select-insteadof-clause:</i>
     <i>name</i>   insteadof   <i>name</i>
 
-  trait-alias-as-clause:
+  <i>trait-alias-as-clause:</i>
     <i>name</i>   as   <i>visibility-modifier<sub>opt</sub>   name</i>
     <i>name</i>   as   <i>visibility-modifier   name<sub>opt</sub></i>
 </pre>
 
-*name* is defined in [§§](09-lexical-structure.md#names); *visibility-modifier* is defined in
-[§§](14-classes.md#properties); and *trait-member-declarations* is defined in [§§](#trait-members).
+**Defined elsewhere**
+
+* [*name*](09-lexical-structure.md#names)
+* [*visibility-modifier*](14-classes.md#properties)
+* [*trait-member-declarations*](#trait-members)
 
 **Constraints**
 
@@ -109,7 +112,7 @@ of trait names. A *trait-use-clause* list ends in a semicolon or a
 brace-delimited set of *trait-select-insteadof-clause* and
 *trait-alias-as-clause* statements.
 
-A *trait-select-insteadof-clause* allows name clashes to be avoided.
+A *trait-select-insteadof-clause* allows to avoid name clashes.
 Specifically, the left-hand *name* designates which name to be used from
 of a pair of names. That is, `T1::compute insteadof T2`; indicates that
 calls to method compute, for example, should be satisfied by a method of
@@ -158,9 +161,12 @@ trait T4
     <i>destructor-declaration</i>
 </pre>
 
-*property-declaration* is defined in [§§](14-classes.md#properties); *method-declaration* is
-defined in [§§](14-classes.md#methods); *constructor-declaration* is defined in [§§](09-lexical-structure.md#names); and
-*destructor-declaration* is defined in [§§](14-classes.md#destructors).
+**Defined elsewhere**
+
+* [*property-declaration*](14-classes.md#properties)
+* [*method-declaration*](14-classes.md#methods)
+* [*constructor-declaration*](14-classes.md#constructors)
+* [*destructor-declaration*](14-classes.md#destructors)
 
 **Semantics**
 
@@ -170,14 +176,14 @@ uses.
 
 A trait may contain the following members:
 
--   Properties – the variables made available to the class in which the
-    trait is used ([§§](14-classes.md#properties)).
--   Methods – the computations and actions that can be performed by the
-    class in which the trait is used ([§§](14-classes.md#methods), [§§](14-classes.md#methods-with-special-semantics)).
--   Constructor – the actions required to initialize an instance of the
-    class in which the trait is used ([§§](14-classes.md#constructors))
--   Destructor – the actions to be performed when an instance of the
-    class in which the trait is used is no longer needed ([§§](14-classes.md#destructors)).
+-   [Properties](14-classes.md#properties) – the variables made available to the class in which the
+    trait is used.
+-   [Methods](14-classes.md#methods) – the computations and actions that can be performed by the
+    class in which the trait is used.
+-   [Constructor](14-classes.md#constructors) – the actions required to initialize an instance of the
+    class in which the trait is used.
+-   [Destructor](14-classes.md#destructors) – the actions to be performed when an instance of the
+    class in which the trait is used is no longer needed.
 
 If a member has no explicit visibility, `public` is assumed.
 

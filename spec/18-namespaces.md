@@ -28,42 +28,9 @@ In the absence of any namespace definition, the names of subsequent
 classes, interfaces, traits, functions, and constants are in the
 *default namespace*, which has no name, per se.
 
-The namespaces PHP, php, and sub-namespaces beginning with those
+The namespaces `PHP`, `php`, and sub-namespaces beginning with those
 prefixes are reserved for use by PHP.
 
-##Name Lookup
-
-When an existing name is used in source code, the Engine must determine
-how that name is found with respect to namespace lookup. For this
-purpose, names can have one of the three following forms:
-
--   Unqualified name: Such names are just simple names without any
-    prefix, as in the class name `Point` in the following expression:
-    `$p = new Point(3,5)`. If the current namespace is `NS1`, the name
-    `Point` resolves to `NS1\Point`. If the current namespace is the
-    default namespace ([§§](#general)), the name `Point` resolves to `Point`. In the
-    case of an unqualified function or constant name, if that name does
-    not exist in the current namespace, a global function or constant by
-    that name is used.
--   Qualified name: Such names have a prefix consisting of a namespace
-    name and/or one or more levels of sub-namespace names, and,
-    possibly, a class, interface, trait, function, or constant name.
-    Such names are relative. For example, `D2\Point` could be used to
-    refer to the class Point in the sub-namespace `D2` of the current
-    namespace. One special case of this is when the first component of
-    the name is the keyword `namespace`. This means "the current
-    namespace".
--   Fully qualified name: Such names begin with a backslash (`\`) and are
-    followed optionally by a namespace name and one or more levels of
-    sub-namespace names, and, finally, a class, interface, trait,
-    function, or constant name. Such names are absolute. For example,
-    `\Graphics\D2\Point` could be used to refer unambiguously to the
-    class `Point` in namespace `Graphics`, sub-namespace `D2`.
-   
-The names of the standard types (such as `Exception`), constants (such as
-`PHP_INT_MAX`), and library functions (such as `is_null`) are defined outside
-any namespace. To refer unambiguously to such names, one can prefix them
-with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`.
 
 ##Defining Namespaces
 
@@ -71,22 +38,24 @@ with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`.
 
 <pre>
   <i>namespace-definition:</i>
-    namespace  <i>namespace-name</i>  ;
-    namespace  <i>namespace-name<sub>opt</sub>   compound-statement</i>
+    namespace  <i>name</i>  ;
+    namespace  <i>name<sub>opt</sub>   compound-statement</i>
 </pre>
 
-*namespace-name* is defined in [§§](09-lexical-structure.md#names), and *compound-statement* is
-defined in [§§](11-statements.md#compound-statements).
+**Defined elsewhere**
+
+* [*name*](09-lexical-structure.md#names)
+* [*compound-statement*](11-statements.md#compound-statements)
 
 **Constraints**
 
-Except for white space and an optional *declare-statement* ([§§](11-statements.md#the-declare-statement)), the
+Except for white space and [*declare-statement*](11-statements.md#the-declare-statement), the
 first occurrence of a *namespace-definition* in a script must be the
 first thing in that script.
 
 All occurrence of a *namespace-definition* in a script must have the
 *compound-statement* form or must not have that form; the two forms
-cannot be mixed.
+cannot be mixed within the same script file.
 
 When a script contains source code that is not inside a namespace, and
 source code that is inside one or namespaces, the namespaced code must
@@ -98,11 +67,16 @@ use the *compound-statement* form of *namespace-definition*.
 
 Although a namespace may contain any PHP source code, the fact that that
 code is contained in a namespace affects only the declaration and name
-resolution of classes, interfaces, traits, functions, and constants.
+resolution of classes, interfaces, traits, functions, and constants. 
+For each of those, if they are defined using [unqualified or qualified name](#name-lookup), 
+the current namespace name is prepended to the specified name.
+Note that while definition has a short name, the name known to the engine
+is always the full name, and can be either specified as fully qualified name,
+composed from current namespace name and specified name, or [imported](#namespace-use-declarations).
 
 Namespace and sub-namespace names are case-insensitive.
 
-The pre-defined constant `__NAMESPACE__` ([§§](06-constants.md#context-dependent-constants)) contains the name of
+The pre-defined constant [`__NAMESPACE__`](06-constants.md#context-dependent-constants) contains the name of
 the current namespace.
 
 When the same namespace is defined in multiple scripts, and those
@@ -159,23 +133,24 @@ namespace NS3\Sub1;
     as  <i>name</i>
 </pre>
 
-*qualified-name* and *name* are defined in [§§](09-lexical-structure.md#names).
+**Defined elsewhere**
+
+* [*qualified-name*](09-lexical-structure.md#names)
+* [*name*](09-lexical-structure.md#names)
 
 **Constraints**
 
-A *namespace-use-declaration* must not occur except at the top level or directly in the context of a *namespace-definition* (18.3).
+A *namespace-use-declaration* must not occur except at the top level or directly in the context of a *namespace-definition*.
 
 If the same *qualified-name* is imported multiple times in the same
 scope, each occurrence must have a different alias.
 
 **Semantics**
 
-*qualified-name* is always interpreted as referring to a class,
-interface, or trait by that name. *namespace-use-clauses* can only
-create aliases for classes, interfaces, or traits; it is not possible to
-use them to create aliases to functions or constants.
+*namespace-use-clauses* can only create aliases for classes, interfaces, or traits; 
+it is not possible to use them to create aliases to functions or constants.
 
-A *namespace-use-declaration* *imports*—that is, makes available—one or
+A *namespace-use-declaration* *imports* — that is, makes available — one or
 more names into a scope, optionally giving them each an alias. Each of
 those names may designate a namespace, a sub-namespace, a class, an
 interface, or a trait. If a *namespace-alias-clause* is present, its
@@ -238,3 +213,53 @@ namespace a
   $b->foo(); // goodbye
 }
 ```
+
+##Name Lookup
+
+When an existing name is used in source code, the Engine must determine
+how that name is found with respect to namespace lookup. For this
+purpose, names can have one of the three following forms:
+
+-   Unqualified name: Such names are just simple names without any
+    prefix, as in the class name `Point` in the following expression:
+    `$p = new Point(3,5)`. If the current namespace is `NS1`, the name
+    `Point` resolves to `NS1\Point`. If the current namespace is the
+    default namespace, the name `Point` resolves to just `Point`. In the
+    case of an unqualified function or constant name, if that name does
+    not exist in the current namespace, a global function or constant by
+    that name is used.
+-   Qualified name: Such names have a prefix consisting of a namespace
+    name and/or one or more levels of sub-namespace names,
+	preceding a class, interface, trait, function, or constant name.
+    Such names are relative. For example, `D2\Point` could be used to
+    refer to the class `Point` in the sub-namespace `D2` of the current
+    namespace. One special case of this is when the first component of
+    the name is the keyword `namespace`. This means "the current
+    namespace".
+-   Fully qualified name: Such names begin with a backslash (`\`) and are
+    followed optionally by a namespace name and one or more levels of
+    sub-namespace names, and, finally, a class, interface, trait,
+    function, or constant name. Such names are absolute. For example,
+    `\Graphics\D2\Point` could be used to refer unambiguously to the
+    class `Point` in namespace `Graphics`, sub-namespace `D2`.
+	
+However, if an unqualified name is used in a context where it represents the name
+of a constant or function, within a non-default namespace, if this namespace does not have
+such constant of function defined, the global unqualified name is used. 
+
+For example:
+```PHP
+<?php
+namespace A\B\C;
+function strlen($str)
+{
+	return 42;
+}
+print strlen("Life, Universe and Everything"); // prints 42
+print mb_strlen("Life, Universe and Everything"); // calls global function and prints 29
+```
+   
+The names of the standard types (such as `Exception`), constants (such as
+`PHP_INT_MAX`), and library functions (such as `is_null`) are defined outside
+any namespace. To refer unambiguously to such names, one can prefix them
+with a backslash (`\`), as in `\Exception`, `\PHP_INT_MAX`, and `\is_null`.

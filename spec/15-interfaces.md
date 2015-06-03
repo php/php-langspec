@@ -29,14 +29,14 @@ inherits all members from its *base interface(s)*.
 
 **Defined elsewhere**
 
-* [*name*](#class-members)(09-lexical-structure.md#names)
+* [*name*](09-lexical-structure.md#names)
 * [*interface-member-declarations*](#interface-members)
 
 **Constraints**
 
 An interface must not be derived directly or indirectly from itself.
 
-Every qualified-name* must name an interface type.
+Every *qualified-name* must name an interface type.
 
 **Semantics**
 

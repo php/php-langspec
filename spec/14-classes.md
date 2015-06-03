@@ -541,7 +541,7 @@ examples of abstract methods and their subsequent definitions.
 **Syntax**
 
 <pre>
-  <i>constructor-definition:</i>
+  <i>constructor-declaration:</i>
     <i>method-modifiers</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
     <i>method-modifiers</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
 
@@ -562,7 +562,7 @@ less-restricted [visibility](#general) than the one in the base class.
 *method-modifiers* can not contain `static`. 
 
 *name* must be the same as that in the [*class-declaration*](#class-declarations) that
-contains this *constructor-definition*.
+contains this *constructor-declaration*.
 
 **Semantics**
 
@@ -644,7 +644,7 @@ class MyRangeException extends Exception
 **Syntax**
 
 <pre>
-  <i>destructor-definition:</i>
+  <i>destructor-declaration:</i>
     <i>method-modifiers</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
 </pre>
 

@@ -3,6 +3,6 @@ PHP Spec test generated from ./lexical_structure/unicode_string_escape_sequence/
 --FILE--
 <?php
 
-var_dunp("\u{blah");
+var_dump("\u{blah");
 --EXPECTF--
 Fatal error: Invalid UTF-8 codepoint escape sequence in %s on line %d

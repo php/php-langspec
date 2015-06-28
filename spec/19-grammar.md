@@ -116,7 +116,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     enddeclare   endfor   endforeach   endif   endswitch   endwhile
     extends   final   finally   for   foreach   function   global
     goto   if   implements   include   include_once   instanceof
-    insteadof   interface   list   namespace   new or   print   private
+    insteadof   interface   list   namespace   new   or   print   private
     protected   public   require   require_once   return static   switch
     throw   trait   try   use   var   while   xor   yield
 </pre>
@@ -617,9 +617,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 <pre>
   <i>multiplicative-expression:</i>
     <i>instanceof-expression</i>
-    <i>multiplicative-expression</i>  *  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  /  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  %  <i>multiplicative-expression</i>
+    <i>multiplicative-expression</i>  *  <i>instanceof-expression</i>
+    <i>multiplicative-expression</i>  /  <i>instanceof-expression</i>
+    <i>multiplicative-expression</i>  %  <i>instanceof-expression</i>
 </pre>
 
 ####Additive Operators

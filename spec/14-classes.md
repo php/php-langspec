@@ -1659,8 +1659,8 @@ are provided by the library functions `serialize` (§xx) and `unserialize`
 In the case of variables that are objects, on their own, these two
 functions serialize and unserialize all the instance properties, which
 may be sufficient for some applications. However, if the programmer
-wants to customize these processes, they can do so in one of two,
-mutually exclusive ways. The first approach is to define methods called
+wants to customize these processes, they can do so in one of two mutually exclusive ways. 
+The first approach is to define methods called
 `__sleep` and `__wakeup`, and have them get control before serialization
 and after serialization, respectively. For information on this approach,
 see [__sleep](#method-__sleep) and [__wakeup](#method-__wakeup). The second approach involves implementing

@@ -401,7 +401,7 @@ $v = TRUE;
 isset($v);     // results in TRUE
 $v = NULL;
 isset($v);     // results in FALSE
-$v1 = TRUE; $v2 = 12.3; $v1 = NULL;
+$v1 = TRUE; $v2 = 12.3; $v3 = NULL;
 isset($v1, $v2, $v3);  // results in FALSE
 ```
 
@@ -441,7 +441,7 @@ variable (called the *target variable*).
 
 This intrinsic assigns zero or more elements of the source array to the
 target variables. On success, it returns a copy of the source array. If
-the source array is actually the value `NULL`, this is consider a failure,
+the source array is actually the value `NULL`, this is considered a failure,
 and the return value from `list` is undefined.
 
 All elements in the source array having keys of type `string` are ignored.
@@ -559,7 +559,7 @@ When called from inside a function, this intrinsic behaves, as follows:
 Any visible instance property may be unset, in which case, the property
 is removed from that instance.
 
-If this intrinsic is used with an expression that designate a [dynamic
+If this intrinsic is used with an expression that designates a [dynamic
 property](14-classes.md#dynamic-members), then if the class of that property has an [`__unset`
 method](14-classes.md#method-__unset), that method is called.
 
@@ -712,7 +712,7 @@ These operators associate left-to-right.
 **Semantics**
 
 The `clone` operator creates a new object that is a shallow copy of the object designated by *expression*.
-Then, if the class type of *expression* has a method called [`__clone`](14-classes.md#method-__clone), that is called to perform a deep copy.
+Then, if the class type of *expression* has a method called [`__clone`](14-classes.md#method-__clone), it is called to perform a deep copy.
 The result is the new object.
 
 **Examples**
@@ -860,7 +860,7 @@ the array-creation operator `[]`, as described below, or the intrinsic
 
 **Constraints**
 
-If *array-element-initializer* contains &, *element-value's expression*
+If *array-element-initializer* contains &, *expression* in *element-value*
 must designate a [variable](09-lexical-structure.md#names).
 
 **Semantics**
@@ -1137,8 +1137,8 @@ call*. The expression designates the *called function*, and
 function. An argument can be any value. In a function call,
 *postfix-expression* is evaluated first, followed by each
 *assignment-expression* in the order left-to-right. There is
-a [sequence point](#general) right before the function is called. For details of the
-result of a function call see [`return` statement](11-statements.md#the-return-statement).
+a [sequence point](#general) after each argument is evaluated and right before the function is called. 
+For details of the result of a function call see [`return` statement](11-statements.md#the-return-statement).
 The value of a function call is a modifiable lvalue only if the function returns a modifiable value byRef.
 
 When *postfix-expression* designates an instance method or constructor,
@@ -1829,7 +1829,7 @@ $result = `$d {$f}`;      // result is the output of command dir *.*
 With the exception of the *cast-type* unset and binary (see below), the
 value of the operand *cast-expression* is converted to the type
 specified by *cast-type*, and that is the type and value of the result.
-This construct is referred to a *cast*, and is used as the verb, "to
+This construct is referred to as a *cast* and is used as the verb, "to
 cast". If no conversion is involved, the type and value of the result
 are the same as those of *cast-expression*.
 
@@ -2002,9 +2002,9 @@ var_dump($e2 instanceof $e1);      // TRUE
 <pre>
   <i>multiplicative-expression:</i>
     <i>instanceof-expression</i>
-    <i>multiplicative-expression</i>  *  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  /  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  %  <i>multiplicative-expression</i>
+    <i>multiplicative-expression</i>  *  <i>instanceof-expression</i>
+    <i>multiplicative-expression</i>  /  <i>instanceof-expression</i>
+    <i>multiplicative-expression</i>  %  <i>instanceof-expression</i>
 </pre>
 
 **Defined elsewhere**

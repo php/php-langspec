@@ -124,8 +124,8 @@ assigned a simple alias name. Specifically, the left-hand *name* in
 *trait-use-clauses* - that is to be aliased, and the right-hand *name*
 is the alias.
 
-If *trait-alias-as-clause* contains a visibility-modifier, that controls
-the visibility of the alias, if a right-hand name is provided;
+If *trait-alias-as-clause* contains a visibility-modifier, 
+if a right-hand name is provided, the modifier controls the visibility of the alias,
 otherwise, it controls the visibility of the left-hand name.
 
 **Examples**

@@ -161,7 +161,7 @@ without interfering with each other.
 A *namespace-use-declaration* *imports* — that is, makes available — one or
 more names into a scope, optionally giving them each an alias. Each of
 those names may designate a namespace, a sub-namespace, a class, an
-interface, or a trait. If a *namespace-alias-clause* is present, its
+interface, or a trait. If a *namespace-aliasing-clause* is present, its
 *name* is the alias for *qualified-name*. Otherwise, the right-most name component
 in *qualified-name* is the implied alias for *qualified-name*.
 

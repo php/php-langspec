@@ -42,9 +42,11 @@ name, and argument list, including argument type declarations and
 indication for arguments passed byRef, and whether the resulting
 value is returned byRef.
 
-Methods and properties from a base class can be *overridden* in a
-derived class by redeclaring them with the compatible signature defined in the
-base class.
+Methods and properties implemented in a base class can be *overridden* in a
+derived class by redeclaring them with the *compatible* signature (see below).
+If the overriding method does not have a compatible signature,
+a non-fatal error is issued but the override is still permitted.
+It is not recommended to use incompatible signatures for overriding methods.
 
 When an instance is allocated, `new` returns a handle that points to that
 object. As such, assignment of a handle does not copy the object itself.
@@ -122,7 +124,8 @@ class cannot be instantiated directly. An abstract class may contain one
 or more abstract members, but it is not required to do so. When a
 concrete class is derived from an abstract class, the concrete class
 must include an implementation for each of the abstract members it
-inherits.
+inherits. The implementations of abstract methods must have compatible signatures,
+incompatible implementations are not permitted.
 
 The `final` modifier prevents a class from being used as a base class.
 
@@ -240,11 +243,9 @@ The class can also have [dynamic members](#dynamic-members) which are not part o
 
 Methods and properties can either be *static* or *instance* members. A
 static member is declared using `static`. An instance member is one that
-is not static. The name of a static method or property can never be used
+is not static. The name of a static or instance member can never be used
 on its own; it must always be used as the right-hand operand of the
-[scope resolution operator](10-expressions.md#scope-resolution-operator). The name of an instance method or
-property can never be used on its own; it must always be used as the
-right-hand operand of the [member selection operator](10-expressions.md#member-selection-operator).
+[scope resolution operator](10-expressions.md#scope-resolution-operator) or the [member selection operator](10-expressions.md#member-selection-operator).
 
 Each instance of a class contains its own, unique set of instance
 properties of that class. An instance member is accessed via the
@@ -679,9 +680,11 @@ Visibility of the overridden member can not be made more restrictive, only more 
 When a private member is overridden, the methods of the defining class still have access to the original private
 member, however non-static public and protected members are shared across the inheritance chain. 
 
-When a method is overridden, the signature of the overriding method must be [compatible](#class-declarations)
+When a method is overridden, the signature of the overriding method should be [compatible](#class-declarations)
 with the signature of the original method, by the same rule as if the original method belonged to the interface
 and the overriding method belonged to an implementation. 
+If an implemented method is overridden with an incompatible method, a non-fatal error is issued, however the
+override is still accepted by the engine. The use of incompatible overrides is not recommended.
 
 ##Methods with Special Semantics
 
@@ -1656,8 +1659,8 @@ are provided by the library functions `serialize` (§xx) and `unserialize`
 In the case of variables that are objects, on their own, these two
 functions serialize and unserialize all the instance properties, which
 may be sufficient for some applications. However, if the programmer
-wants to customize these processes, they can do so in one of two,
-mutually exclusive ways. The first approach is to define methods called
+wants to customize these processes, they can do so in one of two mutually exclusive ways. 
+The first approach is to define methods called
 `__sleep` and `__wakeup`, and have them get control before serialization
 and after serialization, respectively. For information on this approach,
 see [__sleep](#method-__sleep) and [__wakeup](#method-__wakeup). The second approach involves implementing

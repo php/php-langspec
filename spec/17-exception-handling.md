@@ -3,9 +3,9 @@
 ##General
 
 An *exception* is some unusual condition in that it is outside the
-ordinary expected behavior. (Examples include dealing with situations in
+ordinary expected behavior. Examples include dealing with situations in
 which a critical resource is needed, but is unavailable, and detecting
-an out-of-range value for some computation). As such, exceptions require
+an out-of-range value for some computation. As such, exceptions require
 special handling. This chapter describes how exceptions can be created
 and handled.
 
@@ -138,7 +138,7 @@ Key | Value Type  | Value
 "function"  | `string` |  The name of the function or class method
 "line"  | `int` | The line number in the source where the function was called
 "object" |  `object` | The current object
-"type"  | `string` |  Type of call; `->` for an instance method call, `::` for a static method call, ordinary function call, "" is returned.
+"type"  | `string` |  Type of call; `->` for an instance method call, `::` for a static method call, for ordinary function call, empty string(`""`) is returned.
 
 The key `args` has a value that is yet another array, which we shall
 call *argument-array*. That array contains a set of values that

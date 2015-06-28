@@ -213,7 +213,7 @@ a [`__toString` method](14-classes.md#method-__tostring).
 
 After converting each of its *expression*s' values to strings, if
 necessary, `echo` concatenates them in order given, and writes the
-resulting string to [`STDOUT`](05-types.md#resource-types). Unlike [`print`](#print), it does
+resulting string to [`STDOUT`](06-constants.md#core-predefined-constants). Unlike [`print`](#print), it does
 not produce a result.
 
 See also: [double quioted strings](09-lexical-structure.md#double-quoted-string-literals) and
@@ -338,7 +338,7 @@ When *expression* designates an integer, its value must be in the range
 `exit` and `die` are equivalent.
 
 This intrinsic terminates the current script. If *expression* designates
-a string, that string is written to [`STDOUT`](05-types.md#resource-types). If *expression*
+a string, that string is written to [`STDOUT`](06-constants.md#core-predefined-constants). If *expression*
 designates an integer, that represents the script's *exit status code*.
 Code 255 is reserved by PHP. Code 0 represents "success". The exit
 status code is made available to the execution environment. If
@@ -347,7 +347,7 @@ status code is made available to the execution environment. If
 
 `exit` performs the following operations, in order:
 
--   Writes the optional string to [`STDOUT`](05-types.md#resource-types).
+-   Writes the optional string to [`STDOUT`](06-constants.md#core-predefined-constants).
 -   Calls any functions registered via the library function
     `register_shutdown_function` (§xx) in their order of registration.
 -   Invokes [destructors](14-classes.md#destructors) for all remaining instances.
@@ -401,7 +401,7 @@ $v = TRUE;
 isset($v);     // results in TRUE
 $v = NULL;
 isset($v);     // results in FALSE
-$v1 = TRUE; $v2 = 12.3; $v1 = NULL;
+$v1 = TRUE; $v2 = 12.3; $v3 = NULL;
 isset($v1, $v2, $v3);  // results in FALSE
 ```
 
@@ -506,7 +506,7 @@ a [`__toString` method](14-classes.md#method-__tostring).
 **Semantics**
 
 After converting its *expression*'s value to a string, if necessary,
-`print` writes the resulting string to [`STDOUT`](05-types.md#resource-types).
+`print` writes the resulting string to [`STDOUT`](06-constants.md#core-predefined-constants).
 Unlike [`echo`](#echo), `print` can be used in any context allowing an expression. It
 always returns the value 1.
 
@@ -568,7 +568,7 @@ When called from inside a function, this intrinsic behaves, as follows:
 Any visible instance property may be unset, in which case, the property
 is removed from that instance.
 
-If this intrinsic is used with an expression that designate a [dynamic
+If this intrinsic is used with an expression that designates a [dynamic
 property](14-classes.md#dynamic-members), then if the class of that property has an [`__unset`
 method](14-classes.md#method-__unset), that method is called.
 
@@ -580,7 +580,7 @@ unset($v1, $v2, $v3);
 unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
 ```
 
-###Anonymous Function-Creation
+###Anonymous Function Creation
 
 **Syntax**
 
@@ -722,7 +722,7 @@ These operators associate left-to-right.
 **Semantics**
 
 The `clone` operator creates a new object that is a shallow copy of the object designated by *expression*.
-Then, if the class type of *expression* has a method called [`__clone`](14-classes.md#method-__clone), that is called to perform a deep copy.
+Then, if the class type of *expression* has a method called [`__clone`](14-classes.md#method-__clone), it is called to perform a deep copy.
 The result is the new object.
 
 **Examples**
@@ -798,7 +798,7 @@ that string is used as the class name. If the expression results in an object,
 the class of the object is used as the class for the new object.
 
 The *qualified-name* is resolved according to the rules described in
-[scope resolution operator](10-expressions.md#scope-resolution-operator), including
+[scope resolution operator](#scope-resolution-operator), including
 support for `self`, `parent` and `static`.
 
 After the object has been created, each instance property is initialized
@@ -870,7 +870,7 @@ the array-creation operator `[]`, as described below, or the intrinsic
 
 **Constraints**
 
-If *array-element-initializer* contains &, *element-value's expression*
+If *array-element-initializer* contains &, *expression* in *element-value*
 must designate a [variable](09-lexical-structure.md#names).
 
 **Semantics**
@@ -952,8 +952,9 @@ If *postfix-expression* designates a string, *expression* must not
 designate a string.
 
 *expression* can be omitted only if *subscript-expression* is used in a
-modifiable-lvalue context and *postfix-expression* does not designate a
-string.
+modifiable-lvalue context and *postfix-expression* does not designate a string. 
+Exception from this is when *postfix-expression* is an empty string - then it is
+converted to an empty array.
 
 If *subscript-expression* is used in a non-lvalue context, the element
 being designated must exist.
@@ -1146,8 +1147,8 @@ call*. The expression designates the *called function*, and
 function. An argument can be any value. In a function call,
 *postfix-expression* is evaluated first, followed by each
 *assignment-expression* in the order left-to-right. There is
-a [sequence point](#general) right before the function is called. For details of the
-result of a function call see [`return` statement](11-statements.md#the-return-statement).
+a [sequence point](#general) after each argument is evaluated and right before the function is called. 
+For details of the result of a function call see [`return` statement](11-statements.md#the-return-statement).
 The value of a function call is a modifiable lvalue only if the function returns a modifiable value byRef.
 
 When *postfix-expression* designates an instance method or constructor,
@@ -1378,6 +1379,19 @@ method. From within a class, it also allows the selection of an
 overridden property or method. For a property, the value is that of the
 property, and is a modifiable lvalue if *member-selection-designator* is
 a modifiable lvalue.
+
+If *member-selection-designator* is a [*name*](09-lexical-structure.md#names), this operator is accessing
+a class constant. This form can not be used as an lvalue.
+
+If the operator is used as a *postfix-expression* for *function-call-expression*
+then the operator is accessing the method - which, outside of the object context,
+is treated as static method call.
+
+Inside of the object context when `$this` is defined and the called method is not `static` and
+the called class is the same of a parent of the class of `$this`, then the method is
+non-static with the same `$this`. Otherwise it is a static method call.
+
+Otherwise, the operator is accessing a static property.
 
 *relative-scope* designates the class with relation to the current class scope.
 From within a class, `self` refers to the same class, `parent` refers to the
@@ -1786,7 +1800,7 @@ where \` is the GRAVE ACCENT character U+0060, commonly referred to as a
 This operator passes *dq-char-sequence* to the command shell for
 execution, as though it was being passed to the library function
 `shell_exec` (§xx). If the output from execution of that command is
-written to [`STDOUT`](05-types.md#resource-types), that output is the result of this operator
+written to [`STDOUT`](06-constants.md#core-predefined-constants), that output is the result of this operator
 as a string. If the output is redirected away from `STDOUT`, or
 *dq-char-sequence* is empty or contains only white space, the result of
 the operator is `NULL`.
@@ -1825,7 +1839,7 @@ $result = `$d {$f}`;      // result is the output of command dir *.*
 With the exception of the *cast-type* unset and binary (see below), the
 value of the operand *cast-expression* is converted to the type
 specified by *cast-type*, and that is the type and value of the result.
-This construct is referred to a *cast*, and is used as the verb, "to
+This construct is referred to as a *cast* and is used as the verb, "to
 cast". If no conversion is involved, the type and value of the result
 are the same as those of *cast-expression*.
 
@@ -1998,9 +2012,9 @@ var_dump($e2 instanceof $e1);      // TRUE
 <pre>
   <i>multiplicative-expression:</i>
     <i>instanceof-expression</i>
-    <i>multiplicative-expression</i>  *  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  /  <i>multiplicative-expression</i>
-    <i>multiplicative-expression</i>  %  <i>multiplicative-expression</i>
+    <i>multiplicative-expression</i>  *  <i>instanceof-expression</i>
+    <i>multiplicative-expression</i>  /  <i>instanceof-expression</i>
+    <i>multiplicative-expression</i>  %  <i>instanceof-expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -2254,7 +2268,8 @@ The conversions are performed according to [type conversion rules](08-conversion
 1.  If either operand has type `bool`, the other operand is converted to
     that type. The result is the logical comparison of the two operands
     after conversion, where `FALSE` is defined to be less than `TRUE`.
-2.  If one of the operands has arithmetic type, is a resource, or a numeric string,
+2.  If one of the operands has arithmetic type, is a resource, or a numeric string, 
+    which can be represented as `int` or `float` without loss of precision,
     the operands are converted to the corresponding arithmetic type, with `float` taking precedence over `int`,
     and resources converting to `int`.
     The result is the numerical comparison of the two operands after conversion.

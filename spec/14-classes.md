@@ -484,7 +484,7 @@ class Point
 **Syntax**
 
 <pre>
-  method-declaration:
+  <i>method-declaration:</i>
     <i>method-modifiers<sub>opt</sub>   function-definition</i>
     <i>method-modifiers   function-definition-header</i>  ;
 

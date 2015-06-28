@@ -942,8 +942,9 @@ If *postfix-expression* designates a string, *expression* must not
 designate a string.
 
 *expression* can be omitted only if *subscript-expression* is used in a
-modifiable-lvalue context and *postfix-expression* does not designate a
-string.
+modifiable-lvalue context and *postfix-expression* does not designate a string. 
+Exception from this is when *postfix-expression* is an empty string - then it is
+converted to an empty array.
 
 If *subscript-expression* is used in a non-lvalue context, the element
 being designated must exist.

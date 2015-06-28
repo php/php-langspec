@@ -696,9 +696,11 @@ Visibility of the overridden member can not be made more restrictive, only more 
 When a private member is overridden, the methods of the defining class still have access to the original private
 member, however non-static public and protected members are shared across the inheritance chain. 
 
-When a method is overridden, the signature of the overriding method must be [compatible](#class-declarations)
+When a method is overridden, the signature of the overriding method should be [compatible](#class-declarations)
 with the signature of the original method, by the same rule as if the original method belonged to the interface
 and the overriding method belonged to an implementation. 
+If an implemented method is overridden with an incompatible method, a non-fatal error is issued, however the
+override is still accepted by the engine. The use of incompatible overrides is not recommended.
 
 ##Methods with Special Semantics
 

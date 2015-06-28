@@ -35,12 +35,6 @@ The top level of a script is simply referred to as the *top level*.
 If `<?=` is used as the *start-tag*, the Engine proceeds as if the *statement-list* started with [echo](10-expressions.md#echo)
 statement.
 
-The implementation may also accept other sequences as *start-tag* and *end-tag*, among which the following may be accepted:
-- `<script language="php">` and `</script>`
-- `<%` and `%>`
-
-If the implementation accepts one tag from the pairs above, it must also accept the other. 
-
 ##Program Start-Up
 A program begins execution at the start of a [script](#program-structure) designated in
 some unspecified manner. This script is called the *start-up script*.

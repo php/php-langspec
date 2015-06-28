@@ -2240,7 +2240,8 @@ The conversions are performed according to [type conversion rules](08-conversion
 1.  If either operand has type `bool`, the other operand is converted to
     that type. The result is the logical comparison of the two operands
     after conversion, where `FALSE` is defined to be less than `TRUE`.
-2.  If one of the operands has arithmetic type, is a resource, or a numeric string,
+2.  If one of the operands has arithmetic type, is a resource, or a numeric string, 
+    which can be represented as `int` or `float` without loss of precision,
     the operands are converted to the corresponding arithmetic type, with `float` taking precedence over `int`,
     and resources converting to `int`.
     The result is the numerical comparison of the two operands after conversion.

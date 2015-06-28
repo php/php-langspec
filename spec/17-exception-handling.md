@@ -154,8 +154,8 @@ for the parameter having the default value, no corresponding argument
 exists in the argument array. Only arguments present at the function-call
 site have their values recorded in array-argument.
 
-See also, library functions `debug_backtrace` (§xx) and
-`debug_print_backtrace` (§xx).
+See also, library functions [`debug_backtrace`](http://www.php.net/debug_backtrace) and
+[`debug_print_backtrace`](http://www.php.net/debug_print_backtrace).
 
 ##User-Defined Exception Classes
 

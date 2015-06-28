@@ -349,7 +349,7 @@ status code is made available to the execution environment. If
 
 -   Writes the optional string to [`STDOUT`](06-constants.md#core-predefined-constants).
 -   Calls any functions registered via the library function
-    `register_shutdown_function` (§xx) in their order of registration.
+    [`register_shutdown_function`](http://www.php.net/register_shutdown_function) in their order of registration.
 -   Invokes [destructors](14-classes.md#destructors) for all remaining instances.
 
 **Examples**
@@ -1789,7 +1789,7 @@ where \` is the GRAVE ACCENT character U+0060, commonly referred to as a
 
 This operator passes *dq-char-sequence* to the command shell for
 execution, as though it was being passed to the library function
-`shell_exec` (§xx). If the output from execution of that command is
+[`shell_exec`](http://www.php.net/shell_exec). If the output from execution of that command is
 written to [`STDOUT`](06-constants.md#core-predefined-constants), that output is the result of this operator
 as a string. If the output is redirected away from `STDOUT`, or
 *dq-char-sequence* is empty or contains only white space, the result of

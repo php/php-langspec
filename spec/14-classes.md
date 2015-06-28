@@ -42,7 +42,7 @@ name, and argument list, including argument type declarations and
 indication for arguments passed byRef, and whether the resulting
 value is returned byRef.
 
-Methods and properties from a base class can be *overridden* in a
+Methods and properties implemented in a base class can be *overridden* in a
 derived class by redeclaring them with the *compatible* signature (see below).
 If the overriding method does not have a compatible signature,
 a non-fatal error is issued but the override is still permitted.

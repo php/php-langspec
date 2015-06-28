@@ -44,6 +44,6 @@ object(MyRangeException)#1 (10) {
   NULL
 }
 =======
-$re = >exception 'MyRangeException' with message 'xxx' in %s/exception_handling/myrangeexception_test1.php:13
+$re = >MyRangeException: xxx in %s/exception_handling/myrangeexception_test1.php:13
 Stack trace:
 #0 {main}, badValue: 5, lowerValue: 20, upperValue: 30<

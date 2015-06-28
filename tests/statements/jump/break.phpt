@@ -46,7 +46,7 @@ findValue($table, -23);
 function f($i)
 {
         echo "$i\n";
-        break;  // break is not rejected here until runtime
+//        break;  // can't break when no statement exists
 }
 
 //f(12);        // fails

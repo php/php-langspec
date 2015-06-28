@@ -130,20 +130,20 @@ echo "================== complex cases, [] ====================\n";
 
 $v = array(10, 20);
 $a = 'v';
-$$a[0] = 5;				// [] has higher precedence, so op of $ is $ary[0]
-						// but no parens are allowed to document this
+$$a[0] = 5;				
+
 var_dump($v);
 unset($v, $a);
 
 $v = array(10, 20);
 $a = 'v';
-${$a[0]} = 5;			// equivalent to above, just has explicit operand
+${$a[0]} = 5;			
 var_dump($v);
 unset($v, $a);
 
 $v = array(10, 20);
 $a = 'v';
-${$a}[0] = 5;			// override []'s getting first shot, ==> $v[0] = 5
+${$a}[0] = 5;			
 var_dump($v);
 unset($v, $a);
 //*/
@@ -238,7 +238,12 @@ $abc = $v11 = 'abc'
 string(12) "$v11 = 'abc'"
 string(8) "$v12 = 3"
 ================== complex cases, [] ====================
-int(5)
+array(2) {
+  [0]=>
+  int(5)
+  [1]=>
+  int(20)
+}
 int(5)
 array(2) {
   [0]=>

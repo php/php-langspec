@@ -99,7 +99,7 @@ About to call f
 In try-block
 In finally-block
 In MyDefExHandler
-$e = >exception 'Exception' with message 'Watson, come here!' in %s/exception_handling/set_exception_handler.php:73
+$e = >Exception: Watson, come here! in %s/exception_handling/set_exception_handler.php:73
 Stack trace:
 #0 %s/exception_handling/set_exception_handler.php(90): f(10, true)
 #1 {main}<

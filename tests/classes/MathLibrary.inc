@@ -10,7 +10,7 @@ error_reporting(-1);
 
 final class MathLibrary 
 {
-	private function MathLibrary() {}	// disallows instantiation
+	private function __construct() {}	// disallows instantiation
 
 	public static function sin() { /* ... */ }
 	public static function cos() { /* ... */ }

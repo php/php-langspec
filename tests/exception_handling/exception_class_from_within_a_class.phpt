@@ -151,7 +151,7 @@ $o->fL1(10);
 --EXPECTF--
 L0: In try-block
 L0: In catch-block
-$e = >exception 'Exception' with message 'L0 Message' in %s/exception_handling/exception_class_from_within_a_class.php:131
+$e = >Exception: L0 Message in %s/exception_handling/exception_class_from_within_a_class.php:131
 Stack trace:
 #0 {main}<
 getMessage:       >L0 Message<
@@ -169,7 +169,7 @@ L0: Beyond try/catch/finally blocks
 L0: Calling fL1
 fL1: In try-block
 fL1: In catch-block
-$e = >exception 'Exception' with message 'fL1 Message' in %s/exception_handling/exception_class_from_within_a_class.php:57
+$e = >Exception: fL1 Message in %s/exception_handling/exception_class_from_within_a_class.php:57
 Stack trace:
 #0 %s/exception_handling/exception_class_from_within_a_class.php(146): MyClass->fL1(10)
 #1 {main}<
@@ -196,7 +196,7 @@ array(1) {
     ["args"]=>
     array(1) {
       [0]=>
-      &int(10)
+      int(10)
     }
   }
 }
@@ -215,7 +215,7 @@ fL1: Beyond try/catch/finally blocks
 fL1: Calling fL2
 fL2: In try-block
 fL2: In catch-block
-$e = >exception 'Exception' with message 'fL2 Message' in %s/exception_handling/exception_class_from_within_a_class.php:83
+$e = >Exception: fL2 Message in %s/exception_handling/exception_class_from_within_a_class.php:83
 Stack trace:
 #0 %s/exception_handling/exception_class_from_within_a_class.php(71): MyClass->fL2(2.3, -4.5)
 #1 %s/exception_handling/exception_class_from_within_a_class.php(146): MyClass->fL1(10)
@@ -244,9 +244,9 @@ array(2) {
     ["args"]=>
     array(2) {
       [0]=>
-      &float(2.3)
+      float(2.3)
       [1]=>
-      &float(-4.5)
+      float(-4.5)
     }
   }
   [1]=>
@@ -264,7 +264,7 @@ array(2) {
     ["args"]=>
     array(1) {
       [0]=>
-      &int(10)
+      int(10)
     }
   }
 }
@@ -292,7 +292,7 @@ fL2: Beyond try/catch/finally blocks
 fL2: Calling fL3
 fL3: In try-block
 fL3: In catch-block
-$e = >exception 'Exception' with message 'fL3 Message' in %s/exception_handling/exception_class_from_within_a_class.php:109
+$e = >Exception: fL3 Message in %s/exception_handling/exception_class_from_within_a_class.php:109
 Stack trace:
 #0 %s/exception_handling/exception_class_from_within_a_class.php(97): MyClass->fL3('xyz', NULL, true)
 #1 %s/exception_handling/exception_class_from_within_a_class.php(71): MyClass->fL2(2.3, -4.5)
@@ -323,11 +323,11 @@ array(3) {
     ["args"]=>
     array(3) {
       [0]=>
-      &string(3) "xyz"
+      string(3) "xyz"
       [1]=>
-      &NULL
+      NULL
       [2]=>
-      &bool(true)
+      bool(true)
     }
   }
   [1]=>
@@ -345,9 +345,9 @@ array(3) {
     ["args"]=>
     array(2) {
       [0]=>
-      &float(2.3)
+      float(2.3)
       [1]=>
-      &float(-4.5)
+      float(-4.5)
     }
   }
   [2]=>
@@ -365,7 +365,7 @@ array(3) {
     ["args"]=>
     array(1) {
       [0]=>
-      &int(10)
+      int(10)
     }
   }
 }

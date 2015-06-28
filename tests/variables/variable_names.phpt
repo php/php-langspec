@@ -45,7 +45,7 @@ function print_globals() {
       $globals[$k] = $v;
     }
   }
-  ksort($globals);
+  asort($globals);
   var_dump($globals);
 }
 print_globals();
@@ -56,31 +56,31 @@ int(101)
 
 Notice: Use of undefined constant total - assumed 'total' in %s/variables/variable_names.php on line 25
 array(12) {
-  [""]=>
-  int(106)
-  ["1.2"]=>
-  int(102)
-  ["3.5"]=>
-  int(1000)
-  ["abc"]=>
-  int(103)
-  ["abxy"]=>
-  int(1000)
   ["argc"]=>
   int(1)
+  ["v"]=>
+  int(10)
+  [10]=>
+  int(101)
+  ["1.2"]=>
+  int(102)
+  ["abc"]=>
+  int(103)
+  [1]=>
+  int(104)
+  [""]=>
+  int(106)
+  ["total"]=>
+  int(1000)
+  [14]=>
+  int(1000)
+  ["abxy"]=>
+  int(1000)
+  ["3.5"]=>
+  int(1000)
   ["argv"]=>
   array(1) {
     [0]=>
-    string(%d) "%s"
+    string(60) "/Users/smalyshev/php-spec/tests/variables/variable_names.php"
   }
-  ["total"]=>
-  int(1000)
-  ["v"]=>
-  int(10)
-  [1]=>
-  int(104)
-  [10]=>
-  int(101)
-  [14]=>
-  int(1000)
 }

@@ -183,7 +183,7 @@ object(C)#1 (1) {
   int(200)
 }
 
-Strict %s: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 60
+Notice: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 60
 g In:  $p1: 1
 g Out: $p1: 200
 bool(true)
@@ -191,7 +191,7 @@ g In:  $p1: 1
 g Out: $p1: 200
 int(200)
 
-Strict %s: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 73
+Notice: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 73
 g In:  $p1: -123
 g Out: $p1: 200
 int(-123)
@@ -199,7 +199,7 @@ g In:  $p1: -123
 g Out: $p1: 200
 int(200)
 
-Strict %s: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 79
+Notice: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 79
 g In:  $p1: 1230
 g Out: $p1: 200
 float(1230)
@@ -207,7 +207,7 @@ g In:  $p1: 1230
 g Out: $p1: 200
 int(200)
 
-Strict %s: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 85
+Notice: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 85
 g In:  $p1: 
 g Out: $p1: 200
 NULL
@@ -215,7 +215,7 @@ g In:  $p1:
 g Out: $p1: 200
 int(200)
 
-Strict %s: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 91
+Notice: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 91
 g In:  $p1: abc
 g Out: $p1: 200
 string(3) "abc"
@@ -223,7 +223,7 @@ g In:  $p1: abc
 g Out: $p1: 200
 int(200)
 
-Strict %s: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 97
+Notice: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 97
 
 Notice: Array to string conversion in %s/functions/passing_arguments.php on line 51
 g In:  $p1: Array
@@ -245,17 +245,17 @@ g In:  $p1: 10
 g Out: $p1: 200
 int(200)
 
-Strict %s: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 119
+Notice: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 119
 g In:  $p1: 198
 g Out: $p1: 200
 int(198)
 
-Strict %s: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 124
+Notice: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 124
 g In:  $p1: 196
 g Out: $p1: 200
 int(196)
 
-Strict %s: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 129
+Notice: Only variables should be passed by reference in %s/functions/passing_arguments.php on line 129
 g In:  $p1: 195
 g Out: $p1: 200
 int(195)

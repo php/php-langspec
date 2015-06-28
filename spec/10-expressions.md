@@ -571,7 +571,7 @@ unset($v1, $v2, $v3);
 unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
 ```
 
-###Anonymous Function-Creation
+###Anonymous Function Creation
 
 **Syntax**
 

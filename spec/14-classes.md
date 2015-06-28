@@ -242,11 +242,9 @@ The class can also have [dynamic members](#dynamic-members) which are not part o
 
 Methods and properties can either be *static* or *instance* members. A
 static member is declared using `static`. An instance member is one that
-is not static. The name of a static method or property can never be used
+is not static. The name of a static or instance member can never be used
 on its own; it must always be used as the right-hand operand of the
-[scope resolution operator](10-expressions.md#scope-resolution-operator). The name of an instance method or
-property can never be used on its own; it must always be used as the
-right-hand operand of the [member selection operator](10-expressions.md#member-selection-operator).
+[scope resolution operator](10-expressions.md#scope-resolution-operator) or the [member selection operator](10-expressions.md#member-selection-operator).
 
 Each instance of a class contains its own, unique set of instance
 properties of that class. An instance member is accessed via the

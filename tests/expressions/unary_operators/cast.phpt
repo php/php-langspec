@@ -255,7 +255,7 @@ float(1.234E+203)
 float(INF)
    bool(true)
    bool(true)
-   int(-9223372036854775808)
+   int(%i)
    float(INF)
    string(3) "INF"
    array(1) {
@@ -269,7 +269,7 @@ float(INF)
 float(-INF)
    bool(true)
    bool(true)
-   int(-9223372036854775808)
+   int(%i)
    float(-INF)
    string(4) "-INF"
    array(1) {
@@ -283,7 +283,7 @@ float(-INF)
 float(NAN)
    bool(true)
    bool(true)
-   int(-9223372036854775808)
+   int(%i)
    float(NAN)
    string(3) "NAN"
    array(1) {

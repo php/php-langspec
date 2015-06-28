@@ -462,11 +462,11 @@ array(1) {
   int(21)
 }
 array(1) {
-  [-9223372036854775808]=>
+  [%i]=>
   int(-1)
 }
 array(1) {
-  [-9223372036854775808]=>
+  [%i]=>
   int(123)
 }
 ================= arrays some of whose elements are arrays, and so on =================

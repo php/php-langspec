@@ -8,5 +8,6 @@ use by the following:
 -   Programmers writing PHP code.
 
 For now, the runtime library has been excluded, as that is documented at
-[www.php.net](http://www.php.net). As such, all forward references to library facilities have placeholders of the form (§xx).
+[www.php.net](http://www.php.net). However, the document can contain references
+to the library functions, usually in the form of links to http://www.php.net.
 

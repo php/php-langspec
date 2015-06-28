@@ -31,7 +31,7 @@ If the source is an object, the result value is `TRUE`.
 
 If the source is a resource, the result value is `TRUE`.
 
-The library function `boolval` (§xx) allows values to be converted to
+The library function [`boolval`](http://www.php.net/boolval) allows values to be converted to
 `bool`.
 
 ##Converting to Integer Type
@@ -107,7 +107,7 @@ If not, the conversion is invalid, the result is assumed to be 1.0 and a non-fat
 For sources of all other types, the conversion result is obtained by first
 [converting the source value to `int`](#converting-to-integer-type) and then to `float`.
 
-The library function `floatval` (§xx) allows values to be converted to
+The library function [`floatval`](http://www.php.net/floatval) allows values to be converted to
 float.
 
 ##Converting to String Type
@@ -119,7 +119,7 @@ result value is the empty string; otherwise, the result value is "1".
 
 If the source type is `int` or `float`, then the result value is a string
 containing the textual representation of the source value (as specified
-by the library function `sprintf` (§xx)).
+by the library function [`sprintf`](http://www.php.net/sprintf)).
 
 If the source value is `NULL`, the result value is the empty string.
 
@@ -133,7 +133,7 @@ by that method; otherwise, the conversion is invalid and a fatal error is produc
 If the source is a resource, the result value is an
 implementation-defined string.
 
-The library function `strval` (§xx) allows values to be converted to
+The library function [`strval`](http://www.php.net/strval) allows values to be converted to
 string.
 
 ##Converting to Array Type

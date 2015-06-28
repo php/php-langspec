@@ -91,7 +91,7 @@ In all other cases, the behavior is unspecified.
 ##__halt_compiler
 
 PHP script files can incorporate data which is to be ignored by the Engine when 
-compiling the script. An example of such files are PHAR (§xx) files.
+compiling the script. An example of such files are [PHAR](http://www.php.net/phar) files.
 
 In order to make the Engine ignore all the data in the script file starting
 from certain point, `__halt_compiler();` construct is used. This construct 

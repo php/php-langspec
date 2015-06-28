@@ -24,20 +24,19 @@ variable's type is determined at runtime by the value it contains.
 The same variable can contain values of different types at different times.
 
 Useful library functions for interrogating and using type information
-include `gettype` (§xx), `is_type` (§xx), `settype` (§xx), and `var_dump`
-(§xx).
+include [`gettype`](http://www.php.net/gettype), [`is_type`](http://www.php.net/is_type), [`settype`](http://www.php.net/settype), and [`var_dump`](http://www.php.net/var_dump).
 
 ##Scalar Types
 
 ###General
 
 The integer and floating-point types are collectively known as
-*arithmetic types*. The library function `is_numeric` (§xx) indicates if
+*arithmetic types*. The library function [`is_numeric`](http://www.php.net/is_numeric) indicates if
 a given value is a number or a numeric [string](#the-string-type).
 
-The library function `is_scalar` (§xx) indicates if a given value has a
+The library function [`is_scalar`](http://www.php.net/is_scalar) indicates if a given value has a
 scalar type. However, that function does not consider `NULL` to be scalar.
-To test for `NULL`, use `is_null` (§xx).
+To test for `NULL`, use [`is_null`](http://www.php.net/is_null).
 
 Some objects may support arithmetic and other scalar operations and/or be
 convertible to scalar types (this is currently available only to internal classes).
@@ -51,7 +50,7 @@ type is capable of storing two distinct values, which correspond to the
 Boolean values [`true` and `false`](06-constants.md#core-predefined-constants), respectively.
 The internal representation of this type and its values is unspecified.
 
-The library function `is_bool` (§xx) indicates if a given value has type
+The library function [`is_bool`](http://www.php.net/is_bool) indicates if a given value has type
 `bool`.
 
 ###The Integer Type
@@ -75,7 +74,7 @@ In such cases, the computation is done as though the types of the values were
 The constants [`PHP_INT_SIZE`, `PHP_INT_MIN` and `PHP_INT_MAX`](06-constants.md#core-predefined-constants) define certain
 characteristics about type `int`.
 
-The library function `is_int` (§xx) indicates if a given value has type
+The library function [`is_int`](http://www.php.net/is_int) indicates if a given value has type
 `int`.
 
 ###The Floating-Point Type
@@ -84,11 +83,11 @@ There is one floating-point type, `float`, for which the names `double` and
 `real` are synonyms. The `float` type must support at least the range and
 precision of IEEE 754 64-bit double-precision representation.
 
-The library function `is_float` (§xx) indicates if a given value has type
-`float`. The library function `is_finite` (§xx) indicates if a given
-floating-point value is finite. The library function `is_infinite` (§xx)
+The library function [`is_float`](http://www.php.net/is_float) indicates if a given value has type
+`float`. The library function [`is_finite`](http://www.php.net/is_finite) indicates if a given
+floating-point value is finite. The library function [`is_infinite`](http://www.php.net/is_infinite)
 indicates if a given floating-point value is infinite. The library
-function `is_nan` (§xx) indicates if a given floating-point value is a
+function [`is_nan`](http://www.php.net/is_nan) indicates if a given floating-point value is a
 `NaN`.
 
 ###The String Type
@@ -142,7 +141,7 @@ string.
 Only one mutation operation may be performed on a string, offset
 assignment, which involves the simple assignment [operator =](10-expressions.md#simple-assignment).
 
-The library function `is_string` (§xx) indicates if a given value has
+The library function [`is_string`](http://www.php.net/is_string) indicates if a given value has
 type string.
 
 ###The Null Type
@@ -150,7 +149,7 @@ type string.
 The null type has only one possible value, [`NULL`](06-constants.md#core-predefined-constants). The representation
 of this type and its value is unspecified.
 
-The library function `is_null` (§xx) indicates if a given value is `NULL`.
+The library function [`is_null`](http://www.php.net/is_null) indicates if a given value is `NULL`.
 
 ##Composite Types
 
@@ -160,7 +159,7 @@ An array is a data structure that contains a collection of zero or more
 elements whose values are accessed through keys that are of type `int` or
 `string`. See more details in [arrays chapter](12-arrays.md#arrays).
 
-The library function `is_array` (§xx) indicates if a given value is an
+The library function [`is_array`](http://www.php.net/is_array) indicates if a given value is an
 array.
 
 ###Objects
@@ -169,10 +168,9 @@ An *object* is an instance of a [class](14-classes.md#classes). Each distinct
 []*class-declaration*](14-classes.md#class-declarations) defines a new class type, and each class
 type is an object type. The representation of object types is unspecified.
 
-The library function `is_object` (§xx) indicates if a given value is an
+The library function [`is_object`](http://www.php.net/is_object) indicates if a given value is an
 object, and the library function
-[`get_class`](http://php.net/manual/function.get-class.php)
-(§xx) indicates the name of an object's class.
+[`get_class`](http://php.net/manual/function.get-class.php) indicates the name of an object's class.
 
 ###Resources
 
@@ -186,10 +184,9 @@ never created or consumed by PHP code.
 
 Each distinct resource has a unique identity of some unspecified form.
 
-The library function `is_resource` (§xx) indicates if a given value is a
+The library function [`is_resource`](http://www.php.net/is_resource) indicates if a given value is a
 resource, and the library function
-[`get_resource_type`](http://php.net/manual/function.get-resource-type.php)
-(§xx) indicates the type of a resource.
+[`get_resource_type`](http://php.net/manual/function.get-resource-type.php) indicates the type of a resource.
 
 
 

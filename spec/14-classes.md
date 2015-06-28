@@ -706,7 +706,7 @@ Method Name | Description
 [`__invoke`](#method-__invoke) | Called when an object is called as a function (e.g. `$a()`).
 [`__isset`](#method-__isset) | Reports if a given dynamic property exists.
 [`__set`](#method-__set) | Sets the value of a given dynamic property.
-[`__set_state`](#method-__set_state) | Used by export function `var_export` (§xx) to restore the state of the object.
+[`__set_state`](#method-__set_state) | Used by export function [`var_export`](http://www.php.net/var_export) to restore the state of the object.
 [`__sleep`](#method-__sleep) | Executed before [serialization](#serialization) of an instance of this class.
 [`__toString`](#method-__tostring) | Returns a string representation of the instance on which it is called.
 [`__unset`](#method-__unset) | Removes a given dynamic property.
@@ -1110,7 +1110,7 @@ The *method-modifiers* must not contain `static` and must define public visibili
 
 This instance method allows an instance to be used with function-call
 notation. An instance whose class provides this method will also return `TRUE`
-when passed to `is_callable` (§xx).
+when passed to [`is_callable`](http://www.php.net/is_callable).
 
 When an instance is called as a function, the argument list used is made
 available to `__invoke`, whose return value becomes the return value of the
@@ -1288,7 +1288,7 @@ The *method-modifiers* must contain `static` and must define public visibility.
 
 **Semantics**
 
-This function supports the library function `var_export` (§xx) when it is
+This function supports the library function [`var_export`](http://www.php.net/var_export) when it is
 given an instance of this class type. `var_export` takes a variable and
 produces a string representation of that variable as valid PHP code
 suitable for use with the intrinsic [`eval`](10-expressions.md#eval).
@@ -1413,7 +1413,7 @@ The *method-modifiers* must not contain `static` and must define public visibili
 The instance methods `__sleep` and [`__wakeup`](#method-__wakeup) support
 [serialization](#serialization).
 
-If a class has a `__sleep` method, the library function `serialize` (§xx)
+If a class has a `__sleep` method, the library function [`serialize`](http://www.php.net/serialize) 
 calls that method to find out which visible instance properties it
 should serialize. (In the absence of a `__sleep` or `serialize` method,
 all instance properties are serialized, including ones defined in runtime).
@@ -1626,9 +1626,9 @@ The *method-modifiers* must not contain `static` and must define public visibili
 The instance methods [`__sleep`](#method-__sleep) and `__wakeup` support
 [serialization](#serialization).
 
-When the library function `unserialize` (§xx) is called on the string
+When the library function [`unserialize`](http://www.php.net/unserialize) is called on the string
 representation of an object, as created by the library function
-`serialize` (§xx), `unserialize` creates an instance of that object's type
+[`serialize`](http://www.php.net/serialize), `unserialize` creates an instance of that object's type
 **without calling a constructor**, and then calls that class's
 `__wakeup` method, if any, to initialize the instance. In the absence of
 a `__wakeup` method, all that is done is that the values of the instance
@@ -1653,8 +1653,8 @@ In PHP, variables can be converted into some external form suitable for
 use in file storage or inter-program communication. The process of
 converting to this form is known as *serialization* while that of
 converting back again is known as *unserialization*. These facilities
-are provided by the library functions `serialize` (§xx) and `unserialize`
-(§xx), respectively.
+are provided by the library functions [`serialize`](http://www.php.net/serialize)
+and [`serialize`](http://www.php.net/serialize), respectively.
 
 In the case of variables that are objects, on their own, these two
 functions serialize and unserialize all the instance properties, which

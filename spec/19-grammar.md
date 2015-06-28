@@ -511,8 +511,15 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
+    <i>argument-expression</i>
+    <i>argument-expression-list</i>  ,  <i>argument-expression</i>
+
+  <i>argument-expression:</i>
+    <i>variadic-unpacking</i>
     <i>assignment-expression</i>
-    <i>argument-expression-list</i>  ,  <i>assignment-expression</i>
+
+  <i>variadic-unpacking:</i>
+    ... <i>assignment-expression</i>
 
   <i>member-selection-expression:</i>
     <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
@@ -1192,7 +1199,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     namespace  <i>name<sub>opt</sub>   compound-statement</i>
 
   <i>namespace-use-declaration:</i>
-    use  <i>namespace-use-clauses</i>  ;
+    use  <i>namespace-function-or-const<sub>opt</sub></i> <i>namespace-use-clauses</i>  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
@@ -1203,4 +1210,8 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>
+
+  <i>namespace-function-or-const:</i>
+    function
+    const
 </pre>

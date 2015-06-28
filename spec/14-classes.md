@@ -697,6 +697,7 @@ Method Name | Description
 [`__callStatic`](#method-__callstatic) | Calls a dynamic method in the context of a static method call.
 [`__clone`](#method-__clone) | Typically used to make a [deep copy](04-basic-concepts.md#cloning-objects) of an object.
 [`__construct`](#constructors) | A constructor.
+[`__debugInfo`](#method-__debuginfo) | Produce debugging information for the object.
 [`__destruct`](#destructors) | A destructor.
 [`__get`](#method-__get) | Retrieves the value of a given dynamic property.
 [`__invoke`](#method-__invoke) | Called when an object is called as a function (e.g. `$a()`).
@@ -929,6 +930,60 @@ class Point
 }
 $p1 = new Point;  // created using the constructor
 $p2 = clone $p1;  // created by cloning
+```
+
+###Method `__debugInfo`
+
+**Syntax**
+
+<pre>
+  <i>method-modifiers</i> function  __debugInfo  (  )   <i>compound-statement</i>
+</pre>
+
+**Defined elsewhere**
+
+* [*compound-statement*](11-statements.md#compound-statements)
+* [*method-modifiers*](#methods)
+
+**Constraints**
+
+The *method-modifiers* must not contain `static` and must define public visibility.
+
+The function should return array.
+
+**Semantics**
+
+This method allows the class to supply debugging information for the object, which can be used as
+the source of information for [`var_dump()`](http://php.net/manual/function.var-dump.php).
+
+**Example**
+```PHP
+class File {
+  // "Resource(stream)" isn't all that useful
+  private $fp;
+
+  // But all the stream meta data is
+  public function __debugInfo() {
+    return $this->fp ? stream_get_meta_data($fp) : [];
+  }
+
+  public function open($filename, $mode = 'r'){
+    $this->fp = fopen($filename, $mode);
+  }  
+}
+
+$f = new File;
+var_dump($f); // object(File)#1 { }
+$f->open('http://php.net');
+var_dump($f);
+/*
+object(File)#1 {
+  ["wrapper_type"]=>
+  string(4) "http"
+  ["stream_type"]=>
+  string(10) "tcp_socket"
+  etc...
+*/
 ```
 
 ###Method `__get`

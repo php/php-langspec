@@ -999,11 +999,22 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     function  &<sub>opt</sub>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )
 
   <i>parameter-declaration-list:</i>
+    <i>simple-parameter-declaration-list</i>
+    <i>variadic-declaration-list</i>
+
+  <i>simple-parameter-declaration-list:</i>
     <i>parameter-declaration</i>
     <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
 
+  <i>variadic-declaration-list:</i>
+    <i>simple-parameter-declaration-list</i>  ,  <i>variadic-parameter</i>
+    <i>variadic-parameter</i>
+
   <i>parameter-declaration:</i>
-    <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+    <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>  <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+
+  <i>variadic-parameter:</i>
+	<i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>  ...  <i>variable-name</i>
 
   <i>type-declaration:</i>
     array

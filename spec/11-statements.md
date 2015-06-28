@@ -217,7 +217,7 @@ selects among a set of statements.
 
   <i>elseif-clause-1:</i>
     elseif   (   <i>expression</i>   )   <i>statement</i>
- 
+
   <i>else-clause-1:</i>
     else   <i>statement</i>
 
@@ -227,7 +227,7 @@ selects among a set of statements.
 
   <i>elseif-clause-2:</i>
     elseif   (   <i>expression</i>   )   :   <i>statement-list</i>
-  
+
   <i>else-clause-2:</i>
     else   :   <i>statement-list</i>
 </pre>
@@ -243,15 +243,15 @@ selects among a set of statements.
 The two forms of the `if` statement are equivalent; they simply provide
 alternate styles.
 
-The result of the controlling expression *expression* will be [converted to type `bool`](08-conversions.md#converting-to-boolean-type) 
+The result of the controlling expression *expression* will be [converted to type `bool`](08-conversions.md#converting-to-boolean-type)
 if it does not have this type.
 
 If *expression* is `TRUE`, the *statement* that follows immediately is
 executed. Otherwise, if an `elseif` clause is present its *expression* is evaluated
-in turn, and if it is `TRUE`, the *statement* immediately following the `elseif` is executed. 
+in turn, and if it is `TRUE`, the *statement* immediately following the `elseif` is executed.
 This repeats for every `elseif` clause in turn. If none of those tests `TRUE`, if an
 `else` clause is present the *statement* immediately following the `else` is
-executed. 
+executed.
 
 An `else` clause is associated with the lexically nearest preceding `if` or
 `elseif` that is permitted by the syntax.
@@ -312,8 +312,8 @@ else  // this else does go with the outer if
 **Defined elsewhere**
 
 * [*expression*](10-expressions.md#general-6)
-* [*case-statement*]](#labeled-statements)  
-* [*default-statement](#labeled-statements) 
+* [*case-statement*]](#labeled-statements)
+* [*default-statement](#labeled-statements)
 * [*compound-statement*](#compound-statements)
 * [*statement-list*](#compound-statements)
 
@@ -334,7 +334,7 @@ closest enclosing `switch` statement.
 
 On entry to the `switch` statement, the controlling expression is
 evaluated and then compared with the value of the case label *expression*
-values, in lexical order, using the same semantics as `==`. 
+values, in lexical order, using the same semantics as `==`.
 If one matches, control transfers to the
 statement following the corresponding case label. If there is no match,
 then if there is a default label, control transfers to the statement
@@ -441,7 +441,7 @@ case $v < $a:   // non-constant expression
 The two forms of the `while` statement are equivalent; they simply provide
 alternate styles.
 
-The result of the controlling expression *expression* is [converted to type `bool`](08-conversions.md#converting-to-boolean-type) 
+The result of the controlling expression *expression* is [converted to type `bool`](08-conversions.md#converting-to-boolean-type)
 if it does not have this type.
 
 If *expression* tests `TRUE`, the *statement* that follows immediately is
@@ -491,9 +491,9 @@ implicitly convertible to that type.
 
 **Semantics**
 
-First, *statement* is executed and then *expression* is evaluated. 
+First, *statement* is executed and then *expression* is evaluated.
 
-The result of the controlling expression *expression* is [converted to type `bool`](08-conversions.md#converting-to-boolean-type) 
+The result of the controlling expression *expression* is [converted to type `bool`](08-conversions.md#converting-to-boolean-type)
 if it does not have this type.
 
 If the value tests `TRUE`, the process is repeated. If *expression* tests `FALSE`,
@@ -650,7 +650,7 @@ the `&` is present in *foreach-value*, the variable designated by the
 corresponding *expression* is made an alias to the current element. If
 the `&` is omitted, the value of the current element is assigned to the
 corresponding variable. The loop body, *statement*, is executed zero or
-more times. After the loop terminates, the variable designated by *expression* 
+more times. After the loop terminates, the variable designated by *expression*
 in *foreach-value* has the same value as it had after the final iteration, if any.
 
 If *foreach-key* is present, the variable designated by its *expression*
@@ -795,7 +795,7 @@ number `1` and containing statements having levels increasing by 1.
 A `continue` statement terminates the execution of one or more enclosing
 [iteration](#iteration-statements) or [`switch`](#the-switch-statement) statements,
 up to the specified level. If the statement at the *breakout-level* is an iteration statement,
-the next iteration (if any) of the next innermost enclosing iteration or switch statement is started. 
+the next iteration (if any) of the next innermost enclosing iteration or switch statement is started.
 If that statement is a `for` statement and it has a *for-end-of-loop*, its
 end-of-loop expression group for the current iteration is evaluated first. If
 *breakout-level* is omitted, a level of 1 is assumed.
@@ -914,7 +914,7 @@ If an undefined variable is returned byRef, that variable becomes
 defined, with a value of `NULL`.
 
 A `return` statement is permitted in a [try-block](#the-try-statement)
-and a [catch-block](#the-try-statement) and in [finally-block](#the-try-statement). 
+and a [catch-block](#the-try-statement) and in [finally-block](#the-try-statement).
 
 Using a `return` statement inside a finally-block will override any other
 `return` statement or thrown exception from the try-block and all its
@@ -967,10 +967,10 @@ function j($x)
 }
 function &compute() { ...; return $value; } // returns $value byRef
 // -----------------------------------------
-class Point 
+class Point
 {
   private static $pointCount = 0;
-  public static function getPointCount() 
+  public static function getPointCount()
   {
     return self::$pointCount;
   }
@@ -1173,9 +1173,9 @@ body, or for the `;`-form, for the remainder of the script or until the
 statement is overridden by another *declare-statement*, whichever comes
 first. As the parser is executing, certain statements are considered
 *tickable*. For every *tick-count* ticks, an event occurs, which can be
-serviced by the function previously registered by the library function 
+serviced by the function previously registered by the library function
 [`register_tick_function`](http://php.net/manual/function.register-tick-function.php).
-Tick event monitoring can be disabled by calling the library function 
+Tick event monitoring can be disabled by calling the library function
 [`unregister_tick_function`](http://php.net/manual/function.unregister-tick-function.php).
 This facility allows a profiling mechanism to be developed.
 

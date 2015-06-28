@@ -43,8 +43,10 @@ indication for arguments passed byRef, and whether the resulting
 value is returned byRef.
 
 Methods and properties from a base class can be *overridden* in a
-derived class by redeclaring them with the compatible signature defined in the
-base class.
+derived class by redeclaring them with the *compatible* signature (see below).
+If the overriding method does not have a compatible signature,
+a non-fatal error is issued but the override is still permitted.
+It is not recommended to use incompatible signatures for overriding methods.
 
 When an instance is allocated, `new` returns a handle that points to that
 object. As such, assignment of a handle does not copy the object itself.
@@ -121,7 +123,8 @@ class cannot be instantiated directly. An abstract class may contain one
 or more abstract members, but it is not required to do so. When a
 concrete class is derived from an abstract class, the concrete class
 must include an implementation for each of the abstract members it
-inherits.
+inherits. The implementations of abstract methods must have compatible signatures,
+incompatible implementations are not permitted.
 
 The `final` modifier prevents a class from being used as a base class.
 

@@ -2,16 +2,16 @@
 
 ##General
 
-The grammar notation is described in [§§](09-lexical-structure.md#grammars).
+The grammar notation is described in [Grammars section](09-lexical-structure.md#grammars).
 
 ##Lexical Grammar
 
 ###General
 
 <pre>
-  <i>input-file::
-    <i>input-element
-    <i>input-file   input-element
+  <i>input-file::</i>
+    <i>input-element</i>
+    <i>input-file   input-element</i>
   <i>input-element::</i>
     <i>comment</i>
     <i>white-space</i>
@@ -79,7 +79,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 
   <i>namespace-name::</i>
     <i>name</i>
-    <i>namespace-name</i>  \   <i>name</i>
+    <i>namespace-name</i>   \   <i>name</i>
 
   <i>namespace-name-as-a-prefix::</i>
     \
@@ -99,7 +99,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     <i>nondigit</i>
     one of the characters U+007f–U+00ff
 
-  <i>nondigit:: one of</i> 
+  <i>nondigit:: one of</i>
     _
     a   b   c   d   e   f   g   h   i   j   k   l   m
     n   o   p   q   r   s   t   u   v   w   x   y   z
@@ -116,7 +116,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
     enddeclare   endfor   endforeach   endif   endswitch   endwhile
     extends   final   finally   for   foreach   function   global
     goto   if   implements   include   include_once   instanceof
-    insteadof   interface   namespace   new or   print   private
+    insteadof   interface   list   namespace   new or   print   private
     protected   public   require   require_once   return static   switch
     throw   trait   try   use   var   while   xor   yield
 </pre>
@@ -126,20 +126,10 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
 ####General
 
 <pre>
-  <i>literal::
-    <i>boolean-literal</i>
+  <i>literal::</i>
     <i>integer-literal</i>
     <i>floating-literal</i>
     <i>string-literal</i>
-    <i>null-literal</i>
-</pre>
-
-####Boolean Literals
-
-<pre>
-  <i>boolean-literal::</i>
-    TRUE (written in any case combination)
-    FALSE (written in any case combination)
 </pre>
 
 ####Integer Literals
@@ -188,7 +178,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
       A  B  C  D  E  F
 
     <i>binary-digit:: one of</i>
-      0  1
+        0  1
 </pre>
 
 ####Floating-Point Literals
@@ -247,8 +237,7 @@ The grammar notation is described in [§§](09-lexical-structure.md#grammars).
   <i>dq-char::</i>
     <i>dq-escape-sequence</i>
     any member of the source character set except double-quote (") or backslash (\)
-    \  any member of the source character set except "\$efnrtvxX or
-octal-digit
+    \  any member of the source character set except "\$efnrtvxX or <i>octal-digit</i>
 
   <i>dq-escape-sequence::</i>
     <i>dq-simple-escape-sequence</i>
@@ -267,11 +256,28 @@ octal-digit
     \x  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
     \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
 
+    <i>string-variable::</i>
+        <i>variable-name</i>   <i>offset-or-property<sub>opt</sub></i>
+        ${   <i>expression</i>   }
+
+    <i>offset-or-property::</i>
+        <i>offset-in-string</i>
+        <i>property-in-string</i>
+
+    <i>offset-in-string::</i>
+        [   <i>name</i>   ]
+        [   <i>variable-name</i>   ]
+        [   <i>integer-literal</i>   ]
+
+    <i>property-in-string::</i>
+        ->   <i>name</i>
+
   <i>heredoc-string-literal::</i>
     &lt;&lt;&lt;  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
+    "   <i>name</i>  "
 
   <i>hd-end-identifier::</i>
     <i>name</i>
@@ -293,26 +299,18 @@ octal-digit
   <i>hd-simple-escape-sequence:: one of</i>
     \\   \$   \e   \f   \n   \r   \t   \v
 
-
   <i>nowdoc-string-literal::</i>
-    &lt;&lt;&lt;  '  <i>hd-start-identifier</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
-</pre>
-
-####The Null Literal
-
-<pre>
-  <i>null-literal::</i>
-    NULL (written in any case combination)
+    &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line name</i>  ;<i><sub>opt</sub>   new-line</i>
 </pre>
 
 ###Operators and Punctuators
 
 <pre>
   <i>operator-or-punctuator:: one of</i>
-    [   ]    (   )   {    }   .   -&gt;   ++   --   **   *   +   -   ~   !
-    $   /   % &lt;&lt;   >>   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
-    &amp;   &amp;&amp;   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    >>=   &amp;=   ^=   |=  =&amp; ,
+    [   ]    (   )   {    }   .   ->   ++   --   **   *   +   -   ~   !
+    $   /   %   &lt;&lt;    &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
+    &   &&   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
+    &gt;&gt;=   &=   ^=   |=   =&   ,
 </pre>
 
 ##Syntactic Grammar
@@ -325,17 +323,31 @@ octal-digit
 <i> script   script-section</i>
 
 <i>script-section:</i>
-  <i> text<sub>opt</sub></i> &lt;?php <i>statement-list<sub>opt</sub></i> ?&gt;<sub>opt</sub> <i>text<sub>opt</sub></i>
+  <i> text<sub>opt</sub></i> <i>start-tag</i> <i>statement-list<sub>opt</sub></i> <i>end-tag</i><sub>opt</sub> <i>text<sub>opt</sub></i>
+
+<i>start-tag:</i>
+  &lt;?php
+  &lt;?=
+
+<i>end-tag:</i>
+  ?&gt;
 
 <i>text:</i>
-  arbitrary text not containing the sequence &lt;?php
+  arbitrary text not containing any of <i>start-tag</i> sequences
 </pre>
 
 ###Variables
 
 <pre>
   <i>function-static-declaration:</i>
-    static <i>name</i>   <i>function-static-initializer<sub>opt</sub></i> ;
+    static <i>static-variable-name-list</i>  ;
+
+  <i>static-variable-name-list:</i>
+    <i>static-variable-declaration</i>
+	<i>static-variable-name-list</i>  ,  <i>static-variable-declaration</i>
+
+  <i>static-variable-declaration:</i>
+	<i>variable-name</i> <i>function-static-initializer<sub>opt</sub></i>
 
   <i>function-static-initializer:</i>
     = <i>constant-expression</i>
@@ -345,7 +357,7 @@ octal-digit
 
   <i>variable-name-list:</i>
     <i>expression</i>
-    <i>variable-name-list  , expression</i>
+    <i>variable-name-list</i>  ,  <i>expression</i>
 </pre>
 
 ###Expressions
@@ -364,22 +376,27 @@ octal-digit
     $this
 
   <i>intrinsic:</i>
-    <i>array-intrinsic</i>
+    <i>intrisic-construct</i>
+    <i>intrisic-operator</i>
+
+  <i>intrisic-construct:</i>
     <i>echo-intrinsic</i>
+    <i>list-intrinsic</i>
+    <i>unset-intrinsic</i>
+
+  <i>intrinsic-operator:</i>
+    <i>array-intrinsic</i>
     <i>empty-intrinsic</i>
     <i>eval-intrinsic</i>
     <i>exit-intrinsic</i>
     <i>isset-intrinsic</i>
-    <i>list-intrinsic</i>
     <i>print-intrinsic</i>
-    <i>unset-intrinsic</i>
 
   <i>array-intrinsic:</i>
     array ( <i>array-initializer<sub>opt</sub></i>  )
 
   <i>echo-intrinsic:</i>
     echo  <i>expression</i>
-    echo  (  <i>expression</i>  )
     echo  <i>expression-list-two-or-more</i>
 
   <i>expression-list-two-or-more:</i>
@@ -403,21 +420,21 @@ octal-digit
 
   <i>expression-list-one-or-more</i>:
     <i>expression</i>
-    <i>expression-list-one-or-mor</i>  ,  <i>expression</i>
+    <i>expression-list-one-or-more</i>  ,  <i>expression</i>
 
   <i>list-intrinsic:</i>
     list  (  <i>list-expression-list<sub>opt</sub></i>  )
 
   <i>list-expression-list:</i>
-  <i>list-or-variable</i>
-  ,
-  <i>list-expression-list</i>  ,  <i>list-or-variable<sub>opt</sub></i>
+    <i>list-or-variable</i>
+    ,
+    <i>list-expression-list</i>  ,  <i>list-or-variable<sub>opt</sub></i>
 
   <i>list-or-variable:</i>
     <i>list-intrinsic</i>
     <i>expression</i>
 
-  <i>print-intrinsic:
+  <i>print-intrinsic:</i>
     print  <i>expression</i>
     print  (  <i>expression</i>  )
 
@@ -425,14 +442,14 @@ octal-digit
     unset  (  <i>expression-list-one-or-more</i>  )
 
   <i>anonymous-function-creation-expression:</i>
-  function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-use-clause<sub>opt</sub></i>
+  static<sub>opt</sub> function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-use-clause<sub>opt</sub></i>
       <i>compound-statement</i>
 
   <i>anonymous-function-use-clause:</i>
     use  (  <i>use-variable-name-list</i>  )
 
   <i>use-variable-name-list:</i>
-    &<sub>opt</sub>   <i>variable-name</i>
+    &amp;<sub>opt</sub>   <i>variable-name</i>
     <i>use-variable-name-list</i>  ,  &<sub>opt</sub>  <i>variable-name</i>
 
 </pre>
@@ -453,7 +470,6 @@ octal-digit
     <i>scope-resolution-expression</i>
     <i>exponentiation-expression</i>
 
-
   <i>clone-expression:</i>
     clone  <i>expression</i>
 
@@ -462,7 +478,6 @@ octal-digit
     new  <i>class-type-designator</i>
 
   <i>class-type-designator:</i>
-    static
     <i>qualified-name</i>
     <i>expression</i>
 
@@ -479,7 +494,7 @@ octal-digit
 
   <i>array-element-initializer:</i>
     &<sub>opt</sub>   <i>element-value</i>
-    element-key  =>  &<sub>opt</sub>   <i>element-value</i>
+    <i>element-key</i>  =>  &<sub>opt</sub>   <i>element-value</i>
 
   <i>element-key:</i>
     <i>expression</i>
@@ -489,9 +504,10 @@ octal-digit
 
   <i>subscript-expression:</i>
     <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
-    <i>postfix-expression</i>  {  <i>expression<sub>opt</sub></i>  }   <b>[Deprecated form]</b>
+    <i>postfix-expression</i>  {  <i>expression</i>  }   <b>[Deprecated form]</b>
 
   <i>function-call-expression:</i>
+    <i>qualified-name</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
     <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
@@ -513,17 +529,20 @@ octal-digit
 
   <i>scope-resolution-expression:</i>
     <i>scope-resolution-qualifier</i>  ::  <i>member-selection-designator</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>class</i>
+    <i>scope-resolution-qualifier</i>  ::  class
 
   <i>scope-resolution-qualifier:</i>
+    <i>relative-scope</i>
     <i>qualified-name</i>
     <i>expression</i>
+
+  <i>relative-scope</i>:
     self
     parent
     static
 
   <i>exponentiation-expression:</i>
-    <i>expression  **  expression</i>
+    <i>expression</i>  **  <i>expression</i>
 </pre>
 
 ####Unary Operators
@@ -549,7 +568,7 @@ octal-digit
     <i>unary-operator cast-expression</i>
 
   <i>unary-operator: one of</i>
-    +  -  !  \
+    +  -  !  ~
 
   <i>error-control-expression:</i>
     @   <i>expression</i>
@@ -559,7 +578,7 @@ octal-digit
 
   <i>cast-expression:</i>
     <i>unary-expression</i>
-    (  <i>cast-type</i>  ) <i>cast-expression</i>
+    (  <i>cast-type</i>  ) <i>expression</i>
 
   <i>cast-type: one of</i>
     array  binary  bool  boolean  double  int  integer  float  object
@@ -647,7 +666,7 @@ octal-digit
 
   <i>bitwise-exc-OR-expression:</i>
     <i>bitwise-AND-expression</i>
-    <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
+    <i>bitwise-exc-OR-expression</i>  ^  <i>bitwise-AND-expression</i>
 
   <i>bitwise-inc-OR-expression:</i>
     <i>bitwise-exc-OR-expression</i>
@@ -733,23 +752,20 @@ octal-digit
     <i>require-once-expression</i>
 
   <i>include-expression:</i>
-    include  (  <i>include-filename</i>  )
-    include  <i>include-filename</i>
-
-  <i>include-filename:</i>
-    <i>expression</i>
+    include  (  <i>expression</i>  )
+    include  <i>expression</i>
 
   <i>include-once-expression:</i>
-    include_once  (  <i>include-filename</i>  )
-    include_once  <i>include-filename</i>
+    include_once  (  <i>expression</i>  )
+    include_once  <i>expression</i>
 
   <i>require-expression:</i>
-    require  (  <i>include-filename</i>  )
-    require  <i>include-filename</i>
+    require  (  <i>expression</i>  )
+    require  <i>expression</i>
 
   <i>require-once-expression:</i>
-    require_once  (  <i>include-filename</i>  )
-    require_once  <i>include-filename</i>
+    require_once  (  <i>expression</i>  )
+    require_once  <i>expression</i>
 </pre>
 
 ####Constant Expressions
@@ -800,18 +816,18 @@ octal-digit
 
 <pre>
   <i>labeled-statement:</i>
-    <i>named-label</i>
-    <i>case-label</i>
-    <i>default-label</i>
+    <i>named-label-statement</i>
+    <i>case-statement</i>
+    <i>default-statement</i>
 
-  <i>named-label:</i>
+  <i>named-label-statement:</i>
     <i>name</i>  :  <i>statement</i>
 
-  <i>case-label:</i>
-    <i>case   expression   case-default-label-terminator   statement</i>
+  <i>case-statement:</i>
+    case   <i>expression   case-default-label-terminator   statement</i>
 
-  <i>default-label:</i>
-    <i>default  case-default-label-terminator   statement</i>
+  <i>default-statement:</i>
+    default  <i>case-default-label-terminator   statement</i>
 
   <i>case-default-label-terminator:</i>
     :
@@ -829,8 +845,8 @@ octal-digit
     <i>switch-statement</i>
 
   <i>if-statement:</i>
-    if   (   <i>expression</i>   )   <i>statement   elseif-clauses-1opt   else-clause-1opt</i>
-    if   (   <i>expression   )   :   <i>statement-list   elseif-clauses-2opt   else-clause-2opt</i>   endif   ;
+    if   (   <i>expression</i>   )   <i>statement   elseif-clauses-1<sub>opt</sub>   else-clause-1<sub>opt</sub></i>
+    if   (   <i>expression</i>   )   :   <i>statement-list   elseif-clauses-2<sub>opt</sub>   else-clause-2<sub>opt</sub></i>   endif   ;
 
   <i>elseif-clauses-1:</i>
     <i>elseif-clause-1</i>
@@ -853,8 +869,12 @@ octal-digit
     else   :   <i>statement-list</i>
 
   <i>switch-statement:</i>
-    switch  (  <i>expression</i>  )  <i>compound-statement</i>
-    switch  (  <i>expression</i>  )  :   <i>statement-list</i>  endswitch;
+    switch  (  <i>expression</i>  )  { <i>case-statements<sub>opt</sub></i> }
+    switch  (  <i>expression</i>  )  :   <i>case-statements<sub>opt</sub></i>  endswitch;
+
+  <i>case-statements:</i>
+    <i>case-statement</i> <i>statement-list<sub>opt</sub></i> <i>case-statements<sub>opt</sub></i>
+    <i>default-statement</i> <i>statement-list<sub>opt</sub></i> <i>case-statements<sub>opt</sub></i>
 
 </pre>
 
@@ -874,10 +894,9 @@ octal-digit
   <i>do-statement:</i>
     do  <i>statement</i>  while  (  <i>expression</i>  )  ;
 
-
   <i>for-statement:</i>
-    for   (   <i>for-initializeropt</i>   ;   <i>for-controlopt</i>   ;   <i>for-end-of-loopopt</i>   )   <i>statement</i>
-    for   (   <i>for-initializeropt</i>   ;   <i>for-controlopt</i>   ;   <i>for-end-of-loopopt</i>   )   :   <i>statement-list</i>   endfor   ;
+    for   (   <i>for-initializer<sub>opt</sub></i>   ;   <i>for-control<sub>opt</sub></i>   ;   <i>for-end-of-loop<sub>opt</sub></i>   )   <i>statement</i>
+    for   (   <i>for-initializer<sub>opt</sub></i>   ;   <i>for-control<sub>opt</sub></i>   ;   <i>for-end-of-loop<sub>opt</sub></i>   )   :   <i>statement-list</i>   endfor   ;
 
   <i>for-initializer:</i>
     <i>for-expression-group</i>
@@ -894,7 +913,7 @@ octal-digit
 
   <i>foreach-statement:</i>
     foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
-    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>   foreach-value</i>  )  :   <i>statement-list</i>  endforeach  ;
+    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )  :  <i>statement-list</i>  endforeach  ;
 
   <i>foreach-collection-name</i>:
     <i>expression</i>
@@ -902,7 +921,7 @@ octal-digit
   <i>foreach-key:</i>
     <i>expression</i>  =>
 
-  <i>foreach-value:<i>
+  <i>foreach-value:</i>
     &<sub>opt</sub>   <i>expression</i>
     <i>list-intrinsic</i>
 
@@ -950,7 +969,7 @@ octal-digit
     <i>catch-clauses   catch-clause</i>
 
   <i>catch-clause:</i>
-    catch  (  <i>parameter-declaration-list</i>  )  <i>compound-statement</i>
+    catch  (  <i>qualified-name</i> <i>variable-name</i> )  <i>compound-statement</i>
 
   <i>finally-clause:</i>
     finally   <i>compound-statement</i>
@@ -965,14 +984,9 @@ octal-digit
     declare  (  <i>declare-directive</i>  )  ;
 
   <i>declare-directive:</i>
-    ticks  =  <i>declare-tick-count</i>
-    encoding  =  <i>declare-character-encoding</i>
+    ticks  =  <i>literal</i>
+    encoding  =  <i>literal</i>
 
-  <i>declare-tick-count</i>
-    <i>expression</i>
-
-  <i>declare-character-encoding:</i>
-    <i>expression</i>
 </pre>
 
 ###Functions
@@ -1004,7 +1018,7 @@ octal-digit
 
 <pre>
   <i>class-declaration:</i>
-    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base   clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
+    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
 
   <i>class-modifier:</i>
     abstract
@@ -1032,7 +1046,7 @@ octal-digit
     const  <i>name</i>  =  <i>constant-expression</i>   ;
 
   <i>property-declaration:</i>
-    <i>property-modifier   name   property-initializer<sub>opt</sub></i>  ;
+    <i>property-modifier   variable-name   property-initializer<sub>opt</sub></i>  ;
 
   <i>property-modifier:</i>
     var
@@ -1050,7 +1064,7 @@ octal-digit
   <i>property-initializer:</i>
     =  <i>constant-expression</i>
 
-  method-declaration:
+  <i>method-declaration:</i>
     <i>method-modifiers<sub>opt</sub>   function-definition</i>
     <i>method-modifiers   function-definition-header</i>  ;
 
@@ -1061,15 +1075,14 @@ octal-digit
   <i>method-modifier:</i>
     <i>visibility-modifier</i>
     <i>static-modifier</i>
-    abstract
-    final
+	<i>class-modifier</i>
 
-  <i>constructor-definition:</i>
-    <i>visibility-modifier</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
-    <i>visibility-modifier</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
+  <i>constructor-declaration:</i>
+    <i>method-modifiers</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
+    <i>method-modifiers</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
 
-  <i>destructor-definition:</i>
-    <i>visibility-modifier</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
+  <i>destructor-declaration:</i>
+    <i>method-modifiers</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
 
 </pre>
 
@@ -1103,13 +1116,13 @@ octal-digit
     <i>trait-use-clauses   trait-use-clause</i>
 
   <i>trait-use-clause:</i>
-    use   <i>trait-name-list   trait-use-terminator</i>
+    use   <i>trait-name-list   trait-use-specification</i>
 
   <i>trait-name-list:</i>
     <i>qualified-name</i>
     <i>trait-name-list</i>   ,   <i>qualified-name</i>
 
-  <i>trait-use-terminator:</i>
+  <i>trait-use-specification:</i>
     ;
     {   <i>trait-select-and-alias-clauses<sub>opt</sub></i>   }
 
@@ -1118,13 +1131,13 @@ octal-digit
     <i>trait-select-and-alias-clauses   trait-select-and-alias-clause</i>
 
   <i>trait-select-and-alias-clause:</i>
-    <i>trait-select-insteadof-clause</i>
-    <i>trait-alias-as-clause</i>
+    <i>trait-select-insteadof-clause</i> ;
+    <i>trait-alias-as-clause</i> ;
 
   <i>trait-select-insteadof-clause:</i>
     <i>name</i>   insteadof   <i>name</i>
 
-  trait-alias-as-clause:
+  <i>trait-alias-as-clause:</i>
     <i>name</i>   as   <i>visibility-modifier<sub>opt</sub>   name</i>
     <i>name</i>   as   <i>visibility-modifier   name<sub>opt</sub></i>
 
@@ -1144,8 +1157,8 @@ octal-digit
 
 <pre>
   <i>namespace-definition:</i>
-    namespace  <i>namespace-name</i>  ;
-    namespace  <i>namespace-name<sub>opt</sub>   compound-statement</i>
+    namespace  <i>name</i>  ;
+    namespace  <i>name<sub>opt</sub>   compound-statement</i>
 
   <i>namespace-use-declaration:</i>
     use  <i>namespace-use-clauses</i>  ;

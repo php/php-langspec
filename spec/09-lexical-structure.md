@@ -638,7 +638,7 @@ The variable substitution accepts the following syntax:
         [   <i>variable-name</i>   ]
         [   <i>integer-literal</i>   ]
         
-    <i>property-in-string::<i>
+    <i>property-in-string::</i>
         ->   <i>name</i>
         
 </pre>

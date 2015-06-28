@@ -193,7 +193,7 @@ calls.
 
   <i>variable-name-list:</i>
     <i>expression</i>
-    <i>variable-name-list<i>  ,  <i>expression</i>
+    <i>variable-name-list</i>  ,  <i>expression</i>
 </pre>
 
 **Defined elsewhere**

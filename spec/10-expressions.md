@@ -2112,8 +2112,8 @@ TRUE . NULL;      // string with value "1"
 <pre>
   <i>shift-expression:</i>
     <i>additive-expression</i>
-    <i>shift-expression</i>  <<  <i>additive-expression</i>
-    <i>shift-expression</i>  >>  <i>additive-expression</i>
+    <i>shift-expression</i>  &lt;&lt;  <i>additive-expression</i>
+    <i>shift-expression</i>  &gt;&gt;  <i>additive-expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -2165,10 +2165,10 @@ These operators associate left-to-right.
 <pre>
   <i>relational-expression:</i>
     <i>shift-expression</i>
-    <i>relational-expression</i>  <   <i>shift-expression</i>
-    <i>relational-expression</i>  >   <i>shift-expression</i>
-    <i>relational-expression</i>  <=  <i>shift-expression</i>
-    <i>relational-expression</i>  >=  <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;   <i>shift-expression</i>
+    <i>relational-expression</i>  &gt;   <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;=  <i>shift-expression</i>
+    <i>relational-expression</i>  &gt;=  <i>shift-expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -2380,7 +2380,7 @@ $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
 <pre>
   <i>bitwise-exc-OR-expression:</i>
     <i>bitwise-AND-expression</i>
-    <i>bitwise-exc-OR-expression</i>  ^   <i>bitwise-AND-expression</i>
+    <i>bitwise-exc-OR-expression</i>  ^  <i>bitwise-AND-expression</i>
 </pre>
 
 **Defined elsewhere**

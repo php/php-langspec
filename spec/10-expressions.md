@@ -788,7 +788,7 @@ that string is used as the class name. If the expression results in an object,
 the class of the object is used as the class for the new object.
 
 The *qualified-name* is resolved according to the rules described in
-[scope resolution operator](10-expressions.md#scope-resolution-operator), including
+[scope resolution operator](#scope-resolution-operator), including
 support for `self`, `parent` and `static`.
 
 After the object has been created, each instance property is initialized
@@ -1369,6 +1369,19 @@ method. From within a class, it also allows the selection of an
 overridden property or method. For a property, the value is that of the
 property, and is a modifiable lvalue if *member-selection-designator* is
 a modifiable lvalue.
+
+If *member-selection-designator* is a [*name*](09-lexical-structure.md#names), this operator is accessing
+a class constant. This form can not be used as an lvalue.
+
+If the operator is used as a *postfix-expression* for *function-call-expression*
+then the operator is accessing the method - which, outside of the object context,
+is treated as static method call.
+
+Inside of the object context when `$this` is defined and the called method is not `static` and
+the called class is the same of a parent of the class of `$this`, then the method is
+non-static with the same `$this`. Otherwise it is a static method call.
+
+Otherwise, the operator is accessing a static property.
 
 *relative-scope* designates the class with relation to the current class scope.
 From within a class, `self` refers to the same class, `parent` refers to the

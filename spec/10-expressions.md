@@ -2185,7 +2185,7 @@ These operators associate left-to-right.
     <i>relational-expression</i>  >   <i>shift-expression</i>
     <i>relational-expression</i>  <=  <i>shift-expression</i>
     <i>relational-expression</i>  >=  <i>shift-expression</i>
-    <i>relational-expression</i>  <=> <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;=&gt; <i>shift-expression</i>
 </pre>
 
 **Defined elsewhere**

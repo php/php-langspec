@@ -643,6 +643,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>relational-expression</i>  &gt;   <i>shift-expression</i>
     <i>relational-expression</i>  &lt;=  <i>shift-expression</i>
     <i>relational-expression</i>  &gt;=  <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;=&gt; <i>shift-expression</i>
 </pre>
 
 ####Equality Operators

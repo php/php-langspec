@@ -67,8 +67,8 @@ use the *compound-statement* form of *namespace-definition*.
 
 Although a namespace may contain any PHP source code, the fact that that
 code is contained in a namespace affects only the declaration and name
-resolution of classes, interfaces, traits, functions, and constants. 
-For each of those, if they are defined using [unqualified or qualified name](#name-lookup), 
+resolution of classes, interfaces, traits, functions, and constants.
+For each of those, if they are defined using [unqualified or qualified name](#name-lookup),
 the current namespace name is prepended to the specified name.
 Note that while definition has a short name, the name known to the engine
 is always the full name, and can be either specified as fully qualified name,
@@ -120,7 +120,7 @@ namespace NS3\Sub1;
 
 <pre>
   <i>namespace-use-declaration:</i>
-    use  <i>namespace-use-clauses</i>  ;
+    use  <i>namespace-function-or-const<sub>opt</sub></i> <i>namespace-use-clauses</i>  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
@@ -131,6 +131,10 @@ namespace NS3\Sub1;
 
   <i>namespace-aliasing-clause:</i>
     as  <i>name</i>
+
+  <i>namespace-function-or-const:</i>
+    function
+    const
 </pre>
 
 **Defined elsewhere**
@@ -147,8 +151,12 @@ scope, each occurrence must have a different alias.
 
 **Semantics**
 
-*namespace-use-clauses* can only create aliases for classes, interfaces, or traits; 
-it is not possible to use them to create aliases to functions or constants.
+If *namespace-function-or-const* is provided, the import statement creates alias for
+a function or constant, otherwise the alias applies for classes, interfaces, or traits.
+
+Note that constant, function and class imports live in different spaces, so the same name
+can be used as function and class import and apply to the respective cases of class and function use,
+without interfering with each other.
 
 A *namespace-use-declaration* *imports* — that is, makes available — one or
 more names into a scope, optionally giving them each an alias. Each of
@@ -181,6 +189,17 @@ namespace NS2
 
   use \NS1\C as C2; // C2 is an alias for the class name \NS1\C
   $c2 = new C2;
+
+  // importing a function
+  use function \My\Full\functionName;
+
+  // aliasing a function
+  use function \NS1\f as func;
+
+  // importing a constant
+  use const \NS1\CON1;
+  $v = CON1; // imported constant
+  func();   // imported function
 }
 ```
 
@@ -192,7 +211,7 @@ namespace b
 {
   class B
   {
-    function foo(){ echo "goodbye"; } 
+    function foo(){ echo "goodbye"; }
   }
 }
 
@@ -200,7 +219,7 @@ namespace a\b
 {
   class B
   {
-    function foo(){ echo "hello"; } 
+    function foo(){ echo "hello"; }
   }
 }
 
@@ -230,7 +249,7 @@ purpose, names can have one of the three following forms:
     that name is used.
 -   Qualified name: Such names have a prefix consisting of a namespace
     name and/or one or more levels of sub-namespace names,
-	preceding a class, interface, trait, function, or constant name.
+    preceding a class, interface, trait, function, or constant name.
     Such names are relative. For example, `D2\Point` could be used to
     refer to the class `Point` in the sub-namespace `D2` of the current
     namespace. One special case of this is when the first component of
@@ -242,10 +261,10 @@ purpose, names can have one of the three following forms:
     function, or constant name. Such names are absolute. For example,
     `\Graphics\D2\Point` could be used to refer unambiguously to the
     class `Point` in namespace `Graphics`, sub-namespace `D2`.
-	
+
 However, if an unqualified name is used in a context where it represents the name
 of a constant or function, within a non-default namespace, if this namespace does not have
-such constant of function defined, the global unqualified name is used. 
+such constant of function defined, the global unqualified name is used.
 
 For example:
 ```PHP
@@ -253,12 +272,12 @@ For example:
 namespace A\B\C;
 function strlen($str)
 {
-	return 42;
+    return 42;
 }
 print strlen("Life, Universe and Everything"); // prints 42
 print mb_strlen("Life, Universe and Everything"); // calls global function and prints 29
 ```
-   
+
 The names of the standard types (such as `Exception`), constants (such as
 `PHP_INT_MAX`), and library functions (such as `is_null`) are defined outside
 any namespace. To refer unambiguously to such names, one can prefix them

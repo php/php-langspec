@@ -344,10 +344,10 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>static-variable-name-list:</i>
     <i>static-variable-declaration</i>
-	<i>static-variable-name-list</i>  ,  <i>static-variable-declaration</i>
+    <i>static-variable-name-list</i>  ,  <i>static-variable-declaration</i>
 
   <i>static-variable-declaration:</i>
-	<i>variable-name</i> <i>function-static-initializer<sub>opt</sub></i>
+    <i>variable-name</i> <i>function-static-initializer<sub>opt</sub></i>
 
   <i>function-static-initializer:</i>
     = <i>constant-expression</i>
@@ -694,11 +694,19 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>logical-inc-OR-expression-1</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
 </pre>
 
+####Coalesce Operator
+
+<pre>
+  <i>coalesce-expression:</i>
+    <i>logical-inc-OR-expression</i>  ??  <i>expression</i>
+</pre>
+
 ####Assignment Operators
 
 <pre>
   <i>assignment-expression:</i>
     <i>conditional-expression</i>
+    <i>coalesce-expression</i>
     <i>simple-assignment-expression</i>
     <i>byref-assignment-expression</i>
     <i>compound-assignment-expression</i>
@@ -987,6 +995,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>declare-directive:</i>
     ticks  =  <i>literal</i>
     encoding  =  <i>literal</i>
+    strict_types  =  <i>literal</i>
 
 </pre>
 
@@ -997,7 +1006,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>function-definition-header   compound-statement</i>
 
   <i>function-definition-header:</i>
-    function  &<sub>opt</sub>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )
+    function  &<sub>opt</sub>   <i>name</i> <i>return-type<sub>opt</sub></i> (  <i>parameter-declaration-list<sub>opt</sub></i>  )
 
   <i>parameter-declaration-list:</i>
     <i>parameter-declaration</i>
@@ -1006,10 +1015,20 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>parameter-declaration:</i>
     <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
 
+  <i>return-type:</i>
+    : <i>type-declaration</i>
+
   <i>type-declaration:</i>
     array
     callable
+    <i>scalar-type</i>
     <i>qualified-name</i>
+
+  <i>scalar-type:</i>
+    bool
+    float
+    int
+    string
 
   <i>default-argument-specifier:</i>
     =  <i>constant-expression</i>
@@ -1076,7 +1095,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>method-modifier:</i>
     <i>visibility-modifier</i>
     <i>static-modifier</i>
-	<i>class-modifier</i>
+    <i>class-modifier</i>
 
   <i>constructor-declaration:</i>
     <i>method-modifiers</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>

@@ -55,11 +55,22 @@ A function is called via the function-call operator [`()`](10-expressions.md#fun
     function  &<sub>opt</sub>   <i>name</i> <i>return-type<sub>opt</sub></i> (  <i>parameter-declaration-list<sub>opt</sub></i>  )
 
   <i>parameter-declaration-list:</i>
+    <i>simple-parameter-declaration-list</i>
+    <i>variadic-declaration-list</i>
+
+  <i>simple-parameter-declaration-list:</i>
     <i>parameter-declaration</i>
     <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
 
+  <i>variadic-declaration-list:</i>
+    <i>simple-parameter-declaration-list</i>  ,  <i>variadic-parameter</i>
+    <i>variadic-parameter</i>
+
   <i>parameter-declaration:</i>
-    <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>   <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+    <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>  <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+
+  <i>variadic-parameter:</i>
+	<i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>  ...  <i>variable-name</i>
 
   <i>return-type:</i>
     : <i>type-declaration</i>
@@ -108,16 +119,16 @@ before *name* indicates that the value returned from this function is to
 be returned byRef. Returning values is described in [`return` statement description](11-statements.md#the-return-statement).
 
 When the function is called, if there exists a parameter for which there
-is a corresponding argument, the argument is assigned to the parameter 
-variable using value assignment, while for passing byRef, the argument is 
+is a corresponding argument, the argument is assigned to the parameter
+variable using value assignment, while for passing byRef, the argument is
 [assigned](04-basic-concepts.md#argument-passing) to the parameter variable using [byRef assignment](04-basic-concepts.md#assignment).
-If that parameter has no corresponding argument, but the parameter has a 
-default argument value, for passing by value or byRef, the default 
-value is assigned to the parameter variable using value assignment. 
-Otherwise, if the parameter has no corresponding argument and the parameter 
+If that parameter has no corresponding argument, but the parameter has a
+default argument value, for passing by value or byRef, the default
+value is assigned to the parameter variable using value assignment.
+Otherwise, if the parameter has no corresponding argument and the parameter
 does not have a default value, the parameter variable is non-existent and no corresponding
-[VSlot](04-basic-concepts.md#the-memory-model) exists.  After all possible parameters have been 
-assigned initial values or aliased to arguments, the body of the function, 
+[VSlot](04-basic-concepts.md#the-memory-model) exists.  After all possible parameters have been
+assigned initial values or aliased to arguments, the body of the function,
 *compound-statement*, is executed. This execution may terminate [normally](04-basic-concepts.md#program-termination),
 with [`return` statement](11-statements.md#the-return-statement) or [abnormally](04-basic-concepts.md#program-termination).
 
@@ -128,7 +139,12 @@ A *function-definition* may exist at the top level of a script, inside
 any *compound-statement*, in which case, the function is [conditionally
 defined](#general), or inside a [*method-declaration* section of a class](14-classes.md#methods).
 
-## Parameter typing
+If *variadic-parameter* is defined, every parameter that is supplied to function and is not matched
+by the preceding parameters is stored in this parameter, as an array element.
+The first such parameter gets index 0, the next one 1, etc. If no extra parameters is supplied,
+the value of the parameter is an empty array.
+Note that if type and/or byRef specifications are supplied to variadic parameter, they apply
+to every extra parameter captured by it.
 
 By default, a parameter will accept an argument of any type. However, by
 specifying a *type-declaration*, the types of argument accepted can be
@@ -141,8 +157,8 @@ type directly or indirectly is accepted. The check is the same as for [`instance
 
 `callable` pseudo-type accepts the following:
 * A string value containing the name of a function defined at the moment of the call.
-* An array value having two elements under indexes `0` and `1`. First element can be either string or object. 
-If the first element is a string, the second element must be a string naming a method in a class designated by the first element. 
+* An array value having two elements under indexes `0` and `1`. First element can be either string or object.
+If the first element is a string, the second element must be a string naming a method in a class designated by the first element.
 If the first element is an object, the second element must be a string naming a method
 that can be called on an object designated by the first element, from the context of the function being called.
 * An instance of the [`Closure`](14-classes.md#class-closure) class.
@@ -243,4 +259,4 @@ that is saved in a variable for later execution. An anonymous function
 is defined via the [anonymous function creation operator](10-expressions.md#anonymous-function-creation).
 
 For both [`__FUNCTION__` and `__METHOD__`](06-constants.md#context-dependent-constants), an anonymous
-function's name is reported as `{closure}`. 
+function's name is reported as `{closure}`.

@@ -213,7 +213,7 @@ a [`__toString` method](14-classes.md#method-__tostring).
 
 After converting each of its *expression*s' values to strings, if
 necessary, `echo` concatenates them in order given, and writes the
-resulting string to [`STDOUT`](05-types.md#resource-types). Unlike [`print`](#print), it does
+resulting string to [`STDOUT`](06-constants.md#core-predefined-constants). Unlike [`print`](#print), it does
 not produce a result.
 
 See also: [double quioted strings](09-lexical-structure.md#double-quoted-string-literals) and
@@ -338,7 +338,7 @@ When *expression* designates an integer, its value must be in the range
 `exit` and `die` are equivalent.
 
 This intrinsic terminates the current script. If *expression* designates
-a string, that string is written to [`STDOUT`](05-types.md#resource-types). If *expression*
+a string, that string is written to [`STDOUT`](06-constants.md#core-predefined-constants). If *expression*
 designates an integer, that represents the script's *exit status code*.
 Code 255 is reserved by PHP. Code 0 represents "success". The exit
 status code is made available to the execution environment. If
@@ -347,7 +347,7 @@ status code is made available to the execution environment. If
 
 `exit` performs the following operations, in order:
 
--   Writes the optional string to [`STDOUT`](05-types.md#resource-types).
+-   Writes the optional string to [`STDOUT`](06-constants.md#core-predefined-constants).
 -   Calls any functions registered via the library function
     `register_shutdown_function` (§xx) in their order of registration.
 -   Invokes [destructors](14-classes.md#destructors) for all remaining instances.
@@ -497,7 +497,7 @@ a [`__toString` method](14-classes.md#method-__tostring).
 **Semantics**
 
 After converting its *expression*'s value to a string, if necessary,
-`print` writes the resulting string to [`STDOUT`](05-types.md#resource-types).
+`print` writes the resulting string to [`STDOUT`](06-constants.md#core-predefined-constants).
 Unlike [`echo`](#echo), `print` can be used in any context allowing an expression. It
 always returns the value 1.
 
@@ -1790,7 +1790,7 @@ where \` is the GRAVE ACCENT character U+0060, commonly referred to as a
 This operator passes *dq-char-sequence* to the command shell for
 execution, as though it was being passed to the library function
 `shell_exec` (§xx). If the output from execution of that command is
-written to [`STDOUT`](05-types.md#resource-types), that output is the result of this operator
+written to [`STDOUT`](06-constants.md#core-predefined-constants), that output is the result of this operator
 as a string. If the output is redirected away from `STDOUT`, or
 *dq-char-sequence* is empty or contains only white space, the result of
 the operator is `NULL`.

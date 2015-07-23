@@ -437,7 +437,7 @@ the `ArrayAccess` interface (called the *source array*).
 Each *expression* in *list-or-variable* must designate a variable (called
 the *target variable*).
 
-At least on the elements of the *list-expression-list* must be non-empty.
+At least one of the elements of the *list-expression-list* must be non-empty.
 
 **Semantics**
 

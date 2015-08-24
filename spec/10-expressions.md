@@ -626,7 +626,7 @@ An anonymous function defined inside an instance or static method has its
 [*scope*](14-classes.md#class-closure) set to the class it was defined in. Otherwise,
 an anonymous function is [*unscoped*](14-classes.md#class-closure).
 
-An anonymous function defined inside an instance method is is [*bound*](14-classes.md#class-closure)
+An anonymous function defined inside an instance method is [*bound*](14-classes.md#class-closure)
 to the object on which that method is called, while an
 an anonymous function defined inside a static method, or prefixed with the
 optional `static` modifier is [*static*](14-classes.md#class-closure), and otherwise

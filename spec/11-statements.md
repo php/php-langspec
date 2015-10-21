@@ -313,7 +313,7 @@ else  // this else does go with the outer if
 
 * [*expression*](10-expressions.md#general-6)
 * [*case-statement*](#labeled-statements)
-* [*default-statement](#labeled-statements)
+* [*default-statement*](#labeled-statements)
 * [*compound-statement*](#compound-statements)
 * [*statement-list*](#compound-statements)
 

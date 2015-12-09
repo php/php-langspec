@@ -892,11 +892,6 @@ for ($i = 10; $i <= 40; $i +=10)
 
 * [*expression*](10-expressions.md#general-6)
 
-**Constraints**
-
-The *expression* in a *return-statement* in a [generator function](10-expressions.md#yield-operator)
-must be the literal `NULL` or be omitted.
-
 **Semantics**
 
 A `return` statement from within a function terminates the execution of
@@ -937,8 +932,12 @@ implied. Likewise, if *expression* is omitted at the top level. (See also
 Returning from a constructor or destructor behaves just like returning
 from a function.
 
-A `return` statement inside a generator function causes the generator to
+A `return` statement inside a [generator function](10-expressions.md#yield-operator) causes the generator to
 terminate.
+
+A generator function can contain a statement of the form `return` *expression* `;`. The value this returns
+can be fetched using the method `Generator::getReturn`, which can only be called once the generator
+has finishing yielding values. The value cannot be returned byRef.
 
 Return statements can also be used in the body of anonymous functions.
 

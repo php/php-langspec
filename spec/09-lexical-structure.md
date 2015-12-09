@@ -643,6 +643,10 @@ but MUST NOT support leading or trailing whitespace for the codepoint between
 the opening and terminating braces. Implementations MUST allow Unicode 
 codepoints that are not Unicode scalar values, such as high and low surrogates.
 
+A Unicode escape sequence cannot be created by variable substitution. For example, given `$v = "41"`,
+`"\u{$v}"` results in `"\u41"`, a string of length 4, while `"\u{0$v}"` and `"\u{{$v}}"` contain
+ill-formed Unicode escape sequences.
+
 **Variable substitution**
 
 The variable substitution accepts the following syntax:

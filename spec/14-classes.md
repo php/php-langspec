@@ -52,6 +52,8 @@ When an instance is allocated, `new` returns a handle that points to that
 object. As such, assignment of a handle does not copy the object itself.
 (See [cloning objects](04-basic-concepts.md#cloning-objects) for a discussion of shallow and deep copying).
 
+While PHP supports *anonymous class types*, such a type cannot be declared using [*class-declaration*](14-classes.md#class-declarations). Instead, it must be specified at the time of instantiation; that is, as part of an [*object-creation-expression*](10-expressions.md#the-new-operator). 
+
 ##Class Declarations
 
 **Syntax**
@@ -1654,7 +1656,7 @@ use in file storage or inter-program communication. The process of
 converting to this form is known as *serialization* while that of
 converting back again is known as *unserialization*. These facilities
 are provided by the library functions [`serialize`](http://www.php.net/serialize)
-and [`serialize`](http://www.php.net/serialize), respectively.
+and [`unserialize`](http://www.php.net/unserialize), respectively.
 
 In the case of variables that are objects, on their own, these two
 functions serialize and unserialize all the instance properties, which
@@ -1801,6 +1803,10 @@ $s = serialize($cp);
 $v = unserialize($s);
 ```
 
+Function `unserialize` takes an optional second argument, which specifies an array of trusted class names as strings. Objects found in the data stream whose type name is not in this trusted name list are converted to objects of type [`__PHP_Incomplete_Class`](14-classes.md#class-__PHP_Incomplete_Class).
+
+Any attempt to serialize an object having an anonymous class type results in an instance of type `Exception` being thrown.
+
 ##Predefined Classes
 
 ### Class `Closure`
@@ -1922,6 +1928,7 @@ instantiated directly. It is defined, as follows:
 class Generator implements Iterator
 {
   public function current();
+  public function getReturn();
   public function key();
   public function next();
   public function rewind();
@@ -1936,6 +1943,7 @@ The class members are defined below:
 Name | Purpose
 ---- | -------
 `current` | An implementation of the instance method [`Iterator::current`](15-interfaces.md#interface-iterator).
+`getReturn` | Returns the final expression from a generator, which was produced by a `return` statement rather than a `yield`. This function can only be called meaningfully once the generator has finishing yielding values; otherwise, an instance of `Exception` is thrown.
 `key` | An implementation of the instance method [`Iterator::key`](15-interfaces.md#interface-iterator).
 `next` | An implementation of the instance method [`Iterator::next`](15-interfaces.md#interface-iterator).
 `rewind` | An implementation of the instance method [`Iterator::rewind`](15-interfaces.md#interface-iterator).
@@ -1950,7 +1958,9 @@ Generator objects can not be serialized or unserialized.
 There are certain circumstances in which a program can generate an
 instance of this class, which on its own contains no members. One
 involves an attempt to [unserialize](#serialization) a string that
-encodes an instance of a class for which there is no definition.
+encodes an instance of a class for which there is no definition or
+if an object’s type is declared untrusted by `unserialize`’s filter argument.
+
 Consider the following code:
 
 ```PHP

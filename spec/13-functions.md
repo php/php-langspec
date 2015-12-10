@@ -52,7 +52,7 @@ A function is called via the function-call operator [`()`](10-expressions.md#fun
     <i>function-definition-header   compound-statement</i>
 
   <i>function-definition-header:</i>
-    function  &<sub>opt</sub>   <i>name</i> <i>return-type<sub>opt</sub></i> (  <i>parameter-declaration-list<sub>opt</sub></i>  )
+    function  &<i><sub>opt</sub></i>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>return-type<sub>opt</sub></i>
 
   <i>parameter-declaration-list:</i>
     <i>simple-parameter-declaration-list</i>
@@ -67,10 +67,10 @@ A function is called via the function-call operator [`()`](10-expressions.md#fun
     <i>variadic-parameter</i>
 
   <i>parameter-declaration:</i>
-    <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>  <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+    <i>type-declaration<sub>opt</sub></i>  &<i><sub>opt</sub></i>  <i>variable-name   default-argument-specifier<sub>opt</sub></i>
 
   <i>variadic-parameter:</i>
-	<i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>  ...  <i>variable-name</i>
+	<i>type-declaration<sub>opt</sub></i>  &<i><sub>opt</sub></i>  ...  <i>variable-name</i>
 
   <i>return-type:</i>
     : <i>type-declaration</i>
@@ -102,6 +102,8 @@ Each parameter name in a *function-definition* must be distinct.
 
 A [conditionally defined function](#general) must exist before any calls are
 made to that function.
+
+The *function-definition* for constructors, destructors, and clone methods must not contain *return-type*.
 
 For generator functions, if the the return type is specified, it can only be one of:
 `Generator`, `Iterator` or `Traversable`.
@@ -198,7 +200,7 @@ accepted as a value for parameter typed as `int`). The only exception is that `i
 for `float` typed parameter and [converted to `float`](08-conversions.md#converting-to-floating-point-type).
 Note that the strict mode applies not only to user-defined but also to internal functions, 
 please consult [the manual](http://php.net/manual/) for appropriate parameter types. If the types do not match,
-a fatal error is produced.
+an exception of type `TypeError` is thrown.
 
 Note that if the parameter is passed byRef, and conversion happened,
 then the value will be re-assigned with the newly converted value.

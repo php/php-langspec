@@ -286,7 +286,7 @@ empty($v);   // results in FALSE
 **Constraints**
 
 *expression* must designate a string, or be [convertable to a string](08-conversions.md#converting-to-string-type).
-The contents of the string must be valid PHP source code.
+The contents of the string must be valid PHP source code. If the source code is ill formed, an exception of type `ParseError` is thrown.
 
 The PHP source code in the string must not be delimited by opening and
 closing [PHP tags](04-basic-concepts.md#program-structure). However, the source code

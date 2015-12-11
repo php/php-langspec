@@ -2038,9 +2038,7 @@ type `int` or `float`, as appropriate. Then if either operand has type
 resulting value can be represented in type `int` that is the result type.
 Otherwise, the result would have type `float`.
 
-Division by zero results in a non-fatal error and the result value is `FALSE`.
-The values +/- infinity and NaN cannot be generated via this operator;
-instead, use the predefined constants `INF` and `NAN`.
+Division by zero results in a non-fatal error. If the value of the numerator is positive, the result value is `INF`. If the value of the numerator is negative, the result value is `-INF`. If the value of the numerator is zero, the result value is `NAN`.
 
 The binary `/` operator produces the quotient from dividing the left-hand
 operand by the right-hand one. If either or both operands have
@@ -2053,7 +2051,7 @@ otherwise, the type of the result is `float`.
 
 The binary `%` operator produces the remainder from dividing the left-hand
 operand by the right-hand one. If the type of both operands is not `int`,
-their values are converted to that type. The result has type `int`.
+their values are converted to that type. The result has type `int`. If the right-hand operand has value zero, an exception of type `DivisionByZeroError` is thrown.
 
 These operators associate left-to-right.
 

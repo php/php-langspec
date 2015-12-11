@@ -1151,6 +1151,9 @@ a [sequence point](#general) after each argument is evaluated and right before t
 For details of the result of a function call see [`return` statement](11-statements.md#the-return-statement).
 The value of a function call is a modifiable lvalue only if the function returns a modifiable value byRef.
 
+Function calls are executed in either coercive mode (the default) or in strict mode, depending on the presence of a `declare(strict_types)` statement and its value. (See [*function-definition*](13-functions#function-definitions) for more information.) Strict argument/parameter type checking only applies to function calls made from within a source file having strict type checking enabled, not to the functions defined within that file. If a source file without strict type checking enabled makes a call to a function that was defined in a source file with strict type checking enabled, coercion will be used at the call site. 
+In strict mode, an argument/parameter type mismatch results in an exception of type `TypeError` being thrown.
+
 When *postfix-expression* designates an instance method or constructor,
 the instance used in that designation is used as the value of `$this` in
 the invoked method or constructor. However, if no instance was used in

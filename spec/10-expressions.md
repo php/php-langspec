@@ -2190,8 +2190,7 @@ Right shifts where the shift count is greater than the bit width of the integer
 type (e.g. 32 or 64) must always result in 0 when `e1` is positive and -1 when
 `e1` is negative, even if there is no native processor support for this.
 
-If the shift count is negative, this results in a diagnostic followed by a
-`bool` result having value `FALSE`.
+If the shift count is negative, an exception of type `ArithmeticError` is thrown.
 
 These operators associate left-to-right.
 

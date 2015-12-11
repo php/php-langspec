@@ -2795,9 +2795,8 @@ $a = new C; // make $a point to the allocated object
 
 *unary-expression* must designate a variable.
 
-*assignment-expression* must be an lvalue, a call to a function that
-returns a value byRef, or a *new-expression* (see comment below
-regarding this).
+*assignment-expression* must be an lvalue or a call to a function that
+returns a value byRef.
 
 **Semantics**
 

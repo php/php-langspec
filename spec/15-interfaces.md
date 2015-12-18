@@ -208,7 +208,7 @@ This interface allows the creation of an external iterator. This
 interface is defined, as follows:
 
 ```PHP
-Interface IteratorAggregate extends Traversable
+interface IteratorAggregate extends Traversable
 {
   function getIterator();
 }
@@ -219,6 +219,40 @@ The interface members are defined below:
 Name  |   Purpose
 ----    |   -------
 `getIterator` | This instance method retrieves an iterator, which implements `Iterator` or `Traversable`. It throws an `Exception` on failure.
+
+###Interface `Throwable`
+
+This type is the base interface for the type of any object that can be thrown via a
+[throw statement](11-statements.md#the-throw-statement). A user-written class cannot
+implement `Throwable` directly. Instead, it must extend `Error` or `Exception`.
+
+This type is defined, as follows:
+
+```PHP
+interface Throwable {
+  abstract public __toString(): string;
+  abstract public getCode(): int;
+  abstract public getFile(): string;
+  abstract public getLine(): int;
+  abstract public getMessage(): string;
+  abstract public getPrevious(): Throwable;
+  abstract public getTrace(): array;
+  abstract public getTraceAsString(): string;
+}
+```
+The interface members are defined below:
+
+
+Name  |   Purpose
+----    |   -------
+`__toString`	| `string`; retrieves a string representation of the exception in some unspecified format
+`getCode`	| `int`; retrieves the exception code (as set by the constructor).
+`getFile`	| `string`; retrieves the name of the script where the exception was generated
+`getLine`	| `int`; retrieves the source line number in the script where the exception was generated
+`getMessage`	| `string`; retrieves the exception message
+`getPrevious`	| `Throwable`; retrieves the previous exception (as set by the constructor), if one exists; otherwise, `NULL`
+`getTrace`	| `array`; retrieves the function stack [trace information](17-exception-handling.md#tracing-exceptions) as an array
+`getTraceAsString`	| `string`; retrieves the function stack trace information formatted as a single string in some unspecified format
 
 ###Interface `Traversable`
 

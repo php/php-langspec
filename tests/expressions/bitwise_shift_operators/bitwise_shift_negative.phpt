@@ -3,7 +3,16 @@ PHP Spec test generated from ./expressions/bitwise_shift_operators/bitwise_shift
 --FILE--
 <?php
 
-var_dump(1 >> -1);
-var_dump(1 << -1);
+try {
+    var_dump(1 >> -1);
+} catch (ArithmeticError $e) {
+    echo $e->getMessage(), "\n";
+}
+try {
+    var_dump(1 << -1);
+} catch (ArithmeticError $e) {
+    echo $e->getMessage(), "\n";
+}
 --EXPECTF--
-Fatal error: Bit shift by negative number in %s/bitwise_shift_negative.php on line %d
+Bit shift by negative number
+Bit shift by negative number

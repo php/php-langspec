@@ -2197,10 +2197,11 @@ These operators associate left-to-right.
 **Examples**
 
 ```PHP
-1000 >> 2   // 3E8 is shifted right 2 places
--1000 << 2      // FFFFFC18 is shifted left 5 places
-123 >> 128      // adjusted shift count = 0
-123 << 33   // For a 32-bit int, adjusted shift count = 1; otherwise, 33
+1000 >> 2   // 0x3E8 is shifted right 2 places
+-1000 << 2  // 0xFFFFFC18 is shifted left 5 places
+123 >> 128  // Shift count larger than bit width => result 0
+123 << 33   // For 32-bit integers the result is zero, otherwise
+            // it is 0x7B shifted left 33 places
 ```
 
 ##Relational Operators

@@ -246,7 +246,7 @@ The interface members are defined below:
 Name  |   Purpose
 ----    |   -------
 `__toString`	| `string`; retrieves a string representation of the exception in some unspecified format
-`getCode`	| `int`; retrieves the exception code (as set by the constructor).
+`getCode`	| `int`; retrieves the exception code
 `getFile`	| `string`; retrieves the name of the script where the exception was generated
 `getLine`	| `int`; retrieves the source line number in the script where the exception was generated
 `getMessage`	| `string`; retrieves the exception message

@@ -269,6 +269,8 @@ Unless stated otherwise ([functions](13-functions.md#function-definitions),
 
 Names beginning with two underscores (__) are reserved by the PHP language and should not be defined by the user code.
 
+With the exception of `class`, all [keywords](09-lexical-structures#keywords) can be used as the names of class, interface, and trait members. However, `class` can be used as the name of a property or method.
+
 Variable names and function names (when used in a function-call context)
 need not be defined as source tokens; they can also be created at
 runtime using the [variable name-creation operator](10-expressions.md#variable-name-creation-operator). (For
@@ -299,19 +301,21 @@ cannot be used as a name.
 
 <pre>
   <i>keyword:: one of</i>
-    abstract   and   as   break   callable   case   catch   class   clone   
-    const   continue   declare   default   do   echo   else   elseif   
-    enddeclare   endfor   endforeach   endif   endswitch   endwhile
+    abstract   and   array   as   break   callable   case   catch   class   clone   
+    const   continue   declare   default   die   do   echo   else   elseif   empty   
+    enddeclare   endfor   endforeach   endif   endswitch   endwhile   eval   exit
     extends   final   finally   for   foreach   function   global
     goto   if   implements   include   include_once   instanceof
-    insteadof   interface   list   namespace   new   or   print   private
+    insteadof   interface   isset   list   namespace   new   or   print   private
     protected   public   require   require_once   return static   switch
-    throw   trait   try   use   var   while   xor   yield
+    throw   trait   try   unset   use   var   while   xor   yield   yield from
 </pre>
 
 **Semantics**
 
 Keywords are not case-sensitive.
+
+Note carefully that `yield from` is a single token that contains whitespace. However, [comments](#comments) are not permitted in that whitespace.
 
 ####Literals
 

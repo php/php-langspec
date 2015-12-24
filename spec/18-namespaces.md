@@ -121,8 +121,9 @@ namespace NS3\Sub1;
 <pre>
   <i>namespace-use-declaration:</i>
     use  <i>namespace-function-or-const<sub>opt</sub></i> <i>namespace-use-clauses</i>  ;
-    use  <i>namespace-function-or-const<sub>opt</sub></i> <i>namespace-name-as-a-prefix</i>
-       {  <i>namespace-use-group-clauses</i>  }  ;
+    use  <i>namespace-function-or-const</i>  \<i><sub>opt</sub>  namespace-name</i>  \
+       {  <i>namespace-use-group-clauses-1</i>  }  ;
+    use  \<i><sub>opt</sub>   namespace-name</i>   \   {  <i>namespace-use-group-clauses-2</i>  }  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
@@ -138,31 +139,38 @@ namespace NS3\Sub1;
     function
     const
 
-  <i>namespace-use-group-clauses:</i>
-    <i>namespace-use-group-clause</i>
-    <i>namespace-use-group-clauses</i>  ,  <i>namespace-use-group-clause</i>
+  <i>namespace-use-group-clauses-1:</i>
+    <i>namespace-use-group-clause-1</i>
+    <i>namespace-use-group-clauses-1</i>  ,  <i>namespace-use-group-clause-1</i>
 
-  <i>namespace-use-group-clause:</i>
-    <i>name</i>  <i>namespace-aliasing-clause<sub>opt</sub></i>
+  <i>namespace-use-group-clause-1:</i>
+    <i>namespace-name</i>  <i>namespace-aliasing-clause<sub>opt</sub></i>
+
+  <i>namespace-use-group-clauses-2:</i>
+    <i>namespace-use-group-clause-2</i>
+    <i>namespace-use-group-clauses-2</i>  ,  <i>namespace-use-group-clause-2</i>
+
+  <i>namespace-use-group-clause-2:</i>
+    <i>namespace-function-or-const<sub>opt</sub></i>  <i>namespace-name</i>  <i>namespace-aliasing-clause<sub>opt</sub></i>
 </pre>
 
 **Defined elsewhere**
 
 * [*name*](09-lexical-structure.md#names)
-* [*namespace-name-as-a-prefix*](09-lexical-structure.md#names)
+* [*namespace-name*](09-lexical-structure.md#names)
 * [*qualified-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
 A *namespace-use-declaration* must not occur except at the top level or directly in the context of a *namespace-definition*.
 
-If the same *qualified-name* or *name* is imported multiple times in the same
+If the same *qualified-name*, *name*, or *namespace-name* is imported multiple times in the same
 scope, each occurrence must have a different alias.
 
 **Semantics**
 
-If *namespace-function-or-const* is provided, the statement imports
-a function or constant, otherwise the statement imports one or more classes, interfaces, or traits.
+If *namespace-use-declaration* has a *namespace-function-or-const* with value `function`, the statement imports
+one or more functions. If *namespace-use-declaration* has a *namespace-function-or-const* with value `const`, the statement imports one or more constants. Otherwise, *namespace-use-declaration* has no *namespace-function-or-const*. In that case, if *namespace-use-clauses* is present, the names being imported are considered to be classes/interfaces/traits. Otherwise, *namespace-use-group-clauses-2* is present, in which case, the names being imported are considered to be functions, constants, or classes/interfaces/traits based on the respective presence of `function` or `const`, or the absence of *namespace-function-or-const* on each *namespace-name* in subordinate *namespace-use-group-clause-2*s.
 
 Note that constant, function and class imports live in different spaces, so the same name
 can be used as function and class import and apply to the respective cases of class and function use,
@@ -172,7 +180,7 @@ A *namespace-use-declaration* *imports* — that is, makes available — one or
 more names into a scope, optionally giving them each an alias. Each of
 those names may designate a namespace, a sub-namespace, a class, an
 interface, or a trait. If a *namespace-aliasing-clause* is present, its
-*name* is the alias for *qualified-name* or *name*. Otherwise, the right-most name component
+*name* is the alias for *qualified-name*, *name*, or *namespace-name*. Otherwise, the right-most name component
 in *qualified-name* is the implied alias for *qualified-name*.
 
 **Examples**
@@ -212,10 +220,13 @@ namespace NS2
 
   // importing a constant
   use const \NS1\CON1;
-  use const \NS\{CON11, CON12};
+  use \NS\{const CON11, const CON12};
   
   $v = CON1; // imported constant
   func();   // imported function
+
+  // importing a class, a constant, and a function
+  use \NS\ { C2 as CX, const CON2 as CZ, function f1 as FZ };
 }
 ```
 

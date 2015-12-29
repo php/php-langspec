@@ -44,8 +44,69 @@ that trait is used.
 
 <pre>
   <i>trait-declaration:</i>
-    trait   <i>name</i>   {   <i>trait-use-clauses<sub>opt</sub>   trait-member-declarations<sub>opt</sub></i>   }
+    trait   <i>name</i>   {   trait-member-declarations<sub>opt</sub></i>   }
 
+  <i>trait-member-declarations:</i>
+    <i>trait-member-declaration</i>
+    <i>trait-member-declarations   trait-member-declaration</i>
+
+  <i>trait-member-declaration:</i>
+    <i>property-declaration</i>
+    <i>method-declaration</i>
+    <i>constructor-declaration</i>
+    <i>destructor-declaration</i>
+    <i>trait-use-clauses</i>
+</pre>
+
+**Defined elsewhere**
+
+* [*property-declaration*](14-classes.md#properties)
+* [*method-declaration*](14-classes.md#methods)
+* [*constructor-declaration*](14-classes.md#constructors)
+* [*destructor-declaration*](14-classes.md#destructors)
+* [*trait-use-clauses*](#trait-uses)
+
+**Semantics**
+
+A *trait-declaration* defines a named set of members, which are made
+available to any class that uses that trait.
+
+Trait names are case-insensitive.
+
+The members of a trait are those specified by its *trait-member-declaration*
+clauses, and members imported from any other traits using *trait-use-clauses*.
+
+A trait may contain the following members:
+
+-   [Properties](14-classes.md#properties) – the variables made available to the class in which the
+    trait is used.
+-   [Methods](14-classes.md#methods) – the computations and actions that can be performed by the
+    class in which the trait is used.
+-   [Constructor](14-classes.md#constructors) – the actions required to initialize an instance of the
+    class in which the trait is used.
+-   [Destructor](14-classes.md#destructors) – the actions to be performed when an instance of the
+    class in which the trait is used is no longer needed.
+
+If a member has no explicit visibility, `public` is assumed.
+
+**Examples**
+
+```PHP
+trait T
+{
+  private $prop1 = 1000;
+  protected static $prop2;
+  var $prop3;
+  public function compute( ... ) { ... }
+  public static function getData( ... ) { ... }
+}
+```
+
+##Trait Uses
+
+**Syntax**
+
+<pre>
   <i>trait-use-clauses:</i>
     <i>trait-use-clause</i>
     <i>trait-use-clauses   trait-use-clause</i>
@@ -81,7 +142,6 @@ that trait is used.
 
 * [*name*](09-lexical-structure.md#names)
 * [*visibility-modifier*](14-classes.md#properties)
-* [*trait-member-declarations*](#trait-members)
 
 **Constraints**
 
@@ -101,16 +161,12 @@ unqualified name.
 
 **Semantics**
 
-A *trait-declaration* defines a named set of members, which are made
-available to any class that uses that trait.
-
-Trait names are case-insensitive.
-
-A *trait-declaration* may also use other traits. This is done via one or
-more *trait-use-clause* items, each of which contains a comma-separated list
-of trait names. A *trait-use-clause* list ends in a semicolon or a
-brace-delimited set of *trait-select-insteadof-clause* and
-*trait-alias-as-clause* statements.
+*trait-use-clauses* can be used as part of *trait-member-declarations*
+or *class-member-declarations* to import members of a trait into a
+different trait or a class. This is done via one or more *trait-use-clause*
+items, each of which contains a comma-separated list of trait names.
+A *trait-use-clause* list ends in a semicolon or a brace-delimited set of
+*trait-select-insteadof-clause* and *trait-alias-as-clause* statements.
 
 A *trait-select-insteadof-clause* allows to avoid name clashes.
 Specifically, the left-hand *name* designates which name to be used from
@@ -142,61 +198,6 @@ trait T4
     T1::compute insteadof T2; // disambiguate between two computes
     T3::sort as private sorter; // make alias with adjusted visibility
   }
-}
-```
-
-##Trait Members
-
-**Syntax**
-
-<pre>
-  <i>trait-member-declarations:</i>
-    <i>trait-member-declaration</i>
-    <i>trait-member-declarations   trait-member-declaration</i>
-
-  <i>trait-member-declaration:</i>
-    <i>property-declaration</i>
-    <i>method-declaration</i>
-    <i>constructor-declaration</i>
-    <i>destructor-declaration</i>
-</pre>
-
-**Defined elsewhere**
-
-* [*property-declaration*](14-classes.md#properties)
-* [*method-declaration*](14-classes.md#methods)
-* [*constructor-declaration*](14-classes.md#constructors)
-* [*destructor-declaration*](14-classes.md#destructors)
-
-**Semantics**
-
-The members of a trait are those specified by its
-*trait-member-declaration* clauses, and the members from any other traits it
-uses.
-
-A trait may contain the following members:
-
--   [Properties](14-classes.md#properties) – the variables made available to the class in which the
-    trait is used.
--   [Methods](14-classes.md#methods) – the computations and actions that can be performed by the
-    class in which the trait is used.
--   [Constructor](14-classes.md#constructors) – the actions required to initialize an instance of the
-    class in which the trait is used.
--   [Destructor](14-classes.md#destructors) – the actions to be performed when an instance of the
-    class in which the trait is used is no longer needed.
-
-If a member has no explicit visibility, `public` is assumed.
-
-**Examples**
-
-```PHP
-trait T
-{
-  private $prop1 = 1000;
-  protected static $prop2;
-  var $prop3;
-  public function compute( ... ) { ... }
-  public static function getData( ... ) { ... }
 }
 ```
 

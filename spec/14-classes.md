@@ -60,7 +60,7 @@ While PHP supports *anonymous class types*, such a type cannot be declared using
 
 <pre>
   <i>class-declaration:</i>
-    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
+    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   class-member-declarations<sub>opt</sub></i> }
 
   <i>class-modifier:</i>
     abstract
@@ -77,7 +77,6 @@ While PHP supports *anonymous class types*, such a type cannot be declared using
 **Defined elsewhere**
 
 * [*class-member-declarations*](#class-members)
-* [*trait-use-clauses*](16-traits.md#trait-declarations)
 
 **Constraints**
 
@@ -137,8 +136,6 @@ inherits all the members from the base class.
 
 The optional *class-interface-clause* specifies the one or more
 interfaces that are implemented by the class being defined.
-
-A class can use one or more traits via a [*trait-use-clauses*](16-traits.md#general).
 
 **Examples**
 
@@ -211,6 +208,7 @@ class MyList implements MyCollection
      <i>method-declaration</i>
      <i>constructor-declaration</i>
      <i>destructor-declaration</i>
+     <i>trait-use-clause</i>
 </pre>
 
 **Defined elsewhere**
@@ -220,6 +218,7 @@ class MyList implements MyCollection
 * [*method-declaration*](#methods)
 * [*constructor-declaration*](#constructors)
 * [*destructor-declaration*](#destructors)
+* [*trait-use-clauses*](16-traits.md#trait-uses)
 
 **Semantics**
 
@@ -240,6 +239,8 @@ Some methods have special semantics, such as:
 -   [Destructor](#destructors) – the actions to be performed when an instance of the
     class is no longer needed.
 -   [Special (or *magic*) methods](#methods-with-special-semantics)
+
+Members can be imported from one or more traits via [*trait-use-clauses*](16-traits.md#general).
 
 The class can also have [dynamic members](#dynamic-members) which are not part of the class definition.
 

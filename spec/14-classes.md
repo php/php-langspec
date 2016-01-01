@@ -2065,7 +2065,9 @@ class AssertionError extends Error
 
 ####Class `DivisionByZeroError`
 
-An instance of this class is thrown when an attempt is made to divide a number by zero using the remainder operators ([`%`](10-expressions.md#multiplicative-operators) and [`%=`](10-expressions.md#compound-assignment)). The class type is defined, as follows: 
+An instance of this class is thrown when an attempt is made to divide a number by zero, e.g. when using the remainder operators ([`%`](10-expressions.md#multiplicative-operators) and [`%=`](10-expressions.md#compound-assignment)). 
+Note that this happens only for integer operations, float division produces `float(INF)` and a non-fatal error instead. 
+The class type is defined, as follows: 
 
 ```PHP
 class DivisionByZeroError extends Error

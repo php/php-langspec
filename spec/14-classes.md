@@ -2031,7 +2031,7 @@ class Error implements Throwable
 
 * [`Throwable`](15-interfaces.md#interface-throwable)
 
-For information about the base interface, see [Throwable](15-interfaces.md#interface-Throwable).
+For information about the base interface, see [Throwable](15-interfaces.md#interface-throwable).
 Note that the methods from Throwable are implemented as `final` in the Error class, which means
 the extending class can not override them.
 

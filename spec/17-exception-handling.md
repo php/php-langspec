@@ -64,7 +64,7 @@ class Exception implements Throwable
 
 For information about exception trace-back and nested exceptions, see [tracing exceptions](#tracing-exceptions).
 
-For information about the base interface, see [Throwable](15-interfaces.md#interface-Throwable).
+For information about the base interface, see [Throwable](15-interfaces.md#interface-throwable).
 Note that the methods from Throwable are implemented as `final` in the Exception class, which means
 the extending class can not override them.
 

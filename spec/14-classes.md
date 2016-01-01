@@ -2004,4 +2004,100 @@ base class. An instance of this type is automatically created when a
 non-object is [converted to an object](08-conversions.md#converting-to-object-type), or the [member selection
 operator](10-expressions.md#member-selection-operator) is applied to `NULL`, `FALSE`, or an empty string.
 
+###Predefined Error Classes
 
+PHP has a number of predefined classes that are used for error reporting. All these classes extend the base Error class.
+
+####Class `Error`
+
+This class is the base class for all internal PHP error exceptions. It is defined, as follows:
+
+```PHP
+class Error implements Throwable
+{
+}
+```
+
+**Defined elsewhere**
+
+* [`Throwable`](15-interfaces.md#interface-throwable)
+
+For information about the base interface, see [Throwable](15-interfaces.md#interface-Throwable).
+Note that the methods from Throwable are implemented as `final` in the Error class, which means
+the extending class can not override them.
+
+####Class `ArithmeticError`
+
+An instance of this class is thrown when an error occurs during certain mathematical operations. It is defined, as follows:
+
+```PHP
+class ArithmeticError extends Error
+{
+}
+```
+
+**Defined elsewhere**
+
+* [`Error`](14-classes.md#class-error)
+
+####Class `AssertionError`
+
+An instance of this class is thrown when an assertion made via the intrinsic `assert` fails. The class type is defined, as follows:
+
+```PHP
+class AssertionError extends Error
+{
+}
+```
+
+**Defined elsewhere**
+
+* [`Error`](14-classes.md#class-error)
+
+####Class `DivisionByZeroError`
+
+An instance of this class is thrown when an attempt is made to divide a number by zero using the remainder operators ([`%`](10-expressions.md#multiplicative-operators) and [`%=`](10-expressions.md#compound-assignment)). The class type is defined, as follows: 
+
+```PHP
+class DivisionByZeroError extends Error
+{
+}
+```
+
+**Defined elsewhere**
+
+* [`Error`](14-classes.md#class-error)
+
+####Class `ParseError`
+
+An instance of this class is thrown when an error occurs while parsing PHP code (such as when calling the intrinsic  [`eval`](10-expressions.md#eval)). It is defined, as follows:
+
+```PHP
+class ParseError extends Error
+{
+}
+```
+
+**Defined elsewhere**
+
+* [`Error`](14-classes.md#class-error)
+
+####Class `TypeError`
+
+An instance of this class is thrown when any of the following occurs:
+
+  * The type of an argument being passed to a function does not match its corresponding parameter’s declared type. 
+  * The type of the value being returned from a function does not match the function’s declared return type. 
+  * In [strict mode](13-functions.md#type-check-modes), an invalid number of arguments are passed to a library function.
+
+The class is defined, as follows:
+
+```PHP
+class TypeError extends Error
+{
+}
+```
+
+**Defined elsewhere**
+
+* [`Error`](14-classes.md#class-error)

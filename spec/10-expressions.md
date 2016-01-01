@@ -1927,13 +1927,6 @@ $$v3 = "abc";   // equivalent to ${NULL} = "abc", here we create a variable with
 // -----------------------------------------
 function f1 () { return 2.5; }
 ${1 + f1()} = 1000;   // equivalent to ${3.5} = 1000
-// -----------------------------------------
-$v = array(10, 20); $a = 'v';
-$$a[0] = 5;       // [] has higher precedence than $, $v is now 5
-$v = array(10, 20); $a = 'v';
-${$a[0]} = 5;   // equivalent to above, $v is 5
-$v = array(10, 20); $a = 'v';
-${$a}[0] = 5;   // $ gets first shot at $a, $v is [5, 20]
 ```
 
 ##`instanceof` Operator

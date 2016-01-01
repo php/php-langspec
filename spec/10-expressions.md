@@ -1904,10 +1904,9 @@ might not be permitted as a [variable-name](09-lexical-structure.md#names) sourc
 The operator will consume the following *variable-name-creation-expression* and *variable-name* tokens, and
 also tokens representing [subscript operator](#subscript-operator).
 
-I.e., in example `$$o->pr` the expression is treated as `${$o}->pr`, i.e. it is parsed as
-"take the value of $o, consider it a variable name, and assuming the variable with this name
-is an object take the property 'pr' of it".
-However, in the expression ``$$a[0]` the tokens `$a[0]` would be treated as the variable name, not just `$a`.
+In the absense of braces, the variable is parsed with left-to-right semantics, i.e., in example `$$o->pr` 
+the expression is treated as `${$o}->pr`, i.e. it is parsed as "take the value of $o, consider it a variable name,
+and assuming the variable with this name is an object take the property 'pr' of it".
 
 **Examples**
 
@@ -1929,9 +1928,9 @@ function f1 () { return 2.5; }
 ${1 + f1()} = 1000;   // equivalent to ${3.5} = 1000
 // -----------------------------------------
 $v = array(10, 20); $a = 'v';
-$$a[0] = 5;       // [] has higher precedence than $, $v is now 5
+$$a[0] = 5;       // $v is [5, 20], since $$a is on the left of [] so it gets the first shot
 $v = array(10, 20); $a = 'v';
-${$a[0]} = 5;   // equivalent to above, $v is 5
+${$a[0]} = 5;   // $v is 5
 $v = array(10, 20); $a = 'v';
 ${$a}[0] = 5;   // $ gets first shot at $a, $v is [5, 20]
 ```

@@ -48,12 +48,8 @@ Class `Exception` is the base class of all exception types. This class is
 defined, as follows:
 
 ```PHP
-Class Exception
+Class Exception implements Throwable
 {
-  private   $string;
-  private   $trace;
-  private   $previous;
-
   protected $message = 'Unknown exception';
   protected $code = 0;
   protected $file;
@@ -63,19 +59,14 @@ Class Exception
                Exception $previous = NULL);
 
   final private function __clone();
-
-  final public  function getMessage();
-  final public  function getCode();
-  final public  function getFile();
-  final public  function getLine();
-  final public  function getTrace();
-  final public  function getPrevious();
-  final public  function getTraceAsString();
-  public function __toString();
 }
 ```
 
 For information about exception trace-back and nested exceptions, see [tracing exceptions](#tracing-exceptions).
+
+For information about the base interface, see [Throwable](15-interfaces.md#interface-Throwable).
+Note that the methods from Throwable are implemented as `final` in the Exception class, which means
+the extending class can not override them.
 
 The class members are defined below:
 
@@ -85,19 +76,8 @@ Name  | Purpose
 `$file` | `string`; the name of the script where the exception was generated
 `$line` | `int`; the source line number in the script where the exception was generated
 `$message`  | `string`; the exception message (as provided by the constructor)
-`$previous` | The previous exception in the chain, if this is a nested exception; otherwise, `NULL`
-`$string` | Work area for `__toString`
-`$trace`  | Work area for function-call tracing
 `__construct` | Takes three (optional) arguments – `string`: the exception message (defaults to ""), `int`: the exception code (defaults to 0), and `Exception`: the previous exception in the chain (defaults to `NULL`)
 `__clone` | Present to inhibit the cloning of exception objects
-`__toString`  | `string`; retrieves a string representation of the exception in some unspecified format
-`getCode` | `mixed`; retrieves the exception code (as set by the constructor). For an exception of type Exception, the returned value has type int; for subclasses of `Exception`, it may have some other type.
-`getFile` | `string`; retrieves the name of the script where the exception was generated
-`getLine` | `int`; retrieves the source line number in the script where the exception was generated
-`getMessage`  | `string`; retrieves the exception message
-`getPrevious` | `Exception`; retrieves the previous exception (as set by the constructor), if one exists; otherwise, `NULL`
-`getTrace`  | `array`; retrieves the function [stack trace information](#tracing-exceptions) as an array
-`getTraceAsString`  | `string`; retrieves the function stack trace information formatted as a single string in some unspecified format
 
 ##Tracing Exceptions
 

@@ -52,7 +52,7 @@ When an instance is allocated, `new` returns a handle that points to that
 object. As such, assignment of a handle does not copy the object itself.
 (See [cloning objects](04-basic-concepts.md#cloning-objects) for a discussion of shallow and deep copying).
 
-While PHP supports *anonymous class types*, such a type cannot be declared using [*class-declaration*](14-classes.md#class-declarations). Instead, it must be specified at the time of instantiation; that is, as part of an [*object-creation-expression*](10-expressions.md#the-new-operator).
+While PHP supports *anonymous class types*, such a type cannot be declared using [*class-declaration*](#class-declarations). Instead, it must be specified at the time of instantiation; that is, as part of an [*object-creation-expression*](10-expressions.md#the-new-operator).
 
 ##Class Declarations
 
@@ -1803,7 +1803,7 @@ $s = serialize($cp);
 $v = unserialize($s);
 ```
 
-Function `unserialize` takes an optional second argument, which specifies an array of trusted class names as strings. Objects found in the data stream whose type name is not in this trusted name list are converted to objects of type [`__PHP_Incomplete_Class`](14-classes.md#class-__PHP_Incomplete_Class).
+Function `unserialize` takes an optional second argument, which specifies an array of trusted class names as strings. Objects found in the data stream whose type name is not in this trusted name list are converted to objects of type [`__PHP_Incomplete_Class`](#class-__PHP_Incomplete_Class).
 
 Any attempt to serialize an object having an anonymous class type results in an instance of type `Exception` being thrown.
 
@@ -2015,6 +2015,15 @@ This class is the base class for all internal PHP error exceptions. It is define
 ```PHP
 class Error implements Throwable
 {
+  protected $message = '';
+  protected $code = 0;
+  protected $file;
+  protected $line;
+
+  public function __construct($message = "", $code = 0,
+               Throwable $previous = NULL);
+
+  final private function __clone();
 }
 ```
 
@@ -2038,7 +2047,7 @@ class ArithmeticError extends Error
 
 **Defined elsewhere**
 
-* [`Error`](14-classes.md#class-error)
+* [`Error`](#class-error)
 
 ####Class `AssertionError`
 
@@ -2052,7 +2061,7 @@ class AssertionError extends Error
 
 **Defined elsewhere**
 
-* [`Error`](14-classes.md#class-error)
+* [`Error`](#class-error)
 
 ####Class `DivisionByZeroError`
 
@@ -2066,7 +2075,7 @@ class DivisionByZeroError extends Error
 
 **Defined elsewhere**
 
-* [`Error`](14-classes.md#class-error)
+* [`Error`](#class-error)
 
 ####Class `ParseError`
 
@@ -2080,7 +2089,7 @@ class ParseError extends Error
 
 **Defined elsewhere**
 
-* [`Error`](14-classes.md#class-error)
+* [`Error`](#class-error)
 
 ####Class `TypeError`
 
@@ -2100,4 +2109,6 @@ class TypeError extends Error
 
 **Defined elsewhere**
 
-* [`Error`](14-classes.md#class-error)
+* [`Error`](#class-error)
+
+See also class [`Exception`](17-exception-handling.md#class-exception).

@@ -60,7 +60,15 @@ While PHP supports *anonymous class types*, such a type cannot be declared using
 
 <pre>
   <i>class-declaration:</i>
-    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
+    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>class-members<sub>opt</sub></i>   }
+    
+   <i>class-members:</i>
+    <i>class-member</i>
+    <i>class-members   class-member</i>
+    
+   <i>class-member:</i>
+    <i>trait-use-clauses</i>
+    <i>class-member-declarations</i>
 
   <i>class-modifier:</i>
     abstract

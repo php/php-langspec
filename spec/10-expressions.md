@@ -2934,12 +2934,14 @@ same semantics as [operator `||`](#logical-inclusive-or-operator-form-1).
   <i>yield-expression:</i>
     <i>logical-inc-OR-expression-2</i>
     yield  <i>array-element-initializer</i>
+    yield from  <i>expression</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*logical-inc-OR-expression*](#logical-inclusive-or-operator-form-2)
 * [*array-element-initializer*](#array-creation-operator)
+* [*expression*](#script-inclusion-operators)
 
 **Semantics**
 
@@ -2978,6 +2980,20 @@ used and each value is `NULL`.
 If the generator function definition declares that it returns byRef,
 each value in a key/value pair is yielded byRef.
 
+The following applies only to the `yield from` form:
+
+A generator function (referred to as a *delegating generator*) can delegate to another generator function (referred to as a *subgenerator*), a Traversable object, or an array, each of which is designated by *expression*.
+
+Each value yielded by *expression* is passed directly to the delegating generator's caller.
+
+Each value sent to the delegating generator's `send` method is passed to the subgenerator's `send` method. If *expression* is not a generator function, any sent values are ignored.
+
+Exceptions thrown by *expression* are propagated up to the delegating generator.
+
+Upon traversable completion, `NULL` is returned to the delegating generator if the traversable is not a generator. If the traversable is a generator, its return value is sent to the delegating generator as the value of the `yield from` *expression*.
+
+An exception of type `Error` is thrown if *expression* evaluates to a generator that previously terminated with an uncaught exception, or it evaluates to something that is neither Traversable nor an array.
+
 **Examples**
 
 ```PHP
@@ -3009,6 +3025,32 @@ function series($start, $end, $keyPrefix = "")
   }
 }
 foreach (series(1, 5, "X") as $key => $val) { /* process each key/val pair */ }
+// -----------------------------------------
+function gen()
+{
+    yield 1;
+    yield from gen2();
+    yield 4;
+}
+function gen2()
+{
+    yield 2;
+    yield 3;
+}
+foreach (gen() as $val)
+{
+    echo $val . "\n";   // Produces the values 1, 2, 3, and 4
+}
+// -----------------------------------------
+function g() {
+  yield 1;
+  yield from [2, 3];
+  yield 4;
+}
+$g = g();
+foreach ($g as $yielded) {
+    echo $yielded . "\n";   // Produces the values 1, 2, 3, and 4
+}
 ```
 
 ##Script Inclusion Operators

@@ -766,9 +766,9 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
     new  <i>class-type-designator</i>
     new  class  (  <i>argument-expression-list<sub>opt</sub></i>  )
         <i>class-base-clause<sub>opt</sub></i>   <i>class-interface-clause<sub>opt</sub></i>
-        {   <i>class-members<sub>opt</sub></i>   }
+        {   <iclass-member-declarations<sub>opt</sub></i>   }
     new  class <i>class-base-clause<sub>opt</sub></i>  <i>class-interface-clause<sub>opt</sub></i>
-        {   <i>class-members<sub>opt</sub></i>   }
+        {   <i>class-member-declarations<sub>opt</sub></i>   }
 
   <i>class-type-designator:</i>
     <i>qualified-name</i>
@@ -780,7 +780,7 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
 * [*argument-expression-list*](#function-call-operator)
 * [*class-base-clause*](14-classes.md#class-declarations)
 * [*class-interface-clause*](14-classes.md#class-declarations)
-* [*class-members*](14-classes.md#class-declarations)
+* [*class-member-declarations*](14-classes.md#class-members)
 * [*expression*](#general-6)
 * [*qualified-name*](09-lexical-structure.md#names)
  

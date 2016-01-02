@@ -764,6 +764,11 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
   <i>object-creation-expression:</i>
     new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
     new  <i>class-type-designator</i>
+    new  class  (  <i>argument-expression-list<sub>opt</sub></i>  )
+        <i>class-base-clause<sub>opt</sub></i>   <i>class-interface-clause<sub>opt</sub></i>
+        {   <i>class-members<sub>opt</sub></i>   }
+    new  class <i>class-base-clause<sub>opt</sub></i>  <i>class-interface-clause<sub>opt</sub></i>
+        {   <i>class-members<sub>opt</sub></i>   }
 
   <i>class-type-designator:</i>
     <i>qualified-name</i>
@@ -773,9 +778,12 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
 **Defined elsewhere**
 
 * [*argument-expression-list*](#function-call-operator)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*class-base-clause*](14-classes.md#class-declarations)
+* [*class-interface-clause*](14-classes.md#class-declarations)
+* [*class-members*](14-classes.md#class-declarations)
 * [*expression*](#general-6)
-
+* [*qualified-name*](09-lexical-structure.md#names)
+ 
 **Constraints**
 
 *qualified-name* must name a class.
@@ -790,8 +798,7 @@ as many as the number of non-optional parameters defined for the class's [constr
 
 **Semantics**
 
-The `new` operator creates an object that is an instance of
-the class specified by *class-type-designator*.
+The `new` *class-type-designator* forms create an object of the class type specified by *class-type-designator*. The `new class` forms create an object of an *anonymous class type*, a type that has an unspecified name. In all other respects, however, an anonymous class has the same capabilities as a named class type.
 
 If the *class-type-designator* is an expression resulting in a string value,
 that string is used as the class name. If the expression results in an object,
@@ -810,8 +817,10 @@ passing it the optional *argument-expression-list*. If the class has no
 constructor, the constructor that class inherits (if any) is used. The class
 can also specify no constructor definition, in this case the constructor call is omitted.
 
-The result of an *object-creation-expression* is an object
-of the type specified by *class-type-designator*.
+The result of a named-type *object-creation-expression* is an object of the type specified by *class-type-designator*. The result of an anonymous class *object-creation-expression* is an object of unspecified type. However, this type will subtype all types
+provided by *class-base-clause* and *class-interface-clause* and the *class-members* definition should follow the same inheritance and implementation rules as the regular [class declaration](14-classes.md#class-declarations) does.
+
+Each distinct source code expression of the form `new class` results in the class type that is different from that of all other anonymous class types. However, multiple evaluations of the same source code expression of the form `new class` result in instances of the same class type.
 
 Because a constructor call is a function call, the relevant parts of
 [function call operator](#function-call-operator) section also apply.
@@ -831,6 +840,12 @@ $p1 = new Point;     // create Point(0, 0)
 $p1 = new Point(12);   // create Point(12, 0)
 $cName = 'Point';
 $p1 = new $cName(-1, 1); // create Point(-1, 1)
+// -----------------------------------------
+$v2 = new class (100) extends C1 implements I1, I2 {
+	public function __construct($p) {
+	    echo "Inside class " . __CLASS__ . " constructor with parameter $p\n";
+	}
+};
 ```
 
 ###Array Creation Operator

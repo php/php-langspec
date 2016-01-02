@@ -202,7 +202,7 @@ calls.
 
 **Constraints**
 
-Each *expression* must designate a variable name.
+Each *expression* must designate a variable name that is not the result of the non-brace form of [variable-name-creation-expression](10-expressions#variable-name-creation-operator).
 
 **Semantics**
 

@@ -321,6 +321,8 @@ Keywords are not case-sensitive.
 
 Note carefully that `yield from` is a single token that contains whitespace. However, [comments](#comments) are not permitted in that whitespace.
 
+Also, all [*magic constants*](06-constants.md#context-dependent-constants) are also treated as keywords.
+
 ####Literals
 
 #####General

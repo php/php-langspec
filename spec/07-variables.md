@@ -192,17 +192,24 @@ calls.
     global <i>variable-name-list</i> ;
 
   <i>variable-name-list:</i>
-    <i>expression</i>
-    <i>variable-name-list</i>  ,  <i>expression</i>
+    <i>global-variable</i>
+    <i>variable-name-list</i>  ,  <i>global-variable</i>
+
+  <i>global-variable:</i>
+    <i>variable-name</i>
+	<i>variable-name-creation-expression</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*expression*](10-expressions.md#general-6)
+* [*variable-name*](09-lexical-structure.md#names)
+* [*variable-name-creation-expression*](10-expressions.md#variable-name-creation-operator)
 
 **Constraints**
 
-Each *expression* must designate a variable name.
+Each *variable-name-creation-expression* must designate a simple variable name, i.e. it can not include array elements,
+property accesses, etc. that are not inside braced expression.
 
 **Semantics**
 

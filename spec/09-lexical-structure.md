@@ -273,6 +273,8 @@ The following names cannot be used as the names of classes, interfaces, or trait
 
 The following names are reserved for future use and should not be used as the names of classes, interfaces, or traits: `mixed`, `numeric`, `object`, and `resource`.
 
+With the exception of `class`, all [keywords](09-lexical-structures#keywords) can be used as names for the members of a class, interface, or trait. However, `class` can be used as the name of a property or method.
+
 Variable names and function names (when used in a function-call context)
 need not be defined as source tokens; they can also be created at
 runtime using the [variable name-creation operator](10-expressions.md#variable-name-creation-operator). (For
@@ -303,19 +305,21 @@ cannot be used as a name.
 
 <pre>
   <i>keyword:: one of</i>
-    abstract   and   as   break   callable   case   catch   class   clone   
-    const   continue   declare   default   do   echo   else   elseif   
-    enddeclare   endfor   endforeach   endif   endswitch   endwhile
+    abstract   and   array   as   break   callable   case   catch   class   clone   
+    const   continue   declare   default   die   do   echo   else   elseif   empty   
+    enddeclare   endfor   endforeach   endif   endswitch   endwhile   eval   exit
     extends   final   finally   for   foreach   function   global
     goto   if   implements   include   include_once   instanceof
-    insteadof   interface   list   namespace   new   or   print   private
+    insteadof   interface   isset   list   namespace   new   or   print   private
     protected   public   require   require_once   return static   switch
-    throw   trait   try   use   var   while   xor   yield
+    throw   trait   try   unset   use   var   while   xor   yield   yield from
 </pre>
 
 **Semantics**
 
 Keywords are not case-sensitive.
+
+Note carefully that `yield from` is a single token that contains whitespace. However, [comments](#comments) are not permitted in that whitespace.
 
 ####Literals
 

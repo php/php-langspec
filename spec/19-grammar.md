@@ -1035,6 +1035,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>return-type:</i>
     : <i>type-declaration</i>
+    : void
 
   <i>type-declaration:</i>
     array

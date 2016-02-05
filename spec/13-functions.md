@@ -74,6 +74,7 @@ A function is called via the function-call operator [`()`](10-expressions.md#fun
 
   <i>return-type:</i>
     : <i>type-declaration</i>
+    : void
 
   <i>type-declaration:</i>
     array
@@ -184,6 +185,9 @@ If the function is defined with *return-type* declaration, the value returned by
 be compatible with the defined type, using the same rules as for parameter type checks. `NULL` values
 are not allowed for typed returns. If the value of the [`return` statement](11-statements.md#the-return-statement)
 does not pass the type check, a fatal error is produced.
+
+The `void` type is a special type that can only be used as a return type, and
+not in other contexts. It has no effect at runtime, see the [`return` statement](11-statements.md#the-return-statement).
 
 ## Type check modes
 

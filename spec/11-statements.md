@@ -903,6 +903,10 @@ by value or byRef. If *expression* is omitted the value `NULL` is used.
 If execution flows into the closing brace (`}`) of a function, `return
 NULL;` is implied.
 
+Explicit `return` statements with *expression* given are not permitted within a
+function with a `void` [return type](13-functions.md#return-typing) and MUST
+cause a compile-time fatal error.
+
 A function may have any number of `return` statements, whose returned
 values may have different types.
 

@@ -257,7 +257,7 @@ $x = "zza";
 var_dump($x);
 var_dump(--$x);
 var_dump(--$x);
---EXPECT--
+--EXPECTF--
 --------------------------------------- start incdec ---
 $a = 5 <---> int(5)
 $a = 4 <---> int(4)
@@ -389,6 +389,8 @@ $a =  <---> bool(false)
 --------------------------------------- start incdec ---
 $a =  <---> string(0) ""
 $a = -1 <---> int(-1)
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = -2 <---> int(-2)
 $a = -1 <---> int(-1)
 $a = 0
@@ -397,6 +399,8 @@ $a = 0 <---> int(0)
 --------------------------------------- start incdecrev ---
 $a =  <---> string(0) ""
 $a = 1 <---> string(1) "1"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = 2 <---> int(2)
 $a = 1 <---> int(1)
 $a = 2
@@ -501,6 +505,8 @@ $a = 14 <---> int(14)
 --------------------------------------- start incdec ---
 $a = 0x12 <---> string(4) "0x12"
 $a = 0x12 <---> string(4) "0x12"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 0x12 <---> string(4) "0x12"
 $a = 0x13 <---> string(4) "0x13"
 $a = 0x14
@@ -509,6 +515,8 @@ $a = 0x14 <---> string(4) "0x14"
 --------------------------------------- start incdecrev ---
 $a = 0x12 <---> string(4) "0x12"
 $a = 0x13 <---> string(4) "0x13"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 0x14 <---> string(4) "0x14"
 $a = 0x14 <---> string(4) "0x14"
 $a = 0x15
@@ -517,6 +525,8 @@ $a = 0x15 <---> string(4) "0x15"
 --------------------------------------- start incdec ---
 $a = 0X12 <---> string(4) "0X12"
 $a = 0X12 <---> string(4) "0X12"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 0X12 <---> string(4) "0X12"
 $a = 0X13 <---> string(4) "0X13"
 $a = 0X14
@@ -525,6 +535,8 @@ $a = 0X14 <---> string(4) "0X14"
 --------------------------------------- start incdecrev ---
 $a = 0X12 <---> string(4) "0X12"
 $a = 0X13 <---> string(4) "0X13"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 0X14 <---> string(4) "0X14"
 $a = 0X14 <---> string(4) "0X14"
 $a = 0X15
@@ -533,6 +545,8 @@ $a = 0X15 <---> string(4) "0X15"
 --------------------------------------- start incdec ---
 $a = 0b101 <---> string(5) "0b101"
 $a = 0b101 <---> string(5) "0b101"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 0b101 <---> string(5) "0b101"
 $a = 0b102 <---> string(5) "0b102"
 $a = 0b103
@@ -541,6 +555,8 @@ $a = 0b103 <---> string(5) "0b103"
 --------------------------------------- start incdecrev ---
 $a = 0b101 <---> string(5) "0b101"
 $a = 0b102 <---> string(5) "0b102"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 0b103 <---> string(5) "0b103"
 $a = 0b103 <---> string(5) "0b103"
 $a = 0b104
@@ -549,6 +565,8 @@ $a = 0b104 <---> string(5) "0b104"
 --------------------------------------- start incdec ---
 $a = 0B101 <---> string(5) "0B101"
 $a = 0B101 <---> string(5) "0B101"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 0B101 <---> string(5) "0B101"
 $a = 0B102 <---> string(5) "0B102"
 $a = 0B103
@@ -557,6 +575,8 @@ $a = 0B103 <---> string(5) "0B103"
 --------------------------------------- start incdecrev ---
 $a = 0B101 <---> string(5) "0B101"
 $a = 0B102 <---> string(5) "0B102"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 0B103 <---> string(5) "0B103"
 $a = 0B103 <---> string(5) "0B103"
 $a = 0B104
@@ -565,6 +585,8 @@ $a = 0B104 <---> string(5) "0B104"
 --------------------------------------- start incdec ---
 $a = 0Q101 <---> string(5) "0Q101"
 $a = 0Q101 <---> string(5) "0Q101"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 0Q101 <---> string(5) "0Q101"
 $a = 0Q102 <---> string(5) "0Q102"
 $a = 0Q103
@@ -573,6 +595,8 @@ $a = 0Q103 <---> string(5) "0Q103"
 --------------------------------------- start incdecrev ---
 $a = 0Q101 <---> string(5) "0Q101"
 $a = 0Q102 <---> string(5) "0Q102"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 0Q103 <---> string(5) "0Q103"
 $a = 0Q103 <---> string(5) "0Q103"
 $a = 0Q104
@@ -665,6 +689,8 @@ $a = 96 <---> int(96)
 --------------------------------------- start incdec ---
 $a = 987  <---> string(4) "987 "
 $a = 987  <---> string(4) "987 "
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 987  <---> string(4) "987 "
 $a = 987  <---> string(4) "987 "
 $a = 987 
@@ -673,6 +699,8 @@ $a = 987  <---> string(4) "987 "
 --------------------------------------- start incdecrev ---
 $a = 987  <---> string(4) "987 "
 $a = 987  <---> string(4) "987 "
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 987  <---> string(4) "987 "
 $a = 987  <---> string(4) "987 "
 $a = 987 
@@ -685,6 +713,8 @@ $a = 15
 $a = 15 	 
  <---> string(9) "15 	 
 "
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 15 	 
  <---> string(9) "15 	 
 "
@@ -704,6 +734,8 @@ $a = 15
 $a = 15 	 
  <---> string(9) "15 	 
 "
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 15 	 
  <---> string(9) "15 	 
 "
@@ -815,6 +847,8 @@ $a = 11.87 <---> float(11.87)
 --------------------------------------- start incdec ---
 $a = a <---> string(1) "a"
 $a = a <---> string(1) "a"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = a <---> string(1) "a"
 $a = b <---> string(1) "b"
 $a = c
@@ -823,6 +857,8 @@ $a = c <---> string(1) "c"
 --------------------------------------- start incdecrev ---
 $a = a <---> string(1) "a"
 $a = b <---> string(1) "b"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = c <---> string(1) "c"
 $a = c <---> string(1) "c"
 $a = d
@@ -831,6 +867,8 @@ $a = d <---> string(1) "d"
 --------------------------------------- start incdec ---
 $a = z <---> string(1) "z"
 $a = z <---> string(1) "z"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = z <---> string(1) "z"
 $a = aa <---> string(2) "aa"
 $a = ab
@@ -839,6 +877,8 @@ $a = ab <---> string(2) "ab"
 --------------------------------------- start incdecrev ---
 $a = z <---> string(1) "z"
 $a = aa <---> string(2) "aa"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = ab <---> string(2) "ab"
 $a = ab <---> string(2) "ab"
 $a = ac
@@ -847,6 +887,8 @@ $a = ac <---> string(2) "ac"
 --------------------------------------- start incdec ---
 $a = A <---> string(1) "A"
 $a = A <---> string(1) "A"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = A <---> string(1) "A"
 $a = B <---> string(1) "B"
 $a = C
@@ -855,6 +897,8 @@ $a = C <---> string(1) "C"
 --------------------------------------- start incdecrev ---
 $a = A <---> string(1) "A"
 $a = B <---> string(1) "B"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = C <---> string(1) "C"
 $a = C <---> string(1) "C"
 $a = D
@@ -863,6 +907,8 @@ $a = D <---> string(1) "D"
 --------------------------------------- start incdec ---
 $a = Z <---> string(1) "Z"
 $a = Z <---> string(1) "Z"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = Z <---> string(1) "Z"
 $a = AA <---> string(2) "AA"
 $a = AB
@@ -871,6 +917,8 @@ $a = AB <---> string(2) "AB"
 --------------------------------------- start incdecrev ---
 $a = Z <---> string(1) "Z"
 $a = AA <---> string(2) "AA"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = AB <---> string(2) "AB"
 $a = AB <---> string(2) "AB"
 $a = AC
@@ -879,6 +927,8 @@ $a = AC <---> string(2) "AC"
 --------------------------------------- start incdec ---
 $a = F28 <---> string(3) "F28"
 $a = F28 <---> string(3) "F28"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = F28 <---> string(3) "F28"
 $a = F29 <---> string(3) "F29"
 $a = F30
@@ -887,6 +937,8 @@ $a = F30 <---> string(3) "F30"
 --------------------------------------- start incdecrev ---
 $a = F28 <---> string(3) "F28"
 $a = F29 <---> string(3) "F29"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = F30 <---> string(3) "F30"
 $a = F30 <---> string(3) "F30"
 $a = F31
@@ -895,6 +947,8 @@ $a = F31 <---> string(3) "F31"
 --------------------------------------- start incdec ---
 $a = F28 <---> string(3) "F28"
 $a = F28 <---> string(3) "F28"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = F28 <---> string(3) "F28"
 $a = F29 <---> string(3) "F29"
 $a = F30
@@ -903,6 +957,8 @@ $a = F30 <---> string(3) "F30"
 --------------------------------------- start incdecrev ---
 $a = F98 <---> string(3) "F98"
 $a = F99 <---> string(3) "F99"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = G00 <---> string(3) "G00"
 $a = G00 <---> string(3) "G00"
 $a = G01
@@ -911,6 +967,8 @@ $a = G01 <---> string(3) "G01"
 --------------------------------------- start incdec ---
 $a = F98 <---> string(3) "F98"
 $a = F98 <---> string(3) "F98"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = F98 <---> string(3) "F98"
 $a = F99 <---> string(3) "F99"
 $a = G00
@@ -919,6 +977,8 @@ $a = G00 <---> string(3) "G00"
 --------------------------------------- start incdecrev ---
 $a = FZ8 <---> string(3) "FZ8"
 $a = FZ9 <---> string(3) "FZ9"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = GA0 <---> string(3) "GA0"
 $a = GA0 <---> string(3) "GA0"
 $a = GA1
@@ -927,6 +987,8 @@ $a = GA1 <---> string(3) "GA1"
 --------------------------------------- start incdec ---
 $a = ZZ8 <---> string(3) "ZZ8"
 $a = ZZ8 <---> string(3) "ZZ8"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = ZZ8 <---> string(3) "ZZ8"
 $a = ZZ9 <---> string(3) "ZZ9"
 $a = AAA0
@@ -935,6 +997,8 @@ $a = AAA0 <---> string(4) "AAA0"
 --------------------------------------- start incdecrev ---
 $a = ZZ8 <---> string(3) "ZZ8"
 $a = ZZ9 <---> string(3) "ZZ9"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = AAA0 <---> string(4) "AAA0"
 $a = AAA0 <---> string(4) "AAA0"
 $a = AAA1
@@ -943,6 +1007,8 @@ $a = AAA1 <---> string(4) "AAA1"
 --------------------------------------- start incdecrev ---
 $a = 543J <---> string(4) "543J"
 $a = 543K <---> string(4) "543K"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 543L <---> string(4) "543L"
 $a = 543L <---> string(4) "543L"
 $a = 543M
@@ -951,6 +1017,8 @@ $a = 543M <---> string(4) "543M"
 --------------------------------------- start incdec ---
 $a = 543J <---> string(4) "543J"
 $a = 543J <---> string(4) "543J"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 543J <---> string(4) "543J"
 $a = 543K <---> string(4) "543K"
 $a = 543L
@@ -959,6 +1027,8 @@ $a = 543L <---> string(4) "543L"
 --------------------------------------- start incdecrev ---
 $a = 543J9 <---> string(5) "543J9"
 $a = 543K0 <---> string(5) "543K0"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 543K1 <---> string(5) "543K1"
 $a = 543K1 <---> string(5) "543K1"
 $a = 543K2
@@ -967,6 +1037,8 @@ $a = 543K2 <---> string(5) "543K2"
 --------------------------------------- start incdec ---
 $a = 543J9 <---> string(5) "543J9"
 $a = 543J9 <---> string(5) "543J9"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 543J9 <---> string(5) "543J9"
 $a = 543K0 <---> string(5) "543K0"
 $a = 543K1
@@ -975,6 +1047,8 @@ $a = 543K1 <---> string(5) "543K1"
 --------------------------------------- start incdec ---
 $a = & <---> string(1) "&"
 $a = & <---> string(1) "&"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = & <---> string(1) "&"
 $a = & <---> string(1) "&"
 $a = &
@@ -983,6 +1057,8 @@ $a = & <---> string(1) "&"
 --------------------------------------- start incdecrev ---
 $a = & <---> string(1) "&"
 $a = & <---> string(1) "&"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = & <---> string(1) "&"
 $a = & <---> string(1) "&"
 $a = &
@@ -991,6 +1067,8 @@ $a = & <---> string(1) "&"
 --------------------------------------- start incdec ---
 $a = 83& <---> string(3) "83&"
 $a = 83& <---> string(3) "83&"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 83& <---> string(3) "83&"
 $a = 83& <---> string(3) "83&"
 $a = 83&
@@ -999,6 +1077,8 @@ $a = 83& <---> string(3) "83&"
 --------------------------------------- start incdecrev ---
 $a = 83& <---> string(3) "83&"
 $a = 83& <---> string(3) "83&"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 83& <---> string(3) "83&"
 $a = 83& <---> string(3) "83&"
 $a = 83&
@@ -1007,6 +1087,8 @@ $a = 83& <---> string(3) "83&"
 --------------------------------------- start incdec ---
 $a = 83&8 <---> string(4) "83&8"
 $a = 83&8 <---> string(4) "83&8"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 83&8 <---> string(4) "83&8"
 $a = 83&9 <---> string(4) "83&9"
 $a = 83&0
@@ -1015,6 +1097,8 @@ $a = 83&0 <---> string(4) "83&0"
 --------------------------------------- start incdecrev ---
 $a = 83&8 <---> string(4) "83&8"
 $a = 83&9 <---> string(4) "83&9"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 83&0 <---> string(4) "83&0"
 $a = 83&0 <---> string(4) "83&0"
 $a = 83&1
@@ -1023,6 +1107,8 @@ $a = 83&1 <---> string(4) "83&1"
 --------------------------------------- start incdec ---
 $a = 83&Z8 <---> string(5) "83&Z8"
 $a = 83&Z8 <---> string(5) "83&Z8"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 83&Z8 <---> string(5) "83&Z8"
 $a = 83&Z9 <---> string(5) "83&Z9"
 $a = 83&A0
@@ -1031,6 +1117,8 @@ $a = 83&A0 <---> string(5) "83&A0"
 --------------------------------------- start incdecrev ---
 $a = 83&Z8 <---> string(5) "83&Z8"
 $a = 83&Z9 <---> string(5) "83&Z9"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 83&A0 <---> string(5) "83&A0"
 $a = 83&A0 <---> string(5) "83&A0"
 $a = 83&A1
@@ -1039,6 +1127,8 @@ $a = 83&A1 <---> string(5) "83&A1"
 --------------------------------------- start incdec ---
 $a = 83&z8 <---> string(5) "83&z8"
 $a = 83&z8 <---> string(5) "83&z8"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 83&z8 <---> string(5) "83&z8"
 $a = 83&z9 <---> string(5) "83&z9"
 $a = 83&a0
@@ -1047,6 +1137,8 @@ $a = 83&a0 <---> string(5) "83&a0"
 --------------------------------------- start incdecrev ---
 $a = 83&z8 <---> string(5) "83&z8"
 $a = 83&z9 <---> string(5) "83&z9"
+
+Notice: A non well formed numeric value encountered in %s on line %d
 $a = 83&a0 <---> string(5) "83&a0"
 $a = 83&a0 <---> string(5) "83&a0"
 $a = 83&a1
@@ -1055,6 +1147,8 @@ $a = 83&a1 <---> string(5) "83&a1"
 --------------------------------------- start incdec ---
 $a = &28 <---> string(3) "&28"
 $a = &28 <---> string(3) "&28"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = &28 <---> string(3) "&28"
 $a = &29 <---> string(3) "&29"
 $a = &30
@@ -1063,6 +1157,8 @@ $a = &30 <---> string(3) "&30"
 --------------------------------------- start incdecrev ---
 $a = &28 <---> string(3) "&28"
 $a = &29 <---> string(3) "&29"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = &30 <---> string(3) "&30"
 $a = &30 <---> string(3) "&30"
 $a = &31
@@ -1071,6 +1167,8 @@ $a = &31 <---> string(3) "&31"
 --------------------------------------- start incdec ---
 $a = &98 <---> string(3) "&98"
 $a = &98 <---> string(3) "&98"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = &98 <---> string(3) "&98"
 $a = &99 <---> string(3) "&99"
 $a = &00
@@ -1079,6 +1177,8 @@ $a = &00 <---> string(3) "&00"
 --------------------------------------- start incdecrev ---
 $a = &98 <---> string(3) "&98"
 $a = &99 <---> string(3) "&99"
+
+Warning: A non-numeric value encountered in %s on line %d
 $a = &00 <---> string(3) "&00"
 $a = &00 <---> string(3) "&00"
 $a = &01

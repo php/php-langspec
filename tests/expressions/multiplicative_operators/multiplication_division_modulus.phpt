@@ -63,8 +63,12 @@ foreach ($oper as $e1)
 >0< * ><, result: int(0)
 >0< * >123<, result: int(0)
 >0< * >2e+5<, result: float(0)
->0< * ><, result: int(0)
->0< * >abc<, result: int(0)
+>0< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>0< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 >0< * >9223372036854775807<, result: int(0)
 -------------------------------------
 >-10< * >0<, result: int(0)
@@ -79,8 +83,12 @@ foreach ($oper as $e1)
 >-10< * ><, result: int(0)
 >-10< * >123<, result: int(-1230)
 >-10< * >2e+5<, result: float(-2000000)
->-10< * ><, result: int(0)
->-10< * >abc<, result: int(0)
+>-10< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>-10< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 >-10< * >9223372036854775807<, result: float(-9.2233720368548E+19)
 -------------------------------------
 >100< * >0<, result: int(0)
@@ -95,8 +103,12 @@ foreach ($oper as $e1)
 >100< * ><, result: int(0)
 >100< * >123<, result: int(12300)
 >100< * >2e+5<, result: float(20000000)
->100< * ><, result: int(0)
->100< * >abc<, result: int(0)
+>100< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>100< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 >100< * >9223372036854775807<, result: float(9.2233720368548E+20)
 -------------------------------------
 >-34000000000< * >0<, result: float(-0)
@@ -111,8 +123,12 @@ foreach ($oper as $e1)
 >-34000000000< * ><, result: float(-0)
 >-34000000000< * >123<, result: float(-4182000000000)
 >-34000000000< * >2e+5<, result: float(-6.8E+15)
->-34000000000< * ><, result: float(-0)
->-34000000000< * >abc<, result: float(-0)
+>-34000000000< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
+>-34000000000< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
 >-34000000000< * >9223372036854775807<, result: float(-3.1359464925306E+29)
 -------------------------------------
 >INF< * >0<, result: float(NAN)
@@ -127,8 +143,12 @@ foreach ($oper as $e1)
 >INF< * ><, result: float(NAN)
 >INF< * >123<, result: float(INF)
 >INF< * >2e+5<, result: float(INF)
->INF< * ><, result: float(NAN)
->INF< * >abc<, result: float(NAN)
+>INF< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>INF< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
 >INF< * >9223372036854775807<, result: float(INF)
 -------------------------------------
 >-INF< * >0<, result: float(NAN)
@@ -143,8 +163,12 @@ foreach ($oper as $e1)
 >-INF< * ><, result: float(NAN)
 >-INF< * >123<, result: float(-INF)
 >-INF< * >2e+5<, result: float(-INF)
->-INF< * ><, result: float(NAN)
->-INF< * >abc<, result: float(NAN)
+>-INF< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>-INF< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
 >-INF< * >9223372036854775807<, result: float(-INF)
 -------------------------------------
 >NAN< * >0<, result: float(NAN)
@@ -159,8 +183,12 @@ foreach ($oper as $e1)
 >NAN< * ><, result: float(NAN)
 >NAN< * >123<, result: float(NAN)
 >NAN< * >2e+5<, result: float(NAN)
->NAN< * ><, result: float(NAN)
->NAN< * >abc<, result: float(NAN)
+>NAN< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>NAN< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
 >NAN< * >9223372036854775807<, result: float(NAN)
 -------------------------------------
 >1< * >0<, result: int(0)
@@ -175,8 +203,12 @@ foreach ($oper as $e1)
 >1< * ><, result: int(0)
 >1< * >123<, result: int(123)
 >1< * >2e+5<, result: float(200000)
->1< * ><, result: int(0)
->1< * >abc<, result: int(0)
+>1< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>1< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 >1< * >9223372036854775807<, result: int(9223372036854775807)
 -------------------------------------
 >< * >0<, result: int(0)
@@ -191,8 +223,12 @@ foreach ($oper as $e1)
 >< * ><, result: int(0)
 >< * >123<, result: int(0)
 >< * >2e+5<, result: float(0)
->< * ><, result: int(0)
->< * >abc<, result: int(0)
+>< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 >< * >9223372036854775807<, result: int(0)
 -------------------------------------
 >< * >0<, result: int(0)
@@ -207,8 +243,12 @@ foreach ($oper as $e1)
 >< * ><, result: int(0)
 >< * >123<, result: int(0)
 >< * >2e+5<, result: float(0)
->< * ><, result: int(0)
->< * >abc<, result: int(0)
+>< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 >< * >9223372036854775807<, result: int(0)
 -------------------------------------
 >123< * >0<, result: int(0)
@@ -223,8 +263,12 @@ foreach ($oper as $e1)
 >123< * ><, result: int(0)
 >123< * >123<, result: int(15129)
 >123< * >2e+5<, result: float(24600000)
->123< * ><, result: int(0)
->123< * >abc<, result: int(0)
+>123< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>123< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 >123< * >9223372036854775807<, result: float(1.1344747605331E+21)
 -------------------------------------
 >2e+5< * >0<, result: float(0)
@@ -239,41 +283,113 @@ foreach ($oper as $e1)
 >2e+5< * ><, result: float(0)
 >2e+5< * >123<, result: float(24600000)
 >2e+5< * >2e+5<, result: float(40000000000)
->2e+5< * ><, result: float(0)
->2e+5< * >abc<, result: float(0)
+>2e+5< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
+>2e+5< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
 >2e+5< * >9223372036854775807<, result: float(1.844674407371E+24)
 -------------------------------------
->< * >0<, result: int(0)
->< * >-10<, result: int(0)
->< * >100<, result: int(0)
->< * >-34000000000<, result: float(-0)
->< * >INF<, result: float(NAN)
->< * >-INF<, result: float(NAN)
->< * >NAN<, result: float(NAN)
->< * >1<, result: int(0)
->< * ><, result: int(0)
->< * ><, result: int(0)
->< * >123<, result: int(0)
->< * >2e+5<, result: float(0)
->< * ><, result: int(0)
->< * >abc<, result: int(0)
->< * >9223372036854775807<, result: int(0)
+>< * >0<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< * >-10<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< * >100<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< * >-34000000000<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
+>< * >INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>< * >-INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>< * >NAN<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>< * >1<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< * >123<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< * >2e+5<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
+>< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< * >9223372036854775807<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 -------------------------------------
->abc< * >0<, result: int(0)
->abc< * >-10<, result: int(0)
->abc< * >100<, result: int(0)
->abc< * >-34000000000<, result: float(-0)
->abc< * >INF<, result: float(NAN)
->abc< * >-INF<, result: float(NAN)
->abc< * >NAN<, result: float(NAN)
->abc< * >1<, result: int(0)
->abc< * ><, result: int(0)
->abc< * ><, result: int(0)
->abc< * >123<, result: int(0)
->abc< * >2e+5<, result: float(0)
->abc< * ><, result: int(0)
->abc< * >abc<, result: int(0)
->abc< * >9223372036854775807<, result: int(0)
+>abc< * >0<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< * >-10<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< * >100<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< * >-34000000000<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
+>abc< * >INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>abc< * >-INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>abc< * >NAN<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>abc< * >1<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< * >123<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< * >2e+5<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
+>abc< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< * >9223372036854775807<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 -------------------------------------
 >9223372036854775807< * >0<, result: int(0)
 >9223372036854775807< * >-10<, result: float(-9.2233720368548E+19)
@@ -287,8 +403,12 @@ foreach ($oper as $e1)
 >9223372036854775807< * ><, result: int(0)
 >9223372036854775807< * >123<, result: float(1.1344747605331E+21)
 >9223372036854775807< * >2e+5<, result: float(1.844674407371E+24)
->9223372036854775807< * ><, result: int(0)
->9223372036854775807< * >abc<, result: int(0)
+>9223372036854775807< * ><, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>9223372036854775807< * >abc<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 >9223372036854775807< * >9223372036854775807<, result: float(8.5070591730235E+37)
 -------------------------------------
 >0< / >-10<, result: int(0)
@@ -423,27 +543,67 @@ foreach ($oper as $e1)
 >2e+5< / >2e+5<, result: float(1)
 >2e+5< / >9223372036854775807<, result: float(2.168404344971E-14)
 -------------------------------------
->< / >-10<, result: int(0)
->< / >100<, result: int(0)
->< / >-34000000000<, result: float(-0)
->< / >INF<, result: float(0)
->< / >-INF<, result: float(-0)
->< / >NAN<, result: float(NAN)
->< / >1<, result: int(0)
->< / >123<, result: int(0)
->< / >2e+5<, result: float(0)
->< / >9223372036854775807<, result: int(0)
+>< / >-10<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< / >100<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< / >-34000000000<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
+>< / >INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
+>< / >-INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
+>< / >NAN<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>< / >1<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< / >123<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< / >2e+5<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
+>< / >9223372036854775807<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 -------------------------------------
->abc< / >-10<, result: int(0)
->abc< / >100<, result: int(0)
->abc< / >-34000000000<, result: float(-0)
->abc< / >INF<, result: float(0)
->abc< / >-INF<, result: float(-0)
->abc< / >NAN<, result: float(NAN)
->abc< / >1<, result: int(0)
->abc< / >123<, result: int(0)
->abc< / >2e+5<, result: float(0)
->abc< / >9223372036854775807<, result: int(0)
+>abc< / >-10<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< / >100<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< / >-34000000000<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
+>abc< / >INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
+>abc< / >-INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
+>abc< / >NAN<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>abc< / >1<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< / >123<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< / >2e+5<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
+>abc< / >9223372036854775807<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 -------------------------------------
 >9223372036854775807< / >-10<, result: float(-9.2233720368548E+17)
 >9223372036854775807< / >100<, result: float(9.2233720368548E+16)
@@ -467,7 +627,7 @@ foreach ($oper as $e1)
       >0< % >123<, result: int(0)
 (int) >0< % >(int) >123<, result: int(0)
       >0< % >2e+5<, result: int(0)
-(int) >0< % >(int) >2<, result: int(0)
+(int) >0< % >(int) >200000<, result: int(0)
       >0< % >9223372036854775807<, result: int(0)
 (int) >0< % >(int) >9223372036854775807<, result: int(0)
 -------------------------------------
@@ -481,8 +641,8 @@ foreach ($oper as $e1)
 (int) >-10< % >(int) >1<, result: int(0)
       >-10< % >123<, result: int(-10)
 (int) >-10< % >(int) >123<, result: int(-10)
-      >-10< % >2e+5<, result: int(0)
-(int) >-10< % >(int) >2<, result: int(0)
+      >-10< % >2e+5<, result: int(-10)
+(int) >-10< % >(int) >200000<, result: int(-10)
       >-10< % >9223372036854775807<, result: int(-10)
 (int) >-10< % >(int) >9223372036854775807<, result: int(-10)
 -------------------------------------
@@ -496,8 +656,8 @@ foreach ($oper as $e1)
 (int) >100< % >(int) >1<, result: int(0)
       >100< % >123<, result: int(100)
 (int) >100< % >(int) >123<, result: int(100)
-      >100< % >2e+5<, result: int(0)
-(int) >100< % >(int) >2<, result: int(0)
+      >100< % >2e+5<, result: int(100)
+(int) >100< % >(int) >200000<, result: int(100)
       >100< % >9223372036854775807<, result: int(100)
 (int) >100< % >(int) >9223372036854775807<, result: int(100)
 -------------------------------------
@@ -512,7 +672,7 @@ foreach ($oper as $e1)
       >-34000000000< % >123<, result: int(-28)
 (int) >-34000000000< % >(int) >123<, result: int(-28)
       >-34000000000< % >2e+5<, result: int(0)
-(int) >-34000000000< % >(int) >2<, result: int(0)
+(int) >-34000000000< % >(int) >200000<, result: int(0)
       >-34000000000< % >9223372036854775807<, result: int(-34000000000)
 (int) >-34000000000< % >(int) >9223372036854775807<, result: int(-34000000000)
 -------------------------------------
@@ -527,7 +687,7 @@ foreach ($oper as $e1)
       >INF< % >123<, result: int(0)
 (int) >0< % >(int) >123<, result: int(0)
       >INF< % >2e+5<, result: int(0)
-(int) >0< % >(int) >2<, result: int(0)
+(int) >0< % >(int) >200000<, result: int(0)
       >INF< % >9223372036854775807<, result: int(0)
 (int) >0< % >(int) >9223372036854775807<, result: int(0)
 -------------------------------------
@@ -542,7 +702,7 @@ foreach ($oper as $e1)
       >-INF< % >123<, result: int(0)
 (int) >0< % >(int) >123<, result: int(0)
       >-INF< % >2e+5<, result: int(0)
-(int) >0< % >(int) >2<, result: int(0)
+(int) >0< % >(int) >200000<, result: int(0)
       >-INF< % >9223372036854775807<, result: int(0)
 (int) >0< % >(int) >9223372036854775807<, result: int(0)
 -------------------------------------
@@ -557,7 +717,7 @@ foreach ($oper as $e1)
       >NAN< % >123<, result: int(0)
 (int) >0< % >(int) >123<, result: int(0)
       >NAN< % >2e+5<, result: int(0)
-(int) >0< % >(int) >2<, result: int(0)
+(int) >0< % >(int) >200000<, result: int(0)
       >NAN< % >9223372036854775807<, result: int(0)
 (int) >0< % >(int) >9223372036854775807<, result: int(0)
 -------------------------------------
@@ -572,7 +732,7 @@ foreach ($oper as $e1)
       >1< % >123<, result: int(1)
 (int) >1< % >(int) >123<, result: int(1)
       >1< % >2e+5<, result: int(1)
-(int) >1< % >(int) >2<, result: int(1)
+(int) >1< % >(int) >200000<, result: int(1)
       >1< % >9223372036854775807<, result: int(1)
 (int) >1< % >(int) >9223372036854775807<, result: int(1)
 -------------------------------------
@@ -587,7 +747,7 @@ foreach ($oper as $e1)
       >< % >123<, result: int(0)
 (int) >0< % >(int) >123<, result: int(0)
       >< % >2e+5<, result: int(0)
-(int) >0< % >(int) >2<, result: int(0)
+(int) >0< % >(int) >200000<, result: int(0)
       >< % >9223372036854775807<, result: int(0)
 (int) >0< % >(int) >9223372036854775807<, result: int(0)
 -------------------------------------
@@ -602,7 +762,7 @@ foreach ($oper as $e1)
       >< % >123<, result: int(0)
 (int) >0< % >(int) >123<, result: int(0)
       >< % >2e+5<, result: int(0)
-(int) >0< % >(int) >2<, result: int(0)
+(int) >0< % >(int) >200000<, result: int(0)
       >< % >9223372036854775807<, result: int(0)
 (int) >0< % >(int) >9223372036854775807<, result: int(0)
 -------------------------------------
@@ -616,54 +776,82 @@ foreach ($oper as $e1)
 (int) >123< % >(int) >1<, result: int(0)
       >123< % >123<, result: int(0)
 (int) >123< % >(int) >123<, result: int(0)
-      >123< % >2e+5<, result: int(1)
-(int) >123< % >(int) >2<, result: int(1)
+      >123< % >2e+5<, result: int(123)
+(int) >123< % >(int) >200000<, result: int(123)
       >123< % >9223372036854775807<, result: int(123)
 (int) >123< % >(int) >9223372036854775807<, result: int(123)
 -------------------------------------
-      >2e+5< % >-10<, result: int(2)
-(int) >2< % >(int) >-10<, result: int(2)
-      >2e+5< % >100<, result: int(2)
-(int) >2< % >(int) >100<, result: int(2)
-      >2e+5< % >-34000000000<, result: int(2)
-(int) >2< % >(int) >-34000000000<, result: int(2)
+      >2e+5< % >-10<, result: int(0)
+(int) >200000< % >(int) >-10<, result: int(0)
+      >2e+5< % >100<, result: int(0)
+(int) >200000< % >(int) >100<, result: int(0)
+      >2e+5< % >-34000000000<, result: int(200000)
+(int) >200000< % >(int) >-34000000000<, result: int(200000)
       >2e+5< % >1<, result: int(0)
-(int) >2< % >(int) >1<, result: int(0)
+(int) >200000< % >(int) >1<, result: int(0)
       >2e+5< % >123<, result: int(2)
-(int) >2< % >(int) >123<, result: int(2)
+(int) >200000< % >(int) >123<, result: int(2)
       >2e+5< % >2e+5<, result: int(0)
-(int) >2< % >(int) >2<, result: int(0)
-      >2e+5< % >9223372036854775807<, result: int(2)
-(int) >2< % >(int) >9223372036854775807<, result: int(2)
+(int) >200000< % >(int) >200000<, result: int(0)
+      >2e+5< % >9223372036854775807<, result: int(200000)
+(int) >200000< % >(int) >9223372036854775807<, result: int(200000)
 -------------------------------------
-      >< % >-10<, result: int(0)
+      >< % >-10<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >-10<, result: int(0)
-      >< % >100<, result: int(0)
+      >< % >100<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >100<, result: int(0)
-      >< % >-34000000000<, result: int(0)
+      >< % >-34000000000<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >-34000000000<, result: int(0)
-      >< % >1<, result: int(0)
+      >< % >1<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >1<, result: int(0)
-      >< % >123<, result: int(0)
+      >< % >123<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >123<, result: int(0)
-      >< % >2e+5<, result: int(0)
-(int) >0< % >(int) >2<, result: int(0)
-      >< % >9223372036854775807<, result: int(0)
+      >< % >2e+5<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+(int) >0< % >(int) >200000<, result: int(0)
+      >< % >9223372036854775807<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >9223372036854775807<, result: int(0)
 -------------------------------------
-      >abc< % >-10<, result: int(0)
+      >abc< % >-10<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >-10<, result: int(0)
-      >abc< % >100<, result: int(0)
+      >abc< % >100<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >100<, result: int(0)
-      >abc< % >-34000000000<, result: int(0)
+      >abc< % >-34000000000<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >-34000000000<, result: int(0)
-      >abc< % >1<, result: int(0)
+      >abc< % >1<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >1<, result: int(0)
-      >abc< % >123<, result: int(0)
+      >abc< % >123<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >123<, result: int(0)
-      >abc< % >2e+5<, result: int(0)
-(int) >0< % >(int) >2<, result: int(0)
-      >abc< % >9223372036854775807<, result: int(0)
+      >abc< % >2e+5<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+(int) >0< % >(int) >200000<, result: int(0)
+      >abc< % >9223372036854775807<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 (int) >0< % >(int) >9223372036854775807<, result: int(0)
 -------------------------------------
       >9223372036854775807< % >-10<, result: int(7)
@@ -676,8 +864,8 @@ foreach ($oper as $e1)
 (int) >9223372036854775807< % >(int) >1<, result: int(0)
       >9223372036854775807< % >123<, result: int(7)
 (int) >9223372036854775807< % >(int) >123<, result: int(7)
-      >9223372036854775807< % >2e+5<, result: int(1)
-(int) >9223372036854775807< % >(int) >2<, result: int(1)
+      >9223372036854775807< % >2e+5<, result: int(175807)
+(int) >9223372036854775807< % >(int) >200000<, result: int(175807)
       >9223372036854775807< % >9223372036854775807<, result: int(0)
 (int) >9223372036854775807< % >(int) >9223372036854775807<, result: int(0)
 -------------------------------------

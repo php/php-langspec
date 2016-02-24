@@ -80,7 +80,7 @@ DoIt("-25.5e-10");
 DoIt("");
 DoIt("ABC");
 //*/
---EXPECT--
+--EXPECTF--
 --- start DoIt -------------------------
 
      original: int(0)
@@ -229,10 +229,18 @@ DoIt("ABC");
 
      original: string(0) ""
 
+Warning: A non-numeric value encountered in %s on line %d
+
+Warning: A non-numeric value encountered in %s on line %d
+
 --- end DoIt -------------------------
 
 --- start DoIt -------------------------
 
      original: string(3) "ABC"
+
+Warning: A non-numeric value encountered in %s on line %d
+
+Warning: A non-numeric value encountered in %s on line %d
 
 --- end DoIt -------------------------

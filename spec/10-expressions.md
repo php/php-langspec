@@ -414,9 +414,17 @@ isset($v1, $v2, $v3);  // results in FALSE
     list  (  <i>list-expression-list<sub>opt</sub></i>  )
 
   <i>list-expression-list:</i>
+    <i>unkeyed-list-expression-list</i>
+    <i>keyed-list-expression-list</i> ,<sub>opt</sub>
+
+  <i>unkeyed-list-expression-list:</i>
     <i>list-or-variable</i>
     ,
-    <i>list-expression-list</i>  ,  <i>list-or-variable<sub>opt</sub></i>
+    <i>unkeyed-list-expression-list</i>  ,  <i>list-or-variable<sub>opt</sub></ii>
+
+  <i>keyed-list-expression-list:</i>
+    <i>expression</i>  =>  <i>list-or-variable</i>
+    <i>keyed-list-expression-list</i>  ,  <i>expression</i>  =>  <i>list-or-variable</i>
 
   <i>list-or-variable:</i>
     <i>list-intrinsic</i>
@@ -446,7 +454,8 @@ target variables. On success, it returns a copy of the source array. If the
 source array is not an array or object implementing `ArrayAccess` no
 assignments are performed and the return value is `NULL`.
 
-All elements in the source array having keys of type `string` are ignored.
+For *unkeyed-list-expression-list*, all elements in the source array having 
+keys of type `string` are ignored.
 The element having an `int` key of 0 is assigned to the first target
 variable, the element having an `int` key of 1 is assigned to the second
 target variable, and so on, until all target variables have been
@@ -454,6 +463,15 @@ assigned. Any other array elements are ignored. If there are
 fewer source array elements having int keys than there are target
 variables, the unassigned target variables are set to `NULL` and
 a non-fatal error is produced.
+
+For *keyed-list-expression-list*, each key-variable pair is handled in turn,
+with the key and variable being separated by the `=>` symbol.
+The element having the first key, with the key having been converted using the
+same rules as the [subscript operator](10-expressions.md#subscript-operator),
+is assigned to the frst target variable. This process is repeated for the
+second `=>` pair, if any, and so on. Any other array elements are ignored.
+If there is no array element with a given key, the unassigned target variable
+is set to `NULL` and a non-fatal error is produced.
 
 The assignments must occur in this order. 
 
@@ -481,6 +499,24 @@ list($arr[1], $arr[0]) = [0, 1];
   // $arr is [1 => 0, 0 => 1], in this order
 list($arr2[], $arr2[]) = [0, 1];
   // $arr2 is [0, 1]
+
+list("one" => $one, "two" => $two) = ["one" => 1, "two" => 2];
+  // $one is 1, $two is 2
+list(
+    "one" => $one,
+    "two" => $two,
+) = [
+    "one" => 1,
+    "two" => 2,
+];
+  // $one is 1, $two is 2
+list(list("x" => $x1, "y" => $y1), list("x" => $x2, "y" => $y2)) = [
+    ["x" => 1, "y" => 2],
+    ["x" => 3, "y" => 4]
+];
+  // $x1 is 1, $y1 is 2, $x2 is 3, $y2 is 4
+list(0 => list($x1, $x2), 1 => list($x2, $y2)) = [[1, 2], [3, 4]];
+  // $x1 is 1, $y1 is 2, $x2 is 3, $y2 is 4
 ```
 
 ####print

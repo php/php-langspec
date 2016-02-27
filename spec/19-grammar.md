@@ -1097,7 +1097,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>class-member-declarations   class-member-declaration</i>
 
    <i>class-member-declaration:</i>
-     <i>const-declaration</i>
+     <i>class-const-declaration</i>
      <i>property-declaration</i>
      <i>method-declaration</i>
      <i>constructor-declaration</i>
@@ -1106,6 +1106,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>const-declaration:</i>
     const  <i>name</i>  =  <i>constant-expression</i>   ;
+
+  <i>class-const-declaration:</i>
+    <i>visibility-modifier<sub>opt</sub></i>  const  <i>name</i>  =  <i>constant-expression</i>   ;
 
   <i>property-declaration:</i>
     <i>property-modifier   variable-name   property-initializer<sub>opt</sub></i>  ;
@@ -1163,7 +1166,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>interface-member-declarations   interface-member-declaration</i>
 
   <i>interface-member-declaration:</i>
-    <i>const-declaration</i>
+    <i>class-const-declaration</i>
     <i>method-declaration</i>
 </pre>
 

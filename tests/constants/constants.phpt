@@ -165,13 +165,20 @@ trace("FOR", 100);		// succeeded
 
 class C3
 {
-	const CON1 = 123;			// implicitly static, and can't say so explicitly
-//	public const CON2 = 123;	// all class constants are implicitly public; can't say explicitly
-//	protected const CON3 = 123;	// all class constants are implicitly public
-//	private const CON4 = 123;	// all class constants are implicitly public
+
+	const CON1 = 123;			// implicitly static and can't say so explicitly
+								// implicitly public
+
+	public const CON2 = 123;	// explicitly public
+	protected const CON3 = 123;	// protected constant
+	private const CON4 = 123;	// private constant
 }
 
 echo "CON1: " . C3::CON1 . "\n";	// use :: notation, as a const is implicitly static
+
+// public const CON80 = 80;		// top level const can not have visibility modifier
+// protected const CON81 = 81;	// top level const can not have visibility modifier
+// private const CON82 = 82;	// top level const can not have visibility modifier
 
 //print_r(get_defined_constants());
 --EXPECTF--

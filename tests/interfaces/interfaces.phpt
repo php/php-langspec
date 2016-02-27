@@ -13,8 +13,11 @@ error_reporting(-1);
 
 interface iX
 {
-	const C1 = 123;
-//	const C2 = "green";
+	const C1 = 123;					// implicitly public
+//  const C2 = "green";
+	public const C3 = 234;			// explicitly public
+//	protected const C4 = 'C4';		// protected not permitted
+//	private const C5 = 'C5';		// private not permitted
 
 	function f0 ();					// implicitly public
 	public function f1 ($p1);		// explicitly public
@@ -56,6 +59,7 @@ class D implements iZ
 
 var_dump(D::C1);
 var_dump(D::C2);
+var_dump(D::C3);
 
 echo "------------------------------------\n";
 
@@ -96,6 +100,7 @@ var_dump(MyQueue::MAX_NUMBER_ITEMS);
 --EXPECT--
 int(123)
 string(5) "green"
+int(234)
 ------------------------------------
 object(MyList)#1 (0) {
 }

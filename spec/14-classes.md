@@ -203,7 +203,7 @@ class MyList implements MyCollection
     <i>class-member-declarations   class-member-declaration</i>
 
    <i>class-member-declaration:</i>
-     <i>const-declaration</i>
+     <i>class-const-declaration</i>
      <i>property-declaration</i>
      <i>method-declaration</i>
      <i>constructor-declaration</i>
@@ -213,7 +213,7 @@ class MyList implements MyCollection
 
 **Defined elsewhere**
 
-* [*const-declaration*](#constants)
+* [*class-const-declaration*](#constants)
 * [*property-declaration*](#properties)
 * [*method-declaration*](#methods)
 * [*constructor-declaration*](#constructors)
@@ -387,28 +387,32 @@ Widget::__callStatic('sMethod', array(NULL, 1.234))
 <pre>
   <i>const-declaration:</i>
     const  <i>name</i>  =  <i>constant-expression</i>   ;
+
+  <i>class-const-declaration:</i>
+    <i>visibility-modifier<sub>opt</sub></i>  const  <i>name</i>  =  <i>constant-expression</i>   ;
 </pre>
 
 **Defined elsewhere**
 
 * [*name*](09-lexical-structure.md#names)
 * [*constant-expression*](10-expressions.md#constant-expressions)
+* [*visibility-modifier*](#properties)
 
 **Constraints:**
 
-A *const-declaration* must only appear at the top level of a script, be
-a *class constant* (inside a [*class-definition*](#class-members) or be an
+A *const-declaration* must only appear at the top level of a script, and
+must not redefine an existing [c-constant](06-constants.md#general).
+
+A *class-const-declaration* must be inside a [*class-definition*](#class-members) or be an
 [*interface constant*](15-interfaces.md#interface-members).
 
-A *const-declaration* must not redefine an existing [c-constant](06-constants.md#general).
-
-A class constant must not have visibility specifier or `static` specifier.
+A class constant must not have a `static` specifier.
 
 **Semantics:**
 
 A *const-declaration* defines a c-constant.
 
-All class constants have public visibility.
+If *visibility-modifier* for a class constant is omitted, `public` is assumed.
 
 All constants are implicitly `static`.
 
@@ -421,6 +425,9 @@ const LOWER = MIN_VAL;
 class Automobile
 {
   const DEFAULT_COLOR = "white";
+  public DEFAULT_BRAND = 'benz';
+  protected WHEEL_NUM = 4;
+  private PRIVATE_CONST = 'const';
   ...
 }
 $col = Automobile::DEFAULT_COLOR;

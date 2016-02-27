@@ -88,7 +88,7 @@ processCollection(new MyQueue(...));
     <i>interface-member-declarations   interface-member-declaration</i>
 
   <i>interface-member-declaration:</i>
-    <i>const-declaration</i>
+    <i>class-const-declaration</i>
     <i>method-declaration</i>
 </pre>
 
@@ -108,6 +108,10 @@ An interface may contain the following members:
     performed by implementers of the interface.
 
 ##Constants
+
+**Constraints**
+
+All constants declared in an interface must be implicitly or explicitly public.
 
 **Semantics**
 

@@ -109,6 +109,10 @@ An interface may contain the following members:
 
 ##Constants
 
+**Constraints**
+
+All constants declared in an interface must be implicitly or explicityly public.
+
 **Semantics**
 
 An interface constant is just like a class [constant](14-classes.md#constants), except that

@@ -387,6 +387,14 @@ Widget::__callStatic('sMethod', array(NULL, 1.234))
 <pre>
   <i>const-declaration:</i>
     const  <i>name</i>  =  <i>constant-expression</i>   ;
+
+  <i>class-const-declaration:</i>
+    <i>visibility-modifier<sub>opt</sub> </i>const  <i>name</i>  =  <i>constant-expression</i>   ;
+
+  <i>visibility-modifier:</i>
+    public
+    protected
+    private
 </pre>
 
 **Defined elsewhere**
@@ -396,19 +404,19 @@ Widget::__callStatic('sMethod', array(NULL, 1.234))
 
 **Constraints:**
 
-A *const-declaration* must only appear at the top level of a script, be
-a *class constant* (inside a [*class-definition*](#class-members) or be an
+A *const-declaration* must only appear at the top level of a script, and
+must not redefine an existing [c-constant](06-constants.md#general).
+
+A *class-const-declaration* must be inside a [*class-definition*](#class-members) or be an
 [*interface constant*](15-interfaces.md#interface-members).
 
-A *const-declaration* must not redefine an existing [c-constant](06-constants.md#general).
-
-A class constant must not have visibility specifier or `static` specifier.
+A class constant must not have `static` specifier.
 
 **Semantics:**
 
 A *const-declaration* defines a c-constant.
 
-All class constants have public visibility.
+If class constants [*visibility-modifier*](#general) is omitted, `public` is assumed.
 
 All constants are implicitly `static`.
 
@@ -421,6 +429,9 @@ const LOWER = MIN_VAL;
 class Automobile
 {
   const DEFAULT_COLOR = "white";
+  public DEFAULT_BRAND = 'benz';
+  protected WHEEL_NUM = 4;
+  private PRIVATE_CONST = 'const';
   ...
 }
 $col = Automobile::DEFAULT_COLOR;

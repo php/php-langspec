@@ -15,10 +15,12 @@ class C
 {
 // constants
 
-	const CON1 = 123;			// implicitly static, and can't say so explicitly
-//	public const CON2 = 123;	// class constants are implicitly public; can't say explicitly
-//	protected const CON3 = 123;	// class constants are implicitly public
-//	private const CON4 = 123;	// class constants are implicitly public
+	const CON1 = 123;			// implicitly static and can't say so explicitly
+								// implicitly public
+
+	public const CON2 = 123;	// explicitly public
+	protected const CON3 = 123;	// protected constant
+	private const CON4 = 123;	// private constant
 
 // properties
 

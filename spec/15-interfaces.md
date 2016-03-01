@@ -111,7 +111,7 @@ An interface may contain the following members:
 
 **Constraints**
 
-All constants declared in an interface must be implicitly or explicityly public.
+All constants declared in an interface must be implicitly or explicitly public.
 
 **Semantics**
 

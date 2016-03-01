@@ -416,7 +416,7 @@ A class constant must not have `static` specifier.
 
 A *const-declaration* defines a c-constant.
 
-If class constants [*visibility-modifier*](#general) is omitted, `public` is assumed.
+If *visibility-modifier* for a class constant is omitted, `public` is assumed.
 
 All constants are implicitly `static`.
 

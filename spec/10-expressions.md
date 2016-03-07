@@ -1022,14 +1022,15 @@ The result is the added new element, or `NULL` if the element was not added.
 **postfix-expression designates a string**
 
 The *expression* is converted to `int` and the result is the character of the
-string at the position equal to that integer. If the integer is negative or refers
+string at the position corresponding to that integer. If the integer is negative, 
+the position is counted backwards from the end of the string. If the position refers
 to a non-existing offset, the result is an empty string.
 
 If the operator is used as the left-hand side of a [*simple-assignment-expression*](#simple-assignment),
-the value being assigned is converted to string and the character in the specified offset will be
-replaced by the first character of the string. If the assigned string is empty, the `'\0'` character is used.
-If the string before the assignment had no such offset, the string is extended to include the offset
-with `'\0'` characters.
+
+- If the assigned string is empty, or in case of non-existing negative offset (absolute value larger than string length), a warning is raised and no assignment is done.
+- If the offset is larger than the current string length, the string is extended to a length equal to the offset value, using space (0x20) padding characters.
+- the value being assigned is converted to string and the character in the specified offset is replaced by the first character of the string.
 
 The subscript operator can not be used on a string value in a byRef context or as the operand of the
 [postfix- or prefix-increment or decrement operators](#postfix-increment-and-decrement-operators) or on the left
@@ -1099,6 +1100,7 @@ $v["red"] = TRUE; // insert a new element with string key "red"
 function f() { return [1000, 2000, 3000]; }
 f()[2];      // designates element with value 3000
 "red"[1.9];    // designates "e"
+"red"[-2];    // designates "e"
 "red"[0][0][0];    // designates "r"
 // -----------------------------------------
 class MyVector implements ArrayAccess { /* ... */ }

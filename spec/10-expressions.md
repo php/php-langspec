@@ -1528,12 +1528,12 @@ left-hand operand to the power of the right-hand one.
 If either of the operands have an object type supporting `**` operation,
 then the object semantics defines the result. The left operand is checked first.
 
-If either or both operands have non-numeric types, their values are converted to type `int`
-or `float`, as appropriate. If both operands have non-negative integer
-values and the result can be represented as an `int`, the result has type
-`int`; otherwise, the result has type `float`.
-
-**Examples**
+If either or both operands have non-numeric types, their values are converted
+to type `int` or `float`, as appropriate. If both operands have non-negative
+integer values and the result can be represented as an `int`, the result has
+type `int`; otherwise, the result has type `float`.  If either or both operands
+were leading-numeric or non-numeric strings, a non-fatal error must be produced
+for each.  **Examples**
 
 ```PHP
 2**3;   // int with value 8
@@ -1752,7 +1752,8 @@ leading-numeric string, the string is first converted to an `int` or
 `float`, as appropriate, after which it is handled as an arithmetic
 operand. The trailing non-numeric characters in leading-numeric strings
 are ignored. With a non-numeric string, the result has type `int` and
-value 0.
+value 0. If the string was leading-numeric or non-numeric, a non-fatal error
+MUST be produced.
 
 For a unary `~` operator used with a string, the result is the string with each byte
 being bitwise complement of the corresponding byte of the source string.
@@ -2080,28 +2081,33 @@ The right-hand operand of operator `/` and operator `%` must not be zero.
 If either of the operands is an object supporting the operation, the result is
 defined by that object's semantics, with the left operand checked first.
 
-The binary `*` operator produces the product of its operands. If either
-or both operands have non-numeric types, their values are converted to
-type `int` or `float`, as appropriate. Then if either operand has type
-`float`, the other is converted to that type, and the result has type
-`float`. Otherwise, both operands have type `int`, in which case, if the
-resulting value can be represented in type `int` that is the result type.
-Otherwise, the result would have type `float`.
+The binary `*` operator produces the product of its operands. If either or both
+operands have non-numeric types, their values are converted to type `int` or
+`float`, as appropriate. If either or both operands were leading-numeric or
+non-numeric strings, a non-fatal error MUST be produced for each.  Then if
+either operand has type `float`, the other is converted to that type, and the
+result has type `float`. Otherwise, both operands have type `int`, in which
+case, if the resulting value can be represented in type `int` that is the
+result type.  Otherwise, the result would have type `float`.
 
 Division by zero results in a non-fatal error. If the value of the numerator is positive, the result value is `INF`. If the value of the numerator is negative, the result value is `-INF`. If the value of the numerator is zero, the result value is `NAN`.
 
 The binary `/` operator produces the quotient from dividing the left-hand
-operand by the right-hand one. If either or both operands have
-non-numeric types, their values are converted to type `int` or `float`, as
-appropriate. Then if either operand has type `float`, the other is
-converted to that type, and the result has type `float`. Otherwise, both
-operands have type `int`, in which case, if the mathematical value of the
-computation can be preserved using type `int`, that is the result type;
-otherwise, the type of the result is `float`.
+operand by the right-hand one. If either or both operands have non-numeric
+types, their values are converted to type `int` or `float`, as appropriate. If
+either or both operands were leading-numeric or non-numeric strings, a
+non-fatal error must be produced for each. Then if either operand has type
+`float`, the other is converted to that type, and the result has type `float`.
+Otherwise, both operands have type `int`, in which case, if the mathematical
+value of the computation can be preserved using type `int`, that is the result
+type; otherwise, the type of the result is `float`.
 
 The binary `%` operator produces the remainder from dividing the left-hand
-operand by the right-hand one. If the type of both operands is not `int`,
-their values are converted to that type. The result has type `int`. If the right-hand operand has value zero, an exception of type `DivisionByZeroError` is thrown.
+operand by the right-hand one. If the type of both operands is not `int`, their
+values are converted to that type.  If either or both operands were
+leading-numeric or non-numeric strings, a non-fatal error MUST be produced for
+each.  The result has type `int`. If the right-hand operand has value zero, an
+exception of type `DivisionByZeroError` is thrown.
 
 These operators associate left-to-right.
 
@@ -2150,15 +2156,15 @@ If either of the operands is an object supporting the operation, the result is
 defined by that object's semantics, with the left operand checked first.
 
 For non-array operands, the binary `+` operator produces the sum of those
-operands, while the binary `-` operator produces the difference of its
-operands when subtracting the right-hand operand from the left-hand one.
-If either or both operands have non-array, non-numeric types, their
-values are converted to type `int` or `float`, as appropriate. Then if
-either operand has type `float`, the other is converted to that type, and
-the result has type `float`. Otherwise, both operands have type `int`, in
-which case, if the resulting value can be represented in type `int` that
-is the result type.
-Otherwise, the result would have type `float`.
+operands, while the binary `-` operator produces the difference of its operands
+when subtracting the right-hand operand from the left-hand one.  If either or
+both operands have non-array, non-numeric types, their values are converted to
+type `int` or `float`, as appropriate.  If either or both operands were
+leading-numeric or non-numeric strings, a non-fatal error MUST be produced for
+each.  Then if either operand has type `float`, the other is converted to that
+type, and the result has type `float`. Otherwise, both operands have type
+`int`, in which case, if the resulting value can be represented in type `int`
+that is the result type.  Otherwise, the result would have type `float`.
 
 If both operands have array type, the binary `+` operator produces a new
 array that is the union of the two operands. The result is a copy of the
@@ -2226,8 +2232,9 @@ zero bits are shifted on from the right end. Given the expression
 `e2` positions. Bits shifted off the right end are discarded, and the sign
 bit is propagated from the left end.
 
-If either operand does not have type `int`, its value is first converted
-to that type.
+If either operand does not have type `int`, its value is first converted to
+that type.  If either or both operands were leading-numeric or non-numeric
+strings, a non-fatal error MUST be produced for each.
 
 The type of the result is `int`, and the value of the result is that after
 the shifting is complete. The values of `e1` and `e2` are unchanged.
@@ -2465,8 +2472,9 @@ Each of the operands must have scalar-compatible type.
 If either of the operands is an object supporting the operation, the result is
 defined by that object's semantics, with the left operand checked first.
 
-If either operand does not have type `int`, its value is first converted
-to that type.
+If either operand does not have type `int`, its value is first converted to
+that type.  If either or both operands were leading-numeric or non-numeric
+strings, a non-fatal error MUST be produced for each.
 
 The result of this operator is the bitwise-AND of the two operands, and
 the type of that result is `int`.
@@ -2509,8 +2517,9 @@ Each of the operands must have scalar-compatible type.
 If either of the operands is an object supporting the operation, the result is
 defined by that object's semantics, with the left operand checked first.
 
-If either operand does not have type `int`, its value is first converted
-to that type.
+If either operand does not have type `int`, its value is first converted to
+that type.  If either or both operands were leading-numeric or non-numeric
+strings, a non-fatal error MUST be produced for each.
 
 The result of this operator is the bitwise exclusive-OR of the two
 operands, and the type of that result is `int`.
@@ -2555,8 +2564,9 @@ Each of the operands must have scalar-compatible type.
 If either of the operands is an object supporting the operation, the result is
 defined by that object's semantics, with the left operand checked first.
 
-If either operand does not have type `int`, its value is first converted
-to that type.
+If either operand does not have type `int`, its value is first converted to
+that type.  If either or both operands were leading-numeric or non-numeric
+strings, a non-fatal error MUST be produced for each.
 
 The result of this operator is the bitwise inclusive-OR of the two
 operands, and the type of that result is `int`.

@@ -97,7 +97,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>name-nondigit::</i>
     <i>nondigit</i>
-    one of the characters U+007f–U+00ff
+    one of the characters U+0080–U+00ff
 
   <i>nondigit:: one of</i>
     _

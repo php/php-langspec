@@ -234,7 +234,7 @@ There are several kinds of source *tokens*:
 
   <i>name-nondigit::</i>
     <i>nondigit</i>
-    one of the characters U+007f–U+00ff
+    one of the characters U+0080–U+00ff
 
   <i>nondigit:: one of</i>
     _
@@ -258,7 +258,7 @@ Names are used to identify the following: [constants](06-constants.md#general),
 and names in [heredoc](#heredoc-string-literals) and [nowdoc comments](#nowdoc-string-literals).
 
 A *name* begins with an underscore (_), *name-nondigit*, or extended
-name character in the range U+007f–-U+00ff. Subsequent characters can
+name character in the range U+0080–-U+00ff. Subsequent characters can
 also include *digits*. A *variable name* is a name with a leading
 dollar ($).
 

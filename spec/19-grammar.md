@@ -426,9 +426,17 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     list  (  <i>list-expression-list<sub>opt</sub></i>  )
 
   <i>list-expression-list:</i>
+    <i>unkeyed-list-expression-list</i>
+    <i>keyed-list-expression-list</i> ,<sub>opt</sub>
+
+  <i>unkeyed-list-expression-list:</i>
     <i>list-or-variable</i>
     ,
-    <i>list-expression-list</i>  ,  <i>list-or-variable<sub>opt</sub></i>
+    <i>unkeyed-list-expression-list</i>  ,  <i>list-or-variable<sub>opt</sub></i>
+
+  <i>keyed-list-expression-list:</i>
+    <i>expression</i>  =>  <i>list-or-variable</i>
+    <i>keyed-list-expression-list</i>  ,  <i>expression</i>  =>  <i>list-or-variable</i>
 
   <i>list-or-variable:</i>
     <i>list-intrinsic</i>

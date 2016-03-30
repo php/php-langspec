@@ -37,7 +37,7 @@ foreach ($scalarValueList as $v)
 {
 	printf("%d(%08X): >> %2d = %08X\t<< %2d = %08X\n", $v, $v, 3, $v >> 3, 5, $v << 5);
 }
---EXPECT--
+--EXPECTF--
 1000(000003E8): >>  0 = 000003E8	<<  0 = 000003E8
 1000(000003E8): >>  1 = 000001F4	<<  1 = 000007D0
 1000(000003E8): >>  2 = 000000FA	<<  2 = 00000FA0
@@ -179,5 +179,13 @@ foreach ($scalarValueList as $v)
 0(00000000): >>  3 = 00000000	<<  5 = 00000000
 0(00000000): >>  3 = 00000000	<<  5 = 00000000
 123(0000007B): >>  3 = 0000000F	<<  5 = 00000F60
+
+Warning: A non-numeric value encountered in %s on line %d
+
+Warning: A non-numeric value encountered in %s on line %d
 0(00000000): >>  3 = 00000000	<<  5 = 00000000
+
+Warning: A non-numeric value encountered in %s on line %d
+
+Warning: A non-numeric value encountered in %s on line %d
 0(00000000): >>  3 = 00000000	<<  5 = 00000000

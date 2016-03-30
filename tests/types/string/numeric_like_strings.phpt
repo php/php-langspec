@@ -94,7 +94,7 @@ var_dump($s1--);
 var_dump($s2--);
 var_dump($s3--);
 var_dump($s4--);
---EXPECT--
+--EXPECTF--
 ============== var_dump(numeric_like_string) ===================
 
 string(8) "12345xxx"
@@ -118,13 +118,29 @@ float(12345.6)
 
 ============== +/- numeric_like_string ===================
 
+
+Notice: A non well formed numeric value encountered in %s on line %d
 int(12345)
+
+Notice: A non well formed numeric value encountered in %s on line %d
 int(12345)
+
+Notice: A non well formed numeric value encountered in %s on line %d
 float(12345.6)
+
+Notice: A non well formed numeric value encountered in %s on line %d
 float(12345.6)
+
+Notice: A non well formed numeric value encountered in %s on line %d
 int(-12345)
+
+Notice: A non well formed numeric value encountered in %s on line %d
 int(-12345)
+
+Notice: A non well formed numeric value encountered in %s on line %d
 float(-12345.6)
+
+Notice: A non well formed numeric value encountered in %s on line %d
 float(-12345.6)
 
 ============== relational/equality ops with numeric_like_string ===================

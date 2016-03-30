@@ -18,7 +18,7 @@ foreach ($oper as $t)
 }
 
 ?>
---EXPECT--
+--EXPECTF--
 >0< /= >-10<, result: int(0)
 >0< /= >100<, result: int(0)
 >0< /= >-34000000000<, result: float(-0)
@@ -151,27 +151,67 @@ foreach ($oper as $t)
 >2e+5< /= >2e+5<, result: float(1)
 >2e+5< /= >9223372036854775807<, result: float(2.168404344971E-14)
 -------------------------------------
->< /= >-10<, result: int(0)
->< /= >100<, result: int(0)
->< /= >-34000000000<, result: float(-0)
->< /= >INF<, result: float(0)
->< /= >-INF<, result: float(-0)
->< /= >NAN<, result: float(NAN)
->< /= >1<, result: int(0)
->< /= >123<, result: int(0)
->< /= >2e+5<, result: float(0)
->< /= >9223372036854775807<, result: int(0)
+>< /= >-10<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< /= >100<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< /= >-34000000000<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
+>< /= >INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
+>< /= >-INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
+>< /= >NAN<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>< /= >1<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< /= >123<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< /= >2e+5<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
+>< /= >9223372036854775807<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 -------------------------------------
->abc< /= >-10<, result: int(0)
->abc< /= >100<, result: int(0)
->abc< /= >-34000000000<, result: float(-0)
->abc< /= >INF<, result: float(0)
->abc< /= >-INF<, result: float(-0)
->abc< /= >NAN<, result: float(NAN)
->abc< /= >1<, result: int(0)
->abc< /= >123<, result: int(0)
->abc< /= >2e+5<, result: float(0)
->abc< /= >9223372036854775807<, result: int(0)
+>abc< /= >-10<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< /= >100<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< /= >-34000000000<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
+>abc< /= >INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
+>abc< /= >-INF<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(-0)
+>abc< /= >NAN<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(NAN)
+>abc< /= >1<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< /= >123<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< /= >2e+5<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+float(0)
+>abc< /= >9223372036854775807<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 -------------------------------------
 >9223372036854775807< /= >-10<, result: float(-9.2233720368548E+17)
 >9223372036854775807< /= >100<, result: float(9.2233720368548E+16)

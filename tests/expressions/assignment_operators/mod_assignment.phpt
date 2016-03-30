@@ -1,5 +1,5 @@
 --TEST--
-/= operator
+%= operator
 --FILE--
 <?php
 
@@ -18,7 +18,7 @@ foreach ($oper as $t)
 }
 
 ?>
---EXPECT--
+--EXPECTF--
 >0< %= >-10<, result: int(0)
 >0< %= >100<, result: int(0)
 >0< %= >-34000000000<, result: int(0)
@@ -32,7 +32,7 @@ foreach ($oper as $t)
 >-10< %= >-34000000000<, result: int(-10)
 >-10< %= >1<, result: int(0)
 >-10< %= >123<, result: int(-10)
->-10< %= >2e+5<, result: int(0)
+>-10< %= >2e+5<, result: int(-10)
 >-10< %= >9223372036854775807<, result: int(-10)
 -------------------------------------
 >100< %= >-10<, result: int(0)
@@ -40,7 +40,7 @@ foreach ($oper as $t)
 >100< %= >-34000000000<, result: int(100)
 >100< %= >1<, result: int(0)
 >100< %= >123<, result: int(100)
->100< %= >2e+5<, result: int(0)
+>100< %= >2e+5<, result: int(100)
 >100< %= >9223372036854775807<, result: int(100)
 -------------------------------------
 >-34000000000< %= >-10<, result: int(0)
@@ -104,38 +104,66 @@ foreach ($oper as $t)
 >123< %= >-34000000000<, result: int(123)
 >123< %= >1<, result: int(0)
 >123< %= >123<, result: int(0)
->123< %= >2e+5<, result: int(1)
+>123< %= >2e+5<, result: int(123)
 >123< %= >9223372036854775807<, result: int(123)
 -------------------------------------
->2e+5< %= >-10<, result: int(2)
->2e+5< %= >100<, result: int(2)
->2e+5< %= >-34000000000<, result: int(2)
+>2e+5< %= >-10<, result: int(0)
+>2e+5< %= >100<, result: int(0)
+>2e+5< %= >-34000000000<, result: int(200000)
 >2e+5< %= >1<, result: int(0)
 >2e+5< %= >123<, result: int(2)
 >2e+5< %= >2e+5<, result: int(0)
->2e+5< %= >9223372036854775807<, result: int(2)
+>2e+5< %= >9223372036854775807<, result: int(200000)
 -------------------------------------
->< %= >-10<, result: int(0)
->< %= >100<, result: int(0)
->< %= >-34000000000<, result: int(0)
->< %= >1<, result: int(0)
->< %= >123<, result: int(0)
->< %= >2e+5<, result: int(0)
->< %= >9223372036854775807<, result: int(0)
+>< %= >-10<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< %= >100<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< %= >-34000000000<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< %= >1<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< %= >123<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< %= >2e+5<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>< %= >9223372036854775807<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 -------------------------------------
->abc< %= >-10<, result: int(0)
->abc< %= >100<, result: int(0)
->abc< %= >-34000000000<, result: int(0)
->abc< %= >1<, result: int(0)
->abc< %= >123<, result: int(0)
->abc< %= >2e+5<, result: int(0)
->abc< %= >9223372036854775807<, result: int(0)
+>abc< %= >-10<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< %= >100<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< %= >-34000000000<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< %= >1<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< %= >123<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< %= >2e+5<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
+>abc< %= >9223372036854775807<, result: 
+Warning: A non-numeric value encountered in %s on line %d
+int(0)
 -------------------------------------
 >9223372036854775807< %= >-10<, result: int(7)
 >9223372036854775807< %= >100<, result: int(7)
 >9223372036854775807< %= >-34000000000<, result: int(4854775807)
 >9223372036854775807< %= >1<, result: int(0)
 >9223372036854775807< %= >123<, result: int(7)
->9223372036854775807< %= >2e+5<, result: int(1)
+>9223372036854775807< %= >2e+5<, result: int(175807)
 >9223372036854775807< %= >9223372036854775807<, result: int(0)
 -------------------------------------

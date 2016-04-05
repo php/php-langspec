@@ -743,6 +743,7 @@ the value assignment `$b = $a`:
 [HStore Array [VSlot 0 *] [VSlot 'B' *]]                                        |
                        |             |                                          |
              +---------+   +---------+                                          |
+             |             |                                                    |
              V             V                                                    |
 [VStore int 10] [VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *]]&lt;---+
                                                             |            |
@@ -962,6 +963,7 @@ outcomes:
 [VSlot $b *]-->[VStore array *]            [VStore Arr *]&lt;---+
                              |                         |
       +----------------------+              +----------+
+      |                                     |
       V                                     V
   [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
                          |           |       ^                   |           |
@@ -995,13 +997,15 @@ possible outcome:
                                                              |
 [VSlot $b *]-->[VStore array *]          [VStore array *]&lt;---+
                              |                         |
-                             V                         V
+    +------------------------+              +----------+
+    |                                       |
+    V                                       V
   [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
                          |           |                           |           |
        +-----------------+           V                           |           |
        |                     [VStore int 1]                 +----+           |
        V                                                    |                V
-  [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore string 'hi']
+  [VStore Arr *]---->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore string 'hi']
                                             |           |   |
                                     +-------+           |   |
                                     |                   V   |
@@ -1012,7 +1016,7 @@ possible outcome:
 
 Here is the third possible outcome:
 <pre>
-[VSlot $a *]---->[VStore array *-]---->[HStore Array [VSlot 0 *]]
+[VSlot $a *]--->[VStore array *]---->[HStore Array [VSlot 0 *]]
                                                             |
 [VSlot $b *]-->[VStore array *]           [VStore array *]&lt;---+
                              |                          |
@@ -1022,7 +1026,7 @@ Here is the third possible outcome:
        +----------------+           V                           |           |
        |                     [VStore int 1]                  +--+           |
        V                                                     |              V
-   [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore string 'hi']
+   [VStore Arr *]---->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore string 'hi']
                                              |           |   |
                      [VStore int 123]&lt;-------+           |   |
                                                          V   |
@@ -1225,8 +1229,9 @@ Let us consider the result of `$b = clone $a`:
 [VSlot $a *]-->[VStore object *]-->[HStore Widget [VSlot $p1 *][VSlot $p2 *]]
                                                              |            |
 [VSlot $b *]-->[VStore object *]                             V            V
-                             |                  [VStore int 10] [VStore object *]
-     +-----------------------+                                                 |
+                              |                 [VStore int 10] [VStore object *]
+     +------------------------+                                                |
+     |                                                                         |
      V                                                                         |
    [HStore Widget [VSlot $p1 *] [VSlot $p2 *]]              +--->[HStore ...]&lt;-+
                              |             |                |

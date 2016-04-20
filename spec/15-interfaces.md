@@ -230,14 +230,14 @@ This type is defined, as follows:
 
 ```PHP
 interface Throwable {
-  __toString(): string;
-  getCode(): int;
-  getFile(): string;
-  getLine(): int;
-  getMessage(): string;
-  getPrevious(): Throwable;
-  getTrace(): array;
-  getTraceAsString(): string;
+  function __toString(): string;
+  function getCode(): int;
+  function getFile(): string;
+  function getLine(): int;
+  function getMessage(): string;
+  function getPrevious(): Throwable;
+  function getTrace(): array;
+  function getTraceAsString(): string;
 }
 ```
 The interface members are defined below:

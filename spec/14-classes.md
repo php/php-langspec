@@ -6,19 +6,19 @@ A class is a type that may contain zero or more explicitly declared
 *members*, which can be any combination of [*class constants*](#constants);
 data members, called [*properties*](#properties); and function members, called
 [*methods*](#methods). The ability to add properties to an
-instance at runtime is described in [dynamic members section](#dynamic-members). 
+instance at runtime is described in [dynamic members section](#dynamic-members).
 An object (often called an *instance*) of a class type is created (i.e., *instantiated*) via the
 [new operator](10-expressions.md#the-new-operator).
 
 PHP supports [inheritance](#class-declarations), a means by which a *derived class* can
-*extend* and specialize a single *base class* (also called *parent*). 
-Classes in PHP are **not** all derived from a common ancestor. 
+*extend* and specialize a single *base class* (also called *parent*).
+Classes in PHP are **not** all derived from a common ancestor.
 An [*abstract* class](#class-declarations) is a base type intended for
 derivation, but which cannot be instantiated directly. A *concrete*
 class is a class that is not abstract. A [*final* class](#class-declarations) is one
 from which other classes cannot be derived.
 
-A class may [*implement*](#class-declarations) one or more [*interfaces*](15-interfaces.md#general), 
+A class may [*implement*](#class-declarations) one or more [*interfaces*](15-interfaces.md#general),
 each of which defines a contract. Interfaces may have method and constants, but not properties.
 
 A class can *use* one or more [traits](16-traits.md#general), which allows a class to
@@ -102,7 +102,7 @@ For each interface method, the corresponding implementing method must be *compat
 - If the interface method is variadic, the implementing method must also be variadic (see also below).
 - The number of required (i.e. having no defaults) arguments of the implementing methods can not be more than the number of required arguments of the interface method (adding non-optional arguments is not allowed).
 - The overall number of arguments for the implementing method should be at least the number of the arguments of the interface method (removing arguments is not allowed).
-- Each argument of the implementing method must be compatible with corresponding argument of the prototype method. 
+- Each argument of the implementing method must be compatible with corresponding argument of the prototype method.
 - If the interface method defines the return type, the implementing method must have the same return type.
 
 Compatible arguments are defined as follows:
@@ -140,17 +140,17 @@ interfaces that are implemented by the class being defined.
 **Examples**
 
 ```PHP
-abstract class Vehicle 
+abstract class Vehicle
 {
   public abstract function getMaxSpeed();
   ...
 }
-abstract class Aircraft extends Vehicle 
+abstract class Aircraft extends Vehicle
 {
   public abstract function getMaxAltitude();
   ...
 }
-class PassengerJet extends Aircraft 
+class PassengerJet extends Aircraft
 {
   public function getMaxSpeed()
   {
@@ -166,7 +166,7 @@ $pj = new PassengerJet(...);
 echo "\$pj's maximum speed: " . $pj->getMaxSpeed() . "\n";
 echo "\$pj's maximum altitude: " . $pj->getMaxAltitude() . "\n";
 // -----------------------------------------
-final class MathLibrary 
+final class MathLibrary
 {
   private function MathLibrary() {} // disallows instantiation
   public static function sin() { ... }
@@ -174,12 +174,12 @@ final class MathLibrary
 }
 $v = MathLibrary::sin(2.34);
 // -----------------------------------------
-interface MyCollection 
+interface MyCollection
 {
         function put($item);
         function get();
 }
-class MyList implements MyCollection 
+class MyList implements MyCollection
 {
   public function put($item)
   {
@@ -232,9 +232,9 @@ A class may contain the following members:
 -   [Properties](#properties) – the variables of the class.
 -   [Methods](#methods) – the computations and actions that can be performed by the
     class.
-	
+
 Some methods have special semantics, such as:
-	
+
 -   [Constructor](#constructors) – the actions required to initialize an instance of the class.
 -   [Destructor](#destructors) – the actions to be performed when an instance of the
     class is no longer needed.
@@ -264,7 +264,7 @@ static method does not operate on a specific instance, it has no `$this`.
 **Examples**
 
 ```PHP
-class Point 
+class Point
 {
   private static $pointCount = 0;     // static property
 
@@ -301,16 +301,16 @@ echo "Point count = " . $cName::getPointCount() . "\n";
 ##Dynamic Members
 
 Initially, the instance only has properties that are
-declared explicitly in its class's definition. However, properties can be 
+declared explicitly in its class's definition. However, properties can be
 added to and removed from the instance at runtime. Static properties of a
 class can not be changed at runtime, attempt to access non-existing static
-property results in a fatal error. 
+property results in a fatal error.
 Runtime-created properties always have public visibility.
 
 The class can also define special methods for *dynamic members* - methods
 and properties. This facility uses the same syntax to access the members
 as the regular members, but instead of accessing actual properties and
-methods the engine will use special methods to simulate the access. 
+methods the engine will use special methods to simulate the access.
 
 In the case of dynamic properties, if a class
 makes provision to do so by defining a series of special methods, it can
@@ -345,17 +345,17 @@ this generates a call to the instance method [`__isset`](#method-__isset),
 while a call to the intrinsic [`unset`](10-expressions.md#unset) generates a
 call to the instance method [`__unset`](#method-__unset). By defining these
 four special methods, the implementer of a class can control how dynamic
-properties are handled. 
+properties are handled.
 
 The Engine will call the methods only if they are defined, if they are not defined,
 no error is produced and default behavior is used.
 
 In the case of a dynamic method, if a call to an undefined instance method is performed
-and the instance has [`__call`](#method-__call) method, then this method is called. 
-Otherwise, as per default, a fatal error is produced. 
+and the instance has [`__call`](#method-__call) method, then this method is called.
+Otherwise, as per default, a fatal error is produced.
 If a static call to an undefined class method is performed, and the class defines a
-[`__callStatic`](#method-__callstatic) method, this method is called. 
-Otherwise, as per default, a fatal error is produced. 
+[`__callStatic`](#method-__callstatic) method, this method is called.
+Otherwise, as per default, a fatal error is produced.
 In both cases, the return value of the call is the return value of the method called.
 
 Consider the following code fragment, in which class Widget has neither
@@ -472,10 +472,10 @@ case, the property is actually removed from that instance.
 **Examples**
 
 ```PHP
-class Point 
+class Point
 {
   private static $pointCount = 0; // static property with initializer
-  
+
   private $x; // instance property
   private $y; // instance property
   ...
@@ -562,7 +562,7 @@ examples of abstract methods and their subsequent definitions.
 An overriding constructor in a derived class must have the same or a
 less-restricted [visibility](#general) than the one in the base class.
 
-*method-modifiers* can not contain `static`. 
+*method-modifiers* can not contain `static`.
 
 **Semantics**
 
@@ -599,7 +599,7 @@ needs to have a constructor.
 **Examples**
 
 ```PHP
-class Point 
+class Point
 {
   private static $pointCount = 0;
   private $x;
@@ -618,7 +618,7 @@ class Point
   ...
 }
 // -----------------------------------------
-class MyRangeException extends Exception 
+class MyRangeException extends Exception
 {
   public function __construct($message, ...)
   {
@@ -645,7 +645,7 @@ class MyRangeException extends Exception
 
 **Constraints**
 
-*method-modifiers* can not contain `static`. 
+*method-modifiers* can not contain `static`.
 
 **Semantics**
 
@@ -681,11 +681,11 @@ member with the same name. Only properties and methods can be overridden.
 Visibility of the overridden member can not be made more restrictive, only more permissive (from `private` to `protected` to `public`).
 
 When a private member is overridden, the methods of the defining class still have access to the original private
-member, however non-static public and protected members are shared across the inheritance chain. 
+member, however non-static public and protected members are shared across the inheritance chain.
 
 When a method is overridden, the signature of the overriding method should be [compatible](#class-declarations)
 with the signature of the original method, by the same rule as if the original method belonged to the interface
-and the overriding method belonged to an implementation. 
+and the overriding method belonged to an implementation.
 If an implemented method is overridden with an incompatible method, a non-fatal error is issued, however the
 override is still accepted by the engine. The use of incompatible overrides is not recommended.
 
@@ -697,7 +697,7 @@ If a class contains a definition for a method having one of the
 following names, that method must have the prescribed visibility,
 signature, and semantics:
 
-Method Name | Description 
+Method Name | Description
 ------------|-------------
 [`__call`](#method-__call) | Calls a dynamic method in the context of an instance method call.
 [`__callStatic`](#method-__callstatic) | Calls a dynamic method in the context of a static method call.
@@ -716,7 +716,7 @@ Method Name | Description
 [`__wakeup`](#method-__wakeup) | Executed after [unserialization](#serialization) of an instance of this class.
 
 In general, method names beginning with `__` are reserved for special methods. The code should not define methods with names
-beginning with `__` unless it is one of the special methods described here. 
+beginning with `__` unless it is one of the special methods described here.
 
 Note that while syntax definitions below use the [non-abstract syntax](#methods) in the method definition, the special methods,
 like any methods, can be declared `abstract`. In this case the definition does not actually define a special method but defines that
@@ -751,7 +751,7 @@ the array designated by `$arguments`. It can return any value deemed
 appropriate.
 
 Typically, `__call` is called implicitly, when the [`->` operator](10-expressions.md#member-selection-operator)
-is used to call an instance method that is not visible. 
+is used to call an instance method that is not visible.
 
 While `__call` can be called explicitly, the two scenarios do not
 necessarily produce the same result. Consider the expression `p->m(...)`,
@@ -763,7 +763,7 @@ method, ignoring the fact that a visible method having the same name
 might exist. If `m` is not the name of a visible method, the two
 expressions are equivalent; that is; when handling `p->m(...)`, if no
 visible method by that name is found, a dynamic method is assumed, and
-`__call` is called. 
+`__call` is called.
 
 While the [*name*](09-lexical-structure.md#names) source token has a prescribed syntax, there are no
 restrictions on the content of the dynamic method name designated by
@@ -814,7 +814,7 @@ the array designated by `$arguments`. It can return any value deemed
 appropriate.
 
 Typically, `__callStatic` is called implicitly, when the [`::` operator](10-expressions.md#scope-resolution-operator)
-is used to call a static method that is not visible. 
+is used to call a static method that is not visible.
 
 While `__callStatic` can be called explicitly, the two scenarios do not
 necessarily produce the same result. Consider the expression `C::m(...)`,
@@ -826,7 +826,7 @@ dynamic method, ignoring the fact that a static visible method having
 the same name might exist. If m is not the name of a visible method, the
 two expressions are equivalent; that is; when handling `C::m(...)`, if no
 visible method by that name is found, a dynamic method is assumed, and
-`__callStatic` is called. 
+`__callStatic` is called.
 
 While the [*name*](09-lexical-structure.md#names) source token has a prescribed syntax, there are no
 restrictions on the spelling of the dynamic method name designated by
@@ -903,7 +903,7 @@ instance having [dynamic properties](#dynamic-members).
 class Employee
 {
   ...
-  public function __clone() 
+  public function __clone()
   {
     // do what it takes here to make a copy of Employee object properties
   }
@@ -911,7 +911,7 @@ class Employee
 class Manager extends Employee
 {
   ...
-  public function __clone() 
+  public function __clone()
   {
     parent::__clone(); // request cloning of the Employee properties
 
@@ -920,15 +920,15 @@ class Manager extends Employee
   ...
 }
 // -----------------------------------------
-class Point 
+class Point
 {
   private static $pointCount = 0;
-  public function __construct($x = 0, $y = 0) 
+  public function __construct($x = 0, $y = 0)
   {
     ...
     ++self::$pointCount;
   }
-  public function __clone() 
+  public function __clone()
   {
     ++self::$pointCount; // emulate the constructor
   }
@@ -975,7 +975,7 @@ class File {
 
   public function open($filename, $mode = 'r'){
     $this->fp = fopen($filename, $mode);
-  }  
+  }
 }
 
 $f = new File;
@@ -1043,7 +1043,7 @@ and the modifications are reflected in the dynamic property), `__get` should ret
 **Examples**
 
 ```PHP
-class Point 
+class Point
 {
     private $dynamicProperties = array();
     private $x;
@@ -1162,7 +1162,7 @@ how existance of the dynamic property is determined is left to the implementor o
 
 Typically, `__isset` is called implicitly, when the intrinsic [`isset`](10-expressions.md#isset)
 or intrinsic [`empty`](10-expressions.md#empty) is called with an argument that designates
-a property that is not visible. 
+a property that is not visible.
 
 While `__isset` can be called explicitly, the two
 scenarios do not necessarily produce the same result. Consider the
@@ -1182,7 +1182,7 @@ restrictions on the spelling of the dynamic property name designated by
 **Examples**
 
 ```PHP
-class Point 
+class Point
 {
     private $dynamicProperties = array();
     private $x;
@@ -1224,7 +1224,7 @@ designated by `$name` to `$value`. No value is expected to be returned.
 
 Typically, `__set` is called implicitly, when the [`->` operator](10-expressions.md#member-selection-operator)
 is used in a modifiable lvalue context and the named property is not
-visible. 
+visible.
 
 While `__set` can be called explicitly, the two scenarios
 do not necessarily produce the same result. Consider the expression
@@ -1236,7 +1236,7 @@ property, ignoring the fact that a visible property having the same name
 might exist. If `m` is not the name of a visible property, the two
 expressions are equivalent; that is; when handling `p->m`, if no visible
 property by that name is found, a dynamic property is assumed, and
-`__set` is called. 
+`__set` is called.
 
 While the [*name*](09-lexical-structure.md#names) source token has a prescribed syntax, there are no
 restrictions on the spelling of the dynamic property name designated by
@@ -1245,7 +1245,7 @@ restrictions on the spelling of the dynamic property name designated by
 **Examples**
 
 ```PHP
-class Point 
+class Point
 {
     private $dynamicProperties = array();
     private $x;
@@ -1311,8 +1311,8 @@ will produce a fatal error. To allow the string to be used with `eval`, the meth
 class type, initialize its instance properties using the key/value pairs
 in `$properties`, and it must return that new object.
 
-When extending the class with `__set_state` method, one should override 
-the method, otherwise a call to it will look for such a method in the base class hierarchy, 
+When extending the class with `__set_state` method, one should override
+the method, otherwise a call to it will look for such a method in the base class hierarchy,
 and that method will return an instance of the associated base class, not of the class
 on which it was invoked. Usage of `static` allows [late static binding](10-expressions.md#scope-resolution-operator) to produce
 the instance of an appropriate class.
@@ -1326,7 +1326,7 @@ below.
 **Examples**
 
 ```PHP
-class Point 
+class Point
 {
   private $x;
   private $y;
@@ -1348,7 +1348,7 @@ The string produced looks something like the following:
 "Point::__set_state(array(
    'x' => 3,
    'y' => 5,
-))" 
+))"
 eval('$z = ' . $v . ";"); // execute the string putting the result in $z
 echo "Point \$z is $z\n"; // Point $z is (3,5)
 // -----------------------------------------
@@ -1416,7 +1416,7 @@ The *method-modifiers* must not contain `static` and must define public visibili
 The instance methods `__sleep` and [`__wakeup`](#method-__wakeup) support
 [serialization](#serialization).
 
-If a class has a `__sleep` method, the library function [`serialize`](http://www.php.net/serialize) 
+If a class has a `__sleep` method, the library function [`serialize`](http://www.php.net/serialize)
 calls that method to find out which visible instance properties it
 should serialize. (In the absence of a `__sleep` or `serialize` method,
 all instance properties are serialized, including ones defined in runtime).
@@ -1433,7 +1433,7 @@ else might be needed before serialization occurs.
 The alternative to using `__sleep` and `__wakeup` is implementing the
 [Serializable interface](15-interfaces.md#interface--serializable).
 
-Note that if a class defining `__sleep` and `__wakeup` is extended, and the 
+Note that if a class defining `__sleep` and `__wakeup` is extended, and the
 derived class does not override the methods, the serialization and unserialization
 will be performed as if those were instances of the base class, e.g. additional
 properties may not be serialized or restored.
@@ -1450,23 +1450,23 @@ other transient properties, such as those that contain temporary results
 or run-time caches).
 
 ```PHP
-class Point 
+class Point
 {
   private static $nextId = 1;
   private $x;
   private $y;
   private $id;
-  public function __construct($x = 0, $y = 0) 
+  public function __construct($x = 0, $y = 0)
   {
     $this->x = $x;
     $this->y = $y;
     $this->id = self::$nextId++;  // assign the next available id
   }
-  public function __sleep() 
+  public function __sleep()
   {
     return array('y', 'x'); // serialize only $y and $x, in that order
   }
-  public function __wakeup() 
+  public function __wakeup()
   {
     $this->id = self::$nextId++;  // assign a new id
   }
@@ -1502,7 +1502,7 @@ This function must not throw any exceptions.
 **Semantics**
 
 This instance method is intended to create a string representation of
-the instance on which it is called. 
+the instance on which it is called.
 
 `__toString` is called by a number of language and library facilities,
 including `echo`, when an object-to-string conversion is needed.
@@ -1514,16 +1514,16 @@ instance having [dynamic properties](#dynamic-members).
 **Examples**
 
 ```PHP
-class Point 
+class Point
 {
   private $x;
   private $y;
-  public function __construct($x = 0, $y = 0) 
+  public function __construct($x = 0, $y = 0)
   {
     $this->x = $x;
     $this->y = $y;
   }
-  public function __toString() 
+  public function __toString()
   {
     return '(' . $this->x . ',' . $this->y . ')';
   }
@@ -1532,9 +1532,9 @@ class Point
 $p1 = new Point(20, 30);
 echo $p1 . "\n";  // implicit call to __toString() returns "(20,30)"
 // -----------------------------------------
-class MyRangeException extends Exception 
+class MyRangeException extends Exception
 {
-  public function __toString() 
+  public function __toString()
   {
     return parent::__toString()
       . string-representation-of-MyRangeException
@@ -1569,7 +1569,7 @@ value is expected to be returned.
 
 Typically, `__unset` is called implicitly, when the intrinsic [`unset`](10-expressions.md#unset)
 is called with an argument that designates a property that
-is not visible. 
+is not visible.
 
 While `__unset` can be called explicitly, the two
 scenarios do not necessarily produce the same result. Consider the
@@ -1589,7 +1589,7 @@ restrictions on the spelling of the dynamic property name designated by
 **Examples**
 
 ```PHP
-class Point 
+class Point
 {
     private $dynamicProperties = array();
     private $x;
@@ -1662,7 +1662,7 @@ and [`unserialize`](http://www.php.net/unserialize), respectively.
 In the case of variables that are objects, on their own, these two
 functions serialize and unserialize all the instance properties, which
 may be sufficient for some applications. However, if the programmer
-wants to customize these processes, they can do so in one of two mutually exclusive ways. 
+wants to customize these processes, they can do so in one of two mutually exclusive ways.
 The first approach is to define methods called
 `__sleep` and `__wakeup`, and have them get control before serialization
 and after serialization, respectively. For information on this approach,
@@ -1689,17 +1689,17 @@ class Point implements Serializable // note the interface
   private $x;
   private $y;
   private $id;  // transient property; not serialized
-  public function __construct($x = 0, $y = 0) 
+  public function __construct($x = 0, $y = 0)
   {
     $this->x = $x;
     $this->y = $y;
     $this->id = self::$nextId++;
   }
-  public function __toString() 
+  public function __toString()
   {
     return 'ID:' . $this->id . '(' . $this->x . ',' . $this->y . ')';
   }
-  public function serialize() 
+  public function serialize()
   {
     return serialize(array('y' => $this->y, 'x' => $this->x));
   }
@@ -1757,18 +1757,18 @@ class ColoredPoint extends Point implements Serializable
 
   private $color; // an instance property
 
-  public function __construct($x = 0, $y = 0, $color = RED) 
+  public function __construct($x = 0, $y = 0, $color = RED)
   {
     parent::__construct($x, $y);
     $this->color = $color;
   }
 
-  public function __toString() 
+  public function __toString()
   {
     return parent::__toString() . $this->color;
   }
 
-  public function serialize() 
+  public function serialize()
   {
     return serialize(array(
       'color' => $this->color,
@@ -1814,10 +1814,10 @@ Any attempt to serialize an object having an anonymous class type results in an 
 
 The predefined class [`Closure`](http://php.net/manual/class.closure.php) is used
 for representing an [anonymous function](13-functions.md#anonymous-functions). It
-cannot be instantiated except by the Engine, as described below. 
+cannot be instantiated except by the Engine, as described below.
 Closure objects are immutable and must not permit the creation or modification of properties.
 
-Closures can be *bound*, *unbound* or *static*. If a closure is said to be 
+Closures can be *bound*, *unbound* or *static*. If a closure is said to be
 bound, then it has an object that `$this` will be bound to when called. If a
 closure is unbound, then it has no object `$this` will be bound to. If a closure
 is static, then it cannot be bound.
@@ -1845,7 +1845,7 @@ The class members are defined below:
 Name | Purpose
 -----|--------
 `bind` | Duplicates closure `$closure` with a specific bound object `$newthis` and class scope `$newscope`. If `$newthis` is `NULL` then the closure is to be unbound if no scope is specified, or static if a scope is specified. `$newscope` is the scope the closure is to be given (either a string containing the name of a class, or an object whose class will be used), or `"static"` to keep the current one. Returns a new `Closure` object or `FALSE` on failure. This function must not violate the invariant that closures must either be both scoped and bound or static, or otherwise both unscoped and unbound. This function must prevent binding an object to the new closure if the `$closure` is static, however the new closure may have a different scope.
-`bindTo` |  Duplicates the closure designated by the current instance with a new-bound object and class scope. This method is an instance version of bind. 
+`bindTo` |  Duplicates the closure designated by the current instance with a new-bound object and class scope. This method is an instance version of bind.
 `call` | Calls the closure (the current instance) with `$this` bound to `$newthis`, the class scope of the class of `$newthis`, and the parameters specified by `$parameters`. This function must fail if `$newthis` is NULL, or if the closure is static.
 
 When the [anonymous function creation operator](10-expressions.md#anonymous-function-creation) is evaluated,
@@ -1965,7 +1965,7 @@ if an object’s type is declared untrusted by `unserialize`’s filter argument
 Consider the following code:
 
 ```PHP
-class Point 
+class Point
 {
   private $x;
   private $y;
@@ -2066,9 +2066,9 @@ class AssertionError extends Error
 
 ####Class `DivisionByZeroError`
 
-An instance of this class is thrown when an attempt is made to divide a number by zero, e.g. when using the remainder operators ([`%`](10-expressions.md#multiplicative-operators) and [`%=`](10-expressions.md#compound-assignment)). 
-Note that this happens only for integer operations, regular float division (`/`) produces a non-fatal error instead. 
-The class type is defined, as follows: 
+An instance of this class is thrown when an attempt is made to divide a number by zero, e.g. when using the remainder operators ([`%`](10-expressions.md#multiplicative-operators) and [`%=`](10-expressions.md#compound-assignment)).
+Note that this happens only for integer operations, regular float division (`/`) produces a non-fatal error instead.
+The class type is defined, as follows:
 
 ```PHP
 class DivisionByZeroError extends Error
@@ -2098,8 +2098,8 @@ class ParseError extends Error
 
 An instance of this class is thrown when any of the following occurs:
 
-  * The type of an argument being passed to a function does not match its corresponding parameter’s declared type. 
-  * The type of the value being returned from a function does not match the function’s declared return type. 
+  * The type of an argument being passed to a function does not match its corresponding parameter’s declared type.
+  * The type of the value being returned from a function does not match the function’s declared return type.
   * In [strict mode](13-functions.md#type-check-modes), an invalid number of arguments are passed to a library function.
 
 The class is defined, as follows:

@@ -454,7 +454,7 @@ target variables. On success, it returns a copy of the source array. If the
 source array is not an array or object implementing `ArrayAccess` no
 assignments are performed and the return value is `NULL`.
 
-For *unkeyed-list-expression-list*, all elements in the source array having 
+For *unkeyed-list-expression-list*, all elements in the source array having
 keys of type `string` are ignored.
 The element having an `int` key of 0 is assigned to the first target
 variable, the element having an `int` key of 1 is assigned to the second
@@ -473,7 +473,7 @@ second `=>` pair, if any, and so on. Any other array elements are ignored.
 If there is no array element with a given key, the unassigned target variable
 is set to `NULL` and a non-fatal error is produced.
 
-The assignments must occur in this order. 
+The assignments must occur in this order.
 
 Any target variable may be a list, in which case, the corresponding
 element is expected to be an array.
@@ -819,7 +819,7 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
 * [*class-member-declarations*](14-classes.md#class-members)
 * [*expression*](#general-6)
 * [*qualified-name*](09-lexical-structure.md#names)
- 
+
 **Constraints**
 
 *qualified-name* must name a class.
@@ -1003,7 +1003,7 @@ If *postfix-expression* designates a string, *expression* must not
 designate a string.
 
 *expression* can be omitted only if *subscript-expression* is used in a
-modifiable-lvalue context and *postfix-expression* does not designate a string. 
+modifiable-lvalue context and *postfix-expression* does not designate a string.
 Exception from this is when *postfix-expression* is an empty string - then it is
 converted to an empty array.
 
@@ -1198,7 +1198,7 @@ call*. The expression designates the *called function*, and
 function. An argument can be any value. In a function call,
 *postfix-expression* is evaluated first, followed by each
 *assignment-expression* in the order left-to-right. There is
-a [sequence point](#general) after each argument is evaluated and right before the function is called. 
+a [sequence point](#general) after each argument is evaluated and right before the function is called.
 For details of the result of a function call see [`return` statement](11-statements.md#the-return-statement).
 The value of a function call is a modifiable lvalue only if the function returns a modifiable value byRef.
 
@@ -1956,7 +1956,7 @@ might not be permitted as a [variable-name](09-lexical-structure.md#names) sourc
 The operator will consume the following *variable-name-creation-expression* and *variable-name* tokens, and
 also tokens representing [subscript operator](#subscript-operator).
 
-In the absense of braces, the variable is parsed with left-to-right semantics, i.e., in example `$$o->pr` 
+In the absense of braces, the variable is parsed with left-to-right semantics, i.e., in example `$$o->pr`
 the expression is treated as `${$o}->pr`, i.e. it is parsed as "take the value of $o, consider it a variable name,
 and assuming the variable with this name is an object take the property 'pr' of it".
 
@@ -2282,10 +2282,10 @@ These operators associate left-to-right.
 **Semantics**
 
 Operator `<=>` represents comparison operator between two expressions, with the
-result being an integer less than `0` if the expression on the left is less than the expression on the right 
-(i.e. if `$a < $b` would return `TRUE`), as defined below by the semantics of the operator `<`, 
+result being an integer less than `0` if the expression on the left is less than the expression on the right
+(i.e. if `$a < $b` would return `TRUE`), as defined below by the semantics of the operator `<`,
 integer `0` if those expressions are equal (as defined by the semantics of the `==` operator)
-and integer greater than `0` otherwise. 
+and integer greater than `0` otherwise.
 
 Operator `<` represents *less-than*, operator `>` represents
 *greater-than*, operator `<=` represents *less-than-or-equal-to*, and
@@ -2295,7 +2295,7 @@ The type of the result is `bool`.
 
 Note that *greater-than* semantics is implemented as the reverse of *less-than*, i.e.
 `$a > $b` is the same as `$b < $a`. This may lead to confusing results if the operands
-are not well-ordered - such as comparing two objects not having comparison semantics, or 
+are not well-ordered - such as comparing two objects not having comparison semantics, or
 comparing arrays.
 
 The following table shows the result for comparison of different types, with the left
@@ -2323,7 +2323,7 @@ The conversions are performed according to [type conversion rules](08-conversion
 1.  If either operand has type `bool`, the other operand is converted to
     that type. The result is the logical comparison of the two operands
     after conversion, where `FALSE` is defined to be less than `TRUE`.
-2.  If one of the operands has arithmetic type, is a resource, or a numeric string, 
+2.  If one of the operands has arithmetic type, is a resource, or a numeric string,
     which can be represented as `int` or `float` without loss of precision,
     the operands are converted to the corresponding arithmetic type, with `float` taking precedence over `int`,
     and resources converting to `int`.

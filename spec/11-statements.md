@@ -1180,7 +1180,7 @@ provide alternate styles.
 The `declare` statement sets an *execution directive* for its *statement*
 body, or for the `;`-form, for the remainder of the script or until the
 statement is overridden by another *declare-statement*, whichever comes
-first. 
+first.
 
 *ticks*: as the parser is executing, certain statements are considered
 *tickable*. For every *tick-count* ticks, an event occurs, which can be
@@ -1195,11 +1195,11 @@ the encoding directive. The joint ISO and IEC standard [ISO/IEC
 8859 standard series](http://en.wikipedia.org/wiki/ISO/IEC_8859)
 specifies a number of 8-bit-[character
 encodings](http://en.wikipedia.org/wiki/Character_encoding) whose names
-can be used with this directive. 
+can be used with this directive.
 This directive applies only to the file it appears in, and does not affect the included files.
 
 *strict_types*: if set to `1`, scalar type checking for function calls will be
-checked using [strict mode](13-functions.md#type-check-modes). If set to `0`, the coercive mode (default) is used. 
+checked using [strict mode](13-functions.md#type-check-modes). If set to `0`, the coercive mode (default) is used.
 This directive applies only to the file it appears in, and does not affect the included files.
 
 **Examples**

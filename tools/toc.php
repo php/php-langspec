@@ -14,7 +14,7 @@ is distributed without any warranty.
 
 (Initially written in 2014 by Facebook, Inc., July 2014)
 
-**Table of Contents** 
+**Table of Contents**
 EOS;
 
 $files = scandir($dir);

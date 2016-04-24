@@ -52,19 +52,19 @@ derived interface inherits all the members from the base interfaces.
 **Examples**
 
 ```PHP
-interface MyCollection 
+interface MyCollection
 {
   const MAX_NUMBER_ITEMS = 1000;
   function put($item);
   function get();
 }
-class MyList implements MyCollection 
+class MyList implements MyCollection
 {
   public function put($item)  { /* implement method */ }
   public function get()   { /* implement method */ }
   ...
 }
-class MyQueue implements MyCollection 
+class MyQueue implements MyCollection
 {
   public function put($item)  { /* implement method */ }
   public function get()   { /* implement method */ }
@@ -118,7 +118,7 @@ nor by an interface that extends it.
 **Examples**
 
 ```PHP
-interface MyCollection 
+interface MyCollection
 {
   const MAX_NUMBER_ITEMS = 1000;
   function put($item);
@@ -140,7 +140,7 @@ An interface method is just like an [abstract method](14-classes.md#methods).
 **Examples**
 
 ```PHP
-interface MyCollection 
+interface MyCollection
 {
   const MAX_NUMBER_ITEMS = 1000;
   function put($item);
@@ -261,7 +261,7 @@ classes. This interface is defined, as follows:
 
 ```PHP
 interface Traversable
-{ 
+{
 }
 ```
 

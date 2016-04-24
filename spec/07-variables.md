@@ -44,7 +44,7 @@ top level of a script.
 
 See [constants](06-constants.md#general) and [class constants](14-classes.md#constants).
 
-A constant defined outside of a class or interface is a [superglobal](#general). A constant has static [storage duration](04-basic-concepts.md#storage-duration) 
+A constant defined outside of a class or interface is a [superglobal](#general). A constant has static [storage duration](04-basic-concepts.md#storage-duration)
 and is a non-modifiable lvalue.
 
 **Examples**
@@ -135,11 +135,11 @@ $colors[] = "green";                // insert a new element
 
   <i>static-variable-name-list:</i>
     <i>static-variable-declaration</i>
-	<i>static-variable-name-list</i>  ,  <i>static-variable-declaration</i> 
+	<i>static-variable-name-list</i>  ,  <i>static-variable-declaration</i>
 
   <i>static-variable-declaration:</i>
-	<i>variable-name</i> <i>function-static-initializer<sub>opt</sub></i> 
-	
+	<i>variable-name</i> <i>function-static-initializer<sub>opt</sub></i>
+
   <i>function-static-initializer:</i>
     = <i>constant-expression</i>
 </pre>
@@ -276,13 +276,13 @@ function f()
 
 These are described in [class instance properties section](14-classes.md#properties).
 They have class [scope](04-basic-concepts.md#scope) of the defining class and
-allocated [storage duration](04-basic-concepts.md#storage-duration). 
+allocated [storage duration](04-basic-concepts.md#storage-duration).
 Access to the instance properties is governed by [visibility rules](14-classes.md#general).
 
 ###Static Properties
 
 These are described in [class static properties section](14-classes.md#properties).
-They have class [scope](04-basic-concepts.md#scope) of the defining class 
+They have class [scope](04-basic-concepts.md#scope) of the defining class
 and static [storage duration](04-basic-concepts.md#storage-duration).
 Access to the static properties is governed by [visibility rules](14-classes.md#general).
 
@@ -297,8 +297,8 @@ The following global variables are available to all scripts:
 
 Variable Name |   Description
 -------------   |    -----------
-`$argc` | `int`; The number of command-line arguments passed to the script. This is at least 1. (See `$argv` below). This may not be available in non-command-line builds of the Engine. 
-`$argv` | `array`; An array of `$argc` elements containing the command-line arguments passed to the script as strings. Each element has an `int` key with the keys being numbered sequentially starting at zero through `$argc-1`. `$argv[0]` is the name of the script. It is implementation-defined as to how white space on command lines is handled, whether letter casing is preserved, which characters constitute quotes, or how `$argv[0]`'s string is formatted. As to how command-line arguments are defined, is unspecified. This may not be available in non-command-line builds of the Engine. 
+`$argc` | `int`; The number of command-line arguments passed to the script. This is at least 1. (See `$argv` below). This may not be available in non-command-line builds of the Engine.
+`$argv` | `array`; An array of `$argc` elements containing the command-line arguments passed to the script as strings. Each element has an `int` key with the keys being numbered sequentially starting at zero through `$argc-1`. `$argv[0]` is the name of the script. It is implementation-defined as to how white space on command lines is handled, whether letter casing is preserved, which characters constitute quotes, or how `$argv[0]`'s string is formatted. As to how command-line arguments are defined, is unspecified. This may not be available in non-command-line builds of the Engine.
 `$_COOKIE` |  `array`; The variables passed to the current script via HTTP Cookies.
 `$_ENV` | `array`; An array in which the environment variable names are element keys, and the environment variable value strings are element values. As to how an environment variable is defined, is unspecified.
 `$_FILES` | `array`; The items uploaded to the current script via the HTTP POST method.
@@ -307,6 +307,6 @@ Variable Name |   Description
 `$_POST` |  `array`; The variables passed to the current script via the HTTP POST method.
 `$_REQUEST` | `array`; By default contains the contents of `$_COOKIE`, `$_GET`, and `$_POST`. The exact contents may depend on the Engine settings.
 `$_SERVER` |  `array`; Server and execution environment information, such as headers, paths, and script locations. The entries in this array are taken from the Engine environment, e.g. the webserver.
-`$_SESSION` | `array`; The session variables available to the current script. This global is defined only if a [session](http://php.net/manual/en/book.session.php) is active. 
+`$_SESSION` | `array`; The session variables available to the current script. This global is defined only if a [session](http://php.net/manual/en/book.session.php) is active.
 
 All `$_*` variables above are superglobals. The exact set of the variables available may depend on the implementation, the Engine build and the environment.

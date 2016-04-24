@@ -172,7 +172,7 @@ a variable can be called as a function.
 
 Parameters typed with *scalar-type* are accepted if they pass the type check for this [scalar type](05-types.md#scalar-types),
 as [described below](#type-check-modes). Once the checks have been passed, the parameter types are always of the scalar type
-specified (or `NULL` if `NULL` is allowed). 
+specified (or `NULL` if `NULL` is allowed).
 
 If a parameter has a type declaration, `NULL` is not accepted unless it has a default value that evaluates to `NULL`.
 
@@ -191,18 +191,18 @@ not in other contexts. It has no effect at runtime, see the [`return` statement]
 
 ## Type check modes
 
-The type checking can be performed in two modes, strict and coercive (default). 
-The difference between modes exists only for scalar typed parameters (`int`, `float`, `string` and `bool`). 
+The type checking can be performed in two modes, strict and coercive (default).
+The difference between modes exists only for scalar typed parameters (`int`, `float`, `string` and `bool`).
 
 For coercive mode, if the value passed is of the same type as the parameter, it is accepted.
-If not, the [conversion](08-conversions.md#general) is attempted. If the conversion succeeds, 
+If not, the [conversion](08-conversions.md#general) is attempted. If the conversion succeeds,
 the converted value is the value assigned to the parameter. If the conversion fails, a fatal error
 is produced.
 
 For strict mode, the parameter must be exactly of the type that is declared (e.g., string `"1"` is not
 accepted as a value for parameter typed as `int`). The only exception is that `int` values will be accepted
 for `float` typed parameter and [converted to `float`](08-conversions.md#converting-to-floating-point-type).
-Note that the strict mode applies not only to user-defined but also to internal functions, 
+Note that the strict mode applies not only to user-defined but also to internal functions,
 please consult [the manual](http://php.net/manual/) for appropriate parameter types. If the types do not match,
 an exception of type `TypeError` is thrown.
 
@@ -211,9 +211,9 @@ then the value will be re-assigned with the newly converted value.
 
 The mode is set by the [`declare` statement](11-statements.md#the-declare-statement).
 
-Note that the type check mode is for the function call controleed by the caller, not the callee. 
+Note that the type check mode is for the function call controleed by the caller, not the callee.
 While the check is performed in the function being called, the caller defines whether the check is strict.
-Same function can be called with both strict and coercive mode checks from different contexts. 
+Same function can be called with both strict and coercive mode checks from different contexts.
 
 The check for the return type is always defined by the script that the function was defined in.
 

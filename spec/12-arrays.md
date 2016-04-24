@@ -27,7 +27,7 @@ is the first element inserted into the array.
 Numerous [library functions](http://php.net/manual/en/ref.array.php) are available to create and/or manipulate
 arrays.
 
-Note: Arrays in PHP are different from arrays in several other languages. 
+Note: Arrays in PHP are different from arrays in several other languages.
 Specifically, in PHP, array elements need not have the same type, the subscript index need not be an integer,
 and there is no concept of consecutive elements of the array occupying physically adjacent memory locations).
 

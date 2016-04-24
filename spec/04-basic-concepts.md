@@ -14,10 +14,10 @@ A PHP *program* consists of one or more source files, known formally as
 <i>start-tag:</i>
   &lt;?php
   &lt;?=
-  
+
 <i>end-tag:</i>
   ?&gt;
-  
+
 <i>text:</i>
   arbitrary text not containing any of <i>start-tag</i> sequences
 </pre>
@@ -90,12 +90,12 @@ In all other cases, the behavior is unspecified.
 
 ##__halt_compiler
 
-PHP script files can incorporate data which is to be ignored by the Engine when 
+PHP script files can incorporate data which is to be ignored by the Engine when
 compiling the script. An example of such files are [PHAR](http://www.php.net/phar) files.
 
 In order to make the Engine ignore all the data in the script file starting
-from certain point, `__halt_compiler();` construct is used. This construct 
-is not case-sensitive. 
+from certain point, `__halt_compiler();` construct is used. This construct
+is not case-sensitive.
 
 The `__halt_compiler();` construct can only appear on the [top level](#program-structure)
 of the script. The Engine will ignore all text following this construct.
@@ -143,21 +143,21 @@ locations:
     a scalar value such as an integer or a Boolean, or it can contain a
     handle pointing to an HStore.
 -   A *heap storage location* (HStore) is used to represent the contents
-    of a [composite value](05-types.md#types), and is created by the Engine as needed. 
+    of a [composite value](05-types.md#types), and is created by the Engine as needed.
     HStore is a container which contains VSlots.
 
-Each existing variable has its own VSlot, which at any time points to a VStore. 
-A VSlot can be changed to point to different VStores over time. 
-Multiple VSlots may simultaneously point to the same VStore. 
-When a new VSlot is created, a new VStore is also created and the VSlot is 
+Each existing variable has its own VSlot, which at any time points to a VStore.
+A VSlot can be changed to point to different VStores over time.
+Multiple VSlots may simultaneously point to the same VStore.
+When a new VSlot is created, a new VStore is also created and the VSlot is
 initially set to point to the new VStore.
 
-A VStore can be changed to contain different values over time. 
-Multiple VStores may simultaneously contain handles that point to the same HStore. 
+A VStore can be changed to contain different values over time.
+Multiple VStores may simultaneously contain handles that point to the same HStore.
 When a VStore is created it initially contains
 the value `NULL` unless specified otherwise. In addition to
 containing a value, VStores also carry a *type tag* that indicates the
-[type](05-types.md#types) of the VStore's value. 
+[type](05-types.md#types) of the VStore's value.
 A VStore's type tag can be changed over time. The tags for the values include
 types matching the Engine types, and may include other tags defined by
 the implementation, provided that these tags are not exposed to the user.
@@ -169,7 +169,7 @@ adding/removing array elements (for arrays) and to support
 adding/removing instance properties (for objects). HStores support access
 to VSlots contained in them by integer or case-sensitive string keys.
 The exact manner of how VSlots are stored and managed within
-the HStore is unspecified. 
+the HStore is unspecified.
 
 HStore may contain other information besides VSlots. For example, HStore
 for objects also contains information about object's class. The implementation
@@ -208,8 +208,8 @@ VStores, and HStores:
 
 In this picture the VSlot in the upper left corner represents the
 variable `$a`, and it points to a VStore that represents `$a`'s current
-value, which is a object. This VStore contains a handle pointing to an 
-HStore which represents the contents of an object of type Point with two 
+value, which is a object. This VStore contains a handle pointing to an
+HStore which represents the contents of an object of type Point with two
 instance properties `$x` and `$y`. The HStore contains two VSlots representing instance
 properties `$x` and `$y`, and each of these VSlots points to a distinct
 VStore which contains an integer value.
@@ -241,13 +241,13 @@ of which (except `unset`) use the & punctuator:
 
 ###Reclamation and Automatic Memory Management
 The Engine is required to manage the lifetimes of VStores and HStores
-using some form of automatic memory management. 
+using some form of automatic memory management.
 In particular, when a VStore or HStore is created, memory is allocated for it.
 
 Later, if a VStore or HStore becomes unreachable through any existing
 VSlot, they become eligible for reclamation to release the memory
 they occupy. The engine may reclaim a VStore or HStore at any time
-between when it becomes eligible for reclamation and the end of the script execution. 
+between when it becomes eligible for reclamation and the end of the script execution.
 
 Before reclaiming an HStore that represents an [object](05-types.md#object-types),
 the Engine should invoke the object's [destructor](14-classes.md#constructors) if one is defined.
@@ -354,7 +354,7 @@ not change the content of another.
 For example, the php.net implementation's model, which in some cases will set
 two variable slots to point to the same zval when performing value
 assignment, produces the same observable behavior as the abstract
-model presented here. 
+model presented here.
 
 To illustrate the semantics of value assignment further, consider `++$b`:
 
@@ -378,7 +378,7 @@ demonstrate value assignment for integer and Boolean values, the same
 mechanics apply for all scalar types.
 
 Note that as string values are scalar values, the model assumes the whole string
-representation, including string characters and its length, is contained within the VStore. 
+representation, including string characters and its length, is contained within the VStore.
 This means that the model assumes whole string data is copied when the string is assigned.
 
 ```PHP
@@ -403,12 +403,12 @@ example:
 [VSlot $b *]-->[VStore string 'gh']
 ```
 
-***Implementation Notes:*** 
+***Implementation Notes:***
 The conforming implementation may use an actual representation where string
 characters are stored outside the structure representing the VStore and
 are not copied immediately on assignment, for performance reasons.
 Applications in PHP are often written to assume that value assignment of strings
-is a rather inexpensive operation. 
+is a rather inexpensive operation.
 Thus, it is common for an implementation to use a deferred copy
 mechanism to reduce the cost of value assignment for strings. Deferred
 copy mechanisms work by not copying a string during value assignment and
@@ -426,7 +426,7 @@ To demonstrate value assignment of objects to local variables, consider
 the case in which we have a Point class that supports a two-dimensional
 Cartesian system. An instance of Point contains two instance properties,
 `$x` and `$y`, that store the x- and y-coordinates, respectively. A
-[constructor call](14-classes.md#constructors) of the form `Point(x, y)` 
+[constructor call](14-classes.md#constructors) of the form `Point(x, y)`
 used with operator [`new`](10-expressions.md#the-new-operator)
 creates a new point at the given location, and a method call
 of the form `move(newX, newY)` moves a `Point` to the new location.
@@ -536,7 +536,7 @@ semantics:
 
 In this example, byRef assignment changes `$b`'s VSlot point to the same
 VStore that `$a`'s VSlot points to. The old VStore that `$b`'s VSlot used
-to point to is now unreachable. 
+to point to is now unreachable.
 
 When multiple variables' VSlots point to the same VStore,
 the variables are said to be *aliases* of each other or they are said to
@@ -544,7 +544,7 @@ have an *alias relationship*. In the example above, after the byRef
 assignment executes the variables `$a` and `$b` will be aliases of each
 other.
 
-Note that even though in the assignment `$b =& $a` the variable `$b` is on the left and `$a` is on the right, 
+Note that even though in the assignment `$b =& $a` the variable `$b` is on the left and `$a` is on the right,
 after becoming aliases they are absolutely symmetrical and equal in their relation to the VStore.
 
 When we change the value of `$b` using `++$b` the result is:
@@ -844,7 +844,7 @@ Here is the second possible outcome:
                                    V
                     [HStore Array [VSlot 0 *] [VSlot 1 *]]
                                            |           |
-                                           V           V 
+                                           V           V
                                   [VStore int 123]  [VStore string 'hi']
 ```
 
@@ -1100,7 +1100,7 @@ mechanisms.
 The sections above thus far have described the mechanics of value assignment
 to a local variable. The assignment to a modifiable lvalue that is not a variable, such as array element or
 object property, works like the local variable assignment, except that the VSlot which represented
-a variable is replaced by a VSlot that represents the target lvalue. 
+a variable is replaced by a VSlot that represents the target lvalue.
 If necessary, such VSlot is created.
 
 For example, assuming `Point` definition as in previous sections and further assuming all
@@ -1159,7 +1159,7 @@ Where the third VSlot with index 2 was created by the assignment.
 Note that any array element and instance property, including a designation of non-existing ones,
 is considered a modifiable lvalue, and the VSlot will be created by the engine and added
 to the appropriate HStore automatically. Static class properties are considered modifiable lvalues too,
-though new ones would not be created automatically. 
+though new ones would not be created automatically.
 
 ####General ByRef Assignment
 The sections above thus far have described the mechanics of byref assignment
@@ -1187,7 +1187,7 @@ Will result in:
 ```
 
 ###Argument Passing
-Argument passing is defined in terms of [simple assignment](#assignment) or [byRef assignment](#byref-assignment-for-scalar-types-with-local-variables), depending on how the parameter is declared. 
+Argument passing is defined in terms of [simple assignment](#assignment) or [byRef assignment](#byref-assignment-for-scalar-types-with-local-variables), depending on how the parameter is declared.
 That is, passing an argument to a function having a corresponding
 parameter is like assigning that argument to that parameter. The
 function call situations involving missing arguments or
@@ -1195,7 +1195,7 @@ undefined variable arguments are discussed in section describing
 [the function call operator](10-expressions.md#function-call-operator).
 
 ###Value Returning
-Returning a value from a function is defined in terms of [simple assignment](#assignment) or [byRef assignment](#byref-assignment-for-scalar-types-with-local-variables), depending on how the function is declared. 
+Returning a value from a function is defined in terms of [simple assignment](#assignment) or [byRef assignment](#byref-assignment-for-scalar-types-with-local-variables), depending on how the function is declared.
 That is, returning a value from a function to its
 caller is like assigning that value to the user of the caller's return
 value. The function-return situations involving a missing return value
@@ -1221,18 +1221,18 @@ counter();
 ```
 
 This example prints `1 2 4 `, since the first assignment does not produce
-byRef semantics even though the function return is declared byRef. 
+byRef semantics even though the function return is declared byRef.
 If the function is not declared to return byRef, its return never produces
 byRef semantics, regardles of how it is assigned.
 
 Passing function's return to another function is considered the same as assigning
 the value to the corresponding function's parameter, with byRef parameters
-treated as byRef assignments. 
+treated as byRef assignments.
 
 ###Cloning objects
 When an object instance is allocated, operator [`new`](10-expressions.md#the-new-operator) returns a handle
 that points to that object. As described [above](#value-assignment-of-object-and-resource-types-to-a-local-variable),
-value assignment of a handle to an object does not copy the object HStore itself. Instead, it creates a copy of the handle. 
+value assignment of a handle to an object does not copy the object HStore itself. Instead, it creates a copy of the handle.
 The copying of the HStore itself is performed via [operator `clone`](10-expressions.md#the-clone-operator).
 
 To demonstrate how the `clone` operator works, consider the case in which
@@ -1273,7 +1273,7 @@ objects held in `$a`'s instance properties; hence the object copying
 performed by the clone operator is often referred to as a *shallow
 copy*. If a *deep copy* of an object is desired, the programmer must
 achieve this manually by using the [method `__clone`](14-classes.md#method-__clone) which
-is called after the initial shallow copy has been performed. 
+is called after the initial shallow copy has been performed.
 
 ##Scope
 
@@ -1283,11 +1283,11 @@ visible only within a part of the program called that name's *scope*.
 
 There are a number of scope types that exist in PHP:
 
--   Variable scope - the scope which defined what unqualified variables (like `$foo`) are referring to. 
-    Variables defined in one variable scope are not visible in another variable scope.     
+-   Variable scope - the scope which defined what unqualified variables (like `$foo`) are referring to.
+    Variables defined in one variable scope are not visible in another variable scope.
 -   Class scope - the scope that defines visibility of the methods and properties, and resolution of keywords like
     `self`, `parent`, etc. Class scope encompasses [the body of that class](14-classes.md#class-declarations) and any classes derived
-    from it. 
+    from it.
 -   Namespace scope - the scope that defines what unqualified and not-fully-qualified class and function names (e.g. `foo()` or `new Bar()`)
     refer to. Namespace scoping rules are defined in the [Namespaces chapter](18-namespaces.md#namespaces).
 
@@ -1299,20 +1299,20 @@ For variable scopes, the following scopes can be distinguished:
     initialization through to the end of that [function's body](13-functions.md#function-definitions).
 
 [Start-up scripts](#program-start-up) have the global variable scope.
-[Included](10-expressions.md#script-inclusion-operators) scripts have the variable scope matching the scope in 
+[Included](10-expressions.md#script-inclusion-operators) scripts have the variable scope matching the scope in
 the place where the inclusion operator was executed.
 
-A variable declared or first initialized inside a function, has function scope; 
-otherwise, the variable has the same variable scope as the enclosing script. 
+A variable declared or first initialized inside a function, has function scope;
+otherwise, the variable has the same variable scope as the enclosing script.
 
 [Global variables](07-variables.md#global-variables) can be brought into the current scope by using `global` keyword.
-[Superglobals](07-variables.md#general) exist in the global variable scope, however they can be also accessed in any scope; 
+[Superglobals](07-variables.md#general) exist in the global variable scope, however they can be also accessed in any scope;
 they never need explicit declaration.
 
 Each function has its own function scope. An [anonymous function](13-functions.md#anonymous-functions)
 has its own scope separate from that of any function inside which that anonymous function is defined.
 
-The variable scope of a parameter is the body of the function in which the parameter is declared. 
+The variable scope of a parameter is the body of the function in which the parameter is declared.
 
 The scope of a []*named-label*](11-statements.md#labeled-statements) is the body of the function in
 which the label is defined.
@@ -1350,7 +1350,7 @@ following kinds of variables have static storage duration: [constants](07-variab
 and class and interface [constants](07-variables.md#class-and-interface-constants).
 
 A variable having *allocated storage duration* comes into being based on
-program logic by use of the [new operator](10-expressions.md#the-new-operator) or a factory function. 
+program logic by use of the [new operator](10-expressions.md#the-new-operator) or a factory function.
 Ordinarily, once such storage is no longer needed, it is reclaimed automatically by the
 Engine via its garbage-collection process and the use of
 [destructors](14-classes.md#destructors). The following kinds of variables have allocated

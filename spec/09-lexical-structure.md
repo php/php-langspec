@@ -443,7 +443,7 @@ On an implementation using 32-bit int representation
 **Syntax**
 
 <pre>
-  <i>ﬂoating-literal::</i>
+  <i>floating-literal::</i>
     <i>fractional-literal   exponent-part<sub>opt</sub></i>
     <i>digit-sequence   exponent-part</i>
 

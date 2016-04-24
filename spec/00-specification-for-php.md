@@ -250,7 +250,7 @@ is distributed without any warranty.
 - [Traits](16-traits.md#traits)
   - [General](16-traits.md#general)
   - [Trait Declarations](16-traits.md#trait-declarations)
-  - [Trait Members](16-traits.md#trait-members)
+  - [Trait Uses](16-traits.md#trait-uses)
 - [Exception Handling](17-exception-handling.md#exception-handling)
   - [General](17-exception-handling.md#general)
   - [Class `Exception`](17-exception-handling.md#class-exception)

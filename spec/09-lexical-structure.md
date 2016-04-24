@@ -113,7 +113,7 @@ Two forms of comments are supported: *delimited comments* and
   <i>comment::</i>
     <i>single-line-comment</i>
     <i>delimited-comment</i>
-    
+
   <i>single-line-comment::</i>
     //   <i>input-characters<sub>opt</sub></i>
     #    <i>input-characters<sub>opt</sub></i>
@@ -124,7 +124,7 @@ Two forms of comments are supported: *delimited comments* and
 
   <i>input-character::</i>
     Any source character except <i>new-line</i>
-    
+
   <i>new-line::</i>
     Carriage-return character (U+000D)
     Line-feed character (U+000A)
@@ -217,16 +217,16 @@ There are several kinds of source *tokens*:
   <i>namespace-name::</i>
     <i>name</i>
     <i>namespace-name</i>   \   <i>name</i>
-    
+
   <i>namespace-name-as-a-prefix::</i>
     \
     \<sub>opt</sub>   <i>namespace-name</i>   \
     namespace   \
     namespace   \   <i>namespace-name</i>   \
-    
+
   <i>qualified-name::</i>
     <i>namespace-name-as-a-prefix<sub>opt</sub>   name</i>
-    
+
   <i>name::</i>
     <i>name-nondigit</i>
     <i>name   name-nondigit</i>
@@ -278,7 +278,7 @@ With the exception of `class`, all [keywords](09-lexical-structures#keywords) ca
 Variable names and function names (when used in a function-call context)
 need not be defined as source tokens; they can also be created at
 runtime using the [variable name-creation operator](10-expressions.md#variable-name-creation-operator). (For
-example, given `$a = "Total"; $b = 3; $c = $b + 5;`, `${$a.$b.$c} = TRUE;` 
+example, given `$a = "Total"; $b = 3; $c = $b + 5;`, `${$a.$b.$c} = TRUE;`
 is equivalent to `$Total38 = TRUE;`, and `${$a.$b.$c}()` is
 equivalent to `Total38()`).
 
@@ -305,8 +305,8 @@ cannot be used as a name.
 
 <pre>
   <i>keyword:: one of</i>
-    abstract   and   array   as   break   callable   case   catch   class   clone   
-    const   continue   declare   default   die   do   echo   else   elseif   empty   
+    abstract   and   array   as   break   callable   case   catch   class   clone
+    const   continue   declare   default   die   do   echo   else   elseif   empty
     enddeclare   endfor   endforeach   endif   endswitch   endwhile   eval   exit
     extends   final   finally   for   foreach   function   global
     goto   if   implements   include   include_once   instanceof
@@ -382,7 +382,7 @@ The source code representation of a value is called a *literal*.
 
     <i>nonzero-digit:: one of</i>
       1  2  3  4  5  6  7  8  9
-      
+
     <i>octal-digit:: one of</i>
       0  1  2  3  4  5  6  7
 
@@ -476,7 +476,7 @@ The value of a floating-point literal must be representable by its type.
 The type of a *floating-literal* is `float`.
 
 The constants [`INF`](06-constants.md#core-predefined-constants) and
-[`NAN`](06-constants.md#core-predefined-constants) provide access to the 
+[`NAN`](06-constants.md#core-predefined-constants) provide access to the
 floating-point values for infinity and Not-a-Number, respectively.
 
 A floating point literal is always a constant expression.
@@ -639,18 +639,18 @@ Within a double-quoted string literal a dollar ($) character not
 escaped by a backslash (\\) is handled using a variable substitution rules
 described below.
 
-The `\u{xxxxxx}` escape sequence produces the UTF-8 encoding of the Unicode 
+The `\u{xxxxxx}` escape sequence produces the UTF-8 encoding of the Unicode
 codepoint with the hexadecimal number specified within the curly braces.
 Implementations MUST NOT allow Unicode codepoints beyond U+10FFFF as this is
 outside the range UTF-8 can encode (see
-[RFC 3629](http://tools.ietf.org/html/rfc3629#section-3)). If a codepoint 
+[RFC 3629](http://tools.ietf.org/html/rfc3629#section-3)). If a codepoint
 larger than U+10FFFF is specified, implementations MUST error.
 Implementations MUST pass through `\u` verbatim and not interpret it as an
 escape sequence if it is not followed by an opening `{`, but if it is,
 implementations MUST produce an error if there is no terminating `}` or the
 contents are not a valid codepoint. Implementations MUST support leading zeroes,
 but MUST NOT support leading or trailing whitespace for the codepoint between
-the opening and terminating braces. Implementations MUST allow Unicode 
+the opening and terminating braces. Implementations MUST allow Unicode
 codepoints that are not Unicode scalar values, such as high and low surrogates.
 
 A Unicode escape sequence cannot be created by variable substitution. For example, given `$v = "41"`,
@@ -664,7 +664,7 @@ The variable substitution accepts the following syntax:
 <pre>
     <i>string-variable::</i>
         <i>variable-name</i>   <i>offset-or-property<sub>opt</sub></i>
-        ${   <i>expression</i>   }  
+        ${   <i>expression</i>   }
 
     <i>offset-or-property::</i>
         <i>offset-in-string</i>
@@ -674,10 +674,10 @@ The variable substitution accepts the following syntax:
         [   <i>name</i>   ]
         [   <i>variable-name</i>   ]
         [   <i>integer-literal</i>   ]
-        
+
     <i>property-in-string::</i>
         ->   <i>name</i>
-        
+
 </pre>
 
 **Defined elsewhere**
@@ -685,19 +685,19 @@ The variable substitution accepts the following syntax:
 * [*variable-name*](#names)
 * [*name*](#names)
 * [*integer-literal*](#integer-literals)
-* [*expression*](10-expressions.md#general-6) 
+* [*expression*](10-expressions.md#general-6)
 
 *expression* works the same way as in [variable name creation operator](10-expressions.md#variable-name-creation-operator).
 
 After the variable defined by the syntax above is evaluated, its value is converted
 to string according to the rules of [string conversion](08-conversions.md#converting-to-string-type)
-and is substituted into the string in place of the variable substitution expression. 
+and is substituted into the string in place of the variable substitution expression.
 
 Subscript or property access defined by *offset-in-string* and *property-in-string*
 is resolved according to the rules of the [subscript operator](10-expressions.md#subscript-operator)
-and [member selection operator](10-expressions.md#member-selection-operator) respectively. 
-The exception is that *name* inside *offset-in-string* is interpreted as a string literal even if it is not 
-quoted. 
+and [member selection operator](10-expressions.md#member-selection-operator) respectively.
+The exception is that *name* inside *offset-in-string* is interpreted as a string literal even if it is not
+quoted.
 
 If the character sequence following the `$` does not parse as *name* and does not start with `{`, the `$` character
 is instead interpreted verbatim and no variable substitution is performed.
@@ -710,9 +710,9 @@ begin a variable name. If this is not the case, braces are treated
 verbatim. If the opening brace (`{`) is escaped it is not interpreted as a start of
 the embedded expression and instead is interpreted verbatim.
 
-The value of the expression is converted to string according to the rules of 
+The value of the expression is converted to string according to the rules of
 [string conversion](08-conversions.md#converting-to-string-type) and is substituted into the string
-in place of the substitution expression. 
+in place of the substitution expression.
 
 A double-quoted string literal is a constant expression if it does not
 contain any variable substitution.
@@ -830,7 +830,7 @@ echo ">$s<";
 
 The start and end identifier names must be the same.
 No white space is permitted between the start identifier name and its
-enclosing single quotes (`'`). See also [heredoc string literal](#heredoc-string-literals). 
+enclosing single quotes (`'`). See also [heredoc string literal](#heredoc-string-literals).
 
 **Semantics**
 

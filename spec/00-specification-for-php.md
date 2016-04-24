@@ -9,7 +9,7 @@ is distributed without any warranty.
 
 (Initially written in 2014 by Facebook, Inc., July 2014)
 
-**Table of Contents** 
+**Table of Contents**
 - [Introduction](01-introduction.md#introduction)
 - [Conformance](02-conformance.md#conformance)
 - [Terms and Definitions](03-terms-and-definitions.md#terms-and-definitions)

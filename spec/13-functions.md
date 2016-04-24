@@ -78,14 +78,14 @@ A function is called via the function-call operator [`()`](10-expressions.md#fun
   <i>type-declaration:</i>
     array
     callable
-	<i>scalar-type</i>
+    <i>scalar-type</i>
     <i>qualified-name</i>
 
   <i>scalar-type:</i>
-	bool
-	float
+    bool
+    float
     int
-	string
+    string
 
   <i>default-argument-specifier:</i>
     =  <i>constant-expression</i>

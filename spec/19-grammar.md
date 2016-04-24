@@ -111,14 +111,14 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <pre>
   <i>keyword:: one of</i>
-    abstract   and   as   break   callable   case   catch   class   clone
-    const   continue   declare   default   do   echo   else   elseif
-    enddeclare   endfor   endforeach   endif   endswitch   endwhile
+    abstract   and   array   as   break   callable   case   catch   class   clone
+    const   continue   declare   default   die   do   echo   else   elseif   empty
+    enddeclare   endfor   endforeach   endif   endswitch   endwhile   eval   exit
     extends   final   finally   for   foreach   function   global
     goto   if   implements   include   include_once   instanceof
-    insteadof   interface   list   namespace   new   or   print   private
+    insteadof   interface   isset   list   namespace   new   or   print   private
     protected   public   require   require_once   return static   switch
-    throw   trait   try   use   var   while   xor   yield
+    throw   trait   try   unset   use   var   while   xor   yield   yield from
 </pre>
 
 ###Literals
@@ -243,6 +243,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>dq-simple-escape-sequence</i>
     <i>dq-octal-escape-sequence</i>
     <i>dq-hexadecimal-escape-sequence</i>
+    <i>dq-unicode-escape-sequence</i>
 
   <i>dq-simple-escape-sequence:: one of</i>
     \"   \\   \$   \e   \f   \n   \r   \t   \v
@@ -255,6 +256,13 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>dq-hexadecimal-escape-sequence::</i>
     \x  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
     \X  <i>hexadecimal-digit   hexadecimal-digit<sub>opt</sub></i>
+
+  <i>dq-unicode-escape-sequence::</i>
+    \u{  codepoint-digits  }
+
+  <i>codepoint-digits::</i>
+     <i>hexadecimal-digit</i>
+     <i>hexadecimal-digit   codepoint-digits</i>
 
     <i>string-variable::</i>
         <i>variable-name</i>   <i>offset-or-property<sub>opt</sub></i>
@@ -295,6 +303,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>hd-simple-escape-sequence</i>
     <i>dq-octal-escape-sequence</i>
     <i>dq-hexadecimal-escape-sequence</i>
+    <i>dq-unicode-escape-sequence</i>
 
   <i>hd-simple-escape-sequence:: one of</i>
     \\   \$   \e   \f   \n   \r   \t   \v
@@ -310,7 +319,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     [   ]    (   )   {    }   .   ->   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;    &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
     &   &&   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    &gt;&gt;=   &=   ^=   |=   =&   ,
+    &gt;&gt;=   &=   ^=   |=   =&   ,   ??   &lt;=&gt;
 </pre>
 
 ##Syntactic Grammar
@@ -442,7 +451,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     unset  (  <i>expression-list-one-or-more</i>  )
 
   <i>anonymous-function-creation-expression:</i>
-  static<sub>opt</sub> function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  )  <i>anonymous-function-use-clause<sub>opt</sub></i>
+  static<sub>opt</sub> function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  ) <i>return-type<sub>opt</sub></i> <i>anonymous-function-use-clause<sub>opt</sub></i>
       <i>compound-statement</i>
 
   <i>anonymous-function-use-clause:</i>
@@ -476,6 +485,11 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>object-creation-expression:</i>
     new  <i>class-type-designator</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
     new  <i>class-type-designator</i>
+    new  class  (  <i>argument-expression-list<sub>opt</sub></i>  )
+        <i>class-base-clause<sub>opt</sub></i>   <i>class-interface-clause<sub>opt</sub></i>
+        {   <iclass-member-declarations<sub>opt</sub></i>   }
+    new  class <i>class-base-clause<sub>opt</sub></i>  <i>class-interface-clause<sub>opt</sub></i>
+        {   <i>class-member-declarations<sub>opt</sub></i>   }
 
   <i>class-type-designator:</i>
     <i>qualified-name</i>
@@ -1013,7 +1027,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>function-definition-header   compound-statement</i>
 
   <i>function-definition-header:</i>
-    function  &<sub>opt</sub>   <i>name</i> <i>return-type<sub>opt</sub></i> (  <i>parameter-declaration-list<sub>opt</sub></i>  )
+    function  &<i><sub>opt</sub></i>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>return-type<sub>opt</sub></i>
 
   <i>parameter-declaration-list:</i>
     <i>simple-parameter-declaration-list</i>
@@ -1028,10 +1042,10 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>variadic-parameter</i>
 
   <i>parameter-declaration:</i>
-    <i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>  <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+    <i>type-declaration<sub>opt</sub></i>  &<i><sub>opt</sub></i>  <i>variable-name   default-argument-specifier<sub>opt</sub></i>
 
   <i>variadic-parameter:</i>
-	<i>type-declaration<sub>opt</sub></i>  &<sub>opt</sub>  ...  <i>variable-name</i>
+	<i>type-declaration<sub>opt</sub></i>  &<i><sub>opt</sub></i>  ...  <i>variable-name</i>
 
   <i>return-type:</i>
     : <i>type-declaration</i>
@@ -1056,7 +1070,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <pre>
   <i>class-declaration:</i>
-    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   <i>trait-use-clauses<sub>opt</sub>   class-member-declarations<sub>opt</sub></i> }
+    <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   class-member-declarations<sub>opt</sub></i> }
 
   <i>class-modifier:</i>
     abstract
@@ -1079,6 +1093,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
      <i>method-declaration</i>
      <i>constructor-declaration</i>
      <i>destructor-declaration</i>
+     <i>trait-use-clause</i>
 
   <i>const-declaration:</i>
     const  <i>name</i>  =  <i>constant-expression</i>   ;
@@ -1147,7 +1162,18 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <pre>
   <i>trait-declaration:</i>
-    trait   <i>name</i>   {   <i>trait-use-clauses<sub>opt</sub>   trait-member-declarations<sub>opt</sub></i>   }
+    trait   <i>name</i>   {   trait-member-declarations<sub>opt</sub></i>   }
+
+  <i>trait-member-declarations:</i>
+    <i>trait-member-declaration</i>
+    <i>trait-member-declarations   trait-member-declaration</i>
+
+  <i>trait-member-declaration:</i>
+    <i>property-declaration</i>
+    <i>method-declaration</i>
+    <i>constructor-declaration</i>
+    <i>destructor-declaration</i>
+    <i>trait-use-clauses</i>
 
   <i>trait-use-clauses:</i>
     <i>trait-use-clause</i>
@@ -1178,17 +1204,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>trait-alias-as-clause:</i>
     <i>name</i>   as   <i>visibility-modifier<sub>opt</sub>   name</i>
     <i>name</i>   as   <i>visibility-modifier   name<sub>opt</sub></i>
-
-  <i>trait-member-declarations:</i>
-    <i>trait-member-declaration</i>
-    <i>trait-member-declarations   trait-member-declaration</i>
-
-  <i>trait-member-declaration:</i>
-    <i>property-declaration</i>
-    <i>method-declaration</i>
-    <i>constructor-declaration</i>
-    <i>destructor-declaration</i>
-
 </pre>
 
 ###Namespaces
@@ -1200,6 +1215,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>namespace-use-declaration:</i>
     use  <i>namespace-function-or-const<sub>opt</sub></i> <i>namespace-use-clauses</i>  ;
+    use  <i>namespace-function-or-const</i>  \<i><sub>opt</sub>  namespace-name</i>  \
+       {  <i>namespace-use-group-clauses-1</i>  }  ;
+    use  \<i><sub>opt</sub>   namespace-name</i>   \   {  <i>namespace-use-group-clauses-2</i>  }  ;
 
   <i>namespace-use-clauses:</i>
     <i>namespace-use-clause</i>
@@ -1214,4 +1232,18 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>namespace-function-or-const:</i>
     function
     const
+
+  <i>namespace-use-group-clauses-1:</i>
+    <i>namespace-use-group-clause-1</i>
+    <i>namespace-use-group-clauses-1</i>  ,  <i>namespace-use-group-clause-1</i>
+
+  <i>namespace-use-group-clause-1:</i>
+    <i>namespace-name</i>  <i>namespace-aliasing-clause<sub>opt</sub></i>
+
+  <i>namespace-use-group-clauses-2:</i>
+    <i>namespace-use-group-clause-2</i>
+    <i>namespace-use-group-clauses-2</i>  ,  <i>namespace-use-group-clause-2</i>
+
+  <i>namespace-use-group-clause-2:</i>
+    <i>namespace-function-or-const<sub>opt</sub></i>  <i>namespace-name</i>  <i>namespace-aliasing-clause<sub>opt</sub></i>
 </pre>

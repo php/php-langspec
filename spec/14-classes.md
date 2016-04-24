@@ -499,7 +499,7 @@ class Point
   <i>method-modifier:</i>
     <i>visibility-modifier</i>
     <i>static-modifier</i>
-	<i>class-modifier</i>
+    <i>class-modifier</i>
 </pre>
 
 **Defined elsewhere**

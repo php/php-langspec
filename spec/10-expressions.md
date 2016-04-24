@@ -2268,10 +2268,10 @@ These operators associate left-to-right.
 <pre>
   <i>relational-expression:</i>
     <i>shift-expression</i>
-    <i>relational-expression</i>  <   <i>shift-expression</i>
-    <i>relational-expression</i>  >   <i>shift-expression</i>
-    <i>relational-expression</i>  <=  <i>shift-expression</i>
-    <i>relational-expression</i>  >=  <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;   <i>shift-expression</i>
+    <i>relational-expression</i>  &gt;   <i>shift-expression</i>
+    <i>relational-expression</i>  &lt;=  <i>shift-expression</i>
+    <i>relational-expression</i>  &gt;=  <i>shift-expression</i>
     <i>relational-expression</i>  &lt;=&gt; <i>shift-expression</i>
 </pre>
 

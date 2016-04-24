@@ -199,12 +199,12 @@ can only directly contain VSlots.
 Here is an example demonstrating one possible arrangement of VSlots,
 VStores, and HStores:
 
-<pre>
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
                                                            |            |
                                                            V            V
                                                       [VStore int 1]  [VStore int 3]
-</pre>
+```
 
 In this picture the VSlot in the upper left corner represents the
 variable `$a`, and it points to a VStore that represents `$a`'s current
@@ -307,11 +307,12 @@ $a = 123;
 
 $b = false;
 ```
-<pre>
+
+```
 [VSlot $a *]-->[VStore int 123]
 
 [VSlot $b *]-->[VStore bool false]
-</pre>
+```
 
 Variable `$a` comes into existence and is represented by a newly created
 VSlot pointing to a newly created VStore. Then the integer value 123 is
@@ -321,11 +322,11 @@ to the VStore.
 
 Next consider the value assignment `$b = $a`:
 
-<pre>
+```
 [VSlot $a *]-->[VStore int 123]
 
 [VSlot $b *]-->[VStore int 123]
-</pre>
+```
 
 The integer value 123 is read from `$a`'s VStore and is written into
 `$b`'s VStore, overwriting its previous contents. As we can see, the two
@@ -357,19 +358,19 @@ model presented here.
 
 To illustrate the semantics of value assignment further, consider `++$b`:
 
-<pre>
+```
 [VSlot $a *]-->[VStore int 123]
 
 [VSlot $b *]-->[VStore int 124 (123 was overwritten)]
-</pre>
+```
 
 Now consider `$a = 99`:
 
-<pre>
+```
 [VSlot $a *]-->[VStore int 99 (123 was overwritten)]
 
 [VSlot $b *]-->[VStore int 124]
-</pre>
+```
 
 In both of these examples, one variable's value is changed without
 affecting the other variable's value. While the above examples only
@@ -386,21 +387,21 @@ $a = 'gg';
 $b = $a;
 ```
 
-<pre>
+```
 [VSlot $a *]-->[VStore string 'gg']
 
 [VSlot $b *]-->[VStore string 'gg']
-</pre>
+```
 
 `$a`'s string value and `$b`'s string values are distinct from each other,
 and mutating `$a`'s string will not affect `$b`. Consider `++$b`, for
 example:
 
-<pre>
+```
 [VSlot $a *]-->[VStore string 'gg']
 
 [VSlot $b *]-->[VStore string 'gh']
-</pre>
+```
 
 ***Implementation Notes:*** 
 The conforming implementation may use an actual representation where string
@@ -433,12 +434,12 @@ of the form `move(newX, newY)` moves a `Point` to the new location.
 With the `Point` class, let us consider the value assignment `$a = new
 Point(1, 3)`:
 
-<pre>
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
                                                            |            |
                                                            V            V
                                                       [VStore int 1]  [VStore int 3]
-</pre>
+```
 
 Variable `$a` is given its own VSlot, which points to a VStore that
 contains a handle pointing to an HStore allocated by [`new`](10-expressions.md#the-new-operator) and
@@ -446,12 +447,12 @@ that is initialized by `Point`'s constructor.
 
 Now consider the value assignment `$b = $a`:
 
-<pre>
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
                                      ^                     |            |
                                      |                     V            V
 [VSlot $b *]-->[VStore object *]-----+             [VStore int 1] [VStore int 3]
-</pre>
+```
 
 `$b`'s VStore contains a handle that points to the same object as does
 `$a`'s VStore's handle. Note that the Point object itself was not copied,
@@ -460,20 +461,20 @@ and note that `$a`'s and `$b`'s VSlots point to distinct VStores.
 Let's modify the value of the Point whose handle is stored in `$b` using
 `$b->move(4, 6)`:
 
-<pre>
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
                                      ^                     |            |
                                      |                     V            V
 [VSlot $b *]-->[VStore object *]-----+            [VStore int 4] [VStore int 6]
                                        (1 was overwritten) (3 was overwritten)
-</pre>
+```
 
 As we can see, changing `$b`'s Point changes `$a`'s as well.
 
 Now, let's make `$a` point to a different object using `$a = new Point(2,
 1)`:
 
-<pre>
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
                                                            |            |
 [VSlot $b *]-->[VStore object *]-----+                     V            V
@@ -483,14 +484,15 @@ Now, let's make `$a` point to a different object using `$a = new Point(2,
                                                            |            |
                                                            V            V
                                                    [VStore int 4] [VStore int 6]
-</pre>
+```
 
 Before `$a` can take on the handle of the new `Point`, its handle to the
 old `Point` must be removed, which leaves the handles of `$a` and `$b`
 pointing to different Points.
 
 We can remove all these handles using `$a = NULL` and `$b = NULL`:
-<pre>
+
+```
 [VSlot $a *]-->[VStore null]    [HStore Point [VSlot $x *] [VSlot $y *] (dead)]
                                                         |            |
 [VSlot $b *]-->[VStore null]    [VStore int 2 (dead)]&lt;--+            V
@@ -500,7 +502,7 @@ We can remove all these handles using `$a = NULL` and `$b = NULL`:
                                                         |            |
                                 [VStore int 4 (dead)]&lt;--+            V
                                                         [VStore int 6 (dead)]
-</pre>
+```
 
 By assigning null to `$a`, we remove the only handle to `Point(2,1)` which makes
 that object eligible for destruction. A similar thing happens with `$b`,
@@ -516,20 +518,21 @@ assignment of all resource types.
 Let's begin with the same value [assignment](10-expressions.md#simple-assignment) as in the previous
 section, `$a = 123` and `$b = false`:
 
-<pre>
+```
 [VSlot $a *]-->[VStore int 123]
 
 [VSlot $b *]-->[VStore bool false]
-</pre>
+```
 
 Now consider the [byRef assignment](10-expressions.md#byref-assignment) `$b =& $a`, which has byRef
 semantics:
-<pre>
+
+```
 [VSlot $a *]-->[VStore int 123]
                  ^
                  |
 [VSlot $b *]-----+     [VStore bool false (dead)]
-</pre>
+```
 
 In this example, byRef assignment changes `$b`'s VSlot point to the same
 VStore that `$a`'s VSlot points to. The old VStore that `$b`'s VSlot used
@@ -545,12 +548,13 @@ Note that even though in the assignment `$b =& $a` the variable `$b` is on the l
 after becoming aliases they are absolutely symmetrical and equal in their relation to the VStore.
 
 When we change the value of `$b` using `++$b` the result is:
-<pre>
+
+```
 [VSlot $a *]-->[VStore int 124 (123 was overwritten)]
                  ^
                  |
 [VSlot $b *]-----+
-</pre>
+```
 
 `$b`'s value, which is stored in the VStore that `$b`'s VSlot points, is
 changed to 124. And as that VStore is also aliased by `$a`'s VSlot, the
@@ -558,22 +562,24 @@ value of `$a` is also 124. Indeed, any variable's VSlot that is aliased
 to that VStore will have the value 124.
 
 Now consider the value assignment `$a = 99`:
-<pre>
+
+```
 [VSlot $a *]-->[VStore int 99 (124 was overwritten)]
                  ^
                  |
 [VSlot $b *]-----+
-</pre>
+```
 
 The alias relationship between `$a` and `$b` can be broken explicitly by
 using `unset` on variable `$a` or variable `$b`. For example, consider
 `unset($a)`:
-<pre>
+
+```
 [VSlot $a (dead)]      [VStore int 99]
                          ^
                          |
 [VSlot $b *]-------------+
-</pre>
+```
 
 Unsetting `$a` causes variable `$a` to be destroyed and its link
 to the VStore to be removed, leaving `$b`'s VSlot as the only
@@ -581,25 +587,27 @@ pointer remaining to the VStore.
 
 Other operations can also break an alias relationship between two or
 more variables. For example, `$a = 123` and `$b =& $a`, and `$c = 'hi'`:
-<pre>
+
+```
 [VSlot $a *]-->[VStore int 123]
                  ^
                  |
 [VSlot $b *]-----+
 
 [VSlot $c *]-->[VStore string 'hi']
-</pre>
+```
 
 After the byRef assignment, `$a` and `$b` now have an alias relationship.
 Next, let's observe what happens for `$b =& $c`:
-<pre>
+
+```
 [VSlot $a *]-->[VStore int 123]
 
 [VSlot $b *]-----+
                  |
                  V
 [VSlot $c *]-->[VStore string 'hi']
-</pre>
+```
 
 As we can see, the byRef assignment above breaks the alias relationship
 between `$a` and `$b`, and now `$b` and `$c` are aliases of each other. When
@@ -615,14 +623,15 @@ $b =& $a;
 $c =& $b;
 $a = 123;
 ```
-<pre>
+
+```
 [VSlot $a *]-->[VStore int 123]
                  ^   ^
                  |   |
 [VSlot $b *]-----+   |
                      |
 [VSlot $c *]---------+
-</pre>
+```
 
 Like value assignment, byRef assignment provides a means for the
 programmer to create variables. If the local variables that appear on
@@ -641,38 +650,43 @@ describe a few examples to clarify the semantics of byRef assignment.
 Recall the [example using the `Point` class](#value-assignment-of-object-and-resource-types-to-a-local-variable):
 
 `$a = new Point(1, 3);`
-<pre>
+
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
                                                            |            |
                                                            V            V
                                                   [VStore int 1]  [VStore int 3]
-</pre>
+```
 
 Now consider the [byRef assignment](10-expressions.md#byref-assignment) `$b =& $a`, which has byRef
 semantics:
-<pre>
+
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *][VSlot $y *]]
                  ^                                         |           |
                  |                                         V           V
 [VSlot $b *]-----+                                  [VStore int 1] [VStore int 3]
-</pre>
+```
+
 `$a` and `$b` now aliases of each other. Note that byRef assignment
 produces a different result than `$b = $a` where `$a` and `$b` would point
 to distinct VStores pointing to the same HStore.
 
 Let's modify the value of the `Point` aliased by `$a` using `$a->move(4,
 6)`:
-<pre>
+
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] VSlot $y *]]
                  ^                                         |           |
                  |                                         V           V
 [VSlot $b *]-----+                              [VStore int 4] [VStore int 6]
                                         (1 was overwritten) (3 was overwritten)
-</pre>
+```
 
 Now, let's change `$a` itself using the value assignment `$a = new
 Point(2, 1)`:
-<pre>
+
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *][VSlot $y *]]
                  ^                                         |           |
                  |                                         V           V
@@ -682,7 +696,7 @@ Point(2, 1)`:
                                                        |              |
                                                        V              V
                                      [VStore int 4 (dead)] [VStore int 6 (dead)]
-</pre>
+```
 
 As we can see, `$b` continues to have an alias relationship with `$a`.
 Here's what's involved in that assignment: `$a` and `$b`'s VStore's handle
@@ -691,12 +705,13 @@ pointing to `Point(4,6)` is removed, `Point(2,1)` is created, and `$a` and
 `Point`. As there are now no VStores pointing to `Point(4,6)`, it can be destroyed.
 
 We can remove these aliases using `unset($a, $b)`:
-<pre>
+
+```
 [VSlot $a (dead)]       [HStore Point [VSlot $x *] [VSlot $y *] (dead)]
                                                 |            |
                                                 V            V
 [VSlot $b (dead)]             [VStore int 2 (dead)]  [VStore int 1 (dead)]
-</pre>
+```
 
 Once all the aliases to the VStores are gone, the VStores can be
 destroyed, in which case, there are no more pointers to the HStore, and
@@ -707,7 +722,8 @@ The semantics of value assignment of array types is different from value
 assignment of other types. Recall the `Point` class from [the examples](#value-assignment-of-object-and-resource-types-to-a-local-variable), and consider the following [value assignments](10-expressions.md#simple-assignment) and their abstract implementation:
 
 `$a = array(10, 'B' => new Point(1, 3));`
-<pre>
+
+```
 [VSlot $a *]-->[VStore array *]-->[HStore Array [VSlot 0 *] [VSlot 'B' *]]
                                                          |             |
                                                          V             V
@@ -717,7 +733,7 @@ assignment of other types. Recall the `Point` class from [the examples](#value-a
                                                         |            |
                                                         V            V
                                             [VStore int 1]  [VStore int 3]
-</pre>
+```
 
 In the example above, `$a`'s VStore is initialized to contain a handle to
 an HStore for an array containing two elements, where one element is an
@@ -734,7 +750,8 @@ describes [deferred copying](#deferred-array-copying).
 
 To describe the semantics of eager copying, let's begin by considering
 the value assignment `$b = $a`:
-<pre>
+
+```
 [VSlot $a *]-->[VStore array *]-->[HStore Array [VSlot 0 *] [VSlot 'B' *]]
                                                          |             |
 [VSlot $b *]-->[VStore array *]                          V             V
@@ -748,7 +765,7 @@ the value assignment `$b = $a`:
                                                             |            |
                                                             V            V
                                                  [VStore int 1]  [VStore int 3]
-</pre>
+```
 
 The value assignment `$b = $a` made a copy of `$a`'s array. Note how
 `$b`'s VSlot points to a different VStore than `$a`'s VSlot, and `$b`'s
@@ -788,7 +805,8 @@ $b = $a;
 
 Eager copying can produce two possible outcomes depending on the
 implementation. Here is the first possible outcome:
-<pre>
+
+```
 [VSlot $a *]---->[VStore array *]---->[HStore Array [VSlot 0 *]]
                                                              |
 [VSlot $x *]-------------------------+   [VStore array *]&lt;---+
@@ -806,10 +824,11 @@ implementation. Here is the first possible outcome:
                                                         |
                                                         V
                                                      [VStore string 'hi']
-</pre>
+```
 
 Here is the second possible outcome:
-<pre>
+
+```
 [VSlot $a *]---->[VStore array *]---->[HStore Array [VSlot 0 *]]
                                                              |
 [VSlot $x *]-------------------------+  [VStore array *]&lt;----+
@@ -827,7 +846,7 @@ Here is the second possible outcome:
                                            |           |
                                            V           V 
                                   [VStore int 123]  [VStore string 'hi']
-</pre>
+```
 
 In both possible outcomes, value assignment with eager copying makes a
 copy of `$a`'s array, copying the array's single element using
@@ -895,7 +914,8 @@ $x = 123;
 $a = array(array(&$x, 'hi'));
 $b = $a;
 ```
-<pre>
+
+```
 [VSlot $a *]--->[VStore array *]--->[HStore Array [VSlot 0 *]]
                                       ^                    |
                                       | [VStore array *]&lt;--+
@@ -907,7 +927,7 @@ $b = $a;
 [VSlot $x *]------------------------------------------>[VStore int 123]    |
                                                                            V
                                                                [VStore string 'hi']
-</pre>
+```
 
 As we can see, both `$a`'s VStore (the source VStore) and `$b`'s VStore
 (the destination VStore) point to the same array HStore. Note the
@@ -956,7 +976,8 @@ Continuing with the previous example, consider the array-mutating
 operation `$b[1]++`. Depending on the implementation, this can produce
 one of three possible outcomes. Here is the one of the possible
 outcomes:
-<pre>
+
+```
 [VSlot $a *]---->[VStore array *]---->[HStore Array [VSlot 0 *]]
                                                              |
 [VSlot $b *]-->[VStore array *]            [VStore Arr *]&lt;---+
@@ -971,7 +992,7 @@ outcomes:
                        [VStore Arr-D *]------+             |   [VStore string 'hi']
                                                            |
  [VSlot $x *]----------------------------------------------+
-</pre>
+```
 
 As we can see in the outcome shown above, `$b`'s VStore was
 array-separated and now `$a`'s VStore and `$b`'s VStore point to distinct
@@ -990,7 +1011,8 @@ array-separated. However, an implementation can choose to array-separate
 shown below demonstrate what can possibly happen if the implementation
 choose to array-separate `$b[0]`'s VStore as well. Here is the second
 possible outcome:
-<pre>
+
+```
 [VSlot $a *]---->[VStore array *]---->[HStore Array [VSlot 0 *]]
                                                              |
 [VSlot $b *]-->[VStore array *]          [VStore array *]&lt;---+
@@ -1008,10 +1030,11 @@ possible outcome:
                                     | [VStore string 'hi']  |
                                     V                       |
  [VSlot $x *]--------------------->[VStore int 123]&lt;--------+
-</pre>
+```
 
 Here is the third possible outcome:
-<pre>
+
+```
 [VSlot $a *]---->[VStore array *-]---->[HStore Array [VSlot 0 *]]
                                                             |
 [VSlot $b *]-->[VStore array *]           [VStore array *]&lt;---+
@@ -1029,7 +1052,7 @@ Here is the third possible outcome:
                                        [VStore string 'hi']  |
                                                              |
  [VSlot $x *]--------------------->[VStore int 123]&lt;---------+
-</pre>
+```
 
 The second and third possible outcomes show what can possibly happen if
 the implementation chooses to array-separate `$b[0]`'s VStore. In the
@@ -1089,13 +1112,14 @@ $b = 123;
 $a->x = $b;
 ```
 Will result in:
-<pre>
+
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *]]
                                                            |            |
                                                            V            V
                                                   [VStore int 123] [VStore int 3]
 [VSlot $b *]-->[VStore int 123]
-</pre>
+```
 
 If needed, new VSlots are created as part of the containing VStore, for example:
 ```PHP
@@ -1104,13 +1128,14 @@ $b = 123;
 $a->z = $b;
 ```
 Will result in:
-<pre>
+
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *] [VSlot $z *]]
                                                            |            |            |
                                                            V            V            V
                                                   [VStore int 1] [VStore int 3] [VStore int 123]
 [VSlot $b *]-->[VStore int 123]
-</pre>
+```
 
 The same holds for array elements:
 ```PHP
@@ -1120,13 +1145,15 @@ $a[1] = $b;
 $a[2] = 'World!';
 ```
 Will result in:
-<pre>
+
+```
 [VSlot $a *]-->[VStore array *]-->[HStore Array [VSlot 0 *]  [VSlot 1 *]  [VSlot 2 *]]
                                                          |            |            |
                                                          V            V            V
                                     [VStore string 'hello'] [VStore string 'php'] [VStore string 'World!']
 [VSlot $b *]-->[VStore string 'php']
-</pre>
+```
+
 Where the third VSlot with index 2 was created by the assignment.
 
 Note that any array element and instance property, including a designation of non-existing ones,
@@ -1150,13 +1177,14 @@ $a->z =& $b;
 ```
 
 Will result in:
-<pre>
+
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *] [VSlot $z *]]
                                                            |            |            |
                                                            V            V            |
                                                   [VStore int 1] [VStore int 3]      |
 [VSlot $b *]---------------->[VStore int 123]&lt;---------------------------------------+
-</pre>
+```
 
 ###Argument Passing
 Argument passing is defined in terms of [simple assignment](#assignment) or [byRef assignment](#byref-assignment-for-scalar-types-with-local-variables), depending on how the parameter is declared. 
@@ -1211,17 +1239,19 @@ To demonstrate how the `clone` operator works, consider the case in which
 an instance of class `Widget` contains two instance properties: `$p1` has
 the integer value 10, and `$p2` is a handle to an array of elements of
 some type(s) or to an instance of some other type.
-<pre>
+
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Widget [VSlot $p1 *][VSlot $p2 *]]
                                                              |            |
                                                              V            V
                                                [VStore int 10] [VStore object *]
                                                                               |
                                                         [HStore ...]&lt;---------+
-</pre>
+```
 
 Let us consider the result of `$b = clone $a`:
-<pre>
+
+```
 [VSlot $a *]-->[VStore object *]-->[HStore Widget [VSlot $p1 *][VSlot $p2 *]]
                                                              |            |
 [VSlot $b *]-->[VStore object *]                             V            V
@@ -1232,7 +1262,7 @@ Let us consider the result of `$b = clone $a`:
                              |             |                |
                              V             V                |
                  [VStore int 10] [VStore object *]----------+
-</pre>
+```
 
 The clone operator will create another object HStore of the same class
 as the original and copy `$a`'s object's instance properties using

@@ -183,6 +183,28 @@ Unlike the [local variable equivalent](#local-variables), function `f` outputs "
 = 1`", "`$fs = 2`", and "`$fs = 3`", as `$fs` retains its value across
 calls.
 
+<a name="hidingNotice"></a>
+Be also aware that declaring a function static can hide a local variable and/or a global variable withe the same name. The value of the local or global variable is not taken over as initial value of the function static. Subsequent modifications of the variable only modify the function static and do not affect the local nor the global variable. An example:
+
+```PHP
+function f(){
+  $fs = 10;             // assign 10 to the local variable $fs
+  static $fs;           // define a function static with name $fs
+  echo "\$fs = $fs\n";  // $fs = 
+  $fs = 5;              // assign 5 to the function static $fs (local variable is not modified)
+  echo "\$fs = $fs\n";  // $fs = 5
+  global $fs;           // define a global variabel with name $fs
+  echo "\$fs = $fs\n";  // $fs = 
+  $fs = 3;              // assign 3 to the global variable $fs (function static and local variabel is not modified
+  echo "\$fs = $fs\n";  // $fs = 3
+  static $fs; 
+  ++$fs;                // increment function static $fs
+  echo "\$fs = $fs\n";  // $fs = 6
+}
+f();
+echo "\$fs = $fs\n";    // $fs = 3
+```
+
 ###Global Variables
 
 **Syntax**
@@ -271,6 +293,8 @@ function f()
   ...
 }
 ```
+
+Be also aware that declaring a variable global can hide a local variable and/or a function static with the same name. See [static variables section](#hidingNotice) for an example.
 
 ###Instance Properties
 

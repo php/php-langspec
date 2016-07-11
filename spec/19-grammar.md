@@ -1118,7 +1118,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>name</i>   =   <i>constant-expression</i>
 
   <i>property-declaration:</i>
-    <i>property-modifier   variable-name   property-initializer<sub>opt</sub></i>  ;
+    <i>property-modifier   property-elements</i>   ;
 
   <i>property-modifier:</i>
     var
@@ -1132,6 +1132,13 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>static-modifier:</i>
     static
+
+  <i>property-elements:</i>
+    <i>property-element</i>
+    <i>property-elements   property-element</i>
+
+  <i>property-element:</i>
+    <i>variable-name   property-initializer<sub>opt</sub></i>   ;
 
   <i>property-initializer:</i>
     =  <i>constant-expression</i>

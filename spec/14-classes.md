@@ -447,7 +447,7 @@ $col = Automobile::DEFAULT_COLOR;
 
 <pre>
   <i>property-declaration:</i>
-    <i>property-modifier   variable-name   property-initializer<sub>opt</sub></i>  ;
+    <i>property-modifier   property-elements</i>   ;
 
   <i>property-modifier:</i>
     var
@@ -462,6 +462,13 @@ $col = Automobile::DEFAULT_COLOR;
   <i>static-modifier:</i>
     static
 
+  <i>property-elements:</i>
+    <i>property-element</i>
+    <i>property-elements   property-element</i>
+
+  <i>property-element:</i>
+    <i>variable-name   property-initializer<sub>opt</sub></i>   ;
+
   <i>property-initializer:</i>
     =  <i>constant-expression</i>
 </pre>
@@ -473,10 +480,10 @@ $col = Automobile::DEFAULT_COLOR;
 
 **Semantics**
 
-A *property-declaration* defines an instance or static property.
+A *property-declaration* defines one or more instance or static properties.
 
 If [*visibility-modifier*](#general) is omitted, `public` is assumed. The `var` modifier
-implies public visibility. The `static` modifier defines the member as [static member](#class-members).
+implies public visibility. The `static` modifier defines the member as a [static member](#class-members).
 
 The *property-initializer* for instance properties is applied prior to
 the class's [constructor](#constructors) being called.

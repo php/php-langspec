@@ -13,8 +13,10 @@ error_reporting(-1);
 
 interface iX
 {
-	const C1 = 123;
-//	const C2 = "green";
+	const C1 = 123;					// implicitly public
+	public const C2 = 234;			// explicitly public
+//	protected const C3 = 'C4';		// protected not permitted
+//	private const C4 = 'C5';		// private not permitted
 
 	function f0 ();					// implicitly public
 	public function f1 ($p1);		// explicitly public

@@ -1105,10 +1105,17 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
      <i>trait-use-clause</i>
 
   <i>const-declaration:</i>
-    const  <i>name</i>  =  <i>constant-expression</i>   ;
+    const   <i>const-elements</i>   ;
 
   <i>class-const-declaration:</i>
-    <i>visibility-modifier<sub>opt</sub></i>  const  <i>name</i>  =  <i>constant-expression</i>   ;
+    <i>visibility-modifier<sub>opt</sub></i>   const   <i>const-elements</i>   ;
+
+  <i>const-elements:</i>
+    <i>const-element</i>
+    <i>const-elements   const-element</i>
+
+  <i>const-element:</i>
+    <i>name</i>   =   <i>constant-expression</i>
 
   <i>property-declaration:</i>
     <i>property-modifier   variable-name   property-initializer<sub>opt</sub></i>  ;

@@ -386,10 +386,17 @@ Widget::__callStatic('sMethod', array(NULL, 1.234))
 
 <pre>
   <i>const-declaration:</i>
-    const  <i>name</i>  =  <i>constant-expression</i>   ;
+    const   <i>const-elements</i>   ;
 
   <i>class-const-declaration:</i>
-    <i>visibility-modifier<sub>opt</sub></i>  const  <i>name</i>  =  <i>constant-expression</i>   ;
+    <i>visibility-modifier<sub>opt</sub></i>   const   <i>const-elements</i>   ;
+
+  <i>const-elements:</i>
+    <i>const-element</i>
+    <i>const-elements   const-element</i>
+
+  <i>const-element:</i>
+    <i>name</i>   =   <i>constant-expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -403,8 +410,8 @@ Widget::__callStatic('sMethod', array(NULL, 1.234))
 A *const-declaration* must only appear at the top level of a script, and
 must not redefine an existing [c-constant](06-constants.md#general).
 
-A *class-const-declaration* must be inside a [*class-definition*](#class-members) or be an
-[*interface constant*](15-interfaces.md#interface-members).
+A *class-const-declaration* must be inside a [*class-declaration*](#class-members) or
+[*interface-declaration*](15-interfaces.md#interface-members).
 
 A class constant must not have a `static` specifier.
 
@@ -413,6 +420,7 @@ A class constant must not have a `static` specifier.
 A *const-declaration* defines a c-constant.
 
 If *visibility-modifier* for a class constant is omitted, `public` is assumed.
+The *visibility-modifier* applies to all constants defined in the *const-elements* list.
 
 All constants are implicitly `static`.
 

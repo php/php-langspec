@@ -319,7 +319,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     [   ]    (   )   {    }   .   ->   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;    &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
     &   &&   ||   ?   :   ;   =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    &gt;&gt;=   &=   ^=   |=   =&   ,   ??   &lt;=&gt;   ...
+    &gt;&gt;=   &=   ^=   |=   ,   ??   &lt;=&gt;   ...
 </pre>
 
 ##Syntactic Grammar

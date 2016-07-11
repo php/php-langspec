@@ -318,8 +318,8 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>operator-or-punctuator:: one of</i>
     [   ]    (   )   {    }   .   ->   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;    &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
-    &   &&   ||   ?   :   ; =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    &gt;&gt;=   &=   ^=   |=   =&   ,   ??   &lt;=&gt;
+    &   &&   ||   ?   :   ;   =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
+    &gt;&gt;=   &=   ^=   |=   =&   ,   ??   &lt;=&gt;   ...
 </pre>
 
 ##Syntactic Grammar

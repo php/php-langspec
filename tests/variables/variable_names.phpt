@@ -81,6 +81,6 @@ array(12) {
   ["argv"]=>
   array(1) {
     [0]=>
-    string(60) "/Users/smalyshev/php-spec/tests/variables/variable_names.php"
+    string(%d) "%s/tests/variables/variable_names.php"
   }
 }

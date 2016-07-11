@@ -122,7 +122,7 @@ class D
 
 		$callback = function ($p1, $p2) use (&$count, $values)
 		{
-			echo "Inside method >>" . __METHOD__ . "<<\n";	// called D::{closure}
+			echo "Inside method >>" . __METHOD__ . "<<\n";	// called {closure}
 			++$count;
 
 			$this->f();	// $this is available automatically; can't put it in use clause anyway
@@ -143,7 +143,7 @@ class D
 
 		$callback2 = function()
 		{
-			echo "Inside method >>" . __METHOD__ . "<<\n";	// ALSO called D::{closure}
+			echo "Inside method >>" . __METHOD__ . "<<\n";	// ALSO called {closure}
 		};
 
 		echo "--\n";
@@ -307,10 +307,10 @@ object(Closure%S)#%d (3) {
 --
 bool(true)
 --
-Inside method >>D::{closure}<<
+Inside method >>{closure}<<
 Inside method >>D::f<<
 $count = 1
-Inside method >>D::{closure}<<
+Inside method >>{closure}<<
 Inside method >>D::f<<
 $count = 2
 --
@@ -324,7 +324,7 @@ object(Closure%S)#%d (1) {
 --
 bool(true)
 --
-Inside method >>D::{closure}<<
+Inside method >>{closure}<<
 ----------------- using a use clause, #3 (static method) ----------------------
 --
 string(6) "object"
@@ -353,9 +353,9 @@ object(Closure%S)#%d (2) {
 --
 bool(true)
 --
-Inside method >>D::{closure}<<
+Inside method >>{closure}<<
 $count = 1
-Inside method >>D::{closure}<<
+Inside method >>{closure}<<
 $count = 2
 ----------------- Misc. Stuff ----------------------
 Hi

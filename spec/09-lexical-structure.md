@@ -861,10 +861,10 @@ echo ">$s<\n\n";
 
 <pre>
   <i>operator-or-punctuator:: one of</i>
-    [   ]    (   )   {    }   .   ->   ++   --   **   *   +   -   ~   !
+    [   ]   (   )   {   }   .   ->   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;    &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
     &   &&   ||   ?   :   ;   =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=
-    &gt;&gt;=   &=   ^=   |=   ,   ??   &lt;=&gt;   ...
+    &gt;&gt;=   &=   ^=   |=   ,   ??   &lt;=&gt;   ...   \
 </pre>
 
 **Semantics**

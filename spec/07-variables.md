@@ -52,9 +52,9 @@ and is a non-modifiable lvalue.
 
 Undefined constants are not defined implicitly -- forward usages of constants are also classified as undefined constants here. A distinction between class/interface constants and top level constants is made.
 
-For top level constants: the name of the undefined constant (as string) is used as substitution value. Moreover, a notice is emitted stating that the corresponding constant was undefined.
+For top level constants: For unqualified usages, the name of the undefined constant (as string) is used as substitution value. Moreover, a notice is emitted stating that the corresponding constant was undefined. For qualified usages, an exception of type [`Error`](14-classes.md#class-error) is thrown.
 
-For class/interface constants: a fatal error is produced stating that the corresponding constant was undefined.
+For class/interface constants: An exception of type [`Error`](14-classes.md#class-error) is thrown, stating that the corresponding constant was undefined.
 
 **Examples**
 
@@ -64,7 +64,7 @@ const UPPER_LIMIT = MAX_HEIGHT;
 define('COEFFICIENT_1', 2.345); // define two d-constants
 define('FAILURE', TRUE);
 
-//examples of undefined constants
+// Examples of undefined constants
 echo NON_EXISTING_CONSTANT;     // uses 'NON_EXISTING_CONSTANT' as substitution
                                 // value and emits a notice stating that the
                                 // constant was undefined.
@@ -79,10 +79,13 @@ echo MAX_LENGTH;                // same here due to a forward usage
                                 // 'MAX_LENGTH' is used as substitution 
                                 // value and an notice is emitted.
 
+echo \NON_EXISTING_CONSTANT;    // qualified use of undefined constant. Throws
+                                // an exception of type Error.
+
 const MAX_LENGTH = 7.5;
 
-echo Exception::MESSAGE;        // undefined class constant. Emits a fatal 
-                                // error and stops execution.
+echo Exception::MESSAGE;        // undefined class constant. Throws an exception
+                                // of type Error.
 
 ```
 

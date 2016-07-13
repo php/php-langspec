@@ -104,10 +104,6 @@ variable can be assigned to as a parameter in the parameter list of a
 has function [scope](04-basic-concepts.md#scope) and automatic [storage duration](04-basic-concepts.md#storage-duration). A local
 variable is a modifiable lvalue.
 
-**Undefined Local Variables**
-
-The same rules as for [undefined global variables](#undefined-global-variables) apply.
-
 **Examples**
 
 ```PHP
@@ -139,6 +135,84 @@ Unlike the [function static equivalent](#function-statics), function `f` outputs
 
 See the recursive function example in [storage duration section](04-basic-concepts.md#storage-duration).
 
+<a name="undefined-local-variables"></a>
+**Undefined Local Variables**
+
+A distinction is made based on the context where an undefined local variable is used. 
+
+*byVal Context*
+
+PHP does not implicitly define an undefined local variable and uses `NULL` as substitution value instead. Furthermore, a notice is emitted, stating that the corresponding variable was undefined, unless the variable is used
+
+1. as the single expression in a statement.
+2. as argument of [isset](10-expressions.md#isset).
+3. as argument of [empty](10-expressions.md#empty).
+4. as the left hand side of the [coalesce operator `??`](10-expressions.md#coalesce-operator).
+
+Since undefined local variables are not defined implicitly, they stay undefined. In general, a VSlot is not created for undefined variables used in a byValue context.
+
+*byRef Context*
+
+If the undefined variable is used in a [byRef context](04-basic-concepts#byRef) then PHP defines the variable implicitly. Hence, a VSlot is created for it and `NULL` is stored in it. A notice is *not* emitted in such a case.
+
+*Examples of Undefined Variables*
+
+Following some examples which outlines the behaviour with undefined local variables.
+
+```PHP
+// The following 4 cases outline the exceptions of undefined variables
+// used in byValue context where no notice is emitted.
+$a;        
+isset($a);
+empty($a);
+$a ?? 'default Value';
+
+$a = 1;    // a VSlot for $a was created and 1 was assigned.
+
+$b = $c;   // a VSlot for $b was created and the value of $c was assigned to
+           // it. But because $c in turn was undefined, NULL was used as 
+           // substitution value instead. In addition, a notice was 
+           // emitted stating that $c was undefined. 
+
+$d = $c;   // a VSlot for $d was created and the value of $c was assigned to 
+           // it. But since $c is still undefined, NULL was used as 
+           // substitution value instead and another notice was emitted 
+           // stating $c was undefined. 
+
+$d + $e;   // $e was undefined and `NULL` was used as substitution value 
+           // instead. In addition, a notice was emitted stating that 
+           // $e was undefined.
+
+$f = &$g;  // a VSlot for $f was created which points to the VSlot of $g.
+           // $g in turn was undefined but was defined implicitly because the 
+           // assignment was byRef. Thus a VSlot for $g was created and `NULL`
+           // was assigned to it. A notice was *not* emitted.
+
+$h = $g;   // a VSlot for $h was created and the value of $g (which is NULL) 
+           // was assigned to it.
+
+function foo($x){}
+
+foo($i);   // $i was undefined and NULL was used as substitution value 
+           // instead. In addition, a notice was emitted stating that $i 
+           // was undefined.
+
+$j = $i;   // a VSlot for $j was created and the value of $i was assigned to 
+           // it. But because $i in turn was still undefined, NULL was used 
+           // as substitution value instead. Another notice was emitted 
+           // stating that $i was undefined.
+
+function bar(&$x){}
+
+bar($k);   // $k was undefined but implicitly defined because it was passed to 
+           // the function bar byRef. Thus a VSlot for $k was created and 
+           // NULL was assigned to it. A notice was *not* emitted.
+
+$l = $k;   // a VSlot for $l was created and the value of $k (which is NULL) 
+           // was assigned to it.
+
+```
+
 ###Array Elements
 
 **Syntax**
@@ -157,7 +231,7 @@ array's name. An array element has allocated [storage duration](04-basic-concept
 
 **Undefined Array Elements**
 
-Similar to [undefined global variables](#undefined-global-variables), a distinction is made based on the context where an undefined array element is used. 
+Similar to [undefined local variables](#undefined-local-variables), a distinction is made based on the context where an undefined array element is used. 
 
 *byValue Context*
 
@@ -329,82 +403,9 @@ global variable. If that alias is passed to the [`unset` intrinsic](10-expressio
 only that alias is destroyed. The next time that function
 is called, a new alias is created with the current value of the global variable.
 
-<a name="undefined-global-variables"></a>
 **Undefined Global Variables**
-A distinction is made based on the context where an undefined global variable is used. 
 
-*byVal Context*
-
-PHP does not implicitly define an undefined global variable and uses `NULL` as substitution value instead. Furthermore, a notice is emitted, stating that the corresponding variable was undefined, unless the variable is used
-
-1. as the single expression in a statement.
-2. as argument of [isset](10-expressions.md#isset).
-3. as argument of [empty](10-expressions.md#empty).
-4. as the left hand side of the [coalesce operator `??`](10-expressions.md#coalesce-operator).
-
-Since undefined global variables are not defined implicitly, they stay undefined. In general, a VSlot is not created for undefined variables used in a byValue context.
-
-*byRef Context*
-
-If the undefined variable is used in a [byRef context](04-basic-concepts#byRef) then PHP defines the variable implicitly. Hence, a VSlot is created for it and `NULL` is stored in it. A notice is *not* emitted in such a case.
-
-*Examples of Undefined Variables*
-
-Following some examples which outlines the behaviour with undefined global variables.
-
-```PHP
-// The following 4 cases outline the exceptions of undefined variables
-// used in byValue context where no notice is emitted.
-$a;        
-isset($a);
-empty($a);
-$a ?? 'default Value';
-
-$a = 1;    // a VSlot for $a was created and 1 was assigned.
-
-$b = $c;   // a VSlot for $b was created and the value of $c was assigned to
-           // it. But because $c in turn was undefined, NULL was used as 
-           // substitution value instead. In addition, a notice was 
-           // emitted stating that $c was undefined. 
-
-$d = $c;   // a VSlot for $d was created and the value of $c was assigned to 
-           // it. But since $c is still undefined, NULL was used as 
-           // substitution value instead and another notice was emitted 
-           // stating $c was undefined. 
-
-$d + $e;   // $e was undefined and `NULL` was used as substitution value 
-           // instead. In addition, a notice was emitted stating that 
-           // $e was undefined.
-
-$f = &$g;  // a VSlot for $f was created which points to the VSlot of $g.
-           // $g in turn was undefined but was defined implicitly because the 
-           // assignment was byRef. Thus a VSlot for $g was created and `NULL`
-           // was assigned to it. A notice was *not* emitted.
-
-$h = $g;   // a VSlot for $h was created and the value of $g (which is NULL) 
-           // was assigned to it.
-
-function foo($x){}
-
-foo($i);   // $i was undefined and NULL was used as substitution value 
-           // instead. In addition, a notice was emitted stating that $i 
-           // was undefined.
-
-$j = $i;   // a VSlot for $j was created and the value of $i was assigned to 
-           // it. But because $i in turn was still undefined, NULL was used 
-           // as substitution value instead. Another notice was emitted 
-           // stating that $i was undefined.
-
-function bar(&$x){}
-
-bar($k);   // $k was undefined but implicitly defined because it was passed to 
-           // the function bar byRef. Thus a VSlot for $k was created and 
-           // NULL was assigned to it. A notice was *not* emitted.
-
-$l = $k;   // a VSlot for $l was created and the value of $k (which is NULL) 
-           // was assigned to it.
-
-```
+The same rules as for [undefined local variables](#undefined-local-variables) apply.
 
 **Examples**
 

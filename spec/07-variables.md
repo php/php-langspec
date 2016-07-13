@@ -3,7 +3,8 @@
 ##General
 
 A *variable* is a named area of data storage that contains a PHP value. A variable is represented by a [VSlot](04-basic-concepts.md#general). A variable is created by [assigning a value](04-basic-concepts.md#assignment) to it.
-A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic [`unset`](10-expressions.md#unset), or by the Engine. The intrinsic [`isset`](10-expressions.md#isset) tests if a given variable exists and is not set to `NULL`. A variable that somehow becomes defined, but is not initialized starts out with the value `NULL`.
+A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic [`unset`](10-expressions.md#unset), or by the Engine. The intrinsic [`isset`](10-expressions.md#isset) tests if a given variable exists and is not set to `NULL`.
+If a variable, which is not defined so far, is used in an expression, then different strategies are applied which determine whether the variable is defined implicitly or a substitution value is used instead and whether a notice is emitted or not. The strategies depend on the kind of the variable as well as on the context where the undefined variable is being used. The strategies are elaborated in the sub-sections of the different [kinds of variables](#kinds-of-variables) below.
 
 Variables have [names](09-lexical-structure.md#names). Distinct variables may have
 the same name provided they are in different [scopes](04-basic-concepts.md#scope).
@@ -47,6 +48,14 @@ See [constants](06-constants.md#general) and [class constants](14-classes.md#con
 A constant defined outside of a class or interface is a [superglobal](#general). A constant has static [storage duration](04-basic-concepts.md#storage-duration)
 and is a non-modifiable lvalue.
 
+**Undefined Constants**
+
+Undefined constants are not defined implicitly -- forward usages of constants are also classified as undefined constants here. A distinction between class/interface constants and top level constants is made.
+
+For top level constants: the name of the undefined constant (as string) is used as substitution value. Moreover, a notice is emitted stating that the corresponding constant was undefined.
+
+For class/interface constants: a fatal error is produced stating that the corresponding constant was undefined.
+
 **Examples**
 
 ```PHP
@@ -54,6 +63,27 @@ const MAX_HEIGHT = 10.5;        // define two c-constants
 const UPPER_LIMIT = MAX_HEIGHT;
 define('COEFFICIENT_1', 2.345); // define two d-constants
 define('FAILURE', TRUE);
+
+//examples of undefined constants
+echo NON_EXISTING_CONSTANT;     // uses 'NON_EXISTING_CONSTANT' as substitution
+                                // value and emits a notice stating that the
+                                // constant was undefined.
+
+echo NON_EXISTING_CONSTANT;     // same here, the constant is still undefined 
+                                // and 'NON_EXISTING_CONSTANT' is used as 
+                                // substitution value and a notice is emitted 
+                                // again.
+
+echo MAX_LENGTH;                // same here due to a forward usage 
+                                // (MAX_LENGTH is defined further below).
+                                // 'MAX_LENGTH' is used as substitution 
+                                // value and an notice is emitted.
+
+const MAX_LENGTH = 7.5;
+
+echo Exception::MESSAGE;        // undefined class constant. Emits a fatal 
+                                // error and stops execution.
+
 ```
 
 ###Local Variables
@@ -70,6 +100,10 @@ variable can be assigned to as a parameter in the parameter list of a
 [function definition](13-functions.md#function-definitions) or inside any [compound statement](11-statements.md#compound-statements). It
 has function [scope](04-basic-concepts.md#scope) and automatic [storage duration](04-basic-concepts.md#storage-duration). A local
 variable is a modifiable lvalue.
+
+**Undefined Local Variables**
+
+The same rules as for [undefined global variables](#undefined-global-variables) apply.
 
 **Examples**
 
@@ -118,11 +152,38 @@ removed by calling the [`unset` intrinsic](10-expressions.md#unset).
 The [scope](04-basic-concepts.md#scope) of an array element is the same as the scope of that
 array's name. An array element has allocated [storage duration](04-basic-concepts.md#storage-duration).
 
+**Undefined Array Elements**
+
+Similar to [undefined global variables](#undefined-global-variables), a distinction is made based on the context where an undefined array element is used. 
+
+*byValue Context*
+
+If one tries to access an undefined array element, then `NULL` is used as substitution value and a notice is emitted, stating that an undefined offset was used. The undefined offset is not created implicitly and a subsequent access results in another notice.
+
+*byRef Context*
+
+PHP defines implicitly an undefined array element when it is accessed byRef, a VSlot for the corresponding undefined offset is created and `NULL` is assigned to it. A notice is *not* emitted in this case.
+
 **Examples**
 
 ```PHP
 $colors = ["red", "white", "blue"]; // create array with 3 elements
 $colors[] = "green";                // insert a new element
+
+echo $colors[100];      // element with offset 100 is undefined and NULL is 
+                        // used as substitution value. Moreover, a notice is 
+                        // emitted stating that an undefined offset was used.
+
+echo $colors[100];      // element with offset 100 is still undefined and NULL 
+                        // is used as substitution value instead. Another 
+                        // notice is emitted.
+
+$b = &colors[100];      // a VSlot for $b is created which points to the array 
+                        // element with the offset 100. An array element with 
+                        // offset 100 was undefined but implicitly defined 
+                        // because the assignment is byRef. Thus a VSlot for 
+                        // the array element with offset 100 is created and 
+                        // NULL is assigned to it. A notice is *not* emitted.
 ```
 
 ###Function Statics
@@ -165,6 +226,10 @@ function. Each time the function containing a function static
 declaration is called, that execution is dealing with an [alias](04-basic-concepts.md#general)
 to that static variable. If that alias is passed to the [`unset` intrinsic](10-expressions.md#unset),
 only that alias is destroyed. The next time that function is called, a new alias is created.
+
+**Undefined Function Statics**
+
+Function statics are explicitly defined and thus cannot be undefined.
 
 **Examples**
 
@@ -260,6 +325,83 @@ is called, that execution is dealing with an [alias](04-basic-concepts.md#genera
 global variable. If that alias is passed to the [`unset` intrinsic](10-expressions.md#unset),
 only that alias is destroyed. The next time that function
 is called, a new alias is created with the current value of the global variable.
+
+<a name="undefined-global-variables"></a>
+**Undefined Global Variables**
+A distinction is made based on the context where an undefined global variable is used. 
+
+*byVal Context*
+
+PHP does not implicitly define an undefined global variable and uses `NULL` as substitution value instead. Furthermore, a notice is emitted, stating that the corresponding variable was undefined, unless the variable is used
+
+1. as the single expression in a statement.
+2. as argument of [isset](10-expressions.md#isset).
+3. as argument of [empty](10-expressions.md#empty).
+4. as the left hand side of the [coalesce operator `??`](10-expressions.md#coalesce-operator).
+
+Since undefined global variables are not defined implicitly, they stay undefined. In general, a VSlot is not created for undefined variables used in a byValue context.
+
+*byRef Context*
+
+If the undefined variable is used in a [byRef context](04-basic-concepts#byRef) then PHP defines the variable implicitly. Hence, a VSlot is created for it and `NULL` is stored in it. A notice is *not* emitted in such a case.
+
+*Examples of Undefined Variables*
+
+Following some examples which outlines the behaviour with undefined global variables.
+
+```PHP
+// The following 4 cases outline the exceptions of undefined variables
+// used in byValue context where no notice is emitted.
+$a;        
+isset($a);
+empty($a);
+$a ?? 'default Value';
+
+$a = 1;    // a VSlot for $a was created and 1 was assigned.
+
+$b = $c;   // a VSlot for $b was created and the value of $c was assigned to
+           // it. But because $c in turn was undefined, NULL was used as 
+           // substitution value instead. In addition, a notice was 
+           // emitted stating that $c was undefined. 
+
+$d = $c;   // a VSlot for $d was created and the value of $c was assigned to 
+           // it. But since $c is still undefined, NULL was used as 
+           // substitution value instead and another notice was emitted 
+           // stating $c was undefined. 
+
+$d + $e;   // $e was undefined and `NULL` was used as substitution value 
+           // instead. In addition, a notice was emitted stating that 
+           // $e was undefined.
+
+$f = &$g;  // a VSlot for $f was created which points to the VSlot of $g.
+           // $g in turn was undefined but was defined implicitly because the 
+           // assignment was byRef. Thus a VSlot for $g was created and `NULL`
+           // was assigned to it. A notice was *not* emitted.
+
+$h = $g;   // a VSlot for $h was created and the value of $g (which is NULL) 
+           // was assigned to it.
+
+function foo($x){}
+
+foo($i);   // $i was undefined and NULL was used as substitution value 
+           // instead. In addition, a notice was emitted stating that $i 
+           // was undefined.
+
+$j = $i;   // a VSlot for $j was created and the value of $i was assigned to 
+           // it. But because $i in turn was still undefined, NULL was used 
+           // as substitution value instead. Another notice was emitted 
+           // stating that $i was undefined.
+
+function bar(&$x){}
+
+bar($k);   // $k was undefined but implicitly defined because it was passed to 
+           // the function bar byRef. Thus a VSlot for $k was created and 
+           // NULL was assigned to it. A notice was *not* emitted.
+
+$l = $k;   // a VSlot for $l was created and the value of $k (which is NULL) 
+           // was assigned to it.
+
+```
 
 **Examples**
 

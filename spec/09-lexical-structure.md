@@ -311,7 +311,7 @@ cannot be used as a name.
     extends   final   finally   for   foreach   function   global
     goto   if   implements   include   include_once   instanceof
     insteadof   interface   isset   list   namespace   new   or   print   private
-    protected   public   require   require_once   return static   switch
+    protected   public   require   require_once   return   static   switch
     throw   trait   try   unset   use   var   while   xor   yield   yield from
 </pre>
 

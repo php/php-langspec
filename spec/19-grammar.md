@@ -214,7 +214,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>nowdoc-string-literal</i>
 
   <i>single-quoted-string-literal::</i>
-    b<i><sub>opt</sub></i>  ' <i>sq-char-sequence<sub>opt</sub></i>  '
+    <i>b-prefix<sub>opt</sub></i>  ' <i>sq-char-sequence<sub>opt</sub></i>  '
 
   <i>sq-char-sequence::</i>
     <i>sq-char</i>
@@ -225,10 +225,13 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     \<i><sub>opt</sub></i>   any member of the source character set except single-quote (') or backslash (\)
 
   <i>sq-escape-sequence:: one of</i>
-    \'  \\
+    \'   \\
+
+  <i>b-prefix:: one of</i>
+    b   B
 
   <i>double-quoted-string-literal::</i>
-    b<i><sub>opt</sub></i>  " <i>dq-char-sequence<sub>opt</sub></i>  "
+    <i>b-prefix<sub>opt</sub></i>  " <i>dq-char-sequence<sub>opt</sub></i>  "
 
   <i>dq-char-sequence::</i>
     <i>dq-char</i>
@@ -281,7 +284,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
         ->   <i>name</i>
 
   <i>heredoc-string-literal::</i>
-    &lt;&lt;&lt;  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    <i>b-prefix<sub>opt</sub></i> &lt;&lt;&lt;  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
@@ -309,7 +312,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     \\   \$   \e   \f   \n   \r   \t   \v
 
   <i>nowdoc-string-literal::</i>
-    &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line name</i>  ;<i><sub>opt</sub>   new-line</i>
+    <i>b-prefix<sub>opt</sub></i> &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line name</i>  ;<i><sub>opt</sub>   new-line</i>
 </pre>
 
 ###Operators and Punctuators

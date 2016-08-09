@@ -519,7 +519,7 @@ The type of a string literal is `string`.
 
 <pre>
   <i>single-quoted-string-literal::</i>
-    b<i><sub>opt</sub></i>  ' <i>sq-char-sequence<sub>opt</sub></i>  '
+    <i>b-prefix<sub>opt</sub></i>  ' <i>sq-char-sequence<sub>opt</sub></i>  '
 
   <i>sq-char-sequence::</i>
     <i>sq-char</i>
@@ -530,7 +530,10 @@ The type of a string literal is `string`.
     \<i><sub>opt</sub></i>   any member of the source character set except single-quote (') or backslash (\)
 
   <i>sq-escape-sequence:: one of</i>
-    \'  \\
+    \'   \\
+
+  <i>b-prefix:: one of</i>
+    b   B
 </pre>
 
 **Semantics**
@@ -540,9 +543,9 @@ single-quotes (`'`, U+0027). The literal can contain any source character except
 single-quote (`'`) and backslash (`\\`), which can only be represented by
 their corresponding escape sequence.
 
-The optional `b` prefix is reserved for future use in dealing with
+The optional *b-prefix* is reserved for future use in dealing with
 so-called *binary strings*. For now, a *single-quoted-string-literal*
-with a `b` prefix is equivalent to one without.
+with a *b-prefix* is equivalent to one without.
 
 A single-quoted string literal is always a constant expression.
 
@@ -560,7 +563,7 @@ A single-quoted string literal is always a constant expression.
 
 <pre>
   <i>double-quoted-string-literal::</i>
-    b<i><sub>opt</sub></i>  " <i>dq-char-sequence<sub>opt</sub></i>  "
+    <i>b-prefix<sub>opt</sub></i>  " <i>dq-char-sequence<sub>opt</sub></i>  "
 
   <i>dq-char-sequence::</i>
     <i>dq-char</i>
@@ -601,6 +604,7 @@ A single-quoted string literal is always a constant expression.
 
 * [*octal-digit*](#integer-literals)
 * [*hexadecimal-digit*](#integer-literals)
+* [*b-prefix*](#single-quoted-string-literals)
 
 **Semantics**
 
@@ -610,9 +614,9 @@ double-quote (`"`) and backslash (`\\`), which can only be represented by
 their corresponding escape sequence. Certain other (and sometimes
 non-printable) characters can also be expressed as escape sequences.
 
-The optional `b` prefix is reserved for future use in dealing with
+The optional *b-prefix* is reserved for future use in dealing with
 so-called *binary strings*. For now, a *double-quoted-string-literal*
-with a `b` prefix is equivalent to one without.
+with a *b-prefix* is equivalent to one without.
 
 An escape sequence represents a single-character encoding, as described
 in the table below:
@@ -741,7 +745,7 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 
 <pre>
   <i>heredoc-string-literal::</i>
-    &lt;&lt;&lt;  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    <i>b-prefix<sub>opt</sub></i> &lt;&lt;&lt;  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
@@ -775,6 +779,7 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 * [*new-line*](#comments)
 * [*dq-octal-escape-sequence*](#double-quoted-string-literals)
 * [*dq-hexadecimal-escape-sequence*](#double-quoted-string-literals)
+* [*b-prefix*](#single-quoted-string-literals)
 
 **Constraints**
 
@@ -799,6 +804,8 @@ A heredoc literal supports variable substitution as defined for
 A heredoc string literal is a constant expression if it does not contain
 any variable substitution.
 
+The optional *b-prefix* has no effect.
+
 **Examples**
 
 ```PHP
@@ -818,13 +825,14 @@ echo ">$s<";
 
 <pre>
   <i>nowdoc-string-literal::</i>
-    &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line name</i>  ;<i><sub>opt</sub>   new-line</i>
+    <i>b-prefix<sub>opt</sub></i> &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line name</i>  ;<i><sub>opt</sub>   new-line</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*hd-char-sequence*](#heredoc-string-literals)
 * [*new-line*](#comments)
+* [*b-prefix*](#single-quoted-string-literals)
 
 **Constraints**
 
@@ -841,6 +849,8 @@ same semantics and constraints except that a nowdoc string literal is
 not subject to variable substitution (like the single-quoted string).
 
 A nowdoc string literal is a constant expression.
+
+The optional *b-prefix* has no effect.
 
 **Examples**
 

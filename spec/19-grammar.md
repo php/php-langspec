@@ -284,7 +284,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
         ->   <i>name</i>
 
   <i>heredoc-string-literal::</i>
-    <i>b-prefix<sub>opt</sub></i> &lt;&lt;&lt;  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    <i>b-prefix<sub>opt</sub></i>   &lt;&lt;&lt;   <i>hd-start-identifier   new-line   hd-body<sub>opt</i>   hd-end-identifier</i>   ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
@@ -292,6 +292,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>hd-end-identifier::</i>
     <i>name</i>
+
+  <i>hd-body::</i>
+    <i>hd-char-sequence<sub>opt</sub>   new-line<i>
 
   <i>hd-char-sequence::</i>
     <i>hd-char</i>
@@ -312,7 +315,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     \\   \$   \e   \f   \n   \r   \t   \v
 
   <i>nowdoc-string-literal::</i>
-    <i>b-prefix<sub>opt</sub></i> &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line name</i>  ;<i><sub>opt</sub>   new-line</i>
+    <i>b-prefix<sub>opt</sub></i>  &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-body<sub>opt</sub>   name</i>  ;<i><sub>opt</sub>   new-line</i>
 </pre>
 
 ###Operators and Punctuators

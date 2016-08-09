@@ -745,7 +745,7 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 
 <pre>
   <i>heredoc-string-literal::</i>
-    <i>b-prefix<sub>opt</sub></i> &lt;&lt;&lt;  <i>hd-start-identifier   new-line   hd-char-sequence<sub>opt</sub>  new-line hd-end-identifier</i>  ;<i><sub>opt</sub>   new-line</i>
+    <i>b-prefix<sub>opt</sub></i>   &lt;&lt;&lt;   <i>hd-start-identifier   new-line   hd-body<sub>opt</i>   hd-end-identifier</i>   ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
@@ -753,6 +753,9 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 
   <i>hd-end-identifier::</i>
     <i>name</i>
+
+  <i>hd-body::</i>
+    <i>hd-char-sequence<sub>opt</sub>   new-line<i>
 
   <i>hd-char-sequence::</i>
     <i>hd-char</i>
@@ -825,12 +828,12 @@ echo ">$s<";
 
 <pre>
   <i>nowdoc-string-literal::</i>
-    <i>b-prefix<sub>opt</sub></i> &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-char-sequence<sub>opt</sub>   new-line name</i>  ;<i><sub>opt</sub>   new-line</i>
+    <i>b-prefix<sub>opt</sub></i>  &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-body<sub>opt</sub>   name</i>  ;<i><sub>opt</sub>   new-line</i>
 </pre>
 
 **Defined elsewhere**
 
-* [*hd-char-sequence*](#heredoc-string-literals)
+* [*hd-body*](#heredoc-string-literals)
 * [*new-line*](#comments)
 * [*b-prefix*](#single-quoted-string-literals)
 

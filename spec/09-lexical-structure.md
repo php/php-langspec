@@ -157,7 +157,7 @@ though it was white space.
 ###White Space
 
 White space consists of an arbitrary combination of one or more
-new-line, space, horizontal tab, vertical tab, and form-feed characters.
+new-line, space and horizontal tab.
 
 **Syntax**
 

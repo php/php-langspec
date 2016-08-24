@@ -136,9 +136,9 @@ Two forms of comments are supported: *delimited comments* and
 
 **Semantics**
 
-Except within a string literal or a comment, the characters /\* start a
-delimited comment, which ends with the characters \*/. Except within a
-string literal or a comment, the characters // or \# start a single-line
+Except within a string literal or a comment, the characters `/*` start a
+delimited comment, which ends with the characters `*/`. Except within a
+string literal or a comment, the characters `//` or `#` start a single-line
 comment, which ends with a new line. That new line is not part of the
 comment. However, if the single-line comment is the last source element
 in an embedded script, the trailing new line can be omitted. (Note: this

@@ -755,7 +755,7 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
     <i>name</i>
 
   <i>hd-body::</i>
-    <i>hd-char-sequence<sub>opt</sub>   new-line<i>
+    <i>hd-char-sequence<sub>opt</sub>   new-line</i>
 
   <i>hd-char-sequence::</i>
     <i>hd-char</i>

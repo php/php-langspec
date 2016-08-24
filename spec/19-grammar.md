@@ -42,7 +42,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     Carriage-return character (U+000D) followed by line-feed character (U+000A)
 
   <i>delimited-comment::</i>
-    /*   No characters or any source character sequence except */   */
+    /*   No characters or any source character sequence except   */
 </pre>
 
 ###White Space

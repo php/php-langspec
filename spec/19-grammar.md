@@ -372,14 +372,43 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <pre>
   <i>primary-expression:</i>
-    <i>variable-name</i>
+    <i>variable</i>
+    <i>class-constant-access-expression</i>
     <i>qualified-name</i>
     <i>literal</i>
-    <i>constant-expression</i>
+    <i>array-creation-expression</i>
     <i>intrinsic</i>
     <i>anonymous-function-creation-expression</i>
     (  <i>expression</i>  )
-    $this
+
+  <i>simple-variable:</i>
+    <i>variable-name</i>
+    $   <i>simple-variable</i>
+    $   {   <i>expression</i>   }
+
+  <i>dereferencable-expression:</i>
+    <i>variable</i>
+    (   <i>expression</i>   )
+    <i>array-creation-expression</i>
+    <i>string-literal</i>
+
+  <i>callable-expression:</i>
+    <i>callable-variable</i>
+    (   <i>expression</i>   )
+    <i>array-creation-expression</i>
+    <i>string-literal</i>
+
+  <i>callable-variable:</i>
+    <i>simple-variable</i>
+    <i>subscript-expression</i>
+    <i>member-call-expression</i>
+    <i>scoped-call-expression</i>
+    <i>function-call-expression</i>
+
+  <i>variable:</i>
+    <i>callable-variable</i>
+    <i>scoped-property-access-expression</i>
+    <i>member-access-expression</i>
 
   <i>literal:</i>
     <i>integer-literal</i>
@@ -480,13 +509,8 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>primary-expression</i>
     <i>clone-expression</i>
     <i>object-creation-expression</i>
-    <i>array-creation-expression</i>
-    <i>subscript-expression</i>
-    <i>function-call-expression</i>
-    <i>member-selection-expression</i>
     <i>postfix-increment-expression</i>
     <i>postfix-decrement-expression</i>
-    <i>scope-resolution-expression</i>
     <i>exponentiation-expression</i>
 
   <i>clone-expression:</i>
@@ -527,12 +551,12 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>expression</i>
 
   <i>subscript-expression:</i>
-    <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
-    <i>postfix-expression</i>  {  <i>expression</i>  }   <b>[Deprecated form]</b>
+    <i>dereferencable-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
+    <i>dereferencable-expression</i>  {  <i>expression</i>  }   <b>[Deprecated form]</b>
 
   <i>function-call-expression:</i>
     <i>qualified-name</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
-    <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
+    <i>callable-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
     <i>argument-expression</i>
@@ -545,22 +569,31 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>variadic-unpacking:</i>
     ... <i>assignment-expression</i>
 
-  <i>member-selection-expression:</i>
-    <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
+  <i>member-access-expression:</i>
+    <i>dereferencable-expression</i>   ->   <i>member-name</i>
 
-  <i>member-selection-designator:</i>
+  <i>member-name:</i>
     <i>name</i>
-    <i>expression</i>
+    <i>simple-variable</i>
+    {   <i>expression</i>   }
+
+  <i>member-call-expression:</i>
+    <i>dereferencable-expression</i>   ->   <i>member-name</i>   (   <i>argument-expression-list<sub>opt</sub></i>   )
 
   <i>postfix-increment-expression:</i>
-    <i>unary-expression</i>  ++
+    <i>variable</i>  ++
 
   <i>postfix-decrement-expression:</i>
-    <i>unary-expression</i>  --
+    <i>variable</i>  --
 
-  <i>scope-resolution-expression:</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>member-selection-designator</i>
-    <i>scope-resolution-qualifier</i>  ::  class
+  <i>scoped-property-access-expression:</i>
+    <i>scope-resolution-qualifier</i>   ::   <i>simple-variable</i>
+
+  <i>scoped-call-expression:</i>
+    <i>scope-resolution-qualifier</i>   ::   <i>member-name</i>    (   <i>argument-expression-list<sub>opt</sub>   )
+
+  <i>class-constant-access-expression:</i>
+    <i>scope-resolution-qualifier</i>   ::   <i>name</i>
 
   <i>scope-resolution-qualifier:</i>
     <i>relative-scope</i>
@@ -590,10 +623,10 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>variable-name-creation-expression</i>
 
   <i>prefix-increment-expression:</i>
-    ++ <i>unary-expression</i>
+    ++ <i>variable</i>
 
   <i>prefix-decrement-expression:</i>
-    -- <i>unary-expression</i>
+    -- <i>variable</i>
 
   <i>unary-op-expression:</i>
     <i>unary-operator cast-expression</i>
@@ -614,10 +647,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>cast-type: one of</i>
     array  binary  bool  boolean  double  int  integer  float  object
     real  string  unset
-
-  <i>variable-name-creation-expression:</i>
-    $   <i>expression</i>
-    $  {  <i>expression</i>  }
 
 </pre>
 

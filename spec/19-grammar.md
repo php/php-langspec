@@ -123,15 +123,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 ###Literals
 
-####General
-
-<pre>
-  <i>literal::</i>
-    <i>integer-literal</i>
-    <i>floating-literal</i>
-    <i>string-literal</i>
-</pre>
-
 ####Integer Literals
 
 <pre>
@@ -389,6 +380,11 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>anonymous-function-creation-expression</i>
     (  <i>expression</i>  )
     $this
+
+  <i>literal:</i>
+    <i>integer-literal</i>
+    <i>floating-literal</i>
+    <i>string-literal</i>
 
   <i>intrinsic:</i>
     <i>intrisic-construct</i>

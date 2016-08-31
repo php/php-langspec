@@ -105,7 +105,7 @@ function, `$a` need not actually be incremented.
 
 * [*variable-name*](09-lexical-structure.md#names)
 * [*qualified-name*](09-lexical-structure.md#names)
-* [*literal*](09-lexical-structure.md#general-2)
+* [*literal*](#literals)
 * [*constant-expression*](#constant-expressions)
 * [*intrinsic*](#general-2)
 * [*anonymous-function-creation-expression*](#anonymous-function-creation)
@@ -119,6 +119,28 @@ the un-parenthesized expression.
 The variable `$this` is predefined inside any non-static instance method (including
 constructor) when that method is called from within an object
 context. The value of `$this` is the calling object or the object being constructed.
+
+###Literals
+
+**Syntax**
+
+<pre>
+  <i>literal:</i>
+    <i>integer-literal</i>
+    <i>floating-literal</i>
+    <i>string-literal</i>
+</pre>
+
+**Defined elsewhere**
+
+* [*integer-literal*](09-lexical-structure.md#integer-literals)
+* [*floating-literal*](09-lexical-structure.md#floating-point-literals)
+* [*string-literal*](09-lexical-structure.md#string-literals)
+
+**Semantics**
+
+A literal evaluates to its value, as specified in the lexical specification for
+[literals](09-lexical-structure.md#literals).
 
 ###Intrinsics
 

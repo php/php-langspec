@@ -325,24 +325,7 @@ Also, all [*magic constants*](06-constants.md#context-dependent-constants) are a
 
 ####Literals
 
-#####General
-
 The source code representation of a value is called a *literal*.
-
-**Syntax**
-
-<pre>
-  <i>literal::</i>
-    <i>integer-literal</i>
-    <i>floating-literal</i>
-    <i>string-literal</i>
-</pre>
-
-**Defined elsewhere**
-
-* [*integer-literal*](#integer-literals)
-* [*floating-literal*](#floating-point-literals)
-* [*string-literal*](#string-literals)
 
 #####Integer Literals
 

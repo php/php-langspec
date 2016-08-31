@@ -772,7 +772,7 @@ designated by `$name` using the arguments specified by the elements of
 the array designated by `$arguments`. It can return any value deemed
 appropriate.
 
-Typically, `__call` is called implicitly, when the [`->` operator](10-expressions.md#member-selection-operator)
+Typically, `__call` is called implicitly, when the [`->` operator](10-expressions.md#member-call)
 is used to call an instance method that is not visible.
 
 While `__call` can be called explicitly, the two scenarios do not

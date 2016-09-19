@@ -95,11 +95,10 @@ function, `$a` need not actually be incremented.
     <i>class-property-access-expression</i>
     <i>qualified-name</i>
     <i>literal</i>
-    <i>constant-expression</i>
+    <i>array-creation-expression</i>
     <i>intrinsic</i>
     <i>anonymous-function-creation-expression</i>
     (  <i>expression</i>  )
-    $this
 </pre>
 
 **Defined elsewhere**
@@ -107,7 +106,7 @@ function, `$a` need not actually be incremented.
 * [*variable*](#variables)
 * [*qualified-name*](09-lexical-structure.md#names)
 * [*literal*](#literals)
-* [*constant-expression*](#constant-expressions)
+* [*array-creation-expression*](#array-creation-operator)
 * [*intrinsic*](#general-2)
 * [*anonymous-function-creation-expression*](#anonymous-function-creation)
 * [*expression*](#script-inclusion-operators)
@@ -117,10 +116,6 @@ function, `$a` need not actually be incremented.
 
 The type and value of parenthesized expression are identical to those of
 the un-parenthesized expression.
-
-The variable `$this` is predefined inside any non-static instance method (including
-constructor) when that method is called from within an object
-context. The value of `$this` is the calling object or the object being constructed.
 
 ###Simple Variable
 
@@ -153,6 +148,10 @@ name may contain characters that are not allowed in a lexical
 
 The behavior of a *simple-variable* in different contexts and for different types of
 variables is as specified in the [variables](07-variables.md) section.
+
+The variable `$this` is predefined inside any non-static instance method (including
+constructor) when that method is called from within an object
+context. The value of `$this` is the calling object or the object being constructed.
 
 **Examples**
 

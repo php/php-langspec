@@ -856,12 +856,8 @@ class C
     <i>clone-expression</i>
     <i>object-creation-expression</i>
     <i>array-creation-expression</i>
-    <i>subscript-expression</i>
-    <i>function-call-expression</i>
-    <i>member-selection-expression</i>
     <i>postfix-increment-expression</i>
     <i>postfix-decrement-expression</i>
-    <i>scope-resolution-expression</i>
     <i>exponentiation-expression</i>
 </pre>
 
@@ -871,12 +867,8 @@ class C
 * [*clone-expression*](#the-clone-operator)
 * [*object-creation-expression*](#the-new-operator)
 * [*array-creation-expression*](#array-creation-operator)
-* [*subscript-expression*](#subscript-operator)
-* [*function-call-expression*](#function-call-operator)
-* [*member-selection-expression*](#member-selection-operator)
 * [*postfix-increment-expression*](#postfix-increment-and-decrement-operators)
 * [*postfix-decrement-expression*](#postfix-increment-and-decrement-operators)
-* [*scope-resolution-expression*](#scope-resolution-operator)
 * [*exponentiation-expression*](#exponentiation-operator)
 
 **Semantics**
@@ -1173,7 +1165,7 @@ If both *dereferencable-expression* and *expression* designate strings,
 and a non-fatal error is produces.
 
 A *subscript-expression* designates a modifiable lvalue if and only if
-*postfix-expression* designates a modifiable lvalue.
+*dereferencable-expression* designates a modifiable lvalue.
 
 **dereferencable-expression designates an array**
 
@@ -1370,7 +1362,7 @@ defined, with an initial value of `NULL`.
 
 Direct and indirect recursive function calls are permitted.
 
-If *postfix-expression* is a string, this is
+If *callable-expression* is a string, this is
 a [variable function call](13-functions.md#variable-functions).
 
 If *variadic-unpacking* operation is used, the operand is considered to be a parameter list.
@@ -1542,15 +1534,15 @@ See [member access examples](#member-access).
 
 <pre>
   <i>postfix-increment-expression:</i>
-    <i>unary-expression</i>  ++
+    <i>variable</i>  ++
 
   <i>postfix-decrement-expression:</i>
-    <i>unary-expression</i>  --
+    <i>variable</i>  --
 </pre>
 
 **Defined elsewhere**
 
-* [*unary-expression*](#general-4)
+* [*variable*](#variables)
 
 **Constraints**
 
@@ -1745,7 +1737,6 @@ for each.  **Examples**
     <i>error-control-expression</i>
     <i>shell-command-expression</i>
     <i>cast-expression</i>
-    <i>variable-name-creation-expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -1757,7 +1748,6 @@ for each.  **Examples**
 * [*error-control-expression*](#error-control-operator)
 * [*shell-command-expression*](#shell-command-operator)
 * [*cast-expression*](#cast-operator)
-* [*variable-name-creation-expression*](#variable-name-creation-operator)
 
 **Semantics**
 
@@ -1769,15 +1759,15 @@ These operators associate right-to-left.
 
 <pre>
   <i>prefix-increment-expression:</i>
-    ++ <i>unary-expression</i>
+    ++ <i>variable</i>
 
   <i>prefix-decrement-expression:</i>
-    -- <i>unary-expression</i>
+    -- <i>variable</i>
 </pre>
 
 **Defined elsewhere**
 
-* [*unary-expression*](#general-4)
+* [*variable*](#variables)
 
 **Constraints**
 

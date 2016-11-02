@@ -34,14 +34,14 @@ is a sequence point at the end of each full expression. The [logical and](#logic
 operators each contain a sequence point. (For example, in the
 following series of expression statements, `$a = 10; ++$a; $b = $a;`,
 there is sequence point at the end of each full expression, so the
-assignment to $a is completed before `$a` is incremented, and the
+assignment to `$a` is completed before `$a` is incremented, and the
 increment is completed before the assignment to `$b`).
 
 When an expression contains multiple operators, the *precedence* of
 those operators controls the order in which those operators are applied.
 (For example, the expression `$a - $b / $c` is evaluated as
-`$a - ($b / $c)` because the / operator has higher precedence than the
-binary - operator). The precedence of an operator is determined by the
+`$a - ($b / $c)` because the `/` operator has higher precedence than the
+binary `-` operator). The precedence of an operator is determined by the
 definition of its associated grammar production.
 
 If an operand occurs between two operators having the same precedence,
@@ -74,7 +74,7 @@ called, is unspecified).
 
 An expression that contains no side effects and whose resulting value is
 not used need not be evaluated. For example, the expression statements
-`6;, $i + 6;`, and `$i/$j`; are well formed, but they contain no side
+`6;`, `$i + 6;`, and `$i/$j`; are well formed, but they contain no side
 effects and their results are not used.
 
 A side effect need not be executed if it can be determined that no other

@@ -387,10 +387,10 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>string-literal</i>
 
   <i>intrinsic:</i>
-    <i>intrisic-construct</i>
-    <i>intrisic-operator</i>
+    <i>intrinsic-construct</i>
+    <i>intrinsic-operator</i>
 
-  <i>intrisic-construct:</i>
+  <i>intrinsic-construct:</i>
     <i>echo-intrinsic</i>
     <i>list-intrinsic</i>
     <i>unset-intrinsic</i>

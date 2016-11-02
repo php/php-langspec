@@ -149,10 +149,10 @@ A literal evaluates to its value, as specified in the lexical specification for
 **Syntax**
 <pre>
   <i>intrinsic:</i>
-    <i>intrisic-construct</i>
-    <i>intrisic-operator</i>
+    <i>intrinsic-construct</i>
+    <i>intrinsic-operator</i>
 
-  <i>intrisic-construct:</i>
+  <i>intrinsic-construct:</i>
     <i>echo-intrinsic</i>
     <i>list-intrinsic</i>
     <i>unset-intrinsic</i>
@@ -187,7 +187,7 @@ are language constructs that are interpreted by the Engine.
 *intrinsic-operator* can be used as part of an expression, in any place
 other values or expressions could be used.
 
-*intrisic-construct* can be used only as stand-alone [statement](11-statements.md#statements).
+*intrinsic-construct* can be used only as stand-alone [statement](11-statements.md#statements).
 
 ####array
 

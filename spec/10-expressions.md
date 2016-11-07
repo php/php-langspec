@@ -3468,20 +3468,22 @@ and relative path) still are considered the same file.
 <pre>
   <i>constant-expression:</i>
     <i>array-creation-expression</i>
-    <i>expression</i>
+    <i>literal</i>
+    <i>name</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*array-creation-expression*](#array-creation-operator)
-* [*expression*](#general-6)
+* [*literal*](#literals)
+* [*name*](09-lexical-structure.md#names)
 
 **Constraints**
 
 All of the *element-key* and *element-value* elements in
 [*array-creation-expression*](#array-creation-operator) must be literals.
 
-*expression* must have a scalar type, and be a literal or the name of a [c-constant](06-constants.md#general).
+*name* must be the name of a [c-constant](06-constants.md#general).
 
 **Semantics**
 

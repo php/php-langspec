@@ -829,6 +829,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>selection-statement</i>
     <i>iteration-statement</i>
     <i>jump-statement</i>
+    <i>try-statement</i>
     <i>declare-statement</i>
     <i>const-declaration</i>
     <i>function-definition</i>

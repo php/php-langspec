@@ -8,7 +8,7 @@
 
   <i>statement:</i>
     <i>compound-statement</i>
-    <i>labeled-statement</i>
+    <i>named-label-statement</i>
     <i>expression-statement</i>
     <i>selection-statement</i>
     <i>iteration-statement</i>
@@ -91,23 +91,8 @@ while (condition)
 **Syntax**
 
 <pre>
-  <i>labeled-statement:</i>
-    <i>named-label-statement</i>
-    <i>case-statement</i>
-    <i>default-statement</i>
-
   <i>named-label-statement:</i>
     <i>name</i>  :  <i>statement</i>
-
-  <i>case-statement:</i>
-    case   <i>expression   case-default-label-terminator   statement</i>
-
-  <i>default-statement:</i>
-    default  <i>case-default-label-terminator   statement</i>
-
-  <i>case-default-label-terminator:</i>
-    :
-    ;
 </pre>
 
 **Defined elsewhere**
@@ -121,8 +106,6 @@ while (condition)
 A named label can be used as the target of a [`goto` statement](#the-goto-statement).
 
 Named labels must be unique within a function.
-
-A case and default labeled statements must only occur inside a [`switch` statement](#the-switch-statement).
 
 **Semantics**
 
@@ -308,13 +291,21 @@ else  // this else does go with the outer if
   <i>case-statements:</i>
     <i>case-statement</i> <i>statement-list<sub>opt</sub></i> <i>case-statements<sub>opt</sub></i>
     <i>default-statement</i> <i>statement-list<sub>opt</sub></i> <i>case-statements<sub>opt</sub></i>
+
+  <i>case-statement:</i>
+    case   <i>expression   case-default-label-terminator   statement</i>
+
+  <i>default-statement:</i>
+    default  <i>case-default-label-terminator   statement</i>
+
+  <i>case-default-label-terminator:</i>
+    :
+    ;
 </pre>
 
 **Defined elsewhere**
 
 * [*expression*](10-expressions.md#general-6)
-* [*case-statement*](#labeled-statements)
-* [*default-statement*](#labeled-statements)
 * [*compound-statement*](#compound-statements)
 * [*statement-list*](#compound-statements)
 

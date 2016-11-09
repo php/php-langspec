@@ -442,7 +442,7 @@ isset($v1, $v2, $v3);  // results in FALSE
   <i>unkeyed-list-expression-list:</i>
     <i>list-or-variable</i>
     ,
-    <i>unkeyed-list-expression-list</i>  ,  <i>list-or-variable<sub>opt</sub></ii>
+    <i>unkeyed-list-expression-list</i>  ,  <i>list-or-variable<sub>opt</sub></i>
 
   <i>keyed-list-expression-list:</i>
     <i>expression</i>  =>  <i>list-or-variable</i>

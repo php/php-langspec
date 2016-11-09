@@ -899,14 +899,14 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     switch  (  <i>expression</i>  )  :   <i>case-statements<sub>opt</sub></i>  endswitch;
 
   <i>case-statements:</i>
-    <i>case-statement</i> <i>statement-list<sub>opt</sub></i> <i>case-statements<sub>opt</sub></i>
-    <i>default-statement</i> <i>statement-list<sub>opt</sub></i> <i>case-statements<sub>opt</sub></i>
+    <i>case-statement   case-statements<sub>opt</sub></i>
+    <i>default-statement   case-statements<sub>opt</sub></i>
 
   <i>case-statement:</i>
-    case   <i>expression   case-default-label-terminator   statement</i>
+    case   <i>expression   case-default-label-terminator   statement-list<sub>opt</sub></i>
 
   <i>default-statement:</i>
-    default  <i>case-default-label-terminator   statement</i>
+    default  <i>case-default-label-terminator   statement-list<sub>opt</sub></i>
 
   <i>case-default-label-terminator:</i>
     :

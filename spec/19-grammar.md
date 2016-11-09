@@ -824,7 +824,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>statement:</i>
     <i>compound-statement</i>
-    <i>labeled-statement</i>
+    <i>named-label-statement</i>
     <i>expression-statement</i>
     <i>selection-statement</i>
     <i>iteration-statement</i>
@@ -856,23 +856,8 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 ####Labeled Statements
 
 <pre>
-  <i>labeled-statement:</i>
-    <i>named-label-statement</i>
-    <i>case-statement</i>
-    <i>default-statement</i>
-
   <i>named-label-statement:</i>
     <i>name</i>  :  <i>statement</i>
-
-  <i>case-statement:</i>
-    case   <i>expression   case-default-label-terminator   statement</i>
-
-  <i>default-statement:</i>
-    default  <i>case-default-label-terminator   statement</i>
-
-  <i>case-default-label-terminator:</i>
-    :
-    ;
 </pre>
 
 ####Expression Statements
@@ -917,6 +902,15 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>case-statement</i> <i>statement-list<sub>opt</sub></i> <i>case-statements<sub>opt</sub></i>
     <i>default-statement</i> <i>statement-list<sub>opt</sub></i> <i>case-statements<sub>opt</sub></i>
 
+  <i>case-statement:</i>
+    case   <i>expression   case-default-label-terminator   statement</i>
+
+  <i>default-statement:</i>
+    default  <i>case-default-label-terminator   statement</i>
+
+  <i>case-default-label-terminator:</i>
+    :
+    ;
 </pre>
 
 ####Iteration Statements

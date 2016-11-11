@@ -421,10 +421,10 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     eval (  <i>expression</i>  )
 
   <i>exit-intrinsic:</i>
-    exit  <i>expression<sub>opt</sub></i>
-    exit  (  <i>expression<sub>opt</sub></i>  )
-    die   <i>expression<sub>opt</sub></i>
-    die   (   <i>expression<sub>opt</sub></i> )
+    exit
+    exit   (   <i>expression<sub>opt</sub></i>   )
+    die
+    die   (   <i>expression<sub>opt</sub></i>   )
 
   <i>isset-intrinsic:</i>
     isset  (  <i>expression-list-one-or-more</i>  )

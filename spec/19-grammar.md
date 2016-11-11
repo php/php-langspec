@@ -374,17 +374,11 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>primary-expression:</i>
     <i>variable-name</i>
     <i>qualified-name</i>
-    <i>literal</i>
     <i>constant-expression</i>
     <i>intrinsic</i>
     <i>anonymous-function-creation-expression</i>
     (  <i>expression</i>  )
     $this
-
-  <i>literal:</i>
-    <i>integer-literal</i>
-    <i>floating-literal</i>
-    <i>string-literal</i>
 
   <i>intrinsic:</i>
     <i>intrinsic-construct</i>
@@ -523,7 +517,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>element-key:</i>
     <i>expression</i>
 
-  <i>element-value</i>
+  <i>element-value:</i>
     <i>expression</i>
 
   <i>subscript-expression:</i>
@@ -813,7 +807,13 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 <pre>
   <i>constant-expression:</i>
     <i>array-creation-expression</i>
-    <i>expression</i>
+    <i>literal</i>
+    <i>name</i>
+
+  <i>literal:</i>
+    <i>integer-literal</i>
+    <i>floating-literal</i>
+    <i>string-literal</i>
 </pre>
 
 ###Statements

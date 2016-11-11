@@ -1,5 +1,7 @@
 <?php error_reporting(E_ALL);
 
+require __DIR__ . '/util.php';
+
 $dir = __DIR__ . '/../spec/';
 $tocFile = $dir . '00-specification-for-php.md';
 $prefix = <<<EOS
@@ -17,40 +19,14 @@ is distributed without any warranty.
 **Table of Contents**
 EOS;
 
-$files = scandir($dir);
 $output = "";
-
-foreach ($files as $file) {
-    if(pathinfo($file, PATHINFO_EXTENSION) != 'md') {
-        continue;
-    }
-    if ($file == '00-specification-for-php.md' || $file == 'php-spec-draft.md') {
-        continue;
-    }
-
-    $anchors = [];
-
-    $lines = file($dir . $file);
-    foreach ($lines as $line) {
-        if (!preg_match('/^(#+)\s*(.+)/', $line, $matches)) {
-            continue;
-        }
-
-        list(, $hashes, $title) = $matches;
-        $level = strlen($hashes) - 1;
-        $indent = str_repeat('  ', $level);
-
-        $anchor = strtr(strtolower($title), ' ', '-');
-        $anchor = preg_replace('/[^\w-]/', '', $anchor);
-
-        if (isset($anchors[$anchor])) {
-            $anchors[$anchor]++;
-            $anchor .= '-' . $anchors[$anchor];
-        } else {
-            $anchors[$anchor] = 0;
-        }
-
-        $output .= "$indent- [$title]($file#$anchor)\n";
+foreach (spec_files() as $fileName => $path) {
+    $contents = file_get_contents($path);
+    foreach (heading_info($contents) as $info) {
+        $title = $info['title'];
+        $anchor = $info['anchor'];
+        $indent = str_repeat('  ', $info['level']);
+        $output .= "$indent- [$title]($fileName#$anchor)\n";
     }
 }
 

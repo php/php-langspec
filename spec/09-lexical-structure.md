@@ -194,7 +194,9 @@ There are several kinds of source *tokens*:
     <i>variable-name</i>
     <i>name</i>
     <i>keyword</i>
-    <i>literal</i>
+    <i>integer-literal</i>
+    <i>floating-literal</i>
+    <i>string-literal</i>
     <i>operator-or-punctuator</i>
 </pre>
 
@@ -203,7 +205,9 @@ There are several kinds of source *tokens*:
 * [*variable-name*](#names)
 * [*name*](#names)
 * [*keyword*](#keywords)
-* [*literal*](#general-2)
+* [*integer-literal*](#integer-literals)
+* [*floating-literal*](#floating-point-literals)
+* [*string-literal*](#string-literals)
 * [*operator-or-punctuator*](#operators-and-punctuators)
 
 ####Names
@@ -273,11 +277,11 @@ The following names cannot be used as the names of classes, interfaces, or trait
 
 The following names are reserved for future use and should not be used as the names of classes, interfaces, or traits: `mixed`, `numeric`, `object`, and `resource`.
 
-With the exception of `class`, all [keywords](09-lexical-structures#keywords) can be used as names for the members of a class, interface, or trait. However, `class` can be used as the name of a property or method.
+With the exception of `class`, all [keywords](#keywords) can be used as names for the members of a class, interface, or trait. However, `class` can be used as the name of a property or method.
 
 Variable names and function names (when used in a function-call context)
 need not be defined as source tokens; they can also be created at
-runtime using the [variable name-creation operator](10-expressions.md#variable-name-creation-operator). (For
+runtime using [simple variable expressions](10-expressions.md#simple-variable). (For
 example, given `$a = "Total"; $b = 3; $c = $b + 5;`, `${$a.$b.$c} = TRUE;`
 is equivalent to `$Total38 = TRUE;`, and `${$a.$b.$c}()` is
 equivalent to `Total38()`).
@@ -674,7 +678,7 @@ The variable substitution accepts the following syntax:
 * [*integer-literal*](#integer-literals)
 * [*expression*](10-expressions.md#general-6)
 
-*expression* works the same way as in [variable name creation operator](10-expressions.md#variable-name-creation-operator).
+*expression* works the same way as in [simple variable expressions](10-expressions.md#simple-variable).
 
 After the variable defined by the syntax above is evaluated, its value is converted
 to string according to the rules of [string conversion](08-conversions.md#converting-to-string-type)
@@ -682,7 +686,7 @@ and is substituted into the string in place of the variable substitution express
 
 Subscript or property access defined by *offset-in-string* and *property-in-string*
 is resolved according to the rules of the [subscript operator](10-expressions.md#subscript-operator)
-and [member selection operator](10-expressions.md#member-selection-operator) respectively.
+and [member access operator](10-expressions.md#member-access-operator) respectively.
 The exception is that *name* inside *offset-in-string* is interpreted as a string literal even if it is not
 quoted.
 

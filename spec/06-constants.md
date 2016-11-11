@@ -18,7 +18,7 @@ Specifically:
 -   If `define` is able to define the given name, it returns `TRUE`;
     otherwise, it returns `FALSE`.
 
-The constants can only hold a value of a [scalar type](05-types.md#scalar-types), an array or a [resource](05-types.md#resource-types).
+The constants can only hold a value of a [scalar type](05-types.md#scalar-types), an array or a [resource](05-types.md#resources).
 
 The library function [`defined`](http://www.php.net/defined) reports if a given name (specified as
 a string) is defined as a constant. The library function [`constant`](http://www.php.net/constant)

@@ -67,7 +67,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>variable-name</i>
     <i>name</i>
     <i>keyword</i>
-    <i>literal</i>
+    <i>integer-literal</i>
+    <i>floating-literal</i>
+    <i>string-literal</i>
     <i>operator-or-punctuator</i>
 </pre>
 
@@ -362,8 +364,8 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     global <i>variable-name-list</i> ;
 
   <i>variable-name-list:</i>
-    <i>expression</i>
-    <i>variable-name-list</i>  ,  <i>expression</i>
+    <i>simple-variable</i>
+    <i>variable-name-list</i>  ,  <i>simple-variable</i>
 </pre>
 
 ###Expressions

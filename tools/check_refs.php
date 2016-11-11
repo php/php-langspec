@@ -21,6 +21,9 @@ foreach (spec_files() as $fileName => $path) {
     }
 
     foreach ($matches[1] as $anchor) {
+        if (false === strpos($anchor, '#')) {
+            continue;
+        }
         if (!preg_match('/^(#|\d{2})/', $anchor)) {
             continue;
         }

@@ -356,24 +356,14 @@ echo "\$fs = $fs\n";    // $fs = 3
     global <i>variable-name-list</i> ;
 
   <i>variable-name-list:</i>
-    <i>global-variable</i>
-    <i>variable-name-list</i>  ,  <i>global-variable</i>
-
-  <i>global-variable:</i>
-    <i>variable-name</i>
-	<i>variable-name-creation-expression</i>
+    <i>simple-variable</i>
+    <i>variable-name-list</i>  ,  <i>simple-variable</i>
 </pre>
 
 **Defined elsewhere**
 
 * [*expression*](10-expressions.md#general-6)
-* [*variable-name*](09-lexical-structure.md#names)
-* [*variable-name-creation-expression*](10-expressions.md#variable-name-creation-operator)
-
-**Constraints**
-
-Each *variable-name-creation-expression* must designate a simple variable name, i.e. it can not include array elements,
-property accesses, etc. that are not inside braced expression.
+* [*simple-variable*](10-expressions.md#simple-variable)
 
 **Semantics**
 

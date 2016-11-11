@@ -248,14 +248,16 @@ Methods and properties can either be *static* or *instance* members. A
 static member is declared using `static`. An instance member is one that
 is not static. The name of a static or instance member can never be used
 on its own; it must always be used as the right-hand operand of the
-[scope resolution operator](10-expressions.md#scope-resolution-operator) or the [member selection operator](10-expressions.md#member-selection-operator).
+[scope resolution operator](10-expressions.md#scope-resolution-operator)
+or the [member access operator](10-expressions.md#member-access-operator).
 
 Each instance of a class contains its own, unique set of instance
 properties of that class. An instance member is accessed via the
-[`->` operator](10-expressions.md#member-selection-operator). In contrast, a static property designates
-exactly one VSlot for its class, which does not belong to any instance,
-per se. A static property exists whether or not any instances of that
-class exist. A static member is accessed via the [`::` operator](10-expressions.md#scope-resolution-operator).
+[`->` operator](10-expressions.md#member-access-operator). In contrast,
+a static property designates exactly one VSlot for its class, which does
+not belong to any instance, per se. A static property exists whether or
+not any instances of that class exist. A static member is accessed via
+the [`::` operator](10-expressions.md#scope-resolution-operator).
 
 When any instance method operates on a given instance of a class, within
 that method that object can be accessed via [`$this`](10-expressions.md#general-1). As a
@@ -772,7 +774,8 @@ designated by `$name` using the arguments specified by the elements of
 the array designated by `$arguments`. It can return any value deemed
 appropriate.
 
-Typically, `__call` is called implicitly, when the [`->` operator](10-expressions.md#member-call)
+Typically, `__call` is called implicitly, when the
+[`->` operator](10-expressions.md#member-call-operator)
 is used to call an instance method that is not visible.
 
 While `__call` can be called explicitly, the two scenarios do not
@@ -1038,7 +1041,8 @@ The *method-modifiers* must not contain `static` and must define public visibili
 This instance method gets the value of the [dynamic property](#dynamic-members)
 designated by `$name`. It is up to the implementor to define the return value.
 
-Typically, `__get` is called implicitly, when the [`->` operator](10-expressions.md#member-selection-operator)
+Typically, `__get` is called implicitly, when the
+[`->` operator](10-expressions.md#member-access-operator)
 is used in a non-lvalue context and the named property is not visible.
 
 While `__get` can be called explicitly, the two scenarios do not
@@ -1244,7 +1248,8 @@ The *method-modifiers* must not contain `static` and must define public visibili
 This instance method sets the value of the [dynamic property](#dynamic-members)
 designated by `$name` to `$value`. No value is expected to be returned.
 
-Typically, `__set` is called implicitly, when the [`->` operator](10-expressions.md#member-selection-operator)
+Typically, `__set` is called implicitly, when the
+[`->` operator](10-expressions.md#member-access-operator)
 is used in a modifiable lvalue context and the named property is not
 visible.
 
@@ -1826,7 +1831,7 @@ $s = serialize($cp);
 $v = unserialize($s);
 ```
 
-Function `unserialize` takes an optional second argument, which specifies an array of trusted class names as strings. Objects found in the data stream whose type name is not in this trusted name list are converted to objects of type [`__PHP_Incomplete_Class`](#class-__PHP_Incomplete_Class).
+Function `unserialize` takes an optional second argument, which specifies an array of trusted class names as strings. Objects found in the data stream whose type name is not in this trusted name list are converted to objects of type [`__PHP_Incomplete_Class`](#class-__php_incomplete_class).
 
 Any attempt to serialize an object having an anonymous class type results in an instance of type `Exception` being thrown.
 
@@ -2024,8 +2029,9 @@ for any other operation except serialization will result in a fatal error.
 
 This class contains no members. It can be instantiated and used as a
 base class. An instance of this type is automatically created when a
-non-object is [converted to an object](08-conversions.md#converting-to-object-type), or the [member selection
-operator](10-expressions.md#member-selection-operator) is applied to `NULL`, `FALSE`, or an empty string.
+non-object is [converted to an object](08-conversions.md#converting-to-object-type),
+or the [member selection operator](10-expressions.md#member-access-operator)
+is applied to `NULL`, `FALSE`, or an empty string.
 
 ###Predefined Error Classes
 

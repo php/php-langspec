@@ -95,7 +95,7 @@ function [`is_nan`](http://www.php.net/is_nan) indicates if a given floating-poi
 A string is a set of contiguous bytes that represents a sequence of zero
 or more characters.
 
-Conceptually, a string can be considered as an [array](#array-types) of
+Conceptually, a string can be considered as an [array](#the-array-type) of
 bytes—the *elements*—whose keys are the `int` values starting at zero. The
 type of each element is `string`. However, a string is *not* considered a
 collection, so it cannot be iterated over.

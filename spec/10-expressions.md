@@ -231,8 +231,8 @@ call operator](#function-call-operator).
 **Defined elsewhere**
 
 * [*function-call-expression*](#function-call-operator)
-* [*member-access-expression*](#member-access)
-* [*member-call-expression*](#member-call)
+* [*member-access-expression*](#member-access-operator)
+* [*member-call-expression*](#member-call-operator)
 * [*scoped-call-expresssion*](#scope-resolution-operator)
 * [*scoped-property-access-expresssion*](#scope-resolution-operator)
 * [*simple-variable*](#simple-variable)
@@ -1422,7 +1422,7 @@ $anon = function () { ... };  // store a Closure in $anon
 $anon();  // call the anonymous function encapsulated by that object
 ```
 
-###Member Access
+###Member Access Operator
 
 **Syntax**
 
@@ -1502,7 +1502,7 @@ $p1->color = "red"; // turned into $p1->__set("color", "red");
 $c = $p1->color;  // turned into $c = $p1->__get("color");
 ```
 
-###Member Call
+###Member Call Operator
 
 **Syntax**
 
@@ -1514,7 +1514,7 @@ $c = $p1->color;  // turned into $c = $p1->__get("color");
 **Defined elsewhere**
 
 * [*dereferencable-expression*](#dereferencable-expression)
-* [*member-name*](#member-access)
+* [*member-name*](#member-access-operator)
 * [*argument-expression-list*](#function-call-operator)
 
 **Constraints**
@@ -1541,7 +1541,7 @@ exists, in which case it will be called instead.
 
 **Examples**
 
-See [member access examples](#member-access).
+See [member access examples](#member-access-operator).
 
 ###Postfix Increment and Decrement Operators
 
@@ -1606,7 +1606,7 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 
 * [*argument-expression-list*](#function-call-operator)
 * [*dereferencable-expression*](#dereferencable-expression)
-* [*member-name*](#member-access)
+* [*member-name*](#member-access-operator)
 * [*simple-variable*](#simple-variable)
 
 **Constraints**
@@ -2921,7 +2921,7 @@ must have type `string`.
 
 If *assignment-expression* designates an expression having value type,
 see  [assignment for scalar types](04-basic-concepts.md#byref-assignment-for-scalar-types-with-local-variables)
-If *assignment-expression* designates an expression having handle type, see [assignment for object and resource types](04-basic-concepts.md#value-assignment-of-object-and-resource-types-to-a-local-variable).
+If *assignment-expression* designates an expression having handle type, see [assignment for object and resource types](04-basic-concepts.md#value-assignment-of-objects-to-a-local-variable).
 If *assignment-expression* designates an expression having array type, see
 [assignment of array types](04-basic-concepts.md#value-assignment-of-array-types-to-local-variables).
 

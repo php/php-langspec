@@ -3573,25 +3573,27 @@ and relative path) still are considered the same file.
 
 <pre>
   <i>constant-expression:</i>
-    <i>array-creation-expression</i>
     <i>expression</i>
 </pre>
 
 **Defined elsewhere**
 
-* [*array-creation-expression*](#array-creation-operator)
 * [*expression*](#general-6)
 
 **Constraints**
 
-All of the *element-key* and *element-value* elements in
-[*array-creation-expression*](#array-creation-operator) must be literals.
+The *expression* may only use the following syntactic elements:
 
-*expression* must have a scalar type, and be a literal or the name of a [c-constant](06-constants.md#general).
+* [Literals](#literals). String literals must not use interpolation.
+* [Array creation expressions](#array-creation-operator).
+* Unary operators `+`, `-`, `~`, `!`.
+* Binary operators `+`, `-`, `*`, `/`, `%`, `.`, `**`, `^`, `|`, `&`,
+  `<`, `>`, `<=`, `>=`, `<=>`, `==`, `!=`, `===`, `!==`, `&&`, `||`, `??`.
+* [Conditional expressions](#conditional-operator).
+* [Subscript expressions](#subscript-operator).
+* [Constant access expressions](#constant-access-expression).
+* [Class constant access expressions](#scope-resolution-operator).
 
 **Semantics**
 
-A *constant-expression* is the value of a c-constant. A *constant-expression*
-is required in several contexts, such as in initializer values in a
-[*const-declaration*](14-classes.md#constants) and default initial values in a [function
-definition](13-functions.md#function-definitions).
+A *constant-expression* evaluates to the value of the constituent *expression*.

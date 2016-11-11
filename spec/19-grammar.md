@@ -844,7 +844,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <pre>
   <i>constant-expression:</i>
-    <i>array-creation-expression</i>
     <i>expression</i>
 </pre>
 

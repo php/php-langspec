@@ -340,10 +340,10 @@ eval("echo \$str . \"\\n\";");  // → echo $str . "\n"; → prints Hello
 
 <pre>
   <i>exit-intrinsic:</i>
-    exit  <i>expression<sub>opt</sub></i>
-    exit  (  <i>expression<sub>opt</sub></i>  )
-    die   <i>expression<sub>opt</sub></i>
-    die   (   <i>expression<sub>opt</sub></i> )
+    exit
+    exit   (   <i>expression<sub>opt</sub></i>   )
+    die
+    die   (   <i>expression<sub>opt</sub></i>   )
 </pre>
 
 **Defined elsewhere**

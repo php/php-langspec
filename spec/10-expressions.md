@@ -91,34 +91,157 @@ function, `$a` need not actually be incremented.
 
 <pre>
   <i>primary-expression:</i>
-    <i>variable-name</i>
+    <i>variable</i>
+    <i>class-property-access-expression</i>
     <i>qualified-name</i>
     <i>literal</i>
-    <i>constant-expression</i>
+    <i>array-creation-expression</i>
     <i>intrinsic</i>
     <i>anonymous-function-creation-expression</i>
     (  <i>expression</i>  )
-    $this
 </pre>
 
 **Defined elsewhere**
 
-* [*variable-name*](09-lexical-structure.md#names)
+* [*variable*](#variables)
 * [*qualified-name*](09-lexical-structure.md#names)
 * [*literal*](#literals)
-* [*constant-expression*](#constant-expressions)
+* [*array-creation-expression*](#array-creation-operator)
 * [*intrinsic*](#general-2)
 * [*anonymous-function-creation-expression*](#anonymous-function-creation)
 * [*expression*](#script-inclusion-operators)
+* [*class-property-access-expression*](#scope-resolution-operator)
 
 **Semantics**
 
 The type and value of parenthesized expression are identical to those of
 the un-parenthesized expression.
 
+###Simple Variable
+
+**Syntax**
+
+<pre>
+  <i>simple-variable:</i>
+    <i>variable-name</i>
+    $   <i>simple-variable</i>
+    $   {   <i>expression</i>   }
+</pre>
+
+**Defined elsewhere**
+
+* [*variable-name*](09-lexical-structure.md#names)
+* [*expression*](#general-6)
+
+**Constraints**
+
+The *simple-variable* or *expression* in the last two variants
+must designate a scalar value or object convertible to string.
+
+**Semantics**
+
+A *simple-variable* expression designates a variable with the name determined by either
+the *variable-name* or the string representation of the result of the *simple-variable* or
+*expression*, depending on which case is applicable. In the latter two cases the variable
+name may contain characters that are not allowed in a lexical
+[variable-name](09-lexical-structure.md#names).
+
+The behavior of a *simple-variable* in different contexts and for different types of
+variables is as specified in the [variables](07-variables.md) section.
+
 The variable `$this` is predefined inside any non-static instance method (including
 constructor) when that method is called from within an object
 context. The value of `$this` is the calling object or the object being constructed.
+
+**Examples**
+
+```PHP
+$color = "red";
+$$color = 123;    // equivalent to $red = 123
+// -----------------------------------------
+$x = 'ab'; $ab = 'fg'; $fg = 'xy';
+$$ $ $x = 'Hello';  // equivalent to $xy = Hello
+// -----------------------------------------
+$v1 = 3;
+$$v1 = 22;        // equivalent to ${3} = 22, variable name is "3"
+$v2 = 9.543;
+$$v2 = TRUE;    // equivalent to ${9.543} = TRUE
+$v3 = NULL;
+$$v3 = "abc";   // equivalent to ${NULL} = "abc", here we create a variable with empty name
+// -----------------------------------------
+function f1 () { return 2.5; }
+${1 + f1()} = 1000;   // equivalent to ${3.5} = 1000
+```
+
+###Dereferencable expression
+
+**Syntax**
+
+<pre>
+  <i>dereferencable-expression:</i>
+    <i>variable</i>
+    (   <i>expression</i>   )
+    <i>array-creation-expression</i>
+    <i>string-literal</i>
+
+  <i>callable-expression:</i>
+    <i>callable-variable</i>
+    (   <i>expression</i>   )
+    <i>array-creation-expression</i>
+    <i>string-literal</i>
+</pre>
+
+**Defined elsewhere**
+
+* [*array-creation-expression*](#array-creation-operator)
+* [*callable-variable*](#variables)
+* [*expression*](#general-6)
+* [*variable*](#variables)
+
+**Constraints**
+
+The *string-literal* must not use variable interpolation and must not be a heredoc
+or nowdoc string literal.
+
+**Semantics**
+
+A *dereferencable-expression* can be used as the left hand side of dereferencing operators, such
+as `[]`, `->` and `::`. A *callable-expression* can be used as the left hand side of the [function
+call operator](#function-call-operator).
+
+###Variables
+
+**Syntax**
+
+<pre>
+  <i>callable-variable:</i>
+    <i>simple-variable</i>
+    <i>subscript-expression</i>
+    <i>member-call-expression</i>
+    <i>scoped-call-expression</i>
+    <i>function-call-expression</i>
+
+  <i>variable:</i>
+    <i>callable-variable</i>
+    <i>scoped-property-access-expression</i>
+    <i>member-access-expression</i>
+</pre>
+
+**Defined elsewhere**
+
+* [*function-call-expression*](#function-call-operator)
+* [*member-access-expression*](#member-access)
+* [*member-call-expression*](#member-call)
+* [*scoped-call-expresssion*](#scope-resolution-operator)
+* [*scoped-property-access-expresssion*](#scope-resolution-operator)
+* [*simple-variable*](#simple-variable)
+* [*subscript-expression*](#subscript-operator)
+
+**Semantics**
+
+A *variable* is an expression that can *in principle* be used as an lvalue. However, the
+individual possible expressions may further restrict whether they can behave as lvalues.
+An expression that is not a *variable* can never act as an lvalue.
 
 ###Literals
 
@@ -733,12 +856,8 @@ class C
     <i>clone-expression</i>
     <i>object-creation-expression</i>
     <i>array-creation-expression</i>
-    <i>subscript-expression</i>
-    <i>function-call-expression</i>
-    <i>member-selection-expression</i>
     <i>postfix-increment-expression</i>
     <i>postfix-decrement-expression</i>
-    <i>scope-resolution-expression</i>
     <i>exponentiation-expression</i>
 </pre>
 
@@ -748,12 +867,8 @@ class C
 * [*clone-expression*](#the-clone-operator)
 * [*object-creation-expression*](#the-new-operator)
 * [*array-creation-expression*](#array-creation-operator)
-* [*subscript-expression*](#subscript-operator)
-* [*function-call-expression*](#function-call-operator)
-* [*member-selection-expression*](#member-selection-operator)
 * [*postfix-increment-expression*](#postfix-increment-and-decrement-operators)
 * [*postfix-decrement-expression*](#postfix-increment-and-decrement-operators)
-* [*scope-resolution-expression*](#scope-resolution-operator)
 * [*exponentiation-expression*](#exponentiation-operator)
 
 **Semantics**
@@ -1010,23 +1125,23 @@ for ($i = -1; $i <= 2; ++$i) { echo $v[$i]; } // retrieves via keys -1, 0, 1, 2
 
 <pre>
   <i>subscript-expression:</i>
-    <i>postfix-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
-    <i>postfix-expression</i>  {  <i>expression</i>  }   <b>[Deprecated form]</b>
+    <i>dereferencable-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
+    <i>dereferencable-expression</i>  {  <i>expression</i>  }   <b>[Deprecated form]</b>
 </pre>
 
 **Defined elsewhere**
 
-* [*postfix-expression*](#general-3)
+* [*dereferencable-expression*](#dereferencable-expression)
 * [*expression*](#general-6)
 
 **Constraints**
 
-If *postfix-expression* designates a string, *expression* must not
+If *dereferencable-expression* designates a string, *expression* must not
 designate a string.
 
 *expression* can be omitted only if *subscript-expression* is used in a
-modifiable-lvalue context and *postfix-expression* does not designate a string.
-Exception from this is when *postfix-expression* is an empty string - then it is
+modifiable-lvalue context and *dereferencable-expression* does not designate a string.
+Exception from this is when *dereferencable-expression* is an empty string - then it is
 converted to an empty array.
 
 If *subscript-expression* is used in a non-lvalue context, the element
@@ -1045,14 +1160,14 @@ or `bool` values, or strings whose contents match exactly the pattern of
 [*decimal-literal*](09-lexical-structure.md#integer-literals), are [converted to integer](08-conversions.md#converting-to-integer-type),
 and key values of all other types are [converted to string](08-conversions.md#converting-to-string-type).
 
-If both *postfix-expression* and *expression* designate strings,
+If both *dereferencable-expression* and *expression* designate strings,
 *expression* is treated as if it specified the `int` key zero instead
 and a non-fatal error is produces.
 
 A *subscript-expression* designates a modifiable lvalue if and only if
-*postfix-expression* designates a modifiable lvalue.
+*dereferencable-expression* designates a modifiable lvalue.
 
-**postfix-expression designates an array**
+**dereferencable-expression designates an array**
 
 If *expression* is present, if the designated element exists, the type
 and value of the result is the type and value of that element;
@@ -1077,7 +1192,7 @@ The result is the added new element, or `NULL` if the element was not added.
     [postfix- or prefix-increment or decrement operator](#postfix-increment-and-decrement-operators), the value
     of the new element is considered to be `NULL`.
 
-**postfix-expression designates a string**
+**dereferencable-expression designates a string**
 
 The *expression* is converted to `int` and the result is the character of the
 string at the position corresponding to that integer. If the integer is negative,
@@ -1095,7 +1210,7 @@ The subscript operator can not be used on a string value in a byRef context or a
 side of [*compound-assignment-expression*](#compound-assignment),
 doing so will result in a fatal error.
 
-**postfix-expression designates an object of a type that implements `ArrayAccess`**
+**dereferencable-expression designates an object of a type that implements `ArrayAccess`**
 
 If *expression* is present,
 
@@ -1175,7 +1290,7 @@ $x = $vect1[1];   // calls Vector::offsetGet(1)
 <pre>
   <i>function-call-expression:</i>
     <i>qualified-name</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
-    <i>postfix-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
+    <i>callable-expression</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
 
   <i>argument-expression-list:</i>
     <i>argument-expression</i>
@@ -1192,15 +1307,15 @@ $x = $vect1[1];   // calls Vector::offsetGet(1)
 
 **Defined elsewhere**
 
-* [*postfix-expression*](#general-3)
+* [*callable-expression*](#dereferencable-expression)
 * [*assignment-expression*](#general-5)
 
 **Constraints**
 
-*postfix-expression* must designate a function, either by being its
-*name*, by being a value of type string (but not a string literal) that
-contains the function's name, or by being an object of a type that implements
-[`__invoke`](14-classes.md#method-__invoke) method (including [`Closure`](14-classes.md#class-closure) objects).
+*callable-expression* must designate a function, by being a value of type string
+that contains the function's name, or by being an object of a type that implements
+[`__invoke`](14-classes.md#method-__invoke) method (including
+[`Closure`](14-classes.md#class-closure) objects).
 
 The number of arguments present in a function call must be at least as
 many as the number of non-optional parameters defined for that function.
@@ -1220,17 +1335,11 @@ An expression of the form *function-call-expression* is a *function
 call*. The expression designates the *called function*, and
 *argument-expression-list* specifies the arguments to be passed to that
 function. An argument can be any value. In a function call,
-*postfix-expression* is evaluated first, followed by each
+*callable-expression* is evaluated first, followed by each
 *assignment-expression* in the order left-to-right. There is
 a [sequence point](#general) after each argument is evaluated and right before the function is called.
 For details of the result of a function call see [`return` statement](11-statements.md#the-return-statement).
 The value of a function call is a modifiable lvalue only if the function returns a modifiable value byRef.
-
-When *postfix-expression* designates an instance method or constructor,
-the instance used in that designation is used as the value of `$this` in
-the invoked method or constructor. However, if no instance was used in
-that designation (for example, in the call `C::instance_method()`) the
-invoked instance has no `$this` defined.
 
 When a function is called, the value of each argument passed to it is
 assigned to the corresponding parameter in that function's definition,
@@ -1253,7 +1362,7 @@ defined, with an initial value of `NULL`.
 
 Direct and indirect recursive function calls are permitted.
 
-If *postfix-expression* is a string, this is
+If *callable-expression* is a string, this is
 a [variable function call](13-functions.md#variable-functions).
 
 If *variadic-unpacking* operation is used, the operand is considered to be a parameter list.
@@ -1298,32 +1407,31 @@ $anon = function () { ... };  // store a Closure in $anon
 $anon();  // call the anonymous function encapsulated by that object
 ```
 
-###Member-Selection Operator
+###Member Access
 
 **Syntax**
 
 <pre>
-  <i>member-selection-expression:</i>
-    <i>postfix-expression</i>  ->  <i>member-selection-designator</i>
+  <i>member-access-expression:</i>
+    <i>dereferencable-expression</i>   ->   <i>member-name</i>
 
-  <i>member-selection-designator:</i>
+  <i>member-name:</i>
     <i>name</i>
-    <i>expression</i>
+    <i>simple-variable</i>
+    {   <i>expression</i>   }
 </pre>
 
 **Defined elsewhere**
 
-* [*postfix-expression*](#general-3)
+* [*dereferencable-expression*](#dereferencable-expression)
 * [*name*](09-lexical-structure.md#names)
+* [*simple-variable*](#simple-variable)
 * [*expression*](#general-6)
 
 **Constraints**
 
-*postfix-expression* must designate an object or be `NULL`, `FALSE`, or an
-empty string.
-
-*name* must designate an instance property, or an instance or static
-method of *postfix-expression*'s class type.
+The *dereferencable-expression* must designate an object or be `NULL`, `FALSE`,
+or an empty string.
 
 *expression* must be a value of type `string` (but not a string literal)
 that contains the name of an instance property (**without** the
@@ -1332,25 +1440,24 @@ type.
 
 **Semantics**
 
-A *member-selection-expression* designates an instance property or an
-instance or static method of the object designated by
-*postfix-expression*. For a property, the value is that of the property,
-and is a modifiable lvalue if *postfix-expression* is a modifiable
-lvalue.
+A *member-access-expression* designates an instance property of the object
+designated by *dereferencable-expression* with the name given by the string
+representation of *member-name*. The value is that of the property, and is a
+modifiable lvalue if *dereferencable-expression* is a modifiable lvalue.
 
-When the `->` operator is used in a modifiable lvalue context and *name*
-or *expression* designate a property that is not visible, the property
-is treated as a [dynamic property](14-classes.md#dynamic-members). If *postfix-expression*'s class
+When the `->` operator is used in a modifiable lvalue context and *member-name*
+designate a property that is not visible, the property is treated as a
+[dynamic property](14-classes.md#dynamic-members). If *dereferencable-expression*'s class
 type defines a [`__set` method](14-classes.md#method-__set), it is called to store the
 property's value. When the `->` operator is used in a non-lvalue context
-and *name* or *expression* designate a property that is not visible, the
-property is treated as a dynamic property. If *postfix-expression*'s
-class type defines a [`__get` method](14-classes.md#method-__get), it is called to retrieve
-the property's value.
+and *member-name* designate a property that is not visible, the property
+is treated as a dynamic property. If *dereferencable-expression*'s
+class type defines a [`__get` method](14-classes.md#method-__get),
+it is called to retrieve the property's value.
 
-If *postfix-expression* is `NULL`, `FALSE`, or an empty string, an expression
-of the form `$p->x = 10` causes an instance of [`stdClass`](14-classes.md#class-stdclass) to be
-created with a dynamic property x having a value of 10. `$p` is then made
+If *dereferencable-expression* is `NULL`, `FALSE`, or an empty string, an expression
+of the form `$p->x = 10` causes an instance of [`stdClass`](14-classes.md#class-stdclass)
+to be created with a dynamic property `x` having a value of 10. `$p` is then made
 to refer to this instance.
 
 **Examples**
@@ -1380,21 +1487,62 @@ $p1->color = "red"; // turned into $p1->__set("color", "red");
 $c = $p1->color;  // turned into $c = $p1->__get("color");
 ```
 
+###Member Call
+
+**Syntax**
+
+<pre>
+  <i>member-call-expression:</i>
+    <i>dereferencable-expression</i>   ->   <i>member-name</i>   (   <i>argument-expression-list<sub>opt</sub></i>   )
+</pre>
+
+**Defined elsewhere**
+
+* [*dereferencable-expression*](#dereferencable-expression)
+* [*member-name*](#member-access)
+* [*argument-expression-list*](#function-call-operator)
+
+**Constraints**
+
+The *dereferencable-expression* must designate an object.
+
+Additionally the general [function call constraints](#function-call-operator)
+apply.
+
+**Semantics**
+
+A *member-call-expression* calls an instance or static method of the
+object designated by *dereferencable-expression*, with the method
+name given by the string representation of *member-name* and the
+arguments given by *argument-expression-list*. The value of
+*dereferencable-expression* is used as the value of `$this` in the
+invoked method.
+
+The general [function call semantics](#function-call-operator) apply.
+
+If the called method does not exist or is not visible from the current
+scope an exception is thrown, unless a [`__call` method](14-classes.md#method-__call)
+exists, in which case it will be called instead.
+
+**Examples**
+
+See [member access examples](#member-access).
+
 ###Postfix Increment and Decrement Operators
 
 **Syntax**
 
 <pre>
   <i>postfix-increment-expression:</i>
-    <i>unary-expression</i>  ++
+    <i>variable</i>  ++
 
   <i>postfix-decrement-expression:</i>
-    <i>unary-expression</i>  --
+    <i>variable</i>  --
 </pre>
 
 **Defined elsewhere**
 
-* [*unary-expression*](#general-4)
+* [*variable*](#variables)
 
 **Constraints**
 
@@ -1419,14 +1567,19 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 **Syntax**
 
 <pre>
-  <i>scope-resolution-expression:</i>
-    <i>scope-resolution-qualifier</i>  ::  <i>member-selection-designator</i>
-    <i>scope-resolution-qualifier</i>  ::  class
+  <i>scoped-property-access-expression:</i>
+    <i>scope-resolution-qualifier</i>   ::   <i>simple-variable</i>
+
+  <i>scoped-call-expression:</i>
+    <i>scope-resolution-qualifier</i>   ::   <i>member-name</i>    (   <i>argument-expression-list<sub>opt</sub>   )
+
+  <i>class-property-access-expression:</i>
+    <i>scope-resolution-qualifier</i>   ::   <i>name</i>
 
   <i>scope-resolution-qualifier:</i>
     <i>relative-scope</i>
     <i>qualified-name</i>
-    <i>expression</i>
+    <i>dereferencable-expression</i>
 
   <i>relative-scope</i>:
     self
@@ -1436,14 +1589,17 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 
 **Defined elsewhere**
 
-* [*member-selection-designator*](#member-selection-operator)
+* [*argument-expression-list*](#function-call-operator)
+* [*dereferencable-expression*](#dereferencable-expression)
+* [*member-name*](#member-access)
+* [*simple-variable*](#simple-variable)
 
 **Constraints**
 
 *qualified-name* must be the name of a class or interface type.
 
-*expression* must be a value of type string (but not a string literal)
-that contains the name of a class or interface type.
+*expression* must be a value of type string that contains the name
+of a class or interface type.
 
 **Semantics**
 
@@ -1451,22 +1607,23 @@ From inside or outside a class or interface, operator `::` allows the
 selection of a constant. From inside or outside a class, this operator
 allows the selection of a static property, static method, or instance
 method. From within a class, it also allows the selection of an
-overridden property or method. For a property, the value is that of the
-property, and is a modifiable lvalue if *member-selection-designator* is
-a modifiable lvalue.
+overridden property or method.
 
-If *member-selection-designator* is a [*name*](09-lexical-structure.md#names), this operator is accessing
-a class constant. This form can not be used as an lvalue.
+If the *scoped-property-access-expression* form is used, this operator
+is accessing a static property given by *simple-variable* and can be
+used as an lvalue.
 
-If the operator is used as a *postfix-expression* for *function-call-expression*
-then the operator is accessing the method - which, outside of the object context,
+If the *class-property-access-expression* form is used, this operator is
+is accessing a class constant given by *name*. This form can not be used
+as an lvalue.
+
+If the *scoped-call-expression* form is used, the operator is calling the
+method given by *member-anem*, which, outside of the object context,
 is treated as static method call.
 
 Inside of the object context when `$this` is defined and the called method is not `static` and
-the called class is the same of a parent of the class of `$this`, then the method is
+the called class is the same as a parent of the class of `$this`, then the method call is
 non-static with the same `$this`. Otherwise it is a static method call.
-
-Otherwise, the operator is accessing a static property.
 
 *relative-scope* designates the class with relation to the current class scope.
 From within a class, `self` refers to the same class, `parent` refers to the
@@ -1580,7 +1737,6 @@ for each.  **Examples**
     <i>error-control-expression</i>
     <i>shell-command-expression</i>
     <i>cast-expression</i>
-    <i>variable-name-creation-expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -1592,7 +1748,6 @@ for each.  **Examples**
 * [*error-control-expression*](#error-control-operator)
 * [*shell-command-expression*](#shell-command-operator)
 * [*cast-expression*](#cast-operator)
-* [*variable-name-creation-expression*](#variable-name-creation-operator)
 
 **Semantics**
 
@@ -1604,15 +1759,15 @@ These operators associate right-to-left.
 
 <pre>
   <i>prefix-increment-expression:</i>
-    ++ <i>unary-expression</i>
+    ++ <i>variable</i>
 
   <i>prefix-decrement-expression:</i>
-    -- <i>unary-expression</i>
+    -- <i>variable</i>
 </pre>
 
 **Defined elsewhere**
 
-* [*unary-expression*](#general-4)
+* [*variable*](#variables)
 
 **Constraints**
 
@@ -1945,70 +2100,6 @@ A *cast-type* of `unset` always results in a value of `NULL`. (This use of
 (int)(10/3)          // results in the int 3 rather than the float 3.333...
 (array)(16.5)      // results in an array of 1 float; [0] = 16.5
 (int)(float)"123.87E3" // results in the int 123870
-```
-
-###Variable-Name Creation Operator
-
-**Syntax**
-
-<pre>
-  <i>variable-name-creation-expression:</i>
-    $   <i>expression</i>
-    $  {  <i>expression</i>  }
-</pre>
-
-**Defined elsewhere**
-
-* [*expression*](#general-6)
-
-**Constraints**
-
-In the non-brace form, *expression* must be a
-*variable-name-creation-expression* or a *variable-name* that designates
-a scalar value or an object convertible to string.
-
-In the brace form, *expression* must be a
-*variable-name-creation-expression* or an expression that designates a
-scalar value or an object convertible to string.
-
-**Semantics**
-
-The result of this operator is a variable name spelled using the string
-representation of the value of *expression* even though such a name
-might not be permitted as a [variable-name](09-lexical-structure.md#names) source code token.
-
-The operator will consume the following *variable-name-creation-expression* and *variable-name* tokens, and
-also tokens representing [subscript operator](#subscript-operator).
-
-In the absense of braces, the variable is parsed with left-to-right semantics, i.e., in example `$$o->pr`
-the expression is treated as `${$o}->pr`, i.e. it is parsed as "take the value of $o, consider it a variable name,
-and assuming the variable with this name is an object take the property 'pr' of it".
-
-**Examples**
-
-```PHP
-$color = "red";
-$$color = 123;    // equivalent to $red = 123
-// -----------------------------------------
-$x = 'ab'; $ab = 'fg'; $fg = 'xy';
-$$ $ $x = 'Hello';  // equivalent to $xy = Hello
-// -----------------------------------------
-$v1 = 3;
-$$v1 = 22;        // equivalent to ${3} = 22, variable name is "3"
-$v2 = 9.543;
-$$v2 = TRUE;    // equivalent to ${9.543} = TRUE
-$v3 = NULL;
-$$v3 = "abc";   // equivalent to ${NULL} = "abc", here we create a variable with empty name
-// -----------------------------------------
-function f1 () { return 2.5; }
-${1 + f1()} = 1000;   // equivalent to ${3.5} = 1000
-// -----------------------------------------
-$v = array(10, 20); $a = 'v';
-$$a[0] = 5;       // $v is [5, 20], since $$a is on the left of [] so it gets the first shot
-$v = array(10, 20); $a = 'v';
-${$a[0]} = 5;   // $v is 5
-$v = array(10, 20); $a = 'v';
-${$a}[0] = 5;   // $ gets first shot at $a, $v is [5, 20]
 ```
 
 ##`instanceof` Operator

@@ -17,6 +17,8 @@ function spec_files() {
     }
 }
 
+/* Iterator of heading information.
+ * Assoc array with title, anchor, level. */
 function heading_info($code) {
     $anchors = [];
     $lines = explode("\n", $code);

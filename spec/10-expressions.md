@@ -93,7 +93,7 @@ function, `$a` need not actually be incremented.
   <i>primary-expression:</i>
     <i>variable</i>
     <i>class-constant-access-expression</i>
-    <i>qualified-name</i>
+    <i>constant-access-expression</i>
     <i>literal</i>
     <i>array-creation-expression</i>
     <i>intrinsic</i>
@@ -104,7 +104,7 @@ function, `$a` need not actually be incremented.
 **Defined elsewhere**
 
 * [*variable*](#variables)
-* [*qualified-name*](09-lexical-structure.md#names)
+* [*constant-access-expression*](#constant-access-expression)
 * [*literal*](#literals)
 * [*array-creation-expression*](#array-creation-operator)
 * [*intrinsic*](#general-2)
@@ -243,6 +243,22 @@ call operator](#function-call-operator).
 A *variable* is an expression that can *in principle* be used as an lvalue. However, the
 individual possible expressions may further restrict whether they can behave as lvalues.
 An expression that is not a *variable* can never act as an lvalue.
+
+###Constant Access Expression
+
+<pre>
+ <i>constant-access-expression:</i>
+   <i>qualified-name</i>
+</pre>
+
+**Defined elsewhere**
+
+* [*qualified-name*](09-lexical-structure.md#names)
+
+**Semantics**
+
+A *constant-access-expression* evaluates to the value of the [constant](06-constants.md)
+with name *qualified-name*.
 
 ###Literals
 

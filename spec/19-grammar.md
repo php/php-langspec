@@ -374,7 +374,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>primary-expression:</i>
     <i>variable</i>
     <i>class-constant-access-expression</i>
-    <i>qualified-name</i>
+    <i>constant-access-expression</i>
     <i>literal</i>
     <i>array-creation-expression</i>
     <i>intrinsic</i>
@@ -409,6 +409,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>callable-variable</i>
     <i>scoped-property-access-expression</i>
     <i>member-access-expression</i>
+
+ <i>constant-access-expression:</i>
+   <i>qualified-name</i>
 
   <i>literal:</i>
     <i>integer-literal</i>

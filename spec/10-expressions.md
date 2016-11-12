@@ -688,7 +688,6 @@ list(0 => list($x1, $x2), 1 => list($x2, $y2)) = [[1, 2], [3, 4]];
 <pre>
   <i>print-intrinsic:</i>
     print  <i>expression</i>
-    print  (  <i>expression</i>  )
 </pre>
 
 **Defined elsewhere**

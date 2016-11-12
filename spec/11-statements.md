@@ -118,8 +118,8 @@ execution.
 **Syntax**
 
 <pre>
-   <i>expression-statement:</i>
-     <i>expression<sub>opt</sub></i>  ;
+  <i>expression-statement:</i>
+    <i>expression<sub>opt</sub></i>  ;
 </pre>
 
 **Defined elsewhere**

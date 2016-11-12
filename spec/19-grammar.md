@@ -6,8 +6,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 ##Lexical Grammar
 
-###General
-
 <pre>
   <i>input-file::</i>
     <i>input-element</i>
@@ -16,11 +14,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>comment</i>
     <i>white-space</i>
     <i>token</i>
-</pre>
 
-###Comments
-
-<pre>
   <i>comment::</i>
     <i>single-line-comment</i>
     <i>delimited-comment</i>
@@ -43,11 +37,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>delimited-comment::</i>
     /*   No characters or any source character sequence except */   */
-</pre>
 
-###White Space
-
-<pre>
   <i>white-space::</i>
     <i>white-space-character</i>
     <i>white-space   white-space-character</i>
@@ -56,13 +46,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>new-line</i>
     Space character (U+0020)
     Horizontal-tab character (U+0009)
-</pre>
 
-###Tokens
-
-####General
-
-<pre>
   <i>token::</i>
     <i>variable-name</i>
     <i>name</i>
@@ -71,11 +55,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>floating-literal</i>
     <i>string-literal</i>
     <i>operator-or-punctuator</i>
-</pre>
 
-####Names
-
-<pre>
   <i>variable-name::</i>
     $   <i>name</i>
 
@@ -107,11 +87,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     n   o   p   q   r   s   t   u   v   w   x   y   z
     A   B   C   D   E   F   G   H   I   J   K   L   M
     N   O   P   Q   R   S   T   U   V   W   X   Y   Z
-</pre>
 
-###Keywords
-
-<pre>
   <i>keyword:: one of</i>
     abstract   and   array   as   break   callable   case   catch   class   clone
     const   continue   declare   default   die   do   echo   else   elseif   empty
@@ -121,13 +97,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     insteadof   interface   isset   list   namespace   new   or   print   private
     protected   public   require   require_once   return   static   switch
     throw   trait   try   unset   use   var   while   xor   yield   yield from
-</pre>
 
-###Literals
-
-####Integer Literals
-
-<pre>
   <i>integer-literal::</i>
     <i>decimal-literal</i>
     <i>octal-literal</i>
@@ -172,11 +142,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
     <i>binary-digit:: one of</i>
         0  1
-</pre>
 
-####Floating-Point Literals
-
-<pre>
   <i>floating-literal::</i>
     <i>fractional-literal   exponent-part<sub>opt</sub></i>
     <i>digit-sequence   exponent-part</i>
@@ -195,11 +161,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>digit-sequence::</i>
     <i>digit</i>
     <i>digit-sequence   digit</i>
-</pre>
 
-####String Literals
-
-<pre>
   <i>string-literal::</i>
     <i>single-quoted-string-literal</i>
     <i>double-quoted-string-literal</i>
@@ -309,11 +271,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>nowdoc-string-literal::</i>
     <i>b-prefix<sub>opt</sub></i>  &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-body<sub>opt</sub>   name</i>  ;<i><sub>opt</sub>   new-line</i>
-</pre>
 
-###Operators and Punctuators
-
-<pre>
   <i>operator-or-punctuator:: one of</i>
     [   ]   (   )   {   }   .   ->   ++   --   **   *   +   -   ~   !
     $   /   %   &lt;&lt;    &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
@@ -369,8 +327,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 </pre>
 
 ###Expressions
-
-####Primary Expressions
 
 <pre>
   <i>primary-expression:</i>
@@ -505,11 +461,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     &amp;<sub>opt</sub>   <i>variable-name</i>
     <i>use-variable-name-list</i>  ,  &<sub>opt</sub>  <i>variable-name</i>
 
-</pre>
-
-####Postfix Operators
-
-<pre>
   <i>postfix-expression:</i>
     <i>primary-expression</i>
     <i>clone-expression</i>
@@ -612,11 +563,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>exponentiation-expression:</i>
     <i>expression</i>  **  <i>expression</i>
-</pre>
 
-####Unary Operators
-
-<pre>
   <i>unary-expression:</i>
     <i>postfix-expression</i>
     <i>prefix-increment-expression</i>
@@ -653,11 +600,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     array  binary  bool  boolean  double  int  integer  float  object
     real  string  unset
 
-</pre>
-
-####instanceof Operator
-
-<pre>
   <i>instanceof-expression:</i>
     <i>unary-expression</i>
     <i>instanceof-subject</i>  instanceof   <i>instanceof-type-designator</i>
@@ -668,40 +610,24 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>instanceof-type-designator:</i>
     <i>qualified-name</i>
     <i>expression</i>
-</pre>
 
-####Multiplicative Operators
-
-<pre>
   <i>multiplicative-expression:</i>
     <i>instanceof-expression</i>
     <i>multiplicative-expression</i>  *  <i>instanceof-expression</i>
     <i>multiplicative-expression</i>  /  <i>instanceof-expression</i>
     <i>multiplicative-expression</i>  %  <i>instanceof-expression</i>
-</pre>
 
-####Additive Operators
-
-<pre>
   <i>additive-expression:</i>
     <i>multiplicative-expression</i>
     <i>additive-expression</i>  +  <i>multiplicative-expression</i>
     <i>additive-expression</i>  -  <i>multiplicative-expression</i>
     <i>additive-expression</i>  .  <i>multiplicative-expression</i>
-</pre>
 
-####Bitwise Shift Operators
-
-<pre>
   <i>shift-expression:</i>
     <i>additive-expression</i>
     <i>shift-expression</i>  &lt;&lt;  <i>additive-expression</i>
     <i>shift-expression</i>  &gt;&gt;  <i>additive-expression</i>
-</pre>
 
-####Relational Operators
-
-<pre>
   <i>relational-expression:</i>
     <i>shift-expression</i>
     <i>relational-expression</i>  &lt;   <i>shift-expression</i>
@@ -709,11 +635,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>relational-expression</i>  &lt;=  <i>shift-expression</i>
     <i>relational-expression</i>  &gt;=  <i>shift-expression</i>
     <i>relational-expression</i>  &lt;=&gt; <i>shift-expression</i>
-</pre>
 
-####Equality Operators
-
-<pre>
   <i>equality-expression:</i>
     <i>relational-expression</i>
     <i>equality-expression</i>  ==  <i>relational-expression</i>
@@ -721,11 +643,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>equality-expression</i>  &lt;&gt;  <i>relational-expression</i>
     <i>equality-expression</i>  ===  <i>relational-expression</i>
     <i>equality-expression</i>  !==  <i>relational-expression</i>
-</pre>
 
-####Bitwise Logical Operators
-
-<pre>
   <i>bitwise-AND-expression:</i>
     <i>equality-expression</i>
     <i>bit-wise-AND-expression</i>  &  <i>equality-expression</i>
@@ -737,11 +655,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>bitwise-inc-OR-expression:</i>
     <i>bitwise-exc-OR-expression</i>
     <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
-</pre>
 
-####Logical Operators (form 1)
-
-<pre>
   <i>logical-AND-expression-1:</i>
     <i>bitwise-incl-OR-expression</i>
     <i>logical-AND-expression-1</i>  &&  <i>bitwise-inc-OR-expression</i>
@@ -749,26 +663,14 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>logical-inc-OR-expression-1:</i>
     <i>logical-AND-expression-1</i>
     <i>logical-inc-OR-expression-1</i>  ||  <i>logical-AND-expression-1</i>
-</pre>
 
-####Conditional Operator
-
-<pre>
   <i>conditional-expression:</i>
     <i>logical-inc-OR-expression-1</i>
     <i>logical-inc-OR-expression-1</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
-</pre>
 
-####Coalesce Operator
-
-<pre>
   <i>coalesce-expression:</i>
     <i>logical-inc-OR-expression</i>  ??  <i>expression</i>
-</pre>
 
-####Assignment Operators
-
-<pre>
   <i>assignment-expression:</i>
     <i>conditional-expression</i>
     <i>coalesce-expression</i>
@@ -787,11 +689,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>compound-assignment-operator: one of</i>
     **=  *=  /=  %=  +=  -=  .=  <<=  >>=  &=  ^=  |=
-</pre>
 
-####Logical Operators (form 2)
-
-<pre>
   <i>logical-AND-expression-2:</i>
     <i>assignment-expression</i>
     <i>logical-AND-expression-2</i>  and  <i>assignment-expression</i>
@@ -804,20 +702,10 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>logical-exc-OR-expression</i>
     <i>logical-inc-OR-expression-2</i>  or  <i>logical-exc-OR-expression</i>
 
-</pre>
-
-
-####yield Operator
-
-<pre>
   <i>yield-expression:</i>
     <i>logical-inc-OR-expression-2</i>
     yield  <i>array-element-initializer</i>
-</pre>
 
-####Script Inclusion Operators
-
-<pre>
   <i>expression:</i>
     <i>yield-expression</i>
     <i>include-expression</i>
@@ -836,21 +724,14 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>require-once-expression:</i>
     require_once   <i>expression</i>
-</pre>
 
-####Constant Expressions
-
-<pre>
   <i>constant-expression:</i>
     <i>expression</i>
 </pre>
 
 ###Statements
 
-####General
-
 <pre>
-
   <i>statement:</i>
     <i>compound-statement</i>
     <i>named-label-statement</i>
@@ -869,31 +750,19 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>namespace-use-declaration</i>
     <i>global-declaration</i>
     <i>function-static-declaration</i>
-</pre>
 
-####Compound Statements
-
-<pre>
   <i>compound-statement:</i>
     {   <i>statement-list<sub>opt</sub></i>  }
 
   <i>statement-list:</i>
     <i>statement</i>
     <i>statement-list   statement</i>
-</pre>
 
-####Labeled Statements
-
-<pre>
   <i>named-label-statement:</i>
     <i>name</i>  :  <i>statement</i>
-</pre>
 
-####Expression Statements
-
-<pre>
-   <i>expression-statement:</i>
-     <i>expression<sub>opt</sub></i>  ;
+  <i>expression-statement:</i>
+    <i>expression<sub>opt</sub></i>  ;
 
   <i>selection-statement:</i>
     <i>if-statement</i>
@@ -940,11 +809,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>case-default-label-terminator:</i>
     :
     ;
-</pre>
 
-####Iteration Statements
-
-<pre>
   <i>iteration-statement:</i>
     <i>while-statement</i>
     <i>do-statement</i>
@@ -989,11 +854,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     &<sub>opt</sub>   <i>expression</i>
     <i>list-intrinsic</i>
 
-</pre>
-
-####Jump Statements
-
-<pre>
   <i>jump-statement:</i>
     <i>goto-statement</i>
     <i>continue-statement</i>
@@ -1018,11 +878,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>throw-statement:</i>
     throw  <i>expression</i>  ;
-</pre>
 
-####The try Statement
-
-<pre>
   <i>try-statement:</i>
     try  <i>compound-statement   catch-clauses</i>
     try  <i>compound-statement   finally-clause</i>
@@ -1037,11 +893,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>finally-clause:</i>
     finally   <i>compound-statement</i>
-</pre>
 
-####The declare Statement
-
-<pre>
   <i>declare-statement:</i>
     declare  (  <i>declare-directive</i>  )  <i>statement</i>
     declare  (  <i>declare-directive</i>  )  :  <i>statement-list</i>  enddeclare  ;

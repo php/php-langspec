@@ -335,17 +335,17 @@ other values or expressions could be used.
 
 <pre>
   <i>array-intrinsic:</i>
-    array ( <i>array-initializer<sub>opt</sub></i>  )
+    <i>array-creation-expression</i>
 </pre>
 
 **Defined elsewhere**
 
-* [*array-initializer*](#array-creation-operator)
+* [*array-creation-expression*](#array-creation-operator)
 
 **Semantics**
 
 This intrinsic creates and initializes an array. It is equivalent to the
-array-creation operator [`[]`](#array-creation-operator).
+array-creation operator.
 
 ####echo
 

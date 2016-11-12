@@ -394,7 +394,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>print-intrinsic</i>
 
   <i>array-intrinsic:</i>
-    array ( <i>array-initializer<sub>opt</sub></i>  )
+    <i>array-creation-expression</i>
 
   <i>echo-intrinsic:</i>
     echo  <i>expression</i>

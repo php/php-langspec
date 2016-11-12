@@ -9,7 +9,9 @@ function spec_files() {
         if (pathinfo($file, PATHINFO_EXTENSION) != 'md') {
             continue;
         }
-        if ($file == '00-specification-for-php.md' || $file == 'php-spec-draft.md') {
+        if ($file == '00-specification-for-php.md'
+                || $file == '19-grammar.md'
+                || $file == 'php-spec-draft.md') {
             continue;
         }
 

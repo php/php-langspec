@@ -445,7 +445,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>print-intrinsic:</i>
     print  <i>expression</i>
-    print  (  <i>expression</i>  )
 
   <i>unset-intrinsic:</i>
     unset  (  <i>expression-list-one-or-more</i>  )

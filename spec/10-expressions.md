@@ -298,7 +298,6 @@ A literal evaluates to its value, as specified in the lexical specification for
     <i>unset-intrinsic</i>
 
   <i>intrinsic-operator:</i>
-    <i>array-intrinsic</i>
     <i>empty-intrinsic</i>
     <i>eval-intrinsic</i>
     <i>exit-intrinsic</i>
@@ -308,7 +307,6 @@ A literal evaluates to its value, as specified in the lexical specification for
 
 **Defined elsewhere**
 
-* [*array-intrinsic*](#array)
 * [*echo-intrinsic*](#echo)
 * [*empty-intrinsic*](#empty)
 * [*eval-intrinsic*](#eval)
@@ -328,24 +326,6 @@ are language constructs that are interpreted by the Engine.
 other values or expressions could be used.
 
 *intrinsic-construct* can be used only as stand-alone [statement](11-statements.md#statements).
-
-####array
-
-**Syntax**
-
-<pre>
-  <i>array-intrinsic:</i>
-    array ( <i>array-initializer<sub>opt</sub></i>  )
-</pre>
-
-**Defined elsewhere**
-
-* [*array-initializer*](#array-creation-operator)
-
-**Semantics**
-
-This intrinsic creates and initializes an array. It is equivalent to the
-array-creation operator [`[]`](#array-creation-operator).
 
 ####echo
 

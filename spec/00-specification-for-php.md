@@ -105,7 +105,6 @@ is distributed without any warranty.
     - [Literals](10-expressions.md#literals)
     - [Intrinsics](10-expressions.md#intrinsics)
       - [General](10-expressions.md#general-2)
-      - [array](10-expressions.md#array)
       - [echo](10-expressions.md#echo)
       - [empty](10-expressions.md#empty)
       - [eval](10-expressions.md#eval)

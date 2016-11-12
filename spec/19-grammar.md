@@ -386,15 +386,11 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>unset-intrinsic</i>
 
   <i>intrinsic-operator:</i>
-    <i>array-intrinsic</i>
     <i>empty-intrinsic</i>
     <i>eval-intrinsic</i>
     <i>exit-intrinsic</i>
     <i>isset-intrinsic</i>
     <i>print-intrinsic</i>
-
-  <i>array-intrinsic:</i>
-    array ( <i>array-initializer<sub>opt</sub></i>  )
 
   <i>echo-intrinsic:</i>
     echo  <i>expression</i>

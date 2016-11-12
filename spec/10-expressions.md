@@ -3426,8 +3426,7 @@ echo $x;                  // hello
 
 <pre>
   <i>include-expression:</i>
-    include  (  <i>expression</i>  )
-    include  <i>expression</i>
+    include   <i>expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -3478,8 +3477,7 @@ If ((include 'Positions.php') == 1) ...
 
 <pre>
   <i>include-once-expression:</i>
-    include_once  (  <i>expression</i>  )
-    include_once  <i>expression</i>
+    include_once   <i>expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -3526,8 +3524,7 @@ $c1 = new Circle(9, 7, 2.4);
 
 <pre>
   <i>require-expression:</i>
-    require  (  <i>expression</i>  )
-    require  <i>expression</i>
+    require   <i>expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -3546,8 +3543,7 @@ produces a fatal error.
 
 <pre>
   <i>require-once-expression:</i>
-    require_once  (  <i>expression</i>  )
-    require_once  <i>expression</i>
+    require_once   <i>expression</i>
 </pre>
 
 **Defined elsewhere**

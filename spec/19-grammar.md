@@ -826,20 +826,16 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>require-once-expression</i>
 
   <i>include-expression:</i>
-    include  (  <i>expression</i>  )
-    include  <i>expression</i>
+    include   <i>expression</i>
 
   <i>include-once-expression:</i>
-    include_once  (  <i>expression</i>  )
-    include_once  <i>expression</i>
+    include_once   <i>expression</i>
 
   <i>require-expression:</i>
-    require  (  <i>expression</i>  )
-    require  <i>expression</i>
+    require   <i>expression</i>
 
   <i>require-once-expression:</i>
-    require_once  (  <i>expression</i>  )
-    require_once  <i>expression</i>
+    require_once   <i>expression</i>
 </pre>
 
 ####Constant Expressions

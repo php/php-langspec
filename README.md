@@ -1,8 +1,8 @@
 # PHP Language Specifications
 
-This repo will contain the WIP PHP Language Specifications.
+This repo contains the WIP PHP Language Specifications.
 
-To join the conversation, send blank email to:
+To join the conversation, send a blank email to:
 
 > [standards-subscribe@lists.php.net](mailto:standards-subscribe@lists.php.net)
 

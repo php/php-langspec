@@ -378,7 +378,7 @@ necessary, `echo` concatenates them in order given, and writes the
 resulting string to [`STDOUT`](06-constants.md#core-predefined-constants). Unlike [`print`](#print), it does
 not produce a result.
 
-See also: [double quioted strings](09-lexical-structure.md#double-quoted-string-literals) and
+See also: [double quoted strings](09-lexical-structure.md#double-quoted-string-literals) and
 [heredoc documents](09-lexical-structure.md#heredoc-string-literals), [conversion to string](08-conversions.md#converting-to-string-type).
 
 **Examples**
@@ -707,7 +707,7 @@ After converting its *expression*'s value to a string, if necessary,
 Unlike [`echo`](#echo), `print` can be used in any context allowing an expression. It
 always returns the value 1.
 
-See also: [double quioted strings](09-lexical-structure.md#double-quoted-string-literals) and
+See also: [double quoted strings](09-lexical-structure.md#double-quoted-string-literals) and
 [heredoc documents](09-lexical-structure.md#heredoc-string-literals), [conversion to string](08-conversions.md#converting-to-string-type).
 
 **Examples**

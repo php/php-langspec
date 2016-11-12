@@ -10,7 +10,6 @@ function spec_files() {
             continue;
         }
         if ($file == '00-specification-for-php.md'
-                || $file == '19-grammar.md'
                 || $file == 'php-spec-draft.md') {
             continue;
         }

@@ -24,7 +24,9 @@ $output .= extract_grammar($lexical);
 $output .= "\n\n##Syntactic Grammar";
 
 foreach (spec_files() as $fileName => $path) {
-    if ($fileName === '05-types.md' || $fileName === '09-lexical-structure.md') {
+    if ($fileName === '05-types.md'
+            || $fileName === '09-lexical-structure.md'
+            || $fileName === '19-grammar.md') {
         continue;
     }
 

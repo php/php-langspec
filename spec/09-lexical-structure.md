@@ -653,22 +653,21 @@ ill-formed Unicode escape sequences.
 The variable substitution accepts the following syntax:
 
 <pre>
-    <i>string-variable::</i>
-        <i>variable-name</i>   <i>offset-or-property<sub>opt</sub></i>
-        ${   <i>expression</i>   }
+  <i>string-variable::</i>
+    <i>variable-name</i>   <i>offset-or-property<sub>opt</sub></i>
+    ${   <i>expression</i>   }
 
-    <i>offset-or-property::</i>
-        <i>offset-in-string</i>
-        <i>property-in-string</i>
+  <i>offset-or-property::</i>
+    <i>offset-in-string</i>
+    <i>property-in-string</i>
 
-    <i>offset-in-string::</i>
-        [   <i>name</i>   ]
-        [   <i>variable-name</i>   ]
-        [   <i>integer-literal</i>   ]
+  <i>offset-in-string::</i>
+    [   <i>name</i>   ]
+    [   <i>variable-name</i>   ]
+    [   <i>integer-literal</i>   ]
 
-    <i>property-in-string::</i>
-        ->   <i>name</i>
-
+  <i>property-in-string::</i>
+    ->   <i>name</i>
 </pre>
 
 **Defined elsewhere**

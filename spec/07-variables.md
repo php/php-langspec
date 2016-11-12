@@ -273,10 +273,10 @@ $b = &colors[100];      // a VSlot for $b is created which points to the array
 
   <i>static-variable-name-list:</i>
     <i>static-variable-declaration</i>
-	<i>static-variable-name-list</i>  ,  <i>static-variable-declaration</i>
+    <i>static-variable-name-list</i>  ,  <i>static-variable-declaration</i>
 
   <i>static-variable-declaration:</i>
-	<i>variable-name</i> <i>function-static-initializer<sub>opt</sub></i>
+    <i>variable-name</i> <i>function-static-initializer<sub>opt</sub></i>
 
   <i>function-static-initializer:</i>
     = <i>constant-expression</i>

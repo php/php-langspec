@@ -4,22 +4,22 @@ A PHP *program* consists of one or more source files, known formally as
 *scripts*.
 
 <pre>
-<i>script:</i>
-<i> script-section</i>
-<i> script   script-section</i>
+  <i>script:</i>
+    <i>script-section</i>
+    <i>script   script-section</i>
 
-<i>script-section:</i>
-  <i> text<sub>opt</sub></i> <i>start-tag</i> <i>statement-list<sub>opt</sub></i> <i>end-tag</i><sub>opt</sub> <i>text<sub>opt</sub></i>
+  <i>script-section:</i>
+    <i> text<sub>opt</sub></i> <i>start-tag</i> <i>statement-list<sub>opt</sub></i> <i>end-tag</i><sub>opt</sub> <i>text<sub>opt</sub></i>
 
-<i>start-tag:</i>
-  &lt;?php
-  &lt;?=
+  <i>start-tag:</i>
+    &lt;?php
+    &lt;?=
 
-<i>end-tag:</i>
-  ?&gt;
+  <i>end-tag:</i>
+    ?&gt;
 
-<i>text:</i>
-  arbitrary text not containing any of <i>start-tag</i> sequences
+  <i>text:</i>
+    arbitrary text not containing any of <i>start-tag</i> sequences
 </pre>
 
 All of the sections in a script are treated as though they belonged to

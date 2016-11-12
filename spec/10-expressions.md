@@ -247,8 +247,8 @@ An expression that is not a *variable* can never act as an lvalue.
 ###Constant Access Expression
 
 <pre>
- <i>constant-access-expression:</i>
-   <i>qualified-name</i>
+  <i>constant-access-expression:</i>
+    <i>qualified-name</i>
 </pre>
 
 **Defined elsewhere**

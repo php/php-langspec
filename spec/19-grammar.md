@@ -222,21 +222,21 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
      <i>hexadecimal-digit</i>
      <i>hexadecimal-digit   codepoint-digits</i>
 
-    <i>string-variable::</i>
-        <i>variable-name</i>   <i>offset-or-property<sub>opt</sub></i>
-        ${   <i>expression</i>   }
+  <i>string-variable::</i>
+    <i>variable-name</i>   <i>offset-or-property<sub>opt</sub></i>
+    ${   <i>expression</i>   }
 
-    <i>offset-or-property::</i>
-        <i>offset-in-string</i>
-        <i>property-in-string</i>
+  <i>offset-or-property::</i>
+    <i>offset-in-string</i>
+    <i>property-in-string</i>
 
-    <i>offset-in-string::</i>
-        [   <i>name</i>   ]
-        [   <i>variable-name</i>   ]
-        [   <i>integer-literal</i>   ]
+  <i>offset-in-string::</i>
+    [   <i>name</i>   ]
+    [   <i>variable-name</i>   ]
+    [   <i>integer-literal</i>   ]
 
-    <i>property-in-string::</i>
-        ->   <i>name</i>
+  <i>property-in-string::</i>
+    ->   <i>name</i>
 
   <i>heredoc-string-literal::</i>
     <i>b-prefix<sub>opt</sub></i>   &lt;&lt;&lt;   <i>hd-start-identifier   new-line   hd-body<sub>opt</i>   hd-end-identifier</i>   ;<i><sub>opt</sub>   new-line</i>
@@ -281,25 +281,25 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 ##Syntactic Grammar
 
-###Program Structure
+###Basic Concepts
 
 <pre>
-<i>script:</i>
-<i> script-section</i>
-<i> script   script-section</i>
+  <i>script:</i>
+    <i>script-section</i>
+    <i>script   script-section</i>
 
-<i>script-section:</i>
-  <i> text<sub>opt</sub></i> <i>start-tag</i> <i>statement-list<sub>opt</sub></i> <i>end-tag</i><sub>opt</sub> <i>text<sub>opt</sub></i>
+  <i>script-section:</i>
+    <i> text<sub>opt</sub></i> <i>start-tag</i> <i>statement-list<sub>opt</sub></i> <i>end-tag</i><sub>opt</sub> <i>text<sub>opt</sub></i>
 
-<i>start-tag:</i>
-  &lt;?php
-  &lt;?=
+  <i>start-tag:</i>
+    &lt;?php
+    &lt;?=
 
-<i>end-tag:</i>
-  ?&gt;
+  <i>end-tag:</i>
+    ?&gt;
 
-<i>text:</i>
-  arbitrary text not containing any of <i>start-tag</i> sequences
+  <i>text:</i>
+    arbitrary text not containing any of <i>start-tag</i> sequences
 </pre>
 
 ###Variables
@@ -368,8 +368,8 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>scoped-property-access-expression</i>
     <i>member-access-expression</i>
 
- <i>constant-access-expression:</i>
-   <i>qualified-name</i>
+  <i>constant-access-expression:</i>
+    <i>qualified-name</i>
 
   <i>literal:</i>
     <i>integer-literal</i>
@@ -554,7 +554,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>scope-resolution-qualifier:</i>
     <i>relative-scope</i>
     <i>qualified-name</i>
-    <i>expression</i>
+    <i>dereferencable-expression</i>
 
   <i>relative-scope</i>:
     self
@@ -572,7 +572,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>error-control-expression</i>
     <i>shell-command-expression</i>
     <i>cast-expression</i>
-    <i>variable-name-creation-expression</i>
 
   <i>prefix-increment-expression:</i>
     ++ <i>variable</i>
@@ -705,6 +704,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>yield-expression:</i>
     <i>logical-inc-OR-expression-2</i>
     yield  <i>array-element-initializer</i>
+    yield from  <i>expression</i>
 
   <i>expression:</i>
     <i>yield-expression</i>
@@ -903,7 +903,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     ticks  =  <i>literal</i>
     encoding  =  <i>literal</i>
     strict_types  =  <i>literal</i>
-
 </pre>
 
 ###Functions
@@ -1036,11 +1035,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>constructor-declaration:</i>
     <i>method-modifiers</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
-    <i>method-modifiers</i>  function &<sub>opt</sub>    <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement </i>    <b>[Deprecated form]</b>
 
   <i>destructor-declaration:</i>
     <i>method-modifiers</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
-
 </pre>
 
 ###Interfaces

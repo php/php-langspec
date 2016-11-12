@@ -1586,7 +1586,7 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
     <i>scope-resolution-qualifier</i>   ::   <i>simple-variable</i>
 
   <i>scoped-call-expression:</i>
-    <i>scope-resolution-qualifier</i>   ::   <i>member-name</i>    (   <i>argument-expression-list<sub>opt</sub>   )
+    <i>scope-resolution-qualifier</i>   ::   <i>member-name</i>    (   <i>argument-expression-list<sub>opt</sub></i>   )
 
   <i>class-constant-access-expression:</i>
     <i>scope-resolution-qualifier</i>   ::   <i>name</i>

@@ -595,7 +595,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>scope-resolution-qualifier</i>   ::   <i>simple-variable</i>
 
   <i>scoped-call-expression:</i>
-    <i>scope-resolution-qualifier</i>   ::   <i>member-name</i>    (   <i>argument-expression-list<sub>opt</sub>   )
+    <i>scope-resolution-qualifier</i>   ::   <i>member-name</i>    (   <i>argument-expression-list<sub>opt</sub></i>   )
 
   <i>class-constant-access-expression:</i>
     <i>scope-resolution-qualifier</i>   ::   <i>name</i>

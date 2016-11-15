@@ -153,7 +153,7 @@ Since undefined local variables are not defined implicitly, they stay undefined.
 
 *byRef Context*
 
-If the undefined variable is used in a [byRef context](04-basic-concepts#byRef) then PHP defines the variable implicitly. Hence, a VSlot is created for it and `NULL` is stored in it. A notice is *not* emitted in such a case.
+If the undefined variable is used in a byRef context then PHP defines the variable implicitly. Hence, a VSlot is created for it and `NULL` is stored in it. A notice is *not* emitted in such a case.
 
 *Examples of Undefined Variables*
 

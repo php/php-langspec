@@ -10,9 +10,18 @@ foreach (spec_files() as $fileName => $path) {
         $fullAnchor = $fileName . '#' . $info['anchor'];
         $anchors[$fullAnchor] = true;
     }
+
+    // Collect manual anchors as well
+    if (preg_match_all('/<a name="([^"]+)">/', $contents, $matches)) {
+        foreach ($matches[1] as $anchor) {
+            $fullAnchor = $fileName . '#' . $anchor;
+            $anchors[$fullAnchor] = true;
+        }
+    }
 }
 
 // Find unknown anchor references
+$foundUnknown = false;
 foreach (spec_files() as $fileName => $path) {
     $contents = file_get_contents($path);
 
@@ -33,7 +42,10 @@ foreach (spec_files() as $fileName => $path) {
         }
 
         if (!isset($anchors[$anchor])) {
+            $foundUnknown = true;
             echo "Unknown anchor $anchor in $fileName\n";
         }
     }
 }
+
+exit($foundUnknown ? 1 : 0);

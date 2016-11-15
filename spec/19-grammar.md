@@ -393,12 +393,11 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>print-intrinsic</i>
 
   <i>echo-intrinsic:</i>
-    echo  <i>expression</i>
-    echo  <i>expression-list-two-or-more</i>
+    echo  <i>expression-list</i>
 
   <i>expression-list-two-or-more:</i>
-    <i>expression</i>  ,  <i>expression</i>
-    <i>expression-list-two-or-more</i>  ,  <i>expression</i>
+    <i>expression</i>
+    <i>expression-list</i>  ,  <i>expression</i>
 
   <i>empty-intrinsic:</i>
     empty ( <i>expression</i>  )
@@ -413,11 +412,11 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     die   (   <i>expression<sub>opt</sub></i>   )
 
   <i>isset-intrinsic:</i>
-    isset  (  <i>expression-list-one-or-more</i>  )
+    isset  (  <i>variable-list</i>  )
 
-  <i>expression-list-one-or-more</i>:
-    <i>expression</i>
-    <i>expression-list-one-or-more</i>  ,  <i>expression</i>
+  <i>variable-list</i>:
+    <i>variable</i>
+    <i>variable-list</i>  ,  <i>variable</i>
 
   <i>list-intrinsic:</i>
     list  (  <i>list-expression-list<sub>opt</sub></i>  )
@@ -443,7 +442,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     print  <i>expression</i>
 
   <i>unset-intrinsic:</i>
-    unset  (  <i>expression-list-one-or-more</i>  )
+    unset  (  <i>variable-list</i>  )
 
   <i>anonymous-function-creation-expression:</i>
   static<sub>opt</sub> function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  ) <i>return-type<sub>opt</sub></i> <i>anonymous-function-use-clause<sub>opt</sub></i>

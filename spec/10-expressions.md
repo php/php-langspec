@@ -333,12 +333,11 @@ other values or expressions could be used.
 
 <pre>
   <i>echo-intrinsic:</i>
-    echo  <i>expression</i>
-    echo  <i>expression-list-two-or-more</i>
+    echo  <i>expression-list</i>
 
   <i>expression-list-two-or-more:</i>
-    <i>expression</i>  ,  <i>expression</i>
-    <i>expression-list-two-or-more</i>  ,  <i>expression</i>
+    <i>expression</i>
+    <i>expression-list</i>  ,  <i>expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -508,25 +507,21 @@ exit;
 
 <pre>
   <i>isset-intrinsic:</i>
-    isset  (  <i>expression-list-one-or-more</i>  )
+    isset  (  <i>variable-list</i>  )
 
-  <i>expression-list-one-or-more</i>:
-    <i>expression</i>
-    <i>expression-list-one-or-more</i>  ,  <i>expression</i>
+  <i>variable-list</i>:
+    <i>variable</i>
+    <i>variable-list</i>  ,  <i>variable</i>
 </pre>
 
 **Defined elsewhere**
 
-* [*expression*](#general-6)
-
-**Constraints**
-
-Each *expression* must designate a variable.
+* [*variable*](#variables)
 
 **Semantics**
 
 This intrinsic returns `TRUE` if all the variables designated by
-*expression*s are set and their values are not `NULL`. Otherwise, it
+*variables*s are set and their values are not `NULL`. Otherwise, it
 returns `FALSE`.
 
 If this intrinsic is used with an expression that designate a [dynamic
@@ -708,21 +703,17 @@ $a > $b ? print "..." : print "...";
 
 <pre>
   <i>unset-intrinsic:</i>
-    unset  (  <i>expression-list-one-or-more</i>  )
+    unset  (  <i>variable-list</i>  )
 </pre>
 
 **Defined elsewhere**
 
-* [*expression-list-one-or-more*](#isset)
-
-**Constraints**
-
-Each *expression* must designate a variable.
+* [*variable-list*](#isset)
 
 **Semantics**
 
 This intrinsic [unsets](07-variables.md#general) the variables designated by each
-*expression* in *expression-list-one-or-more*. No value is returned. An
+*variable* in *variable-list*. No value is returned. An
 attempt to unset a non-existent variable (such as a non-existent element
 in an array) is ignored.
 

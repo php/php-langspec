@@ -217,8 +217,7 @@ $l = $k;   // a VSlot for $l was created and the value of $k (which is NULL)
 
 **Syntax**
 
-[Arrays](12-arrays.md#arrays) are created via the [array-creation operator](10-expressions.md#array-creation-operator) or
-the intrinsic [`array`](10-expressions.md#array). At the same time, one or more elements
+[Arrays](12-arrays.md#arrays) are created using the [array-creation operator](10-expressions.md#array-creation-operator). At the same time, one or more elements
 may be created for that array. New elements are inserted into an
 existing array via the [simple-assignment operator](10-expressions.md#simple-assignment) in
 conjunction with the subscript [operator `[]`](10-expressions.md#subscript-operator). Elements can be

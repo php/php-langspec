@@ -33,8 +33,8 @@ and there is no concept of consecutive elements of the array occupying physicall
 
 ##Array Creation and Initialization
 
-An array is created and initialized by one of two equivalent ways: via
-the array-creation operator [`[]`](10-expressions.md#array-creation-operator) or the [intrinsic `array`](10-expressions.md#array).
+An array is created and initialized using the
+[array-creation operator](10-expressions.md#array-creation-operator):
 
 ##Element Access and Insertion
 

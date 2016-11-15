@@ -1017,10 +1017,6 @@ $v2 = new class (100) extends C1 implements I1, I2 {
 
 ###Array Creation Operator
 
-An array is created and initialized by one of two equivalent ways: via
-the array-creation operator `[]`, as described below, or the intrinsic
-[`array`](#array).
-
 **Syntax**
 
 <pre>

@@ -673,13 +673,14 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>compound-assignment-expression</i>
 
   <i>simple-assignment-expression:</i>
-    <i>unary-expression</i>  =  <i>assignment-expression</i>
+    <i>variable</i>  =  <i>assignment-expression</i>
+    <i>list-intrinsic</i>  =  <i>assignment-expression</i>
 
   <i>byref-assignment-expression:</i>
-    <i>unary-expression</i>  =  &  <i>assignment-expression</i>
+    <i>variable</i>  =  &  <i>assignment-expression</i>
 
   <i>compound-assignment-expression:</i>
-    <i>unary-expression   compound-assignment-operator   assignment-expression</i>
+    <i>variable   compound-assignment-operator   assignment-expression</i>
 
   <i>compound-assignment-operator: one of</i>
     **=  *=  /=  %=  +=  -=  .=  <<=  >>=  &=  ^=  |=

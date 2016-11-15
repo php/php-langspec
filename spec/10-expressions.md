@@ -2882,12 +2882,14 @@ These operators associate right-to-left.
 
 <pre>
   <i>simple-assignment-expression:</i>
-    <i>unary-expression</i>  =  <i>assignment-expression</i>
+    <i>variable</i>  =  <i>assignment-expression</i>
+    <i>list-intrinsic</i>  =  <i>assignment-expression</i>
 </pre>
 
 **Defined elsewhere**
 
-* [*unary-expression*](#general-4)
+* [*variable*](#variables)
+* [*list-intrinsic*](#list)
 * [*assignment-expression*](#general-5)
 
 **Constraints**
@@ -2950,17 +2952,15 @@ $a = new C; // make $a point to the allocated object
 
 <pre>
   <i>byref-assignment-expression:</i>
-    <i>unary-expression</i>  =  &  <i>assignment-expression</i>
+    <i>variable</i>  =  &  <i>assignment-expression</i>
 </pre>
 
 **Defined elsewhere**
 
-* [*unary-expression*](#general-4)
+* [*variable*](#variables)
 * [*assignment-expression*](#general-5)
 
 **Constraints**
-
-*unary-expression* must designate a variable.
 
 *assignment-expression* must be an lvalue or a call to a function that
 returns a value byRef.
@@ -2994,7 +2994,7 @@ $b =& g2();     // make $b an alias to "xxx"
 
 <pre>
   <i>compound-assignment-expression:</i>
-    <i>unary-expression   compound-assignment-operator   assignment-expression</i>
+    <i>variable   compound-assignment-operator   assignment-expression</i>
 
   <i>compound-assignment-operator: one of</i>
     **=  *=  /=  %=  +=  -=  .=  <<=  >>=  &=  ^=  |=
@@ -3002,7 +3002,7 @@ $b =& g2();     // make $b an alias to "xxx"
 
 **Defined elsewhere**
 
-* [*unary-expression*](#general-4)
+* [*variable*](#variables)
 * [*assignment-expression*](#general-5)
 
 **Constraints**

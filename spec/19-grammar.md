@@ -419,7 +419,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>variable-list</i>  ,  <i>variable</i>
 
   <i>list-intrinsic:</i>
-    list  (  <i>list-expression-list<sub>opt</sub></i>  )
+    list  (  <i>list-expression-list</i>  )
 
   <i>list-expression-list:</i>
     <i>unkeyed-list-expression-list</i>

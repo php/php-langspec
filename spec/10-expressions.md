@@ -548,7 +548,7 @@ isset($v1, $v2, $v3);  // results in FALSE
 
 <pre>
   <i>list-intrinsic:</i>
-    list  (  <i>list-expression-list<sub>opt</sub></i>  )
+    list  (  <i>list-expression-list</i>  )
 
   <i>list-expression-list:</i>
     <i>unkeyed-list-expression-list</i>

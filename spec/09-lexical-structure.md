@@ -731,7 +731,7 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 
 <pre>
   <i>heredoc-string-literal::</i>
-    <i>b-prefix<sub>opt</sub></i>   &lt;&lt;&lt;   <i>hd-start-identifier   new-line   hd-body<sub>opt</i>   hd-end-identifier</i>   ;<i><sub>opt</sub>   new-line</i>
+    <i>b-prefix<sub>opt</sub></i>   &lt;&lt;&lt;   <i>hd-start-identifier   new-line   hd-body<sub>opt</sub></i>   hd-end-identifier</i>   ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>

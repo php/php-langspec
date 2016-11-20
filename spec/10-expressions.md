@@ -335,7 +335,7 @@ other values or expressions could be used.
   <i>echo-intrinsic:</i>
     echo  <i>expression-list</i>
 
-  <i>expression-list-two-or-more:</i>
+  <i>expression-list:</i>
     <i>expression</i>
     <i>expression-list</i>  ,  <i>expression</i>
 </pre>
@@ -509,7 +509,7 @@ exit;
   <i>isset-intrinsic:</i>
     isset  (  <i>variable-list</i>  )
 
-  <i>variable-list</i>:
+  <i>variable-list:</i>
     <i>variable</i>
     <i>variable-list</i>  ,  <i>variable</i>
 </pre>
@@ -754,7 +754,7 @@ unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
 
 <pre>
   <i>anonymous-function-creation-expression:</i>
-  static<sub>opt</sub> function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  ) <i>return-type<sub>opt</sub></i> <i>anonymous-function-use-clause<sub>opt</sub></i>
+  static<sub>opt</sub> function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt</sub></i>  ) <i>return-type<sub>opt</sub></i> <i>anonymous-function-use-clause<sub>opt</sub></i>
       <i>compound-statement</i>
 
   <i>anonymous-function-use-clause:</i>
@@ -1029,7 +1029,7 @@ $v2 = new class (100) extends C1 implements I1, I2 {
   <i>element-key:</i>
     <i>expression</i>
 
-  <i>element-value</i>
+  <i>element-value:</i>
     <i>expression</i>
 </pre>
 
@@ -1562,7 +1562,7 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
     <i>qualified-name</i>
     <i>dereferencable-expression</i>
 
-  <i>relative-scope</i>:
+  <i>relative-scope:</i>
     self
     parent
     static
@@ -2552,7 +2552,7 @@ TRUE !== 100  // result has value TRUE
 <pre>
   <i>bitwise-AND-expression:</i>
     <i>equality-expression</i>
-    <i>bit-wise-AND-expression</i>  &  <i>equality-expression</i>
+    <i>bitwise-AND-expression</i>  &  <i>equality-expression</i>
 </pre>
 
 **Defined elsewhere**
@@ -2688,7 +2688,7 @@ $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
 
 <pre>
   <i>logical-AND-expression-1:</i>
-    <i>bitwise-incl-OR-expression</i>
+    <i>bitwise-inc-OR-expression</i>
     <i>logical-AND-expression-1</i>  &&  <i>bitwise-inc-OR-expression</i>
 </pre>
 
@@ -2789,7 +2789,7 @@ function factorial($int)
 
 <pre>
   <i>coalesce-expression:</i>
-    <i>logical-inc-OR-expression</i>  ??  <i>expression</i>
+    <i>logical-inc-OR-expression-1</i>  ??  <i>expression</i>
 </pre>
 
 **Defined elsewhere**

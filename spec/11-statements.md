@@ -605,7 +605,7 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10)
     foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
     foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )  :  <i>statement-list</i>  endforeach  ;
 
-  <i>foreach-collection-name</i>:
+  <i>foreach-collection-name:</i>
     <i>expression</i>
 
   <i>foreach-key:</i>

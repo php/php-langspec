@@ -239,7 +239,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     ->   <i>name</i>
 
   <i>heredoc-string-literal::</i>
-    <i>b-prefix<sub>opt</sub></i>   &lt;&lt;&lt;   <i>hd-start-identifier   new-line   hd-body<sub>opt</i>   hd-end-identifier</i>   ;<i><sub>opt</sub>   new-line</i>
+    <i>b-prefix<sub>opt</sub></i>   &lt;&lt;&lt;   <i>hd-start-identifier   new-line   hd-body<sub>opt</sub></i>   hd-end-identifier</i>   ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>
@@ -395,7 +395,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>echo-intrinsic:</i>
     echo  <i>expression-list</i>
 
-  <i>expression-list-two-or-more:</i>
+  <i>expression-list:</i>
     <i>expression</i>
     <i>expression-list</i>  ,  <i>expression</i>
 
@@ -414,7 +414,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>isset-intrinsic:</i>
     isset  (  <i>variable-list</i>  )
 
-  <i>variable-list</i>:
+  <i>variable-list:</i>
     <i>variable</i>
     <i>variable-list</i>  ,  <i>variable</i>
 
@@ -445,7 +445,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     unset  (  <i>variable-list</i>  )
 
   <i>anonymous-function-creation-expression:</i>
-  static<sub>opt</sub> function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt<sub></i>  ) <i>return-type<sub>opt</sub></i> <i>anonymous-function-use-clause<sub>opt</sub></i>
+  static<sub>opt</sub> function  &<sub>opt</sub> (  <i>parameter-declaration-list<sub>opt</sub></i>  ) <i>return-type<sub>opt</sub></i> <i>anonymous-function-use-clause<sub>opt</sub></i>
       <i>compound-statement</i>
 
   <i>anonymous-function-use-clause:</i>
@@ -497,7 +497,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
   <i>element-key:</i>
     <i>expression</i>
 
-  <i>element-value</i>
+  <i>element-value:</i>
     <i>expression</i>
 
   <i>subscript-expression:</i>
@@ -550,7 +550,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>qualified-name</i>
     <i>dereferencable-expression</i>
 
-  <i>relative-scope</i>:
+  <i>relative-scope:</i>
     self
     parent
     static
@@ -639,7 +639,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
   <i>bitwise-AND-expression:</i>
     <i>equality-expression</i>
-    <i>bit-wise-AND-expression</i>  &  <i>equality-expression</i>
+    <i>bitwise-AND-expression</i>  &  <i>equality-expression</i>
 
   <i>bitwise-exc-OR-expression:</i>
     <i>bitwise-AND-expression</i>
@@ -650,7 +650,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
 
   <i>logical-AND-expression-1:</i>
-    <i>bitwise-incl-OR-expression</i>
+    <i>bitwise-inc-OR-expression</i>
     <i>logical-AND-expression-1</i>  &&  <i>bitwise-inc-OR-expression</i>
 
   <i>logical-inc-OR-expression-1:</i>
@@ -662,7 +662,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     <i>logical-inc-OR-expression-1</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
 
   <i>coalesce-expression:</i>
-    <i>logical-inc-OR-expression</i>  ??  <i>expression</i>
+    <i>logical-inc-OR-expression-1</i>  ??  <i>expression</i>
 
   <i>assignment-expression:</i>
     <i>conditional-expression</i>
@@ -839,7 +839,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
     foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )  :  <i>statement-list</i>  endforeach  ;
 
-  <i>foreach-collection-name</i>:
+  <i>foreach-collection-name:</i>
     <i>expression</i>
 
   <i>foreach-key:</i>

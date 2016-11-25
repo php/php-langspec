@@ -3,6 +3,25 @@
 A PHP *program* consists of one or more source files, known formally as
 *scripts*.
 
+<!-- GRAMMAR
+script:
+  script-section
+  script script-section
+
+script-section:
+  text? start-tag statement-list? end-tag? text?
+
+start-tag:
+  '<?php'
+  '<?='
+
+end-tag:
+  '?>'
+
+text:
+  "arbitrary text not containing any of" start-tag "sequences"
+-->
+
 <pre>
   <i>script:</i>
     <i>script-section</i>

@@ -36,6 +36,12 @@ prefixes are reserved for use by PHP.
 
 **Syntax**
 
+<!-- GRAMMAR
+namespace-definition:
+  'namespace' name ';'
+  'namespace' name? compound-statement
+-->
+
 <pre>
   <i>namespace-definition:</i>
     namespace  <i>name</i>  ;
@@ -117,6 +123,41 @@ namespace NS3\Sub1;
 ##Namespace Use Declarations
 
 **Syntax**
+
+<!-- GRAMMAR
+namespace-use-declaration:
+  'use' namespace-function-or-const? namespace-use-clauses ';'
+  'use' namespace-function-or-const '\'? namespace-name '\' '{' namespace-use-group-clauses-1 '}' ';'
+  'use' '\'? 'namespace-name' '\' '{' namespace-use-group-clauses-2 '}' ';'
+
+namespace-use-clauses:
+  namespace-use-clause
+  namespace-use-clauses ',' namespace-use-clause
+
+namespace-use-clause:
+  qualified-name namespace-aliasing-clause?
+
+namespace-aliasing-clause:
+  'as' name
+
+namespace-function-or-const:
+  'function'
+  'const'
+
+namespace-use-group-clauses-1:
+  namespace-use-group-clause-1
+  namespace-use-group-clauses-1 ',' namespace-use-group-clause-1
+
+namespace-use-group-clause-1:
+  namespace-name namespace-aliasing-clause?
+
+namespace-use-group-clauses-2:
+  namespace-use-group-clause-2
+  namespace-use-group-clauses-2 ',' namespace-use-group-clause-2
+
+namespace-use-group-clause-2:
+  namespace-function-or-const? namespace-name namespace-aliasing-clause?
+-->
 
 <pre>
   <i>namespace-use-declaration:</i>

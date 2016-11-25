@@ -119,6 +119,25 @@ the requirements of a numeric string, and whose trailing characters are
 non-numeric. A *non-numeric string* is a string that is not a numeric
 string.
 
+<!-- GRAMMAR
+str-numeric::
+  str-whitespace? sign? str-number
+
+str-whitespace::
+  str-whitespace? str-whitespace-char
+
+str-whitespace-char::
+  new-line
+  "Space character (U+0020)"
+  "Horizontal-tab character (U+0009)"
+  "Vertical-tab character (U+000B)"
+  "Form-feed character (U+000C)"
+
+str-number::
+  digit-sequence
+  floating-literal
+-->
+
 <pre>
   <i>str-numeric::</i>
     <i>str-whitespace<sub>opt</sub>   sign<sub>opt</sub>   str-number</i>

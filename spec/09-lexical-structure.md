@@ -43,19 +43,32 @@ successive indented line contains a possible expansion of the
 non-terminal given as a sequence of non-terminal or terminal symbols.
 For example, the production:
 
+<!-- GRAMMAR
+single-line-comment-example::
+  '//' input-characters?
+  '#' input-characters?
+-->
+
 <pre>
   <i>single-line-comment::</i>
     // input-characters<sub>opt</sub>
     #  input-characters<sub>opt</sub>
 </pre>
 
-defines the lexical grammar production *single-line-comment* as being
+defines the lexical grammar production *single-line-comment-example* as being
 the terminals `//` or `#`, followed by an optional *input-characters*. Each
 expansion is listed on a separate line.
 
 Although alternatives are usually listed on separate lines, when there
 is a large number, the shorthand phrase “one of” may precede a list of
 expansions given on a single line. For example,
+
+<!-- GRAMMAR
+hexadecimal-digit-example:: one of
+  '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
+  'a' 'b' 'c' 'd' 'e' 'f'
+  'A' 'B' 'C' 'D' 'E' 'F'
+-->
 
 <pre>
   <i>hexadecimal-digit:: one of</i>
@@ -72,6 +85,17 @@ The production *input-file* is the root of the lexical structure for a
 script. Each script must conform to this production.
 
 **Syntax**
+
+<!-- GRAMMAR
+input-file::
+  input-element
+  input-file input-element
+
+input-element::
+  comment
+  white-space
+  token
+-->
 
 <pre>
   <i>input-file::</i>
@@ -108,6 +132,31 @@ Two forms of comments are supported: *delimited comments* and
 *single-line comments*.
 
 **Syntax**
+
+<!-- GRAMMAR
+comment::
+  single-line-comment
+  delimited-comment
+
+single-line-comment::
+  '//' input-characters?
+  '#' input-characters?
+
+input-characters::
+  input-character
+  input-characters input-character
+
+input-character::
+  "Any source character except" new-line
+
+new-line::
+  "Carriage-return character (U+000D)"
+  "Line-feed character (U+000A)"
+  "Carriage-return character (U+000D) followed by line-feed character (U+000A)"
+
+delimited-comment::
+  '/*' "No characters or any source character sequence except */" '*/'
+-->
 
 <pre>
   <i>comment::</i>
@@ -161,6 +210,17 @@ new-line, space and horizontal tab characters.
 
 **Syntax**
 
+<!-- GRAMMAR
+white-space::
+  white-space-character
+  white-space white-space-character
+
+white-space-character::
+  new-line
+  "Space character (U+0020)"
+  "Horizontal-tab character (U+0009)"
+-->
+
 <pre>
   <i>white-space::</i>
     <i>white-space-character</i>
@@ -189,6 +249,17 @@ There are several kinds of source *tokens*:
 
 **Syntax**
 
+<!-- GRAMMAR
+token::
+  variable-name
+  name
+  keyword
+  integer-literal
+  floating-literal
+  string-literal
+  operator-or-punctuator
+-->
+
 <pre>
   <i>token::</i>
     <i>variable-name</i>
@@ -213,6 +284,40 @@ There are several kinds of source *tokens*:
 ####Names
 
 **Syntax**
+
+<!-- GRAMMAR
+variable-name::
+  '$' name
+
+namespace-name::
+  name
+  namespace-name '\' name
+
+namespace-name-as-a-prefix::
+  '\'
+  '\'? namespace-name '\'
+  'namespace' '\'
+  'namespace' '\' namespace-name '\'
+
+qualified-name::
+  namespace-name-as-a-prefix? name
+
+name::
+  name-nondigit
+  name name-nondigit
+  name digit
+
+name-nondigit::
+  nondigit
+  "one of the characters U+0080–U+00ff"
+
+nondigit:: one of
+  '_'
+  'a' 'b' 'c' 'd' 'e' 'f' 'g' 'h' 'i' 'j' 'k' 'l' 'm'
+  'n' 'o' 'p' 'q' 'r' 's' 't' 'u' 'v' 'w' 'x' 'y' 'z'
+  'A' 'B' 'C' 'D' 'E' 'F' 'G' 'H' 'I' 'J' 'K' 'L' 'M'
+  'N' 'O' 'P' 'Q' 'R' 'S' 'T' 'U' 'V' 'W' 'X' 'Y' 'Z'
+-->
 
 <pre>
   <i>variable-name::</i>
@@ -307,6 +412,18 @@ cannot be used as a name.
 
 **Syntax**
 
+<!-- GRAMMAR
+keyword:: one of
+  'abstract' 'and' 'array' 'as' 'break' 'callable' 'case' 'catch' 'class' 'clone'
+  'const' 'continue' 'declare' 'default' 'die' 'do' 'echo' 'else' 'elseif' 'empty'
+  'enddeclare' 'endfor' 'endforeach' 'endif' 'endswitch' 'endwhile' 'eval' 'exit'
+  'extends' 'final' 'finally' 'for' 'foreach' 'function' 'global'
+  'goto' 'if' 'implements' 'include' 'include_once' 'instanceof'
+  'insteadof' 'interface' 'isset' 'list' 'namespace' 'new' 'or' 'print' 'private'
+  'protected' 'public' 'require' 'require_once' 'return' 'static' 'switch'
+  'throw' 'trait' 'try' 'unset' 'use' 'var' 'while' 'xor' 'yield' 'yield from'
+-->
+
 <pre>
   <i>keyword:: one of</i>
     abstract   and   array   as   break   callable   case   catch   class   clone
@@ -334,6 +451,53 @@ The source code representation of a value is called a *literal*.
 #####Integer Literals
 
 **Syntax**
+
+<!-- GRAMMAR
+integer-literal::
+  decimal-literal
+  octal-literal
+  hexadecimal-literal
+  binary-literal
+
+decimal-literal::
+  nonzero-digit
+  decimal-literal digit
+
+octal-literal::
+  '0'
+  octal-literal octal-digit
+
+hexadecimal-literal::
+  hexadecimal-prefix hexadecimal-digit
+  hexadecimal-literal hexadecimal-digit
+
+hexadecimal-prefix:: one of
+  '0x' '0X'
+
+binary-literal::
+  binary-prefix binary-digit
+  binary-literal binary-digit
+
+binary-prefix:: one of
+  '0b' '0B'
+
+digit:: one of
+  '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
+
+nonzero-digit:: one of
+  '1' '2' '3' '4' '5' '6' '7' '8' '9'
+
+octal-digit:: one of
+  '0' '1' '2' '3' '4' '5' '6' '7'
+
+hexadecimal-digit:: one of
+  '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
+  'a' 'b' 'c' 'd' 'e' 'f'
+  'A' 'B' 'C' 'D' 'E' 'F'
+
+binary-digit:: one of
+  '0' '1'
+-->
 
 <pre>
   <i>integer-literal::</i>
@@ -429,6 +593,27 @@ On an implementation using 32-bit int representation
 
 **Syntax**
 
+<!-- GRAMMAR
+floating-literal::
+  fractional-literal exponent-part?
+  digit-sequence exponent-part
+
+fractional-literal::
+  digit-sequence? '.' digit-sequence
+  digit-sequence '.'
+
+exponent-part::
+  'e' sign? digit-sequence
+  'E' sign? digit-sequence
+
+sign:: one of
+  '+' '-'
+
+digit-sequence::
+  digit
+  digit-sequence digit
+-->
+
 <pre>
   <i>floating-literal::</i>
     <i>fractional-literal   exponent-part<sub>opt</sub></i>
@@ -478,6 +663,14 @@ $values = array(1.23, 3e12, 543.678E-23);
 
 **Syntax**
 
+<!-- GRAMMAR
+string-literal::
+  single-quoted-string-literal
+  double-quoted-string-literal
+  heredoc-string-literal
+  nowdoc-string-literal
+-->
+
 <pre>
   <i>string-literal::</i>
     <i>single-quoted-string-literal</i>
@@ -503,6 +696,25 @@ The type of a string literal is `string`.
 ######Single-Quoted String Literals
 
 **Syntax**
+
+<!-- GRAMMAR
+single-quoted-string-literal::
+  b-prefix? '''' sq-char-sequence? ''''
+
+sq-char-sequence::
+  sq-char
+  sq-char-sequence sq-char
+
+sq-char::
+  sq-escape-sequence
+  '\'? "any member of the source character set except single-quote (') or backslash (\)"
+
+sq-escape-sequence:: one of
+  '\''' '\\'
+
+b-prefix:: one of
+  'b' 'B'
+-->
 
 <pre>
   <i>single-quoted-string-literal::</i>
@@ -547,6 +759,45 @@ A single-quoted string literal is always a constant expression.
 ######Double-Quoted String Literals
 
 **Syntax**
+
+<!-- GRAMMAR
+double-quoted-string-literal::
+  b-prefix? '"' dq-char-sequence? '"'
+
+dq-char-sequence::
+  dq-char
+  dq-char-sequence dq-char
+
+dq-char::
+  dq-escape-sequence
+  "any member of the source character set except double-quote ("") or backslash (\)"
+  '\' "any member of the source character set except ""\$efnrtvxX or" octal-digit
+
+dq-escape-sequence::
+  dq-simple-escape-sequence
+  dq-octal-escape-sequence
+  dq-hexadecimal-escape-sequence
+  dq-unicode-escape-sequence
+
+dq-simple-escape-sequence:: one of
+  '\"' '\\' '\$' '\e' '\f' '\n' '\r' '\t' '\v'
+
+dq-octal-escape-sequence::
+  '\' octal-digit
+  '\' octal-digit octal-digit
+  '\' octal-digit octal-digit octal-digit
+
+dq-hexadecimal-escape-sequence::
+  '\x' hexadecimal-digit hexadecimal-digit?
+  '\X' hexadecimal-digit hexadecimal-digit?
+
+dq-unicode-escape-sequence::
+  '\u{' codepoint-digits '}'
+
+codepoint-digits::
+   hexadecimal-digit
+   hexadecimal-digit codepoint-digits
+-->
 
 <pre>
   <i>double-quoted-string-literal::</i>
@@ -652,6 +903,24 @@ ill-formed Unicode escape sequences.
 
 The variable substitution accepts the following syntax:
 
+<!-- GRAMMAR
+string-variable::
+  variable-name offset-or-property?
+  '${' expression '}'
+
+offset-or-property::
+  offset-in-string
+  property-in-string
+
+offset-in-string::
+  '[' name ']'
+  '[' variable-name ']'
+  '[' integer-literal ']'
+
+property-in-string::
+  '->' name
+-->
+
 <pre>
   <i>string-variable::</i>
     <i>variable-name</i>   <i>offset-or-property<sub>opt</sub></i>
@@ -728,6 +997,39 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 ######Heredoc String Literals
 
 **Syntax**
+
+<!-- GRAMMAR
+heredoc-string-literal::
+  b-prefix? '<<<' hd-start-identifier new-line hd-body? hd-end-identifier ';'? new-line
+
+hd-start-identifier::
+  name
+  '"' name '"'
+
+hd-end-identifier::
+  name
+
+hd-body::
+  hd-char-sequence? new-line
+
+hd-char-sequence::
+  hd-char
+  hd-char-sequence hd-char
+
+hd-char::
+  hd-escape-sequence
+  "any member of the source character set except backslash (\)"
+  "\ any member of the source character set except \$efnrtvxX or" octal-digit
+
+hd-escape-sequence::
+  hd-simple-escape-sequence
+  dq-octal-escape-sequence
+  dq-hexadecimal-escape-sequence
+  dq-unicode-escape-sequence
+
+hd-simple-escape-sequence:: one of
+  '\\' '\$' '\e' '\f' '\n' '\r' '\t' '\v'
+-->
 
 <pre>
   <i>heredoc-string-literal::</i>
@@ -812,6 +1114,11 @@ echo ">$s<";
 
 **Syntax**
 
+<!-- GRAMMAR
+nowdoc-string-literal::
+  b-prefix? '<<<' '''' name '''' new-line hd-body? name ';'? new-line
+-->
+
 <pre>
   <i>nowdoc-string-literal::</i>
     <i>b-prefix<sub>opt</sub></i>  &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-body<sub>opt</sub>   name</i>  ;<i><sub>opt</sub>   new-line</i>
@@ -857,6 +1164,14 @@ echo ">$s<\n\n";
 ####Operators and Punctuators
 
 **Syntax**
+
+<!-- GRAMMAR
+operator-or-punctuator:: one of
+  '[' ']' '(' ')' '{' '}' '.' '->' '++' '--' '**' '*' '+' '-' '~' '!'
+  '$' '/' '%' '<<' '>>' '<' '>' '<=' '>=' '==' '===' '!=' '!==' '^' '|'
+  '&' '&&' '||' '?' ':' ';' '=' '**=' '*=' '/=' '%=' '+=' '-=' '.=' '<<='
+  '>>=' '&=' '^=' '|=' ',' '??' '<=>' '...' '\'
+-->
 
 <pre>
   <i>operator-or-punctuator:: one of</i>

@@ -4,6 +4,27 @@
 
 **Syntax**
 
+<!-- GRAMMAR
+statement:
+  compound-statement
+  named-label-statement
+  expression-statement
+  selection-statement
+  iteration-statement
+  jump-statement
+  try-statement
+  declare-statement
+  const-declaration
+  function-definition
+  class-declaration
+  interface-declaration
+  trait-declaration
+  namespace-definition
+  namespace-use-declaration
+  global-declaration
+  function-static-declaration
+-->
+
 <pre>
 
   <i>statement:</i>
@@ -49,6 +70,15 @@
 
 **Syntax**
 
+<!-- GRAMMAR
+compound-statement:
+  '{' statement-list? '}'
+
+statement-list:
+  statement
+  statement-list statement
+-->
+
 <pre>
   <i>compound-statement:</i>
     {   <i>statement-list<sub>opt</sub></i>  }
@@ -90,6 +120,11 @@ while (condition)
 
 **Syntax**
 
+<!-- GRAMMAR
+named-label-statement:
+  name ';' statement
+-->
+
 <pre>
   <i>named-label-statement:</i>
     <i>name</i>  :  <i>statement</i>
@@ -116,6 +151,11 @@ execution.
 ##Expression Statements
 
 **Syntax**
+
+<!-- GRAMMAR
+expression-statement:
+  expression? ';'
+-->
 
 <pre>
   <i>expression-statement:</i>
@@ -170,6 +210,12 @@ done:
 
 **Syntax**
 
+<!-- GRAMMAR
+selection-statement:
+  if-statement
+  switch-statement
+-->
+
 <pre>
   <i>selection-statement:</i>
     <i>if-statement</i>
@@ -189,6 +235,32 @@ selects among a set of statements.
 ###The `if` Statement
 
 **Syntax**
+
+<!-- GRAMMAR
+if-statement:
+  'if' '(' expression ')' statement elseif-clauses-1? else-clause-1?
+  'if' '(' expression ')' ':' statement-list elseif-clauses-2? else-clause-2? 'endif' ';'
+
+elseif-clauses-1:
+  elseif-clause-1
+  elseif-clauses-1 elseif-clause-1
+
+elseif-clause-1:
+  'elseif' '(' expression ')' statement
+
+else-clause-1:
+  'else' statement
+
+elseif-clauses-2:
+  elseif-clause-2
+  elseif-clauses-2 elseif-clause-2
+
+elseif-clause-2:
+  'elseif' '(' expression ')' ':' statement-list
+
+else-clause-2:
+  'else' ':' statement-list
+-->
 
 <pre>
   <i>if-statement:</i>
@@ -282,6 +354,26 @@ else  // this else does go with the outer if
 ###The `switch` Statement
 
 **Syntax**
+
+<!-- GRAMMAR
+switch-statement:
+  'switch' '(' expression ')' '{' case-statements? '}'
+  'switch' '(' expression ')' ':' case-statements? 'endswitch;'
+
+case-statements:
+  case-statement case-statements?
+  default-statement case-statements?
+
+case-statement:
+  'case' expression case-default-label-terminator statement-list?
+
+default-statement:
+  'default' case-default-label-terminator statement-list?
+
+case-default-label-terminator:
+  ':'
+  ';'
+-->
 
 <pre>
   <i>switch-statement:</i>
@@ -397,6 +489,14 @@ case $v < $a:   // non-constant expression
 
 **Syntax**
 
+<!-- GRAMMAR
+iteration-statement:
+  while-statement
+  do-statement
+  for-statement
+  foreach-statement
+-->
+
 <pre>
   <i>iteration-statement:</i>
     <i>while-statement</i>
@@ -415,6 +515,12 @@ case $v < $a:   // non-constant expression
 ##The `while` Statement
 
 **Syntax**
+
+<!-- GRAMMAR
+while-statement:
+  'while' '(' expression ')' statement
+  'while' '(' expression ')' ':' statement-list 'endwhile' ';'
+-->
 
 <pre>
   <i>while-statement:</i>
@@ -464,6 +570,11 @@ while (TRUE)
 
 **Syntax**
 
+<!-- GRAMMAR
+do-statement:
+  'do' statement 'while' '(' expression ')' ';'
+-->
+
 <pre>
   <i>do-statement:</i>
     do  <i>statement</i>  while  (  <i>expression</i>  )  ;
@@ -507,6 +618,25 @@ while ($i <= 10);
 ##The `for` Statement
 
 **Syntax**
+
+<!-- GRAMMAR
+for-statement:
+  'for' '(' for-initializer? ';' for-control? ';' for-end-of-loop? ')' statement
+  'for' '(' for-initializer? ';' for-control? ';' for-end-of-loop? ')' ':' statement-list 'endfor' ';'
+
+for-initializer:
+  for-expression-group
+
+for-control:
+  for-expression-group
+
+for-end-of-loop:
+  for-expression-group
+
+for-expression-group:
+  expression
+  for-expression-group ',' expression
+-->
 
 <pre>
   <i>for-statement:</i>
@@ -600,6 +730,22 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10)
 
 **Syntax**
 
+<!-- GRAMMAR
+foreach-statement:
+  'foreach' '(' foreach-collection-name 'as' foreach-key? foreach-value ')' 'statement'
+  'foreach' '(' foreach-collection-name 'as' foreach-key? foreach-value ')' ':' statement-list 'endforeach' ';'
+
+foreach-collection-name:
+  expression
+
+foreach-key:
+  expression '=>'
+
+foreach-value:
+  '&'? expression
+  list-intrinsic
+-->
+
 <pre>
   <i>foreach-statement:</i>
     foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
@@ -685,6 +831,15 @@ foreach ($colors as &$color)  // note the &
 
 **Syntax**
 
+<!-- GRAMMAR
+jump-statement:
+  goto-statement
+  continue-statement
+  break-statement
+  return-statement
+  throw-statement
+-->
+
 <pre>
   <i>jump-statement:</i>
     <i>goto-statement</i>
@@ -705,6 +860,11 @@ foreach ($colors as &$color)  // note the &
 ###The `goto` Statement
 
 **Syntax**
+
+<!-- GRAMMAR
+goto-statement:
+  'goto' name ';'
+-->
 
 <pre>
   <i>goto-statement:</i>
@@ -758,6 +918,14 @@ done:
 
 **Syntax**
 
+<!-- GRAMMAR
+continue-statement:
+  'continue' breakout-level? ';'
+
+breakout-level:
+  integer-literal
+-->
+
 <pre>
   <i>continue-statement:</i>
     continue   <i>breakout-level<sub>opt</sub></i>  ;
@@ -809,6 +977,11 @@ for ($i = 1; $i <= 5; ++$i)
 ###The `break` Statement
 
 **Syntax**
+
+<!-- GRAMMAR
+break-statement:
+  'break' breakout-level? ';'
+-->
 
 <pre>
   <i>break-statement:</i>
@@ -874,6 +1047,11 @@ for ($i = 10; $i <= 40; $i +=10)
 ###The `return` Statement
 
 **Syntax**
+
+<!-- GRAMMAR
+return-statement:
+  'return' expression? ';'
+-->
 
 <pre>
   <i>return-statement:</i>
@@ -987,6 +1165,11 @@ enclosing function, `$a` need not actually be incremented.
 
 **Syntax**
 
+<!-- GRAMMAR
+throw-statement:
+  'throw' expression ';'
+-->
+
 <pre>
   <i>throw-statement:</i>
     throw  <i>expression</i>  ;
@@ -1026,6 +1209,23 @@ throw new MyException;
 ##The `try` Statement
 
 **Syntax**
+
+<!-- GRAMMAR
+try-statement:
+  'try' compound-statement catch-clauses
+  'try' compound-statement finally-clause
+  'try' compound-statement catch-clauses finally-clause
+
+catch-clauses:
+  catch-clause
+  catch-clauses catch-clause
+
+catch-clause:
+  'catch' '(' qualified-name variable-name ')' compound-statement
+
+finally-clause:
+  'finally' compound-statement
+-->
 
 <pre>
   <i>try-statement:</i>
@@ -1127,6 +1327,18 @@ finally { ... }
 ##The `declare` Statement
 
 **Syntax**
+
+<!-- GRAMMAR
+declare-statement:
+  'declare' '(' declare-directive ')' statement
+  'declare' '(' declare-directive ')' ':' statement-list 'enddeclare' ';'
+  'declare' '(' declare-directive ')' ';'
+
+declare-directive:
+  'ticks' '=' literal
+  'encoding' '=' literal
+  'strict_types' '=' literal
+-->
 
 <pre>
   <i>declare-statement:</i>

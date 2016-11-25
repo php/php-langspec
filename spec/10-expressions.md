@@ -113,17 +113,6 @@ primary-expression:
     (  <i>expression</i>  )
 </pre>
 
-**Defined elsewhere**
-
-* [*variable*](#variables)
-* [*constant-access-expression*](#constant-access-expression)
-* [*literal*](#literals)
-* [*array-creation-expression*](#array-creation-operator)
-* [*intrinsic*](#general-2)
-* [*anonymous-function-creation-expression*](#anonymous-function-creation)
-* [*expression*](#script-inclusion-operators)
-* [*class-constant-access-expression*](#scope-resolution-operator)
-
 **Semantics**
 
 The type and value of parenthesized expression are identical to those of
@@ -146,11 +135,6 @@ simple-variable:
     $   <i>simple-variable</i>
     $   {   <i>expression</i>   }
 </pre>
-
-**Defined elsewhere**
-
-* [*variable-name*](09-lexical-structure.md#names)
-* [*expression*](#general-6)
 
 **Constraints**
 
@@ -224,14 +208,6 @@ callable-expression:
     <i>string-literal</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*array-creation-expression*](#array-creation-operator)
-* [*callable-variable*](#variables)
-* [*expression*](#general-6)
-* [*variable*](#variables)
-* [*string-literal*](09-lexical-structure.md#string-literals)
-
 **Constraints**
 
 The *string-literal* must not use variable interpolation and must not be a heredoc
@@ -275,16 +251,6 @@ variable:
     <i>member-access-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*function-call-expression*](#function-call-operator)
-* [*member-access-expression*](#member-access-operator)
-* [*member-call-expression*](#member-call-operator)
-* [*scoped-call-expresssion*](#scope-resolution-operator)
-* [*scoped-property-access-expresssion*](#scope-resolution-operator)
-* [*simple-variable*](#simple-variable)
-* [*subscript-expression*](#subscript-operator)
-
 **Semantics**
 
 A *variable* is an expression that can *in principle* be used as an lvalue. However, the
@@ -302,10 +268,6 @@ constant-access-expression:
   <i>constant-access-expression:</i>
     <i>qualified-name</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*qualified-name*](09-lexical-structure.md#names)
 
 **Semantics**
 
@@ -329,12 +291,6 @@ literal:
     <i>floating-literal</i>
     <i>string-literal</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*integer-literal*](09-lexical-structure.md#integer-literals)
-* [*floating-literal*](09-lexical-structure.md#floating-point-literals)
-* [*string-literal*](09-lexical-structure.md#string-literals)
 
 **Semantics**
 
@@ -382,17 +338,6 @@ intrinsic-operator:
     <i>print-intrinsic</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*echo-intrinsic*](#echo)
-* [*empty-intrinsic*](#empty)
-* [*eval-intrinsic*](#eval)
-* [*exit-intrinsic*](#exitdie)
-* [*isset-intrinsic*](#isset)
-* [*list-intrinsic*](#list)
-* [*print-intrinsic*](#print)
-* [*unset-intrinsic*](#unset)
-
 **Semantics**
 
 The names in this series of sections have special meaning and are
@@ -425,10 +370,6 @@ expression-list:
     <i>expression</i>
     <i>expression-list</i>  ,  <i>expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](#general-6)
 
 **Constraints**
 
@@ -472,10 +413,6 @@ empty-intrinsic:
     empty ( <i>expression</i>  )
 </pre>
 
-**Defined elsewhere**
-
-* [*expression*](#general-6)
-
 **Semantics**
 
 This intrinsic returns `TRUE` if the variable or value designated by
@@ -515,10 +452,6 @@ eval-intrinsic:
   <i>eval-intrinsic:</i>
     eval (  <i>expression</i>  )
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](#general-6)
 
 **Constraints**
 
@@ -568,10 +501,6 @@ exit-intrinsic:
     die
     die   (   <i>expression<sub>opt</sub></i>   )
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](#general-6)
 
 **Constraints**
 
@@ -626,10 +555,6 @@ variable-list:
     <i>variable</i>
     <i>variable-list</i>  ,  <i>variable</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*variable*](#variables)
 
 **Semantics**
 
@@ -702,10 +627,6 @@ list-or-variable:
     <i>list-intrinsic</i>
     <i>expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](#general-6)
 
 **Constraints**
 
@@ -805,10 +726,6 @@ print-intrinsic:
     print  <i>expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*expression*](#general-6)
-
 **Constraints**
 
 *expression* value must be [convertable to a string](08-conversions.md#converting-to-string-type).
@@ -850,10 +767,6 @@ unset-intrinsic:
   <i>unset-intrinsic:</i>
     unset  (  <i>variable-list</i>  )
 </pre>
-
-**Defined elsewhere**
-
-* [*variable-list*](#isset)
 
 **Semantics**
 
@@ -921,13 +834,6 @@ use-variable-name-list:
     &amp;<sub>opt</sub>   <i>variable-name</i>
     <i>use-variable-name-list</i>  ,  &<sub>opt</sub>  <i>variable-name</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*parameter-declaration-list*](13-functions.md#function-definitions)
-* [*return-type*](13-functions.md#function-definitions)
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*variable-name*](09-lexical-structure.md#names)
 
 **Semantics**
 
@@ -1014,15 +920,6 @@ postfix-expression:
     <i>exponentiation-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*primary-expression*](#general-1)
-* [*clone-expression*](#the-clone-operator)
-* [*object-creation-expression*](#the-new-operator)
-* [*postfix-increment-expression*](#postfix-increment-and-decrement-operators)
-* [*postfix-decrement-expression*](#postfix-increment-and-decrement-operators)
-* [*exponentiation-expression*](#exponentiation-operator)
-
 **Semantics**
 
 These operators associate left-to-right.
@@ -1040,10 +937,6 @@ clone-expression:
   <i>clone-expression:</i>
     clone  <i>expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](#general-6)
 
 **Constraints**
 
@@ -1116,15 +1009,6 @@ class-type-designator:
     <i>qualified-name</i>
     <i>expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*argument-expression-list*](#function-call-operator)
-* [*class-base-clause*](14-classes.md#class-declarations)
-* [*class-interface-clause*](14-classes.md#class-declarations)
-* [*class-member-declarations*](14-classes.md#class-members)
-* [*expression*](#general-6)
-* [*qualified-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -1240,10 +1124,6 @@ element-value:
     <i>expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*expression*](#general-6)
-
 **Constraints**
 
 If *array-element-initializer* contains &, *expression* in *element-value*
@@ -1322,11 +1202,6 @@ subscript-expression:
     <i>dereferencable-expression</i>  [  <i>expression<sub>opt</sub></i>  ]
     <i>dereferencable-expression</i>  {  <i>expression</i>  }   <b>[Deprecated form]</b>
 </pre>
-
-**Defined elsewhere**
-
-* [*dereferencable-expression*](#dereferencable-expression)
-* [*expression*](#general-6)
 
 **Constraints**
 
@@ -1516,11 +1391,6 @@ variadic-unpacking:
 
 </pre>
 
-**Defined elsewhere**
-
-* [*callable-expression*](#dereferencable-expression)
-* [*assignment-expression*](#general-5)
-
 **Constraints**
 
 *callable-expression* must designate a function, by being a value of type string
@@ -1642,13 +1512,6 @@ member-name:
     {   <i>expression</i>   }
 </pre>
 
-**Defined elsewhere**
-
-* [*dereferencable-expression*](#dereferencable-expression)
-* [*name*](09-lexical-structure.md#names)
-* [*simple-variable*](#simple-variable)
-* [*expression*](#general-6)
-
 **Constraints**
 
 The *dereferencable-expression* must designate an object or be `NULL`, `FALSE`,
@@ -1722,12 +1585,6 @@ member-call-expression:
     <i>dereferencable-expression</i>   ->   <i>member-name</i>   (   <i>argument-expression-list<sub>opt</sub></i>   )
 </pre>
 
-**Defined elsewhere**
-
-* [*dereferencable-expression*](#dereferencable-expression)
-* [*member-name*](#member-access-operator)
-* [*argument-expression-list*](#function-call-operator)
-
 **Constraints**
 
 The *dereferencable-expression* must designate an object.
@@ -1773,10 +1630,6 @@ postfix-decrement-expression:
   <i>postfix-decrement-expression:</i>
     <i>variable</i>  --
 </pre>
-
-**Defined elsewhere**
-
-* [*variable*](#variables)
 
 **Constraints**
 
@@ -1841,13 +1694,6 @@ relative-scope:
     parent
     static
 </pre>
-
-**Defined elsewhere**
-
-* [*argument-expression-list*](#function-call-operator)
-* [*dereferencable-expression*](#dereferencable-expression)
-* [*member-name*](#member-access-operator)
-* [*simple-variable*](#simple-variable)
 
 **Constraints**
 
@@ -1957,10 +1803,6 @@ exponentiation-expression:
     <i>expression</i>  **  <i>expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*expression*](#general-6)
-
 **Semantics**
 
 The `**` operator produces the result of raising the value of the
@@ -2010,16 +1852,6 @@ unary-expression:
     <i>cast-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*postfix-expression*](#general-3)
-* [*prefix-increment-expression*](#prefix-increment-and-decrement-operators)
-* [*prefix-decrement-expression*](#prefix-increment-and-decrement-operators)
-* [*unary-op-expression*](#unary-arithmetic-operators)
-* [*error-control-expression*](#error-control-operator)
-* [*shell-command-expression*](#shell-command-operator)
-* [*cast-expression*](#cast-operator)
-
 **Semantics**
 
 These operators associate right-to-left.
@@ -2043,10 +1875,6 @@ prefix-decrement-expression:
   <i>prefix-decrement-expression:</i>
     -- <i>variable</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*variable*](#variables)
 
 **Constraints**
 
@@ -2162,10 +1990,6 @@ unary-operator: one of
     +  -  !  ~
 </pre>
 
-**Defined elsewhere**
-
-* [*cast-expression*](#cast-operator)
-
 **Constraints**
 
 The operand of the unary `+` and unary `-` must have scalar-compatible type.
@@ -2255,10 +2079,6 @@ error-control-expression:
     @   <i>expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*expression*](#general-6)
-
 **Semantics**
 
 Operator `@` suppresses the reporting of any error messages generated by the evaluation of
@@ -2319,10 +2139,6 @@ shell-command-expression:
 where \` is the GRAVE ACCENT character U+0060, commonly referred to as a
 *backtick*.
 
-**Defined elsewhere**
-
-* [*dq-char-sequence*](09-lexical-structure.md#double-quoted-string-literals)
-
 **Semantics**
 
 This operator passes *dq-char-sequence* to the command shell for
@@ -2367,10 +2183,6 @@ cast-type: one of
     array  binary  bool  boolean  double  int  integer  float  object
     real  string  unset
 </pre>
-
-**Defined elsewhere**
-
-* [*unary-expression*](#general-4)
 
 **Semantics**
 
@@ -2439,12 +2251,6 @@ instanceof-type-designator:
     <i>expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*unary-expression*](#general-4)
-* [*expression*](#general-6)
-* [*qualified-name*](09-lexical-structure.md#names)
-
 **Constraints**
 
 The *expression* in *instanceof-type-designator* and *instanceof-subject* must not be any form of
@@ -2510,10 +2316,6 @@ multiplicative-expression:
     <i>multiplicative-expression</i>  /  <i>instanceof-expression</i>
     <i>multiplicative-expression</i>  %  <i>instanceof-expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*instanceof-expression*](#instanceof-operator)
 
 **Constraints**
 
@@ -2589,10 +2391,6 @@ additive-expression:
     <i>additive-expression</i>  -  <i>multiplicative-expression</i>
     <i>additive-expression</i>  .  <i>multiplicative-expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*multiplicative-expression*](#multiplicative-operators)
 
 **Constraints**
 
@@ -2670,10 +2468,6 @@ shift-expression:
     <i>shift-expression</i>  &gt;&gt;  <i>additive-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*additive-expression*](#additive-operators)
-
 **Constraints**
 
 Each of the operands must have scalar-compatible type.
@@ -2742,10 +2536,6 @@ relational-expression:
     <i>relational-expression</i>  &gt;=  <i>shift-expression</i>
     <i>relational-expression</i>  &lt;=&gt; <i>shift-expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*shift-expression*](#bitwise-shift-operators)
 
 **Semantics**
 
@@ -2883,10 +2673,6 @@ equality-expression:
     <i>equality-expression</i>  !==  <i>relational-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*relational-expression*](#relational-operators)
-
 **Semantics**
 
 Operator `==` represents *value equality*, operators `!=` and `<>` are
@@ -2943,10 +2729,6 @@ bitwise-AND-expression:
     <i>bitwise-AND-expression</i>  &  <i>equality-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*equality-expression*](#equality-operators)
-
 **Constraints**
 
 Each of the operands must have scalar-compatible type.
@@ -2993,10 +2775,6 @@ bitwise-exc-OR-expression:
     <i>bitwise-AND-expression</i>
     <i>bitwise-exc-OR-expression</i>  ^  <i>bitwise-AND-expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*bitwise-AND-expression*](#bitwise-and-operator)
 
 **Constraints**
 
@@ -3047,10 +2825,6 @@ bitwise-inc-OR-expression:
     <i>bitwise-inc-OR-expression</i>  |  <i>bitwise-exc-OR-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*bitwise-exc-OR-expression*](#bitwise-exclusive-or-operator)
-
 **Constraints**
 
 Each of the operands must have scalar-compatible type.
@@ -3098,10 +2872,6 @@ logical-AND-expression-1:
     <i>logical-AND-expression-1</i>  &&  <i>bitwise-inc-OR-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*bitwise-incl-OR-expression*](#bitwise-inclusive-or-operator)
-
 **Semantics**
 
 Given the expression `e1 && e2`, `e1` is evaluated first. If `e1` [converts to `bool`](08-conversions.md#converting-to-boolean-type) as `FALSE`, `e2` is not evaluated, and the result has type `bool`, value `FALSE`. Otherwise, `e2` is evaluated. If `e2` converts to `bool` as `FALSE`, the result has type `bool`, value `FALSE`; otherwise, it has type `bool`, value `TRUE`. There is a sequence point after the evaluation of `e1`.
@@ -3133,10 +2903,6 @@ logical-inc-OR-expression-1:
     <i>logical-inc-OR-expression-1</i>  ||  <i>logical-AND-expression-1</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*logical-exc-OR-expression*](#bitwise-exclusive-or-operator)
-
 **Semantics**
 
 Given the expression `e1 || e2`, `e1` is evaluated first. If `e1` [converts to `bool`](08-conversions.md#converting-to-boolean-type) as `TRUE`, `e2` is not evaluated, and the result has type `bool`, value `TRUE`. Otherwise, `e2` is evaluated. If `e2` converts to `bool` as `TRUE`, the result has type `bool`, value `TRUE`; otherwise, it has type `bool`, value `FALSE`. There is a sequence point after the evaluation of `e1`.
@@ -3164,11 +2930,6 @@ conditional-expression:
     <i>logical-inc-OR-expression-1</i>
     <i>logical-inc-OR-expression-1</i>  ?  <i>expression<sub>opt</sub></i>  :  <i>conditional-expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*logical-OR-expression*](#logical-inclusive-or-operator-form-1)
-* [*expression*](#general-6)
 
 **Semantics**
 Given the expression `e1 ? e2 : e3`, `e1` is evaluated first and [converted to `bool`](08-conversions.md#converting-to-boolean-type) if it has another type.
@@ -3214,11 +2975,6 @@ coalesce-expression:
   <i>coalesce-expression:</i>
     <i>logical-inc-OR-expression-1</i>  ??  <i>expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*logical-OR-expression*](#logical-inclusive-or-operator-form-1)
-* [*expression*](#general-6)
 
 **Semantics**
 
@@ -3278,14 +3034,6 @@ assignment-expression:
     <i>compound-assignment-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*conditional-expression*](#conditional-operator)
-* [*simple-assignment-expression*](#simple-assignment)
-* [*byref-assignment-expression*](#byref-assignment)
-* [*compound-assignment-expression*](#compound-assignment)
-* [*coalesce-expression*](#coalesce-operator)
-
 **Constraints**
 
 The left-hand operand of an assignment operator must be a modifiable
@@ -3310,12 +3058,6 @@ simple-assignment-expression:
     <i>variable</i>  =  <i>assignment-expression</i>
     <i>list-intrinsic</i>  =  <i>assignment-expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*variable*](#variables)
-* [*list-intrinsic*](#list)
-* [*assignment-expression*](#general-5)
 
 **Constraints**
 
@@ -3385,11 +3127,6 @@ byref-assignment-expression:
     <i>variable</i>  =  &  <i>assignment-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*variable*](#variables)
-* [*assignment-expression*](#general-5)
-
 **Constraints**
 
 *assignment-expression* must be an lvalue or a call to a function that
@@ -3438,11 +3175,6 @@ compound-assignment-operator: one of
     **=  *=  /=  %=  +=  -=  .=  <<=  >>=  &=  ^=  |=
 </pre>
 
-**Defined elsewhere**
-
-* [*variable*](#variables)
-* [*assignment-expression*](#general-5)
-
 **Constraints**
 
 Any constraints that apply to the corresponding binary operator apply to the compound-assignment form as well.
@@ -3480,10 +3212,6 @@ logical-AND-expression-2:
     <i>logical-AND-expression-2</i>  and  <i>assignment-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*assignment-expression*](#general-5)
-
 **Semantics**
 
 Except for the difference in precedence, operator and has exactly the
@@ -3504,10 +3232,6 @@ logical-exc-OR-expression:
     <i>logical-AND-expression-2</i>
     <i>logical-exc-OR-expression</i>  xor  <i>logical-AND-expression-2</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*logical-AND-expression*](#logical-and-operator-form-2)
 
 **Semantics**
 
@@ -3543,10 +3267,6 @@ logical-inc-OR-expression-2:
     <i>logical-inc-OR-expression-2</i>  or  <i>logical-exc-OR-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*logical-exc-OR-expression*](#logical-exclusive-or-operator)
-
 **Semantics**
 
 Except for the difference in precedence, operator and has exactly the
@@ -3569,12 +3289,6 @@ yield-expression:
     yield  <i>array-element-initializer</i>
     yield from  <i>expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*logical-inc-OR-expression*](#logical-inclusive-or-operator-form-2)
-* [*array-element-initializer*](#array-creation-operator)
-* [*expression*](#script-inclusion-operators)
 
 **Semantics**
 
@@ -3709,14 +3423,6 @@ expression:
     <i>require-expression</i>
     <i>require-once-expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*yield-expression*](#yield-operator)
-* [*include-expression*](#the-include-operator)
-* [*include-once-expression*](#the-include_once-operator)
-* [*require-expression*](#the-require-operator)
-* [*require-once-expression*](#the-require_once-operator)
 
 **Semantics**
 
@@ -3885,10 +3591,6 @@ include-expression:
     include   <i>expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*expression*](#general-6)
-
 **Constraints**
 
 *expresssion* must be convertable to a string, which designates
@@ -3941,10 +3643,6 @@ include-once-expression:
     include_once   <i>expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*expression*](#general-6)
-
 **Semantics**
 
 This operator is identical to operator [`include`](#the-include-operator) except that in
@@ -3993,10 +3691,6 @@ require-expression:
     require   <i>expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*expression*](#general-6)
-
 **Semantics**
 
 This operator is identical to operator [`include`](#the-include-operator) except that in
@@ -4016,10 +3710,6 @@ require-once-expression:
   <i>require-once-expression:</i>
     require_once   <i>expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](#general-6)
 
 **Semantics**
 
@@ -4047,10 +3737,6 @@ constant-expression:
   <i>constant-expression:</i>
     <i>expression</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](#general-6)
 
 **Constraints**
 

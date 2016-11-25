@@ -90,10 +90,6 @@ class-interface-clause:
     <i>class-interface-clause</i>  ,  <i>qualified-name</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*class-member-declarations*](#class-members)
-
 **Constraints**
 
 *name* must be a [valid name](09-lexical-structure.md#names), and must not be `self`, `parent`, or a [reserved keyword](09-lexical-structure.md#keywords).
@@ -240,15 +236,6 @@ class-member-declaration:
      <i>destructor-declaration</i>
      <i>trait-use-clause</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*class-const-declaration*](#constants)
-* [*property-declaration*](#properties)
-* [*method-declaration*](#methods)
-* [*constructor-declaration*](#constructors)
-* [*destructor-declaration*](#destructors)
-* [*trait-use-clause*](16-traits.md#trait-uses)
 
 **Semantics**
 
@@ -446,12 +433,6 @@ const-element:
     <i>name</i>   =   <i>constant-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
-* [*constant-expression*](10-expressions.md#constant-expressions)
-* [*visibility-modifier*](#properties)
-
 **Constraints:**
 
 A *const-declaration* must only appear at the top level of a script, and
@@ -548,11 +529,6 @@ property-initializer:
     =  <i>constant-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*variable-name*](09-lexical-structure.md#names)
-* [*constant-expression*](10-expressions.md#constant-expressions)
-
 **Semantics**
 
 A *property-declaration* defines one or more instance or static properties.
@@ -614,13 +590,6 @@ method-modifier:
     <i>class-modifier</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*visibility-modifier*](#properties)
-* [*static-modifier*](#properties)
-* [*function-definition*](13-functions.md#function-definitions)
-* [*function-definition-header*](13-functions.md#function-definitions)
-
 **Constraints**
 
 The *method-modifiers* preceding a *function-definition* must not contain
@@ -667,12 +636,6 @@ constructor-declaration:
     <i>method-modifiers</i>  function &<sub>opt</sub>   __construct  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>compound-statement</i>
 
 </pre>
-
-**Defined elsewhere**
-
-* [*method-modifiers*](#methods)
-* [*parameter-declaration-list*](13-functions.md#function-definitions)
-* [*compound-statement*](11-statements.md#compound-statements)
 
 **Constraints**
 
@@ -759,11 +722,6 @@ destructor-declaration:
   <i>destructor-declaration:</i>
     <i>method-modifiers</i>  function  &<sub>opt</sub>  __destruct  ( ) <i>compound-statement</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*method-modifiers*](#methods)
-* [*compound-statement*](11-statements.md#compound-statements)
 
 **Constraints**
 
@@ -852,13 +810,6 @@ an overriding concrete class must declare one. Nevertheless, the constraints on 
   <i>method-modifiers</i> function  __call  (  <i>$name</i>  ,  <i>$arguments</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-* [*return-type*](13-functions.md#function-definitions)
-* [*return-type*](13-functions.md#function-definitions)
-
 **Constraints**
 
 The method can not be static and must have public visibility.
@@ -916,13 +867,6 @@ $obj->iMethod(10, TRUE, "abc"); // $obj->__call('iMethod', array(...))
   <i>method-modifiers</i>  function  __callStatic  (  <i>$name</i>  ,  <i>$arguments</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-* [*return-type*](13-functions.md#function-definitions)
-* [*return-type*](13-functions.md#function-definitions)
-
 **Constraints**
 
 The *method-modifiers* must contain `static` and must define public visibility.
@@ -978,11 +922,6 @@ Widget::sMethod(NULL, 1.234); // Widget::__callStatic('sMethod', array(...))
 <pre>
   <i>method-modifiers</i>  function  __clone  (  )  <i>compound-statement</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
 
 **Constraints**
 
@@ -1069,11 +1008,6 @@ $p2 = clone $p1;  // created by cloning
   <i>method-modifiers</i> function  __debugInfo  (  )   <i>compound-statement</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-
 **Constraints**
 
 The *method-modifiers* must not contain `static` and must define public visibility.
@@ -1122,13 +1056,6 @@ object(File)#1 {
 <pre>
   <i>method-modifiers</i> function  &<sub>opt</sub>  __get  (  <i>$name</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-* [*return-type*](13-functions.md#function-definitions)
-* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1222,13 +1149,6 @@ restrictions on the spelling of the dynamic property name designated by
   <i>method-modifiers</i>  function  __invoke  ( <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*parameter-declaration-list*](13-functions.md#function-definitions)
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-* [*return-type*](13-functions.md#function-definitions)
-
 **Constraints**
 
 The *method-modifiers* must not contain `static` and must define public visibility.
@@ -1267,12 +1187,6 @@ $r = $c(123);   // becomes $r = $c->__invoke(123);
 <pre>
   <i>method-modifiers</i>  function  __isset  (  <i>$name</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1330,12 +1244,6 @@ See the Implementation Notes for [`__get`](#method-__get).
 <pre>
   <i>method-modifiers</i>  function  __set  (  <i>$name</i>  ,  <i>$value</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1403,12 +1311,6 @@ See the Implementation Notes for [`__get`](#method-__get).
 <pre>
   <i>method-modifiers</i>  function  __set_state  ( array  <i>$properties</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -1526,12 +1428,6 @@ var_dump($z);
   <i>method-modifiers</i>  function  __sleep  ( )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-* [*return-type*](13-functions.md#function-definitions)
-
 **Constraints**
 
 The *method-modifiers* must not contain `static` and must define public visibility.
@@ -1610,12 +1506,6 @@ $v = unserialize($s); // unserialize Point(-1,0)
   <i>method-modifiers</i>  function  __toString  ( )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-* [*return-type*](13-functions.md#function-definitions)
-
 **Constraints**
 
 The *method-modifiers* must not contain `static` and must define public visibility.
@@ -1676,12 +1566,6 @@ class MyRangeException extends Exception
   <i>method-modifiers</i>  function  __unset  (  <i>$name</i>  )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-* [*return-type*](13-functions.md#function-definitions)
-
 **Constraints**
 
 The *method-modifiers* must not contain `static` and must define public visibility.
@@ -1738,12 +1622,6 @@ See the Implementation Notes for [`__get`](#method-__get).
 <pre>
   <i>method-modifiers</i>  function  __wakeup  ( )  <i>return-type<sub>opt</sub></i>  <i>compound-statement</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*compound-statement*](11-statements.md#compound-statements)
-* [*method-modifiers*](#methods)
-* [*return-type*](13-functions.md#function-definitions)
 
 **Constraints**
 
@@ -2154,10 +2032,6 @@ class Error implements Throwable
 }
 ```
 
-**Defined elsewhere**
-
-* [`Throwable`](15-interfaces.md#interface-throwable)
-
 For information about the base interface, see [Throwable](15-interfaces.md#interface-throwable).
 Note that the methods from Throwable are implemented as `final` in the Error class, which means
 the extending class can not override them.
@@ -2172,10 +2046,6 @@ class ArithmeticError extends Error
 }
 ```
 
-**Defined elsewhere**
-
-* [`Error`](#class-error)
-
 ####Class `AssertionError`
 
 An instance of this class is thrown when an assertion made via the intrinsic `assert` fails. The class type is defined, as follows:
@@ -2185,10 +2055,6 @@ class AssertionError extends Error
 {
 }
 ```
-
-**Defined elsewhere**
-
-* [`Error`](#class-error)
 
 ####Class `DivisionByZeroError`
 
@@ -2202,10 +2068,6 @@ class DivisionByZeroError extends Error
 }
 ```
 
-**Defined elsewhere**
-
-* [`Error`](#class-error)
-
 ####Class `ParseError`
 
 An instance of this class is thrown when an error occurs while parsing PHP code (such as when calling the intrinsic  [`eval`](10-expressions.md#eval)). It is defined, as follows:
@@ -2215,10 +2077,6 @@ class ParseError extends Error
 {
 }
 ```
-
-**Defined elsewhere**
-
-* [`Error`](#class-error)
 
 ####Class `TypeError`
 
@@ -2235,9 +2093,5 @@ class TypeError extends Error
 {
 }
 ```
-
-**Defined elsewhere**
-
-* [`Error`](#class-error)
 
 See also class [`Exception`](17-exception-handling.md#class-exception).

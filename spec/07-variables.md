@@ -296,11 +296,6 @@ function-static-initializer:
     = <i>constant-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*variable-name*](09-lexical-structure.md#names)
-* [*constant-expression*](10-expressions.md#constant-expressions)
-
 **Constraints**
 
 A function static must be defined inside a function.
@@ -382,11 +377,6 @@ variable-name-list:
     <i>simple-variable</i>
     <i>variable-name-list</i>  ,  <i>simple-variable</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
-* [*simple-variable*](10-expressions.md#simple-variable)
 
 **Semantics**
 

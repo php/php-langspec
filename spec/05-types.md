@@ -157,13 +157,6 @@ str-number::
     <i>floating-literal</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*digit-sequence*](09-lexical-structure.md#floating-point-literals)
-* [*floating-literal*](09-lexical-structure.md#floating-point-literals)
-* [*new-line*](09-lexical-structure.md#comments)
-* [*sign*](09-lexical-structure.md#floating-point-literals)
-
 Note that *digit-sequence* is interpreted as having base-10 (so `"0377"` is treated as 377 decimal with a redundant
 leading zero, rather than as octal 377).
 

@@ -36,11 +36,6 @@ interface-base-clause:
     <i>interface-base-clause</i>  ,  <i>qualified-name</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
-* [*interface-member-declarations*](#interface-members)
-
 **Constraints**
 
 An interface must not be derived directly or indirectly from itself.

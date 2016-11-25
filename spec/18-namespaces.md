@@ -48,11 +48,6 @@ namespace-definition:
     namespace  <i>name<sub>opt</sub>   compound-statement</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
-* [*compound-statement*](11-statements.md#compound-statements)
-
 **Constraints**
 
 Except for white space and [*declare-statement*](11-statements.md#the-declare-statement), the
@@ -194,12 +189,6 @@ namespace-use-group-clause-2:
   <i>namespace-use-group-clause-2:</i>
     <i>namespace-function-or-const<sub>opt</sub></i>  <i>namespace-name</i>  <i>namespace-aliasing-clause<sub>opt</sub></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
-* [*namespace-name*](09-lexical-structure.md#names)
-* [*qualified-name*](09-lexical-structure.md#names)
 
 **Constraints**
 

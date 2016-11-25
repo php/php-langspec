@@ -107,12 +107,6 @@ input-element::
     <i>token</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*comment*](#comments)
-* [*white-space*](#white-space)
-* [*token*](#tokens)
-
 **Semantics**
 
 The basic elements of a script are comments, white space, and tokens.
@@ -232,10 +226,6 @@ white-space-character::
     Horizontal-tab character (U+0009)
 </pre>
 
-**Defined elsewhere**
-
-* [*new-line*](#comments)
-
 **Semantics**
 
 The space and horizontal tab characters are considered *horizontal
@@ -270,16 +260,6 @@ token::
     <i>string-literal</i>
     <i>operator-or-punctuator</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*variable-name*](#names)
-* [*name*](#names)
-* [*keyword*](#keywords)
-* [*integer-literal*](#integer-literals)
-* [*floating-literal*](#floating-point-literals)
-* [*string-literal*](#string-literals)
-* [*operator-or-punctuator*](#operators-and-punctuators)
 
 ####Names
 
@@ -352,10 +332,6 @@ nondigit:: one of
     A   B   C   D   E   F   G   H   I   J   K   L   M
     N   O   P   Q   R   S   T   U   V   W   X   Y   Z
 </pre>
-
-**Defined elsewhere**
-
-* [*digit*](#integer-literals)
 
 **Semantics**
 
@@ -635,10 +611,6 @@ digit-sequence::
     <i>digit-sequence   digit</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*digit*](#integer-literals)
-
 **Constraints**
 
 The value of a floating-point literal must be representable by its type.
@@ -678,13 +650,6 @@ string-literal::
     <i>heredoc-string-literal</i>
     <i>nowdoc-string-literal</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*single-quoted-string-literal*](#single-quoted-string-literals)
-* [*double-quoted-string-literal*](#double-quoted-string-literals)
-* [*heredoc-string-literal*](#heredoc-string-literals)
-* [*nowdoc-string-literal*](#nowdoc-string-literals)
 
 **Semantics**
 
@@ -838,12 +803,6 @@ codepoint-digits::
      <i>hexadecimal-digit   codepoint-digits</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*octal-digit*](#integer-literals)
-* [*hexadecimal-digit*](#integer-literals)
-* [*b-prefix*](#single-quoted-string-literals)
-
 **Semantics**
 
 A double-quoted string literal is a string literal delimited by
@@ -938,13 +897,6 @@ property-in-string::
   <i>property-in-string::</i>
     ->   <i>name</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*variable-name*](#names)
-* [*name*](#names)
-* [*integer-literal*](#integer-literals)
-* [*expression*](10-expressions.md#general-6)
 
 *expression* works the same way as in [simple variable expressions](10-expressions.md#simple-variable).
 
@@ -1064,14 +1016,6 @@ hd-simple-escape-sequence:: one of
     \\   \$   \e   \f   \n   \r   \t   \v
 </pre>
 
-**Defined elsewhere**
-
-* [*name*](#names)
-* [*new-line*](#comments)
-* [*dq-octal-escape-sequence*](#double-quoted-string-literals)
-* [*dq-hexadecimal-escape-sequence*](#double-quoted-string-literals)
-* [*b-prefix*](#single-quoted-string-literals)
-
 **Constraints**
 
 The start and end identifier names must be the same. Only horizontal white
@@ -1123,12 +1067,6 @@ nowdoc-string-literal::
   <i>nowdoc-string-literal::</i>
     <i>b-prefix<sub>opt</sub></i>  &lt;&lt;&lt;  '  <i>name</i>  '  <i>new-line  hd-body<sub>opt</sub>   name</i>  ;<i><sub>opt</sub>   new-line</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*hd-body*](#heredoc-string-literals)
-* [*new-line*](#comments)
-* [*b-prefix*](#single-quoted-string-literals)
 
 **Constraints**
 

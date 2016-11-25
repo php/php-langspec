@@ -74,14 +74,6 @@ trait-member-declaration:
     <i>trait-use-clauses</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*property-declaration*](14-classes.md#properties)
-* [*method-declaration*](14-classes.md#methods)
-* [*constructor-declaration*](14-classes.md#constructors)
-* [*destructor-declaration*](14-classes.md#destructors)
-* [*trait-use-clauses*](#trait-uses)
-
 **Semantics**
 
 A *trait-declaration* defines a named set of members, which are made
@@ -185,11 +177,6 @@ trait-alias-as-clause:
     <i>name</i>   as   <i>visibility-modifier<sub>opt</sub>   name</i>
     <i>name</i>   as   <i>visibility-modifier   name<sub>opt</sub></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
-* [*visibility-modifier*](14-classes.md#properties)
 
 **Constraints**
 

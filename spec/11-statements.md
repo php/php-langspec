@@ -47,25 +47,6 @@ statement:
     <i>function-static-declaration</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*compound-statement*](#compound-statements)
-* [*labeled-statement*](#labeled-statements)
-* [*expression-statement*](#expression-statements)
-* [*selection-statement*](#general-1)
-* [*iteration-statement*](#general-2)
-* [*jump-statement*](#general-3)
-* [*declare-statement*](#the-declare-statement)
-* [*const-declaration*](14-classes.md#constants)
-* [*function-definition*](13-functions.md#function-definitions)
-* [*class-declaration*](14-classes.md#class-declarations)
-* [*interface-declaration*](15-interfaces.md#interface-declarations)
-* [*trait-declaration*](16-traits.md#trait-declarations)
-* [*namespace-definition*](18-namespaces.md#defining-namespaces)
-* [*namespace-use-declaration*](18-namespaces.md#namespace-use-declarations)
-* [*global-declaration*](07-variables.md#global-variables)
-* [*function-static-declaration*](07-variables.md#function-statics)
-
 ##Compound Statements
 
 **Syntax**
@@ -87,10 +68,6 @@ statement-list:
     <i>statement</i>
     <i>statement-list   statement</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*statement*](#general)
 
 **Semantics**
 
@@ -130,12 +107,6 @@ named-label-statement:
     <i>name</i>  :  <i>statement</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
-* [*statement*](#general)
-* [*expression*](10-expressions.md#general-6)
-
 **Constraints**
 
 A named label can be used as the target of a [`goto` statement](#the-goto-statement).
@@ -161,10 +132,6 @@ expression-statement:
   <i>expression-statement:</i>
     <i>expression<sub>opt</sub></i>  ;
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
 
 **Semantics**
 
@@ -221,11 +188,6 @@ selection-statement:
     <i>if-statement</i>
     <i>switch-statement</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*if-statement*](#the-if-statement)
-* [*switch-statement*](#the-switch-statement)
 
 **Semantics**
 
@@ -287,12 +249,6 @@ else-clause-2:
   <i>else-clause-2:</i>
     else   :   <i>statement-list</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
-* [*statement*](#general)
-* [*statement-list*](#compound-statements)
 
 **Semantics**
 
@@ -394,12 +350,6 @@ case-default-label-terminator:
     :
     ;
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
-* [*compound-statement*](#compound-statements)
-* [*statement-list*](#compound-statements)
 
 **Constraints**
 
@@ -505,13 +455,6 @@ iteration-statement:
     <i>foreach-statement</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*while-statement*](#the-while-statement)
-* [*do-statement*](#the-do-statement)
-* [*for-statement*](#the-for-statement)
-* [*foreach-statement*](#the-foreach-statement)
-
 ##The `while` Statement
 
 **Syntax**
@@ -527,12 +470,6 @@ while-statement:
     while  (  <i>expression</i>  )  <i>statement</i>
     while  (  <i>expression</i>  )  :   <i>statement-list</i>  endwhile ;
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
-* [*statement*](#general)
-* [*statement-list*](#compound-statements)
 
 **Semantics**
 
@@ -581,11 +518,6 @@ do-statement:
 </pre>
 
 (Note: There is no alternate syntax).
-
-**Defined elsewhere**
-
-* [*statement*](#general)
-* [*expression*](10-expressions.md#general-6)
 
 **Constraints**
 
@@ -660,12 +592,6 @@ for-expression-group:
 Note: Unlike C/C++, PHP does not support a comma operator, per se.
 However, the syntax for the `for` statement has been extended from that of
 C/C++ to achieve the same results in this context.
-
-**Defined elsewhere**
-
-* [*statement*](#general)
-* [*statement-list*](#compound-statements)
-* [*expression*](10-expressions.md#general-6)
 
 **Semantics**
 
@@ -762,13 +688,6 @@ foreach-value:
     <i>list-intrinsic</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*statement*](#general)
-* [*statement-list*](#compound-statements)
-* [*list-intrinsic*](10-expressions.md#list)
-* [*expression*](10-expressions.md#general-6)
-
 **Constraints**
 
 The result of the expression *foreach-collection-name* must be a
@@ -849,14 +768,6 @@ jump-statement:
     <i>throw-statement</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*goto-statement*](#the-goto-statement)
-* [*continue-statement*](#the-continue-statement)
-* [*break-statement*](#the-break-statement)
-* [*return-statement*](#the-return-statement)
-* [*throw-statement*](#the-throw-statement)
-
 ###The `goto` Statement
 
 **Syntax**
@@ -870,10 +781,6 @@ goto-statement:
   <i>goto-statement:</i>
     goto  <i>name</i>  ;
 </pre>
-
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -934,10 +841,6 @@ breakout-level:
     <i>integer-literal</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*integer-literal*](09-lexical-structure.md#integer-literals)
-
 **Constraints**
 
 The breakout level must be greater than zero, and it must not exceed the level of
@@ -987,10 +890,6 @@ break-statement:
   <i>break-statement:</i>
     break  <i>breakout-level<sub>opt</sub></i>  ;
 </pre>
-
-**Defined elsewhere**
-
-* [*breakout-level*](#the-continue-statement)
 
 **Constraints**
 
@@ -1057,10 +956,6 @@ return-statement:
   <i>return-statement:</i>
     return  <i>expression<sub>opt</sub></i>  ;
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
 
 **Semantics**
 
@@ -1175,10 +1070,6 @@ throw-statement:
     throw  <i>expression</i>  ;
 </pre>
 
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
-
 **Constraints**
 
 The type of *expression* must be [Exception](17-exception-handling.md#class-exception) or a subclass of that
@@ -1243,12 +1134,6 @@ finally-clause:
   <i>finally-clause:</i>
     finally   <i>compound-statement</i>
 </pre>
-
-**Defined elsewhere**
-
-* [*compound-statement*](#compound-statements)
-* [*variable-name*](09-lexical-structure.md#names)
-* [*qualified-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -1352,12 +1237,6 @@ declare-directive:
     strict_types  =  <i>literal</i>
 
 </pre>
-
-**Defined elsewhere**
-
-* [*statement*](#general)
-* [*statement-list*](#compound-statements)
-* [*literal*](09-lexical-structure.md#literals)
 
 **Constraints**
 

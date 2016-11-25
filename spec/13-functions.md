@@ -137,11 +137,6 @@ default-argument-specifier:
     =  <i>constant-expression</i>
 </pre>
 
-**Defined elsewhere**
-
-* [*constant-expression*](10-expressions.md#constant-expressions)
-* [*qualified-name*](09-lexical-structure.md#names)
-
 **Constraints**
 
 Each parameter name in a *function-definition* must be distinct.

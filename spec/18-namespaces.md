@@ -36,16 +36,17 @@ prefixes are reserved for use by PHP.
 
 **Syntax**
 
+<!-- GRAMMAR
+namespace-definition:
+  'namespace' name ';'
+  'namespace' name? compound-statement
+-->
+
 <pre>
-  <i>namespace-definition:</i>
-    namespace  <i>name</i>  ;
-    namespace  <i>name<sub>opt</sub>   compound-statement</i>
+<a name="grammar-namespace-definition"><i>namespace-definition:</i>
+   namespace   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   ;
+   namespace   <i><a href="09-lexical-structure.md#grammar-name">name</a></i><sub>opt</sub>   <i><a href="11-statements.md#grammar-compound-statement">compound-statement</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
-* [*compound-statement*](11-statements.md#compound-statements)
 
 **Constraints**
 
@@ -118,47 +119,75 @@ namespace NS3\Sub1;
 
 **Syntax**
 
+<!-- GRAMMAR
+namespace-use-declaration:
+  'use' namespace-function-or-const? namespace-use-clauses ';'
+  'use' namespace-function-or-const '\'? namespace-name '\' '{' namespace-use-group-clauses-1 '}' ';'
+  'use' '\'? 'namespace-name' '\' '{' namespace-use-group-clauses-2 '}' ';'
+
+namespace-use-clauses:
+  namespace-use-clause
+  namespace-use-clauses ',' namespace-use-clause
+
+namespace-use-clause:
+  qualified-name namespace-aliasing-clause?
+
+namespace-aliasing-clause:
+  'as' name
+
+namespace-function-or-const:
+  'function'
+  'const'
+
+namespace-use-group-clauses-1:
+  namespace-use-group-clause-1
+  namespace-use-group-clauses-1 ',' namespace-use-group-clause-1
+
+namespace-use-group-clause-1:
+  namespace-name namespace-aliasing-clause?
+
+namespace-use-group-clauses-2:
+  namespace-use-group-clause-2
+  namespace-use-group-clauses-2 ',' namespace-use-group-clause-2
+
+namespace-use-group-clause-2:
+  namespace-function-or-const? namespace-name namespace-aliasing-clause?
+-->
+
 <pre>
-  <i>namespace-use-declaration:</i>
-    use  <i>namespace-function-or-const<sub>opt</sub></i> <i>namespace-use-clauses</i>  ;
-    use  <i>namespace-function-or-const</i>  \<i><sub>opt</sub>  namespace-name</i>  \
-       {  <i>namespace-use-group-clauses-1</i>  }  ;
-    use  \<i><sub>opt</sub>   namespace-name</i>   \   {  <i>namespace-use-group-clauses-2</i>  }  ;
+<a name="grammar-namespace-use-declaration"><i>namespace-use-declaration:</i>
+   use   <i><a href="#grammar-namespace-function-or-const">namespace-function-or-const</a></i><sub>opt</sub>   <i><a href="#grammar-namespace-use-clauses">namespace-use-clauses</a></i>   ;
+   use   <i><a href="#grammar-namespace-function-or-const">namespace-function-or-const</a></i>   \<sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-namespace-name">namespace-name</a></i>   \   {   <i><a href="#grammar-namespace-use-group-clauses-1">namespace-use-group-clauses-1</a></i>   }   ;
+   use   \<sub>opt</sub>   namespace-name   \   {   <i><a href="#grammar-namespace-use-group-clauses-2">namespace-use-group-clauses-2</a></i>   }   ;
 
-  <i>namespace-use-clauses:</i>
-    <i>namespace-use-clause</i>
-    <i>namespace-use-clauses</i>  ,  <i>namespace-use-clause</i>
+<a name="grammar-namespace-use-clauses"><i>namespace-use-clauses:</i>
+   <i><a href="#grammar-namespace-use-clause">namespace-use-clause</a></i>
+   <i><a href="#grammar-namespace-use-clauses">namespace-use-clauses</a></i>   ,   <i><a href="#grammar-namespace-use-clause">namespace-use-clause</a></i>
 
-  <i>namespace-use-clause:</i>
-    <i>qualified-name   namespace-aliasing-clause<sub>opt</sub></i>
+<a name="grammar-namespace-use-clause"><i>namespace-use-clause:</i>
+   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>   <i><a href="#grammar-namespace-aliasing-clause">namespace-aliasing-clause</a></i><sub>opt</sub>
 
-  <i>namespace-aliasing-clause:</i>
-    as  <i>name</i>
+<a name="grammar-namespace-aliasing-clause"><i>namespace-aliasing-clause:</i>
+   as   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>
 
-  <i>namespace-function-or-const:</i>
-    function
-    const
+<a name="grammar-namespace-function-or-const"><i>namespace-function-or-const:</i>
+   function
+   const
 
-  <i>namespace-use-group-clauses-1:</i>
-    <i>namespace-use-group-clause-1</i>
-    <i>namespace-use-group-clauses-1</i>  ,  <i>namespace-use-group-clause-1</i>
+<a name="grammar-namespace-use-group-clauses-1"><i>namespace-use-group-clauses-1:</i>
+   <i><a href="#grammar-namespace-use-group-clause-1">namespace-use-group-clause-1</a></i>
+   <i><a href="#grammar-namespace-use-group-clauses-1">namespace-use-group-clauses-1</a></i>   ,   <i><a href="#grammar-namespace-use-group-clause-1">namespace-use-group-clause-1</a></i>
 
-  <i>namespace-use-group-clause-1:</i>
-    <i>namespace-name</i>  <i>namespace-aliasing-clause<sub>opt</sub></i>
+<a name="grammar-namespace-use-group-clause-1"><i>namespace-use-group-clause-1:</i>
+   <i><a href="09-lexical-structure.md#grammar-namespace-name">namespace-name</a></i>   <i><a href="#grammar-namespace-aliasing-clause">namespace-aliasing-clause</a></i><sub>opt</sub>
 
-  <i>namespace-use-group-clauses-2:</i>
-    <i>namespace-use-group-clause-2</i>
-    <i>namespace-use-group-clauses-2</i>  ,  <i>namespace-use-group-clause-2</i>
+<a name="grammar-namespace-use-group-clauses-2"><i>namespace-use-group-clauses-2:</i>
+   <i><a href="#grammar-namespace-use-group-clause-2">namespace-use-group-clause-2</a></i>
+   <i><a href="#grammar-namespace-use-group-clauses-2">namespace-use-group-clauses-2</a></i>   ,   <i><a href="#grammar-namespace-use-group-clause-2">namespace-use-group-clause-2</a></i>
 
-  <i>namespace-use-group-clause-2:</i>
-    <i>namespace-function-or-const<sub>opt</sub></i>  <i>namespace-name</i>  <i>namespace-aliasing-clause<sub>opt</sub></i>
+<a name="grammar-namespace-use-group-clause-2"><i>namespace-use-group-clause-2:</i>
+   <i><a href="#grammar-namespace-function-or-const">namespace-function-or-const</a></i><sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-namespace-name">namespace-name</a></i>   <i><a href="#grammar-namespace-aliasing-clause">namespace-aliasing-clause</a></i><sub>opt</sub>
 </pre>
-
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
-* [*namespace-name*](09-lexical-structure.md#names)
-* [*qualified-name*](09-lexical-structure.md#names)
 
 **Constraints**
 

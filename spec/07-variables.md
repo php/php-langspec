@@ -266,25 +266,35 @@ $b = &colors[100];      // a VSlot for $b is created which points to the array
 
 **Syntax**
 
+<!-- GRAMMAR
+function-static-declaration:
+  'static' static-variable-name-list ';'
+
+static-variable-name-list:
+  static-variable-declaration
+  static-variable-name-list ',' static-variable-declaration
+
+static-variable-declaration:
+  variable-name function-static-initializer?
+
+function-static-initializer:
+  '=' constant-expression
+-->
+
 <pre>
-  <i>function-static-declaration:</i>
-    static <i>static-variable-name-list</i>  ;
+<a name="grammar-function-static-declaration"><i>function-static-declaration:</i>
+   static   <i><a href="#grammar-static-variable-name-list">static-variable-name-list</a></i>   ;
 
-  <i>static-variable-name-list:</i>
-    <i>static-variable-declaration</i>
-    <i>static-variable-name-list</i>  ,  <i>static-variable-declaration</i>
+<a name="grammar-static-variable-name-list"><i>static-variable-name-list:</i>
+   <i><a href="#grammar-static-variable-declaration">static-variable-declaration</a></i>
+   <i><a href="#grammar-static-variable-name-list">static-variable-name-list</a></i>   ,   <i><a href="#grammar-static-variable-declaration">static-variable-declaration</a></i>
 
-  <i>static-variable-declaration:</i>
-    <i>variable-name</i> <i>function-static-initializer<sub>opt</sub></i>
+<a name="grammar-static-variable-declaration"><i>static-variable-declaration:</i>
+   <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>   <i><a href="#grammar-function-static-initializer">function-static-initializer</a></i><sub>opt</sub>
 
-  <i>function-static-initializer:</i>
-    = <i>constant-expression</i>
+<a name="grammar-function-static-initializer"><i>function-static-initializer:</i>
+   =   <i><a href="10-expressions.md#grammar-constant-expression">constant-expression</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*variable-name*](09-lexical-structure.md#names)
-* [*constant-expression*](10-expressions.md#constant-expressions)
 
 **Constraints**
 
@@ -350,19 +360,23 @@ echo "\$fs = $fs\n";    // $fs = 3
 
 **Syntax**
 
+<!-- GRAMMAR
+global-declaration:
+  'global' variable-name-list ';'
+
+variable-name-list:
+  simple-variable
+  variable-name-list ',' simple-variable
+-->
+
 <pre>
-  <i>global-declaration:</i>
-    global <i>variable-name-list</i> ;
+<a name="grammar-global-declaration"><i>global-declaration:</i>
+   global   <i><a href="#grammar-variable-name-list">variable-name-list</a></i>   ;
 
-  <i>variable-name-list:</i>
-    <i>simple-variable</i>
-    <i>variable-name-list</i>  ,  <i>simple-variable</i>
+<a name="grammar-variable-name-list"><i>variable-name-list:</i>
+   <i><a href="10-expressions.md#grammar-simple-variable">simple-variable</a></i>
+   <i><a href="#grammar-variable-name-list">variable-name-list</a></i>   ,   <i><a href="10-expressions.md#grammar-simple-variable">simple-variable</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
-* [*simple-variable*](10-expressions.md#simple-variable)
 
 **Semantics**
 

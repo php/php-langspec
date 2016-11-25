@@ -4,63 +4,69 @@
 
 **Syntax**
 
+<!-- GRAMMAR
+statement:
+  compound-statement
+  named-label-statement
+  expression-statement
+  selection-statement
+  iteration-statement
+  jump-statement
+  try-statement
+  declare-statement
+  const-declaration
+  function-definition
+  class-declaration
+  interface-declaration
+  trait-declaration
+  namespace-definition
+  namespace-use-declaration
+  global-declaration
+  function-static-declaration
+-->
+
 <pre>
-
-  <i>statement:</i>
-    <i>compound-statement</i>
-    <i>named-label-statement</i>
-    <i>expression-statement</i>
-    <i>selection-statement</i>
-    <i>iteration-statement</i>
-    <i>jump-statement</i>
-    <i>try-statement</i>
-    <i>declare-statement</i>
-    <i>const-declaration</i>
-    <i>function-definition</i>
-    <i>class-declaration</i>
-    <i>interface-declaration</i>
-    <i>trait-declaration</i>
-    <i>namespace-definition</i>
-    <i>namespace-use-declaration</i>
-    <i>global-declaration</i>
-    <i>function-static-declaration</i>
+<a name="grammar-statement"><i>statement:</i>
+   <i><a href="#grammar-compound-statement">compound-statement</a></i>
+   <i><a href="#grammar-named-label-statement">named-label-statement</a></i>
+   <i><a href="#grammar-expression-statement">expression-statement</a></i>
+   <i><a href="#grammar-selection-statement">selection-statement</a></i>
+   <i><a href="#grammar-iteration-statement">iteration-statement</a></i>
+   <i><a href="#grammar-jump-statement">jump-statement</a></i>
+   <i><a href="#grammar-try-statement">try-statement</a></i>
+   <i><a href="#grammar-declare-statement">declare-statement</a></i>
+   <i><a href="14-classes.md#grammar-const-declaration">const-declaration</a></i>
+   <i><a href="13-functions.md#grammar-function-definition">function-definition</a></i>
+   <i><a href="14-classes.md#grammar-class-declaration">class-declaration</a></i>
+   <i><a href="15-interfaces.md#grammar-interface-declaration">interface-declaration</a></i>
+   <i><a href="16-traits.md#grammar-trait-declaration">trait-declaration</a></i>
+   <i><a href="18-namespaces.md#grammar-namespace-definition">namespace-definition</a></i>
+   <i><a href="18-namespaces.md#grammar-namespace-use-declaration">namespace-use-declaration</a></i>
+   <i><a href="07-variables.md#grammar-global-declaration">global-declaration</a></i>
+   <i><a href="07-variables.md#grammar-function-static-declaration">function-static-declaration</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*compound-statement*](#compound-statements)
-* [*labeled-statement*](#labeled-statements)
-* [*expression-statement*](#expression-statements)
-* [*selection-statement*](#general-1)
-* [*iteration-statement*](#general-2)
-* [*jump-statement*](#general-3)
-* [*declare-statement*](#the-declare-statement)
-* [*const-declaration*](14-classes.md#constants)
-* [*function-definition*](13-functions.md#function-definitions)
-* [*class-declaration*](14-classes.md#class-declarations)
-* [*interface-declaration*](15-interfaces.md#interface-declarations)
-* [*trait-declaration*](16-traits.md#trait-declarations)
-* [*namespace-definition*](18-namespaces.md#defining-namespaces)
-* [*namespace-use-declaration*](18-namespaces.md#namespace-use-declarations)
-* [*global-declaration*](07-variables.md#global-variables)
-* [*function-static-declaration*](07-variables.md#function-statics)
 
 ##Compound Statements
 
 **Syntax**
 
+<!-- GRAMMAR
+compound-statement:
+  '{' statement-list? '}'
+
+statement-list:
+  statement
+  statement-list statement
+-->
+
 <pre>
-  <i>compound-statement:</i>
-    {   <i>statement-list<sub>opt</sub></i>  }
+<a name="grammar-compound-statement"><i>compound-statement:</i>
+   {   <i><a href="#grammar-statement-list">statement-list</a></i><sub>opt</sub>   }
 
-  <i>statement-list:</i>
-    <i>statement</i>
-    <i>statement-list   statement</i>
+<a name="grammar-statement-list"><i>statement-list:</i>
+   <i><a href="#grammar-statement">statement</a></i>
+   <i><a href="#grammar-statement-list">statement-list</a></i>   <i><a href="#grammar-statement">statement</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*statement*](#general)
 
 **Semantics**
 
@@ -90,16 +96,15 @@ while (condition)
 
 **Syntax**
 
+<!-- GRAMMAR
+named-label-statement:
+  name ';' statement
+-->
+
 <pre>
-  <i>named-label-statement:</i>
-    <i>name</i>  :  <i>statement</i>
+<a name="grammar-named-label-statement"><i>named-label-statement:</i>
+   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   ;   <i><a href="#grammar-statement">statement</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
-* [*statement*](#general)
-* [*expression*](10-expressions.md#general-6)
 
 **Constraints**
 
@@ -117,14 +122,15 @@ execution.
 
 **Syntax**
 
+<!-- GRAMMAR
+expression-statement:
+  expression? ';'
+-->
+
 <pre>
-  <i>expression-statement:</i>
-    <i>expression<sub>opt</sub></i>  ;
+<a name="grammar-expression-statement"><i>expression-statement:</i>
+   <i><a href="10-expressions.md#grammar-expression">expression</a></i><sub>opt</sub>   ;
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
 
 **Semantics**
 
@@ -170,16 +176,17 @@ done:
 
 **Syntax**
 
+<!-- GRAMMAR
+selection-statement:
+  if-statement
+  switch-statement
+-->
+
 <pre>
-  <i>selection-statement:</i>
-    <i>if-statement</i>
-    <i>switch-statement</i>
+<a name="grammar-selection-statement"><i>selection-statement:</i>
+   <i><a href="#grammar-if-statement">if-statement</a></i>
+   <i><a href="#grammar-switch-statement">switch-statement</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*if-statement*](#the-if-statement)
-* [*switch-statement*](#the-switch-statement)
 
 **Semantics**
 
@@ -190,37 +197,57 @@ selects among a set of statements.
 
 **Syntax**
 
+<!-- GRAMMAR
+if-statement:
+  'if' '(' expression ')' statement elseif-clauses-1? else-clause-1?
+  'if' '(' expression ')' ':' statement-list elseif-clauses-2? else-clause-2? 'endif' ';'
+
+elseif-clauses-1:
+  elseif-clause-1
+  elseif-clauses-1 elseif-clause-1
+
+elseif-clause-1:
+  'elseif' '(' expression ')' statement
+
+else-clause-1:
+  'else' statement
+
+elseif-clauses-2:
+  elseif-clause-2
+  elseif-clauses-2 elseif-clause-2
+
+elseif-clause-2:
+  'elseif' '(' expression ')' ':' statement-list
+
+else-clause-2:
+  'else' ':' statement-list
+-->
+
 <pre>
-  <i>if-statement:</i>
-    if   (   <i>expression</i>   )   <i>statement   elseif-clauses-1<sub>opt</sub>   else-clause-1<sub>opt</sub></i>
-    if   (   <i>expression</i>   )   :   <i>statement-list   elseif-clauses-2<sub>opt</sub>   else-clause-2<sub>opt</sub></i>   endif   ;
+<a name="grammar-if-statement"><i>if-statement:</i>
+   if   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   <i><a href="#grammar-statement">statement</a></i>   <i><a href="#grammar-elseif-clauses-1">elseif-clauses-1</a></i><sub>opt</sub>   <i><a href="#grammar-else-clause-1">else-clause-1</a></i><sub>opt</sub>
+   if   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   :   <i><a href="#grammar-statement-list">statement-list</a></i>   <i><a href="#grammar-elseif-clauses-2">elseif-clauses-2</a></i><sub>opt</sub>   <i><a href="#grammar-else-clause-2">else-clause-2</a></i><sub>opt</sub>   endif   ;
 
-  <i>elseif-clauses-1:</i>
-    <i>elseif-clause-1</i>
-    <i>elseif-clauses-1   elseif-clause-1</i>
+<a name="grammar-elseif-clauses-1"><i>elseif-clauses-1:</i>
+   <i><a href="#grammar-elseif-clause-1">elseif-clause-1</a></i>
+   <i><a href="#grammar-elseif-clauses-1">elseif-clauses-1</a></i>   <i><a href="#grammar-elseif-clause-1">elseif-clause-1</a></i>
 
-  <i>elseif-clause-1:</i>
-    elseif   (   <i>expression</i>   )   <i>statement</i>
+<a name="grammar-elseif-clause-1"><i>elseif-clause-1:</i>
+   elseif   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   <i><a href="#grammar-statement">statement</a></i>
 
-  <i>else-clause-1:</i>
-    else   <i>statement</i>
+<a name="grammar-else-clause-1"><i>else-clause-1:</i>
+   else   <i><a href="#grammar-statement">statement</a></i>
 
-  <i>elseif-clauses-2:</i>
-    <i>elseif-clause-2</i>
-    <i>elseif-clauses-2   elseif-clause-2</i>
+<a name="grammar-elseif-clauses-2"><i>elseif-clauses-2:</i>
+   <i><a href="#grammar-elseif-clause-2">elseif-clause-2</a></i>
+   <i><a href="#grammar-elseif-clauses-2">elseif-clauses-2</a></i>   <i><a href="#grammar-elseif-clause-2">elseif-clause-2</a></i>
 
-  <i>elseif-clause-2:</i>
-    elseif   (   <i>expression</i>   )   :   <i>statement-list</i>
+<a name="grammar-elseif-clause-2"><i>elseif-clause-2:</i>
+   elseif   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   :   <i><a href="#grammar-statement-list">statement-list</a></i>
 
-  <i>else-clause-2:</i>
-    else   :   <i>statement-list</i>
+<a name="grammar-else-clause-2"><i>else-clause-2:</i>
+   else   :   <i><a href="#grammar-statement-list">statement-list</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
-* [*statement*](#general)
-* [*statement-list*](#compound-statements)
 
 **Semantics**
 
@@ -283,31 +310,45 @@ else  // this else does go with the outer if
 
 **Syntax**
 
+<!-- GRAMMAR
+switch-statement:
+  'switch' '(' expression ')' '{' case-statements? '}'
+  'switch' '(' expression ')' ':' case-statements? 'endswitch;'
+
+case-statements:
+  case-statement case-statements?
+  default-statement case-statements?
+
+case-statement:
+  'case' expression case-default-label-terminator statement-list?
+
+default-statement:
+  'default' case-default-label-terminator statement-list?
+
+case-default-label-terminator:
+  ':'
+  ';'
+-->
+
 <pre>
-  <i>switch-statement:</i>
-    switch  (  <i>expression</i>  )  { <i>case-statements<sub>opt</sub></i> }
-    switch  (  <i>expression</i>  )  :   <i>case-statements<sub>opt</sub></i>  endswitch;
+<a name="grammar-switch-statement"><i>switch-statement:</i>
+   switch   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   {   <i><a href="#grammar-case-statements">case-statements</a></i><sub>opt</sub>   }
+   switch   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   :   <i><a href="#grammar-case-statements">case-statements</a></i><sub>opt</sub>   endswitch;
 
-  <i>case-statements:</i>
-    <i>case-statement   case-statements<sub>opt</sub></i>
-    <i>default-statement   case-statements<sub>opt</sub></i>
+<a name="grammar-case-statements"><i>case-statements:</i>
+   <i><a href="#grammar-case-statement">case-statement</a></i>   <i><a href="#grammar-case-statements">case-statements</a></i><sub>opt</sub>
+   <i><a href="#grammar-default-statement">default-statement</a></i>   <i><a href="#grammar-case-statements">case-statements</a></i><sub>opt</sub>
 
-  <i>case-statement:</i>
-    case   <i>expression   case-default-label-terminator   statement-list<sub>opt</sub></i>
+<a name="grammar-case-statement"><i>case-statement:</i>
+   case   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   <i><a href="#grammar-case-default-label-terminator">case-default-label-terminator</a></i>   <i><a href="#grammar-statement-list">statement-list</a></i><sub>opt</sub>
 
-  <i>default-statement:</i>
-    default  <i>case-default-label-terminator   statement-list<sub>opt</sub></i>
+<a name="grammar-default-statement"><i>default-statement:</i>
+   default   <i><a href="#grammar-case-default-label-terminator">case-default-label-terminator</a></i>   <i><a href="#grammar-statement-list">statement-list</a></i><sub>opt</sub>
 
-  <i>case-default-label-terminator:</i>
-    :
-    ;
+<a name="grammar-case-default-label-terminator"><i>case-default-label-terminator:</i>
+   :
+   ;
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
-* [*compound-statement*](#compound-statements)
-* [*statement-list*](#compound-statements)
 
 **Constraints**
 
@@ -397,36 +438,37 @@ case $v < $a:   // non-constant expression
 
 **Syntax**
 
+<!-- GRAMMAR
+iteration-statement:
+  while-statement
+  do-statement
+  for-statement
+  foreach-statement
+-->
+
 <pre>
-  <i>iteration-statement:</i>
-    <i>while-statement</i>
-    <i>do-statement</i>
-    <i>for-statement</i>
-    <i>foreach-statement</i>
+<a name="grammar-iteration-statement"><i>iteration-statement:</i>
+   <i><a href="#grammar-while-statement">while-statement</a></i>
+   <i><a href="#grammar-do-statement">do-statement</a></i>
+   <i><a href="#grammar-for-statement">for-statement</a></i>
+   <i><a href="#grammar-foreach-statement">foreach-statement</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*while-statement*](#the-while-statement)
-* [*do-statement*](#the-do-statement)
-* [*for-statement*](#the-for-statement)
-* [*foreach-statement*](#the-foreach-statement)
 
 ##The `while` Statement
 
 **Syntax**
 
+<!-- GRAMMAR
+while-statement:
+  'while' '(' expression ')' statement
+  'while' '(' expression ')' ':' statement-list 'endwhile' ';'
+-->
+
 <pre>
-  <i>while-statement:</i>
-    while  (  <i>expression</i>  )  <i>statement</i>
-    while  (  <i>expression</i>  )  :   <i>statement-list</i>  endwhile ;
+<a name="grammar-while-statement"><i>while-statement:</i>
+   while   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   <i><a href="#grammar-statement">statement</a></i>
+   while   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   :   <i><a href="#grammar-statement-list">statement-list</a></i>   endwhile   ;
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
-* [*statement*](#general)
-* [*statement-list*](#compound-statements)
 
 **Semantics**
 
@@ -464,17 +506,17 @@ while (TRUE)
 
 **Syntax**
 
+<!-- GRAMMAR
+do-statement:
+  'do' statement 'while' '(' expression ')' ';'
+-->
+
 <pre>
-  <i>do-statement:</i>
-    do  <i>statement</i>  while  (  <i>expression</i>  )  ;
+<a name="grammar-do-statement"><i>do-statement:</i>
+   do   <i><a href="#grammar-statement">statement</a></i>   while   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   ;
 </pre>
 
 (Note: There is no alternate syntax).
-
-**Defined elsewhere**
-
-* [*statement*](#general)
-* [*expression*](10-expressions.md#general-6)
 
 **Constraints**
 
@@ -508,34 +550,47 @@ while ($i <= 10);
 
 **Syntax**
 
+<!-- GRAMMAR
+for-statement:
+  'for' '(' for-initializer? ';' for-control? ';' for-end-of-loop? ')' statement
+  'for' '(' for-initializer? ';' for-control? ';' for-end-of-loop? ')' ':' statement-list 'endfor' ';'
+
+for-initializer:
+  for-expression-group
+
+for-control:
+  for-expression-group
+
+for-end-of-loop:
+  for-expression-group
+
+for-expression-group:
+  expression
+  for-expression-group ',' expression
+-->
+
 <pre>
-  <i>for-statement:</i>
-    for   (   <i>for-initializer<sub>opt</sub></i>   ;   <i>for-control<sub>opt</sub></i>   ;   <i>for-end-of-loop<sub>opt</sub></i>   )   <i>statement</i>
-    for   (   <i>for-initializer<sub>opt</sub></i>   ;   <i>for-control<sub>opt</sub></i>   ;   <i>for-end-of-loop<sub>opt</sub></i>   )   :   <i>statement-list</i>   endfor   ;
+<a name="grammar-for-statement"><i>for-statement:</i>
+   for   (   <i><a href="#grammar-for-initializer">for-initializer</a></i><sub>opt</sub>   ;   <i><a href="#grammar-for-control">for-control</a></i><sub>opt</sub>   ;   <i><a href="#grammar-for-end-of-loop">for-end-of-loop</a></i><sub>opt</sub>   )   <i><a href="#grammar-statement">statement</a></i>
+   for   (   <i><a href="#grammar-for-initializer">for-initializer</a></i><sub>opt</sub>   ;   <i><a href="#grammar-for-control">for-control</a></i><sub>opt</sub>   ;   <i><a href="#grammar-for-end-of-loop">for-end-of-loop</a></i><sub>opt</sub>   )   :   <i><a href="#grammar-statement-list">statement-list</a></i>   endfor   ;
 
-  <i>for-initializer:</i>
-    <i>for-expression-group</i>
+<a name="grammar-for-initializer"><i>for-initializer:</i>
+   <i><a href="#grammar-for-expression-group">for-expression-group</a></i>
 
-  <i>for-control:</i>
-    <i>for-expression-group</i>
+<a name="grammar-for-control"><i>for-control:</i>
+   <i><a href="#grammar-for-expression-group">for-expression-group</a></i>
 
-  <i>for-end-of-loop:</i>
-    <i>for-expression-group</i>
+<a name="grammar-for-end-of-loop"><i>for-end-of-loop:</i>
+   <i><a href="#grammar-for-expression-group">for-expression-group</a></i>
 
-  <i>for-expression-group:</i>
-    <i>expression</i>
-    <i>for-expression-group</i>   ,   <i>expression</i>
+<a name="grammar-for-expression-group"><i>for-expression-group:</i>
+   <i><a href="10-expressions.md#grammar-expression">expression</a></i>
+   <i><a href="#grammar-for-expression-group">for-expression-group</a></i>   ,   <i><a href="10-expressions.md#grammar-expression">expression</a></i>
 </pre>
 
 Note: Unlike C/C++, PHP does not support a comma operator, per se.
 However, the syntax for the `for` statement has been extended from that of
 C/C++ to achieve the same results in this context.
-
-**Defined elsewhere**
-
-* [*statement*](#general)
-* [*statement-list*](#compound-statements)
-* [*expression*](10-expressions.md#general-6)
 
 **Semantics**
 
@@ -600,28 +655,37 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10)
 
 **Syntax**
 
+<!-- GRAMMAR
+foreach-statement:
+  'foreach' '(' foreach-collection-name 'as' foreach-key? foreach-value ')' 'statement'
+  'foreach' '(' foreach-collection-name 'as' foreach-key? foreach-value ')' ':' statement-list 'endforeach' ';'
+
+foreach-collection-name:
+  expression
+
+foreach-key:
+  expression '=>'
+
+foreach-value:
+  '&'? expression
+  list-intrinsic
+-->
+
 <pre>
-  <i>foreach-statement:</i>
-    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )   statement
-    foreach  (  <i>foreach-collection-name</i>  as  <i>foreach-key<sub>opt</sub>  foreach-value</i>  )  :  <i>statement-list</i>  endforeach  ;
+<a name="grammar-foreach-statement"><i>foreach-statement:</i>
+   foreach   (   <i><a href="#grammar-foreach-collection-name">foreach-collection-name</a></i>   as   <i><a href="#grammar-foreach-key">foreach-key</a></i><sub>opt</sub>   <i><a href="#grammar-foreach-value">foreach-value</a></i>   )   statement
+   foreach   (   <i><a href="#grammar-foreach-collection-name">foreach-collection-name</a></i>   as   <i><a href="#grammar-foreach-key">foreach-key</a></i><sub>opt</sub>   <i><a href="#grammar-foreach-value">foreach-value</a></i>   )   :   <i><a href="#grammar-statement-list">statement-list</a></i>   endforeach   ;
 
-  <i>foreach-collection-name:</i>
-    <i>expression</i>
+<a name="grammar-foreach-collection-name"><i>foreach-collection-name:</i>
+   <i><a href="10-expressions.md#grammar-expression">expression</a></i>
 
-  <i>foreach-key:</i>
-    <i>expression</i>  =>
+<a name="grammar-foreach-key"><i>foreach-key:</i>
+   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   =&gt;
 
-  <i>foreach-value:</i>
-    &<sub>opt</sub>   <i>expression</i>
-    <i>list-intrinsic</i>
+<a name="grammar-foreach-value"><i>foreach-value:</i>
+   &amp;<sub>opt</sub>   <i><a href="10-expressions.md#grammar-expression">expression</a></i>
+   <i><a href="10-expressions.md#grammar-list-intrinsic">list-intrinsic</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*statement*](#general)
-* [*statement-list*](#compound-statements)
-* [*list-intrinsic*](10-expressions.md#list)
-* [*expression*](10-expressions.md#general-6)
 
 **Constraints**
 
@@ -685,35 +749,37 @@ foreach ($colors as &$color)  // note the &
 
 **Syntax**
 
+<!-- GRAMMAR
+jump-statement:
+  goto-statement
+  continue-statement
+  break-statement
+  return-statement
+  throw-statement
+-->
+
 <pre>
-  <i>jump-statement:</i>
-    <i>goto-statement</i>
-    <i>continue-statement</i>
-    <i>break-statement</i>
-    <i>return-statement</i>
-    <i>throw-statement</i>
+<a name="grammar-jump-statement"><i>jump-statement:</i>
+   <i><a href="#grammar-goto-statement">goto-statement</a></i>
+   <i><a href="#grammar-continue-statement">continue-statement</a></i>
+   <i><a href="#grammar-break-statement">break-statement</a></i>
+   <i><a href="#grammar-return-statement">return-statement</a></i>
+   <i><a href="#grammar-throw-statement">throw-statement</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*goto-statement*](#the-goto-statement)
-* [*continue-statement*](#the-continue-statement)
-* [*break-statement*](#the-break-statement)
-* [*return-statement*](#the-return-statement)
-* [*throw-statement*](#the-throw-statement)
 
 ###The `goto` Statement
 
 **Syntax**
 
+<!-- GRAMMAR
+goto-statement:
+  'goto' name ';'
+-->
+
 <pre>
-  <i>goto-statement:</i>
-    goto  <i>name</i>  ;
+<a name="grammar-goto-statement"><i>goto-statement:</i>
+   goto   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   ;
 </pre>
-
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -758,17 +824,21 @@ done:
 
 **Syntax**
 
+<!-- GRAMMAR
+continue-statement:
+  'continue' breakout-level? ';'
+
+breakout-level:
+  integer-literal
+-->
+
 <pre>
-  <i>continue-statement:</i>
-    continue   <i>breakout-level<sub>opt</sub></i>  ;
+<a name="grammar-continue-statement"><i>continue-statement:</i>
+   continue   <i><a href="#grammar-breakout-level">breakout-level</a></i><sub>opt</sub>   ;
 
-  <i>breakout-level:</i>
-    <i>integer-literal</i>
+<a name="grammar-breakout-level"><i>breakout-level:</i>
+   <i><a href="09-lexical-structure.md#grammar-integer-literal">integer-literal</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*integer-literal*](09-lexical-structure.md#integer-literals)
 
 **Constraints**
 
@@ -810,14 +880,15 @@ for ($i = 1; $i <= 5; ++$i)
 
 **Syntax**
 
+<!-- GRAMMAR
+break-statement:
+  'break' breakout-level? ';'
+-->
+
 <pre>
-  <i>break-statement:</i>
-    break  <i>breakout-level<sub>opt</sub></i>  ;
+<a name="grammar-break-statement"><i>break-statement:</i>
+   break   <i><a href="#grammar-breakout-level">breakout-level</a></i><sub>opt</sub>   ;
 </pre>
-
-**Defined elsewhere**
-
-* [*breakout-level*](#the-continue-statement)
 
 **Constraints**
 
@@ -875,14 +946,15 @@ for ($i = 10; $i <= 40; $i +=10)
 
 **Syntax**
 
+<!-- GRAMMAR
+return-statement:
+  'return' expression? ';'
+-->
+
 <pre>
-  <i>return-statement:</i>
-    return  <i>expression<sub>opt</sub></i>  ;
+<a name="grammar-return-statement"><i>return-statement:</i>
+   return   <i><a href="10-expressions.md#grammar-expression">expression</a></i><sub>opt</sub>   ;
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
 
 **Semantics**
 
@@ -987,14 +1059,15 @@ enclosing function, `$a` need not actually be incremented.
 
 **Syntax**
 
+<!-- GRAMMAR
+throw-statement:
+  'throw' expression ';'
+-->
+
 <pre>
-  <i>throw-statement:</i>
-    throw  <i>expression</i>  ;
+<a name="grammar-throw-statement"><i>throw-statement:</i>
+   throw   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   ;
 </pre>
-
-**Defined elsewhere**
-
-* [*expression*](10-expressions.md#general-6)
 
 **Constraints**
 
@@ -1027,28 +1100,39 @@ throw new MyException;
 
 **Syntax**
 
+<!-- GRAMMAR
+try-statement:
+  'try' compound-statement catch-clauses
+  'try' compound-statement finally-clause
+  'try' compound-statement catch-clauses finally-clause
+
+catch-clauses:
+  catch-clause
+  catch-clauses catch-clause
+
+catch-clause:
+  'catch' '(' qualified-name variable-name ')' compound-statement
+
+finally-clause:
+  'finally' compound-statement
+-->
+
 <pre>
-  <i>try-statement:</i>
-    try  <i>compound-statement   catch-clauses</i>
-    try  <i>compound-statement   finally-clause</i>
-    try  <i>compound-statement   catch-clauses   finally-clause</i>
+<a name="grammar-try-statement"><i>try-statement:</i>
+   try   <i><a href="#grammar-compound-statement">compound-statement</a></i>   <i><a href="#grammar-catch-clauses">catch-clauses</a></i>
+   try   <i><a href="#grammar-compound-statement">compound-statement</a></i>   <i><a href="#grammar-finally-clause">finally-clause</a></i>
+   try   <i><a href="#grammar-compound-statement">compound-statement</a></i>   <i><a href="#grammar-catch-clauses">catch-clauses</a></i>   <i><a href="#grammar-finally-clause">finally-clause</a></i>
 
-  <i>catch-clauses:</i>
-    <i>catch-clause</i>
-    <i>catch-clauses   catch-clause</i>
+<a name="grammar-catch-clauses"><i>catch-clauses:</i>
+   <i><a href="#grammar-catch-clause">catch-clause</a></i>
+   <i><a href="#grammar-catch-clauses">catch-clauses</a></i>   <i><a href="#grammar-catch-clause">catch-clause</a></i>
 
-  <i>catch-clause:</i>
-    catch  (  <i>qualified-name</i> <i>variable-name</i> )  <i>compound-statement</i>
+<a name="grammar-catch-clause"><i>catch-clause:</i>
+   catch   (   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>   <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>   )   <i><a href="#grammar-compound-statement">compound-statement</a></i>
 
-  <i>finally-clause:</i>
-    finally   <i>compound-statement</i>
+<a name="grammar-finally-clause"><i>finally-clause:</i>
+   finally   <i><a href="#grammar-compound-statement">compound-statement</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*compound-statement*](#compound-statements)
-* [*variable-name*](09-lexical-structure.md#names)
-* [*qualified-name*](09-lexical-structure.md#names)
 
 **Constraints**
 
@@ -1128,24 +1212,29 @@ finally { ... }
 
 **Syntax**
 
+<!-- GRAMMAR
+declare-statement:
+  'declare' '(' declare-directive ')' statement
+  'declare' '(' declare-directive ')' ':' statement-list 'enddeclare' ';'
+  'declare' '(' declare-directive ')' ';'
+
+declare-directive:
+  'ticks' '=' literal
+  'encoding' '=' literal
+  'strict_types' '=' literal
+-->
+
 <pre>
-  <i>declare-statement:</i>
-    declare  (  <i>declare-directive</i>  )  <i>statement</i>
-    declare  (  <i>declare-directive</i>  )  :  <i>statement-list</i>  enddeclare  ;
-    declare  (  <i>declare-directive</i>  )  ;
+<a name="grammar-declare-statement"><i>declare-statement:</i>
+   declare   (   <i><a href="#grammar-declare-directive">declare-directive</a></i>   )   <i><a href="#grammar-statement">statement</a></i>
+   declare   (   <i><a href="#grammar-declare-directive">declare-directive</a></i>   )   :   <i><a href="#grammar-statement-list">statement-list</a></i>   enddeclare   ;
+   declare   (   <i><a href="#grammar-declare-directive">declare-directive</a></i>   )   ;
 
-  <i>declare-directive:</i>
-    ticks  =  <i>literal</i>
-    encoding  =  <i>literal</i>
-    strict_types  =  <i>literal</i>
-
+<a name="grammar-declare-directive"><i>declare-directive:</i>
+   ticks   =   <i><a href="10-expressions.md#grammar-literal">literal</a></i>
+   encoding   =   <i><a href="10-expressions.md#grammar-literal">literal</a></i>
+   strict_types   =   <i><a href="10-expressions.md#grammar-literal">literal</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*statement*](#general)
-* [*statement-list*](#compound-statements)
-* [*literal*](09-lexical-structure.md#literals)
 
 **Constraints**
 

@@ -119,31 +119,43 @@ the requirements of a numeric string, and whose trailing characters are
 non-numeric. A *non-numeric string* is a string that is not a numeric
 string.
 
+<!-- GRAMMAR
+str-numeric::
+  str-whitespace? sign? str-number
+
+str-whitespace::
+  str-whitespace? str-whitespace-char
+
+str-whitespace-char::
+  new-line
+  "Space character (U+0020)"
+  "Horizontal-tab character (U+0009)"
+  "Vertical-tab character (U+000B)"
+  "Form-feed character (U+000C)"
+
+str-number::
+  digit-sequence
+  floating-literal
+-->
+
 <pre>
-  <i>str-numeric::</i>
-    <i>str-whitespace<sub>opt</sub>   sign<sub>opt</sub>   str-number</i>
+<a name="grammar-str-numeric"><i>str-numeric::</i>
+   <i><a href="#grammar-str-whitespace">str-whitespace</a></i><sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-sign">sign</a></i><sub>opt</sub>   <i><a href="#grammar-str-number">str-number</a></i>
 
-  <i>str-whitespace::</i>
-    <i>str-whitespace<sub>opt</sub>   str-whitespace-char</i>
+<a name="grammar-str-whitespace"><i>str-whitespace::</i>
+   <i><a href="#grammar-str-whitespace">str-whitespace</a></i><sub>opt</sub>   <i><a href="#grammar-str-whitespace-char">str-whitespace-char</a></i>
 
-  <i>str-whitespace-char::</i>
-    <i>new-line</i>
-    Space character (U+0020)
-    Horizontal-tab character (U+0009)
-    Vertical-tab character (U+000B)
-    Form-feed character (U+000C)
+<a name="grammar-str-whitespace-char"><i>str-whitespace-char::</i>
+   <i><a href="09-lexical-structure.md#grammar-new-line">new-line</a></i>
+   Space character (U+0020)
+   Horizontal-tab character (U+0009)
+   Vertical-tab character (U+000B)
+   Form-feed character (U+000C)
 
-  <i>str-number::</i>
-    <i>digit-sequence</i>
-    <i>floating-literal</i>
+<a name="grammar-str-number"><i>str-number::</i>
+   <i><a href="09-lexical-structure.md#grammar-digit-sequence">digit-sequence</a></i>
+   <i><a href="09-lexical-structure.md#grammar-floating-literal">floating-literal</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*digit-sequence*](09-lexical-structure.md#floating-point-literals)
-* [*floating-literal*](09-lexical-structure.md#floating-point-literals)
-* [*new-line*](09-lexical-structure.md#comments)
-* [*sign*](09-lexical-structure.md#floating-point-literals)
 
 Note that *digit-sequence* is interpreted as having base-10 (so `"0377"` is treated as 377 decimal with a redundant
 leading zero, rather than as octal 377).

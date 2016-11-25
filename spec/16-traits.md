@@ -42,29 +42,37 @@ that trait is used.
 
 **Syntax**
 
+<!-- GRAMMAR
+trait-declaration:
+  'trait' name '{' trait-member-declarations? '}'
+
+trait-member-declarations:
+  trait-member-declaration
+  trait-member-declarations trait-member-declaration
+
+trait-member-declaration:
+  property-declaration
+  method-declaration
+  constructor-declaration
+  destructor-declaration
+  trait-use-clauses
+-->
+
 <pre>
-  <i>trait-declaration:</i>
-    trait   <i>name</i>   {   trait-member-declarations<sub>opt</sub></i>   }
+<a name="grammar-trait-declaration"><i>trait-declaration:</i>
+   trait   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   {   <i><a href="#grammar-trait-member-declarations">trait-member-declarations</a></i><sub>opt</sub>   }
 
-  <i>trait-member-declarations:</i>
-    <i>trait-member-declaration</i>
-    <i>trait-member-declarations   trait-member-declaration</i>
+<a name="grammar-trait-member-declarations"><i>trait-member-declarations:</i>
+   <i><a href="#grammar-trait-member-declaration">trait-member-declaration</a></i>
+   <i><a href="#grammar-trait-member-declarations">trait-member-declarations</a></i>   <i><a href="#grammar-trait-member-declaration">trait-member-declaration</a></i>
 
-  <i>trait-member-declaration:</i>
-    <i>property-declaration</i>
-    <i>method-declaration</i>
-    <i>constructor-declaration</i>
-    <i>destructor-declaration</i>
-    <i>trait-use-clauses</i>
+<a name="grammar-trait-member-declaration"><i>trait-member-declaration:</i>
+   <i><a href="14-classes.md#grammar-property-declaration">property-declaration</a></i>
+   <i><a href="14-classes.md#grammar-method-declaration">method-declaration</a></i>
+   <i><a href="14-classes.md#grammar-constructor-declaration">constructor-declaration</a></i>
+   <i><a href="14-classes.md#grammar-destructor-declaration">destructor-declaration</a></i>
+   <i><a href="#grammar-trait-use-clauses">trait-use-clauses</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*property-declaration*](14-classes.md#properties)
-* [*method-declaration*](14-classes.md#methods)
-* [*constructor-declaration*](14-classes.md#constructors)
-* [*destructor-declaration*](14-classes.md#destructors)
-* [*trait-use-clauses*](#trait-uses)
 
 **Semantics**
 
@@ -106,42 +114,69 @@ trait T
 
 **Syntax**
 
+<!-- GRAMMAR
+trait-use-clauses:
+  trait-use-clause
+  trait-use-clauses trait-use-clause
+
+trait-use-clause:
+  'use' trait-name-list trait-use-specification
+
+trait-name-list:
+  qualified-name
+  trait-name-list ',' qualified-name
+
+trait-use-specification:
+  ';'
+  '{' trait-select-and-alias-clauses? '}'
+
+trait-select-and-alias-clauses:
+  trait-select-and-alias-clause
+  trait-select-and-alias-clauses trait-select-and-alias-clause
+
+trait-select-and-alias-clause:
+  trait-select-insteadof-clause ';'
+  trait-alias-as-clause ';'
+
+trait-select-insteadof-clause:
+  name 'insteadof' name
+
+trait-alias-as-clause:
+  name 'as' visibility-modifier? name
+  name 'as' visibility-modifier name?
+-->
+
 <pre>
-  <i>trait-use-clauses:</i>
-    <i>trait-use-clause</i>
-    <i>trait-use-clauses   trait-use-clause</i>
+<a name="grammar-trait-use-clauses"><i>trait-use-clauses:</i>
+   <i><a href="#grammar-trait-use-clause">trait-use-clause</a></i>
+   <i><a href="#grammar-trait-use-clauses">trait-use-clauses</a></i>   <i><a href="#grammar-trait-use-clause">trait-use-clause</a></i>
 
-  <i>trait-use-clause:</i>
-    use   <i>trait-name-list   trait-use-specification</i>
+<a name="grammar-trait-use-clause"><i>trait-use-clause:</i>
+   use   <i><a href="#grammar-trait-name-list">trait-name-list</a></i>   <i><a href="#grammar-trait-use-specification">trait-use-specification</a></i>
 
-  <i>trait-name-list:</i>
-    <i>qualified-name</i>
-    <i>trait-name-list</i>   ,   <i>qualified-name</i>
+<a name="grammar-trait-name-list"><i>trait-name-list:</i>
+   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
+   <i><a href="#grammar-trait-name-list">trait-name-list</a></i>   ,   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
 
-  <i>trait-use-specification:</i>
-    ;
-    {   <i>trait-select-and-alias-clauses<sub>opt</sub></i>   }
+<a name="grammar-trait-use-specification"><i>trait-use-specification:</i>
+   ;
+   {   <i><a href="#grammar-trait-select-and-alias-clauses">trait-select-and-alias-clauses</a></i><sub>opt</sub>   }
 
-  <i>trait-select-and-alias-clauses:</i>
-    <i>trait-select-and-alias-clause</i>
-    <i>trait-select-and-alias-clauses   trait-select-and-alias-clause</i>
+<a name="grammar-trait-select-and-alias-clauses"><i>trait-select-and-alias-clauses:</i>
+   <i><a href="#grammar-trait-select-and-alias-clause">trait-select-and-alias-clause</a></i>
+   <i><a href="#grammar-trait-select-and-alias-clauses">trait-select-and-alias-clauses</a></i>   <i><a href="#grammar-trait-select-and-alias-clause">trait-select-and-alias-clause</a></i>
 
-  <i>trait-select-and-alias-clause:</i>
-    <i>trait-select-insteadof-clause</i> ;
-    <i>trait-alias-as-clause</i> ;
+<a name="grammar-trait-select-and-alias-clause"><i>trait-select-and-alias-clause:</i>
+   <i><a href="#grammar-trait-select-insteadof-clause">trait-select-insteadof-clause</a></i>   ;
+   <i><a href="#grammar-trait-alias-as-clause">trait-alias-as-clause</a></i>   ;
 
-  <i>trait-select-insteadof-clause:</i>
-    <i>name</i>   insteadof   <i>name</i>
+<a name="grammar-trait-select-insteadof-clause"><i>trait-select-insteadof-clause:</i>
+   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   insteadof   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>
 
-  <i>trait-alias-as-clause:</i>
-    <i>name</i>   as   <i>visibility-modifier<sub>opt</sub>   name</i>
-    <i>name</i>   as   <i>visibility-modifier   name<sub>opt</sub></i>
+<a name="grammar-trait-alias-as-clause"><i>trait-alias-as-clause:</i>
+   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   as   <i><a href="14-classes.md#grammar-visibility-modifier">visibility-modifier</a></i><sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>
+   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   as   <i><a href="14-classes.md#grammar-visibility-modifier">visibility-modifier</a></i>   <i><a href="09-lexical-structure.md#grammar-name">name</a></i><sub>opt</sub>
 </pre>
-
-**Defined elsewhere**
-
-* [*name*](09-lexical-structure.md#names)
-* [*visibility-modifier*](14-classes.md#properties)
 
 **Constraints**
 

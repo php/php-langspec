@@ -1,7 +1,7 @@
 <?php
 
 /* Iterator of spec files, using $fileName => $path. */
-function spec_files() {
+function spec_files($skipFiles = []) {
     $dir = __DIR__ . '/../spec/';
     $files = scandir($dir);
 
@@ -9,7 +9,8 @@ function spec_files() {
         if (pathinfo($file, PATHINFO_EXTENSION) != 'md') {
             continue;
         }
-        if ($file == '00-specification-for-php.md') {
+        if ($file == '00-specification-for-php.md'
+                || in_array($file, $skipFiles)) {
             continue;
         }
 

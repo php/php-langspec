@@ -47,55 +47,95 @@ A function is called via the function-call operator [`()`](10-expressions.md#fun
 
 **Syntax**
 
+<!-- GRAMMAR
+function-definition:
+  function-definition-header compound-statement
+
+function-definition-header:
+  'function' '&'? name '(' parameter-declaration-list? ')' return-type?
+
+parameter-declaration-list:
+  simple-parameter-declaration-list
+  variadic-declaration-list
+
+simple-parameter-declaration-list:
+  parameter-declaration
+  parameter-declaration-list ',' parameter-declaration
+
+variadic-declaration-list:
+  simple-parameter-declaration-list ',' variadic-parameter
+  variadic-parameter
+
+parameter-declaration:
+  type-declaration? '&'? variable-name default-argument-specifier?
+
+variadic-parameter:
+	type-declaration? '&'? '...' variable-name
+
+return-type:
+  ':' type-declaration
+  ':' 'void'
+
+type-declaration:
+  'array'
+  'callable'
+  scalar-type
+  qualified-name
+
+scalar-type:
+  'bool'
+  'float'
+  'int'
+  'string'
+
+default-argument-specifier:
+  '=' constant-expression
+-->
+
 <pre>
-  <i>function-definition:</i>
-    <i>function-definition-header   compound-statement</i>
+<a name="grammar-function-definition"><i>function-definition:</i>
+   <i><a href="#grammar-function-definition-header">function-definition-header</a></i>   <i><a href="11-statements.md#grammar-compound-statement">compound-statement</a></i>
 
-  <i>function-definition-header:</i>
-    function  &<i><sub>opt</sub></i>   <i>name</i>  (  <i>parameter-declaration-list<sub>opt</sub></i>  )  <i>return-type<sub>opt</sub></i>
+<a name="grammar-function-definition-header"><i>function-definition-header:</i>
+   function   &amp;<sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   (   <i><a href="#grammar-parameter-declaration-list">parameter-declaration-list</a></i><sub>opt</sub>   )   <i><a href="#grammar-return-type">return-type</a></i><sub>opt</sub>
 
-  <i>parameter-declaration-list:</i>
-    <i>simple-parameter-declaration-list</i>
-    <i>variadic-declaration-list</i>
+<a name="grammar-parameter-declaration-list"><i>parameter-declaration-list:</i>
+   <i><a href="#grammar-simple-parameter-declaration-list">simple-parameter-declaration-list</a></i>
+   <i><a href="#grammar-variadic-declaration-list">variadic-declaration-list</a></i>
 
-  <i>simple-parameter-declaration-list:</i>
-    <i>parameter-declaration</i>
-    <i>parameter-declaration-list</i>  ,  <i>parameter-declaration</i>
+<a name="grammar-simple-parameter-declaration-list"><i>simple-parameter-declaration-list:</i>
+   <i><a href="#grammar-parameter-declaration">parameter-declaration</a></i>
+   <i><a href="#grammar-parameter-declaration-list">parameter-declaration-list</a></i>   ,   <i><a href="#grammar-parameter-declaration">parameter-declaration</a></i>
 
-  <i>variadic-declaration-list:</i>
-    <i>simple-parameter-declaration-list</i>  ,  <i>variadic-parameter</i>
-    <i>variadic-parameter</i>
+<a name="grammar-variadic-declaration-list"><i>variadic-declaration-list:</i>
+   <i><a href="#grammar-simple-parameter-declaration-list">simple-parameter-declaration-list</a></i>   ,   <i><a href="#grammar-variadic-parameter">variadic-parameter</a></i>
+   <i><a href="#grammar-variadic-parameter">variadic-parameter</a></i>
 
-  <i>parameter-declaration:</i>
-    <i>type-declaration<sub>opt</sub></i>  &<i><sub>opt</sub></i>  <i>variable-name   default-argument-specifier<sub>opt</sub></i>
+<a name="grammar-parameter-declaration"><i>parameter-declaration:</i>
+   <i><a href="#grammar-type-declaration">type-declaration</a></i><sub>opt</sub>   &amp;<sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>   <i><a href="#grammar-default-argument-specifier">default-argument-specifier</a></i><sub>opt</sub>
 
-  <i>variadic-parameter:</i>
-	<i>type-declaration<sub>opt</sub></i>  &<i><sub>opt</sub></i>  ...  <i>variable-name</i>
+<a name="grammar-variadic-parameter"><i>variadic-parameter:</i>
+   <i><a href="#grammar-type-declaration">type-declaration</a></i><sub>opt</sub>   &amp;<sub>opt</sub>   ...   <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>
 
-  <i>return-type:</i>
-    : <i>type-declaration</i>
-    : void
+<a name="grammar-return-type"><i>return-type:</i>
+   :   <i><a href="#grammar-type-declaration">type-declaration</a></i>
+   :   void
 
-  <i>type-declaration:</i>
-    array
-    callable
-    <i>scalar-type</i>
-    <i>qualified-name</i>
+<a name="grammar-type-declaration"><i>type-declaration:</i>
+   array
+   callable
+   <i><a href="#grammar-scalar-type">scalar-type</a></i>
+   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
 
-  <i>scalar-type:</i>
-    bool
-    float
-    int
-    string
+<a name="grammar-scalar-type"><i>scalar-type:</i>
+   bool
+   float
+   int
+   string
 
-  <i>default-argument-specifier:</i>
-    =  <i>constant-expression</i>
+<a name="grammar-default-argument-specifier"><i>default-argument-specifier:</i>
+   =   <i><a href="10-expressions.md#grammar-constant-expression">constant-expression</a></i>
 </pre>
-
-**Defined elsewhere**
-
-* [*constant-expression*](10-expressions.md#constant-expressions)
-* [*qualified-name*](09-lexical-structure.md#names)
 
 **Constraints**
 

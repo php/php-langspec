@@ -3,10 +3,11 @@
 require __DIR__ . '/util.php';
 require __DIR__ . '/grammar_util.php';
 
-$dir = __DIR__ . '/../spec/';
-$grammarFile = $dir . '19-grammar.md';
+/*
+ * Render grammars (after GRAMMAR blocks)
+ */
 
-// Collect all defined names. Place them in 19-grammar.md for referencing
+// Collect all defined names (for referencing)
 $names = [];
 foreach (spec_files() as $fileName => $path) {
     $code = file_get_contents($path);
@@ -15,9 +16,34 @@ foreach (spec_files() as $fileName => $path) {
         if (isset($names[$def->name])) {
             throw new Exception("Duplicate definition for $def->name");
         }
-        $names[$def->name] = '19-grammar.md';
+        $names[$def->name] = $fileName;
     }
 }
+
+// Render grammars
+foreach (spec_files() as $fileName => $path) {
+    $code = file_get_contents($path);
+    $code = preg_replace_callback(
+        '/(<!--\s*GRAMMAR(.*?)-->)\s+<pre>.*?<\/pre>/s',
+        function($matches) use($names, $fileName) {
+            $defs = Grammar\parse_grammar($matches[2]);
+            $rendered = Grammar\render_grammar($defs, $names, $fileName);
+            return $matches[1] . "\n\n" . $rendered;
+        },
+        $code
+    );
+    file_put_contents($path, $code);
+}
+
+/*
+ * Generate summary grammar chapter
+ */
+
+// Pretend that all definitions are inside 19-grammar.md now
+$names = array_fill_keys(array_keys($names), '19-grammar.md');
+
+$dir = __DIR__ . '/../spec/';
+$grammarFile = $dir . '19-grammar.md';
 
 $output = <<<'END'
 #Grammar

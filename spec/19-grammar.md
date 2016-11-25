@@ -239,7 +239,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
     ->   <i>name</i>
 
   <i>heredoc-string-literal::</i>
-    <i>b-prefix<sub>opt</sub></i>   &lt;&lt;&lt;   <i>hd-start-identifier   new-line   hd-body<sub>opt</sub></i>   hd-end-identifier</i>   ;<i><sub>opt</sub>   new-line</i>
+    <i>b-prefix<sub>opt</sub></i>   &lt;&lt;&lt;   <i>hd-start-identifier   new-line   hd-body<sub>opt</sub></i>   hd-end-identifier   ;<i><sub>opt</sub>   new-line</i>
 
   <i>hd-start-identifier::</i>
     <i>name</i>

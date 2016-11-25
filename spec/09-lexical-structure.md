@@ -44,9 +44,9 @@ non-terminal given as a sequence of non-terminal or terminal symbols.
 For example, the production:
 
 <!-- GRAMMAR
-single-line-comment::
-  '//' 'input-characters?'
-  '#' 'input-characters?'
+single-line-comment-example::
+  '//' input-characters?
+  '#' input-characters?
 -->
 
 <pre>
@@ -55,7 +55,7 @@ single-line-comment::
     #  input-characters<sub>opt</sub>
 </pre>
 
-defines the lexical grammar production *single-line-comment* as being
+defines the lexical grammar production *single-line-comment-example* as being
 the terminals `//` or `#`, followed by an optional *input-characters*. Each
 expansion is listed on a separate line.
 
@@ -64,7 +64,7 @@ is a large number, the shorthand phrase “one of” may precede a list of
 expansions given on a single line. For example,
 
 <!-- GRAMMAR
-hexadecimal-digit:: one of
+hexadecimal-digit-example:: one of
   '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
   'a' 'b' 'c' 'd' 'e' 'f'
   'A' 'B' 'C' 'D' 'E' 'F'
@@ -90,6 +90,7 @@ script. Each script must conform to this production.
 input-file::
   input-element
   input-file input-element
+
 input-element::
   comment
   white-space
@@ -146,7 +147,7 @@ input-characters::
   input-characters input-character
 
 input-character::
-  'Any' 'source' 'character' 'except' new-line
+  "Any source character except" new-line
 
 new-line::
   "Carriage-return character (U+000D)"
@@ -154,7 +155,7 @@ new-line::
   "Carriage-return character (U+000D) followed by line-feed character (U+000A)"
 
 delimited-comment::
-  '/*' 'No' 'characters' 'or' 'any' 'source' 'character' 'sequence' 'except' '*/' '*/'
+  '/*' "No characters or any source character sequence except */" '*/'
 -->
 
 <pre>
@@ -217,7 +218,7 @@ white-space::
 white-space-character::
   new-line
   "Space character (U+0020)"
-  '"Horizontal-tab' 'character' '(U+0009)"'
+  "Horizontal-tab character (U+0009)"
 -->
 
 <pre>
@@ -290,11 +291,11 @@ variable-name::
 
 namespace-name::
   name
-  namespace-name \ name
+  namespace-name '\' name
 
 namespace-name-as-a-prefix::
   '\'
-  '\?' namespace-name '\'
+  '\'? namespace-name '\'
   'namespace' '\'
   'namespace' '\' namespace-name '\'
 
@@ -308,7 +309,7 @@ name::
 
 name-nondigit::
   nondigit
-  'one' 'of' 'the' 'characters' 'U+0080–U+00ff'
+  "one of the characters U+0080–U+00ff"
 
 nondigit:: one of
   '_'
@@ -420,7 +421,7 @@ keyword:: one of
   'goto' 'if' 'implements' 'include' 'include_once' 'instanceof'
   'insteadof' 'interface' 'isset' 'list' 'namespace' 'new' 'or' 'print' 'private'
   'protected' 'public' 'require' 'require_once' 'return' 'static' 'switch'
-  'throw' 'trait' 'try' 'unset' 'use' 'var' 'while' 'xor' 'yield' 'yield' 'from'
+  'throw' 'trait' 'try' 'unset' 'use' 'var' 'while' 'xor' 'yield' 'yield from'
 -->
 
 <pre>
@@ -458,44 +459,44 @@ integer-literal::
   hexadecimal-literal
   binary-literal
 
-  decimal-literal::
-    nonzero-digit
-    decimal-literal digit
+decimal-literal::
+  nonzero-digit
+  decimal-literal digit
 
-  octal-literal::
-    '0'
-    octal-literal octal-digit
+octal-literal::
+  '0'
+  octal-literal octal-digit
 
-  hexadecimal-literal::
-    hexadecimal-prefix hexadecimal-digit
-    hexadecimal-literal hexadecimal-digit
+hexadecimal-literal::
+  hexadecimal-prefix hexadecimal-digit
+  hexadecimal-literal hexadecimal-digit
 
-  hexadecimal-prefix:: one of
-    '0x' '0X'
+hexadecimal-prefix:: one of
+  '0x' '0X'
 
-  binary-literal::
-    binary-prefix binary-digit
-    binary-literal binary-digit
+binary-literal::
+  binary-prefix binary-digit
+  binary-literal binary-digit
 
-  binary-prefix:: one of
-    '0b' '0B'
+binary-prefix:: one of
+  '0b' '0B'
 
-  digit:: one of
-    '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
+digit:: one of
+  '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
 
-  nonzero-digit:: one of
-    '1' '2' '3' '4' '5' '6' '7' '8' '9'
+nonzero-digit:: one of
+  '1' '2' '3' '4' '5' '6' '7' '8' '9'
 
-  octal-digit:: one of
-    '0' '1' '2' '3' '4' '5' '6' '7'
+octal-digit:: one of
+  '0' '1' '2' '3' '4' '5' '6' '7'
 
-  hexadecimal-digit:: one of
-    '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
-    'a' 'b' 'c' 'd' 'e' 'f'
-    'A' 'B' 'C' 'D' 'E' 'F'
+hexadecimal-digit:: one of
+  '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
+  'a' 'b' 'c' 'd' 'e' 'f'
+  'A' 'B' 'C' 'D' 'E' 'F'
 
-  binary-digit:: one of
-      '0' '1'
+binary-digit:: one of
+  '0' '1'
 -->
 
 <pre>
@@ -598,7 +599,7 @@ floating-literal::
   digit-sequence exponent-part
 
 fractional-literal::
-  digit-sequence? . digit-sequence
+  digit-sequence? '.' digit-sequence
   digit-sequence '.'
 
 exponent-part::
@@ -698,7 +699,7 @@ The type of a string literal is `string`.
 
 <!-- GRAMMAR
 single-quoted-string-literal::
-  b-prefix? ' sq-char-sequence? '''
+  b-prefix? '''' sq-char-sequence? ''''
 
 sq-char-sequence::
   sq-char
@@ -706,10 +707,10 @@ sq-char-sequence::
 
 sq-char::
   sq-escape-sequence
-  '\?' 'any' 'member' 'of' 'the' 'source' 'character' 'set' 'except' 'single-quote' '(')' 'or' 'backslash' '(\)'
+  '\'? "any member of the source character set except single-quote (') or backslash (\)"
 
 sq-escape-sequence:: one of
-  '\'' '\\'
+  '\''' '\\'
 
 b-prefix:: one of
   'b' 'B'
@@ -761,7 +762,7 @@ A single-quoted string literal is always a constant expression.
 
 <!-- GRAMMAR
 double-quoted-string-literal::
-  b-prefix? " dq-char-sequence? '"'
+  b-prefix? '"' dq-char-sequence? '"'
 
 dq-char-sequence::
   dq-char
@@ -769,8 +770,8 @@ dq-char-sequence::
 
 dq-char::
   dq-escape-sequence
-  'any' 'member' 'of' 'the' 'source' 'character' 'set' 'except' 'double-quote' '(")' 'or' 'backslash' '(\)'
-  '\' 'any' 'member' 'of' 'the' 'source' 'character' 'set' 'except' '"\$efnrtvxX' 'or' octal-digit
+  "any member of the source character set except double-quote ("") or backslash (\)"
+  '\' "any member of the source character set except ""\$efnrtvxX or" octal-digit
 
 dq-escape-sequence::
   dq-simple-escape-sequence
@@ -791,7 +792,7 @@ dq-hexadecimal-escape-sequence::
   '\X' hexadecimal-digit hexadecimal-digit?
 
 dq-unicode-escape-sequence::
-  '\u{' 'codepoint-digits' '}'
+  '\u{' codepoint-digits '}'
 
 codepoint-digits::
    hexadecimal-digit
@@ -999,11 +1000,11 @@ echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 
 <!-- GRAMMAR
 heredoc-string-literal::
-  b-prefix? <<< hd-start-identifier new-line hd-body? hd-end-identifier ;? new-line
+  b-prefix? '<<<' hd-start-identifier new-line hd-body? hd-end-identifier ';'? new-line
 
 hd-start-identifier::
   name
-  " name "
+  '"' name '"'
 
 hd-end-identifier::
   name
@@ -1017,8 +1018,8 @@ hd-char-sequence::
 
 hd-char::
   hd-escape-sequence
-  'any' 'member' 'of' 'the' 'source' 'character' 'set' 'except' 'backslash' '(\)'
-  '\' 'any' 'member' 'of' 'the' 'source' 'character' 'set' 'except' '\$efnrtvxX' 'or' octal-digit
+  "any member of the source character set except backslash (\)"
+  "\ any member of the source character set except \$efnrtvxX or" octal-digit
 
 hd-escape-sequence::
   hd-simple-escape-sequence
@@ -1115,7 +1116,7 @@ echo ">$s<";
 
 <!-- GRAMMAR
 nowdoc-string-literal::
-  b-prefix? <<< ' name ' new-line hd-body? name ;? new-line
+  b-prefix? '<<<' '''' name '''' new-line hd-body? name ';'? new-line
 -->
 
 <pre>

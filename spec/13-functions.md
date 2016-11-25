@@ -52,7 +52,7 @@ function-definition:
   function-definition-header compound-statement
 
 function-definition-header:
-  'function' '&?' name ( parameter-declaration-list? ) return-type?
+  'function' '&'? name '(' parameter-declaration-list? ')' return-type?
 
 parameter-declaration-list:
   simple-parameter-declaration-list
@@ -60,17 +60,17 @@ parameter-declaration-list:
 
 simple-parameter-declaration-list:
   parameter-declaration
-  parameter-declaration-list , parameter-declaration
+  parameter-declaration-list ',' parameter-declaration
 
 variadic-declaration-list:
-  simple-parameter-declaration-list , variadic-parameter
+  simple-parameter-declaration-list ',' variadic-parameter
   variadic-parameter
 
 parameter-declaration:
-  type-declaration? &? variable-name default-argument-specifier?
+  type-declaration? '&'? variable-name default-argument-specifier?
 
 variadic-parameter:
-	type-declaration? &? ... variable-name
+	type-declaration? '&'? '...' variable-name
 
 return-type:
   ':' type-declaration

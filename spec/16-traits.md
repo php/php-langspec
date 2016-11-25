@@ -44,7 +44,7 @@ that trait is used.
 
 <!-- GRAMMAR
 trait-declaration:
-  'trait' name { trait-member-declarations?</i> '}'
+  'trait' name '{' trait-member-declarations? '}'
 
 trait-member-declarations:
   trait-member-declaration
@@ -132,7 +132,7 @@ trait-use-clause:
 
 trait-name-list:
   qualified-name
-  trait-name-list , qualified-name
+  trait-name-list ',' qualified-name
 
 trait-use-specification:
   ';'
@@ -147,11 +147,11 @@ trait-select-and-alias-clause:
   trait-alias-as-clause ';'
 
 trait-select-insteadof-clause:
-  name insteadof name
+  name 'insteadof' name
 
 trait-alias-as-clause:
-  name as visibility-modifier? name
-  name as visibility-modifier name?
+  name 'as' visibility-modifier? name
+  name 'as' visibility-modifier name?
 -->
 
 <pre>

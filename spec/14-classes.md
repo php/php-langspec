@@ -60,7 +60,7 @@ While PHP supports *anonymous class types*, such a type cannot be declared using
 
 <!-- GRAMMAR
 class-declaration:
-  class-modifier? class name class-base-clause? class-interface-clause? { class-member-declarations?</i> '}'
+  class-modifier? 'class' name class-base-clause? class-interface-clause? '{' class-member-declarations? '}'
 
 class-modifier:
   'abstract'
@@ -71,7 +71,7 @@ class-base-clause:
 
 class-interface-clause:
   'implements' qualified-name
-  class-interface-clause , qualified-name
+  class-interface-clause ',' qualified-name
 -->
 
 <pre>
@@ -218,13 +218,13 @@ class-member-declarations:
   class-member-declaration
   class-member-declarations class-member-declaration
 
- class-member-declaration:
-   class-const-declaration
-   property-declaration
-   method-declaration
-   constructor-declaration
-   destructor-declaration
-   trait-use-clause
+class-member-declaration:
+  class-const-declaration
+  property-declaration
+  method-declaration
+  constructor-declaration
+  destructor-declaration
+  trait-use-clause
 -->
 
 <pre>
@@ -421,14 +421,14 @@ const-declaration:
   'const' const-elements ';'
 
 class-const-declaration:
-  visibility-modifier? const const-elements ';'
+  visibility-modifier? 'const' const-elements ';'
 
 const-elements:
   const-element
   const-elements const-element
 
 const-element:
-  name = constant-expression
+  name '=' constant-expression
 -->
 
 <pre>
@@ -659,7 +659,7 @@ examples of abstract methods and their subsequent definitions.
 
 <!-- GRAMMAR
 constructor-declaration:
-  method-modifiers function &? __construct ( parameter-declaration-list? ) compound-statement
+  method-modifiers 'function' '&'? '__construct' '(' parameter-declaration-list? ')' compound-statement
 -->
 
 <pre>
@@ -752,7 +752,7 @@ class MyRangeException extends Exception
 
 <!-- GRAMMAR
 destructor-declaration:
-  method-modifiers function &? __destruct ( ) compound-statement
+  method-modifiers 'function' '&'? '__destruct' '(' ')' compound-statement
 -->
 
 <pre>

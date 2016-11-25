@@ -127,13 +127,12 @@ namespace NS3\Sub1;
 <!-- GRAMMAR
 namespace-use-declaration:
   'use' namespace-function-or-const? namespace-use-clauses ';'
-  'use' namespace-function-or-const \? namespace-name '\'
-     '{' namespace-use-group-clauses-1 '}' ';'
-  'use' '\?' 'namespace-name' '\' '{' namespace-use-group-clauses-2 '}' ';'
+  'use' namespace-function-or-const '\'? namespace-name '\' '{' namespace-use-group-clauses-1 '}' ';'
+  'use' '\'? 'namespace-name' '\' '{' namespace-use-group-clauses-2 '}' ';'
 
 namespace-use-clauses:
   namespace-use-clause
-  namespace-use-clauses , namespace-use-clause
+  namespace-use-clauses ',' namespace-use-clause
 
 namespace-use-clause:
   qualified-name namespace-aliasing-clause?
@@ -147,14 +146,14 @@ namespace-function-or-const:
 
 namespace-use-group-clauses-1:
   namespace-use-group-clause-1
-  namespace-use-group-clauses-1 , namespace-use-group-clause-1
+  namespace-use-group-clauses-1 ',' namespace-use-group-clause-1
 
 namespace-use-group-clause-1:
   namespace-name namespace-aliasing-clause?
 
 namespace-use-group-clauses-2:
   namespace-use-group-clause-2
-  namespace-use-group-clauses-2 , namespace-use-group-clause-2
+  namespace-use-group-clauses-2 ',' namespace-use-group-clause-2
 
 namespace-use-group-clause-2:
   namespace-function-or-const? namespace-name namespace-aliasing-clause?

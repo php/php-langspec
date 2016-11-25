@@ -20,11 +20,11 @@ inherits all members from its *base interface(s)*.
 
 <!-- GRAMMAR
 interface-declaration:
-  'interface' name interface-base-clause? { interface-member-declarations? '}'
+  'interface' name interface-base-clause? '{' interface-member-declarations? '}'
 
 interface-base-clause:
   'extends' qualified-name
-  interface-base-clause , qualified-name
+  interface-base-clause ',' qualified-name
 -->
 
 <pre>

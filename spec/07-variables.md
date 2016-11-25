@@ -272,7 +272,7 @@ function-static-declaration:
 
 static-variable-name-list:
   static-variable-declaration
-  static-variable-name-list , static-variable-declaration
+  static-variable-name-list ',' static-variable-declaration
 
 static-variable-declaration:
   variable-name function-static-initializer?
@@ -371,7 +371,7 @@ global-declaration:
 
 variable-name-list:
   simple-variable
-  variable-name-list , simple-variable
+  variable-name-list ',' simple-variable
 -->
 
 <pre>

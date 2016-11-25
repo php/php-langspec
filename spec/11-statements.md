@@ -122,7 +122,7 @@ while (condition)
 
 <!-- GRAMMAR
 named-label-statement:
-  name : statement
+  name ';' statement
 -->
 
 <pre>
@@ -238,15 +238,15 @@ selects among a set of statements.
 
 <!-- GRAMMAR
 if-statement:
-  'if' '(' expression ) statement elseif-clauses-1? else-clause-1?
-  'if' '(' expression ) : statement-list elseif-clauses-2? else-clause-2? 'endif' ';'
+  'if' '(' expression ')' statement elseif-clauses-1? else-clause-1?
+  'if' '(' expression ')' ':' statement-list elseif-clauses-2? else-clause-2? 'endif' ';'
 
 elseif-clauses-1:
   elseif-clause-1
   elseif-clauses-1 elseif-clause-1
 
 elseif-clause-1:
-  'elseif' '(' expression ) statement
+  'elseif' '(' expression ')' statement
 
 else-clause-1:
   'else' statement
@@ -256,7 +256,7 @@ elseif-clauses-2:
   elseif-clauses-2 elseif-clause-2
 
 elseif-clause-2:
-  'elseif' '(' expression ) : statement-list
+  'elseif' '(' expression ')' ':' statement-list
 
 else-clause-2:
   'else' ':' statement-list
@@ -357,8 +357,8 @@ else  // this else does go with the outer if
 
 <!-- GRAMMAR
 switch-statement:
-  'switch' '(' expression ) { case-statements? '}'
-  'switch' '(' expression ) : case-statements? 'endswitch;'
+  'switch' '(' expression ')' '{' case-statements? '}'
+  'switch' '(' expression ')' ':' case-statements? 'endswitch;'
 
 case-statements:
   case-statement case-statements?
@@ -518,8 +518,8 @@ iteration-statement:
 
 <!-- GRAMMAR
 while-statement:
-  'while' '(' expression ) statement
-  'while' '(' expression ) : statement-list 'endwhile' ';'
+  'while' '(' expression ')' statement
+  'while' '(' expression ')' ':' statement-list 'endwhile' ';'
 -->
 
 <pre>
@@ -572,7 +572,7 @@ while (TRUE)
 
 <!-- GRAMMAR
 do-statement:
-  'do' statement while ( expression ')' ';'
+  'do' statement 'while' '(' expression ')' ';'
 -->
 
 <pre>
@@ -621,8 +621,8 @@ while ($i <= 10);
 
 <!-- GRAMMAR
 for-statement:
-  'for' '(' for-initializer? ; for-control? ; for-end-of-loop? ) statement
-  'for' '(' for-initializer? ; for-control? ; for-end-of-loop? ) : statement-list 'endfor' ';'
+  'for' '(' for-initializer? ';' for-control? ';' for-end-of-loop? ')' statement
+  'for' '(' for-initializer? ';' for-control? ';' for-end-of-loop? ')' ':' statement-list 'endfor' ';'
 
 for-initializer:
   for-expression-group
@@ -635,7 +635,7 @@ for-end-of-loop:
 
 for-expression-group:
   expression
-  for-expression-group , expression
+  for-expression-group ',' expression
 -->
 
 <pre>
@@ -732,8 +732,8 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10)
 
 <!-- GRAMMAR
 foreach-statement:
-  'foreach' '(' foreach-collection-name as foreach-key? foreach-value ')' 'statement'
-  'foreach' '(' foreach-collection-name as foreach-key? foreach-value ) : statement-list 'endforeach' ';'
+  'foreach' '(' foreach-collection-name 'as' foreach-key? foreach-value ')' 'statement'
+  'foreach' '(' foreach-collection-name 'as' foreach-key? foreach-value ')' ':' statement-list 'endforeach' ';'
 
 foreach-collection-name:
   expression
@@ -742,7 +742,7 @@ foreach-key:
   expression '=>'
 
 foreach-value:
-  '&?' expression
+  '&'? expression
   list-intrinsic
 -->
 
@@ -1221,7 +1221,7 @@ catch-clauses:
   catch-clauses catch-clause
 
 catch-clause:
-  'catch' '(' qualified-name variable-name ) compound-statement
+  'catch' '(' qualified-name variable-name ')' compound-statement
 
 finally-clause:
   'finally' compound-statement
@@ -1330,8 +1330,8 @@ finally { ... }
 
 <!-- GRAMMAR
 declare-statement:
-  'declare' '(' declare-directive ) statement
-  'declare' '(' declare-directive ) : statement-list 'enddeclare' ';'
+  'declare' '(' declare-directive ')' statement
+  'declare' '(' declare-directive ')' ':' statement-list 'enddeclare' ';'
   'declare' '(' declare-directive ')' ';'
 
 declare-directive:

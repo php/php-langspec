@@ -9,7 +9,7 @@ script:
   script script-section
 
 script-section:
-   text? start-tag statement-list? end-tag? text?
+  text? start-tag statement-list? end-tag? text?
 
 start-tag:
   '<?php'
@@ -19,7 +19,7 @@ end-tag:
   '?>'
 
 text:
-  'arbitrary' 'text' 'not' 'containing' 'any' 'of' start-tag 'sequences'
+  "arbitrary text not containing any of" start-tag "sequences"
 -->
 
 <pre>

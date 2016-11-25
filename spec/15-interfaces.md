@@ -28,12 +28,12 @@ interface-base-clause:
 -->
 
 <pre>
-  <i>interface-declaration:</i>
-    interface   <i>name   interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
+<a name="grammar-interface-declaration"><i>interface-declaration:</i>
+   interface   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   <i><a href="#grammar-interface-base-clause">interface-base-clause</a></i><sub>opt</sub>   {   <i><a href="#grammar-interface-member-declarations">interface-member-declarations</a></i><sub>opt</sub>   }
 
-  <i>interface-base-clause:</i>
-    extends   <i>qualified-name</i>
-    <i>interface-base-clause</i>  ,  <i>qualified-name</i>
+<a name="grammar-interface-base-clause"><i>interface-base-clause:</i>
+   extends   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
+   <i><a href="#grammar-interface-base-clause">interface-base-clause</a></i>   ,   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
 </pre>
 
 **Constraints**
@@ -97,13 +97,13 @@ interface-member-declaration:
 -->
 
 <pre>
-  <i>interface-member-declarations:</i>
-    <i>interface-member-declaration</i>
-    <i>interface-member-declarations   interface-member-declaration</i>
+<a name="grammar-interface-member-declarations"><i>interface-member-declarations:</i>
+   <i><a href="#grammar-interface-member-declaration">interface-member-declaration</a></i>
+   <i><a href="#grammar-interface-member-declarations">interface-member-declarations</a></i>   <i><a href="#grammar-interface-member-declaration">interface-member-declaration</a></i>
 
-  <i>interface-member-declaration:</i>
-    <i>class-const-declaration</i>
-    <i>method-declaration</i>
+<a name="grammar-interface-member-declaration"><i>interface-member-declaration:</i>
+   <i><a href="14-classes.md#grammar-class-const-declaration">class-const-declaration</a></i>
+   <i><a href="14-classes.md#grammar-method-declaration">method-declaration</a></i>
 </pre>
 
 * [*const-declaration*](14-classes.md#constants)

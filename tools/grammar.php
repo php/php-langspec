@@ -1,6 +1,48 @@
 <?php error_reporting(E_ALL);
 
 require __DIR__ . '/util.php';
+require __DIR__ . '/grammar_util.php';
+
+/*
+ * Render grammars (after GRAMMAR blocks)
+ */
+
+// Collect all defined names (for referencing)
+$names = [];
+foreach (spec_files() as $fileName => $path) {
+    $code = file_get_contents($path);
+    $defs = Grammar\get_all_defs($code);
+    foreach ($defs as $def) {
+        if (isset($names[$def->name])) {
+            throw new Exception("Duplicate definition for $def->name");
+        }
+        $names[$def->name] = $fileName;
+    }
+}
+
+// Render grammars
+foreach (spec_files() as $fileName => $path) {
+    $code = $origCode = file_get_contents($path);
+    $code = preg_replace_callback(
+        '/(<!--\s*GRAMMAR(.*?)-->)\s+<pre>.*?<\/pre>/s',
+        function($matches) use($names, $fileName) {
+            $defs = Grammar\parse_grammar($matches[2]);
+            $rendered = Grammar\render_grammar($defs, $names, $fileName);
+            return $matches[1] . "\n\n" . $rendered;
+        },
+        $code
+    );
+    if ($code !== $origCode) {
+        file_put_contents($path, $code);
+    }
+}
+
+/*
+ * Generate summary grammar chapter
+ */
+
+// Pretend that all definitions are inside 19-grammar.md now
+$names = array_fill_keys(array_keys($names), '19-grammar.md');
 
 $dir = __DIR__ . '/../spec/';
 $grammarFile = $dir . '19-grammar.md';
@@ -19,14 +61,14 @@ END;
 
 $lexical = file_get_contents($dir . '09-lexical-structure.md');
 $lexical = strstr($lexical, '##Lexical analysis');
-$output .= extract_grammar($lexical);
+$output .= extract_grammar($lexical, $names);
 
 $output .= "\n\n##Syntactic Grammar";
 
 $skipFiles = ['05-types.md', '09-lexical-structure.md', '19-grammar.md'];
 foreach (spec_files($skipFiles) as $fileName => $path) {
     $code = file_get_contents($path);
-    $grammar = extract_grammar($code);
+    $grammar = extract_grammar($code, $names);
     if (null === $grammar) {
         continue;
     }
@@ -47,19 +89,10 @@ function extract_heading($code) {
     return $matches[1];
 }
 
-function extract_grammar($code) {
-    if (!preg_match_all('(<pre>(.*?)</pre>)s', $code, $matches)) {
+function extract_grammar($code, $names) {
+    $defs = Grammar\get_all_defs($code);
+    if (empty($defs)) {
         return null;
     }
-
-    $parts = [];
-    foreach ($matches[1] as $match) {
-        if (!preg_match('/^\s*<i>.*:.*<\/i>/', $match)) {
-            continue;
-        }
-        $parts[] = '  ' . trim($match);
-    }
-
-    $rawGrammar = implode("\n\n", $parts);
-    return "<pre>\n$rawGrammar\n</pre>";
+    return Grammar\render_grammar($defs, $names, '19-grammar.md');
 }

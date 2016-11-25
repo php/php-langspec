@@ -28,12 +28,10 @@ interface-base-clause:
 -->
 
 <pre>
-<a name="grammar-interface-declaration">
-<i>interface-declaration:</i>
+<a name="grammar-interface-declaration"><i>interface-declaration:</i>
    interface   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   <i><a href="#grammar-interface-base-clause">interface-base-clause</a></i><sub>opt</sub>   {   <i><a href="#grammar-interface-member-declarations">interface-member-declarations</a></i><sub>opt</sub>   }
 
-<a name="grammar-interface-base-clause">
-<i>interface-base-clause:</i>
+<a name="grammar-interface-base-clause"><i>interface-base-clause:</i>
    extends   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
    <i><a href="#grammar-interface-base-clause">interface-base-clause</a></i>   ,   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
 </pre>
@@ -99,13 +97,11 @@ interface-member-declaration:
 -->
 
 <pre>
-<a name="grammar-interface-member-declarations">
-<i>interface-member-declarations:</i>
+<a name="grammar-interface-member-declarations"><i>interface-member-declarations:</i>
    <i><a href="#grammar-interface-member-declaration">interface-member-declaration</a></i>
    <i><a href="#grammar-interface-member-declarations">interface-member-declarations</a></i>   <i><a href="#grammar-interface-member-declaration">interface-member-declaration</a></i>
 
-<a name="grammar-interface-member-declaration">
-<i>interface-member-declaration:</i>
+<a name="grammar-interface-member-declaration"><i>interface-member-declaration:</i>
    <i><a href="14-classes.md#grammar-class-const-declaration">class-const-declaration</a></i>
    <i><a href="14-classes.md#grammar-method-declaration">method-declaration</a></i>
 </pre>

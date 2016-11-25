@@ -83,7 +83,7 @@ class Definition {
     public function render($ctx) {
         $sep = $this->isLexical ? '::' : ':';
         $oneOf = $this->isOneOf ? ' one of' : '';
-        $result = "<a name=\"grammar-$this->name\">\n<i>$this->name$sep$oneOf</i>";
+        $result = "<a name=\"grammar-$this->name\"><i>$this->name$sep$oneOf</i>";
         foreach ($this->rules as $rule) {
             $result .= "\n   " . $rule->render($ctx);
         }

@@ -139,24 +139,20 @@ str-number::
 -->
 
 <pre>
-<a name="grammar-str-numeric">
-<i>str-numeric::</i>
+<a name="grammar-str-numeric"><i>str-numeric::</i>
    <i><a href="#grammar-str-whitespace">str-whitespace</a></i><sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-sign">sign</a></i><sub>opt</sub>   <i><a href="#grammar-str-number">str-number</a></i>
 
-<a name="grammar-str-whitespace">
-<i>str-whitespace::</i>
+<a name="grammar-str-whitespace"><i>str-whitespace::</i>
    <i><a href="#grammar-str-whitespace">str-whitespace</a></i><sub>opt</sub>   <i><a href="#grammar-str-whitespace-char">str-whitespace-char</a></i>
 
-<a name="grammar-str-whitespace-char">
-<i>str-whitespace-char::</i>
+<a name="grammar-str-whitespace-char"><i>str-whitespace-char::</i>
    <i><a href="09-lexical-structure.md#grammar-new-line">new-line</a></i>
    Space character (U+0020)
    Horizontal-tab character (U+0009)
    Vertical-tab character (U+000B)
    Form-feed character (U+000C)
 
-<a name="grammar-str-number">
-<i>str-number::</i>
+<a name="grammar-str-number"><i>str-number::</i>
    <i><a href="09-lexical-structure.md#grammar-digit-sequence">digit-sequence</a></i>
    <i><a href="09-lexical-structure.md#grammar-floating-literal">floating-literal</a></i>
 </pre>

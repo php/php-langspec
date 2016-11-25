@@ -93,58 +93,47 @@ default-argument-specifier:
 -->
 
 <pre>
-<a name="grammar-function-definition">
-<i>function-definition:</i>
+<a name="grammar-function-definition"><i>function-definition:</i>
    <i><a href="#grammar-function-definition-header">function-definition-header</a></i>   <i><a href="11-statements.md#grammar-compound-statement">compound-statement</a></i>
 
-<a name="grammar-function-definition-header">
-<i>function-definition-header:</i>
+<a name="grammar-function-definition-header"><i>function-definition-header:</i>
    function   &amp;<sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   (   <i><a href="#grammar-parameter-declaration-list">parameter-declaration-list</a></i><sub>opt</sub>   )   <i><a href="#grammar-return-type">return-type</a></i><sub>opt</sub>
 
-<a name="grammar-parameter-declaration-list">
-<i>parameter-declaration-list:</i>
+<a name="grammar-parameter-declaration-list"><i>parameter-declaration-list:</i>
    <i><a href="#grammar-simple-parameter-declaration-list">simple-parameter-declaration-list</a></i>
    <i><a href="#grammar-variadic-declaration-list">variadic-declaration-list</a></i>
 
-<a name="grammar-simple-parameter-declaration-list">
-<i>simple-parameter-declaration-list:</i>
+<a name="grammar-simple-parameter-declaration-list"><i>simple-parameter-declaration-list:</i>
    <i><a href="#grammar-parameter-declaration">parameter-declaration</a></i>
    <i><a href="#grammar-parameter-declaration-list">parameter-declaration-list</a></i>   ,   <i><a href="#grammar-parameter-declaration">parameter-declaration</a></i>
 
-<a name="grammar-variadic-declaration-list">
-<i>variadic-declaration-list:</i>
+<a name="grammar-variadic-declaration-list"><i>variadic-declaration-list:</i>
    <i><a href="#grammar-simple-parameter-declaration-list">simple-parameter-declaration-list</a></i>   ,   <i><a href="#grammar-variadic-parameter">variadic-parameter</a></i>
    <i><a href="#grammar-variadic-parameter">variadic-parameter</a></i>
 
-<a name="grammar-parameter-declaration">
-<i>parameter-declaration:</i>
+<a name="grammar-parameter-declaration"><i>parameter-declaration:</i>
    <i><a href="#grammar-type-declaration">type-declaration</a></i><sub>opt</sub>   &amp;<sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>   <i><a href="#grammar-default-argument-specifier">default-argument-specifier</a></i><sub>opt</sub>
 
-<a name="grammar-variadic-parameter">
-<i>variadic-parameter:</i>
+<a name="grammar-variadic-parameter"><i>variadic-parameter:</i>
    <i><a href="#grammar-type-declaration">type-declaration</a></i><sub>opt</sub>   &amp;<sub>opt</sub>   ...   <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>
 
-<a name="grammar-return-type">
-<i>return-type:</i>
+<a name="grammar-return-type"><i>return-type:</i>
    :   <i><a href="#grammar-type-declaration">type-declaration</a></i>
    :   void
 
-<a name="grammar-type-declaration">
-<i>type-declaration:</i>
+<a name="grammar-type-declaration"><i>type-declaration:</i>
    array
    callable
    <i><a href="#grammar-scalar-type">scalar-type</a></i>
    <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
 
-<a name="grammar-scalar-type">
-<i>scalar-type:</i>
+<a name="grammar-scalar-type"><i>scalar-type:</i>
    bool
    float
    int
    string
 
-<a name="grammar-default-argument-specifier">
-<i>default-argument-specifier:</i>
+<a name="grammar-default-argument-specifier"><i>default-argument-specifier:</i>
    =   <i><a href="10-expressions.md#grammar-constant-expression">constant-expression</a></i>
 </pre>
 

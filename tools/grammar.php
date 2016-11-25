@@ -23,13 +23,8 @@ $output .= extract_grammar($lexical);
 
 $output .= "\n\n##Syntactic Grammar";
 
-foreach (spec_files() as $fileName => $path) {
-    if ($fileName === '05-types.md'
-            || $fileName === '09-lexical-structure.md'
-            || $fileName === '19-grammar.md') {
-        continue;
-    }
-
+$skipFiles = ['05-types.md', '09-lexical-structure.md', '19-grammar.md'];
+foreach (spec_files($skipFiles) as $fileName => $path) {
     $code = file_get_contents($path);
     $grammar = extract_grammar($code);
     if (null === $grammar) {

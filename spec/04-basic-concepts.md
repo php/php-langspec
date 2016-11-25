@@ -23,22 +23,27 @@ text:
 -->
 
 <pre>
-  <i>script:</i>
-    <i>script-section</i>
-    <i>script   script-section</i>
+<a name="grammar-script">
+<i>script:</i>
+   <i><a href="#grammar-script-section">script-section</a></i>
+   <i><a href="#grammar-script">script</a></i>   <i><a href="#grammar-script-section">script-section</a></i>
 
-  <i>script-section:</i>
-    <i> text<sub>opt</sub></i> <i>start-tag</i> <i>statement-list<sub>opt</sub></i> <i>end-tag</i><sub>opt</sub> <i>text<sub>opt</sub></i>
+<a name="grammar-script-section">
+<i>script-section:</i>
+   <i><a href="#grammar-text">text</a></i><sub>opt</sub>   <i><a href="#grammar-start-tag">start-tag</a></i>   <i><a href="11-statements.md#grammar-statement-list">statement-list</a></i><sub>opt</sub>   <i><a href="#grammar-end-tag">end-tag</a></i><sub>opt</sub>   <i><a href="#grammar-text">text</a></i><sub>opt</sub>
 
-  <i>start-tag:</i>
-    &lt;?php
-    &lt;?=
+<a name="grammar-start-tag">
+<i>start-tag:</i>
+   &lt;?php
+   &lt;?=
 
-  <i>end-tag:</i>
-    ?&gt;
+<a name="grammar-end-tag">
+<i>end-tag:</i>
+   ?&gt;
 
-  <i>text:</i>
-    arbitrary text not containing any of <i>start-tag</i> sequences
+<a name="grammar-text">
+<i>text:</i>
+   arbitrary text not containing any of   <i><a href="#grammar-start-tag">start-tag</a></i>   sequences
 </pre>
 
 All of the sections in a script are treated as though they belonged to

@@ -18,6 +18,15 @@ inherits all members from its *base interface(s)*.
 
 **Syntax**
 
+<!-- GRAMMAR
+interface-declaration:
+  'interface' name interface-base-clause? { interface-member-declarations? '}'
+
+interface-base-clause:
+  'extends' qualified-name
+  interface-base-clause , qualified-name
+-->
+
 <pre>
   <i>interface-declaration:</i>
     interface   <i>name   interface-base-clause<sub>opt</sub></i> {  <i>interface-member-declarations<sub>opt</sub></i>  }
@@ -81,6 +90,16 @@ processCollection(new MyQueue(...));
 ##Interface Members
 
 **Syntax**
+
+<!-- GRAMMAR
+interface-member-declarations:
+  interface-member-declaration
+  interface-member-declarations interface-member-declaration
+
+interface-member-declaration:
+  class-const-declaration
+  method-declaration
+-->
 
 <pre>
   <i>interface-member-declarations:</i>

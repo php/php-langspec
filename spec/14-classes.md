@@ -58,6 +58,22 @@ While PHP supports *anonymous class types*, such a type cannot be declared using
 
 **Syntax**
 
+<!-- GRAMMAR
+class-declaration:
+  class-modifier? class name class-base-clause? class-interface-clause? { class-member-declarations?</i> '}'
+
+class-modifier:
+  'abstract'
+  'final'
+
+class-base-clause:
+  'extends' qualified-name
+
+class-interface-clause:
+  'implements' qualified-name
+  class-interface-clause , qualified-name
+-->
+
 <pre>
   <i>class-declaration:</i>
     <i>class-modifier<sub>opt</sub></i>  class  <i>name   class-base-clause<sub>opt</sub>  class-interface-clause<sub>opt</sub></i>   {   class-member-declarations<sub>opt</sub></i> }
@@ -196,6 +212,20 @@ class MyList implements MyCollection
 ##Class Members
 
 **Syntax**
+
+<!-- GRAMMAR
+class-member-declarations:
+  class-member-declaration
+  class-member-declarations class-member-declaration
+
+ class-member-declaration:
+   class-const-declaration
+   property-declaration
+   method-declaration
+   constructor-declaration
+   destructor-declaration
+   trait-use-clause
+-->
 
 <pre>
   <i>class-member-declarations:</i>
@@ -386,6 +416,21 @@ Widget::__callStatic('sMethod', array(NULL, 1.234))
 
 **Syntax**
 
+<!-- GRAMMAR
+const-declaration:
+  'const' const-elements ';'
+
+class-const-declaration:
+  visibility-modifier? const const-elements ';'
+
+const-elements:
+  const-element
+  const-elements const-element
+
+const-element:
+  name = constant-expression
+-->
+
 <pre>
   <i>const-declaration:</i>
     const   <i>const-elements</i>   ;
@@ -446,6 +491,34 @@ $col = Automobile::DEFAULT_COLOR;
 ##Properties
 
 **Syntax**
+
+<!-- GRAMMAR
+property-declaration:
+  property-modifier property-elements ';'
+
+property-modifier:
+  'var'
+  visibility-modifier static-modifier?
+  static-modifier visibility-modifier?
+
+visibility-modifier:
+  'public'
+  'protected'
+  'private'
+
+static-modifier:
+  'static'
+
+property-elements:
+  property-element
+  property-elements property-element
+
+property-element:
+  variable-name property-initializer? ';'
+
+property-initializer:
+  '=' constant-expression
+-->
 
 <pre>
   <i>property-declaration:</i>
@@ -511,6 +584,21 @@ class Point
 
 **Syntax**
 
+<!-- GRAMMAR
+method-declaration:
+  method-modifiers? function-definition
+  method-modifiers function-definition-header ';'
+
+method-modifiers:
+  method-modifier
+  method-modifiers method-modifier
+
+method-modifier:
+  visibility-modifier
+  static-modifier
+  class-modifier
+-->
+
 <pre>
   <i>method-declaration:</i>
     <i>method-modifiers<sub>opt</sub>   function-definition</i>
@@ -568,6 +656,11 @@ examples of abstract methods and their subsequent definitions.
 ##Constructors
 
 **Syntax**
+
+<!-- GRAMMAR
+constructor-declaration:
+  method-modifiers function &? __construct ( parameter-declaration-list? ) compound-statement
+-->
 
 <pre>
   <i>constructor-declaration:</i>
@@ -656,6 +749,11 @@ class MyRangeException extends Exception
 ##Destructors
 
 **Syntax**
+
+<!-- GRAMMAR
+destructor-declaration:
+  method-modifiers function &? __destruct ( ) compound-statement
+-->
 
 <pre>
   <i>destructor-declaration:</i>

@@ -47,6 +47,51 @@ A function is called via the function-call operator [`()`](10-expressions.md#fun
 
 **Syntax**
 
+<!-- GRAMMAR
+function-definition:
+  function-definition-header compound-statement
+
+function-definition-header:
+  'function' '&?' name ( parameter-declaration-list? ) return-type?
+
+parameter-declaration-list:
+  simple-parameter-declaration-list
+  variadic-declaration-list
+
+simple-parameter-declaration-list:
+  parameter-declaration
+  parameter-declaration-list , parameter-declaration
+
+variadic-declaration-list:
+  simple-parameter-declaration-list , variadic-parameter
+  variadic-parameter
+
+parameter-declaration:
+  type-declaration? &? variable-name default-argument-specifier?
+
+variadic-parameter:
+	type-declaration? &? ... variable-name
+
+return-type:
+  ':' type-declaration
+  ':' 'void'
+
+type-declaration:
+  'array'
+  'callable'
+  scalar-type
+  qualified-name
+
+scalar-type:
+  'bool'
+  'float'
+  'int'
+  'string'
+
+default-argument-specifier:
+  '=' constant-expression
+-->
+
 <pre>
   <i>function-definition:</i>
     <i>function-definition-header   compound-statement</i>

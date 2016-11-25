@@ -266,6 +266,21 @@ $b = &colors[100];      // a VSlot for $b is created which points to the array
 
 **Syntax**
 
+<!-- GRAMMAR
+function-static-declaration:
+  'static' static-variable-name-list ';'
+
+static-variable-name-list:
+  static-variable-declaration
+  static-variable-name-list , static-variable-declaration
+
+static-variable-declaration:
+  variable-name function-static-initializer?
+
+function-static-initializer:
+  '=' constant-expression
+-->
+
 <pre>
   <i>function-static-declaration:</i>
     static <i>static-variable-name-list</i>  ;
@@ -349,6 +364,15 @@ echo "\$fs = $fs\n";    // $fs = 3
 ###Global Variables
 
 **Syntax**
+
+<!-- GRAMMAR
+global-declaration:
+  'global' variable-name-list ';'
+
+variable-name-list:
+  simple-variable
+  variable-name-list , simple-variable
+-->
 
 <pre>
   <i>global-declaration:</i>

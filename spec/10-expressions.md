@@ -89,6 +89,18 @@ function, `$a` need not actually be incremented.
 
 **Syntax**
 
+<!-- GRAMMAR
+primary-expression:
+  variable
+  class-constant-access-expression
+  constant-access-expression
+  literal
+  array-creation-expression
+  intrinsic
+  anonymous-function-creation-expression
+  '(' expression ')'
+-->
+
 <pre>
   <i>primary-expression:</i>
     <i>variable</i>
@@ -120,6 +132,13 @@ the un-parenthesized expression.
 ###Simple Variable
 
 **Syntax**
+
+<!-- GRAMMAR
+simple-variable:
+  variable-name
+  '$' simple-variable
+  '$' '{' expression '}'
+-->
 
 <pre>
   <i>simple-variable:</i>
@@ -177,6 +196,20 @@ ${1 + f1()} = 1000;   // equivalent to ${3.5} = 1000
 
 **Syntax**
 
+<!-- GRAMMAR
+dereferencable-expression:
+  variable
+  '(' expression ')'
+  array-creation-expression
+  string-literal
+
+callable-expression:
+  callable-variable
+  '(' expression ')'
+  array-creation-expression
+  string-literal
+-->
+
 <pre>
   <i>dereferencable-expression:</i>
     <i>variable</i>
@@ -214,6 +247,20 @@ call operator](#function-call-operator).
 
 **Syntax**
 
+<!-- GRAMMAR
+callable-variable:
+  simple-variable
+  subscript-expression
+  member-call-expression
+  scoped-call-expression
+  function-call-expression
+
+variable:
+  callable-variable
+  scoped-property-access-expression
+  member-access-expression
+-->
+
 <pre>
   <i>callable-variable:</i>
     <i>simple-variable</i>
@@ -246,6 +293,11 @@ An expression that is not a *variable* can never act as an lvalue.
 
 ###Constant Access Expression
 
+<!-- GRAMMAR
+constant-access-expression:
+  qualified-name
+-->
+
 <pre>
   <i>constant-access-expression:</i>
     <i>qualified-name</i>
@@ -263,6 +315,13 @@ with name *qualified-name*.
 ###Literals
 
 **Syntax**
+
+<!-- GRAMMAR
+literal:
+  integer-literal
+  floating-literal
+  string-literal
+-->
 
 <pre>
   <i>literal:</i>
@@ -287,6 +346,24 @@ A literal evaluates to its value, as specified in the lexical specification for
 ####General
 
 **Syntax**
+<!-- GRAMMAR
+intrinsic:
+  intrinsic-construct
+  intrinsic-operator
+
+intrinsic-construct:
+  echo-intrinsic
+  list-intrinsic
+  unset-intrinsic
+
+intrinsic-operator:
+  empty-intrinsic
+  eval-intrinsic
+  exit-intrinsic
+  isset-intrinsic
+  print-intrinsic
+-->
+
 <pre>
   <i>intrinsic:</i>
     <i>intrinsic-construct</i>
@@ -330,6 +407,15 @@ other values or expressions could be used.
 ####echo
 
 **Syntax**
+
+<!-- GRAMMAR
+echo-intrinsic:
+  'echo' expression-list
+
+expression-list:
+  expression
+  expression-list , expression
+-->
 
 <pre>
   <i>echo-intrinsic:</i>
@@ -376,6 +462,11 @@ echo "$v3\n";
 
 **Syntax**
 
+<!-- GRAMMAR
+empty-intrinsic:
+  'empty' '(' expression ')'
+-->
+
 <pre>
   <i>empty-intrinsic:</i>
     empty ( <i>expression</i>  )
@@ -414,6 +505,11 @@ empty($v);   // results in FALSE
 ####eval
 
 **Syntax**
+
+<!-- GRAMMAR
+eval-intrinsic:
+  'eval' '(' expression ')'
+-->
 
 <pre>
   <i>eval-intrinsic:</i>
@@ -456,6 +552,14 @@ eval("echo \$str . \"\\n\";");  // → echo $str . "\n"; → prints Hello
 ####exit/die
 
 **Syntax**
+
+<!-- GRAMMAR
+exit-intrinsic:
+  'exit'
+  'exit' '(' expression? ')'
+  'die'
+  'die' '(' expression? ')'
+-->
 
 <pre>
   <i>exit-intrinsic:</i>
@@ -505,6 +609,15 @@ exit;
 
 **Syntax**
 
+<!-- GRAMMAR
+isset-intrinsic:
+  'isset' '(' variable-list ')'
+
+variable-list:
+  variable
+  variable-list , variable
+-->
+
 <pre>
   <i>isset-intrinsic:</i>
     isset  (  <i>variable-list</i>  )
@@ -545,6 +658,28 @@ isset($v1, $v2, $v3);  // results in FALSE
 ####list
 
 **Syntax**
+
+<!-- GRAMMAR
+list-intrinsic:
+  'list' '(' list-expression-list ')'
+
+list-expression-list:
+  unkeyed-list-expression-list
+  keyed-list-expression-list ',?'
+
+unkeyed-list-expression-list:
+  list-or-variable
+  ','
+  unkeyed-list-expression-list , list-or-variable?
+
+keyed-list-expression-list:
+  expression => list-or-variable
+  keyed-list-expression-list , expression => list-or-variable
+
+list-or-variable:
+  list-intrinsic
+  expression
+-->
 
 <pre>
   <i>list-intrinsic:</i>
@@ -660,6 +795,11 @@ list(0 => list($x1, $x2), 1 => list($x2, $y2)) = [[1, 2], [3, 4]];
 
 **Syntax**
 
+<!-- GRAMMAR
+print-intrinsic:
+  'print' expression
+-->
+
 <pre>
   <i>print-intrinsic:</i>
     print  <i>expression</i>
@@ -700,6 +840,11 @@ $a > $b ? print "..." : print "...";
 ####unset
 
 **Syntax**
+
+<!-- GRAMMAR
+unset-intrinsic:
+  'unset' '(' variable-list ')'
+-->
 
 <pre>
   <i>unset-intrinsic:</i>
@@ -751,6 +896,19 @@ unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
 ###Anonymous Function Creation
 
 **Syntax**
+
+<!-- GRAMMAR
+anonymous-function-creation-expression:
+'static?' 'function' '&?' '(' parameter-declaration-list? ) return-type? anonymous-function-use-clause?
+    compound-statement
+
+anonymous-function-use-clause:
+  'use' '(' use-variable-name-list ')'
+
+use-variable-name-list:
+  '&?' variable-name
+  use-variable-name-list , &? variable-name
+-->
 
 <pre>
   <i>anonymous-function-creation-expression:</i>
@@ -837,6 +995,16 @@ class C
 
 **Syntax**
 
+<!-- GRAMMAR
+postfix-expression:
+  primary-expression
+  clone-expression
+  object-creation-expression
+  postfix-increment-expression
+  postfix-decrement-expression
+  exponentiation-expression
+-->
+
 <pre>
   <i>postfix-expression:</i>
     <i>primary-expression</i>
@@ -863,6 +1031,11 @@ These operators associate left-to-right.
 ###The `clone` Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+clone-expression:
+  'clone' expression
+-->
 
 <pre>
   <i>clone-expression:</i>
@@ -917,6 +1090,21 @@ $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
 ###The `new` Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+object-creation-expression:
+  'new' class-type-designator ( argument-expression-list? ')'
+  'new' class-type-designator
+  'new' 'class' '(' argument-expression-list? ')'
+      class-base-clause? class-interface-clause?
+      '{' '<iclass-member-declarations?</i>' '}'
+  'new' 'class' class-base-clause? class-interface-clause?
+      '{' class-member-declarations? '}'
+
+class-type-designator:
+  qualified-name
+  expression
+-->
 
 <pre>
   <i>object-creation-expression:</i>
@@ -1009,6 +1197,29 @@ $v2 = new class (100) extends C1 implements I1, I2 {
 ###Array Creation Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+array-creation-expression:
+  'array' '(' array-initializer? ')'
+  '[' array-initializer? ']'
+
+array-initializer:
+  array-initializer-list ',?'
+
+array-initializer-list:
+  array-element-initializer
+  array-element-initializer , array-initializer-list
+
+array-element-initializer:
+  '&?' element-value
+  element-key => &? element-value
+
+element-key:
+  expression
+
+element-value:
+  expression
+-->
 
 <pre>
   <i>array-creation-expression:</i>
@@ -1103,6 +1314,12 @@ for ($i = -1; $i <= 2; ++$i) { echo $v[$i]; } // retrieves via keys -1, 0, 1, 2
 ###Subscript Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+subscript-expression:
+  dereferencable-expression [ expression? ']'
+  dereferencable-expression { expression '}' '<b>[Deprecated' 'form]</b>'
+-->
 
 <pre>
   <i>subscript-expression:</i>
@@ -1268,6 +1485,23 @@ $x = $vect1[1];   // calls Vector::offsetGet(1)
 
 **Syntax**
 
+<!-- GRAMMAR
+function-call-expression:
+  qualified-name ( argument-expression-list? ')'
+  callable-expression ( argument-expression-list? ')'
+
+argument-expression-list:
+  argument-expression
+  argument-expression-list , argument-expression
+
+argument-expression:
+  variadic-unpacking
+  assignment-expression
+
+variadic-unpacking:
+  '...' assignment-expression
+-->
+
 <pre>
   <i>function-call-expression:</i>
     <i>qualified-name</i>  (  <i>argument-expression-list<sub>opt</sub></i>  )
@@ -1392,6 +1626,16 @@ $anon();  // call the anonymous function encapsulated by that object
 
 **Syntax**
 
+<!-- GRAMMAR
+member-access-expression:
+  dereferencable-expression -> member-name
+
+member-name:
+  name
+  simple-variable
+  '{' expression '}'
+-->
+
 <pre>
   <i>member-access-expression:</i>
     <i>dereferencable-expression</i>   ->   <i>member-name</i>
@@ -1472,6 +1716,11 @@ $c = $p1->color;  // turned into $c = $p1->__get("color");
 
 **Syntax**
 
+<!-- GRAMMAR
+member-call-expression:
+  dereferencable-expression -> member-name ( argument-expression-list? ')'
+-->
+
 <pre>
   <i>member-call-expression:</i>
     <i>dereferencable-expression</i>   ->   <i>member-name</i>   (   <i>argument-expression-list<sub>opt</sub></i>   )
@@ -1513,6 +1762,14 @@ See [member access examples](#member-access-operator).
 
 **Syntax**
 
+<!-- GRAMMAR
+postfix-increment-expression:
+  variable '++'
+
+postfix-decrement-expression:
+  variable '--'
+-->
+
 <pre>
   <i>postfix-increment-expression:</i>
     <i>variable</i>  ++
@@ -1546,6 +1803,27 @@ $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 ###Scope-Resolution Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+scoped-property-access-expression:
+  scope-resolution-qualifier :: simple-variable
+
+scoped-call-expression:
+  scope-resolution-qualifier :: member-name ( argument-expression-list? ')'
+
+class-constant-access-expression:
+  scope-resolution-qualifier :: name
+
+scope-resolution-qualifier:
+  relative-scope
+  qualified-name
+  dereferencable-expression
+
+relative-scope:
+  'self'
+  'parent'
+  'static'
+-->
 
 <pre>
   <i>scoped-property-access-expression:</i>
@@ -1673,6 +1951,11 @@ class Point
 
 **Syntax**
 
+<!-- GRAMMAR
+exponentiation-expression:
+  expression ** expression
+-->
+
 <pre>
   <i>exponentiation-expression:</i>
     <i>expression</i>  **  <i>expression</i>
@@ -1709,6 +1992,17 @@ for each.  **Examples**
 
 **Syntax**
 
+<!-- GRAMMAR
+unary-expression:
+  postfix-expression
+  prefix-increment-expression
+  prefix-decrement-expression
+  unary-op-expression
+  error-control-expression
+  shell-command-expression
+  cast-expression
+-->
+
 <pre>
   <i>unary-expression:</i>
     <i>postfix-expression</i>
@@ -1737,6 +2031,14 @@ These operators associate right-to-left.
 ###Prefix Increment and Decrement Operators
 
 **Syntax**
+
+<!-- GRAMMAR
+prefix-increment-expression:
+  '++' variable
+
+prefix-decrement-expression:
+  '--' variable
+-->
 
 <pre>
   <i>prefix-increment-expression:</i>
@@ -1848,6 +2150,14 @@ $a = "^^Z^^"; ++$a; // $a is now "^^Z^^"
 
 **Syntax**
 
+<!-- GRAMMAR
+unary-op-expression:
+  unary-operator cast-expression
+
+unary-operator: one of
+  '+' '-' '!' '~'
+-->
+
 <pre>
   <i>unary-op-expression:</i>
     <i>unary-operator cast-expression</i>
@@ -1939,6 +2249,11 @@ $s = "\x86\x97"; $s = ~$s; // $s is "yh"
 
 **Syntax**
 
+<!-- GRAMMAR
+error-control-expression:
+  '@' expression
+-->
+
 <pre>
   <i>error-control-expression:</i>
     @   <i>expression</i>
@@ -1995,6 +2310,11 @@ $x = $tmp;
 
 **Syntax**
 
+<!-- GRAMMAR
+shell-command-expression:
+  '`' dq-char-sequence? '`'
+-->
+
 <pre>
   <i>shell-command-expression:</i>
     `  <i>dq-char-sequence<sub>opt</sub></i>  `
@@ -2031,6 +2351,16 @@ $result = `$d {$f}`;      // result is the output of command dir *.*
 ###Cast Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+cast-expression:
+  unary-expression
+  '(' cast-type ) expression
+
+cast-type: one of
+  'array' 'binary' 'bool' 'boolean' 'double' 'int' 'integer' 'float' 'object'
+  'real' 'string' 'unset'
+-->
 
 <pre>
   <i>cast-expression:</i>
@@ -2086,6 +2416,19 @@ A *cast-type* of `unset` always results in a value of `NULL`. (This use of
 ##`instanceof` Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+instanceof-expression:
+  unary-expression
+  instanceof-subject instanceof instanceof-type-designator
+
+instanceof-subject:
+  expression
+
+instanceof-type-designator:
+  qualified-name
+  expression
+-->
 
 <pre>
   <i>instanceof-expression:</i>
@@ -2155,6 +2498,14 @@ var_dump($e2 instanceof $e1);      // TRUE
 ##Multiplicative Operators
 
 **Syntax**
+
+<!-- GRAMMAR
+multiplicative-expression:
+  instanceof-expression
+  multiplicative-expression * instanceof-expression
+  multiplicative-expression / instanceof-expression
+  multiplicative-expression % instanceof-expression
+-->
 
 <pre>
   <i>multiplicative-expression:</i>
@@ -2226,6 +2577,14 @@ These operators associate left-to-right.
 ##Additive Operators
 
 **Syntax**
+
+<!-- GRAMMAR
+additive-expression:
+  multiplicative-expression
+  additive-expression + multiplicative-expression
+  additive-expression - multiplicative-expression
+  additive-expression . multiplicative-expression
+-->
 
 <pre>
   <i>additive-expression:</i>
@@ -2301,6 +2660,13 @@ TRUE . NULL;      // string with value "1"
 
 **Syntax**
 
+<!-- GRAMMAR
+shift-expression:
+  additive-expression
+  shift-expression << additive-expression
+  shift-expression >> additive-expression
+-->
+
 <pre>
   <i>shift-expression:</i>
     <i>additive-expression</i>
@@ -2360,6 +2726,16 @@ These operators associate left-to-right.
 ##Relational Operators
 
 **Syntax**
+
+<!-- GRAMMAR
+relational-expression:
+  shift-expression
+  relational-expression < shift-expression
+  relational-expression > shift-expression
+  relational-expression <= shift-expression
+  relational-expression >= shift-expression
+  relational-expression <=> shift-expression
+-->
 
 <pre>
   <i>relational-expression:</i>
@@ -2491,6 +2867,16 @@ function order_func($a, $b) {
 
 **Syntax**
 
+<!-- GRAMMAR
+equality-expression:
+  relational-expression
+  equality-expression == relational-expression
+  equality-expression != relational-expression
+  equality-expression <> relational-expression
+  equality-expression === relational-expression
+  equality-expression !== relational-expression
+-->
+
 <pre>
   <i>equality-expression:</i>
     <i>relational-expression</i>
@@ -2549,6 +2935,12 @@ TRUE !== 100  // result has value TRUE
 
 **Syntax**
 
+<!-- GRAMMAR
+bitwise-AND-expression:
+  equality-expression
+  bitwise-AND-expression & equality-expression
+-->
+
 <pre>
   <i>bitwise-AND-expression:</i>
     <i>equality-expression</i>
@@ -2593,6 +2985,12 @@ $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
 ##Bitwise Exclusive OR Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+bitwise-exc-OR-expression:
+  bitwise-AND-expression
+  bitwise-exc-OR-expression ^ bitwise-AND-expression
+-->
 
 <pre>
   <i>bitwise-exc-OR-expression:</i>
@@ -2641,6 +3039,12 @@ $v1 = $v1 ^ $v2;    // $v1 is now -987, and $v2 is now 1234
 
 **Syntax**
 
+<!-- GRAMMAR
+bitwise-inc-OR-expression:
+  bitwise-exc-OR-expression
+  bitwise-inc-OR-expression | bitwise-exc-OR-expression
+-->
+
 <pre>
   <i>bitwise-inc-OR-expression:</i>
     <i>bitwise-exc-OR-expression</i>
@@ -2686,6 +3090,12 @@ $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
 
 **Syntax**
 
+<!-- GRAMMAR
+logical-AND-expression-1:
+  bitwise-inc-OR-expression
+  logical-AND-expression-1 && bitwise-inc-OR-expression
+-->
+
 <pre>
   <i>logical-AND-expression-1:</i>
     <i>bitwise-inc-OR-expression</i>
@@ -2715,6 +3125,12 @@ if ($month > 1 && $month <= 12) ...
 
 **Syntax**
 
+<!-- GRAMMAR
+logical-inc-OR-expression-1:
+  logical-AND-expression-1
+  logical-inc-OR-expression-1 || logical-AND-expression-1
+-->
+
 <pre>
   <i>logical-inc-OR-expression-1:</i>
     <i>logical-AND-expression-1</i>
@@ -2740,6 +3156,12 @@ if ($month < 1 || $month > 12) ...
 ##Conditional Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+conditional-expression:
+  logical-inc-OR-expression-1
+  logical-inc-OR-expression-1 ? expression? : conditional-expression
+-->
 
 <pre>
   <i>conditional-expression:</i>
@@ -2786,6 +3208,11 @@ function factorial($int)
 ##Coalesce Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+coalesce-expression:
+  logical-inc-OR-expression-1 ?? expression
+-->
 
 <pre>
   <i>coalesce-expression:</i>
@@ -2837,6 +3264,15 @@ var_dump(true ?? foo()); // outputs bool(true), "executed!" does not appear as i
 
 **Syntax**
 
+<!-- GRAMMAR
+assignment-expression:
+  conditional-expression
+  coalesce-expression
+  simple-assignment-expression
+  byref-assignment-expression
+  compound-assignment-expression
+-->
+
 <pre>
   <i>assignment-expression:</i>
     <i>conditional-expression</i>
@@ -2866,6 +3302,12 @@ These operators associate right-to-left.
 ###Simple Assignment
 
 **Syntax**
+
+<!-- GRAMMAR
+simple-assignment-expression:
+  variable = assignment-expression
+  list-intrinsic = assignment-expression
+-->
 
 <pre>
   <i>simple-assignment-expression:</i>
@@ -2937,6 +3379,11 @@ $a = new C; // make $a point to the allocated object
 
 **Syntax**
 
+<!-- GRAMMAR
+byref-assignment-expression:
+  variable = & assignment-expression
+-->
+
 <pre>
   <i>byref-assignment-expression:</i>
     <i>variable</i>  =  &  <i>assignment-expression</i>
@@ -2979,6 +3426,14 @@ $b =& g2();     // make $b an alias to "xxx"
 
 **Syntax**
 
+<!-- GRAMMAR
+compound-assignment-expression:
+  variable compound-assignment-operator assignment-expression
+
+compound-assignment-operator: one of
+  '**=' '*=' '/=' '%=' '+=' '-=' '.=' '<<=' '>>=' '&=' '^=' '|='
+-->
+
 <pre>
   <i>compound-assignment-expression:</i>
     <i>variable   compound-assignment-operator   assignment-expression</i>
@@ -3017,6 +3472,12 @@ $a[$i++] += 50; // $a[1] = 250, $i → 2
 
 **Syntax**
 
+<!-- GRAMMAR
+logical-AND-expression-2:
+  assignment-expression
+  logical-AND-expression-2 and assignment-expression
+-->
+
 <pre>
   <i>logical-AND-expression-2:</i>
     <i>assignment-expression</i>
@@ -3035,6 +3496,12 @@ same semantics as [operator `&&`](#logical-and-operator-form-1).
 ##Logical Exclusive OR Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+logical-exc-OR-expression:
+  logical-AND-expression-2
+  logical-exc-OR-expression xor logical-AND-expression-2
+-->
 
 <pre>
   <i>logical-exc-OR-expression:</i>
@@ -3068,6 +3535,12 @@ f($i++) xor g($i) // the sequence point makes this well-defined
 
 **Syntax**
 
+<!-- GRAMMAR
+logical-inc-OR-expression-2:
+  logical-exc-OR-expression
+  logical-inc-OR-expression-2 or logical-exc-OR-expression
+-->
+
 <pre>
   <i>logical-inc-OR-expression-2:</i>
     <i>logical-exc-OR-expression</i>
@@ -3086,6 +3559,13 @@ same semantics as [operator `||`](#logical-inclusive-or-operator-form-1).
 ## `yield` Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+yield-expression:
+  logical-inc-OR-expression-2
+  'yield' array-element-initializer
+  'yield' 'from' expression
+-->
 
 <pre>
   <i>yield-expression:</i>
@@ -3215,6 +3695,15 @@ foreach ($g as $yielded) {
 ###General
 
 **Syntax**
+
+<!-- GRAMMAR
+expression:
+  yield-expression
+  include-expression
+  include-once-expression
+  require-expression
+  require-once-expression
+-->
 
 <pre>
   <i>expression:</i>
@@ -3390,6 +3879,11 @@ echo $x;                  // hello
 
 **Syntax**
 
+<!-- GRAMMAR
+include-expression:
+  'include' expression
+-->
+
 <pre>
   <i>include-expression:</i>
     include   <i>expression</i>
@@ -3441,6 +3935,11 @@ If ((include 'Positions.php') == 1) ...
 
 **Syntax**
 
+<!-- GRAMMAR
+include-once-expression:
+  'include_once' expression
+-->
+
 <pre>
   <i>include-once-expression:</i>
     include_once   <i>expression</i>
@@ -3488,6 +3987,11 @@ $c1 = new Circle(9, 7, 2.4);
 
 **Syntax**
 
+<!-- GRAMMAR
+require-expression:
+  'require' expression
+-->
+
 <pre>
   <i>require-expression:</i>
     require   <i>expression</i>
@@ -3506,6 +4010,11 @@ produces a fatal error.
 ###The `require_once` Operator
 
 **Syntax**
+
+<!-- GRAMMAR
+require-once-expression:
+  'require_once' expression
+-->
 
 <pre>
   <i>require-once-expression:</i>
@@ -3532,6 +4041,11 @@ and relative path) still are considered the same file.
 ##Constant Expressions
 
 **Syntax**
+
+<!-- GRAMMAR
+constant-expression:
+  expression
+-->
 
 <pre>
   <i>constant-expression:</i>

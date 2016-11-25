@@ -42,6 +42,22 @@ that trait is used.
 
 **Syntax**
 
+<!-- GRAMMAR
+trait-declaration:
+  'trait' name { trait-member-declarations?</i> '}'
+
+trait-member-declarations:
+  trait-member-declaration
+  trait-member-declarations trait-member-declaration
+
+trait-member-declaration:
+  property-declaration
+  method-declaration
+  constructor-declaration
+  destructor-declaration
+  trait-use-clauses
+-->
+
 <pre>
   <i>trait-declaration:</i>
     trait   <i>name</i>   {   trait-member-declarations<sub>opt</sub></i>   }
@@ -105,6 +121,38 @@ trait T
 ##Trait Uses
 
 **Syntax**
+
+<!-- GRAMMAR
+trait-use-clauses:
+  trait-use-clause
+  trait-use-clauses trait-use-clause
+
+trait-use-clause:
+  'use' trait-name-list trait-use-specification
+
+trait-name-list:
+  qualified-name
+  trait-name-list , qualified-name
+
+trait-use-specification:
+  ';'
+  '{' trait-select-and-alias-clauses? '}'
+
+trait-select-and-alias-clauses:
+  trait-select-and-alias-clause
+  trait-select-and-alias-clauses trait-select-and-alias-clause
+
+trait-select-and-alias-clause:
+  trait-select-insteadof-clause ';'
+  trait-alias-as-clause ';'
+
+trait-select-insteadof-clause:
+  name insteadof name
+
+trait-alias-as-clause:
+  name as visibility-modifier? name
+  name as visibility-modifier name?
+-->
 
 <pre>
   <i>trait-use-clauses:</i>

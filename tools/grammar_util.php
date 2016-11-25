@@ -2,6 +2,17 @@
 
 namespace Grammar;
 
+function get_all_defs($code) {
+    if (!preg_match_all('/<!--\s*GRAMMAR(.*?)-->/s', $code, $matches)) {
+        return [];
+    }
+    $defs = [];
+    foreach ($matches[1] as $grammar) {
+        $defs = array_merge($defs, parse_grammar($grammar));
+    }
+    return $defs;
+}
+
 function parse_grammar($grammar) {
     $defTexts = explode("\n\n", trim($grammar));
     $defs = [];

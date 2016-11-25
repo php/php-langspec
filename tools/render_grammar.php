@@ -9,16 +9,12 @@ $skipFiles = ['19-grammar.md'];
 $names = [];
 foreach (spec_files($skipFiles) as $fileName => $path) {
     $code = file_get_contents($path);
-    if (preg_match_all('/<!--\s*GRAMMAR(.*?)-->/s', $code, $matches)) {
-        foreach ($matches[1] as $grammar) {
-            $defs = Grammar\parse_grammar($grammar);
-            foreach ($defs as $def) {
-                if (isset($names[$def->name])) {
-                    throw new Exception("Duplicate definition for $def->name");
-                }
-                $names[$def->name] = $fileName;
-            }
+    $defs = Grammar\get_all_defs($code);
+    foreach ($defs as $def) {
+        if (isset($names[$def->name])) {
+            throw new Exception("Duplicate definition for $def->name");
         }
+        $names[$def->name] = $fileName;
     }
 }
 

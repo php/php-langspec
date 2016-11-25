@@ -7,7 +7,7 @@ function parse_grammar($grammar) {
     $defs = [];
     foreach ($defTexts as $defText) {
         if (!preg_match('/^([a-zA-Z0-9-]+)(::?)(\s+one\s+of)?\n(.*?)$/s', $defText, $matches)) {
-            throw new Exception('Invalid definition');
+            throw new \Exception('Invalid definition');
         }
 
         $rules = array_map('Grammar\parse_rule', explode("\n", $matches[4]));
@@ -72,7 +72,7 @@ class Definition {
     public function render($ctx) {
         $sep = $this->isLexical ? '::' : ':';
         $oneOf = $this->isOneOf ? ' one of' : '';
-        $result = "<a name=\"grammar-$this->name\">\n<i>$this->name</i>$sep$oneOf";
+        $result = "<a name=\"grammar-$this->name\">\n<i>$this->name$sep$oneOf</i>";
         foreach ($this->rules as $rule) {
             $result .= "\n   " . $rule->render($ctx);
         }

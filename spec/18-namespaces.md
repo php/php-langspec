@@ -43,7 +43,7 @@ namespace-definition:
 -->
 
 <pre>
-<a name="grammar-namespace-definition"><i>namespace-definition:</i>
+<i id="grammar-namespace-definition">namespace-definition:</i>
    namespace   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   ;
    namespace   <i><a href="09-lexical-structure.md#grammar-name">name</a></i><sub>opt</sub>   <i><a href="11-statements.md#grammar-compound-statement">compound-statement</a></i>
 </pre>
@@ -155,37 +155,37 @@ namespace-use-group-clause-2:
 -->
 
 <pre>
-<a name="grammar-namespace-use-declaration"><i>namespace-use-declaration:</i>
+<i id="grammar-namespace-use-declaration">namespace-use-declaration:</i>
    use   <i><a href="#grammar-namespace-function-or-const">namespace-function-or-const</a></i><sub>opt</sub>   <i><a href="#grammar-namespace-use-clauses">namespace-use-clauses</a></i>   ;
    use   <i><a href="#grammar-namespace-function-or-const">namespace-function-or-const</a></i>   \<sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-namespace-name">namespace-name</a></i>   \   {   <i><a href="#grammar-namespace-use-group-clauses-1">namespace-use-group-clauses-1</a></i>   }   ;
    use   \<sub>opt</sub>   namespace-name   \   {   <i><a href="#grammar-namespace-use-group-clauses-2">namespace-use-group-clauses-2</a></i>   }   ;
 
-<a name="grammar-namespace-use-clauses"><i>namespace-use-clauses:</i>
+<i id="grammar-namespace-use-clauses">namespace-use-clauses:</i>
    <i><a href="#grammar-namespace-use-clause">namespace-use-clause</a></i>
    <i><a href="#grammar-namespace-use-clauses">namespace-use-clauses</a></i>   ,   <i><a href="#grammar-namespace-use-clause">namespace-use-clause</a></i>
 
-<a name="grammar-namespace-use-clause"><i>namespace-use-clause:</i>
+<i id="grammar-namespace-use-clause">namespace-use-clause:</i>
    <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>   <i><a href="#grammar-namespace-aliasing-clause">namespace-aliasing-clause</a></i><sub>opt</sub>
 
-<a name="grammar-namespace-aliasing-clause"><i>namespace-aliasing-clause:</i>
+<i id="grammar-namespace-aliasing-clause">namespace-aliasing-clause:</i>
    as   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>
 
-<a name="grammar-namespace-function-or-const"><i>namespace-function-or-const:</i>
+<i id="grammar-namespace-function-or-const">namespace-function-or-const:</i>
    function
    const
 
-<a name="grammar-namespace-use-group-clauses-1"><i>namespace-use-group-clauses-1:</i>
+<i id="grammar-namespace-use-group-clauses-1">namespace-use-group-clauses-1:</i>
    <i><a href="#grammar-namespace-use-group-clause-1">namespace-use-group-clause-1</a></i>
    <i><a href="#grammar-namespace-use-group-clauses-1">namespace-use-group-clauses-1</a></i>   ,   <i><a href="#grammar-namespace-use-group-clause-1">namespace-use-group-clause-1</a></i>
 
-<a name="grammar-namespace-use-group-clause-1"><i>namespace-use-group-clause-1:</i>
+<i id="grammar-namespace-use-group-clause-1">namespace-use-group-clause-1:</i>
    <i><a href="09-lexical-structure.md#grammar-namespace-name">namespace-name</a></i>   <i><a href="#grammar-namespace-aliasing-clause">namespace-aliasing-clause</a></i><sub>opt</sub>
 
-<a name="grammar-namespace-use-group-clauses-2"><i>namespace-use-group-clauses-2:</i>
+<i id="grammar-namespace-use-group-clauses-2">namespace-use-group-clauses-2:</i>
    <i><a href="#grammar-namespace-use-group-clause-2">namespace-use-group-clause-2</a></i>
    <i><a href="#grammar-namespace-use-group-clauses-2">namespace-use-group-clauses-2</a></i>   ,   <i><a href="#grammar-namespace-use-group-clause-2">namespace-use-group-clause-2</a></i>
 
-<a name="grammar-namespace-use-group-clause-2"><i>namespace-use-group-clause-2:</i>
+<i id="grammar-namespace-use-group-clause-2">namespace-use-group-clause-2:</i>
    <i><a href="#grammar-namespace-function-or-const">namespace-function-or-const</a></i><sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-namespace-name">namespace-name</a></i>   <i><a href="#grammar-namespace-aliasing-clause">namespace-aliasing-clause</a></i><sub>opt</sub>
 </pre>
 

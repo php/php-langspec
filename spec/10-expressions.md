@@ -102,7 +102,7 @@ primary-expression:
 -->
 
 <pre>
-<a name="grammar-primary-expression"><i>primary-expression:</i>
+<i id="grammar-primary-expression">primary-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>
    <i><a href="#grammar-class-constant-access-expression">class-constant-access-expression</a></i>
    <i><a href="#grammar-constant-access-expression">constant-access-expression</a></i>
@@ -130,7 +130,7 @@ simple-variable:
 -->
 
 <pre>
-<a name="grammar-simple-variable"><i>simple-variable:</i>
+<i id="grammar-simple-variable">simple-variable:</i>
    <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>
    $   <i><a href="#grammar-simple-variable">simple-variable</a></i>
    $   {   <i><a href="#grammar-expression">expression</a></i>   }
@@ -195,13 +195,13 @@ callable-expression:
 -->
 
 <pre>
-<a name="grammar-dereferencable-expression"><i>dereferencable-expression:</i>
+<i id="grammar-dereferencable-expression">dereferencable-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>
    (   <i><a href="#grammar-expression">expression</a></i>   )
    <i><a href="#grammar-array-creation-expression">array-creation-expression</a></i>
    <i><a href="09-lexical-structure.md#grammar-string-literal">string-literal</a></i>
 
-<a name="grammar-callable-expression"><i>callable-expression:</i>
+<i id="grammar-callable-expression">callable-expression:</i>
    <i><a href="#grammar-callable-variable">callable-variable</a></i>
    (   <i><a href="#grammar-expression">expression</a></i>   )
    <i><a href="#grammar-array-creation-expression">array-creation-expression</a></i>
@@ -238,14 +238,14 @@ variable:
 -->
 
 <pre>
-<a name="grammar-callable-variable"><i>callable-variable:</i>
+<i id="grammar-callable-variable">callable-variable:</i>
    <i><a href="#grammar-simple-variable">simple-variable</a></i>
    <i><a href="#grammar-subscript-expression">subscript-expression</a></i>
    <i><a href="#grammar-member-call-expression">member-call-expression</a></i>
    <i><a href="#grammar-scoped-call-expression">scoped-call-expression</a></i>
    <i><a href="#grammar-function-call-expression">function-call-expression</a></i>
 
-<a name="grammar-variable"><i>variable:</i>
+<i id="grammar-variable">variable:</i>
    <i><a href="#grammar-callable-variable">callable-variable</a></i>
    <i><a href="#grammar-scoped-property-access-expression">scoped-property-access-expression</a></i>
    <i><a href="#grammar-member-access-expression">member-access-expression</a></i>
@@ -265,7 +265,7 @@ constant-access-expression:
 -->
 
 <pre>
-<a name="grammar-constant-access-expression"><i>constant-access-expression:</i>
+<i id="grammar-constant-access-expression">constant-access-expression:</i>
    <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
 </pre>
 
@@ -286,7 +286,7 @@ literal:
 -->
 
 <pre>
-<a name="grammar-literal"><i>literal:</i>
+<i id="grammar-literal">literal:</i>
    <i><a href="09-lexical-structure.md#grammar-integer-literal">integer-literal</a></i>
    <i><a href="09-lexical-structure.md#grammar-floating-literal">floating-literal</a></i>
    <i><a href="09-lexical-structure.md#grammar-string-literal">string-literal</a></i>
@@ -321,16 +321,16 @@ intrinsic-operator:
 -->
 
 <pre>
-<a name="grammar-intrinsic"><i>intrinsic:</i>
+<i id="grammar-intrinsic">intrinsic:</i>
    <i><a href="#grammar-intrinsic-construct">intrinsic-construct</a></i>
    <i><a href="#grammar-intrinsic-operator">intrinsic-operator</a></i>
 
-<a name="grammar-intrinsic-construct"><i>intrinsic-construct:</i>
+<i id="grammar-intrinsic-construct">intrinsic-construct:</i>
    <i><a href="#grammar-echo-intrinsic">echo-intrinsic</a></i>
    <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
    <i><a href="#grammar-unset-intrinsic">unset-intrinsic</a></i>
 
-<a name="grammar-intrinsic-operator"><i>intrinsic-operator:</i>
+<i id="grammar-intrinsic-operator">intrinsic-operator:</i>
    <i><a href="#grammar-empty-intrinsic">empty-intrinsic</a></i>
    <i><a href="#grammar-eval-intrinsic">eval-intrinsic</a></i>
    <i><a href="#grammar-exit-intrinsic">exit-intrinsic</a></i>
@@ -363,10 +363,10 @@ expression-list:
 -->
 
 <pre>
-<a name="grammar-echo-intrinsic"><i>echo-intrinsic:</i>
+<i id="grammar-echo-intrinsic">echo-intrinsic:</i>
    echo   <i><a href="#grammar-expression-list">expression-list</a></i>
 
-<a name="grammar-expression-list"><i>expression-list:</i>
+<i id="grammar-expression-list">expression-list:</i>
    <i><a href="#grammar-expression">expression</a></i>
    <i><a href="#grammar-expression-list">expression-list</a></i>   ,   <i><a href="#grammar-expression">expression</a></i>
 </pre>
@@ -409,7 +409,7 @@ empty-intrinsic:
 -->
 
 <pre>
-<a name="grammar-empty-intrinsic"><i>empty-intrinsic:</i>
+<i id="grammar-empty-intrinsic">empty-intrinsic:</i>
    empty   (   <i><a href="#grammar-expression">expression</a></i>   )
 </pre>
 
@@ -449,7 +449,7 @@ eval-intrinsic:
 -->
 
 <pre>
-<a name="grammar-eval-intrinsic"><i>eval-intrinsic:</i>
+<i id="grammar-eval-intrinsic">eval-intrinsic:</i>
    eval   (   <i><a href="#grammar-expression">expression</a></i>   )
 </pre>
 
@@ -495,7 +495,7 @@ exit-intrinsic:
 -->
 
 <pre>
-<a name="grammar-exit-intrinsic"><i>exit-intrinsic:</i>
+<i id="grammar-exit-intrinsic">exit-intrinsic:</i>
    exit
    exit   (   <i><a href="#grammar-expression">expression</a></i><sub>opt</sub>   )
    die
@@ -548,10 +548,10 @@ variable-list:
 -->
 
 <pre>
-<a name="grammar-isset-intrinsic"><i>isset-intrinsic:</i>
+<i id="grammar-isset-intrinsic">isset-intrinsic:</i>
    isset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   )
 
-<a name="grammar-variable-list"><i>variable-list:</i>
+<i id="grammar-variable-list">variable-list:</i>
    <i><a href="#grammar-variable">variable</a></i>
    <i><a href="#grammar-variable-list">variable-list</a></i>   ,   <i><a href="#grammar-variable">variable</a></i>
 </pre>
@@ -607,23 +607,23 @@ list-or-variable:
 -->
 
 <pre>
-<a name="grammar-list-intrinsic"><i>list-intrinsic:</i>
+<i id="grammar-list-intrinsic">list-intrinsic:</i>
    list   (   <i><a href="#grammar-list-expression-list">list-expression-list</a></i>   )
 
-<a name="grammar-list-expression-list"><i>list-expression-list:</i>
+<i id="grammar-list-expression-list">list-expression-list:</i>
    <i><a href="#grammar-unkeyed-list-expression-list">unkeyed-list-expression-list</a></i>
    <i><a href="#grammar-keyed-list-expression-list">keyed-list-expression-list</a></i>   ,<sub>opt</sub>
 
-<a name="grammar-unkeyed-list-expression-list"><i>unkeyed-list-expression-list:</i>
+<i id="grammar-unkeyed-list-expression-list">unkeyed-list-expression-list:</i>
    <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
    ,
    <i><a href="#grammar-unkeyed-list-expression-list">unkeyed-list-expression-list</a></i>   ,   <i><a href="#grammar-list-or-variable">list-or-variable</a></i><sub>opt</sub>
 
-<a name="grammar-keyed-list-expression-list"><i>keyed-list-expression-list:</i>
+<i id="grammar-keyed-list-expression-list">keyed-list-expression-list:</i>
    <i><a href="#grammar-expression">expression</a></i>   =&gt;   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
    <i><a href="#grammar-keyed-list-expression-list">keyed-list-expression-list</a></i>   ,   <i><a href="#grammar-expression">expression</a></i>   =&gt;   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
 
-<a name="grammar-list-or-variable"><i>list-or-variable:</i>
+<i id="grammar-list-or-variable">list-or-variable:</i>
    <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
    <i><a href="#grammar-expression">expression</a></i>
 </pre>
@@ -722,7 +722,7 @@ print-intrinsic:
 -->
 
 <pre>
-<a name="grammar-print-intrinsic"><i>print-intrinsic:</i>
+<i id="grammar-print-intrinsic">print-intrinsic:</i>
    print   <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
@@ -764,7 +764,7 @@ unset-intrinsic:
 -->
 
 <pre>
-<a name="grammar-unset-intrinsic"><i>unset-intrinsic:</i>
+<i id="grammar-unset-intrinsic">unset-intrinsic:</i>
    unset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   )
 </pre>
 
@@ -823,13 +823,13 @@ use-variable-name-list:
 -->
 
 <pre>
-<a name="grammar-anonymous-function-creation-expression"><i>anonymous-function-creation-expression:</i>
+<i id="grammar-anonymous-function-creation-expression">anonymous-function-creation-expression:</i>
    static?   function   &amp;<sub>opt</sub>   (   <i><a href="13-functions.md#grammar-parameter-declaration-list">parameter-declaration-list</a></i><sub>opt</sub>   )   <i><a href="13-functions.md#grammar-return-type">return-type</a></i><sub>opt</sub>   <i><a href="#grammar-anonymous-function-use-clause">anonymous-function-use-clause</a></i><sub>opt</sub>   <i><a href="11-statements.md#grammar-compound-statement">compound-statement</a></i>
 
-<a name="grammar-anonymous-function-use-clause"><i>anonymous-function-use-clause:</i>
+<i id="grammar-anonymous-function-use-clause">anonymous-function-use-clause:</i>
    use   (   <i><a href="#grammar-use-variable-name-list">use-variable-name-list</a></i>   )
 
-<a name="grammar-use-variable-name-list"><i>use-variable-name-list:</i>
+<i id="grammar-use-variable-name-list">use-variable-name-list:</i>
    &amp;<sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>
    <i><a href="#grammar-use-variable-name-list">use-variable-name-list</a></i>   ,   &amp;<sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>
 </pre>
@@ -910,7 +910,7 @@ postfix-expression:
 -->
 
 <pre>
-<a name="grammar-postfix-expression"><i>postfix-expression:</i>
+<i id="grammar-postfix-expression">postfix-expression:</i>
    <i><a href="#grammar-primary-expression">primary-expression</a></i>
    <i><a href="#grammar-clone-expression">clone-expression</a></i>
    <i><a href="#grammar-object-creation-expression">object-creation-expression</a></i>
@@ -933,7 +933,7 @@ clone-expression:
 -->
 
 <pre>
-<a name="grammar-clone-expression"><i>clone-expression:</i>
+<i id="grammar-clone-expression">clone-expression:</i>
    clone   <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
@@ -995,13 +995,13 @@ class-type-designator:
 -->
 
 <pre>
-<a name="grammar-object-creation-expression"><i>object-creation-expression:</i>
+<i id="grammar-object-creation-expression">object-creation-expression:</i>
    new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
    new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>
    new   class   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )   <i><a href="14-classes.md#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="14-classes.md#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="14-classes.md#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
    new   class   <i><a href="14-classes.md#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="14-classes.md#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="14-classes.md#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
 
-<a name="grammar-class-type-designator"><i>class-type-designator:</i>
+<i id="grammar-class-type-designator">class-type-designator:</i>
    <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
    <i><a href="#grammar-expression">expression</a></i>
 </pre>
@@ -1098,25 +1098,25 @@ element-value:
 -->
 
 <pre>
-<a name="grammar-array-creation-expression"><i>array-creation-expression:</i>
+<i id="grammar-array-creation-expression">array-creation-expression:</i>
    array   (   <i><a href="#grammar-array-initializer">array-initializer</a></i><sub>opt</sub>   )
    [   <i><a href="#grammar-array-initializer">array-initializer</a></i><sub>opt</sub>   ]
 
-<a name="grammar-array-initializer"><i>array-initializer:</i>
+<i id="grammar-array-initializer">array-initializer:</i>
    <i><a href="#grammar-array-initializer-list">array-initializer-list</a></i>   ,<sub>opt</sub>
 
-<a name="grammar-array-initializer-list"><i>array-initializer-list:</i>
+<i id="grammar-array-initializer-list">array-initializer-list:</i>
    <i><a href="#grammar-array-element-initializer">array-element-initializer</a></i>
    <i><a href="#grammar-array-element-initializer">array-element-initializer</a></i>   ,   <i><a href="#grammar-array-initializer-list">array-initializer-list</a></i>
 
-<a name="grammar-array-element-initializer"><i>array-element-initializer:</i>
+<i id="grammar-array-element-initializer">array-element-initializer:</i>
    &amp;<sub>opt</sub>   <i><a href="#grammar-element-value">element-value</a></i>
    <i><a href="#grammar-element-key">element-key</a></i>   =&gt;   &amp;<sub>opt</sub>   <i><a href="#grammar-element-value">element-value</a></i>
 
-<a name="grammar-element-key"><i>element-key:</i>
+<i id="grammar-element-key">element-key:</i>
    <i><a href="#grammar-expression">expression</a></i>
 
-<a name="grammar-element-value"><i>element-value:</i>
+<i id="grammar-element-value">element-value:</i>
    <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
@@ -1194,7 +1194,7 @@ subscript-expression:
 -->
 
 <pre>
-<a name="grammar-subscript-expression"><i>subscript-expression:</i>
+<i id="grammar-subscript-expression">subscript-expression:</i>
    <i><a href="#grammar-dereferencable-expression">dereferencable-expression</a></i>   [   <i><a href="#grammar-expression">expression</a></i><sub>opt</sub>   ]
    <i><a href="#grammar-dereferencable-expression">dereferencable-expression</a></i>   {   <i><a href="#grammar-expression">expression</a></i>   }   &lt;b&gt;[Deprecated form]&lt;/b&gt;
 </pre>
@@ -1370,19 +1370,19 @@ variadic-unpacking:
 -->
 
 <pre>
-<a name="grammar-function-call-expression"><i>function-call-expression:</i>
+<i id="grammar-function-call-expression">function-call-expression:</i>
    <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
    <i><a href="#grammar-callable-expression">callable-expression</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
 
-<a name="grammar-argument-expression-list"><i>argument-expression-list:</i>
+<i id="grammar-argument-expression-list">argument-expression-list:</i>
    <i><a href="#grammar-argument-expression">argument-expression</a></i>
    <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,   <i><a href="#grammar-argument-expression">argument-expression</a></i>
 
-<a name="grammar-argument-expression"><i>argument-expression:</i>
+<i id="grammar-argument-expression">argument-expression:</i>
    <i><a href="#grammar-variadic-unpacking">variadic-unpacking</a></i>
    <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
 
-<a name="grammar-variadic-unpacking"><i>variadic-unpacking:</i>
+<i id="grammar-variadic-unpacking">variadic-unpacking:</i>
    ...   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
 </pre>
 
@@ -1498,10 +1498,10 @@ member-name:
 -->
 
 <pre>
-<a name="grammar-member-access-expression"><i>member-access-expression:</i>
+<i id="grammar-member-access-expression">member-access-expression:</i>
    <i><a href="#grammar-dereferencable-expression">dereferencable-expression</a></i>   -&gt;   <i><a href="#grammar-member-name">member-name</a></i>
 
-<a name="grammar-member-name"><i>member-name:</i>
+<i id="grammar-member-name">member-name:</i>
    <i><a href="09-lexical-structure.md#grammar-name">name</a></i>
    <i><a href="#grammar-simple-variable">simple-variable</a></i>
    {   <i><a href="#grammar-expression">expression</a></i>   }
@@ -1576,7 +1576,7 @@ member-call-expression:
 -->
 
 <pre>
-<a name="grammar-member-call-expression"><i>member-call-expression:</i>
+<i id="grammar-member-call-expression">member-call-expression:</i>
    <i><a href="#grammar-dereferencable-expression">dereferencable-expression</a></i>   -&gt;   <i><a href="#grammar-member-name">member-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
 </pre>
 
@@ -1619,10 +1619,10 @@ postfix-decrement-expression:
 -->
 
 <pre>
-<a name="grammar-postfix-increment-expression"><i>postfix-increment-expression:</i>
+<i id="grammar-postfix-increment-expression">postfix-increment-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>   ++
 
-<a name="grammar-postfix-decrement-expression"><i>postfix-decrement-expression:</i>
+<i id="grammar-postfix-decrement-expression">postfix-decrement-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>   --
 </pre>
 
@@ -1670,21 +1670,21 @@ relative-scope:
 -->
 
 <pre>
-<a name="grammar-scoped-property-access-expression"><i>scoped-property-access-expression:</i>
+<i id="grammar-scoped-property-access-expression">scoped-property-access-expression:</i>
    <i><a href="#grammar-scope-resolution-qualifier">scope-resolution-qualifier</a></i>   ::   <i><a href="#grammar-simple-variable">simple-variable</a></i>
 
-<a name="grammar-scoped-call-expression"><i>scoped-call-expression:</i>
+<i id="grammar-scoped-call-expression">scoped-call-expression:</i>
    <i><a href="#grammar-scope-resolution-qualifier">scope-resolution-qualifier</a></i>   ::   <i><a href="#grammar-member-name">member-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
 
-<a name="grammar-class-constant-access-expression"><i>class-constant-access-expression:</i>
+<i id="grammar-class-constant-access-expression">class-constant-access-expression:</i>
    <i><a href="#grammar-scope-resolution-qualifier">scope-resolution-qualifier</a></i>   ::   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>
 
-<a name="grammar-scope-resolution-qualifier"><i>scope-resolution-qualifier:</i>
+<i id="grammar-scope-resolution-qualifier">scope-resolution-qualifier:</i>
    <i><a href="#grammar-relative-scope">relative-scope</a></i>
    <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
    <i><a href="#grammar-dereferencable-expression">dereferencable-expression</a></i>
 
-<a name="grammar-relative-scope"><i>relative-scope:</i>
+<i id="grammar-relative-scope">relative-scope:</i>
    self
    parent
    static
@@ -1794,7 +1794,7 @@ exponentiation-expression:
 -->
 
 <pre>
-<a name="grammar-exponentiation-expression"><i>exponentiation-expression:</i>
+<i id="grammar-exponentiation-expression">exponentiation-expression:</i>
    <i><a href="#grammar-expression">expression</a></i>   **   <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
@@ -1837,7 +1837,7 @@ unary-expression:
 -->
 
 <pre>
-<a name="grammar-unary-expression"><i>unary-expression:</i>
+<i id="grammar-unary-expression">unary-expression:</i>
    <i><a href="#grammar-postfix-expression">postfix-expression</a></i>
    <i><a href="#grammar-prefix-increment-expression">prefix-increment-expression</a></i>
    <i><a href="#grammar-prefix-decrement-expression">prefix-decrement-expression</a></i>
@@ -1864,10 +1864,10 @@ prefix-decrement-expression:
 -->
 
 <pre>
-<a name="grammar-prefix-increment-expression"><i>prefix-increment-expression:</i>
+<i id="grammar-prefix-increment-expression">prefix-increment-expression:</i>
    ++   <i><a href="#grammar-variable">variable</a></i>
 
-<a name="grammar-prefix-decrement-expression"><i>prefix-decrement-expression:</i>
+<i id="grammar-prefix-decrement-expression">prefix-decrement-expression:</i>
    --   <i><a href="#grammar-variable">variable</a></i>
 </pre>
 
@@ -1978,10 +1978,10 @@ unary-operator: one of
 -->
 
 <pre>
-<a name="grammar-unary-op-expression"><i>unary-op-expression:</i>
+<i id="grammar-unary-op-expression">unary-op-expression:</i>
    <i><a href="#grammar-unary-operator">unary-operator</a></i>   <i><a href="#grammar-cast-expression">cast-expression</a></i>
 
-<a name="grammar-unary-operator"><i>unary-operator: one of</i>
+<i id="grammar-unary-operator">unary-operator: one of</i>
    +   -   !   ~
 </pre>
 
@@ -2070,7 +2070,7 @@ error-control-expression:
 -->
 
 <pre>
-<a name="grammar-error-control-expression"><i>error-control-expression:</i>
+<i id="grammar-error-control-expression">error-control-expression:</i>
    @   <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
@@ -2127,7 +2127,7 @@ shell-command-expression:
 -->
 
 <pre>
-<a name="grammar-shell-command-expression"><i>shell-command-expression:</i>
+<i id="grammar-shell-command-expression">shell-command-expression:</i>
    `   <i><a href="09-lexical-structure.md#grammar-dq-char-sequence">dq-char-sequence</a></i><sub>opt</sub>   `
 </pre>
 
@@ -2170,11 +2170,11 @@ cast-type: one of
 -->
 
 <pre>
-<a name="grammar-cast-expression"><i>cast-expression:</i>
+<i id="grammar-cast-expression">cast-expression:</i>
    <i><a href="#grammar-unary-expression">unary-expression</a></i>
    (   <i><a href="#grammar-cast-type">cast-type</a></i>   )   <i><a href="#grammar-expression">expression</a></i>
 
-<a name="grammar-cast-type"><i>cast-type: one of</i>
+<i id="grammar-cast-type">cast-type: one of</i>
    array   binary   bool   boolean   double   int   integer   float   object
    real   string   unset
 </pre>
@@ -2234,14 +2234,14 @@ instanceof-type-designator:
 -->
 
 <pre>
-<a name="grammar-instanceof-expression"><i>instanceof-expression:</i>
+<i id="grammar-instanceof-expression">instanceof-expression:</i>
    <i><a href="#grammar-unary-expression">unary-expression</a></i>
    <i><a href="#grammar-instanceof-subject">instanceof-subject</a></i>   instanceof   <i><a href="#grammar-instanceof-type-designator">instanceof-type-designator</a></i>
 
-<a name="grammar-instanceof-subject"><i>instanceof-subject:</i>
+<i id="grammar-instanceof-subject">instanceof-subject:</i>
    <i><a href="#grammar-expression">expression</a></i>
 
-<a name="grammar-instanceof-type-designator"><i>instanceof-type-designator:</i>
+<i id="grammar-instanceof-type-designator">instanceof-type-designator:</i>
    <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
    <i><a href="#grammar-expression">expression</a></i>
 </pre>
@@ -2305,7 +2305,7 @@ multiplicative-expression:
 -->
 
 <pre>
-<a name="grammar-multiplicative-expression"><i>multiplicative-expression:</i>
+<i id="grammar-multiplicative-expression">multiplicative-expression:</i>
    <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
    <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   *   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
    <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   /   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
@@ -2380,7 +2380,7 @@ additive-expression:
 -->
 
 <pre>
-<a name="grammar-additive-expression"><i>additive-expression:</i>
+<i id="grammar-additive-expression">additive-expression:</i>
    <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>
    <i><a href="#grammar-additive-expression">additive-expression</a></i>   +   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>
    <i><a href="#grammar-additive-expression">additive-expression</a></i>   -   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>
@@ -2457,7 +2457,7 @@ shift-expression:
 -->
 
 <pre>
-<a name="grammar-shift-expression"><i>shift-expression:</i>
+<i id="grammar-shift-expression">shift-expression:</i>
    <i><a href="#grammar-additive-expression">additive-expression</a></i>
    <i><a href="#grammar-shift-expression">shift-expression</a></i>   &lt;&lt;   <i><a href="#grammar-additive-expression">additive-expression</a></i>
    <i><a href="#grammar-shift-expression">shift-expression</a></i>   &gt;&gt;   <i><a href="#grammar-additive-expression">additive-expression</a></i>
@@ -2523,7 +2523,7 @@ relational-expression:
 -->
 
 <pre>
-<a name="grammar-relational-expression"><i>relational-expression:</i>
+<i id="grammar-relational-expression">relational-expression:</i>
    <i><a href="#grammar-shift-expression">shift-expression</a></i>
    <i><a href="#grammar-relational-expression">relational-expression</a></i>   &lt;   <i><a href="#grammar-shift-expression">shift-expression</a></i>
    <i><a href="#grammar-relational-expression">relational-expression</a></i>   &gt;   <i><a href="#grammar-shift-expression">shift-expression</a></i>
@@ -2659,7 +2659,7 @@ equality-expression:
 -->
 
 <pre>
-<a name="grammar-equality-expression"><i>equality-expression:</i>
+<i id="grammar-equality-expression">equality-expression:</i>
    <i><a href="#grammar-relational-expression">relational-expression</a></i>
    <i><a href="#grammar-equality-expression">equality-expression</a></i>   ==   <i><a href="#grammar-relational-expression">relational-expression</a></i>
    <i><a href="#grammar-equality-expression">equality-expression</a></i>   !=   <i><a href="#grammar-relational-expression">relational-expression</a></i>
@@ -2719,7 +2719,7 @@ bitwise-AND-expression:
 -->
 
 <pre>
-<a name="grammar-bitwise-AND-expression"><i>bitwise-AND-expression:</i>
+<i id="grammar-bitwise-AND-expression">bitwise-AND-expression:</i>
    <i><a href="#grammar-equality-expression">equality-expression</a></i>
    <i><a href="#grammar-bitwise-AND-expression">bitwise-AND-expression</a></i>   &amp;   <i><a href="#grammar-equality-expression">equality-expression</a></i>
 </pre>
@@ -2766,7 +2766,7 @@ bitwise-exc-OR-expression:
 -->
 
 <pre>
-<a name="grammar-bitwise-exc-OR-expression"><i>bitwise-exc-OR-expression:</i>
+<i id="grammar-bitwise-exc-OR-expression">bitwise-exc-OR-expression:</i>
    <i><a href="#grammar-bitwise-AND-expression">bitwise-AND-expression</a></i>
    <i><a href="#grammar-bitwise-exc-OR-expression">bitwise-exc-OR-expression</a></i>   ^   <i><a href="#grammar-bitwise-AND-expression">bitwise-AND-expression</a></i>
 </pre>
@@ -2815,7 +2815,7 @@ bitwise-inc-OR-expression:
 -->
 
 <pre>
-<a name="grammar-bitwise-inc-OR-expression"><i>bitwise-inc-OR-expression:</i>
+<i id="grammar-bitwise-inc-OR-expression">bitwise-inc-OR-expression:</i>
    <i><a href="#grammar-bitwise-exc-OR-expression">bitwise-exc-OR-expression</a></i>
    <i><a href="#grammar-bitwise-inc-OR-expression">bitwise-inc-OR-expression</a></i>   |   <i><a href="#grammar-bitwise-exc-OR-expression">bitwise-exc-OR-expression</a></i>
 </pre>
@@ -2862,7 +2862,7 @@ logical-AND-expression-1:
 -->
 
 <pre>
-<a name="grammar-logical-AND-expression-1"><i>logical-AND-expression-1:</i>
+<i id="grammar-logical-AND-expression-1">logical-AND-expression-1:</i>
    <i><a href="#grammar-bitwise-inc-OR-expression">bitwise-inc-OR-expression</a></i>
    <i><a href="#grammar-logical-AND-expression-1">logical-AND-expression-1</a></i>   &amp;&amp;   <i><a href="#grammar-bitwise-inc-OR-expression">bitwise-inc-OR-expression</a></i>
 </pre>
@@ -2893,7 +2893,7 @@ logical-inc-OR-expression-1:
 -->
 
 <pre>
-<a name="grammar-logical-inc-OR-expression-1"><i>logical-inc-OR-expression-1:</i>
+<i id="grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1:</i>
    <i><a href="#grammar-logical-AND-expression-1">logical-AND-expression-1</a></i>
    <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ||   <i><a href="#grammar-logical-AND-expression-1">logical-AND-expression-1</a></i>
 </pre>
@@ -2921,7 +2921,7 @@ conditional-expression:
 -->
 
 <pre>
-<a name="grammar-conditional-expression"><i>conditional-expression:</i>
+<i id="grammar-conditional-expression">conditional-expression:</i>
    <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>
    <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ?   <i><a href="#grammar-expression">expression</a></i><sub>opt</sub>   :   <i><a href="#grammar-conditional-expression">conditional-expression</a></i>
 </pre>
@@ -2967,7 +2967,7 @@ coalesce-expression:
 -->
 
 <pre>
-<a name="grammar-coalesce-expression"><i>coalesce-expression:</i>
+<i id="grammar-coalesce-expression">coalesce-expression:</i>
    <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ??   <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
@@ -3021,7 +3021,7 @@ assignment-expression:
 -->
 
 <pre>
-<a name="grammar-assignment-expression"><i>assignment-expression:</i>
+<i id="grammar-assignment-expression">assignment-expression:</i>
    <i><a href="#grammar-conditional-expression">conditional-expression</a></i>
    <i><a href="#grammar-coalesce-expression">coalesce-expression</a></i>
    <i><a href="#grammar-simple-assignment-expression">simple-assignment-expression</a></i>
@@ -3049,7 +3049,7 @@ simple-assignment-expression:
 -->
 
 <pre>
-<a name="grammar-simple-assignment-expression"><i>simple-assignment-expression:</i>
+<i id="grammar-simple-assignment-expression">simple-assignment-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>   =   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
    <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>   =   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
 </pre>
@@ -3118,7 +3118,7 @@ byref-assignment-expression:
 -->
 
 <pre>
-<a name="grammar-byref-assignment-expression"><i>byref-assignment-expression:</i>
+<i id="grammar-byref-assignment-expression">byref-assignment-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>   =   &amp;   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
 </pre>
 
@@ -3163,10 +3163,10 @@ compound-assignment-operator: one of
 -->
 
 <pre>
-<a name="grammar-compound-assignment-expression"><i>compound-assignment-expression:</i>
+<i id="grammar-compound-assignment-expression">compound-assignment-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>   <i><a href="#grammar-compound-assignment-operator">compound-assignment-operator</a></i>   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
 
-<a name="grammar-compound-assignment-operator"><i>compound-assignment-operator: one of</i>
+<i id="grammar-compound-assignment-operator">compound-assignment-operator: one of</i>
    **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=   &gt;&gt;=   &amp;=   ^=   |=
 </pre>
 
@@ -3202,7 +3202,7 @@ logical-AND-expression-2:
 -->
 
 <pre>
-<a name="grammar-logical-AND-expression-2"><i>logical-AND-expression-2:</i>
+<i id="grammar-logical-AND-expression-2">logical-AND-expression-2:</i>
    <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
    <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>   and   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
 </pre>
@@ -3223,7 +3223,7 @@ logical-exc-OR-expression:
 -->
 
 <pre>
-<a name="grammar-logical-exc-OR-expression"><i>logical-exc-OR-expression:</i>
+<i id="grammar-logical-exc-OR-expression">logical-exc-OR-expression:</i>
    <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>
    <i><a href="#grammar-logical-exc-OR-expression">logical-exc-OR-expression</a></i>   xor   <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>
 </pre>
@@ -3257,7 +3257,7 @@ logical-inc-OR-expression-2:
 -->
 
 <pre>
-<a name="grammar-logical-inc-OR-expression-2"><i>logical-inc-OR-expression-2:</i>
+<i id="grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2:</i>
    <i><a href="#grammar-logical-exc-OR-expression">logical-exc-OR-expression</a></i>
    <i><a href="#grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2</a></i>   or   <i><a href="#grammar-logical-exc-OR-expression">logical-exc-OR-expression</a></i>
 </pre>
@@ -3279,7 +3279,7 @@ yield-expression:
 -->
 
 <pre>
-<a name="grammar-yield-expression"><i>yield-expression:</i>
+<i id="grammar-yield-expression">yield-expression:</i>
    <i><a href="#grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2</a></i>
    yield   <i><a href="#grammar-array-element-initializer">array-element-initializer</a></i>
    yield from   <i><a href="#grammar-expression">expression</a></i>
@@ -3411,7 +3411,7 @@ expression:
 -->
 
 <pre>
-<a name="grammar-expression"><i>expression:</i>
+<i id="grammar-expression">expression:</i>
    <i><a href="#grammar-yield-expression">yield-expression</a></i>
    <i><a href="#grammar-include-expression">include-expression</a></i>
    <i><a href="#grammar-include-once-expression">include-once-expression</a></i>
@@ -3582,7 +3582,7 @@ include-expression:
 -->
 
 <pre>
-<a name="grammar-include-expression"><i>include-expression:</i>
+<i id="grammar-include-expression">include-expression:</i>
    include   <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
@@ -3634,7 +3634,7 @@ include-once-expression:
 -->
 
 <pre>
-<a name="grammar-include-once-expression"><i>include-once-expression:</i>
+<i id="grammar-include-once-expression">include-once-expression:</i>
    include_once   <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
@@ -3682,7 +3682,7 @@ require-expression:
 -->
 
 <pre>
-<a name="grammar-require-expression"><i>require-expression:</i>
+<i id="grammar-require-expression">require-expression:</i>
    require   <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
@@ -3702,7 +3702,7 @@ require-once-expression:
 -->
 
 <pre>
-<a name="grammar-require-once-expression"><i>require-once-expression:</i>
+<i id="grammar-require-once-expression">require-once-expression:</i>
    require_once   <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
@@ -3729,7 +3729,7 @@ constant-expression:
 -->
 
 <pre>
-<a name="grammar-constant-expression"><i>constant-expression:</i>
+<i id="grammar-constant-expression">constant-expression:</i>
    <i><a href="#grammar-expression">expression</a></i>
 </pre>
 

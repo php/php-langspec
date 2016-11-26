@@ -282,17 +282,17 @@ function-static-initializer:
 -->
 
 <pre>
-<a name="grammar-function-static-declaration"><i>function-static-declaration:</i>
+<i id="grammar-function-static-declaration">function-static-declaration:</i>
    static   <i><a href="#grammar-static-variable-name-list">static-variable-name-list</a></i>   ;
 
-<a name="grammar-static-variable-name-list"><i>static-variable-name-list:</i>
+<i id="grammar-static-variable-name-list">static-variable-name-list:</i>
    <i><a href="#grammar-static-variable-declaration">static-variable-declaration</a></i>
    <i><a href="#grammar-static-variable-name-list">static-variable-name-list</a></i>   ,   <i><a href="#grammar-static-variable-declaration">static-variable-declaration</a></i>
 
-<a name="grammar-static-variable-declaration"><i>static-variable-declaration:</i>
+<i id="grammar-static-variable-declaration">static-variable-declaration:</i>
    <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>   <i><a href="#grammar-function-static-initializer">function-static-initializer</a></i><sub>opt</sub>
 
-<a name="grammar-function-static-initializer"><i>function-static-initializer:</i>
+<i id="grammar-function-static-initializer">function-static-initializer:</i>
    =   <i><a href="10-expressions.md#grammar-constant-expression">constant-expression</a></i>
 </pre>
 
@@ -370,10 +370,10 @@ variable-name-list:
 -->
 
 <pre>
-<a name="grammar-global-declaration"><i>global-declaration:</i>
+<i id="grammar-global-declaration">global-declaration:</i>
    global   <i><a href="#grammar-variable-name-list">variable-name-list</a></i>   ;
 
-<a name="grammar-variable-name-list"><i>variable-name-list:</i>
+<i id="grammar-variable-name-list">variable-name-list:</i>
    <i><a href="10-expressions.md#grammar-simple-variable">simple-variable</a></i>
    <i><a href="#grammar-variable-name-list">variable-name-list</a></i>   ,   <i><a href="10-expressions.md#grammar-simple-variable">simple-variable</a></i>
 </pre>

@@ -75,17 +75,17 @@ class-interface-clause:
 -->
 
 <pre>
-<a name="grammar-class-declaration"><i>class-declaration:</i>
+<i id="grammar-class-declaration">class-declaration:</i>
    <i><a href="#grammar-class-modifier">class-modifier</a></i><sub>opt</sub>   class   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   <i><a href="#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
 
-<a name="grammar-class-modifier"><i>class-modifier:</i>
+<i id="grammar-class-modifier">class-modifier:</i>
    abstract
    final
 
-<a name="grammar-class-base-clause"><i>class-base-clause:</i>
+<i id="grammar-class-base-clause">class-base-clause:</i>
    extends   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
 
-<a name="grammar-class-interface-clause"><i>class-interface-clause:</i>
+<i id="grammar-class-interface-clause">class-interface-clause:</i>
    implements   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
    <i><a href="#grammar-class-interface-clause">class-interface-clause</a></i>   ,   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
 </pre>
@@ -224,11 +224,11 @@ class-member-declaration:
 -->
 
 <pre>
-<a name="grammar-class-member-declarations"><i>class-member-declarations:</i>
+<i id="grammar-class-member-declarations">class-member-declarations:</i>
    <i><a href="#grammar-class-member-declaration">class-member-declaration</a></i>
    <i><a href="#grammar-class-member-declarations">class-member-declarations</a></i>   <i><a href="#grammar-class-member-declaration">class-member-declaration</a></i>
 
-<a name="grammar-class-member-declaration"><i>class-member-declaration:</i>
+<i id="grammar-class-member-declaration">class-member-declaration:</i>
    <i><a href="#grammar-class-const-declaration">class-const-declaration</a></i>
    <i><a href="#grammar-property-declaration">property-declaration</a></i>
    <i><a href="#grammar-method-declaration">method-declaration</a></i>
@@ -419,17 +419,17 @@ const-element:
 -->
 
 <pre>
-<a name="grammar-const-declaration"><i>const-declaration:</i>
+<i id="grammar-const-declaration">const-declaration:</i>
    const   <i><a href="#grammar-const-elements">const-elements</a></i>   ;
 
-<a name="grammar-class-const-declaration"><i>class-const-declaration:</i>
+<i id="grammar-class-const-declaration">class-const-declaration:</i>
    <i><a href="#grammar-visibility-modifier">visibility-modifier</a></i><sub>opt</sub>   const   <i><a href="#grammar-const-elements">const-elements</a></i>   ;
 
-<a name="grammar-const-elements"><i>const-elements:</i>
+<i id="grammar-const-elements">const-elements:</i>
    <i><a href="#grammar-const-element">const-element</a></i>
    <i><a href="#grammar-const-elements">const-elements</a></i>   <i><a href="#grammar-const-element">const-element</a></i>
 
-<a name="grammar-const-element"><i>const-element:</i>
+<i id="grammar-const-element">const-element:</i>
    <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   =   <i><a href="10-expressions.md#grammar-constant-expression">constant-expression</a></i>
 </pre>
 
@@ -502,30 +502,30 @@ property-initializer:
 -->
 
 <pre>
-<a name="grammar-property-declaration"><i>property-declaration:</i>
+<i id="grammar-property-declaration">property-declaration:</i>
    <i><a href="#grammar-property-modifier">property-modifier</a></i>   <i><a href="#grammar-property-elements">property-elements</a></i>   ;
 
-<a name="grammar-property-modifier"><i>property-modifier:</i>
+<i id="grammar-property-modifier">property-modifier:</i>
    var
    <i><a href="#grammar-visibility-modifier">visibility-modifier</a></i>   <i><a href="#grammar-static-modifier">static-modifier</a></i><sub>opt</sub>
    <i><a href="#grammar-static-modifier">static-modifier</a></i>   <i><a href="#grammar-visibility-modifier">visibility-modifier</a></i><sub>opt</sub>
 
-<a name="grammar-visibility-modifier"><i>visibility-modifier:</i>
+<i id="grammar-visibility-modifier">visibility-modifier:</i>
    public
    protected
    private
 
-<a name="grammar-static-modifier"><i>static-modifier:</i>
+<i id="grammar-static-modifier">static-modifier:</i>
    static
 
-<a name="grammar-property-elements"><i>property-elements:</i>
+<i id="grammar-property-elements">property-elements:</i>
    <i><a href="#grammar-property-element">property-element</a></i>
    <i><a href="#grammar-property-elements">property-elements</a></i>   <i><a href="#grammar-property-element">property-element</a></i>
 
-<a name="grammar-property-element"><i>property-element:</i>
+<i id="grammar-property-element">property-element:</i>
    <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>   <i><a href="#grammar-property-initializer">property-initializer</a></i><sub>opt</sub>   ;
 
-<a name="grammar-property-initializer"><i>property-initializer:</i>
+<i id="grammar-property-initializer">property-initializer:</i>
    =   <i><a href="10-expressions.md#grammar-constant-expression">constant-expression</a></i>
 </pre>
 
@@ -576,15 +576,15 @@ method-modifier:
 -->
 
 <pre>
-<a name="grammar-method-declaration"><i>method-declaration:</i>
+<i id="grammar-method-declaration">method-declaration:</i>
    <i><a href="#grammar-method-modifiers">method-modifiers</a></i><sub>opt</sub>   <i><a href="13-functions.md#grammar-function-definition">function-definition</a></i>
    <i><a href="#grammar-method-modifiers">method-modifiers</a></i>   <i><a href="13-functions.md#grammar-function-definition-header">function-definition-header</a></i>   ;
 
-<a name="grammar-method-modifiers"><i>method-modifiers:</i>
+<i id="grammar-method-modifiers">method-modifiers:</i>
    <i><a href="#grammar-method-modifier">method-modifier</a></i>
    <i><a href="#grammar-method-modifiers">method-modifiers</a></i>   <i><a href="#grammar-method-modifier">method-modifier</a></i>
 
-<a name="grammar-method-modifier"><i>method-modifier:</i>
+<i id="grammar-method-modifier">method-modifier:</i>
    <i><a href="#grammar-visibility-modifier">visibility-modifier</a></i>
    <i><a href="#grammar-static-modifier">static-modifier</a></i>
    <i><a href="#grammar-class-modifier">class-modifier</a></i>
@@ -632,7 +632,7 @@ constructor-declaration:
 -->
 
 <pre>
-<a name="grammar-constructor-declaration"><i>constructor-declaration:</i>
+<i id="grammar-constructor-declaration">constructor-declaration:</i>
    <i><a href="#grammar-method-modifiers">method-modifiers</a></i>   function   &amp;<sub>opt</sub>   __construct   (   <i><a href="13-functions.md#grammar-parameter-declaration-list">parameter-declaration-list</a></i><sub>opt</sub>   )   <i><a href="11-statements.md#grammar-compound-statement">compound-statement</a></i>
 </pre>
 
@@ -718,7 +718,7 @@ destructor-declaration:
 -->
 
 <pre>
-<a name="grammar-destructor-declaration"><i>destructor-declaration:</i>
+<i id="grammar-destructor-declaration">destructor-declaration:</i>
    <i><a href="#grammar-method-modifiers">method-modifiers</a></i>   function   &amp;<sub>opt</sub>   __destruct   (   )   <i><a href="11-statements.md#grammar-compound-statement">compound-statement</a></i>
 </pre>
 

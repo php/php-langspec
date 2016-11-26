@@ -23,21 +23,21 @@ text:
 -->
 
 <pre>
-<a name="grammar-script"><i>script:</i>
+<i id="grammar-script">script:</i>
    <i><a href="#grammar-script-section">script-section</a></i>
    <i><a href="#grammar-script">script</a></i>   <i><a href="#grammar-script-section">script-section</a></i>
 
-<a name="grammar-script-section"><i>script-section:</i>
+<i id="grammar-script-section">script-section:</i>
    <i><a href="#grammar-text">text</a></i><sub>opt</sub>   <i><a href="#grammar-start-tag">start-tag</a></i>   <i><a href="11-statements.md#grammar-statement-list">statement-list</a></i><sub>opt</sub>   <i><a href="#grammar-end-tag">end-tag</a></i><sub>opt</sub>   <i><a href="#grammar-text">text</a></i><sub>opt</sub>
 
-<a name="grammar-start-tag"><i>start-tag:</i>
+<i id="grammar-start-tag">start-tag:</i>
    &lt;?php
    &lt;?=
 
-<a name="grammar-end-tag"><i>end-tag:</i>
+<i id="grammar-end-tag">end-tag:</i>
    ?&gt;
 
-<a name="grammar-text"><i>text:</i>
+<i id="grammar-text">text:</i>
    arbitrary text not containing any of   <i><a href="#grammar-start-tag">start-tag</a></i>   sequences
 </pre>
 

@@ -50,7 +50,7 @@ single-line-comment-example::
 -->
 
 <pre>
-<a name="grammar-single-line-comment-example"><i>single-line-comment-example::</i>
+<i id="grammar-single-line-comment-example">single-line-comment-example::</i>
    //   <i><a href="#grammar-input-characters">input-characters</a></i><sub>opt</sub>
    #   <i><a href="#grammar-input-characters">input-characters</a></i><sub>opt</sub>
 </pre>
@@ -71,7 +71,7 @@ hexadecimal-digit-example:: one of
 -->
 
 <pre>
-<a name="grammar-hexadecimal-digit-example"><i>hexadecimal-digit-example:: one of</i>
+<i id="grammar-hexadecimal-digit-example">hexadecimal-digit-example:: one of</i>
    0   1   2   3   4   5   6   7   8   9
    a   b   c   d   e   f
    A   B   C   D   E   F
@@ -98,11 +98,11 @@ input-element::
 -->
 
 <pre>
-<a name="grammar-input-file"><i>input-file::</i>
+<i id="grammar-input-file">input-file::</i>
    <i><a href="#grammar-input-element">input-element</a></i>
    <i><a href="#grammar-input-file">input-file</a></i>   <i><a href="#grammar-input-element">input-element</a></i>
 
-<a name="grammar-input-element"><i>input-element::</i>
+<i id="grammar-input-element">input-element::</i>
    <i><a href="#grammar-comment">comment</a></i>
    <i><a href="#grammar-white-space">white-space</a></i>
    <i><a href="#grammar-token">token</a></i>
@@ -154,27 +154,27 @@ delimited-comment::
 -->
 
 <pre>
-<a name="grammar-comment"><i>comment::</i>
+<i id="grammar-comment">comment::</i>
    <i><a href="#grammar-single-line-comment">single-line-comment</a></i>
    <i><a href="#grammar-delimited-comment">delimited-comment</a></i>
 
-<a name="grammar-single-line-comment"><i>single-line-comment::</i>
+<i id="grammar-single-line-comment">single-line-comment::</i>
    //   <i><a href="#grammar-input-characters">input-characters</a></i><sub>opt</sub>
    #   <i><a href="#grammar-input-characters">input-characters</a></i><sub>opt</sub>
 
-<a name="grammar-input-characters"><i>input-characters::</i>
+<i id="grammar-input-characters">input-characters::</i>
    <i><a href="#grammar-input-character">input-character</a></i>
    <i><a href="#grammar-input-characters">input-characters</a></i>   <i><a href="#grammar-input-character">input-character</a></i>
 
-<a name="grammar-input-character"><i>input-character::</i>
+<i id="grammar-input-character">input-character::</i>
    Any source character except   <i><a href="#grammar-new-line">new-line</a></i>
 
-<a name="grammar-new-line"><i>new-line::</i>
+<i id="grammar-new-line">new-line::</i>
    Carriage-return character (U+000D)
    Line-feed character (U+000A)
    Carriage-return character (U+000D) followed by line-feed character (U+000A)
 
-<a name="grammar-delimited-comment"><i>delimited-comment::</i>
+<i id="grammar-delimited-comment">delimited-comment::</i>
    /*   No characters or any source character sequence except */   */
 </pre>
 
@@ -217,11 +217,11 @@ white-space-character::
 -->
 
 <pre>
-<a name="grammar-white-space"><i>white-space::</i>
+<i id="grammar-white-space">white-space::</i>
    <i><a href="#grammar-white-space-character">white-space-character</a></i>
    <i><a href="#grammar-white-space">white-space</a></i>   <i><a href="#grammar-white-space-character">white-space-character</a></i>
 
-<a name="grammar-white-space-character"><i>white-space-character::</i>
+<i id="grammar-white-space-character">white-space-character::</i>
    <i><a href="#grammar-new-line">new-line</a></i>
    Space character (U+0020)
    Horizontal-tab character (U+0009)
@@ -252,7 +252,7 @@ token::
 -->
 
 <pre>
-<a name="grammar-token"><i>token::</i>
+<i id="grammar-token">token::</i>
    <i><a href="#grammar-variable-name">variable-name</a></i>
    <i><a href="#grammar-name">name</a></i>
    <i><a href="#grammar-keyword">keyword</a></i>
@@ -301,32 +301,32 @@ nondigit:: one of
 -->
 
 <pre>
-<a name="grammar-variable-name"><i>variable-name::</i>
+<i id="grammar-variable-name">variable-name::</i>
    $   <i><a href="#grammar-name">name</a></i>
 
-<a name="grammar-namespace-name"><i>namespace-name::</i>
+<i id="grammar-namespace-name">namespace-name::</i>
    <i><a href="#grammar-name">name</a></i>
    <i><a href="#grammar-namespace-name">namespace-name</a></i>   \   <i><a href="#grammar-name">name</a></i>
 
-<a name="grammar-namespace-name-as-a-prefix"><i>namespace-name-as-a-prefix::</i>
+<i id="grammar-namespace-name-as-a-prefix">namespace-name-as-a-prefix::</i>
    \
    \<sub>opt</sub>   <i><a href="#grammar-namespace-name">namespace-name</a></i>   \
    namespace   \
    namespace   \   <i><a href="#grammar-namespace-name">namespace-name</a></i>   \
 
-<a name="grammar-qualified-name"><i>qualified-name::</i>
+<i id="grammar-qualified-name">qualified-name::</i>
    <i><a href="#grammar-namespace-name-as-a-prefix">namespace-name-as-a-prefix</a></i><sub>opt</sub>   <i><a href="#grammar-name">name</a></i>
 
-<a name="grammar-name"><i>name::</i>
+<i id="grammar-name">name::</i>
    <i><a href="#grammar-name-nondigit">name-nondigit</a></i>
    <i><a href="#grammar-name">name</a></i>   <i><a href="#grammar-name-nondigit">name-nondigit</a></i>
    <i><a href="#grammar-name">name</a></i>   <i><a href="#grammar-digit">digit</a></i>
 
-<a name="grammar-name-nondigit"><i>name-nondigit::</i>
+<i id="grammar-name-nondigit">name-nondigit::</i>
    <i><a href="#grammar-nondigit">nondigit</a></i>
    one of the characters U+0080–U+00ff
 
-<a name="grammar-nondigit"><i>nondigit:: one of</i>
+<i id="grammar-nondigit">nondigit:: one of</i>
    _
    a   b   c   d   e   f   g   h   i   j   k   l   m
    n   o   p   q   r   s   t   u   v   w   x   y   z
@@ -402,7 +402,7 @@ keyword:: one of
 -->
 
 <pre>
-<a name="grammar-keyword"><i>keyword:: one of</i>
+<i id="grammar-keyword">keyword:: one of</i>
    abstract   and   array   as   break   callable   case   catch   class   clone
    const   continue   declare   default   die   do   echo   else   elseif   empty
    enddeclare   endfor   endforeach   endif   endswitch   endwhile   eval   exit
@@ -477,49 +477,49 @@ binary-digit:: one of
 -->
 
 <pre>
-<a name="grammar-integer-literal"><i>integer-literal::</i>
+<i id="grammar-integer-literal">integer-literal::</i>
    <i><a href="#grammar-decimal-literal">decimal-literal</a></i>
    <i><a href="#grammar-octal-literal">octal-literal</a></i>
    <i><a href="#grammar-hexadecimal-literal">hexadecimal-literal</a></i>
    <i><a href="#grammar-binary-literal">binary-literal</a></i>
 
-<a name="grammar-decimal-literal"><i>decimal-literal::</i>
+<i id="grammar-decimal-literal">decimal-literal::</i>
    <i><a href="#grammar-nonzero-digit">nonzero-digit</a></i>
    <i><a href="#grammar-decimal-literal">decimal-literal</a></i>   <i><a href="#grammar-digit">digit</a></i>
 
-<a name="grammar-octal-literal"><i>octal-literal::</i>
+<i id="grammar-octal-literal">octal-literal::</i>
    0
    <i><a href="#grammar-octal-literal">octal-literal</a></i>   <i><a href="#grammar-octal-digit">octal-digit</a></i>
 
-<a name="grammar-hexadecimal-literal"><i>hexadecimal-literal::</i>
+<i id="grammar-hexadecimal-literal">hexadecimal-literal::</i>
    <i><a href="#grammar-hexadecimal-prefix">hexadecimal-prefix</a></i>   <i><a href="#grammar-hexadecimal-digit">hexadecimal-digit</a></i>
    <i><a href="#grammar-hexadecimal-literal">hexadecimal-literal</a></i>   <i><a href="#grammar-hexadecimal-digit">hexadecimal-digit</a></i>
 
-<a name="grammar-hexadecimal-prefix"><i>hexadecimal-prefix:: one of</i>
+<i id="grammar-hexadecimal-prefix">hexadecimal-prefix:: one of</i>
    0x   0X
 
-<a name="grammar-binary-literal"><i>binary-literal::</i>
+<i id="grammar-binary-literal">binary-literal::</i>
    <i><a href="#grammar-binary-prefix">binary-prefix</a></i>   <i><a href="#grammar-binary-digit">binary-digit</a></i>
    <i><a href="#grammar-binary-literal">binary-literal</a></i>   <i><a href="#grammar-binary-digit">binary-digit</a></i>
 
-<a name="grammar-binary-prefix"><i>binary-prefix:: one of</i>
+<i id="grammar-binary-prefix">binary-prefix:: one of</i>
    0b   0B
 
-<a name="grammar-digit"><i>digit:: one of</i>
+<i id="grammar-digit">digit:: one of</i>
    0   1   2   3   4   5   6   7   8   9
 
-<a name="grammar-nonzero-digit"><i>nonzero-digit:: one of</i>
+<i id="grammar-nonzero-digit">nonzero-digit:: one of</i>
    1   2   3   4   5   6   7   8   9
 
-<a name="grammar-octal-digit"><i>octal-digit:: one of</i>
+<i id="grammar-octal-digit">octal-digit:: one of</i>
    0   1   2   3   4   5   6   7
 
-<a name="grammar-hexadecimal-digit"><i>hexadecimal-digit:: one of</i>
+<i id="grammar-hexadecimal-digit">hexadecimal-digit:: one of</i>
    0   1   2   3   4   5   6   7   8   9
    a   b   c   d   e   f
    A   B   C   D   E   F
 
-<a name="grammar-binary-digit"><i>binary-digit:: one of</i>
+<i id="grammar-binary-digit">binary-digit:: one of</i>
    0   1
 </pre>
 
@@ -592,22 +592,22 @@ digit-sequence::
 -->
 
 <pre>
-<a name="grammar-floating-literal"><i>floating-literal::</i>
+<i id="grammar-floating-literal">floating-literal::</i>
    <i><a href="#grammar-fractional-literal">fractional-literal</a></i>   <i><a href="#grammar-exponent-part">exponent-part</a></i><sub>opt</sub>
    <i><a href="#grammar-digit-sequence">digit-sequence</a></i>   <i><a href="#grammar-exponent-part">exponent-part</a></i>
 
-<a name="grammar-fractional-literal"><i>fractional-literal::</i>
+<i id="grammar-fractional-literal">fractional-literal::</i>
    <i><a href="#grammar-digit-sequence">digit-sequence</a></i><sub>opt</sub>   .   <i><a href="#grammar-digit-sequence">digit-sequence</a></i>
    <i><a href="#grammar-digit-sequence">digit-sequence</a></i>   .
 
-<a name="grammar-exponent-part"><i>exponent-part::</i>
+<i id="grammar-exponent-part">exponent-part::</i>
    e   <i><a href="#grammar-sign">sign</a></i><sub>opt</sub>   <i><a href="#grammar-digit-sequence">digit-sequence</a></i>
    E   <i><a href="#grammar-sign">sign</a></i><sub>opt</sub>   <i><a href="#grammar-digit-sequence">digit-sequence</a></i>
 
-<a name="grammar-sign"><i>sign:: one of</i>
+<i id="grammar-sign">sign:: one of</i>
    +   -
 
-<a name="grammar-digit-sequence"><i>digit-sequence::</i>
+<i id="grammar-digit-sequence">digit-sequence::</i>
    <i><a href="#grammar-digit">digit</a></i>
    <i><a href="#grammar-digit-sequence">digit-sequence</a></i>   <i><a href="#grammar-digit">digit</a></i>
 </pre>
@@ -645,7 +645,7 @@ string-literal::
 -->
 
 <pre>
-<a name="grammar-string-literal"><i>string-literal::</i>
+<i id="grammar-string-literal">string-literal::</i>
    <i><a href="#grammar-single-quoted-string-literal">single-quoted-string-literal</a></i>
    <i><a href="#grammar-double-quoted-string-literal">double-quoted-string-literal</a></i>
    <i><a href="#grammar-heredoc-string-literal">heredoc-string-literal</a></i>
@@ -683,21 +683,21 @@ b-prefix:: one of
 -->
 
 <pre>
-<a name="grammar-single-quoted-string-literal"><i>single-quoted-string-literal::</i>
+<i id="grammar-single-quoted-string-literal">single-quoted-string-literal::</i>
    <i><a href="#grammar-b-prefix">b-prefix</a></i><sub>opt</sub>   '   <i><a href="#grammar-sq-char-sequence">sq-char-sequence</a></i><sub>opt</sub>   '
 
-<a name="grammar-sq-char-sequence"><i>sq-char-sequence::</i>
+<i id="grammar-sq-char-sequence">sq-char-sequence::</i>
    <i><a href="#grammar-sq-char">sq-char</a></i>
    <i><a href="#grammar-sq-char-sequence">sq-char-sequence</a></i>   <i><a href="#grammar-sq-char">sq-char</a></i>
 
-<a name="grammar-sq-char"><i>sq-char::</i>
+<i id="grammar-sq-char">sq-char::</i>
    <i><a href="#grammar-sq-escape-sequence">sq-escape-sequence</a></i>
    \<sub>opt</sub>   any member of the source character set except single-quote (') or backslash (\)
 
-<a name="grammar-sq-escape-sequence"><i>sq-escape-sequence:: one of</i>
+<i id="grammar-sq-escape-sequence">sq-escape-sequence:: one of</i>
    \'   \\
 
-<a name="grammar-b-prefix"><i>b-prefix:: one of</i>
+<i id="grammar-b-prefix">b-prefix:: one of</i>
    b   B
 </pre>
 
@@ -766,40 +766,40 @@ codepoint-digits::
 -->
 
 <pre>
-<a name="grammar-double-quoted-string-literal"><i>double-quoted-string-literal::</i>
+<i id="grammar-double-quoted-string-literal">double-quoted-string-literal::</i>
    <i><a href="#grammar-b-prefix">b-prefix</a></i><sub>opt</sub>   &quot;   <i><a href="#grammar-dq-char-sequence">dq-char-sequence</a></i><sub>opt</sub>   &quot;
 
-<a name="grammar-dq-char-sequence"><i>dq-char-sequence::</i>
+<i id="grammar-dq-char-sequence">dq-char-sequence::</i>
    <i><a href="#grammar-dq-char">dq-char</a></i>
    <i><a href="#grammar-dq-char-sequence">dq-char-sequence</a></i>   <i><a href="#grammar-dq-char">dq-char</a></i>
 
-<a name="grammar-dq-char"><i>dq-char::</i>
+<i id="grammar-dq-char">dq-char::</i>
    <i><a href="#grammar-dq-escape-sequence">dq-escape-sequence</a></i>
    any member of the source character set except double-quote (&quot;) or backslash (\)
    \   any member of the source character set except &quot;\$efnrtvxX or   <i><a href="#grammar-octal-digit">octal-digit</a></i>
 
-<a name="grammar-dq-escape-sequence"><i>dq-escape-sequence::</i>
+<i id="grammar-dq-escape-sequence">dq-escape-sequence::</i>
    <i><a href="#grammar-dq-simple-escape-sequence">dq-simple-escape-sequence</a></i>
    <i><a href="#grammar-dq-octal-escape-sequence">dq-octal-escape-sequence</a></i>
    <i><a href="#grammar-dq-hexadecimal-escape-sequence">dq-hexadecimal-escape-sequence</a></i>
    <i><a href="#grammar-dq-unicode-escape-sequence">dq-unicode-escape-sequence</a></i>
 
-<a name="grammar-dq-simple-escape-sequence"><i>dq-simple-escape-sequence:: one of</i>
+<i id="grammar-dq-simple-escape-sequence">dq-simple-escape-sequence:: one of</i>
    \&quot;   \\   \$   \e   \f   \n   \r   \t   \v
 
-<a name="grammar-dq-octal-escape-sequence"><i>dq-octal-escape-sequence::</i>
+<i id="grammar-dq-octal-escape-sequence">dq-octal-escape-sequence::</i>
    \   <i><a href="#grammar-octal-digit">octal-digit</a></i>
    \   <i><a href="#grammar-octal-digit">octal-digit</a></i>   <i><a href="#grammar-octal-digit">octal-digit</a></i>
    \   <i><a href="#grammar-octal-digit">octal-digit</a></i>   <i><a href="#grammar-octal-digit">octal-digit</a></i>   <i><a href="#grammar-octal-digit">octal-digit</a></i>
 
-<a name="grammar-dq-hexadecimal-escape-sequence"><i>dq-hexadecimal-escape-sequence::</i>
+<i id="grammar-dq-hexadecimal-escape-sequence">dq-hexadecimal-escape-sequence::</i>
    \x   <i><a href="#grammar-hexadecimal-digit">hexadecimal-digit</a></i>   <i><a href="#grammar-hexadecimal-digit">hexadecimal-digit</a></i><sub>opt</sub>
    \X   <i><a href="#grammar-hexadecimal-digit">hexadecimal-digit</a></i>   <i><a href="#grammar-hexadecimal-digit">hexadecimal-digit</a></i><sub>opt</sub>
 
-<a name="grammar-dq-unicode-escape-sequence"><i>dq-unicode-escape-sequence::</i>
+<i id="grammar-dq-unicode-escape-sequence">dq-unicode-escape-sequence::</i>
    \u{   <i><a href="#grammar-codepoint-digits">codepoint-digits</a></i>   }
 
-<a name="grammar-codepoint-digits"><i>codepoint-digits::</i>
+<i id="grammar-codepoint-digits">codepoint-digits::</i>
    <i><a href="#grammar-hexadecimal-digit">hexadecimal-digit</a></i>
    <i><a href="#grammar-hexadecimal-digit">hexadecimal-digit</a></i>   <i><a href="#grammar-codepoint-digits">codepoint-digits</a></i>
 </pre>
@@ -882,20 +882,20 @@ property-in-string::
 -->
 
 <pre>
-<a name="grammar-string-variable"><i>string-variable::</i>
+<i id="grammar-string-variable">string-variable::</i>
    <i><a href="#grammar-variable-name">variable-name</a></i>   <i><a href="#grammar-offset-or-property">offset-or-property</a></i><sub>opt</sub>
    ${   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   }
 
-<a name="grammar-offset-or-property"><i>offset-or-property::</i>
+<i id="grammar-offset-or-property">offset-or-property::</i>
    <i><a href="#grammar-offset-in-string">offset-in-string</a></i>
    <i><a href="#grammar-property-in-string">property-in-string</a></i>
 
-<a name="grammar-offset-in-string"><i>offset-in-string::</i>
+<i id="grammar-offset-in-string">offset-in-string::</i>
    [   <i><a href="#grammar-name">name</a></i>   ]
    [   <i><a href="#grammar-variable-name">variable-name</a></i>   ]
    [   <i><a href="#grammar-integer-literal">integer-literal</a></i>   ]
 
-<a name="grammar-property-in-string"><i>property-in-string::</i>
+<i id="grammar-property-in-string">property-in-string::</i>
    -&gt;   <i><a href="#grammar-name">name</a></i>
 </pre>
 
@@ -985,35 +985,35 @@ hd-simple-escape-sequence:: one of
 -->
 
 <pre>
-<a name="grammar-heredoc-string-literal"><i>heredoc-string-literal::</i>
+<i id="grammar-heredoc-string-literal">heredoc-string-literal::</i>
    <i><a href="#grammar-b-prefix">b-prefix</a></i><sub>opt</sub>   &lt;&lt;&lt;   <i><a href="#grammar-hd-start-identifier">hd-start-identifier</a></i>   <i><a href="#grammar-new-line">new-line</a></i>   <i><a href="#grammar-hd-body">hd-body</a></i><sub>opt</sub>   <i><a href="#grammar-hd-end-identifier">hd-end-identifier</a></i>   ;<sub>opt</sub>   <i><a href="#grammar-new-line">new-line</a></i>
 
-<a name="grammar-hd-start-identifier"><i>hd-start-identifier::</i>
+<i id="grammar-hd-start-identifier">hd-start-identifier::</i>
    <i><a href="#grammar-name">name</a></i>
    &quot;   <i><a href="#grammar-name">name</a></i>   &quot;
 
-<a name="grammar-hd-end-identifier"><i>hd-end-identifier::</i>
+<i id="grammar-hd-end-identifier">hd-end-identifier::</i>
    <i><a href="#grammar-name">name</a></i>
 
-<a name="grammar-hd-body"><i>hd-body::</i>
+<i id="grammar-hd-body">hd-body::</i>
    <i><a href="#grammar-hd-char-sequence">hd-char-sequence</a></i><sub>opt</sub>   <i><a href="#grammar-new-line">new-line</a></i>
 
-<a name="grammar-hd-char-sequence"><i>hd-char-sequence::</i>
+<i id="grammar-hd-char-sequence">hd-char-sequence::</i>
    <i><a href="#grammar-hd-char">hd-char</a></i>
    <i><a href="#grammar-hd-char-sequence">hd-char-sequence</a></i>   <i><a href="#grammar-hd-char">hd-char</a></i>
 
-<a name="grammar-hd-char"><i>hd-char::</i>
+<i id="grammar-hd-char">hd-char::</i>
    <i><a href="#grammar-hd-escape-sequence">hd-escape-sequence</a></i>
    any member of the source character set except backslash (\)
    \ any member of the source character set except \$efnrtvxX or   <i><a href="#grammar-octal-digit">octal-digit</a></i>
 
-<a name="grammar-hd-escape-sequence"><i>hd-escape-sequence::</i>
+<i id="grammar-hd-escape-sequence">hd-escape-sequence::</i>
    <i><a href="#grammar-hd-simple-escape-sequence">hd-simple-escape-sequence</a></i>
    <i><a href="#grammar-dq-octal-escape-sequence">dq-octal-escape-sequence</a></i>
    <i><a href="#grammar-dq-hexadecimal-escape-sequence">dq-hexadecimal-escape-sequence</a></i>
    <i><a href="#grammar-dq-unicode-escape-sequence">dq-unicode-escape-sequence</a></i>
 
-<a name="grammar-hd-simple-escape-sequence"><i>hd-simple-escape-sequence:: one of</i>
+<i id="grammar-hd-simple-escape-sequence">hd-simple-escape-sequence:: one of</i>
    \\   \$   \e   \f   \n   \r   \t   \v
 </pre>
 
@@ -1065,7 +1065,7 @@ nowdoc-string-literal::
 -->
 
 <pre>
-<a name="grammar-nowdoc-string-literal"><i>nowdoc-string-literal::</i>
+<i id="grammar-nowdoc-string-literal">nowdoc-string-literal::</i>
    <i><a href="#grammar-b-prefix">b-prefix</a></i><sub>opt</sub>   &lt;&lt;&lt;   '   <i><a href="#grammar-name">name</a></i>   '   <i><a href="#grammar-new-line">new-line</a></i>   <i><a href="#grammar-hd-body">hd-body</a></i><sub>opt</sub>   <i><a href="#grammar-name">name</a></i>   ;<sub>opt</sub>   <i><a href="#grammar-new-line">new-line</a></i>
 </pre>
 
@@ -1113,7 +1113,7 @@ operator-or-punctuator:: one of
 -->
 
 <pre>
-<a name="grammar-operator-or-punctuator"><i>operator-or-punctuator:: one of</i>
+<i id="grammar-operator-or-punctuator">operator-or-punctuator:: one of</i>
    [   ]   (   )   {   }   .   -&gt;   ++   --   **   *   +   -   ~   !
    $   /   %   &lt;&lt;   &gt;&gt;   &lt;   &gt;   &lt;=   &gt;=   ==   ===   !=   !==   ^   |
    &amp;   &amp;&amp;   ||   ?   :   ;   =   **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=

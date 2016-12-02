@@ -79,6 +79,7 @@ return-type:
 type-declaration:
   'array'
   'callable'
+  'iterable'
   scalar-type
   qualified-name
 
@@ -124,6 +125,7 @@ default-argument-specifier:
 <i id="grammar-type-declaration">type-declaration:</i>
    array
    callable
+   iterable
    <i><a href="#grammar-scalar-type">scalar-type</a></i>
    <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
 

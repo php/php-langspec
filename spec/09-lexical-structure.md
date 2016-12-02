@@ -355,7 +355,7 @@ Unless stated otherwise ([functions](13-functions.md#function-definitions),
 
 Names beginning with two underscores (__) are reserved by the PHP language and should not be defined by the user code.
 
-The following names cannot be used as the names of classes, interfaces, or traits: `bool`, `FALSE`, `float`, `int`, `NULL`, `string`, `TRUE`, and `void`.
+The following names cannot be used as the names of classes, interfaces, or traits: `bool`, `FALSE`, `float`, `int`, `NULL`, `string`, `TRUE`, `iterable`, and `void`.
 
 The following names are reserved for future use and should not be used as the names of classes, interfaces, or traits: `mixed`, `numeric`, `object`, and `resource`.
 

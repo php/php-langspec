@@ -812,7 +812,7 @@ unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
 
 <!-- GRAMMAR
 anonymous-function-creation-expression:
-'static?' 'function' '&'? '(' parameter-declaration-list? ')' return-type? anonymous-function-use-clause? compound-statement
+'static'? 'function' '&'? '(' parameter-declaration-list? ')' return-type? anonymous-function-use-clause? compound-statement
 
 anonymous-function-use-clause:
   'use' '(' use-variable-name-list ')'
@@ -824,7 +824,7 @@ use-variable-name-list:
 
 <pre>
 <i id="grammar-anonymous-function-creation-expression">anonymous-function-creation-expression:</i>
-   static?   function   &amp;<sub>opt</sub>   (   <i><a href="13-functions.md#grammar-parameter-declaration-list">parameter-declaration-list</a></i><sub>opt</sub>   )   <i><a href="13-functions.md#grammar-return-type">return-type</a></i><sub>opt</sub>   <i><a href="#grammar-anonymous-function-use-clause">anonymous-function-use-clause</a></i><sub>opt</sub>   <i><a href="11-statements.md#grammar-compound-statement">compound-statement</a></i>
+   static<sub>opt</sub>   function   &amp;<sub>opt</sub>   (   <i><a href="13-functions.md#grammar-parameter-declaration-list">parameter-declaration-list</a></i><sub>opt</sub>   )   <i><a href="13-functions.md#grammar-return-type">return-type</a></i><sub>opt</sub>   <i><a href="#grammar-anonymous-function-use-clause">anonymous-function-use-clause</a></i><sub>opt</sub>   <i><a href="11-statements.md#grammar-compound-statement">compound-statement</a></i>
 
 <i id="grammar-anonymous-function-use-clause">anonymous-function-use-clause:</i>
    use   (   <i><a href="#grammar-use-variable-name-list">use-variable-name-list</a></i>   )

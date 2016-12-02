@@ -195,10 +195,12 @@ By default, a parameter will accept an argument of any type. However, by
 specifying a *type-declaration*, the types of argument accepted can be
 restricted. By specifying `array`, only an argument of the `array`
 type is accepted. By specifying `callable`, only an argument designating a
-function (see below) is accepted. By specifying *qualified-name*, only an instance
-of a class having that type, or being derived from that type, are
-accepted, or only an instance of a class that implements that interface
-type directly or indirectly is accepted. The check is the same as for [`instanceof` operator](10-expressions.md#instanceof-operator).
+function (see below) is accepted. By specifying `iterable`, only an argument that
+is of type `array` or an object implementing the `Traversable` interface is accepted.
+By specifying *qualified-name*, only an instance of a class having that type,
+or being derived from that type, are accepted, or only an instance of a class that
+implements that interface type directly or indirectly is accepted. The check is the
+same as for [`instanceof` operator](10-expressions.md#instanceof-operator).
 
 `callable` pseudo-type accepts the following:
 * A string value containing the name of a function defined at the moment of the call.

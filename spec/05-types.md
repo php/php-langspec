@@ -187,7 +187,7 @@ array.
 ###Objects
 
 An *object* is an instance of a [class](14-classes.md#classes). Each distinct
-[]*class-declaration*](14-classes.md#class-declarations) defines a new class type, and each class
+[*class-declaration*](14-classes.md#class-declarations) defines a new class type, and each class
 type is an object type. The representation of object types is unspecified.
 
 The library function [`is_object`](http://www.php.net/is_object) indicates if a given value is an

@@ -26,18 +26,6 @@ echo "--------- TRUE, 12.3, NULL -------------\n";
 $v1 = TRUE; $v2 = 12.3; $v3 = NULL;
 var_dump(isset($v1, $v2, $v3));
 
-echo "--------- undefined parameter -------------\n";
-
-function f($p)
-{
-	var_dump($p);
-	var_dump(isset($p));
-}
-
-f();
-f(NULL);
-f(10);
-
 echo "---------- dynamic property ------------\n";
 
 class X1
@@ -68,17 +56,6 @@ bool(true)
 bool(false)
 --------- TRUE, 12.3, NULL -------------
 bool(false)
---------- undefined parameter -------------
-
-Warning: %s
-
-Notice: Undefined variable: p in %s/expressions/primary_expressions/intrinsics_isset.php on line 30
-NULL
-bool(false)
-NULL
-bool(false)
-int(10)
-bool(true)
 ---------- dynamic property ------------
 bool(false)
 bool(true)

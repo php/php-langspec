@@ -31,7 +31,8 @@ function g(&$q)
    $q = -10;
 }
 
-f();
+// f();  // PHP7.1, Fatal error: Uncaught ArgumentCountError: Too few arguments 
+         // to function f(), 0 passed
 
 var_dump($x);
 f($x);           // non-existant variable going in
@@ -63,7 +64,8 @@ function h(&$p)
    var_dump($b);
 }
 
-h();
+// h();  // PHP7.1, Fatal error: Uncaught ArgumentCountError: Too few arguments 
+         // to function f(), 0 passed
 
 var_dump($x);
 h($x);           // non-existant variable going in
@@ -130,13 +132,7 @@ $d = &m2();
 var_dump($d);
 //*/
 --EXPECTF--
-Warning: %s
-$p is not set
-$q is not set
-$p is set
-int(-10)
-
-Notice: Undefined variable: x in %s/functions/using_byrefs_to_undefined_variables.php on line 33
+Notice: Undefined variable: x %s
 NULL
 $p is not set
 $q is not set
@@ -193,12 +189,6 @@ array(5) {
   ["red"]=>
   int(-10)
 }
-
-Warning: %s
-$p is not set
-$p is not set
-NULL
-NULL
 int(-10)
 $p is set
 $p is set

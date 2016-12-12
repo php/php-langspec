@@ -464,9 +464,9 @@ string(5) "Array"
   int(20)
 }
    >>---object(stdClass)#1 (2) {
-  [5]=>
+  ["5"]=>
   int(10)
-  [2]=>
+  ["2"]=>
   int(20)
 }
 array(4) {
@@ -497,13 +497,13 @@ string(5) "Array"
   NULL
 }
    >>---object(stdClass)#1 (4) {
-  [0]=>
+  ["0"]=>
   float(1.23)
-  [1]=>
+  ["1"]=>
   bool(true)
-  [2]=>
+  ["2"]=>
   string(5) "Hello"
-  [3]=>
+  ["3"]=>
   NULL
 }
 float(3.3333333333333)

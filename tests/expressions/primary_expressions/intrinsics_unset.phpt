@@ -32,20 +32,6 @@ var_dump(isset($v1, $v2, $v3));
 unset($v1, $v2, $v3);
 var_dump(isset($v1, $v2, $v3));
 
-echo "--------- undefined parameter -------------\n";
-
-function f($p)
-{
-	var_dump($p);
-	var_dump(isset($p));
-	unset($p);
-	var_dump(isset($p));
-}
-
-f();
-f(NULL);
-f(10);
-
 echo "---------- dynamic property ------------\n";
 
 class X1
@@ -162,32 +148,6 @@ $c2 = new C;
 var_dump($c2);
 var_dump(isset($c2->prop));
 
-echo "---------- unsetting \$this ------------\n";
-
-class D
-{
-	public function f()
-	{
-		echo "Inside ". __METHOD__ . "\n";
-
-		var_dump(isset($this));
-		unset($this);
-		var_dump(isset($this));
-
-		$this->g();		// use $this to call sibling instance method
-	}
-
-	private function g()
-	{
-		echo "Inside ". __METHOD__ . "\n";
-		
-		var_dump(isset($this));
-	}
-}
-
-$d = new D;
-$d->f();
-
 echo "---------- unsetting array elements ------------\n";
 
 $a = array(10, 20, "xx" => 30);
@@ -208,20 +168,6 @@ bool(false)
 bool(false)
 bool(false)
 --------- TRUE, 12.3, NULL -------------
-bool(true)
-bool(false)
---------- undefined parameter -------------
-
-Warning: %s
-
-Notice: Undefined variable: p in %s/expressions/primary_expressions/intrinsics_unset.php on line 36
-NULL
-bool(false)
-bool(false)
-NULL
-bool(false)
-bool(false)
-int(10)
 bool(true)
 bool(false)
 ---------- dynamic property ------------
@@ -269,12 +215,6 @@ object(C)#4 (1) {
   ["prop"]=>
   int(10)
 }
-bool(true)
----------- unsetting $this ------------
-Inside D::f
-bool(true)
-bool(false)
-Inside D::g
 bool(true)
 ---------- unsetting array elements ------------
 Array

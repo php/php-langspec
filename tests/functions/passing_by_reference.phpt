@@ -53,9 +53,8 @@ var_dump($a);
          // so using it will raise a fatal error."
 var_dump($a);
 
-f();     // So just what is f's $p aliased to? Presumably, nothing; $p is simply
-         // undefined on entry to f. Then when assigned 200, $p becomes a local
-         // variable that dies when it goes out of scope when the function terminates.
+// f();  // PHP7.1, Fatal error: Uncaught ArgumentCountError: Too few arguments 
+         // to function f(), 0 passed
 //*/
 
 ///*
@@ -71,7 +70,7 @@ function g(&$p = "red")
 
 // pass a variable by reference; f changes its value
 
-g();           // like the f() call above
+g();      // Unlike the f() call above, here the default parameter is used
 
 $a = 10;
 var_dump($a);
@@ -103,13 +102,6 @@ f In:  $p: 10
 f Out: $p: 200
 int(200)
 int(200)
-
-Warning: %s
-$p is not set
-
-Notice: Undefined variable: p in %s/functions/passing_by_reference.php on line 34
-f In:  $p: 
-f Out: $p: 200
 $p is set
 g In:  $p: red
 g Out: $p: 200

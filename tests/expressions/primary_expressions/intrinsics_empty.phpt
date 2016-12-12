@@ -114,18 +114,6 @@ class XX {}
 $v = new XX;
 var_dump(empty($v));
 
-echo "--------- undefined parameter -------------\n";
-
-function f($p)
-{
-	var_dump($p);
-	var_dump(empty($p));
-}
-
-f();
-f(NULL);
-f(10);
-
 echo "---------- resource STDIN ------------\n";
 
 var_dump(empty(STDIN));
@@ -204,17 +192,6 @@ bool(false)
 --------- Point(3, 5) -------------
 bool(false)
 --------- instance of class having no properties -------------
-bool(false)
---------- undefined parameter -------------
-
-Warning: %s
-
-Notice: Undefined variable: p in %s/expressions/primary_expressions/intrinsics_empty.php on line 118
-NULL
-bool(true)
-NULL
-bool(true)
-int(10)
 bool(false)
 ---------- resource STDIN ------------
 bool(false)

@@ -227,7 +227,7 @@ trait T7
 		echo "Inside " . __TRAIT__ . "\n";
 		echo "Inside " . __CLASS__ . "\n";
 		echo "Inside " . __METHOD__ . "\n";
-		var_dump($this);
+		// var_dump($this); // Fatal error: Uncaught Error: Using $this when not in object context
 	}
 
 	public static function g()
@@ -339,9 +339,6 @@ $v = 2
 %AInside T7
 Inside T7
 Inside T7::f
-
-Notice: Undefined variable: this in %s/traits/traits.php on line 227
-NULL
 -------
 Inside T7
 Inside T7

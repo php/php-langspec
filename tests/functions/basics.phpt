@@ -53,11 +53,20 @@ function f2($p1, $p2)
 		", \$p2 = ".($p2 == NULL ? "NULL" : $p2)."\n";
 }
 
-// if fewer arguments are passed than there are paramaters declared, a warning is issued
-// and the parameters corresponding to each each omitted argument are undefined
+// if fewer arguments are passed than there are paramaters declared, an ArgumentCountError is thrown
 
-f2();			// pass 0 (< 2)
-f2(10);			// pass 1 (< 2)
+try {
+    f2();
+}
+catch (ArgumentCountError $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
+try {
+    f2(10);
+}
+catch (ArgumentCountError $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
 f2(10, 20);		// pass 2 (== 2)
 f2(10, 20, 30);	// pass 3 (> 2)
 
@@ -92,23 +101,13 @@ f1: # arguments passed is 3
 
 Notice: Array to string conversion in %s/functions/basics.php on line 25
 	arg[2] = >Array<
-
-Warning: %a
-
-Notice: Undefined variable: p1 in %s/functions/basics.php on line 49
-
-Notice: Undefined variable: p2 in %s/functions/basics.php on line 50
-f2: $p1 = NULL, $p2 = NULL
-
-Warning: %s
-
-Notice: Undefined variable: p2 in %s/functions/basics.php on line 50
-f2: $p1 = 10, $p2 = NULL
+Too few arguments to function f2(), 0 passed in %s on line %d and exactly 2 expected
+Too few arguments to function f2(), 1 passed in %s on line %d and exactly 2 expected
 f2: $p1 = 10, $p2 = 20
 f2: $p1 = 10, $p2 = 20
 5 squared = 25
 
-Notice: Use of undefined constant square - assumed 'square' in %s/functions/basics.php on line 65
+Notice: Use of undefined constant square - assumed 'square' in %s/functions/basics.php on line 74
 string(6) "square"
 float(5.29)
 7

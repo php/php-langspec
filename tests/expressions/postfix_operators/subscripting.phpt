@@ -144,7 +144,7 @@ var_dump($v[1]);	// OK, results in NULL
 "red"[1];
 var_dump("red"[1]);		// OK, results in "e"
 var_dump("red"[1.9]);	// OK, results in "e"
-var_dump("red"[-1]);	// OK, results in ""
+var_dump("red"[-1]);	// OK, results in "d"
 var_dump("red"[10]);	// OK, results in ""
 var_dump("red"["abc"]);	// Warning, results in "r" from [0]
 
@@ -179,7 +179,7 @@ $s[0] = "DEF";		// "r" -> "D"; only 1 char changed
 var_dump($s);
 $s[0] = "MN";		// "D" -> "M"; only 1 char changed
 var_dump($s);
-$s[0] = "";			// "M" -> "\0"
+$s[0] = "";			// warning; nothing changed
 var_dump($s);
 $s["zz"] = "Q";		// warning; "Q" goes into [0]
 var_dump($s);
@@ -364,9 +364,7 @@ string(1) "e"
 
 Notice: String offset cast occurred in %s/expressions/postfix_operators/subscripting.php on line 143
 string(1) "e"
-
-Notice: Uninitialized string offset: -1 in %s/expressions/postfix_operators/subscripting.php on line 144
-string(0) ""
+string(1) "d"
 
 Notice: Uninitialized string offset: 10 in %s/expressions/postfix_operators/subscripting.php on line 145
 string(0) ""
@@ -393,7 +391,9 @@ string(6) "rXd  Z"
 [5] is not a space
 string(6) "DXd  Z"
 string(6) "MXd  Z"
-string(6) " Xd  Z"
+
+Warning: Cannot assign an empty string to a string offset in %s
+string(6) "MXd  Z"
 
 Warning: Illegal string offset 'zz' in %s/expressions/postfix_operators/subscripting.php on line 181
 string(6) "QXd  Z"

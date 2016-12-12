@@ -53,10 +53,20 @@ function f2($p1, $p2)
 		", \$p2 = ".($p2 == NULL ? "NULL" : $p2)."\n";
 }
 
-// if fewer arguments are passed than there are paramaters declared, a fatal error is thrown
+// if fewer arguments are passed than there are paramaters declared, an ArgumentCountError is thrown
 
-// f2();		// fail (< 2)
-// f2(10);		// fail (< 2)
+try {
+    f2();
+}
+catch (ArgumentCountError $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
+try {
+    f2(10);
+}
+catch (ArgumentCountError $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
 f2(10, 20);		// pass 2 (== 2)
 f2(10, 20, 30);	// pass 3 (> 2)
 
@@ -91,11 +101,13 @@ f1: # arguments passed is 3
 
 Notice: Array to string conversion in %s/functions/basics.php on line 25
 	arg[2] = >Array<
+Too few arguments to function f2(), 0 passed in %s on line %d and exactly 2 expected
+Too few arguments to function f2(), 1 passed in %s on line %d and exactly 2 expected
 f2: $p1 = 10, $p2 = 20
 f2: $p1 = 10, $p2 = 20
 5 squared = 25
 
-Notice: Use of undefined constant square - assumed 'square' in %s/functions/basics.php on line 64
+Notice: Use of undefined constant square - assumed 'square' in %s/functions/basics.php on line 74
 string(6) "square"
 float(5.29)
 7

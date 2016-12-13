@@ -23,6 +23,10 @@ It is also mirrored on GitHub:
 
 > [https://github.com/php/php-langspec](https://github.com/php/php-langspec)
 
+Test results of PHP master against the php-langspec tests: 
+
+> [![Build Status](https://travis-ci.org/php/php-langspec.svg?branch=master)](https://travis-ci.org/php/php-langspec)
+
 The PHP specification is community-owned and open-source. Pull requests, 
 issue filings and comments are extremely welcome.
 

@@ -877,7 +877,7 @@ class C
   public function compute(array $values)
   {
     $count = 0;
-    $callback1 = function () use (&amp;$count) // has C as its scope
+    $callback1 = function () use (&$count) // has C as its scope
     {
       ++$count;
       //...

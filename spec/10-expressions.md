@@ -812,7 +812,7 @@ unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
 
 <!-- GRAMMAR
 anonymous-function-creation-expression:
-'static'? 'function' '&'? '(' parameter-declaration-list? ')' return-type? anonymous-function-use-clause? compound-statement
+'static'? 'function' '&'? '(' parameter-declaration-list? ')' anonymous-function-use-clause? return-type? compound-statement
 
 anonymous-function-use-clause:
   'use' '(' use-variable-name-list ')'

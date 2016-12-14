@@ -446,7 +446,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    unset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   )
 
 <i id="grammar-anonymous-function-creation-expression">anonymous-function-creation-expression:</i>
-   static<sub>opt</sub>   function   &amp;<sub>opt</sub>   (   <i><a href="#grammar-parameter-declaration-list">parameter-declaration-list</a></i><sub>opt</sub>   )   <i><a href="#grammar-return-type">return-type</a></i><sub>opt</sub>   <i><a href="#grammar-anonymous-function-use-clause">anonymous-function-use-clause</a></i><sub>opt</sub>   <i><a href="#grammar-compound-statement">compound-statement</a></i>
+   static<sub>opt</sub>   function   &amp;<sub>opt</sub>   (   <i><a href="#grammar-parameter-declaration-list">parameter-declaration-list</a></i><sub>opt</sub>   )   <i><a href="#grammar-anonymous-function-use-clause">anonymous-function-use-clause</a></i><sub>opt</sub>   <i><a href="#grammar-return-type">return-type</a></i><sub>opt</sub>   <i><a href="#grammar-compound-statement">compound-statement</a></i>
 
 <i id="grammar-anonymous-function-use-clause">anonymous-function-use-clause:</i>
    use   (   <i><a href="#grammar-use-variable-name-list">use-variable-name-list</a></i>   )

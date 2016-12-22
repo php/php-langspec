@@ -351,7 +351,7 @@ dollar ($).
 Unless stated otherwise ([functions](13-functions.md#function-definitions),
 [classes](14-classes.md#class-declarations), [methods](14-classes.md#methods),
 [interfaces](15-interfaces.md#interface-declarations), [traits](16-traits.md#trait-declarations),
-[namespaces](18-namespaces.md#defining-namespaces), names are case-sensitive, and every character in a name is significant.
+[namespaces](18-namespaces.md#defining-namespaces)), names are case-sensitive, and every character in a name is significant.
 
 Names beginning with two underscores (__) are reserved by the PHP language and should not be defined by the user code.
 

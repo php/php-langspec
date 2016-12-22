@@ -1333,7 +1333,7 @@ has its own scope separate from that of any function inside which that anonymous
 
 The variable scope of a parameter is the body of the function in which the parameter is declared.
 
-The scope of a []*named-label*](11-statements.md#labeled-statements) is the body of the function in
+The scope of a [*named-label*](11-statements.md#labeled-statements) is the body of the function in
 which the label is defined.
 
 The class scope of a [class member m](14-classes.md#class-members) that is declared in, or inherited by, a

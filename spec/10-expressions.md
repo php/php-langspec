@@ -2852,7 +2852,7 @@ keyed-list-expression-list:
 
 list-or-variable:
   list-intrinsic
-  variable
+  '&'? variable
 -->
 
 <pre>
@@ -2874,7 +2874,7 @@ list-or-variable:
 
 <i id="grammar-list-or-variable">list-or-variable:</i>
    <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
-   <i><a href="#grammar-variable">variable</a></i>
+   &amp;<sub>opt</sub>   <i><a href="#grammar-variable">variable</a></i>
 </pre>
 
 **Constraints**
@@ -2892,7 +2892,8 @@ At least one of the elements of the *list-expression-list* must be non-empty.
 **Semantics**
 
 This intrinsic assigns one or more elements of the source array to the
-target variables. On success, it returns a copy of the source array. If the
+target variables.  Target variables may be assigned by reference.
+On success, it will return a copy of the source array. If the
 source array is not an array or object implementing `ArrayAccess` no
 assignments are performed and the return value is `NULL`.
 
@@ -2942,6 +2943,12 @@ list($arr[1], $arr[0]) = [0, 1];
 list($arr2[], $arr2[]) = [0, 1];
   // $arr2 is [0, 1]
 
+$a = [1, 2];
+list(&$one, $two) = $a;
+  // $a[0] is 1, $a[1] is 2
+$one++;
+  // $a[0] is 2, $a[1] is 2
+
 list("one" => $one, "two" => $two) = ["one" => 1, "two" => 2];
   // $one is 1, $two is 2
 list(
@@ -2952,6 +2959,13 @@ list(
     "two" => 2,
 ];
   // $one is 1, $two is 2
+
+$a = ['one' => 1, 'two' => 2];
+list('one' => &$one, 'two' => $two) = $a;
+  // $a['one'] is 1, $a['two'] is 2
+$one++;
+  // $a['one'] is 2, $a['two'] is 2
+
 list(list("x" => $x1, "y" => $y1), list("x" => $x2, "y" => $y2)) = [
     ["x" => 1, "y" => 2],
     ["x" => 3, "y" => 4]

@@ -657,7 +657,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-list-or-variable">list-or-variable:</i>
    <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
-   <i><a href="#grammar-variable">variable</a></i>
+   &amp;<sub>opt</sub>   <i><a href="#grammar-variable">variable</a></i>
 
 <i id="grammar-byref-assignment-expression">byref-assignment-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>   =   &amp;   <i><a href="#grammar-variable">variable</a></i>

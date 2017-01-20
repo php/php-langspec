@@ -2192,8 +2192,8 @@ A cast can result in a loss of information.
 
 A *cast-type* of `array` results in a [conversion to type array](08-conversions.md#converting-to-array-type).
 
-A *cast-type* of `binary` is reserved for future use in dealing with
-so-called *binary strings*. For now, it is fully equivalent to `string` cast.
+*Deprecated* A *cast-type* of `binary` was reserved for future use in dealing with
+so-called *binary strings*. It is fully equivalent to `string` cast.
 
 A *cast-type* of `bool` or `boolean` results in a [conversion to type `bool`](08-conversions.md#converting-to-boolean-type).
 

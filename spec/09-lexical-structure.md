@@ -708,8 +708,8 @@ single-quotes (`'`, U+0027). The literal can contain any source character except
 single-quote (`'`) and backslash (`\\`), which can only be represented by
 their corresponding escape sequence.
 
-The optional *b-prefix* is reserved for future use in dealing with
-so-called *binary strings*. For now, a *single-quoted-string-literal*
+*Deprecated* The optional *b-prefix* was reserved for future use in dealing with
+so-called *binary strings*. A *single-quoted-string-literal*
 with a *b-prefix* is equivalent to one without.
 
 A single-quoted string literal is always a constant expression.
@@ -812,8 +812,8 @@ double-quote (`"`) and backslash (`\\`), which can only be represented by
 their corresponding escape sequence. Certain other (and sometimes
 non-printable) characters can also be expressed as escape sequences.
 
-The optional *b-prefix* is reserved for future use in dealing with
-so-called *binary strings*. For now, a *double-quoted-string-literal*
+*Deprecated* The optional *b-prefix* was reserved for future use in dealing with
+so-called *binary strings*. A *double-quoted-string-literal*
 with a *b-prefix* is equivalent to one without.
 
 An escape sequence represents a single-character encoding, as described
@@ -1040,7 +1040,7 @@ A heredoc literal supports variable substitution as defined for
 A heredoc string literal is a constant expression if it does not contain
 any variable substitution.
 
-The optional *b-prefix* has no effect.
+*Deprecated* The optional *b-prefix* has no effect.
 
 **Examples**
 
@@ -1085,7 +1085,7 @@ not subject to variable substitution (like the single-quoted string).
 
 A nowdoc string literal is a constant expression.
 
-The optional *b-prefix* has no effect.
+*Deprecated* The optional *b-prefix* has no effect.
 
 **Examples**
 

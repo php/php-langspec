@@ -11,3 +11,4 @@ For now, the runtime library has been excluded, as that is documented at
 [www.php.net](http://www.php.net). However, the document can contain references
 to the library functions, usually in the form of links to http://www.php.net.
 
+[Next: Conformance](https://github.com/php/php-langspec/blob/master/spec/02-conformance.md#conformance)

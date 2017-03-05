@@ -53,11 +53,11 @@ $funcTable[$i++]($i, ++$i, $i, $i = 12, --$i);	// function designator side effec
 --EXPECTF--
 f: $p1 = 0, $p2 = 1, $p3 = 1, $p4 = 12, $p5 = 11
 
-Notice: Use of undefined constant f - assumed 'f' in %s/functions/order_of_evaluation.php on line 34
+Warning: Use of undefined constant f - assumed 'f' (this will throw an Error in a future version of PHP) in %s/functions/order_of_evaluation.php on line 34
 
-Notice: Use of undefined constant g - assumed 'g' in %s/functions/order_of_evaluation.php on line 34
+Warning: Use of undefined constant g - assumed 'g' (this will throw an Error in a future version of PHP) in %s/functions/order_of_evaluation.php on line 34
 
-Notice: Use of undefined constant h - assumed 'h' in %s/functions/order_of_evaluation.php on line 34
+Warning: Use of undefined constant h - assumed 'h' (this will throw an Error in a future version of PHP) in %s/functions/order_of_evaluation.php on line 34
 array(3) {
   [0]=>
   string(1) "f"

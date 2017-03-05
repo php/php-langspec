@@ -82,12 +82,12 @@ echo strlen("abcedfg")."\n";
 f1: # arguments passed is 0
 NULL
 
-Notice: Use of undefined constant f1 - assumed 'f1' in %s/functions/basics.php on line 30
+Warning: Use of undefined constant f1 - assumed 'f1' (this will throw an Error in a future version of PHP) in %s/functions/basics.php on line 30
 
-Notice: Use of undefined constant f1 - assumed 'f1' in %s/functions/basics.php on line 31
+Warning: Use of undefined constant f1 - assumed 'f1' (this will throw an Error in a future version of PHP) in %s/functions/basics.php on line 31
 string(2) "f1"
 
-Notice: Use of undefined constant f1 - assumed 'f1' in %s/functions/basics.php on line 32
+Warning: Use of undefined constant f1 - assumed 'f1' (this will throw an Error in a future version of PHP) in %s/functions/basics.php on line 32
 f1: # arguments passed is 0
 f1: # arguments passed is 0
 f1: # arguments passed is 1
@@ -107,7 +107,7 @@ f2: $p1 = 10, $p2 = 20
 f2: $p1 = 10, $p2 = 20
 5 squared = 25
 
-Notice: Use of undefined constant square - assumed 'square' in %s/functions/basics.php on line 74
+Warning: Use of undefined constant square - assumed 'square' (this will throw an Error in a future version of PHP) in %s/functions/basics.php on line 74
 string(6) "square"
 float(5.29)
 7

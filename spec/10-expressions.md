@@ -3540,7 +3540,7 @@ class Bar{
     include 'include.php';
   }
 }
-echo X;                // emits a notice: Use of undefined constant X ...
+echo X;                // emits a warning: Use of undefined constant X ...
 echo \foo\X;           // same as above since the inclusion did not happen yet
 $bar = new Bar();
 $bar->bar();

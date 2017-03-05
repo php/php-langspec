@@ -52,7 +52,7 @@ and is a non-modifiable lvalue.
 
 Undefined constants are not defined implicitly -- forward usages of constants are also classified as undefined constants here. A distinction between class/interface constants and top level constants is made.
 
-For top level constants: For unqualified usages, the name of the undefined constant (as string) is used as substitution value. Moreover, a notice is emitted stating that the corresponding constant was undefined. For qualified usages, an exception of type [`Error`](14-classes.md#class-error) is thrown.
+For top level constants: For unqualified usages, the name of the undefined constant (as string) is used as substitution value. Moreover, a warning is emitted stating that the corresponding constant was undefined. For qualified usages, an exception of type [`Error`](14-classes.md#class-error) is thrown.
 
 For class/interface constants: An exception of type [`Error`](14-classes.md#class-error) is thrown, stating that the corresponding constant was undefined.
 
@@ -66,18 +66,18 @@ define('FAILURE', TRUE);
 
 // Examples of undefined constants
 echo NON_EXISTING_CONSTANT;     // uses 'NON_EXISTING_CONSTANT' as substitution
-                                // value and emits a notice stating that the
+                                // value and emits a warning stating that the
                                 // constant was undefined.
 
 echo NON_EXISTING_CONSTANT;     // same here, the constant is still undefined 
                                 // and 'NON_EXISTING_CONSTANT' is used as 
-                                // substitution value and a notice is emitted 
+                                // substitution value and a warning is emitted 
                                 // again.
 
 echo MAX_LENGTH;                // same here due to a forward usage 
                                 // (MAX_LENGTH is defined further below).
                                 // 'MAX_LENGTH' is used as substitution 
-                                // value and an notice is emitted.
+                                // value and a warning is emitted.
 
 echo \NON_EXISTING_CONSTANT;    // qualified use of undefined constant. Throws
                                 // an exception of type Error.

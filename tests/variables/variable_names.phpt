@@ -54,7 +54,7 @@ int(99)
 int(100)
 int(101)
 
-Notice: Use of undefined constant total - assumed 'total' in %s/variables/variable_names.php on line 25
+Warning: Use of undefined constant total - assumed 'total' (this will throw an Error in a future version of PHP) in %s/variables/variable_names.php on line 25
 array(12) {
   ["argc"]=>
   int(1)

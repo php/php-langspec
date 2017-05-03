@@ -1,6 +1,6 @@
-#Arrays
+# Arrays
 
-##General
+## General
 
 An [*array*](http://php.net/manual/language.types.array.php) is a data structure that contains a collection of zero or
 more *elements*. An array element can have any type (which allows for arrays of arrays)
@@ -31,12 +31,12 @@ Note: Arrays in PHP are different from arrays in several other languages.
 Specifically, in PHP, array elements need not have the same type, the subscript index need not be an integer,
 and there is no concept of consecutive elements of the array occupying physically adjacent memory locations).
 
-##Array Creation and Initialization
+## Array Creation and Initialization
 
 An array is created and initialized using the
 [array-creation operator](10-expressions.md#array-creation-operator):
 
-##Element Access and Insertion
+## Element Access and Insertion
 
 The value (and possibly the type) of an existing element is changed, and
 new elements are inserted, using the subscript operator [`[]`](10-expressions.md#subscript-operator).

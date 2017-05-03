@@ -1,6 +1,6 @@
-#Classes
+# Classes
 
-##General
+## General
 
 A class is a type that may contain zero or more explicitly declared
 *members*, which can be any combination of [*class constants*](#constants);
@@ -54,7 +54,7 @@ object. As such, assignment of a handle does not copy the object itself.
 
 While PHP supports *anonymous class types*, such a type cannot be declared using [*class-declaration*](#class-declarations). Instead, it must be specified at the time of instantiation; that is, as part of an [*object-creation-expression*](10-expressions.md#the-new-operator).
 
-##Class Declarations
+## Class Declarations
 
 **Syntax**
 
@@ -205,7 +205,7 @@ class MyList implements MyCollection
 }
 ```
 
-##Class Members
+## Class Members
 
 **Syntax**
 
@@ -317,7 +317,7 @@ $cName = 'Point';
 echo "Point count = " . $cName::getPointCount() . "\n";
 ```
 
-##Dynamic Members
+## Dynamic Members
 
 Initially, the instance only has properties that are
 declared explicitly in its class's definition. However, properties can be
@@ -399,7 +399,7 @@ and the call to `sMethod` is treated as if it were
 Widget::__callStatic('sMethod', array(NULL, 1.234))
 ```
 
-##Constants
+## Constants
 
 **Syntax**
 
@@ -469,7 +469,7 @@ class Automobile
 $col = Automobile::DEFAULT_COLOR;
 ```
 
-##Properties
+## Properties
 
 **Syntax**
 
@@ -556,7 +556,7 @@ class Point
 }
 ```
 
-##Methods
+## Methods
 
 **Syntax**
 
@@ -622,7 +622,7 @@ If *visibility-modifier* is omitted, `public` is assumed.
 See [class members](#class-members) for examples of instance and static methods. See [class declarations](#class-declarations) for
 examples of abstract methods and their subsequent definitions.
 
-##Constructors
+## Constructors
 
 **Syntax**
 
@@ -708,7 +708,7 @@ class MyRangeException extends Exception
 }
 ```
 
-##Destructors
+## Destructors
 
 **Syntax**
 
@@ -752,7 +752,7 @@ inhibits destructor calls from derived classes.
 
 See [constructors section](#constructors) for an example of a constructor and destructor.
 
-##Inheritance
+## Inheritance
 
 When a class `extends` another class it can *override* members of the parent class by declaring a
 member with the same name. Only properties and methods can be overridden.
@@ -768,9 +768,9 @@ and the overriding method belonged to an implementation.
 If an implemented method is overridden with an incompatible method, a non-fatal error is issued, however the
 override is still accepted by the engine. The use of incompatible overrides is not recommended.
 
-##Methods with Special Semantics
+## Methods with Special Semantics
 
-###General
+### General
 
 If a class contains a definition for a method having one of the
 following names, that method must have the prescribed visibility,
@@ -801,7 +801,7 @@ Note that while syntax definitions below use the [non-abstract syntax](#methods)
 like any methods, can be declared `abstract`. In this case the definition does not actually define a special method but defines that
 an overriding concrete class must declare one. Nevertheless, the constraints on special methods must still be followed in such definitions.
 
-###Method `__call`
+### Method `__call`
 
 **Syntax**
 
@@ -858,7 +858,7 @@ $obj = new Widget;
 $obj->iMethod(10, TRUE, "abc"); // $obj->__call('iMethod', array(...))
 ```
 
-###Method `__callStatic`
+### Method `__callStatic`
 
 **Syntax**
 
@@ -914,7 +914,7 @@ class Widget
 Widget::sMethod(NULL, 1.234); // Widget::__callStatic('sMethod', array(...))
 ```
 
-###Method `__clone`
+### Method `__clone`
 
 **Syntax**
 
@@ -999,7 +999,7 @@ $p1 = new Point;  // created using the constructor
 $p2 = clone $p1;  // created by cloning
 ```
 
-###Method `__debugInfo`
+### Method `__debugInfo`
 
 **Syntax**
 
@@ -1048,7 +1048,7 @@ object(File)#1 {
 */
 ```
 
-###Method `__get`
+### Method `__get`
 
 **Syntax**
 
@@ -1140,7 +1140,7 @@ While the [*name*](09-lexical-structure.md#names) source token has a prescribed 
 restrictions on the spelling of the dynamic property name designated by
 `$name`. Any source character is allowed here.
 
-###Method `__invoke`
+### Method `__invoke`
 
 **Syntax**
 
@@ -1179,7 +1179,7 @@ is_callable($c) // returns TRUE
 $r = $c(123);   // becomes $r = $c->__invoke(123);
 ```
 
-###Method `__isset`
+### Method `__isset`
 
 **Syntax**
 
@@ -1236,7 +1236,7 @@ class Point
 
 See the Implementation Notes for [`__get`](#method-__get).
 
-###Method `__set`
+### Method `__set`
 
 **Syntax**
 
@@ -1303,7 +1303,7 @@ $p->thing = new X;  // set dynamic property "thing" to instance with destructor
 
 See the Implementation Notes for [`__get`](#method-__get).
 
-###Method `__set_state`
+### Method `__set_state`
 
 **Syntax**
 
@@ -1419,7 +1419,7 @@ eval('$z = ' . $v . ";");
 var_dump($z);
 ```
 
-###Method `__sleep`
+### Method `__sleep`
 
 **Syntax**
 
@@ -1497,7 +1497,7 @@ $s = serialize($p);   // serialize Point(-1,0)
 $v = unserialize($s); // unserialize Point(-1,0)
 ```
 
-###Method `__toString`
+### Method `__toString`
 
 **Syntax**
 
@@ -1557,7 +1557,7 @@ class MyRangeException extends Exception
 }
 ```
 
-###Method `__unset`
+### Method `__unset`
 
 **Syntax**
 
@@ -1614,7 +1614,7 @@ class Point
 
 See the Implementation Notes for [`__get`](#method-__get).
 
-###Method `__wakeup`
+### Method `__wakeup`
 
 **Syntax**
 
@@ -1652,7 +1652,7 @@ by `__wakeup` when that `Point` is unserialized. This means that
 
 See [`__sleep`](#method-__sleep).
 
-##Serialization
+## Serialization
 
 In PHP, variables can be converted into some external form suitable for
 use in file storage or inter-program communication. The process of
@@ -1810,7 +1810,7 @@ Function `unserialize` takes an optional second argument, which specifies an arr
 
 Any attempt to serialize an object having an anonymous class type results in an instance of type `Exception` being thrown.
 
-##Predefined Classes
+## Predefined Classes
 
 ### Class `Closure`
 
@@ -1922,7 +1922,7 @@ case, the `Closure` object is empty.
 
 Closure objects can not be serialized or unserialized.
 
-###Class `Generator`
+### Class `Generator`
 
 This class supports the [`yield` operator](10-expressions.md#yield-operator). This class cannot be
 instantiated directly. It is defined, as follows:
@@ -1956,7 +1956,7 @@ Name | Purpose
 
 Generator objects can not be serialized or unserialized.
 
-###Class `__PHP_Incomplete_Class`
+### Class `__PHP_Incomplete_Class`
 
 There are certain circumstances in which a program can generate an
 instance of this class, which on its own contains no members. One
@@ -2000,7 +2000,7 @@ __PHP_Incomplete_Class
 Object of this class can be serialized, however, any attemt to call its method or access its property
 for any other operation except serialization will result in a fatal error.
 
-###Class `stdClass`
+### Class `stdClass`
 
 This class contains no members. It can be instantiated and used as a
 base class. An instance of this type is automatically created when a
@@ -2008,11 +2008,11 @@ non-object is [converted to an object](08-conversions.md#converting-to-object-ty
 or the [member selection operator](10-expressions.md#member-access-operator)
 is applied to `NULL`, `FALSE`, or an empty string.
 
-###Predefined Error Classes
+### Predefined Error Classes
 
 PHP has a number of predefined classes that are used for error reporting. All these classes extend the base Error class.
 
-####Class `Error`
+#### Class `Error`
 
 This class is the base class for all internal PHP error exceptions. It is defined, as follows:
 
@@ -2035,7 +2035,7 @@ For information about the base interface, see [Throwable](15-interfaces.md#inter
 Note that the methods from Throwable are implemented as `final` in the Error class, which means
 the extending class can not override them.
 
-####Class `ArithmeticError`
+#### Class `ArithmeticError`
 
 An instance of this class is thrown when an error occurs during certain mathematical operations. It is defined, as follows:
 
@@ -2045,7 +2045,7 @@ class ArithmeticError extends Error
 }
 ```
 
-####Class `AssertionError`
+#### Class `AssertionError`
 
 An instance of this class is thrown when an assertion made via the intrinsic `assert` fails. The class type is defined, as follows:
 
@@ -2055,7 +2055,7 @@ class AssertionError extends Error
 }
 ```
 
-####Class `DivisionByZeroError`
+#### Class `DivisionByZeroError`
 
 An instance of this class is thrown when an attempt is made to divide a number by zero, e.g. when using the remainder operators ([`%`](10-expressions.md#multiplicative-operators) and [`%=`](10-expressions.md#compound-assignment)).
 Note that this happens only for integer operations, regular float division (`/`) produces a non-fatal error instead.
@@ -2067,7 +2067,7 @@ class DivisionByZeroError extends Error
 }
 ```
 
-####Class `ParseError`
+#### Class `ParseError`
 
 An instance of this class is thrown when an error occurs while parsing PHP code (such as when calling the intrinsic  [`eval`](10-expressions.md#eval)). It is defined, as follows:
 
@@ -2077,7 +2077,7 @@ class ParseError extends Error
 }
 ```
 
-####Class `TypeError`
+#### Class `TypeError`
 
 An instance of this class is thrown when any of the following occurs:
 

@@ -1,6 +1,6 @@
-#Conversions
+# Conversions
 
-##General
+## General
 
 Explicit type conversion is performed using the [cast operator](10-expressions.md#cast-operator).
 If an operation or language construct expects operand of one type and a value of another type is given,
@@ -12,7 +12,7 @@ result are the same as the type and value of the expression.
 
 Conversions to `resource` and `null` types can not be performed.
 
-##Converting to Boolean Type
+## Converting to Boolean Type
 
 The [result type] (http://www.php.net/manual/en/language.types.boolean.php#language.types.boolean.casting) is [`bool`](05-types.md#the-boolean-type).
 
@@ -34,7 +34,7 @@ If the source is a resource, the result value is `TRUE`.
 The library function [`boolval`](http://www.php.net/boolval) allows values to be converted to
 `bool`.
 
-##Converting to Integer Type
+## Converting to Integer Type
 
 The [result type](http://www.php.net/manual/en/language.types.integer.php#language.types.integer.casting)  is [`int`](05-types.md#the-integer-type).
 
@@ -84,7 +84,7 @@ If the source is a resource, the result is the resource's unique ID.
 The library function [`intval`](http://php.net/manual/function.intval.php) allows values
 to be converted to `int`.
 
-##Converting to Floating-Point Type
+## Converting to Floating-Point Type
 
 The [result type](http://www.php.net/manual/en/language.types.float.php#language.types.float.casting) is [`float`](05-types.md#the-floating-point-type).
 
@@ -110,7 +110,7 @@ For sources of all other types, the conversion result is obtained by first
 The library function [`floatval`](http://www.php.net/floatval) allows values to be converted to
 float.
 
-##Converting to String Type
+## Converting to String Type
 
 The [result type](http://www.php.net/manual/en/language.types.string.php#language.types.string.casting) is [`string`](05-types.md#the-string-type).
 
@@ -136,7 +136,7 @@ implementation-defined string.
 The library function [`strval`](http://www.php.net/strval) allows values to be converted to
 string.
 
-##Converting to Array Type
+## Converting to Array Type
 
 The [result type](http://www.php.net/manual/en/language.types.array.php#language.types.array.casting) is [`array`](05-types.md#the-array-type).
 
@@ -167,7 +167,7 @@ where *name* is that of the property.
 The value for each key is that from the corresponding property, or `NULL` if
 the property was not initialized.
 
-##Converting to Object Type
+## Converting to Object Type
 
 The [result type](http://www.php.net/manual/en/language.types.object.php#language.types.object.casting) is [`object`](05-types.md#objects).
 

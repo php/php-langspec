@@ -1,6 +1,6 @@
-#Expressions
+# Expressions
 
-##General
+## General
 
 An *expression* involves one or more terms and zero or more operators.
 
@@ -83,9 +83,9 @@ of `return $a++;` and `return ++$a;`, it is obvious what value must be
 returned in each case, but if `$a` is a variable local to the enclosing
 function, `$a` need not actually be incremented.
 
-##Primary Expressions
+## Primary Expressions
 
-###General
+### General
 
 **Syntax**
 
@@ -118,7 +118,7 @@ primary-expression:
 The type and value of parenthesized expression are identical to those of
 the un-parenthesized expression.
 
-###Simple Variable
+### Simple Variable
 
 **Syntax**
 
@@ -176,7 +176,7 @@ function f1 () { return 2.5; }
 ${1 + f1()} = 1000;   // equivalent to ${3.5} = 1000
 ```
 
-###Dereferencable expression
+### Dereferencable expression
 
 **Syntax**
 
@@ -219,7 +219,7 @@ A *dereferencable-expression* can be used as the left hand side of dereferencing
 as `[]`, `->` and `::`. A *callable-expression* can be used as the left hand side of the [function
 call operator](#function-call-operator).
 
-###Variables
+### Variables
 
 **Syntax**
 
@@ -257,7 +257,7 @@ A *variable* is an expression that can *in principle* be used as an lvalue. Howe
 individual possible expressions may further restrict whether they can behave as lvalues.
 An expression that is not a *variable* can never act as an lvalue.
 
-###Constant Access Expression
+### Constant Access Expression
 
 <!-- GRAMMAR
 constant-access-expression:
@@ -274,7 +274,7 @@ constant-access-expression:
 A *constant-access-expression* evaluates to the value of the [constant](06-constants.md)
 with name *qualified-name*.
 
-###Literals
+### Literals
 
 **Syntax**
 
@@ -297,9 +297,9 @@ literal:
 A literal evaluates to its value, as specified in the lexical specification for
 [literals](09-lexical-structure.md#literals).
 
-###Intrinsics
+### Intrinsics
 
-####General
+####  General
 
 **Syntax**
 <!-- GRAMMAR
@@ -349,7 +349,7 @@ other values or expressions could be used.
 
 *intrinsic-construct* can be used only as stand-alone [statement](11-statements.md#statements).
 
-####echo
+#### echo
 
 **Syntax**
 
@@ -399,7 +399,7 @@ $v3 = "qqq{$v2}zzz";
 echo "$v3\n";
 ```
 
-####empty
+#### empty
 
 **Syntax**
 
@@ -439,7 +439,7 @@ $v = [10, 20];
 empty($v);   // results in FALSE
 ```
 
-####eval
+#### eval
 
 **Syntax**
 
@@ -482,7 +482,7 @@ $str = "Hello";
 eval("echo \$str . \"\\n\";");  // → echo $str . "\n"; → prints Hello
 ```
 
-####exit/die
+#### exit/die
 
 **Syntax**
 
@@ -534,7 +534,7 @@ exit (1);
 exit;
 ```
 
-####isset
+#### isset
 
 **Syntax**
 
@@ -580,7 +580,7 @@ $v1 = TRUE; $v2 = 12.3; $v3 = NULL;
 isset($v1, $v2, $v3);  // results in FALSE
 ```
 
-####list
+#### list
 
 **Syntax**
 
@@ -712,7 +712,7 @@ list(0 => list($x1, $x2), 1 => list($x2, $y2)) = [[1, 2], [3, 4]];
   // $x1 is 1, $y1 is 2, $x2 is 3, $y2 is 4
 ```
 
-####print
+#### print
 
 **Syntax**
 
@@ -754,7 +754,7 @@ print "$v3\n";            // outputs "qqq123zzz"
 $a > $b ? print "..." : print "...";
 ```
 
-####unset
+#### unset
 
 **Syntax**
 
@@ -806,7 +806,7 @@ unset($v1, $v2, $v3);
 unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
 ```
 
-###Anonymous Function Creation
+### Anonymous Function Creation
 
 **Syntax**
 
@@ -893,9 +893,9 @@ class C
 }
 ```
 
-##Postfix Operators
+## Postfix Operators
 
-###General
+### General
 
 **Syntax**
 
@@ -923,7 +923,7 @@ postfix-expression:
 
 These operators associate left-to-right.
 
-###The `clone` Operator
+### The `clone` Operator
 
 **Syntax**
 
@@ -978,7 +978,7 @@ $obj1 = new Manager("Smith", 23);
 $obj2 = clone $obj1;  // creates a new Manager that is a deep copy
 ```
 
-###The `new` Operator
+### The `new` Operator
 
 **Syntax**
 
@@ -1070,7 +1070,7 @@ $v2 = new class (100) extends C1 implements I1, I2 {
 };
 ```
 
-###Array Creation Operator
+### Array Creation Operator
 
 **Syntax**
 
@@ -1183,7 +1183,7 @@ foreach($v as $e) { /* ... */ } // iterates over keys 2, 0, 1, -1
 for ($i = -1; $i <= 2; ++$i) { echo $v[$i]; } // retrieves via keys -1, 0, 1, 2
 ```
 
-###Subscript Operator
+### Subscript Operator
 
 **Syntax**
 
@@ -1348,7 +1348,7 @@ $vect1[] = "xxx"; // calls Vector::offsetSet(NULL, "xxx")
 $x = $vect1[1];   // calls Vector::offsetGet(1)
 ```
 
-###Function Call Operator
+### Function Call Operator
 
 **Syntax**
 
@@ -1483,7 +1483,7 @@ $anon = function () { ... };  // store a Closure in $anon
 $anon();  // call the anonymous function encapsulated by that object
 ```
 
-###Member Access Operator
+### Member Access Operator
 
 **Syntax**
 
@@ -1566,7 +1566,7 @@ $p1->color = "red"; // turned into $p1->__set("color", "red");
 $c = $p1->color;  // turned into $c = $p1->__get("color");
 ```
 
-###Member Call Operator
+### Member Call Operator
 
 **Syntax**
 
@@ -1606,7 +1606,7 @@ exists, in which case it will be called instead.
 
 See [member access examples](#member-access-operator).
 
-###Postfix Increment and Decrement Operators
+### Postfix Increment and Decrement Operators
 
 **Syntax**
 
@@ -1644,7 +1644,7 @@ $i = 10; $j = $i-- + 100;   // old value of $i (10) is added to 100
 $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
 ```
 
-###Scope-Resolution Operator
+### Scope-Resolution Operator
 
 **Syntax**
 
@@ -1784,7 +1784,7 @@ class Point
 }
 ```
 
-###Exponentiation Operator
+### Exponentiation Operator
 
 **Syntax**
 
@@ -1819,9 +1819,9 @@ for each.  **Examples**
 "2.0"**"3"; // float with value 8.0
 ```
 
-##Unary Operators
+## Unary Operators
 
-###General
+### General
 
 **Syntax**
 
@@ -1851,7 +1851,7 @@ unary-expression:
 
 These operators associate right-to-left.
 
-###Prefix Increment and Decrement Operators
+### Prefix Increment and Decrement Operators
 
 **Syntax**
 
@@ -1965,7 +1965,7 @@ $a = "^^Z"; ++$a; // $a is now "^^A"
 $a = "^^Z^^"; ++$a; // $a is now "^^Z^^"
 ```
 
-###Unary Arithmetic Operators
+### Unary Arithmetic Operators
 
 **Syntax**
 
@@ -2060,7 +2060,7 @@ $v = ~0b1010101;
 $s = "\x86\x97"; $s = ~$s; // $s is "yh"
 ```
 
-###Error Control Operator
+### Error Control Operator
 
 **Syntax**
 
@@ -2117,7 +2117,7 @@ if ($curER === 0) error_reporting($origER);
 $x = $tmp;
 ```
 
-###Shell Command Operator
+### Shell Command Operator
 
 **Syntax**
 
@@ -2155,7 +2155,7 @@ $d = "dir"; $f = "*.*";
 $result = `$d {$f}`;      // result is the output of command dir *.*
 ```
 
-###Cast Operator
+### Cast Operator
 
 **Syntax**
 
@@ -2216,7 +2216,7 @@ A *cast-type* of `unset` always results in a value of `NULL`. (This use of
 (int)(float)"123.87E3" // results in the int 123870
 ```
 
-##`instanceof` Operator
+## `instanceof` Operator
 
 **Syntax**
 
@@ -2292,7 +2292,7 @@ $e2 = new E1;
 var_dump($e2 instanceof $e1);      // TRUE
 ```
 
-##Multiplicative Operators
+## Multiplicative Operators
 
 **Syntax**
 
@@ -2367,7 +2367,7 @@ These operators associate left-to-right.
 100 / "a";       // results in a diagnostic followed by bool with value false (a is converted to 0)
 ```
 
-##Additive Operators
+## Additive Operators
 
 **Syntax**
 
@@ -2445,7 +2445,7 @@ TRUE . NULL;      // string with value "1"
 10 + 5 . 12 . 100 - 50;  // int with value 1512050; ((((10 + 5).12).100)-50)
 ```
 
-##Bitwise Shift Operators
+## Bitwise Shift Operators
 
 **Syntax**
 
@@ -2508,7 +2508,7 @@ These operators associate left-to-right.
             // it is 0x7B shifted left 33 places
 ```
 
-##Relational Operators
+## Relational Operators
 
 **Syntax**
 
@@ -2644,7 +2644,7 @@ function order_func($a, $b) {
 }
 ```
 
-##Equality Operators
+## Equality Operators
 
 **Syntax**
 
@@ -2755,7 +2755,7 @@ $lLetter = 0x73;          // letter 's'
 $uLetter = $lLetter & ~0x20;  // clear the 6th bit to make letter 'S'
 ```
 
-##Bitwise Exclusive OR Operator
+## Bitwise Exclusive OR Operator
 
 **Syntax**
 
@@ -2804,7 +2804,7 @@ $v2 = $v1 ^ $v2;
 $v1 = $v1 ^ $v2;    // $v1 is now -987, and $v2 is now 1234
 ```
 
-##Bitwise Inclusive OR Operator
+## Bitwise Inclusive OR Operator
 
 **Syntax**
 
@@ -2851,7 +2851,7 @@ $uLetter = 0x41;      // letter 'A'
 $lLetter = $upCaseLetter | 0x20;  // set the 6th bit to make letter 'a'
 ```
 
-##Logical AND Operator (form 1)
+## Logical AND Operator (form 1)
 
 **Syntax**
 
@@ -2882,7 +2882,7 @@ same semantics as operator [`and`](#logical-and-operator-form-2).
 if ($month > 1 && $month <= 12) ...
 ```
 
-##Logical Inclusive OR Operator (form 1)
+## Logical Inclusive OR Operator (form 1)
 
 **Syntax**
 
@@ -2910,7 +2910,7 @@ This operator associates left-to-right.
 if ($month < 1 || $month > 12) ...
 ```
 
-##Conditional Operator
+## Conditional Operator
 
 **Syntax**
 
@@ -2957,7 +2957,7 @@ function factorial($int)
 }
 ```
 
-##Coalesce Operator
+## Coalesce Operator
 
 **Syntax**
 
@@ -3005,9 +3005,9 @@ function foo() {
 var_dump(true ?? foo()); // outputs bool(true), "executed!" does not appear as it short-circuits
 ```
 
-##Assignment Operators
+## Assignment Operators
 
-###General
+### General
 
 **Syntax**
 
@@ -3038,7 +3038,7 @@ lvalue.
 
 These operators associate right-to-left.
 
-###Simple Assignment
+### Simple Assignment
 
 **Syntax**
 
@@ -3108,7 +3108,7 @@ class C { ... }
 $a = new C; // make $a point to the allocated object
 ```
 
-###byRef Assignment
+### byRef Assignment
 
 **Syntax**
 
@@ -3150,7 +3150,7 @@ function &g2() { $t = "xxx"; return $t; } // return byRef
 $b =& g2();     // make $b an alias to "xxx"
 ```
 
-##Compound Assignment
+## Compound Assignment
 
 **Syntax**
 
@@ -3191,7 +3191,7 @@ $i = 1;
 $a[$i++] += 50; // $a[1] = 250, $i → 2
 ```
 
-##Logical AND Operator (form 2)
+## Logical AND Operator (form 2)
 
 **Syntax**
 
@@ -3212,7 +3212,7 @@ logical-AND-expression-2:
 Except for the difference in precedence, operator and has exactly the
 same semantics as [operator `&&`](#logical-and-operator-form-1).
 
-##Logical Exclusive OR Operator
+## Logical Exclusive OR Operator
 
 **Syntax**
 
@@ -3246,7 +3246,7 @@ This operator associates left-to-right.
 f($i++) xor g($i) // the sequence point makes this well-defined
 ```
 
-##Logical Inclusive OR Operator (form 2)
+## Logical Inclusive OR Operator (form 2)
 
 **Syntax**
 
@@ -3395,9 +3395,9 @@ foreach ($g as $yielded) {
 }
 ```
 
-##Script Inclusion Operators
+## Script Inclusion Operators
 
-###General
+### General
 
 **Syntax**
 
@@ -3572,7 +3572,7 @@ echo $x;                  // hello
 ````
 
 
-###The `include` Operator
+### The `include` Operator
 
 **Syntax**
 
@@ -3624,7 +3624,7 @@ $inc = include('limits.php');
 If ((include 'Positions.php') == 1) ...
 ```
 
-###The `include_once` Operator
+### The `include_once` Operator
 
 **Syntax**
 
@@ -3672,7 +3672,7 @@ $p1 = new Point(10, 20);
 $c1 = new Circle(9, 7, 2.4);
 ```
 
-###The `require` Operator
+### The `require` Operator
 
 **Syntax**
 
@@ -3692,7 +3692,7 @@ This operator is identical to operator [`include`](#the-include-operator) except
 the case of `require`, failure to find/open the designated include file
 produces a fatal error.
 
-###The `require_once` Operator
+### The `require_once` Operator
 
 **Syntax**
 
@@ -3719,7 +3719,7 @@ happens.
 The files are identified by the full pathname, so different forms of the filename (such as full
 and relative path) still are considered the same file.
 
-##Constant Expressions
+## Constant Expressions
 
 **Syntax**
 

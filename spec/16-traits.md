@@ -1,6 +1,6 @@
-#Traits
+# Traits
 
-##General
+## General
 
 PHP's class model allows [single inheritance](14-classes.md#general) only with contracts
 being enforced separately via [interfaces](15-interfaces.md#general). A *trait* can provide
@@ -38,7 +38,7 @@ each class using that trait has its own instance of that property.
 Methods in a trait have full access to all members of any class in which
 that trait is used.
 
-##Trait Declarations
+## Trait Declarations
 
 **Syntax**
 
@@ -110,7 +110,7 @@ trait T
 }
 ```
 
-##Trait Uses
+## Trait Uses
 
 **Syntax**
 

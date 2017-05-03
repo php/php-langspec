@@ -1,6 +1,6 @@
-#Constants
+# Constants
 
-##General
+## General
 
 A *constant* is a [named](09-lexical-structure.md#names) value. Once defined, the value
 of the constant can not be changed.
@@ -34,7 +34,7 @@ define('COEFFICIENT_1', 2.345, TRUE); // define a case-insensitive d-constant
 define('FAILURE', FALSE, FALSE);      // define a case-sensitive d-constant
 ```
 
-##Context-Dependent Constants
+## Context-Dependent Constants
 
 The following constants—sometimes referred to as *magic constants*—are
 automatically available to all scripts; their values are not fixed and they are case-insensitive:
@@ -53,7 +53,7 @@ automatically available to all scripts; their values are not fixed and they are 
 
 Constant names beginning with __ are reserved for future use by the Engine.
 
-##Core Predefined Constants
+## Core Predefined Constants
 
 The following constants are automatically available to all scripts; they are case-sensitive with the exception of `NULL`, `TRUE` and `FALSE`:
 
@@ -134,7 +134,7 @@ Constant Name | Description
 The members of the `E_*` family have values that are powers of 2, so
 they can be combined meaningfully using bitwise operators.
 
-##User-Defined Constants
+## User-Defined Constants
 
 A constant may be defined inside or outside of functions, inside
 a [class](14-classes.md#constants), or inside an [interface](15-interfaces.md#constants).

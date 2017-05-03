@@ -1,6 +1,6 @@
-#Statements
+# Statements
 
-##General
+## General
 
 **Syntax**
 
@@ -46,7 +46,7 @@ statement:
    <i><a href="07-variables.md#grammar-function-static-declaration">function-static-declaration</a></i>
 </pre>
 
-##Compound Statements
+## Compound Statements
 
 **Syntax**
 
@@ -92,7 +92,7 @@ while (condition)
 }
 ```
 
-##Labeled Statements
+## Labeled Statements
 
 **Syntax**
 
@@ -118,7 +118,7 @@ Any statement may be preceded by a token sequence that declares a name
 as a label name. The presence of a label does not alter the ﬂow of
 execution.
 
-##Expression Statements
+## Expression Statements
 
 **Syntax**
 
@@ -170,9 +170,9 @@ done:
 }
 ```
 
-##Selection Statements
+## Selection Statements
 
-###General
+### General
 
 **Syntax**
 
@@ -193,7 +193,7 @@ selection-statement:
 Based on the value of a controlling expression, a selection statement
 selects among a set of statements.
 
-###The `if` Statement
+### The `if` Statement
 
 **Syntax**
 
@@ -306,7 +306,7 @@ else  // this else does go with the outer if
     ...
 ```
 
-###The `switch` Statement
+### The `switch` Statement
 
 **Syntax**
 
@@ -432,9 +432,9 @@ case $v < $a:   // non-constant expression
 }
 ```
 
-##Iteration Statements
+## Iteration Statements
 
-###General
+### General
 
 **Syntax**
 
@@ -454,7 +454,7 @@ iteration-statement:
    <i><a href="#grammar-foreach-statement">foreach-statement</a></i>
 </pre>
 
-##The `while` Statement
+## The `while` Statement
 
 **Syntax**
 
@@ -502,7 +502,7 @@ while (TRUE)
 }
 ```
 
-##The `do` Statement
+## The `do` Statement
 
 **Syntax**
 
@@ -546,7 +546,7 @@ do
 while ($i <= 10);
 ```
 
-##The `for` Statement
+## The `for` Statement
 
 **Syntax**
 
@@ -651,7 +651,7 @@ for ($a = 100, $i = 1; ++$i, $i <= 10; ++$i, $a -= 10)
 }
 ```
 
-##The `foreach` Statement
+## The `foreach` Statement
 
 **Syntax**
 
@@ -743,9 +743,9 @@ foreach ($colors as &$color)  // note the &
 }
 ```
 
-##Jump Statements
+## Jump Statements
 
-###General
+### General
 
 **Syntax**
 
@@ -767,7 +767,7 @@ jump-statement:
    <i><a href="#grammar-throw-statement">throw-statement</a></i>
 </pre>
 
-###The `goto` Statement
+### The `goto` Statement
 
 **Syntax**
 
@@ -820,7 +820,7 @@ done:
 }
 ```
 
-###The `continue` Statement
+### The `continue` Statement
 
 **Syntax**
 
@@ -876,7 +876,7 @@ for ($i = 1; $i <= 5; ++$i)
 }
 ```
 
-###The `break` Statement
+### The `break` Statement
 
 **Syntax**
 
@@ -942,7 +942,7 @@ for ($i = 10; $i <= 40; $i +=10)
 }
 ```
 
-###The `return` Statement
+### The `return` Statement
 
 **Syntax**
 
@@ -1055,7 +1055,7 @@ the cases of `return $a++;` and `return ++$a;`, it is obvious what value
 must be returned in each case, but if `$a` is a variable local to the
 enclosing function, `$a` need not actually be incremented.
 
-###The `throw` Statement
+### The `throw` Statement
 
 **Syntax**
 
@@ -1096,7 +1096,7 @@ class MyException extends Exception { ... }
 throw new MyException;
 ```
 
-##The `try` Statement
+## The `try` Statement
 
 **Syntax**
 
@@ -1208,7 +1208,7 @@ catch (DeviceException $dve) { ... }
 finally { ... }
 ```
 
-##The `declare` Statement
+## The `declare` Statement
 
 **Syntax**
 

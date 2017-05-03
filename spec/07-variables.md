@@ -1,6 +1,6 @@
-#Variables
+# Variables
 
-##General
+## General
 
 A *variable* is a named area of data storage that contains a PHP value. A variable is represented by a [VSlot](04-basic-concepts.md#general). A variable is created by [assigning a value](04-basic-concepts.md#assignment) to it.
 A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic [`unset`](10-expressions.md#unset), or by the Engine. The intrinsic [`isset`](10-expressions.md#isset) tests if a given variable exists and is not set to `NULL`.
@@ -28,9 +28,9 @@ The following kinds of variable may exist in a script:
 -   [Static class property](#static-properties).
 -   [Class and interface constant](#class-and-interface-constants).
 
-##Kinds of Variables
+## Kinds of Variables
 
-###Constants
+### Constants
 
 **Syntax**
 
@@ -89,7 +89,7 @@ echo Exception::MESSAGE;        // undefined class constant. Throws an exception
 
 ```
 
-###Local Variables
+### Local Variables
 
 **Syntax**
 
@@ -213,7 +213,7 @@ $l = $k;   // a VSlot for $l was created and the value of $k (which is NULL)
 
 ```
 
-###Array Elements
+### Array Elements
 
 **Syntax**
 
@@ -262,7 +262,7 @@ $b = &colors[100];      // a VSlot for $b is created which points to the array
                         // NULL is assigned to it. A notice is *not* emitted.
 ```
 
-###Function Statics
+### Function Statics
 
 **Syntax**
 
@@ -356,7 +356,7 @@ f();
 echo "\$fs = $fs\n";    // $fs = 3
 ```
 
-###Global Variables
+### Global Variables
 
 **Syntax**
 
@@ -445,26 +445,26 @@ function f()
 
 Be also aware that declaring a variable global can hide a local variable and/or a function static with the same name. See [static variables section](#hidingNotice) for an example.
 
-###Instance Properties
+### Instance Properties
 
 These are described in [class instance properties section](14-classes.md#properties).
 They have class [scope](04-basic-concepts.md#scope) of the defining class and
 allocated [storage duration](04-basic-concepts.md#storage-duration).
 Access to the instance properties is governed by [visibility rules](14-classes.md#general).
 
-###Static Properties
+### Static Properties
 
 These are described in [class static properties section](14-classes.md#properties).
 They have class [scope](04-basic-concepts.md#scope) of the defining class
 and static [storage duration](04-basic-concepts.md#storage-duration).
 Access to the static properties is governed by [visibility rules](14-classes.md#general).
 
-###Class and Interface Constants
+### Class and Interface Constants
 
 These are described in [class constants section](14-classes.md#constants) and [interface constants section](15-interfaces.md#constants). They have class [scope](04-basic-concepts.md#scope) of the defining class or interface
  and static [storage duration](04-basic-concepts.md#storage-duration).
 
-##Predefined Variables
+## Predefined Variables
 
 The following global variables are available to all scripts:
 

@@ -1,6 +1,6 @@
-#Exception Handling
+# Exception Handling
 
-##General
+## General
 
 An *exception* is some unusual condition in that it is outside the
 ordinary expected behavior. Examples include dealing with situations in
@@ -42,7 +42,7 @@ PHP errors also can be translated to exceptions via the class
 [`ErrorException`](http://php.net/manual/class.errorexception.php)
 (which is not part of this specification).
 
-##Class `Exception`
+## Class `Exception`
 
 Class `Exception` is the base class of all exception types. This class is
 defined, as follows:
@@ -79,7 +79,7 @@ Name  | Purpose
 `__construct` | Takes three (optional) arguments – `string`: the exception message (defaults to ""), `int`: the exception code (defaults to 0), and `Exception`: the previous exception in the chain (defaults to `NULL`)
 `__clone` | Present to inhibit the cloning of exception objects
 
-##Tracing Exceptions
+## Tracing Exceptions
 
 When an exception is caught, the `get*` functions in class `Exception`
 provide useful information. If one or more nested function calls were
@@ -137,7 +137,7 @@ site have their values recorded in array-argument.
 See also, library functions [`debug_backtrace`](http://www.php.net/debug_backtrace) and
 [`debug_print_backtrace`](http://www.php.net/debug_print_backtrace).
 
-##User-Defined Exception Classes
+## User-Defined Exception Classes
 
 An exception class is defined simply by having it extend class [`Exception`](#class-exception).
 However, as that class's `__clone` method is declared [`final`](14-classes.md#methods),

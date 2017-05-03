@@ -1,6 +1,6 @@
-#Functions
+# Functions
 
-##General
+## General
 
 When a function is called, information may be passed to it by the caller
 via an *argument list*, which contains one or more *argument
@@ -39,11 +39,11 @@ ucf2(); // now cf2 exists
 cf2(); // so we can call it
 ```
 
-##Function Calls
+## Function Calls
 
 A function is called via the function-call operator [`()`](10-expressions.md#function-call-operator).
 
-##Function Definitions
+## Function Definitions
 
 **Syntax**
 
@@ -293,14 +293,14 @@ echo substr("123", "1"); // fatal error
 
 ```
 
-##Variable Functions
+## Variable Functions
 
 If a variable name is followed by the function-call operator [`()`](10-expressions.md#function-call-operator),
 and the value of that variable designates the function currently defined and visible (see description above),
 that function will be executed. If the variable does not designate a function or this function can not be called,
 a fatal error is produced.
 
-##Anonymous Functions
+## Anonymous Functions
 
 An *anonymous function*, also known as a *closure*, is a function
 defined with no name. As such, it must be defined in the context of an

@@ -1,6 +1,6 @@
-#Interfaces
+# Interfaces
 
-##General
+## General
 
 A class can implement a set of capabilities — herein called a
 *contract* — through what is called an interface. An *interface* is a set
@@ -14,7 +14,7 @@ requiring those classes to share a common base class.
 An interface can extend one or more other interfaces, in which case, it
 inherits all members from its *base interface(s)*.
 
-##Interface Declarations
+## Interface Declarations
 
 **Syntax**
 
@@ -82,7 +82,7 @@ processCollection(new MyList(...));
 processCollection(new MyQueue(...));
 ```
 
-##Interface Members
+## Interface Members
 
 **Syntax**
 
@@ -121,7 +121,7 @@ An interface may contain the following members:
 -   [Methods](#methods) – placeholders for the computations and actions that can be
     performed by implementers of the interface.
 
-##Constants
+## Constants
 
 **Constraints**
 
@@ -144,7 +144,7 @@ interface MyCollection
 }
 ```
 
-##Methods
+## Methods
 
 **Constraints**
 
@@ -166,9 +166,9 @@ interface MyCollection
 }
 ```
 
-##Predefined Interfaces
+## Predefined Interfaces
 
-###Interface `ArrayAccess`
+### Interface `ArrayAccess`
 
 This interface allows an instance of an implementing class to be
 accessed using array-like notation. This interface is defined, as
@@ -193,7 +193,7 @@ Name  |   Purpose
 `offsetSet` | This instance method sets the value having key `$offset` to $value. It returns no value. This method is called when an instance of a class that implements this interface is [subscripted](10-expressions.md#subscript-operator) in a modifiable-lvalue context.
 `offsetUnset` | This instance method unsets the value having key `$offset`. It returns no value.
 
-###Interface `Iterator`
+### Interface `Iterator`
 
 This interface allows instances of an implementing class to be treated
 as a collection. This interface is defined, as follows:
@@ -220,7 +220,7 @@ Name | Purpose
 `rewind` |  This instance method resets the current position to the first element. It returns no value. From within a `foreach` statement, this method is called once, at the beginning.
 `valid` | This instance method checks if the current position is valid. It takes no arguments. It returns a bool value of `TRUE` to indicate the current position is valid; `FALSE`, otherwise. This method is called after each call to [`Iterator::rewind()`](http://php.net/manual/iterator.rewind.php) and [`Iterator::next()`](http://php.net/manual/iterator.next.php).
 
-###Interface `IteratorAggregate`
+### Interface `IteratorAggregate`
 
 This interface allows the creation of an external iterator. This
 interface is defined, as follows:
@@ -238,7 +238,7 @@ Name  |   Purpose
 ----    |   -------
 `getIterator` | This instance method retrieves an iterator, which implements `Iterator` or `Traversable`. It throws an `Exception` on failure.
 
-###Interface `Throwable`
+### Interface `Throwable`
 
 This type is the base interface for the type of any object that can be thrown via a
 [throw statement](11-statements.md#the-throw-statement). A user-written class cannot
@@ -272,7 +272,7 @@ Name  |   Purpose
 `getTrace`	| `array`; retrieves the function stack [trace information](17-exception-handling.md#tracing-exceptions) as an array
 `getTraceAsString`	| `string`; retrieves the function stack trace information formatted as a single string in some unspecified format
 
-###Interface `Traversable`
+### Interface `Traversable`
 
 This interface is intended as the base interface for all traversable
 classes. This interface is defined, as follows:
@@ -285,7 +285,7 @@ interface Traversable
 
 This interface has no members.
 
-###Interface  `Serializable`
+### Interface  `Serializable`
 
 This interface provides support for custom serialization. It is defined,
 as follows:

@@ -1,6 +1,6 @@
-#Types
+# Types
 
-##General
+## General
 
 The meaning of a value is determined by its *type*. PHP's types are
 categorized as *scalar types* and *composite types*. The scalar types
@@ -26,9 +26,9 @@ The same variable can contain values of different types at different times.
 Useful library functions for interrogating and using type information
 include [`gettype`](http://www.php.net/gettype), [`is_type`](http://www.php.net/is_type), [`settype`](http://www.php.net/settype), and [`var_dump`](http://www.php.net/var_dump).
 
-##Scalar Types
+## Scalar Types
 
-###General
+### General
 
 The integer and floating-point types are collectively known as
 *arithmetic types*. The library function [`is_numeric`](http://www.php.net/is_numeric) indicates if
@@ -43,7 +43,7 @@ convertible to scalar types (this is currently available only to internal classe
 Such object types together with scalar types are called *scalar-compatible types*.
 Note that the same object type may be scalar-compatible for one operation but not for another.
 
-###The Boolean Type
+### The Boolean Type
 
 The Boolean type is `bool`, for which the name `boolean` is a synonym. This
 type is capable of storing two distinct values, which correspond to the
@@ -53,7 +53,7 @@ The internal representation of this type and its values is unspecified.
 The library function [`is_bool`](http://www.php.net/is_bool) indicates if a given value has type
 `bool`.
 
-###The Integer Type
+### The Integer Type
 
 There is one integer type, `int`, for which the name `integer` is a synonym.
 This type is binary, signed, and uses twos-complement representation for
@@ -77,7 +77,7 @@ characteristics about type `int`.
 The library function [`is_int`](http://www.php.net/is_int) indicates if a given value has type
 `int`.
 
-###The Floating-Point Type
+### The Floating-Point Type
 
 There is one floating-point type, `float`, for which the names `double` and
 `real` are synonyms. The `float` type must support at least the range and
@@ -90,7 +90,7 @@ indicates if a given floating-point value is infinite. The library
 function [`is_nan`](http://www.php.net/is_nan) indicates if a given floating-point value is a
 `NaN`.
 
-###The String Type
+### The String Type
 
 A string is a set of contiguous bytes that represents a sequence of zero
 or more characters.
@@ -166,16 +166,16 @@ assignment, which involves the simple assignment [operator =](10-expressions.md#
 The library function [`is_string`](http://www.php.net/is_string) indicates if a given value has
 type string.
 
-###The Null Type
+### The Null Type
 
 The null type has only one possible value, [`NULL`](06-constants.md#core-predefined-constants). The representation
 of this type and its value is unspecified.
 
 The library function [`is_null`](http://www.php.net/is_null) indicates if a given value is `NULL`.
 
-##Composite Types
+## Composite Types
 
-###The Array Type
+### The Array Type
 
 An array is a data structure that contains a collection of zero or more
 elements whose values are accessed through keys that are of type `int` or
@@ -184,7 +184,7 @@ elements whose values are accessed through keys that are of type `int` or
 The library function [`is_array`](http://www.php.net/is_array) indicates if a given value is an
 array.
 
-###Objects
+### Objects
 
 An *object* is an instance of a [class](14-classes.md#classes). Each distinct
 [*class-declaration*](14-classes.md#class-declarations) defines a new class type, and each class
@@ -194,7 +194,7 @@ The library function [`is_object`](http://www.php.net/is_object) indicates if a 
 object, and the library function
 [`get_class`](http://php.net/manual/function.get-class.php) indicates the name of an object's class.
 
-###Resources
+### Resources
 
 A [*resource*](http://php.net/manual/language.types.resource.php)
 is a descriptor to some sort of external entity. Examples include

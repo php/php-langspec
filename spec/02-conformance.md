@@ -1,4 +1,4 @@
-#Conformance
+# Conformance
 In this specification, "must" is to be interpreted as a requirement on
 an implementation or on a program; conversely, "must not" is to be
 interpreted as a prohibition.

@@ -1,10 +1,10 @@
-#Grammar
+# Grammar
 
-##General
+## General
 
 The grammar notation is described in [Grammars section](09-lexical-structure.md#grammars).
 
-##Lexical Grammar
+## Lexical Grammar
 
 <pre>
 <i id="grammar-input-file">input-file::</i>
@@ -280,9 +280,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    &gt;&gt;=   &amp;=   ^=   |=   ,   ??   &lt;=&gt;   ...   \
 </pre>
 
-##Syntactic Grammar
+## Syntactic Grammar
 
-###Basic Concepts
+### Basic Concepts
 
 <pre>
 <i id="grammar-script">script:</i>
@@ -303,7 +303,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    arbitrary text not containing any of   <i><a href="#grammar-start-tag">start-tag</a></i>   sequences
 </pre>
 
-###Variables
+### Variables
 
 <pre>
 <i id="grammar-function-static-declaration">function-static-declaration:</i>
@@ -327,7 +327,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-variable-name-list">variable-name-list</a></i>   ,   <i><a href="#grammar-simple-variable">simple-variable</a></i>
 </pre>
 
-###Expressions
+### Expressions
 
 <pre>
 <i id="grammar-primary-expression">primary-expression:</i>
@@ -721,7 +721,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
-###Statements
+### Statements
 
 <pre>
 <i id="grammar-statement">statement:</i>
@@ -897,7 +897,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    strict_types   =   <i><a href="#grammar-literal">literal</a></i>
 </pre>
 
-###Functions
+### Functions
 
 <pre>
 <i id="grammar-function-definition">function-definition:</i>
@@ -945,7 +945,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    =   <i><a href="#grammar-constant-expression">constant-expression</a></i>
 </pre>
 
-###Classes
+### Classes
 
 <pre>
 <i id="grammar-class-declaration">class-declaration:</i>
@@ -1033,7 +1033,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-method-modifiers">method-modifiers</a></i>   function   &amp;<sub>opt</sub>   __destruct   (   )   <i><a href="#grammar-compound-statement">compound-statement</a></i>
 </pre>
 
-###Interfaces
+### Interfaces
 
 <pre>
 <i id="grammar-interface-declaration">interface-declaration:</i>
@@ -1052,7 +1052,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-method-declaration">method-declaration</a></i>
 </pre>
 
-###Traits
+### Traits
 
 <pre>
 <i id="grammar-trait-declaration">trait-declaration:</i>
@@ -1100,7 +1100,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-name">name</a></i>   as   <i><a href="#grammar-visibility-modifier">visibility-modifier</a></i>   <i><a href="#grammar-name">name</a></i><sub>opt</sub>
 </pre>
 
-###Namespaces
+### Namespaces
 
 <pre>
 <i id="grammar-namespace-definition">namespace-definition:</i>

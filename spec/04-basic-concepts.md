@@ -1,5 +1,5 @@
-#Basic Concepts
-##Program Structure
+# Basic Concepts
+## Program Structure
 A PHP *program* consists of one or more source files, known formally as
 *scripts*.
 
@@ -54,7 +54,7 @@ The top level of a script is simply referred to as the *top level*.
 If `<?=` is used as the *start-tag*, the Engine proceeds as if the *statement-list* started with [echo](10-expressions.md#echo)
 statement.
 
-##Program Start-Up
+## Program Start-Up
 A program begins execution at the start of a [script](#program-structure) designated in
 some unspecified manner. This script is called the *start-up script*.
 
@@ -83,7 +83,7 @@ when it's invoked.
 The implementation may accept more than one start-up script, in which case they
 are executed in implementation-defined order and share the global environment.
 
-##Program Termination
+## Program Termination
 A program may terminate normally in the following ways:
 
 -   Execution reaches the end of the [start-up script](#program-start-up).
@@ -107,7 +107,7 @@ registered by `set_exception_handler`, that is equivalent to exit(0). It
 is unspecified whether [object destructors](14-classes.md#destructors) are run.
 In all other cases, the behavior is unspecified.
 
-##__halt_compiler
+## __halt_compiler
 
 PHP script files can incorporate data which is to be ignored by the Engine when
 compiling the script. An example of such files are [PHAR](http://www.php.net/phar) files.
@@ -138,8 +138,8 @@ var_dump(stream_get_contents($fp));
 __halt_compiler(); the file data which will be ignored by the Engine
 ```
 
-##The Memory Model
-###General
+## The Memory Model
+### General
 This section and those immediately following it describe the abstract
 memory model used by PHP for storing variables. A conforming
 implementation may use whatever approach is desired as long as from any
@@ -258,7 +258,7 @@ of which (except `unset`) use the & punctuator:
 -   [byRef variable-use list in an anonymous function](10-expressions.md#anonymous-function-creation).
 -   [unset](10-expressions.md#unset).
 
-###Reclamation and Automatic Memory Management
+### Reclamation and Automatic Memory Management
 The Engine is required to manage the lifetimes of VStores and HStores
 using some form of automatic memory management.
 In particular, when a VStore or HStore is created, memory is allocated for it.
@@ -297,8 +297,8 @@ a VSlot, this indicates that the VSlot has been reclaimed or, in the case
 of a VSlot contained with an HStore, that the containing HStore has been
 reclaimed or is eligible for reclamation.
 
-###Assignment
-####General
+### Assignment
+#### General
 This section and those immediately following it describe the abstract
 model's implementation of *value assignment* and *byRef assignment*.
 Value assignment of non-array types to local variables is described
@@ -311,7 +311,7 @@ Value assignment and byRef assignment are core to the PHP language, and
 many other operations in this specification are described in terms of
 value assignment and byRef assignment.
 
-####Value Assignment of Scalar Types to a Local Variable
+#### Value Assignment of Scalar Types to a Local Variable
 Value assignment is the primary means by which the programmer can create
 local variables. If a local variable that appears on the left-hand side
 of value assignment does not exist, the engine will bring a new local
@@ -439,7 +439,7 @@ defer copying a string's contents for value assignment so long as it has
 no observable effect on behavior from any testable viewpoint (excluding
 performance and resource consumption).
 
-####Value Assignment of Objects to a Local Variable
+#### Value Assignment of Objects to a Local Variable
 
 To demonstrate value assignment of objects to local variables, consider
 the case in which we have a Point class that supports a two-dimensional
@@ -533,7 +533,7 @@ though they can have an arbitrarily large number of instance properties
 of arbitrary type. Likewise, the same mechanics apply to value
 assignment of all resource types.
 
-####ByRef Assignment for Scalar Types with Local Variables
+#### ByRef Assignment for Scalar Types with Local Variables
 Let's begin with the same value [assignment](10-expressions.md#simple-assignment) as in the previous
 section, `$a = 123` and `$b = false`:
 
@@ -662,7 +662,7 @@ Note that literals, constants, and other expressions that don't
 designate a modifiable lvalue cannot be used on the left- or right-hand
 side of byRef assignment.
 
-####ByRef Assignment of Non-Scalar Types with Local Variables
+#### ByRef Assignment of Non-Scalar Types with Local Variables
 ByRef assignment of non-scalar types works using the same mechanism as
 byRef assignment for scalar types. Nevertheless, it is worthwhile to
 describe a few examples to clarify the semantics of byRef assignment.
@@ -736,7 +736,7 @@ Once all the aliases to the VStores are gone, the VStores can be
 destroyed, in which case, there are no more pointers to the HStore, and
 it can be destoyed too.
 
-####Value Assignment of Array Types to Local Variables
+#### Value Assignment of Array Types to Local Variables
 The semantics of value assignment of array types is different from value
 assignment of other types. Recall the `Point` class from [the examples](#value-assignment-of-objects-to-a-local-variable), and consider the following [value assignments](10-expressions.md#simple-assignment) and their abstract implementation:
 
@@ -889,7 +889,7 @@ arrays even though they can have an arbitrarily large number
 of elements. As to how an HStore accommodates all of them, is
 unspecified and unimportant to the abstract model.
 
-####Deferred Array Copying
+#### Deferred Array Copying
 As mentioned in the [previous section](#value-assignment-of-array-types-to-local-variables), an implementation may
 choose to use a deferred copy mechanism instead of eagerly making a copy
 for value assignment of arrays. An implementation may use any deferred
@@ -1115,7 +1115,7 @@ difference, php.net's implementation produces behavior that is
 compatible with the abstract model's definition of deferred array copy
 mechanisms.
 
-####General Value Assignment
+#### General Value Assignment
 The sections above thus far have described the mechanics of value assignment
 to a local variable. The assignment to a modifiable lvalue that is not a variable, such as array element or
 object property, works like the local variable assignment, except that the VSlot which represented
@@ -1180,7 +1180,7 @@ is considered a modifiable lvalue, and the VSlot will be created by the engine a
 to the appropriate HStore automatically. Static class properties are considered modifiable lvalues too,
 though new ones would not be created automatically.
 
-####General ByRef Assignment
+#### General ByRef Assignment
 The sections above thus far have described the mechanics of byref assignment
 with local variables. The byRef assignment to a modifiable lvalue that is not a variable,
 such as array element or object property, works like the local variable assignment,
@@ -1205,7 +1205,7 @@ Will result in:
 [VSlot $b *]---------------->[VStore int 123]&lt;---------------------------------------+
 ```
 
-###Argument Passing
+### Argument Passing
 Argument passing is defined in terms of [simple assignment](#assignment) or [byRef assignment](#byref-assignment-for-scalar-types-with-local-variables), depending on how the parameter is declared.
 That is, passing an argument to a function having a corresponding
 parameter is like assigning that argument to that parameter. The
@@ -1213,7 +1213,7 @@ function call situations involving missing arguments or
 undefined variable arguments are discussed in section describing
 [the function call operator](10-expressions.md#function-call-operator).
 
-###Value Returning
+### Value Returning
 Returning a value from a function is defined in terms of [simple assignment](#assignment) or [byRef assignment](#byref-assignment-for-scalar-types-with-local-variables), depending on how the function is declared.
 That is, returning a value from a function to its
 caller is like assigning that value to the user of the caller's return
@@ -1248,7 +1248,7 @@ Passing function's return to another function is considered the same as assignin
 the value to the corresponding function's parameter, with byRef parameters
 treated as byRef assignments.
 
-###Cloning objects
+### Cloning objects
 When an object instance is allocated, operator [`new`](10-expressions.md#the-new-operator) returns a handle
 that points to that object. As described [above](#value-assignment-of-objects-to-a-local-variable),
 value assignment of a handle to an object does not copy the object HStore itself. Instead, it creates a copy of the handle.
@@ -1294,7 +1294,7 @@ copy*. If a *deep copy* of an object is desired, the programmer must
 achieve this manually by using the [method `__clone`](14-classes.md#method-__clone) which
 is called after the initial shallow copy has been performed.
 
-##Scope
+## Scope
 
 The same name can designate different things at different places in a
 program. For each different thing that a name designates, that name is
@@ -1346,7 +1346,7 @@ When a [trait](16-traits.md#general) is used by a class or an interface, the [tr
 members](16-traits.md#trait-declarations) take on the class scope of a member of that class or
 interface.
 
-##Storage Duration
+## Storage Duration
 
 The lifetime of a variable is the time during program execution that
 storage for that variable is guaranteed to exist. This lifetime is

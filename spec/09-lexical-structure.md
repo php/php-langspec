@@ -1,6 +1,6 @@
-#Lexical Structure
+# Lexical Structure
 
-##Scripts
+## Scripts
 
 A [script](04-basic-concepts.md#program-structure) is an ordered sequence of characters. Typically, a
 script has a one-to-one correspondence with a file in a file system, but
@@ -22,7 +22,7 @@ encoding form (as defined by the Unicode standard), and transform them
 into a sequence of characters. Implementations can choose to accept and
 transform additional character encoding schemes.
 
-##Grammars
+## Grammars
 
 This specification shows the syntax of the PHP programming language
 using two grammars. The *lexical grammar* defines how source
@@ -77,9 +77,9 @@ hexadecimal-digit-example:: one of
    A   B   C   D   E   F
 </pre>
 
-##Lexical analysis
+## Lexical analysis
 
-###General
+### General
 
 The production *input-file* is the root of the lexical structure for a
 script. Each script must conform to this production.
@@ -121,7 +121,7 @@ Lexical processing always results in the creation of the longest
 possible lexical element. (For example, `$a+++++$b` must be parsed as
 `$a++ ++ +$b`, which syntactically is invalid).
 
-###Comments
+### Comments
 
 Two forms of comments are supported: *delimited comments* and
 *single-line comments*.
@@ -198,7 +198,7 @@ space](#white-space) can occur. (For example;
 During tokenizing, an implementation can treat a delimited comment as
 though it was white space.
 
-###White Space
+### White Space
 
 White space consists of an arbitrary combination of one or more
 new-line, space and horizontal tab characters.
@@ -232,9 +232,9 @@ white-space-character::
 The space and horizontal tab characters are considered *horizontal
 white-space characters*.
 
-###Tokens
+### Tokens
 
-####General
+#### General
 
 There are several kinds of source *tokens*:
 
@@ -262,7 +262,7 @@ token::
    <i><a href="#grammar-operator-or-punctuator">operator-or-punctuator</a></i>
 </pre>
 
-####Names
+#### Names
 
 **Syntax**
 
@@ -382,7 +382,7 @@ interface ICollection { /*...*/ }
 An implementation is discouraged from placing arbitrary restrictions on
 name lengths.
 
-####Keywords
+#### Keywords
 
 A *keyword* is a name-like sequence of characters that is reserved, and
 cannot be used as a name.
@@ -421,11 +421,11 @@ Note carefully that `yield from` is a single token that contains whitespace. How
 
 Also, all [*magic constants*](06-constants.md#context-dependent-constants) are also treated as keywords.
 
-####Literals
+#### Literals
 
 The source code representation of a value is called a *literal*.
 
-#####Integer Literals
+##### Integer Literals
 
 **Syntax**
 
@@ -566,7 +566,7 @@ On an implementation using 32-bit int representation
 0x80000000 -> 2147483648 (too big for int, so is a float)
 ```
 
-#####Floating-Point Literals
+##### Floating-Point Literals
 
 **Syntax**
 
@@ -632,7 +632,7 @@ A floating point literal is always a constant expression.
 $values = array(1.23, 3e12, 543.678E-23);
 ```
 
-#####String Literals
+##### String Literals
 
 **Syntax**
 
@@ -659,7 +659,7 @@ some fashion. The delimiters are not part of the literal's content.
 
 The type of a string literal is `string`.
 
-######Single-Quoted String Literals
+###### Single-Quoted String Literals
 
 **Syntax**
 
@@ -722,7 +722,7 @@ A single-quoted string literal is always a constant expression.
 'Can embed a single quote (\') and a backslash (\\) like this'
 ```
 
-######Double-Quoted String Literals
+###### Double-Quoted String Literals
 
 **Syntax**
 
@@ -947,7 +947,7 @@ $myC = new C();
 echo "\$myC->p1 = >$myC->p1<\n";  // → $myC->p1 = >2<
 ```
 
-######Heredoc String Literals
+###### Heredoc String Literals
 
 **Syntax**
 
@@ -1055,7 +1055,7 @@ echo ">$s<";
 // Some more text<
 ```
 
-######Nowdoc String Literals
+###### Nowdoc String Literals
 
 **Syntax**
 
@@ -1100,7 +1100,7 @@ echo ">$s<\n\n";
 // Some more text<
 ```
 
-####Operators and Punctuators
+#### Operators and Punctuators
 
 **Syntax**
 

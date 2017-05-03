@@ -1,6 +1,6 @@
-#Namespaces
+# Namespaces
 
-##General
+## General
 
 A problem encountered when managing large projects is that of avoiding
 the use of the same name in the same scope for different purposes. This
@@ -32,7 +32,7 @@ The namespaces `PHP`, `php`, and sub-namespaces beginning with those
 prefixes are reserved for use by PHP.
 
 
-##Defining Namespaces
+## Defining Namespaces
 
 **Syntax**
 
@@ -115,7 +115,7 @@ namespace NS3\Sub1;
 }
 ```
 
-##Namespace Use Declarations
+## Namespace Use Declarations
 
 **Syntax**
 
@@ -289,7 +289,7 @@ namespace a
 }
 ```
 
-##Name Lookup
+## Name Lookup
 
 When an existing name is used in source code, the Engine must determine
 how that name is found with respect to namespace lookup. For this

@@ -146,6 +146,7 @@ var_dump($binStr);
 $binStr = b"AaBb123$%^";
 var_dump($binStr);
 --EXPECTF--
+Deprecated: The (unset) cast is deprecated in %s on line %d
 bool(false)
 bool(false)
 int(0)

@@ -48,22 +48,22 @@ $dir = __DIR__ . '/../spec/';
 $grammarFile = $dir . '19-grammar.md';
 
 $output = <<<'END'
-#Grammar
+# Grammar
 
-##General
+## General
 
 The grammar notation is described in [Grammars section](09-lexical-structure.md#grammars).
 
-##Lexical Grammar
+## Lexical Grammar
 
 
 END;
 
 $lexical = file_get_contents($dir . '09-lexical-structure.md');
-$lexical = strstr($lexical, '##Lexical analysis');
+$lexical = strstr($lexical, '## Lexical analysis');
 $output .= extract_grammar($lexical, $names);
 
-$output .= "\n\n##Syntactic Grammar";
+$output .= "\n\n## Syntactic Grammar";
 
 $skipFiles = ['05-types.md', '09-lexical-structure.md', '19-grammar.md'];
 foreach (spec_files($skipFiles) as $fileName => $path) {
@@ -74,7 +74,7 @@ foreach (spec_files($skipFiles) as $fileName => $path) {
     }
 
     $heading = extract_heading($code);
-    $output .= "\n\n###$heading\n\n" . $grammar;
+    $output .= "\n\n### $heading\n\n" . $grammar;
 }
 
 $output .= "\n";

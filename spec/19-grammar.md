@@ -660,6 +660,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-coalesce-expression">coalesce-expression:</i>
    <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ??   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ??
 
 <i id="grammar-assignment-expression">assignment-expression:</i>
    <i><a href="#grammar-conditional-expression">conditional-expression</a></i>

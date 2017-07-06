@@ -7,6 +7,8 @@
    (indicated by three backticks).
 4. Style
   * Use spaces to indent, not tabs.
+  * Use the 4-space rule to indent nested lists (nested lists must be indented
+    with four spaces for each indentation level).
   * For headings, use prefixed hash symbols `# Example`, not underlining it
     with `===`.
   * Use of *inline* links `[example](http://example.org)` is preferred over

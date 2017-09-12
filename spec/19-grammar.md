@@ -929,11 +929,11 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    :   void
 
 <i id="grammar-type-declaration">type-declaration:</i>
-   array
-   callable
-   iterable
-   <i><a href="#grammar-scalar-type">scalar-type</a></i>
-   <i><a href="#grammar-qualified-name">qualified-name</a></i>
+   ?<sub>opt</sub>    array
+   ?<sub>opt</sub>    callable
+   ?<sub>opt</sub>    iterable
+   ?<sub>opt</sub>    <i><a href="#grammar-scalar-type">scalar-type</a></i>
+   ?<sub>opt</sub>    <i><a href="#grammar-qualified-name">qualified-name</a></i>
 
 <i id="grammar-scalar-type">scalar-type:</i>
    bool

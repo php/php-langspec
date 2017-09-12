@@ -77,11 +77,11 @@ return-type:
   ':' 'void'
 
 type-declaration:
-  'array'
-  'callable'
-  'iterable'
-  scalar-type
-  qualified-name
+  '?'? 'array'
+  '?'? 'callable'
+  '?'? 'iterable'
+  '?'? scalar-type
+  '?'? qualified-name
 
 scalar-type:
   'bool'
@@ -123,11 +123,11 @@ default-argument-specifier:
    :   void
 
 <i id="grammar-type-declaration">type-declaration:</i>
-   array
-   callable
-   iterable
-   <i><a href="#grammar-scalar-type">scalar-type</a></i>
-   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
+   ?<sub>opt</sub>   array
+   ?<sub>opt</sub>   callable
+   ?<sub>opt</sub>   iterable
+   ?<sub>opt</sub>   <i><a href="#grammar-scalar-type">scalar-type</a></i>
+   ?<sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
 
 <i id="grammar-scalar-type">scalar-type:</i>
    bool
@@ -218,7 +218,11 @@ Parameters typed with *scalar-type* are accepted if they pass the type check for
 as [described below](#type-check-modes). Once the checks have been passed, the parameter types are always of the scalar type
 specified (or `NULL` if `NULL` is allowed).
 
-If a parameter has a type declaration, `NULL` is not accepted unless it has a default value that evaluates to `NULL`.
+If a parameter has a type declaration, `NULL` is not accepted unless
+it has a default value that evaluates to `NULL`, or the type is
+nullable. The `?` symbol specifies that the type is nullable, it means
+that the set of values accepted by the type is extended to include the
+`NULL` value.
 
 The default value for a typed parameter must be of the type specified, or `NULL`,
 and conversion is not be performed for defaults, regardless of the mode.

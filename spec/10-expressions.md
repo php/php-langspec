@@ -3207,96 +3207,20 @@ $i = 1;
 $a[$i++] += 50; // $a[1] = 250, $i → 2
 ```
 
-## Logical AND Operator (form 2)
-
-**Syntax**
-
-<!-- GRAMMAR
-logical-AND-expression-2:
-  assignment-expression
-  logical-AND-expression-2 'and' assignment-expression
--->
-
-<pre>
-<i id="grammar-logical-AND-expression-2">logical-AND-expression-2:</i>
-   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
-   <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>   and   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
-</pre>
-
-**Semantics**
-
-Except for the difference in precedence, operator and has exactly the
-same semantics as [operator `&&`](#logical-and-operator-form-1).
-
-## Logical Exclusive OR Operator
-
-**Syntax**
-
-<!-- GRAMMAR
-logical-exc-OR-expression:
-  logical-AND-expression-2
-  logical-exc-OR-expression 'xor' logical-AND-expression-2
--->
-
-<pre>
-<i id="grammar-logical-exc-OR-expression">logical-exc-OR-expression:</i>
-   <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>
-   <i><a href="#grammar-logical-exc-OR-expression">logical-exc-OR-expression</a></i>   xor   <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>
-</pre>
-
-**Semantics**
-
-If either operand does not have type `bool`, its value is first converted
-to that type.
-
-Given the expression `e1 xor e2`, `e1` is evaluated first, then `e2`. If
-either `e1` or `e2` [converted to `bool`](08-conversions.md#converting-to-boolean-type) as `TRUE`, but not both, the result has type `bool`, value
-`TRUE`. Otherwise, the result has type `bool`, value `FALSE`. There is a
-sequence point after the evaluation of `e1`.
-
-This operator associates left-to-right.
-
-**Examples**
-
-```PHP
-f($i++) xor g($i) // the sequence point makes this well-defined
-```
-
-## Logical Inclusive OR Operator (form 2)
-
-**Syntax**
-
-<!-- GRAMMAR
-logical-inc-OR-expression-2:
-  logical-exc-OR-expression
-  logical-inc-OR-expression-2 'or' logical-exc-OR-expression
--->
-
-<pre>
-<i id="grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2:</i>
-   <i><a href="#grammar-logical-exc-OR-expression">logical-exc-OR-expression</a></i>
-   <i><a href="#grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2</a></i>   or   <i><a href="#grammar-logical-exc-OR-expression">logical-exc-OR-expression</a></i>
-</pre>
-
-**Semantics**
-
-Except for the difference in precedence, operator and has exactly the
-same semantics as [operator `||`](#logical-inclusive-or-operator-form-1).
-
 ## `yield` Operator
 
 **Syntax**
 
 <!-- GRAMMAR
 yield-expression:
-  logical-inc-OR-expression-2
+  assignment-expression
   'yield' array-element-initializer
   'yield from' expression
 -->
 
 <pre>
 <i id="grammar-yield-expression">yield-expression:</i>
-   <i><a href="#grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2</a></i>
+   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
    yield   <i><a href="#grammar-array-element-initializer">array-element-initializer</a></i>
    yield from   <i><a href="#grammar-expression">expression</a></i>
 </pre>
@@ -3411,6 +3335,82 @@ foreach ($g as $yielded) {
 }
 ```
 
+## Logical AND Operator (form 2)
+
+**Syntax**
+
+<!-- GRAMMAR
+logical-AND-expression-2:
+  yield-expression
+  logical-AND-expression-2 'and' yield-expression
+-->
+
+<pre>
+<i id="grammar-logical-AND-expression-2">logical-AND-expression-2:</i>
+   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+   <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>   and   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+</pre>
+
+**Semantics**
+
+Except for the difference in precedence, operator and has exactly the
+same semantics as [operator `&&`](#logical-and-operator-form-1).
+
+## Logical Exclusive OR Operator
+
+**Syntax**
+
+<!-- GRAMMAR
+logical-exc-OR-expression:
+  logical-AND-expression-2
+  logical-exc-OR-expression 'xor' logical-AND-expression-2
+-->
+
+<pre>
+<i id="grammar-logical-exc-OR-expression">logical-exc-OR-expression:</i>
+   <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>
+   <i><a href="#grammar-logical-exc-OR-expression">logical-exc-OR-expression</a></i>   xor   <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>
+</pre>
+
+**Semantics**
+
+If either operand does not have type `bool`, its value is first converted
+to that type.
+
+Given the expression `e1 xor e2`, `e1` is evaluated first, then `e2`. If
+either `e1` or `e2` [converted to `bool`](08-conversions.md#converting-to-boolean-type) as `TRUE`, but not both, the result has type `bool`, value
+`TRUE`. Otherwise, the result has type `bool`, value `FALSE`. There is a
+sequence point after the evaluation of `e1`.
+
+This operator associates left-to-right.
+
+**Examples**
+
+```PHP
+f($i++) xor g($i) // the sequence point makes this well-defined
+```
+
+## Logical Inclusive OR Operator (form 2)
+
+**Syntax**
+
+<!-- GRAMMAR
+logical-inc-OR-expression-2:
+  logical-exc-OR-expression
+  logical-inc-OR-expression-2 'or' logical-exc-OR-expression
+-->
+
+<pre>
+<i id="grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2:</i>
+   <i><a href="#grammar-logical-exc-OR-expression">logical-exc-OR-expression</a></i>
+   <i><a href="#grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2</a></i>   or   <i><a href="#grammar-logical-exc-OR-expression">logical-exc-OR-expression</a></i>
+</pre>
+
+**Semantics**
+
+Except for the difference in precedence, operator and has exactly the
+same semantics as [operator `||`](#logical-inclusive-or-operator-form-1).
+
 ## Script Inclusion Operators
 
 ### General
@@ -3419,7 +3419,7 @@ foreach ($g as $yielded) {
 
 <!-- GRAMMAR
 expression:
-  yield-expression
+  logical-inc-OR-expression-2
   include-expression
   include-once-expression
   require-expression
@@ -3428,7 +3428,7 @@ expression:
 
 <pre>
 <i id="grammar-expression">expression:</i>
-   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+   <i><a href="#grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2</a></i>
    <i><a href="#grammar-include-expression">include-expression</a></i>
    <i><a href="#grammar-include-once-expression">include-once-expression</a></i>
    <i><a href="#grammar-require-expression">require-expression</a></i>

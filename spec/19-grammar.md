@@ -686,9 +686,14 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 <i id="grammar-compound-assignment-operator">compound-assignment-operator: one of</i>
    **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=   &gt;&gt;=   &amp;=   ^=   |=
 
-<i id="grammar-logical-AND-expression-2">logical-AND-expression-2:</i>
+<i id="grammar-yield-expression">yield-expression:</i>
    <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
-   <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>   and   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
+   yield   <i><a href="#grammar-array-element-initializer">array-element-initializer</a></i>
+   yield from   <i><a href="#grammar-expression">expression</a></i>
+
+<i id="grammar-logical-AND-expression-2">logical-AND-expression-2:</i>
+   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+   <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>   and   <i><a href="#grammar-yield-expression">yield-expression</a></i>
 
 <i id="grammar-logical-exc-OR-expression">logical-exc-OR-expression:</i>
    <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>
@@ -698,13 +703,8 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-logical-exc-OR-expression">logical-exc-OR-expression</a></i>
    <i><a href="#grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2</a></i>   or   <i><a href="#grammar-logical-exc-OR-expression">logical-exc-OR-expression</a></i>
 
-<i id="grammar-yield-expression">yield-expression:</i>
-   <i><a href="#grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2</a></i>
-   yield   <i><a href="#grammar-array-element-initializer">array-element-initializer</a></i>
-   yield from   <i><a href="#grammar-expression">expression</a></i>
-
 <i id="grammar-expression">expression:</i>
-   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+   <i><a href="#grammar-logical-inc-OR-expression-2">logical-inc-OR-expression-2</a></i>
    <i><a href="#grammar-include-expression">include-expression</a></i>
    <i><a href="#grammar-include-once-expression">include-once-expression</a></i>
    <i><a href="#grammar-require-expression">require-expression</a></i>

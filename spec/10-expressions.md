@@ -2911,20 +2911,70 @@ This operator associates left-to-right.
 if ($month < 1 || $month > 12) ...
 ```
 
+## Coalesce Operator
+
+**Syntax**
+
+<!-- GRAMMAR
+coalesce-expression:
+  logical-inc-OR-expression-1
+  logical-inc-OR-expression-1 '??' coalesce-expression
+-->
+
+<pre>
+<i id="grammar-coalesce-expression">coalesce-expression:</i>
+   <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>
+   <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ??   <i><a href="#grammar-coalesce-expression">coalesce-expression</a></i>
+</pre>
+
+**Semantics**
+
+Given the expression `e1 ?? e2`, if `e1` is set and not `NULL` (i.e. TRUE for
+[isset](#isset)), then the result is `e1`. Otherwise, then and only then is `e2`
+evaluated, and the result becomes the result of the whole
+expression. There is a sequence point after the evaluation of `e1`.
+
+Note that the semantics of `??` is similar to `isset` so that uninitialized variables will
+not produce warnings when used in `e1`.
+
+This operator associates right-to-left.
+
+**Examples**
+
+```PHP
+$arr = ["foo" => "bar", "qux" => NULL];
+$obj = (object)$arr;
+
+$a = $arr["foo"] ?? "bang"; // "bar" as $arr["foo"] is set and not NULL
+$a = $arr["qux"] ?? "bang"; // "bang" as $arr["qux"] is NULL
+$a = $arr["bing"] ?? "bang"; // "bang" as $arr["bing"] is not set
+
+$a = $obj->foo ?? "bang"; // "bar" as $obj->foo is set and not NULL
+$a = $obj->qux ?? "bang"; // "bang" as $obj->qux is NULL
+$a = $obj->bing ?? "bang"; // "bang" as $obj->bing is not set
+
+$a = NULL ?? $arr["bing"] ?? 2; // 2 as NULL is NULL, and $arr["bing"] is not set
+
+function foo() {
+    echo "executed!", PHP_EOL;
+}
+var_dump(true ?? foo()); // outputs bool(true), "executed!" does not appear as it short-circuits
+```
+
 ## Conditional Operator
 
 **Syntax**
 
 <!-- GRAMMAR
 conditional-expression:
-  logical-inc-OR-expression-1
-  logical-inc-OR-expression-1 '?' expression? ':' conditional-expression
+  coalesce-expression
+  conditional-expression '?' expression? ':' coalesce-expression
 -->
 
 <pre>
 <i id="grammar-conditional-expression">conditional-expression:</i>
-   <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>
-   <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ?   <i><a href="#grammar-expression">expression</a></i><sub>opt</sub>   :   <i><a href="#grammar-conditional-expression">conditional-expression</a></i>
+   <i><a href="#grammar-coalesce-expression">coalesce-expression</a></i>
+   <i><a href="#grammar-conditional-expression">conditional-expression</a></i>   ?   <i><a href="#grammar-expression">expression</a></i><sub>opt</sub>   :   <i><a href="#grammar-coalesce-expression">coalesce-expression</a></i>
 </pre>
 
 **Semantics**
@@ -2958,53 +3008,6 @@ function factorial($int)
 }
 ```
 
-## Coalesce Operator
-
-**Syntax**
-
-<!-- GRAMMAR
-coalesce-expression:
-  logical-inc-OR-expression-1 '??' expression
--->
-
-<pre>
-<i id="grammar-coalesce-expression">coalesce-expression:</i>
-   <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ??   <i><a href="#grammar-expression">expression</a></i>
-</pre>
-
-**Semantics**
-
-Given the expression `e1 ?? e2`, if `e1` is set and not `NULL` (i.e. TRUE for
-[isset](#isset)), then the result is `e1`. Otherwise, then and only then is `e2`
-evaluated, and the result becomes the result of the whole
-expression. There is a sequence point after the evaluation of `e1`.
-
-Note that the semantics of `??` is similar to `isset` so that uninitialized variables will not produce
-warnings when used in `e1`.
-
-This operator associates right-to-left.
-
-**Examples**
-
-```PHP
-$arr = ["foo" => "bar", "qux" => NULL];
-$obj = (object)$arr;
-
-$a = $arr["foo"] ?? "bang"; // "bar" as $arr["foo"] is set and not NULL
-$a = $arr["qux"] ?? "bang"; // "bang" as $arr["qux"] is NULL
-$a = $arr["bing"] ?? "bang"; // "bang" as $arr["bing"] is not set
-
-$a = $obj->foo ?? "bang"; // "bar" as $obj->foo is set and not NULL
-$a = $obj->qux ?? "bang"; // "bang" as $obj->qux is NULL
-$a = $obj->bing ?? "bang"; // "bang" as $obj->bing is not set
-
-$a = NULL ?? $arr["bing"] ?? 2; // 2 as NULL is NULL, and $arr["bing"] is not set
-
-function foo() {
-    echo "executed!", PHP_EOL;
-}
-var_dump(true ?? foo()); // outputs bool(true), "executed!" does not appear as it short-circuits
-```
 
 ## Assignment Operators
 
@@ -3015,7 +3018,6 @@ var_dump(true ?? foo()); // outputs bool(true), "executed!" does not appear as i
 <!-- GRAMMAR
 assignment-expression:
   conditional-expression
-  coalesce-expression
   simple-assignment-expression
   byref-assignment-expression
   compound-assignment-expression
@@ -3024,7 +3026,6 @@ assignment-expression:
 <pre>
 <i id="grammar-assignment-expression">assignment-expression:</i>
    <i><a href="#grammar-conditional-expression">conditional-expression</a></i>
-   <i><a href="#grammar-coalesce-expression">coalesce-expression</a></i>
    <i><a href="#grammar-simple-assignment-expression">simple-assignment-expression</a></i>
    <i><a href="#grammar-byref-assignment-expression">byref-assignment-expression</a></i>
    <i><a href="#grammar-compound-assignment-expression">compound-assignment-expression</a></i>

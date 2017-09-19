@@ -2916,8 +2916,8 @@ if ($month < 1 || $month > 12) ...
 
 <!-- GRAMMAR
 conditional-expression:
-  logical-inc-OR-expression-1
-  logical-inc-OR-expression-1 '?' expression? ':' conditional-expression
+  coalesce-expression
+  conditional-expression '?' expression? ':' coalesce-expression
 -->
 
 <pre>
@@ -2963,7 +2963,8 @@ function factorial($int)
 
 <!-- GRAMMAR
 coalesce-expression:
-  logical-inc-OR-expression-1 '??' expression
+  logical-inc-OR-expression-1
+  logical-inc-OR-expression-1 '??' coalesce-expression
 -->
 
 <pre>
@@ -3014,7 +3015,6 @@ var_dump(true ?? foo()); // outputs bool(true), "executed!" does not appear as i
 <!-- GRAMMAR
 assignment-expression:
   conditional-expression
-  coalesce-expression
   simple-assignment-expression
   byref-assignment-expression
   compound-assignment-expression

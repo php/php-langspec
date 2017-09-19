@@ -673,7 +673,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>   =   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
 
 <i id="grammar-byref-assignment-expression">byref-assignment-expression:</i>
-   <i><a href="#grammar-variable">variable</a></i>   =   &amp;   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
+   <i><a href="#grammar-variable">variable</a></i>   =   &amp;   <i><a href="#grammar-variable">variable</a></i>
 
 <i id="grammar-compound-assignment-expression">compound-assignment-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>   <i><a href="#grammar-compound-assignment-operator">compound-assignment-operator</a></i>   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>

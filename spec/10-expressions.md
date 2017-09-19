@@ -3116,18 +3116,18 @@ $a = new C; // make $a point to the allocated object
 
 <!-- GRAMMAR
 byref-assignment-expression:
-  variable '=' '&' assignment-expression
+  variable '=' '&' variable
 -->
 
 <pre>
 <i id="grammar-byref-assignment-expression">byref-assignment-expression:</i>
-   <i><a href="#grammar-variable">variable</a></i>   =   &amp;   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
+   <i><a href="#grammar-variable">variable</a></i>   =   &amp;   <i><a href="#grammar-variable">variable</a></i>
 </pre>
 
 **Constraints**
 
-*assignment-expression* must be an lvalue or a call to a function that
-returns a value byRef.
+The right-hand-side *variable* must be an lvalue or a call to a function
+that returns a value byRef.
 
 **Semantics**
 

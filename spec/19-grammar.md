@@ -341,6 +341,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-object-creation-expression">object-creation-expression</a></i>
    <i><a href="#grammar-postfix-increment-expression">postfix-increment-expression</a></i>
    <i><a href="#grammar-postfix-decrement-expression">postfix-decrement-expression</a></i>
+   <i><a href="#grammar-prefix-increment-expression">prefix-increment-expression</a></i>
+   <i><a href="#grammar-prefix-decrement-expression">prefix-decrement-expression</a></i>
+   <i><a href="#grammar-shell-command-expression">shell-command-expression</a></i>
    (   <i><a href="#grammar-expression">expression</a></i>   )
 
 <i id="grammar-simple-variable">simple-variable:</i>
@@ -534,6 +537,15 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 <i id="grammar-postfix-decrement-expression">postfix-decrement-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>   --
 
+<i id="grammar-prefix-increment-expression">prefix-increment-expression:</i>
+   ++   <i><a href="#grammar-variable">variable</a></i>
+
+<i id="grammar-prefix-decrement-expression">prefix-decrement-expression:</i>
+   --   <i><a href="#grammar-variable">variable</a></i>
+
+<i id="grammar-shell-command-expression">shell-command-expression:</i>
+   `   <i><a href="#grammar-dq-char-sequence">dq-char-sequence</a></i><sub>opt</sub>   `
+
 <i id="grammar-scoped-property-access-expression">scoped-property-access-expression:</i>
    <i><a href="#grammar-scope-resolution-qualifier">scope-resolution-qualifier</a></i>   ::   <i><a href="#grammar-simple-variable">simple-variable</a></i>
 
@@ -563,18 +575,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-unary-expression">unary-expression:</i>
    <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
-   <i><a href="#grammar-prefix-increment-expression">prefix-increment-expression</a></i>
-   <i><a href="#grammar-prefix-decrement-expression">prefix-decrement-expression</a></i>
    <i><a href="#grammar-unary-op-expression">unary-op-expression</a></i>
    <i><a href="#grammar-error-control-expression">error-control-expression</a></i>
-   <i><a href="#grammar-shell-command-expression">shell-command-expression</a></i>
    <i><a href="#grammar-cast-expression">cast-expression</a></i>
-
-<i id="grammar-prefix-increment-expression">prefix-increment-expression:</i>
-   ++   <i><a href="#grammar-variable">variable</a></i>
-
-<i id="grammar-prefix-decrement-expression">prefix-decrement-expression:</i>
-   --   <i><a href="#grammar-variable">variable</a></i>
 
 <i id="grammar-unary-op-expression">unary-op-expression:</i>
    <i><a href="#grammar-unary-operator">unary-operator</a></i>   <i><a href="#grammar-unary-expression">unary-expression</a></i>
@@ -584,9 +587,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-error-control-expression">error-control-expression:</i>
    @   <i><a href="#grammar-unary-expression">unary-expression</a></i>
-
-<i id="grammar-shell-command-expression">shell-command-expression:</i>
-   `   <i><a href="#grammar-dq-char-sequence">dq-char-sequence</a></i><sub>opt</sub>   `
 
 <i id="grammar-cast-expression">cast-expression:</i>
    (   <i><a href="#grammar-cast-type">cast-type</a></i>   )   <i><a href="#grammar-unary-expression">unary-expression</a></i>

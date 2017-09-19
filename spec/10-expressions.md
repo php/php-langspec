@@ -101,6 +101,9 @@ primary-expression:
   object-creation-expression
   postfix-increment-expression
   postfix-decrement-expression
+  prefix-increment-expression
+  prefix-decrement-expression
+  shell-command-expression
   '(' expression ')'
 -->
 
@@ -116,6 +119,9 @@ primary-expression:
    <i><a href="#grammar-object-creation-expression">object-creation-expression</a></i>
    <i><a href="#grammar-postfix-increment-expression">postfix-increment-expression</a></i>
    <i><a href="#grammar-postfix-decrement-expression">postfix-decrement-expression</a></i>
+   <i><a href="#grammar-prefix-increment-expression">prefix-increment-expression</a></i>
+   <i><a href="#grammar-prefix-decrement-expression">prefix-decrement-expression</a></i>
+   <i><a href="#grammar-shell-command-expression">shell-command-expression</a></i>
    (   <i><a href="#grammar-expression">expression</a></i>   )
 </pre>
 
@@ -1494,9 +1500,10 @@ class Point
   public function __toString()
   {
     return '(' . $this->x . ',' . $this->y . ')';
-  }     // get private properties $x and $y
-    public function __set($name, $value) { ... }
-    public function __get($name) { ... }
+  }
+  // get private properties $x and $y
+  public function __set($name, $value) { ... }
+  public function __get($name) { ... }
 }
 $p1 = new Point;
 $p1->move(3, 9);  // calls public instance method move by name
@@ -1582,6 +1589,158 @@ increment or decrement takes place.
 ```PHP
 $i = 10; $j = $i-- + 100;   // old value of $i (10) is added to 100
 $a = array(100, 200); $v = $a[1]++; // old value of $ia[1] (200) is assigned
+```
+
+### Prefix Increment and Decrement Operators
+
+**Syntax**
+
+<!-- GRAMMAR
+prefix-increment-expression:
+  '++' variable
+
+prefix-decrement-expression:
+  '--' variable
+-->
+
+<pre>
+<i id="grammar-prefix-increment-expression">prefix-increment-expression:</i>
+   ++   <i><a href="#grammar-variable">variable</a></i>
+
+<i id="grammar-prefix-decrement-expression">prefix-decrement-expression:</i>
+   --   <i><a href="#grammar-variable">variable</a></i>
+</pre>
+
+**Constraints**
+
+The operand of the prefix `++` or `--` operator must be a modifiable lvalue
+that has scalar-compatible type.
+
+**Semantics**
+
+*Arithmetic Operands*
+
+For a prefix `++` operator used with an arithmetic operand, the [side
+effect](#general) of the operator is to increment the value of the operand by 1.
+The result is the value of the operand after it
+has been incremented. If an `int` operand's value is the largest
+representable for that type, the operand is incremented as if it were `float`.
+
+For a prefix `--` operator used with an arithmetic operand, the side
+effect of the operator is to decrement the value of the operand by 1.
+The result is the value of the operand after it has been
+decremented. If an `int` operand's value is the smallest representable for
+that type, the operand is decremented as if it were `float`.
+
+For a prefix `++` or `--` operator used with an operand having the value
+`INF`, `-INF`, or `NAN`, there is no side effect, and the result is the
+operand's value.
+
+*Boolean Operands*
+
+For a prefix `++` or `--` operator used with a Boolean-valued operand, there
+is no side effect, and the result is the operand's value.
+
+*NULL-valued Operands*
+
+For a prefix -- operator used with a `NULL`-valued operand, there is no
+side effect, and the result is the operand's value. For a prefix `++`
+operator used with a `NULL`-valued operand, the side effect is that the
+operand's type is changed to int, the operand's value is set to zero,
+and that value is incremented by 1. The result is the value of the
+operand after it has been incremented.
+
+*String Operands*
+
+For a prefix `--` operator used with an operand whose value is an empty
+string, the side effect is that the operand's type is changed to `int`,
+the operand's value is set to zero, and that value is decremented by 1.
+The result is the value of the operand after it has been incremented.
+
+For a prefix `++` operator used with an operand whose value is an empty
+string, the side effect is that the operand's value is changed to the
+string "1". The type of the operand is unchanged. The result is the new
+value of the operand.
+
+For a prefix `--` or `++` operator used with a numeric string, the numeric
+string is treated as the corresponding `int` or `float` value.
+
+For a prefix `--` operator used with a non-numeric string-valued operand,
+there is no side effect, and the result is the operand's value.
+
+For a non-numeric string-valued operand that contains only alphanumeric
+characters, for a prefix `++` operator, the operand is considered to be a
+representation of a base-36 number (i.e., with digits 0–9 followed by A–Z or a–z) in
+which letter case is ignored for value purposes. The right-most digit is
+incremented by 1. For the digits 0–8, that means going to 1–9. For the
+letters "A"–"Y" (or "a"–"y"), that means going to "B"–"Z" (or "b"–"z").
+For the digit 9, the digit becomes 0, and the carry is added to the next
+left-most digit, and so on. For the digit "Z" (or "z"), the resulting
+string has an extra digit "A" (or "a") appended. For example, when
+incrementing, "a" -> "b", "Z" -> "AA", "AA" -> "AB", "F29" -> "F30", "FZ9" -> "GA0", and "ZZ9" -> "AAA0". A digit position containing a number wraps
+modulo-10, while a digit position containing a letter wraps modulo-26.
+
+For a non-numeric string-valued operand that contains any
+non-alphanumeric characters, for a prefix `++` operator, all characters up
+to and including the right-most non-alphanumeric character is passed
+through to the resulting string, unchanged. Characters to the right of
+that right-most non-alphanumeric character are treated like a
+non-numeric string-valued operand that contains only alphanumeric
+characters, except that the resulting string will not be extended.
+Instead, a digit position containing a number wraps modulo-10, while a
+digit position containing a letter wraps modulo-26.
+
+*Object Operands*
+
+If the operand has an object type supporting the operation,
+then the object semantics defines the result. Otherwise, the operation has
+no effect and the result is the operand.
+
+**Examples**
+
+```PHP
+$i = 10; $j = --$i + 100;   // new value of $i (9) is added to 100
+$a = array(100, 200); $v = ++$a[1]; // new value of $a[1] (201) is assigned
+$a = "^^Z"; ++$a; // $a is now "^^A"
+$a = "^^Z^^"; ++$a; // $a is now "^^Z^^"
+```
+
+### Shell Command Operator
+
+**Syntax**
+
+<!-- GRAMMAR
+shell-command-expression:
+  '`' dq-char-sequence? '`'
+-->
+
+<pre>
+<i id="grammar-shell-command-expression">shell-command-expression:</i>
+   `   <i><a href="09-lexical-structure.md#grammar-dq-char-sequence">dq-char-sequence</a></i><sub>opt</sub>   `
+</pre>
+
+where \` is the GRAVE ACCENT character U+0060, commonly referred to as a
+*backtick*.
+
+**Semantics**
+
+This operator passes *dq-char-sequence* to the command shell for
+execution, as though it was being passed to the library function
+[`shell_exec`](http://www.php.net/shell_exec). If the output from execution of that command is
+written to [`STDOUT`](06-constants.md#core-predefined-constants), that output is the result of this operator
+as a string. If the output is redirected away from `STDOUT`, or
+*dq-char-sequence* is empty or contains only white space, the result of
+the operator is `NULL`.
+
+If [`shell_exec`](http://php.net/manual/function.shell-exec.php) is disabled, this operator is disabled.
+
+**Examples**
+
+```PHP
+$result = `ls`;           // result is the output of command ls
+$result = `ls >dirlist.txt`;  // result is NULL
+$d = "dir"; $f = "*.*";
+$result = `$d {$f}`;      // result is the output of command dir *.*
 ```
 
 ### Scope-Resolution Operator
@@ -1832,22 +1991,16 @@ for each.
 <!-- GRAMMAR
 unary-expression:
   exponentiation-expression
-  prefix-increment-expression
-  prefix-decrement-expression
   unary-op-expression
   error-control-expression
-  shell-command-expression
   cast-expression
 -->
 
 <pre>
 <i id="grammar-unary-expression">unary-expression:</i>
    <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
-   <i><a href="#grammar-prefix-increment-expression">prefix-increment-expression</a></i>
-   <i><a href="#grammar-prefix-decrement-expression">prefix-decrement-expression</a></i>
    <i><a href="#grammar-unary-op-expression">unary-op-expression</a></i>
    <i><a href="#grammar-error-control-expression">error-control-expression</a></i>
-   <i><a href="#grammar-shell-command-expression">shell-command-expression</a></i>
    <i><a href="#grammar-cast-expression">cast-expression</a></i>
 </pre>
 
@@ -1855,119 +2008,6 @@ unary-expression:
 
 These operators associate right-to-left.
 
-### Prefix Increment and Decrement Operators
-
-**Syntax**
-
-<!-- GRAMMAR
-prefix-increment-expression:
-  '++' variable
-
-prefix-decrement-expression:
-  '--' variable
--->
-
-<pre>
-<i id="grammar-prefix-increment-expression">prefix-increment-expression:</i>
-   ++   <i><a href="#grammar-variable">variable</a></i>
-
-<i id="grammar-prefix-decrement-expression">prefix-decrement-expression:</i>
-   --   <i><a href="#grammar-variable">variable</a></i>
-</pre>
-
-**Constraints**
-
-The operand of the prefix `++` or `--` operator must be a modifiable lvalue
-that has scalar-compatible type.
-
-**Semantics**
-
-*Arithmetic Operands*
-
-For a prefix `++` operator used with an arithmetic operand, the [side
-effect](#general) of the operator is to increment the value of the operand by 1.
-The result is the value of the operand after it
-has been incremented. If an `int` operand's value is the largest
-representable for that type, the operand is incremented as if it were `float`.
-
-For a prefix `--` operator used with an arithmetic operand, the side
-effect of the operator is to decrement the value of the operand by 1.
-The result is the value of the operand after it has been
-decremented. If an `int` operand's value is the smallest representable for
-that type, the operand is decremented as if it were `float`.
-
-For a prefix `++` or `--` operator used with an operand having the value
-`INF`, `-INF`, or `NAN`, there is no side effect, and the result is the
-operand's value.
-
-*Boolean Operands*
-
-For a prefix `++` or `--` operator used with a Boolean-valued operand, there
-is no side effect, and the result is the operand's value.
-
-*NULL-valued Operands*
-
-For a prefix -- operator used with a `NULL`-valued operand, there is no
-side effect, and the result is the operand's value. For a prefix `++`
-operator used with a `NULL`-valued operand, the side effect is that the
-operand's type is changed to int, the operand's value is set to zero,
-and that value is incremented by 1. The result is the value of the
-operand after it has been incremented.
-
-*String Operands*
-
-For a prefix `--` operator used with an operand whose value is an empty
-string, the side effect is that the operand's type is changed to `int`,
-the operand's value is set to zero, and that value is decremented by 1.
-The result is the value of the operand after it has been incremented.
-
-For a prefix `++` operator used with an operand whose value is an empty
-string, the side effect is that the operand's value is changed to the
-string "1". The type of the operand is unchanged. The result is the new
-value of the operand.
-
-For a prefix `--` or `++` operator used with a numeric string, the numeric
-string is treated as the corresponding `int` or `float` value.
-
-For a prefix `--` operator used with a non-numeric string-valued operand,
-there is no side effect, and the result is the operand's value.
-
-For a non-numeric string-valued operand that contains only alphanumeric
-characters, for a prefix `++` operator, the operand is considered to be a
-representation of a base-36 number (i.e., with digits 0–9 followed by A–Z or a–z) in
-which letter case is ignored for value purposes. The right-most digit is
-incremented by 1. For the digits 0–8, that means going to 1–9. For the
-letters "A"–"Y" (or "a"–"y"), that means going to "B"–"Z" (or "b"–"z").
-For the digit 9, the digit becomes 0, and the carry is added to the next
-left-most digit, and so on. For the digit "Z" (or "z"), the resulting
-string has an extra digit "A" (or "a") appended. For example, when
-incrementing, "a" -> "b", "Z" -> "AA", "AA" -> "AB", "F29" -> "F30", "FZ9" -> "GA0", and "ZZ9" -> "AAA0". A digit position containing a number wraps
-modulo-10, while a digit position containing a letter wraps modulo-26.
-
-For a non-numeric string-valued operand that contains any
-non-alphanumeric characters, for a prefix `++` operator, all characters up
-to and including the right-most non-alphanumeric character is passed
-through to the resulting string, unchanged. Characters to the right of
-that right-most non-alphanumeric character are treated like a
-non-numeric string-valued operand that contains only alphanumeric
-characters, except that the resulting string will not be extended.
-Instead, a digit position containing a number wraps modulo-10, while a
-digit position containing a letter wraps modulo-26.
-
-*Object Operands*
-
-If the operand has an object type supporting the operation,
-then the object semantics defines the result. Otherwise, the operation has
-no effect and the result is the operand.
-
-**Examples**
-
-```PHP
-$i = 10; $j = --$i + 100;   // new value of $i (9) is added to 100
-$a = array(100, 200); $v = ++$a[1]; // new value of $a[1] (201) is assigned
-$a = "^^Z"; ++$a; // $a is now "^^A"
-$a = "^^Z^^"; ++$a; // $a is now "^^Z^^"
-```
 
 ### Unary Arithmetic Operators
 
@@ -2113,44 +2153,6 @@ $tmp = f();
 $curER = error_reporting();
 if ($curER === 0) error_reporting($origER);
 $x = $tmp;
-```
-
-### Shell Command Operator
-
-**Syntax**
-
-<!-- GRAMMAR
-shell-command-expression:
-  '`' dq-char-sequence? '`'
--->
-
-<pre>
-<i id="grammar-shell-command-expression">shell-command-expression:</i>
-   `   <i><a href="09-lexical-structure.md#grammar-dq-char-sequence">dq-char-sequence</a></i><sub>opt</sub>   `
-</pre>
-
-where \` is the GRAVE ACCENT character U+0060, commonly referred to as a
-*backtick*.
-
-**Semantics**
-
-This operator passes *dq-char-sequence* to the command shell for
-execution, as though it was being passed to the library function
-[`shell_exec`](http://www.php.net/shell_exec). If the output from execution of that command is
-written to [`STDOUT`](06-constants.md#core-predefined-constants), that output is the result of this operator
-as a string. If the output is redirected away from `STDOUT`, or
-*dq-char-sequence* is empty or contains only white space, the result of
-the operator is `NULL`.
-
-If [`shell_exec`](http://php.net/manual/function.shell-exec.php) is disabled, this operator is disabled.
-
-**Examples**
-
-```PHP
-$result = `ls`;           // result is the output of command ls
-$result = `ls >dirlist.txt`;  // result is NULL
-$d = "dir"; $f = "*.*";
-$result = `$d {$f}`;      // result is the output of command dir *.*
 ```
 
 ### Cast Operator

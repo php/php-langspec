@@ -515,10 +515,10 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-argument-expression">argument-expression:</i>
    <i><a href="#grammar-variadic-unpacking">variadic-unpacking</a></i>
-   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
+   <i><a href="#grammar-expression">expression</a></i>
 
 <i id="grammar-variadic-unpacking">variadic-unpacking:</i>
-   ...   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
+   ...   <i><a href="#grammar-expression">expression</a></i>
 
 <i id="grammar-member-access-expression">member-access-expression:</i>
    <i><a href="#grammar-dereferencable-expression">dereferencable-expression</a></i>   -&gt;   <i><a href="#grammar-member-name">member-name</a></i>

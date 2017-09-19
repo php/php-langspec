@@ -1309,10 +1309,10 @@ argument-expression-list:
 
 argument-expression:
   variadic-unpacking
-  assignment-expression
+  expression
 
 variadic-unpacking:
-  '...' assignment-expression
+  '...' expression
 -->
 
 <pre>
@@ -1326,10 +1326,10 @@ variadic-unpacking:
 
 <i id="grammar-argument-expression">argument-expression:</i>
    <i><a href="#grammar-variadic-unpacking">variadic-unpacking</a></i>
-   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
+   <i><a href="#grammar-expression">expression</a></i>
 
 <i id="grammar-variadic-unpacking">variadic-unpacking:</i>
-   ...   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
+   ...   <i><a href="#grammar-expression">expression</a></i>
 </pre>
 
 **Constraints**
@@ -1358,7 +1358,7 @@ call*. The expression designates the *called function*, and
 *argument-expression-list* specifies the arguments to be passed to that
 function. An argument can be any value. In a function call,
 *callable-expression* is evaluated first, followed by each
-*assignment-expression* in the order left-to-right. There is
+*expression* in the order left-to-right. There is
 a [sequence point](#general) after each argument is evaluated and right before the function is called.
 For details of the result of a function call see [`return` statement](11-statements.md#the-return-statement).
 The value of a function call is a modifiable lvalue only if the function returns a modifiable value byRef.

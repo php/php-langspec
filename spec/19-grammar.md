@@ -599,7 +599,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-instanceof-type-designator">instanceof-type-designator:</i>
    <i><a href="#grammar-qualified-name">qualified-name</a></i>
-   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-variable">variable</a></i>
 
 <i id="grammar-multiplicative-expression">multiplicative-expression:</i>
    <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>

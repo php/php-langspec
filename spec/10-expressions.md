@@ -2230,7 +2230,7 @@ instanceof-subject:
 
 instanceof-type-designator:
   qualified-name
-  expression
+  variable
 -->
 
 <pre>
@@ -2243,13 +2243,14 @@ instanceof-type-designator:
 
 <i id="grammar-instanceof-type-designator">instanceof-type-designator:</i>
    <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
-   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-variable">variable</a></i>
 </pre>
 
 **Constraints**
 
-The *expression* in *instanceof-type-designator* and *instanceof-subject* must not be any form of
-literal.
+The *expression* in *instanceof-subject* must not be any form of literal.
+
+The *variable* in *instanceof-type-designator* must not contain calls.
 
 **Semantics**
 

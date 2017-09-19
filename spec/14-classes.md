@@ -361,7 +361,7 @@ the instance method [`__get`](#method-__get), which treats that name as
 designating a dynamic property of the instance being operated on, and
 gets its value. In the case of the call to the intrinsic [`isset`](10-expressions.md#isset),
 this generates a call to the instance method [`__isset`](#method-__isset),
-while a call to the intrinsic [`unset`](10-expressions.md#unset) generates a
+while a use of the [`unset` statement](11-statements.md#the-unset-statement) generates a
 call to the instance method [`__unset`](#method-__unset). By defining these
 four special methods, the implementer of a class can control how dynamic
 properties are handled.
@@ -539,7 +539,7 @@ implies public visibility. The `static` modifier defines the member as a [static
 The *property-initializer* for instance properties is applied prior to
 the class's [constructor](#constructors) being called.
 
-An instance property that is visible may be [`unset`](10-expressions.md#unset), in which
+An instance property that is visible may be [`unset`](11-statements.md#the-unset-statement), in which
 case, the property is actually removed from that instance.
 
 **Examples**
@@ -1575,7 +1575,7 @@ If the [dynamic property](#dynamic-members) designated by `$name` exists, it is
 removed by this instance method; otherwise, the call has no effect. No
 value is expected to be returned.
 
-Typically, `__unset` is called implicitly, when the intrinsic [`unset`](10-expressions.md#unset)
+Typically, `__unset` is called implicitly, when the [`unset` statement](11-statements.md#the-unset-statement)
 is called with an argument that designates a property that
 is not visible.
 

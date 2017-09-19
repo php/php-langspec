@@ -43,7 +43,8 @@ text:
 
 All of the sections in a script are treated as though they belonged to
 one continuous section, except that any intervening text is treated as
-though it were a string literal given to the [intrinsic `echo`](10-expressions.md#echo).
+though it were a string literal given to the
+[`echo` statement](11-statements.md#the-echo-statement).
 
 A script can import another script via a [script inclusion operator](10-expressions.md#script-inclusion-operators).
 
@@ -51,8 +52,8 @@ A script can import another script via a [script inclusion operator](10-expressi
 
 The top level of a script is simply referred to as the *top level*.
 
-If `<?=` is used as the *start-tag*, the Engine proceeds as if the *statement-list* started with [echo](10-expressions.md#echo)
-statement.
+If `<?=` is used as the *start-tag*, the Engine proceeds as if the *statement-list* started with an
+[echo](11-statements.md#the-echo-statement) statement.
 
 ## Program Start-Up
 A program begins execution at the start of a [script](#program-structure) designated in
@@ -73,7 +74,8 @@ in which it executes.
 
 When a [top level](#program-structure) is the main entry point for a script, it gets
 the global variable [scope](#scope). When a top level is invoked via
-[`include/require`](10-expressions.md#general-6), it inherits the variable scope of its caller. Thus,
+[`include/require`](10-expressions.md#script-inclusion-operators),
+it inherits the variable scope of its caller. Thus,
 when looking at one script's top level in isolation, it's not
 possible to tell statically whether it will have the global
 variable scope or some local variable scope. It depends on how the
@@ -256,7 +258,7 @@ of which (except `unset`) use the & punctuator:
 -   [byRef value in a foreach statement](11-statements.md#the-foreach-statement).
 -   [byRef initializer for an array element](10-expressions.md#array-creation-operator).
 -   [byRef variable-use list in an anonymous function](10-expressions.md#anonymous-function-creation).
--   [unset](10-expressions.md#unset).
+-   [unset](11-statements.md#the-unset-statement).
 
 ### Reclamation and Automatic Memory Management
 The Engine is required to manage the lifetimes of VStores and HStores
@@ -272,7 +274,7 @@ Before reclaiming an HStore that represents an [object](05-types.md#objects),
 the Engine should invoke the object's [destructor](14-classes.md#constructors) if one is defined.
 
 The Engine must reclaim each VSlot when the [storage duration](#storage-duration) of its
-corresponding variable ends, when the variable is explicitly [unset](10-expressions.md#unset) by the
+corresponding variable ends, when the variable is explicitly [unset](11-statements.md#the-unset-statement) by the
 programmer, or when the script exits, whichever comes first. In the case where
 a VSlot is contained within an HStore, the engine must immediately reclaim the VSlot when it is
 explicitly unset by the programmer, when the containing HStore is reclaimed,
@@ -1376,7 +1378,7 @@ Engine via its garbage-collection process and the use of
 storage duration: [array elements](07-variables.md#array-elements) and [instance properties](07-variables.md#instance-properties).
 
 Although all three storage durations have default ends-of-life, their
-lives can be shortened by calling the intrinsic [`unset`](10-expressions.md#unset),
+lives can be shortened by using the [`unset` statement](11-statements.md#the-unset-statement),
 which destroys any given set of variables.
 
 The following example demonstrates the three storage durations:

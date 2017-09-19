@@ -3,7 +3,7 @@
 ## General
 
 A *variable* is a named area of data storage that contains a PHP value. A variable is represented by a [VSlot](04-basic-concepts.md#general). A variable is created by [assigning a value](04-basic-concepts.md#assignment) to it.
-A variable is destroyed by *unsetting* it, either by an explicit call to the intrinsic [`unset`](10-expressions.md#unset), or by the Engine. The intrinsic [`isset`](10-expressions.md#isset) tests if a given variable exists and is not set to `NULL`.
+A variable is destroyed by *unsetting* it, either by an explicit call to the [`unset` statement](11-statements.md#the-unset-statement), or by the Engine. The intrinsic [`isset`](10-expressions.md#isset) tests if a given variable exists and is not set to `NULL`.
 If a variable, which is not defined so far, is used in an expression, then different strategies are applied which determine whether the variable is defined implicitly or a substitution value is used instead and whether a notice is emitted or not. The strategies depend on the kind of the variable as well as on the context where the undefined variable is being used. The strategies are elaborated in the sub-sections of the different [kinds of variables](#kinds-of-variables) below.
 
 Variables have [names](09-lexical-structure.md#names). Distinct variables may have
@@ -221,7 +221,7 @@ $l = $k;   // a VSlot for $l was created and the value of $k (which is NULL)
 may be created for that array. New elements are inserted into an
 existing array via the [simple-assignment operator](10-expressions.md#simple-assignment) in
 conjunction with the subscript [operator `[]`](10-expressions.md#subscript-operator). Elements can be
-removed by calling the [`unset` intrinsic](10-expressions.md#unset).
+removed by calling the [`unset` statement](11-statements.md#the-unset-statement).
 
 **Semantics**
 
@@ -310,7 +310,7 @@ A function static has function [scope](04-basic-concepts.md#scope) and static [s
 The value of a function static is retained across calls to its parent
 function. Each time the function containing a function static
 declaration is called, that execution is dealing with an [alias](04-basic-concepts.md#general)
-to that static variable. If that alias is passed to the [`unset` intrinsic](10-expressions.md#unset),
+to that static variable. If that alias is passed to the [`unset` statement](11-statements.md#the-unset-statement),
 only that alias is destroyed. The next time that function is called, a new alias is created.
 
 **Undefined Function Statics**
@@ -402,7 +402,7 @@ A global variable has global [scope](04-basic-concepts.md#scope) and static
 
 When a global value is imported into a function, each time the function
 is called, that execution is dealing with an [alias](04-basic-concepts.md#general) to that
-global variable. If that alias is passed to the [`unset` intrinsic](10-expressions.md#unset),
+global variable. If that alias is passed to the [`unset` statement](11-statements.md#the-unset-statement),
 only that alias is destroyed. The next time that function
 is called, a new alias is created with the current value of the global variable.
 

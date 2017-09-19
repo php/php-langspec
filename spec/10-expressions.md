@@ -543,8 +543,8 @@ a [`__toString` method](14-classes.md#method-__tostring).
 
 After converting its *expression*'s value to a string, if necessary,
 `print` writes the resulting string to [`STDOUT`](06-constants.md#core-predefined-constants).
-Unlike [`echo`](#echo), `print` can be used in any context allowing an expression. It
-always returns the value 1.
+Unlike [`echo`](11-statements.md#the-echo-statement), `print` can be used in any context
+allowing an expression. It always returns the value 1.
 
 See also: [double quoted strings](09-lexical-structure.md#double-quoted-string-literals) and
 [heredoc documents](09-lexical-structure.md#heredoc-string-literals), [conversion to string](08-conversions.md#converting-to-string-type).
@@ -1947,7 +1947,7 @@ A *cast-type* of `object` results in a [conversion to type `object`](08-conversi
 A *cast-type* of `string` results in a [conversion to type `string`](08-conversions.md#converting-to-string-type).
 
 A *cast-type* of `unset` always results in a value of `NULL`. (This use of
-`unset` should not be confused with the [`unset` intrinsic](#unset).
+`unset` should not be confused with the [`unset` statement](11-statements.md#the-unset-statement).
 
 **Examples**
 

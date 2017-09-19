@@ -14,7 +14,7 @@ elements in the map is the order in which the elements were *inserted*
 into the array. An element is said to *exist* once it has been inserted
 into the array with a corresponding key. An array is *extended* by
 initializing a previously non-existent element using a new key. Elements
-can be *removed* from an array via the intrinsic [`unset`](10-expressions.md#unset).
+can be *removed* from an array via the [`unset` statement](11-statements.md#the-unset-statement).
 
 The [`foreach` statement](11-statements.md#the-foreach-statement) can be used to iterate over the
 collection of elements in an array in order. This statement also provides a way to access the key and value

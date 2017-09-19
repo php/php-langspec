@@ -989,7 +989,8 @@ If an uncaught exception exists when a finally-block is executed, if
 that finally-block executes a `return` statement, the uncaught exception
 is discarded.
 
-A `return` statement may occur in a script outside any function. In an [included file](10-expressions.md#general-6),
+A `return` statement may occur in a script outside any function. In an
+[included file](10-expressions.md#script-inclusion-operators),
 such statement terminates processing of that script file and
 returns control to the including file. If *expression* is present, that
 is the value returned; otherwise, the value `NULL` is returned. If

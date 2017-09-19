@@ -580,7 +580,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    --   <i><a href="#grammar-variable">variable</a></i>
 
 <i id="grammar-unary-op-expression">unary-op-expression:</i>
-   <i><a href="#grammar-unary-operator">unary-operator</a></i>   <i><a href="#grammar-cast-expression">cast-expression</a></i>
+   <i><a href="#grammar-unary-operator">unary-operator</a></i>   <i><a href="#grammar-unary-expression">unary-expression</a></i>
 
 <i id="grammar-unary-operator">unary-operator: one of</i>
    +   -   !   ~
@@ -592,7 +592,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    `   <i><a href="#grammar-dq-char-sequence">dq-char-sequence</a></i><sub>opt</sub>   `
 
 <i id="grammar-cast-expression">cast-expression:</i>
-   <i><a href="#grammar-unary-expression">unary-expression</a></i>
    (   <i><a href="#grammar-cast-type">cast-type</a></i>   )   <i><a href="#grammar-expression">expression</a></i>
 
 <i id="grammar-cast-type">cast-type: one of</i>

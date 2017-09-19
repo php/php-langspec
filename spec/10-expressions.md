@@ -1990,7 +1990,7 @@ $a = "^^Z^^"; ++$a; // $a is now "^^Z^^"
 
 <!-- GRAMMAR
 unary-op-expression:
-  unary-operator cast-expression
+  unary-operator unary-expression
 
 unary-operator: one of
   '+' '-' '!' '~'
@@ -1998,7 +1998,7 @@ unary-operator: one of
 
 <pre>
 <i id="grammar-unary-op-expression">unary-op-expression:</i>
-   <i><a href="#grammar-unary-operator">unary-operator</a></i>   <i><a href="#grammar-cast-expression">cast-expression</a></i>
+   <i><a href="#grammar-unary-operator">unary-operator</a></i>   <i><a href="#grammar-unary-expression">unary-expression</a></i>
 
 <i id="grammar-unary-operator">unary-operator: one of</i>
    +   -   !   ~
@@ -2180,7 +2180,6 @@ $result = `$d {$f}`;      // result is the output of command dir *.*
 
 <!-- GRAMMAR
 cast-expression:
-  unary-expression
   '(' cast-type ')' expression
 
 cast-type: one of
@@ -2190,7 +2189,6 @@ cast-type: one of
 
 <pre>
 <i id="grammar-cast-expression">cast-expression:</i>
-   <i><a href="#grammar-unary-expression">unary-expression</a></i>
    (   <i><a href="#grammar-cast-type">cast-type</a></i>   )   <i><a href="#grammar-expression">expression</a></i>
 
 <i id="grammar-cast-type">cast-type: one of</i>

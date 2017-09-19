@@ -603,7 +603,7 @@ keyed-list-expression-list:
 
 list-or-variable:
   list-intrinsic
-  expression
+  variable
 -->
 
 <pre>
@@ -625,7 +625,7 @@ list-or-variable:
 
 <i id="grammar-list-or-variable">list-or-variable:</i>
    <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
-   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-variable">variable</a></i>
 </pre>
 
 **Constraints**
@@ -635,7 +635,7 @@ list-or-variable:
 operand must be an expression that designates an array or object implementing
 the `ArrayAccess` interface (called the *source array*).
 
-Each *expression* in *list-or-variable* must designate a variable (called
+Each *variable* in *list-or-variable* must designate a writable variable (called
 the *target variable*).
 
 At least one of the elements of the *list-expression-list* must be non-empty.

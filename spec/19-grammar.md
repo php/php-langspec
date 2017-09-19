@@ -437,7 +437,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-list-or-variable">list-or-variable:</i>
    <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
-   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-variable">variable</a></i>
 
 <i id="grammar-print-intrinsic">print-intrinsic:</i>
    print   <i><a href="#grammar-expression">expression</a></i>

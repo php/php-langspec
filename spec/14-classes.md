@@ -412,7 +412,7 @@ class-const-declaration:
 
 const-elements:
   const-element
-  const-elements const-element
+  const-elements ',' const-element
 
 const-element:
   name '=' constant-expression
@@ -427,7 +427,7 @@ const-element:
 
 <i id="grammar-const-elements">const-elements:</i>
    <i><a href="#grammar-const-element">const-element</a></i>
-   <i><a href="#grammar-const-elements">const-elements</a></i>   <i><a href="#grammar-const-element">const-element</a></i>
+   <i><a href="#grammar-const-elements">const-elements</a></i>   ,   <i><a href="#grammar-const-element">const-element</a></i>
 
 <i id="grammar-const-element">const-element:</i>
    <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   =   <i><a href="10-expressions.md#grammar-constant-expression">constant-expression</a></i>

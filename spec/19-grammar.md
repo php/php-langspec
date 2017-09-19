@@ -982,7 +982,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-const-elements">const-elements:</i>
    <i><a href="#grammar-const-element">const-element</a></i>
-   <i><a href="#grammar-const-elements">const-elements</a></i>   <i><a href="#grammar-const-element">const-element</a></i>
+   <i><a href="#grammar-const-elements">const-elements</a></i>   ,   <i><a href="#grammar-const-element">const-element</a></i>
 
 <i id="grammar-const-element">const-element:</i>
    <i><a href="#grammar-name">name</a></i>   =   <i><a href="#grammar-constant-expression">constant-expression</a></i>

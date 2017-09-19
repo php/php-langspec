@@ -474,7 +474,16 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-class-type-designator">class-type-designator:</i>
    <i><a href="#grammar-qualified-name">qualified-name</a></i>
-   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-new-variable">new-variable</a></i>
+
+<i id="grammar-new-variable">new-variable:</i>
+   <i><a href="#grammar-simple-variable">simple-variable</a></i>
+   <i><a href="#grammar-new-variable">new-variable</a></i>   [   <i><a href="#grammar-expression">expression</a></i><sub>opt</sub>   ]
+   <i><a href="#grammar-new-variable">new-variable</a></i>   {   <i><a href="#grammar-expression">expression</a></i>   }
+   <i><a href="#grammar-new-variable">new-variable</a></i>   -&gt;   <i><a href="#grammar-member-name">member-name</a></i>
+   <i><a href="#grammar-qualified-name">qualified-name</a></i>   ::   <i><a href="#grammar-simple-variable">simple-variable</a></i>
+   <i><a href="#grammar-relative-scope">relative-scope</a></i>   ::   <i><a href="#grammar-simple-variable">simple-variable</a></i>
+   <i><a href="#grammar-new-variable">new-variable</a></i>   ::   <i><a href="#grammar-simple-variable">simple-variable</a></i>
 
 <i id="grammar-array-creation-expression">array-creation-expression:</i>
    array   (   <i><a href="#grammar-array-initializer">array-initializer</a></i><sub>opt</sub>   )
@@ -592,14 +601,10 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-instanceof-expression">instanceof-expression:</i>
    <i><a href="#grammar-unary-expression">unary-expression</a></i>
-   <i><a href="#grammar-instanceof-subject">instanceof-subject</a></i>   instanceof   <i><a href="#grammar-instanceof-type-designator">instanceof-type-designator</a></i>
+   <i><a href="#grammar-instanceof-subject">instanceof-subject</a></i>   instanceof   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>
 
 <i id="grammar-instanceof-subject">instanceof-subject:</i>
    <i><a href="#grammar-expression">expression</a></i>
-
-<i id="grammar-instanceof-type-designator">instanceof-type-designator:</i>
-   <i><a href="#grammar-qualified-name">qualified-name</a></i>
-   <i><a href="#grammar-variable">variable</a></i>
 
 <i id="grammar-multiplicative-expression">multiplicative-expression:</i>
    <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>

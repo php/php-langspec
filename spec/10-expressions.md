@@ -991,7 +991,16 @@ object-creation-expression:
 
 class-type-designator:
   qualified-name
-  expression
+  new-variable
+
+new-variable:
+  simple-variable
+  new-variable '[' expression? ']'
+  new-variable '{' expression '}'
+  new-variable '->' member-name
+  qualified-name '::' simple-variable
+  relative-scope '::' simple-variable
+  new-variable '::' simple-variable
 -->
 
 <pre>
@@ -1003,15 +1012,23 @@ class-type-designator:
 
 <i id="grammar-class-type-designator">class-type-designator:</i>
    <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
-   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-new-variable">new-variable</a></i>
+
+<i id="grammar-new-variable">new-variable:</i>
+   <i><a href="#grammar-simple-variable">simple-variable</a></i>
+   <i><a href="#grammar-new-variable">new-variable</a></i>   [   <i><a href="#grammar-expression">expression</a></i><sub>opt</sub>   ]
+   <i><a href="#grammar-new-variable">new-variable</a></i>   {   <i><a href="#grammar-expression">expression</a></i>   }
+   <i><a href="#grammar-new-variable">new-variable</a></i>   -&gt;   <i><a href="#grammar-member-name">member-name</a></i>
+   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>   ::   <i><a href="#grammar-simple-variable">simple-variable</a></i>
+   <i><a href="#grammar-relative-scope">relative-scope</a></i>   ::   <i><a href="#grammar-simple-variable">simple-variable</a></i>
+   <i><a href="#grammar-new-variable">new-variable</a></i>   ::   <i><a href="#grammar-simple-variable">simple-variable</a></i>
 </pre>
 
 **Constraints**
 
 *qualified-name* must name a class.
 
-*expression* must be a value of type `string` (but not be a string
-literal) that contains the name of a class, or an object.
+*new-variable* must be a value of type `string` that contains the name of a class, or an object.
 
 *class-type-designator* must not designate an [abstract class](14-classes.md#general).
 
@@ -1022,9 +1039,11 @@ as many as the number of non-optional parameters defined for the class's [constr
 
 The `new` *class-type-designator* forms create an object of the class type specified by *class-type-designator*. The `new class` forms create an object of an *anonymous class type*, a type that has an unspecified name. In all other respects, however, an anonymous class has the same capabilities as a named class type.
 
-If the *class-type-designator* is an expression resulting in a string value,
+If the *class-type-designator* is a *new-variable* resulting in a string value,
 that string is used as the class name. If the expression results in an object,
-the class of the object is used as the class for the new object.
+the class of the object is used as the class for the new object. The *new-variable*
+has the same semantics as a *variable*, but the grammar is restricted to exclude
+calls.
 
 The *qualified-name* is resolved according to the rules described in
 [scope resolution operator](#scope-resolution-operator), including
@@ -2223,47 +2242,37 @@ A *cast-type* of `unset` always results in a value of `NULL`. (This use of
 <!-- GRAMMAR
 instanceof-expression:
   unary-expression
-  instanceof-subject 'instanceof' instanceof-type-designator
+  instanceof-subject 'instanceof' class-type-designator
 
 instanceof-subject:
   expression
-
-instanceof-type-designator:
-  qualified-name
-  variable
 -->
 
 <pre>
 <i id="grammar-instanceof-expression">instanceof-expression:</i>
    <i><a href="#grammar-unary-expression">unary-expression</a></i>
-   <i><a href="#grammar-instanceof-subject">instanceof-subject</a></i>   instanceof   <i><a href="#grammar-instanceof-type-designator">instanceof-type-designator</a></i>
+   <i><a href="#grammar-instanceof-subject">instanceof-subject</a></i>   instanceof   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>
 
 <i id="grammar-instanceof-subject">instanceof-subject:</i>
    <i><a href="#grammar-expression">expression</a></i>
-
-<i id="grammar-instanceof-type-designator">instanceof-type-designator:</i>
-   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
-   <i><a href="#grammar-variable">variable</a></i>
 </pre>
 
 **Constraints**
 
 The *expression* in *instanceof-subject* must not be any form of literal.
 
-The *variable* in *instanceof-type-designator* must not contain calls.
-
 **Semantics**
 
 Operator `instanceof` returns `TRUE` if the value designated by
 *expression* in *instanceof-subject* is an object having the type specified
-by *instanceof-type-designator*, is an object whose type is derived from that type,
-or is an object whose type implements the interface specified by *instanceof-type-designator*.
+by *class-type-designator*, is an object whose type is derived from that type,
+or is an object whose type implements the interface specified by *class-type-designator*.
 Otherwise, it returns `FALSE`.
 
-The type can be specified by *instanceof-type-designator* in one of the three forms:
+The type can be specified by *class-type-designator* in one of the three forms:
   1. *qualified-name* specifies the type name directly.
-  2. When the *expression* form is used, *expression* may have a string value that contains a class or interface name.
-  3. Alternatively, *expression* can designate an object, in which case the type of the object is used as the specified type.
+  2. When the *new-variable* form is used, *new-variable* may have a string value that contains a class or interface name.
+  3. Alternatively, *new-variable* can designate an object, in which case the type of the object is used as the specified type.
      Note that an interface can not be specified with this form.
 
 Note that `instanceof` will not invoke autoloader if the name of the type given does not

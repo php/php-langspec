@@ -586,13 +586,13 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    +   -   ~
 
 <i id="grammar-error-control-expression">error-control-expression:</i>
-   @   <i><a href="#grammar-expression">expression</a></i>
+   @   <i><a href="#grammar-unary-expression">unary-expression</a></i>
 
 <i id="grammar-shell-command-expression">shell-command-expression:</i>
    `   <i><a href="#grammar-dq-char-sequence">dq-char-sequence</a></i><sub>opt</sub>   `
 
 <i id="grammar-cast-expression">cast-expression:</i>
-   (   <i><a href="#grammar-cast-type">cast-type</a></i>   )   <i><a href="#grammar-expression">expression</a></i>
+   (   <i><a href="#grammar-cast-type">cast-type</a></i>   )   <i><a href="#grammar-unary-expression">unary-expression</a></i>
 
 <i id="grammar-cast-type">cast-type: one of</i>
    array   binary   bool   boolean   double   int   integer   float   object

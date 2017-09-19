@@ -655,15 +655,15 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ||   <i><a href="#grammar-logical-AND-expression-1">logical-AND-expression-1</a></i>
 
 <i id="grammar-conditional-expression">conditional-expression:</i>
-   <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>
-   <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ?   <i><a href="#grammar-expression">expression</a></i><sub>opt</sub>   :   <i><a href="#grammar-conditional-expression">conditional-expression</a></i>
+   <i><a href="#grammar-coalesce-expression">coalesce-expression</a></i>
+   <i><a href="#grammar-conditional-expression">conditional-expression</a></i>   ?   <i><a href="#grammar-expression">expression</a></i><sub>opt</sub>   :   <i><a href="#grammar-coalesce-expression">coalesce-expression</a></i>
 
 <i id="grammar-coalesce-expression">coalesce-expression:</i>
-   <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ??   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>
+   <i><a href="#grammar-logical-inc-OR-expression-1">logical-inc-OR-expression-1</a></i>   ??   <i><a href="#grammar-coalesce-expression">coalesce-expression</a></i>
 
 <i id="grammar-assignment-expression">assignment-expression:</i>
    <i><a href="#grammar-conditional-expression">conditional-expression</a></i>
-   <i><a href="#grammar-coalesce-expression">coalesce-expression</a></i>
    <i><a href="#grammar-simple-assignment-expression">simple-assignment-expression</a></i>
    <i><a href="#grammar-byref-assignment-expression">byref-assignment-expression</a></i>
    <i><a href="#grammar-compound-assignment-expression">compound-assignment-expression</a></i>

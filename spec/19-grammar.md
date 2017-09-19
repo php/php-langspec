@@ -583,7 +583,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-unary-operator">unary-operator</a></i>   <i><a href="#grammar-unary-expression">unary-expression</a></i>
 
 <i id="grammar-unary-operator">unary-operator: one of</i>
-   +   -   !   ~
+   +   -   ~
 
 <i id="grammar-error-control-expression">error-control-expression:</i>
    @   <i><a href="#grammar-expression">expression</a></i>
@@ -605,11 +605,15 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 <i id="grammar-instanceof-subject">instanceof-subject:</i>
    <i><a href="#grammar-expression">expression</a></i>
 
-<i id="grammar-multiplicative-expression">multiplicative-expression:</i>
+<i id="grammar-logical-NOT-expression">logical-NOT-expression:</i>
    <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
-   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   *   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
-   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   /   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
-   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   %   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
+   !   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
+
+<i id="grammar-multiplicative-expression">multiplicative-expression:</i>
+   <i><a href="#grammar-logical-NOT-expression">logical-NOT-expression</a></i>
+   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   *   <i><a href="#grammar-logical-NOT-expression">logical-NOT-expression</a></i>
+   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   /   <i><a href="#grammar-logical-NOT-expression">logical-NOT-expression</a></i>
+   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   %   <i><a href="#grammar-logical-NOT-expression">logical-NOT-expression</a></i>
 
 <i id="grammar-additive-expression">additive-expression:</i>
    <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>

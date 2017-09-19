@@ -134,6 +134,7 @@ is distributed without any warranty.
     - [Shell Command Operator](10-expressions.md#shell-command-operator)
     - [Cast Operator](10-expressions.md#cast-operator)
   - [`instanceof` Operator](10-expressions.md#instanceof-operator)
+  - [Logical NOT Operator](10-expressions.md#logical-not-operator)
   - [Multiplicative Operators](10-expressions.md#multiplicative-operators)
   - [Additive Operators](10-expressions.md#additive-operators)
   - [Bitwise Shift Operators](10-expressions.md#bitwise-shift-operators)

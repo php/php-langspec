@@ -1993,7 +1993,7 @@ unary-op-expression:
   unary-operator unary-expression
 
 unary-operator: one of
-  '+' '-' '!' '~'
+  '+' '-' '~'
 -->
 
 <pre>
@@ -2001,7 +2001,7 @@ unary-operator: one of
    <i><a href="#grammar-unary-operator">unary-operator</a></i>   <i><a href="#grammar-unary-expression">unary-expression</a></i>
 
 <i id="grammar-unary-operator">unary-operator: one of</i>
-   +   -   !   ~
+   +   -   ~
 </pre>
 
 **Constraints**
@@ -2012,10 +2012,6 @@ The operand of the unary `~` operator must have arithmetic or string type, or be
 an object supporting `~`.
 
 **Semantics**
-
-For a unary `!` operator the type of the result is `bool`.
-The value of the operand is [converted to type `bool`](08-conversions.md#converting-to-boolean-type)
-and if it is `TRUE` then the of the operator result is `FALSE`, and the result is `TRUE` otherwise.
 
 *Arithmetic Operands*
 
@@ -2073,8 +2069,6 @@ and for `+` and `-` the object is [converted to `int`](08-conversions.md#convert
 ```PHP
 $v = +10;
 if ($v1 > -5) // ...
-$t = TRUE;
-if (!$t) // ...
 $v = ~0b1010101;
 $s = "\x86\x97"; $s = ~$s; // $s is "yh"
 ```
@@ -2300,24 +2294,50 @@ $e2 = new E1;
 var_dump($e2 instanceof $e1);      // TRUE
 ```
 
+## Logical NOT Operator
+
+<!-- GRAMMAR
+logical-NOT-expression:
+  instanceof-expression
+  '!' instanceof-expression
+-->
+
+<pre>
+<i id="grammar-logical-NOT-expression">logical-NOT-expression:</i>
+   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
+   !   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
+</pre>
+
+**Semantics**
+
+The value of the operand is [converted to type `bool`](08-conversions.md#converting-to-boolean-type)
+and if it is `TRUE` then the result of the operator is `FALSE`. The result is `TRUE` otherwise.
+
+**Examples**
+
+```PHP
+$t = TRUE;
+if (!$t) // ...
+```
+
 ## Multiplicative Operators
 
 **Syntax**
 
 <!-- GRAMMAR
 multiplicative-expression:
-  instanceof-expression
-  multiplicative-expression '*' instanceof-expression
-  multiplicative-expression '/' instanceof-expression
-  multiplicative-expression '%' instanceof-expression
+  logical-NOT-expression
+  multiplicative-expression '*' logical-NOT-expression
+  multiplicative-expression '/' logical-NOT-expression
+  multiplicative-expression '%' logical-NOT-expression
 -->
 
 <pre>
 <i id="grammar-multiplicative-expression">multiplicative-expression:</i>
-   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
-   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   *   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
-   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   /   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
-   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   %   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
+   <i><a href="#grammar-logical-NOT-expression">logical-NOT-expression</a></i>
+   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   *   <i><a href="#grammar-logical-NOT-expression">logical-NOT-expression</a></i>
+   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   /   <i><a href="#grammar-logical-NOT-expression">logical-NOT-expression</a></i>
+   <i><a href="#grammar-multiplicative-expression">multiplicative-expression</a></i>   %   <i><a href="#grammar-logical-NOT-expression">logical-NOT-expression</a></i>
 </pre>
 
 **Constraints**

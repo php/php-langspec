@@ -929,6 +929,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    :   void
 
 <i id="grammar-type-declaration">type-declaration:</i>
+   ?<sub>opt</sub>   <i><a href="#grammar-base-type-declaration">base-type-declaration</a></i>
+
+<i id="grammar-base-type-declaration">base-type-declaration:</i>
    array
    callable
    iterable

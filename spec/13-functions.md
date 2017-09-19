@@ -77,6 +77,9 @@ return-type:
   ':' 'void'
 
 type-declaration:
+  '?'? base-type-declaration
+
+base-type-declaration:
   'array'
   'callable'
   'iterable'
@@ -123,6 +126,9 @@ default-argument-specifier:
    :   void
 
 <i id="grammar-type-declaration">type-declaration:</i>
+   ?<sub>opt</sub>   <i><a href="#grammar-base-type-declaration">base-type-declaration</a></i>
+
+<i id="grammar-base-type-declaration">base-type-declaration:</i>
    array
    callable
    iterable
@@ -218,7 +224,9 @@ Parameters typed with *scalar-type* are accepted if they pass the type check for
 as [described below](#type-check-modes). Once the checks have been passed, the parameter types are always of the scalar type
 specified (or `NULL` if `NULL` is allowed).
 
-If a parameter has a type declaration, `NULL` is not accepted unless it has a default value that evaluates to `NULL`.
+If a parameter has a type declaration, `NULL` is not accepted unless the
+type is nullable. A type is nullable if it is prefixed with `?` or if the
+parameter has a default value that evaluates to `NULL`.
 
 The default value for a typed parameter must be of the type specified, or `NULL`,
 and conversion is not be performed for defaults, regardless of the mode.

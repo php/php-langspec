@@ -338,6 +338,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-array-creation-expression">array-creation-expression</a></i>
    <i><a href="#grammar-intrinsic">intrinsic</a></i>
    <i><a href="#grammar-anonymous-function-creation-expression">anonymous-function-creation-expression</a></i>
+   <i><a href="#grammar-object-creation-expression">object-creation-expression</a></i>
+   <i><a href="#grammar-postfix-increment-expression">postfix-increment-expression</a></i>
+   <i><a href="#grammar-postfix-decrement-expression">postfix-decrement-expression</a></i>
    (   <i><a href="#grammar-expression">expression</a></i>   )
 
 <i id="grammar-simple-variable">simple-variable:</i>
@@ -455,12 +458,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    &amp;<sub>opt</sub>   <i><a href="#grammar-variable-name">variable-name</a></i>
    <i><a href="#grammar-use-variable-name-list">use-variable-name-list</a></i>   ,   &amp;<sub>opt</sub>   <i><a href="#grammar-variable-name">variable-name</a></i>
 
-<i id="grammar-postfix-expression">postfix-expression:</i>
-   <i><a href="#grammar-primary-expression">primary-expression</a></i>
-   <i><a href="#grammar-object-creation-expression">object-creation-expression</a></i>
-   <i><a href="#grammar-postfix-increment-expression">postfix-increment-expression</a></i>
-   <i><a href="#grammar-postfix-decrement-expression">postfix-decrement-expression</a></i>
-
 <i id="grammar-object-creation-expression">object-creation-expression:</i>
    new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
    new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>
@@ -557,8 +554,8 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    static
 
 <i id="grammar-clone-expression">clone-expression:</i>
-   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>
-   clone   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>
+   <i><a href="#grammar-primary-expression">primary-expression</a></i>
+   clone   <i><a href="#grammar-primary-expression">primary-expression</a></i>
 
 <i id="grammar-exponentiation-expression">exponentiation-expression:</i>
    <i><a href="#grammar-clone-expression">clone-expression</a></i>

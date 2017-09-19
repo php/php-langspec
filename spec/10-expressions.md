@@ -98,6 +98,9 @@ primary-expression:
   array-creation-expression
   intrinsic
   anonymous-function-creation-expression
+  object-creation-expression
+  postfix-increment-expression
+  postfix-decrement-expression
   '(' expression ')'
 -->
 
@@ -110,6 +113,9 @@ primary-expression:
    <i><a href="#grammar-array-creation-expression">array-creation-expression</a></i>
    <i><a href="#grammar-intrinsic">intrinsic</a></i>
    <i><a href="#grammar-anonymous-function-creation-expression">anonymous-function-creation-expression</a></i>
+   <i><a href="#grammar-object-creation-expression">object-creation-expression</a></i>
+   <i><a href="#grammar-postfix-increment-expression">postfix-increment-expression</a></i>
+   <i><a href="#grammar-postfix-decrement-expression">postfix-decrement-expression</a></i>
    (   <i><a href="#grammar-expression">expression</a></i>   )
 </pre>
 
@@ -892,32 +898,6 @@ class C
   //...
 }
 ```
-
-## Postfix Operators
-
-### General
-
-**Syntax**
-
-<!-- GRAMMAR
-postfix-expression:
-  primary-expression
-  object-creation-expression
-  postfix-increment-expression
-  postfix-decrement-expression
--->
-
-<pre>
-<i id="grammar-postfix-expression">postfix-expression:</i>
-   <i><a href="#grammar-primary-expression">primary-expression</a></i>
-   <i><a href="#grammar-object-creation-expression">object-creation-expression</a></i>
-   <i><a href="#grammar-postfix-increment-expression">postfix-increment-expression</a></i>
-   <i><a href="#grammar-postfix-decrement-expression">postfix-decrement-expression</a></i>
-</pre>
-
-**Semantics**
-
-These operators associate left-to-right.
 
 ### The `new` Operator
 
@@ -1750,25 +1730,25 @@ class Point
 
 <!-- GRAMMAR
 clone-expression:
-  postfix-expression
-  'clone' postfix-expression
+  primary-expression
+  'clone' primary-expression
 -->
 
 <pre>
 <i id="grammar-clone-expression">clone-expression:</i>
-   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>
-   clone   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>
+   <i><a href="#grammar-primary-expression">primary-expression</a></i>
+   clone   <i><a href="#grammar-primary-expression">primary-expression</a></i>
 </pre>
 
 **Constraints**
 
-*postfix-expression* must designate an object.
+*primary-expression* must designate an object.
 
 **Semantics**
 
 The `clone` operator creates a new object that is a shallow copy of the object designated
-by *postfix-expression*.
-Then, if the class type of *postfix-expression* has a method called
+by *primary-expression*.
+Then, if the class type of *primary-expression* has a method called
 [`__clone`](14-classes.md#method-__clone), it is called to perform a deep copy.
 The result is the new object.
 

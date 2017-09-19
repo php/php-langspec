@@ -902,81 +902,22 @@ class C
 <!-- GRAMMAR
 postfix-expression:
   primary-expression
-  clone-expression
   object-creation-expression
   postfix-increment-expression
   postfix-decrement-expression
-  exponentiation-expression
 -->
 
 <pre>
 <i id="grammar-postfix-expression">postfix-expression:</i>
    <i><a href="#grammar-primary-expression">primary-expression</a></i>
-   <i><a href="#grammar-clone-expression">clone-expression</a></i>
    <i><a href="#grammar-object-creation-expression">object-creation-expression</a></i>
    <i><a href="#grammar-postfix-increment-expression">postfix-increment-expression</a></i>
    <i><a href="#grammar-postfix-decrement-expression">postfix-decrement-expression</a></i>
-   <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
 </pre>
 
 **Semantics**
 
 These operators associate left-to-right.
-
-### The `clone` Operator
-
-**Syntax**
-
-<!-- GRAMMAR
-clone-expression:
-  'clone' expression
--->
-
-<pre>
-<i id="grammar-clone-expression">clone-expression:</i>
-   clone   <i><a href="#grammar-expression">expression</a></i>
-</pre>
-
-**Constraints**
-
-*expression* must designate an object.
-
-**Semantics**
-
-The `clone` operator creates a new object that is a shallow copy of the object designated by *expression*.
-Then, if the class type of *expression* has a method called [`__clone`](14-classes.md#method-__clone), it is called to perform a deep copy.
-The result is the new object.
-
-**Examples**
-
-Consider a class `Employee`, from which is derived a class `Manager`. Let us
-assume that both classes contain properties that are objects. `clone` is
-used to make a copy of a `Manager` object, and behind the scenes, the
-`Manager` object uses clone to copy the properties for the base class,
-`Employee`.
-
-```PHP
-class Employee
-{
-  //...
-  public function __clone()
-  {
-    // make a deep copy of Employee object
-  }
-}
-class Manager extends Employee
-{
-  //...
-  public function __clone()
-  {
-    $v = parent::__clone();
-    // make a deep copy of Manager object
-
-  }
-}
-$obj1 = new Manager("Smith", 23);
-$obj2 = clone $obj1;  // creates a new Manager that is a deep copy
-```
 
 ### The `new` Operator
 
@@ -1803,18 +1744,80 @@ class Point
 }
 ```
 
+## The `clone` Operator
+
+**Syntax**
+
+<!-- GRAMMAR
+clone-expression:
+  postfix-expression
+  'clone' postfix-expression
+-->
+
+<pre>
+<i id="grammar-clone-expression">clone-expression:</i>
+   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>
+   clone   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>
+</pre>
+
+**Constraints**
+
+*postfix-expression* must designate an object.
+
+**Semantics**
+
+The `clone` operator creates a new object that is a shallow copy of the object designated
+by *postfix-expression*.
+Then, if the class type of *postfix-expression* has a method called
+[`__clone`](14-classes.md#method-__clone), it is called to perform a deep copy.
+The result is the new object.
+
+**Examples**
+
+Consider a class `Employee`, from which is derived a class `Manager`. Let us
+assume that both classes contain properties that are objects. `clone` is
+used to make a copy of a `Manager` object, and behind the scenes, the
+`Manager` object uses clone to copy the properties for the base class,
+`Employee`.
+
+```PHP
+class Employee
+{
+  //...
+  public function __clone()
+  {
+    // make a deep copy of Employee object
+  }
+}
+class Manager extends Employee
+{
+  //...
+  public function __clone()
+  {
+    $v = parent::__clone();
+    // make a deep copy of Manager object
+
+  }
+}
+$obj1 = new Manager("Smith", 23);
+$obj2 = clone $obj1;  // creates a new Manager that is a deep copy
+```
+
+
 ## Exponentiation Operator
 
 **Syntax**
 
 <!-- GRAMMAR
 exponentiation-expression:
-  postfix-expression '**' exponentiation-expression
+  clone-expression
+  clone-expression '**' exponentiation-expression
 -->
 
 <pre>
 <i id="grammar-exponentiation-expression">exponentiation-expression:</i>
-   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>   **   <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
+   <i><a href="#grammar-clone-expression">clone-expression</a></i>
+   <i><a href="#grammar-clone-expression">clone-expression</a></i>   **   <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
 </pre>
 
 **Semantics**

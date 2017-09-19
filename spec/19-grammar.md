@@ -457,14 +457,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-postfix-expression">postfix-expression:</i>
    <i><a href="#grammar-primary-expression">primary-expression</a></i>
-   <i><a href="#grammar-clone-expression">clone-expression</a></i>
    <i><a href="#grammar-object-creation-expression">object-creation-expression</a></i>
    <i><a href="#grammar-postfix-increment-expression">postfix-increment-expression</a></i>
    <i><a href="#grammar-postfix-decrement-expression">postfix-decrement-expression</a></i>
-   <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
-
-<i id="grammar-clone-expression">clone-expression:</i>
-   clone   <i><a href="#grammar-expression">expression</a></i>
 
 <i id="grammar-object-creation-expression">object-creation-expression:</i>
    new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
@@ -561,8 +556,13 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    parent
    static
 
+<i id="grammar-clone-expression">clone-expression:</i>
+   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>
+   clone   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>
+
 <i id="grammar-exponentiation-expression">exponentiation-expression:</i>
-   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>   **   <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
+   <i><a href="#grammar-clone-expression">clone-expression</a></i>
+   <i><a href="#grammar-clone-expression">clone-expression</a></i>   **   <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
 
 <i id="grammar-unary-expression">unary-expression:</i>
    <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>

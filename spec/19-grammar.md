@@ -756,7 +756,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-statement-list">statement-list</a></i>   <i><a href="#grammar-statement">statement</a></i>
 
 <i id="grammar-named-label-statement">named-label-statement:</i>
-   <i><a href="#grammar-name">name</a></i>   ;   <i><a href="#grammar-statement">statement</a></i>
+   <i><a href="#grammar-name">name</a></i>   :
 
 <i id="grammar-expression-statement">expression-statement:</i>
    <i><a href="#grammar-expression">expression</a></i><sub>opt</sub>   ;

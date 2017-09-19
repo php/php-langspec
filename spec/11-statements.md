@@ -98,25 +98,22 @@ while (condition)
 
 <!-- GRAMMAR
 named-label-statement:
-  name ';' statement
+  name ':'
 -->
 
 <pre>
 <i id="grammar-named-label-statement">named-label-statement:</i>
-   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   ;   <i><a href="#grammar-statement">statement</a></i>
+   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   :
 </pre>
 
 **Constraints**
-
-A named label can be used as the target of a [`goto` statement](#the-goto-statement).
 
 Named labels must be unique within a function.
 
 **Semantics**
 
-Any statement may be preceded by a token sequence that declares a name
-as a label name. The presence of a label does not alter the ﬂow of
-execution.
+A named label can be used as the target of a [`goto` statement](#the-goto-statement).
+The presence of a label does not by itself alter the flow of execution.
 
 ## Expression Statements
 

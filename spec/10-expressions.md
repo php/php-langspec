@@ -316,14 +316,6 @@ A literal evaluates to its value, as specified in the lexical specification for
 **Syntax**
 <!-- GRAMMAR
 intrinsic:
-  intrinsic-construct
-  intrinsic-operator
-
-intrinsic-construct:
-  echo-intrinsic
-  unset-intrinsic
-
-intrinsic-operator:
   empty-intrinsic
   eval-intrinsic
   exit-intrinsic
@@ -333,14 +325,6 @@ intrinsic-operator:
 
 <pre>
 <i id="grammar-intrinsic">intrinsic:</i>
-   <i><a href="#grammar-intrinsic-construct">intrinsic-construct</a></i>
-   <i><a href="#grammar-intrinsic-operator">intrinsic-operator</a></i>
-
-<i id="grammar-intrinsic-construct">intrinsic-construct:</i>
-   <i><a href="#grammar-echo-intrinsic">echo-intrinsic</a></i>
-   <i><a href="#grammar-unset-intrinsic">unset-intrinsic</a></i>
-
-<i id="grammar-intrinsic-operator">intrinsic-operator:</i>
    <i><a href="#grammar-empty-intrinsic">empty-intrinsic</a></i>
    <i><a href="#grammar-eval-intrinsic">eval-intrinsic</a></i>
    <i><a href="#grammar-exit-intrinsic">exit-intrinsic</a></i>
@@ -353,61 +337,6 @@ intrinsic-operator:
 The names in this series of sections have special meaning and are
 called *intrinsics*, but they are not keywords; nor are they functions, they
 are language constructs that are interpreted by the Engine.
-
-*intrinsic-operator* can be used as part of an expression, in any place
-other values or expressions could be used.
-
-*intrinsic-construct* can be used only as stand-alone [statement](11-statements.md#statements).
-
-#### echo
-
-**Syntax**
-
-<!-- GRAMMAR
-echo-intrinsic:
-  'echo' expression-list
-
-expression-list:
-  expression
-  expression-list ',' expression
--->
-
-<pre>
-<i id="grammar-echo-intrinsic">echo-intrinsic:</i>
-   echo   <i><a href="#grammar-expression-list">expression-list</a></i>
-
-<i id="grammar-expression-list">expression-list:</i>
-   <i><a href="#grammar-expression">expression</a></i>
-   <i><a href="#grammar-expression-list">expression-list</a></i>   ,   <i><a href="#grammar-expression">expression</a></i>
-</pre>
-
-**Constraints**
-
-*expression* value must be [convertable to a string](08-conversions.md#converting-to-string-type).
-In particular, it should not be an array and if it is an object, it must implement
-a [`__toString` method](14-classes.md#method-__tostring).
-
-**Semantics**
-
-After converting each of its *expression*s' values to strings, if
-necessary, `echo` concatenates them in order given, and writes the
-resulting string to [`STDOUT`](06-constants.md#core-predefined-constants). Unlike [`print`](#print), it does
-not produce a result.
-
-See also: [double quoted strings](09-lexical-structure.md#double-quoted-string-literals) and
-[heredoc documents](09-lexical-structure.md#heredoc-string-literals), [conversion to string](08-conversions.md#converting-to-string-type).
-
-**Examples**
-
-```PHP
-$v1 = TRUE;
-$v2 = 123;
-echo  '>>' . $v1 . '|' . $v2 . "<<\n";    // outputs ">>1|123<<"
-echo  '>>' , $v1 , '|' , $v2 , "<<\n";    // outputs ">>1|123<<"
-echo ('>>' . $v1 . '|' . $v2 . "<<\n");   // outputs ">>1|123<<"
-$v3 = "qqq{$v2}zzz";
-echo "$v3\n";
-```
 
 #### empty
 
@@ -630,58 +559,6 @@ print ('>>' . $v1 . '|' . $v2 . "<<\n");  // outputs ">>1|123<<"
 $v3 = "qqq{$v2}zzz";
 print "$v3\n";            // outputs "qqq123zzz"
 $a > $b ? print "..." : print "...";
-```
-
-#### unset
-
-**Syntax**
-
-<!-- GRAMMAR
-unset-intrinsic:
-  'unset' '(' variable-list ')'
--->
-
-<pre>
-<i id="grammar-unset-intrinsic">unset-intrinsic:</i>
-   unset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   )
-</pre>
-
-**Semantics**
-
-This intrinsic [unsets](07-variables.md#general) the variables designated by each
-*variable* in *variable-list*. No value is returned. An
-attempt to unset a non-existent variable (such as a non-existent element
-in an array) is ignored.
-
-When called from inside a function, this intrinsic behaves, as follows:
-
--   For a variable declared `global` in that function, `unset` removes the
-    alias to that variable from the scope of the current call to that
-    function. The global variable remains set.
-    (To unset the global variable, use unset on the corresponding
-    [`$GLOBALS`](07-variables.md#predefined-variables) array entry.
--   For a variable passed byRef to that function, `unset` removes the
-    alias to that variable from the scope of the current call to that
-    function. Once the function returns, the passed-in argument variable
-    is still set.
--   For a variable declared static in that function, `unset` removes the
-    alias to that variable from the scope of the current call to that
-    function. In subsequent calls to that function, the static variable
-    is still set and retains its value from call to call.
-
-Any visible instance property may be unset, in which case, the property
-is removed from that instance.
-
-If this intrinsic is used with an expression that designates a [dynamic
-property](14-classes.md#dynamic-members), then if the class of that property has an [`__unset`
-method](14-classes.md#method-__unset), that method is called.
-
-**Examples**
-
-```PHP
-unset($v);
-unset($v1, $v2, $v3);
-unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
 ```
 
 ### Anonymous Function Creation

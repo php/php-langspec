@@ -384,26 +384,11 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-string-literal">string-literal</a></i>
 
 <i id="grammar-intrinsic">intrinsic:</i>
-   <i><a href="#grammar-intrinsic-construct">intrinsic-construct</a></i>
-   <i><a href="#grammar-intrinsic-operator">intrinsic-operator</a></i>
-
-<i id="grammar-intrinsic-construct">intrinsic-construct:</i>
-   <i><a href="#grammar-echo-intrinsic">echo-intrinsic</a></i>
-   <i><a href="#grammar-unset-intrinsic">unset-intrinsic</a></i>
-
-<i id="grammar-intrinsic-operator">intrinsic-operator:</i>
    <i><a href="#grammar-empty-intrinsic">empty-intrinsic</a></i>
    <i><a href="#grammar-eval-intrinsic">eval-intrinsic</a></i>
    <i><a href="#grammar-exit-intrinsic">exit-intrinsic</a></i>
    <i><a href="#grammar-isset-intrinsic">isset-intrinsic</a></i>
    <i><a href="#grammar-print-intrinsic">print-intrinsic</a></i>
-
-<i id="grammar-echo-intrinsic">echo-intrinsic:</i>
-   echo   <i><a href="#grammar-expression-list">expression-list</a></i>
-
-<i id="grammar-expression-list">expression-list:</i>
-   <i><a href="#grammar-expression">expression</a></i>
-   <i><a href="#grammar-expression-list">expression-list</a></i>   ,   <i><a href="#grammar-expression">expression</a></i>
 
 <i id="grammar-empty-intrinsic">empty-intrinsic:</i>
    empty   (   <i><a href="#grammar-expression">expression</a></i>   )
@@ -426,9 +411,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-print-intrinsic">print-intrinsic:</i>
    print   <i><a href="#grammar-expression">expression</a></i>
-
-<i id="grammar-unset-intrinsic">unset-intrinsic:</i>
-   unset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   )
 
 <i id="grammar-anonymous-function-creation-expression">anonymous-function-creation-expression:</i>
    static<sub>opt</sub>   function   &amp;<sub>opt</sub>   (   <i><a href="#grammar-parameter-declaration-list">parameter-declaration-list</a></i><sub>opt</sub>   )   <i><a href="#grammar-anonymous-function-use-clause">anonymous-function-use-clause</a></i><sub>opt</sub>   <i><a href="#grammar-return-type">return-type</a></i><sub>opt</sub>   <i><a href="#grammar-compound-statement">compound-statement</a></i>
@@ -737,6 +719,8 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-jump-statement">jump-statement</a></i>
    <i><a href="#grammar-try-statement">try-statement</a></i>
    <i><a href="#grammar-declare-statement">declare-statement</a></i>
+   <i><a href="#grammar-echo-statement">echo-statement</a></i>
+   <i><a href="#grammar-unset-statement">unset-statement</a></i>
    <i><a href="#grammar-const-declaration">const-declaration</a></i>
    <i><a href="#grammar-function-definition">function-definition</a></i>
    <i><a href="#grammar-class-declaration">class-declaration</a></i>
@@ -899,6 +883,16 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    ticks   =   <i><a href="#grammar-literal">literal</a></i>
    encoding   =   <i><a href="#grammar-literal">literal</a></i>
    strict_types   =   <i><a href="#grammar-literal">literal</a></i>
+
+<i id="grammar-echo-statement">echo-statement:</i>
+   echo   <i><a href="#grammar-expression-list">expression-list</a></i>   ;
+
+<i id="grammar-expression-list">expression-list:</i>
+   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-expression-list">expression-list</a></i>   ,   <i><a href="#grammar-expression">expression</a></i>
+
+<i id="grammar-unset-statement">unset-statement:</i>
+   unset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   )   ;
 </pre>
 
 ### Functions

@@ -14,6 +14,8 @@ statement:
   jump-statement
   try-statement
   declare-statement
+  echo-statement
+  unset-statement
   const-declaration
   function-definition
   class-declaration
@@ -35,6 +37,8 @@ statement:
    <i><a href="#grammar-jump-statement">jump-statement</a></i>
    <i><a href="#grammar-try-statement">try-statement</a></i>
    <i><a href="#grammar-declare-statement">declare-statement</a></i>
+   <i><a href="#grammar-echo-statement">echo-statement</a></i>
+   <i><a href="#grammar-unset-statement">unset-statement</a></i>
    <i><a href="14-classes.md#grammar-const-declaration">const-declaration</a></i>
    <i><a href="13-functions.md#grammar-function-definition">function-definition</a></i>
    <i><a href="14-classes.md#grammar-class-declaration">class-declaration</a></i>
@@ -1285,4 +1289,107 @@ This directive applies only to the file it appears in, and does not affect the i
 declare(ticks = 1) { ... }
 declare(encoding = 'ISO-8859-1'); // Latin-1 Western European
 declare(encoding = 'ISO-8859-5'); // Latin/Cyrillic
+```
+
+## The `echo` statement
+
+**Syntax**
+
+<!-- GRAMMAR
+echo-statement:
+  'echo' expression-list ';'
+
+expression-list:
+  expression
+  expression-list ',' expression
+-->
+
+<pre>
+<i id="grammar-echo-statement">echo-statement:</i>
+   echo   <i><a href="#grammar-expression-list">expression-list</a></i>   ;
+
+<i id="grammar-expression-list">expression-list:</i>
+   <i><a href="10-expressions.md#grammar-expression">expression</a></i>
+   <i><a href="#grammar-expression-list">expression-list</a></i>   ,   <i><a href="10-expressions.md#grammar-expression">expression</a></i>
+</pre>
+
+**Constraints**
+
+The *expression* value must be
+[convertable to a string](08-conversions.md#converting-to-string-type).
+In particular, it should not be an array and if it is an object, it must implement
+a [`__toString` method](14-classes.md#method-__tostring).
+
+**Semantics**
+
+After converting each of its *expression*s' values to strings, if
+necessary, `echo` concatenates them in order given, and writes the
+resulting string to [`STDOUT`](06-constants.md#core-predefined-constants). Unlike [`print`](10-expressions.md#print), it does
+not produce a result.
+
+See also: [double quoted strings](09-lexical-structure.md#double-quoted-string-literals) and
+[heredoc documents](09-lexical-structure.md#heredoc-string-literals), [conversion to string](08-conversions.md#converting-to-string-type).
+
+**Examples**
+
+```PHP
+$v1 = TRUE;
+$v2 = 123;
+echo  '>>' . $v1 . '|' . $v2 . "<<\n";    // outputs ">>1|123<<"
+echo  '>>' , $v1 , '|' , $v2 , "<<\n";    // outputs ">>1|123<<"
+echo ('>>' . $v1 . '|' . $v2 . "<<\n");   // outputs ">>1|123<<"
+$v3 = "qqq{$v2}zzz";
+echo "$v3\n";
+```
+
+## The `unset` statement
+
+**Syntax**
+
+<!-- GRAMMAR
+unset-statement:
+  'unset' '(' variable-list ')' ';'
+-->
+
+<pre>
+<i id="grammar-unset-statement">unset-statement:</i>
+   unset   (   <i><a href="10-expressions.md#grammar-variable-list">variable-list</a></i>   )   ;
+</pre>
+
+**Semantics**
+
+This statement [unsets](07-variables.md#general) the variables designated by each
+*variable* in *variable-list*. No value is returned. An
+attempt to unset a non-existent variable (such as a non-existent element
+in an array) is ignored.
+
+When called from inside a function, this statement behaves, as follows:
+
+-   For a variable declared `global` in that function, `unset` removes the
+    alias to that variable from the scope of the current call to that
+    function. The global variable remains set.
+    (To unset the global variable, use unset on the corresponding
+    [`$GLOBALS`](07-variables.md#predefined-variables) array entry.
+-   For a variable passed byRef to that function, `unset` removes the
+    alias to that variable from the scope of the current call to that
+    function. Once the function returns, the passed-in argument variable
+    is still set.
+-   For a variable declared static in that function, `unset` removes the
+    alias to that variable from the scope of the current call to that
+    function. In subsequent calls to that function, the static variable
+    is still set and retains its value from call to call.
+
+Any visible instance property may be unset, in which case, the property
+is removed from that instance.
+
+If this statement is used with an expression that designates a [dynamic
+property](14-classes.md#dynamic-members), then if the class of that property has an [`__unset`
+method](14-classes.md#method-__unset), that method is called.
+
+**Examples**
+
+```PHP
+unset($v);
+unset($v1, $v2, $v3);
+unset($x->m); // if m is a dynamic property, $x->__unset("m") is called
 ```

@@ -321,7 +321,6 @@ intrinsic:
 
 intrinsic-construct:
   echo-intrinsic
-  list-intrinsic
   unset-intrinsic
 
 intrinsic-operator:
@@ -339,7 +338,6 @@ intrinsic-operator:
 
 <i id="grammar-intrinsic-construct">intrinsic-construct:</i>
    <i><a href="#grammar-echo-intrinsic">echo-intrinsic</a></i>
-   <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
    <i><a href="#grammar-unset-intrinsic">unset-intrinsic</a></i>
 
 <i id="grammar-intrinsic-operator">intrinsic-operator:</i>
@@ -590,138 +588,6 @@ $v = NULL;
 isset($v);     // results in FALSE
 $v1 = TRUE; $v2 = 12.3; $v3 = NULL;
 isset($v1, $v2, $v3);  // results in FALSE
-```
-
-#### list
-
-**Syntax**
-
-<!-- GRAMMAR
-list-intrinsic:
-  'list' '(' list-expression-list ')'
-
-list-expression-list:
-  unkeyed-list-expression-list
-  keyed-list-expression-list ','?
-
-unkeyed-list-expression-list:
-  list-or-variable
-  ','
-  unkeyed-list-expression-list ',' list-or-variable?
-
-keyed-list-expression-list:
-  expression '=>' list-or-variable
-  keyed-list-expression-list ',' expression '=>' list-or-variable
-
-list-or-variable:
-  list-intrinsic
-  variable
--->
-
-<pre>
-<i id="grammar-list-intrinsic">list-intrinsic:</i>
-   list   (   <i><a href="#grammar-list-expression-list">list-expression-list</a></i>   )
-
-<i id="grammar-list-expression-list">list-expression-list:</i>
-   <i><a href="#grammar-unkeyed-list-expression-list">unkeyed-list-expression-list</a></i>
-   <i><a href="#grammar-keyed-list-expression-list">keyed-list-expression-list</a></i>   ,<sub>opt</sub>
-
-<i id="grammar-unkeyed-list-expression-list">unkeyed-list-expression-list:</i>
-   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
-   ,
-   <i><a href="#grammar-unkeyed-list-expression-list">unkeyed-list-expression-list</a></i>   ,   <i><a href="#grammar-list-or-variable">list-or-variable</a></i><sub>opt</sub>
-
-<i id="grammar-keyed-list-expression-list">keyed-list-expression-list:</i>
-   <i><a href="#grammar-expression">expression</a></i>   =&gt;   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
-   <i><a href="#grammar-keyed-list-expression-list">keyed-list-expression-list</a></i>   ,   <i><a href="#grammar-expression">expression</a></i>   =&gt;   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
-
-<i id="grammar-list-or-variable">list-or-variable:</i>
-   <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
-   <i><a href="#grammar-variable">variable</a></i>
-</pre>
-
-**Constraints**
-
-*list-intrinsic* must be used as the left-hand operand in a
-[*simple-assignment-expression*](#simple-assignment) of which the right-hand
-operand must be an expression that designates an array or object implementing
-the `ArrayAccess` interface (called the *source array*).
-
-Each *variable* in *list-or-variable* must designate a writable variable (called
-the *target variable*).
-
-At least one of the elements of the *list-expression-list* must be non-empty.
-
-**Semantics**
-
-This intrinsic assigns one or more elements of the source array to the
-target variables. On success, it returns a copy of the source array. If the
-source array is not an array or object implementing `ArrayAccess` no
-assignments are performed and the return value is `NULL`.
-
-For *unkeyed-list-expression-list*, all elements in the source array having
-keys of type `string` are ignored.
-The element having an `int` key of 0 is assigned to the first target
-variable, the element having an `int` key of 1 is assigned to the second
-target variable, and so on, until all target variables have been
-assigned. Any other array elements are ignored. If there are
-fewer source array elements having int keys than there are target
-variables, the unassigned target variables are set to `NULL` and
-a non-fatal error is produced.
-
-For *keyed-list-expression-list*, each key-variable pair is handled in turn,
-with the key and variable being separated by the `=>` symbol.
-The element having the first key, with the key having been converted using the
-same rules as the [subscript operator](10-expressions.md#subscript-operator),
-is assigned to the frst target variable. This process is repeated for the
-second `=>` pair, if any, and so on. Any other array elements are ignored.
-If there is no array element with a given key, the unassigned target variable
-is set to `NULL` and a non-fatal error is produced.
-
-The assignments must occur in this order.
-
-Any target variable may be a list, in which case, the corresponding
-element is expected to be an array.
-
-If the source array elements and the target variables overlap in any
-way, the behavior is unspecified.
-
-**Examples**
-
-```PHP
-list($min, $max, $avg) = array(0, 100, 67);
-  // $min is 0, $max is 100, $avg is 67
-list($min, $max, $avg) = array(2 => 67, 1 => 100, 0 => 0);
-  // same as example above
-list($min, , $avg) = array(0, 100, 67);
-  // $min is 0, $avg is 67
-list($min, $max, $avg) = array(0, 2 => 100, 4 => 67);
-  // $min is 0, $max is NULL, $avg is 100
-list($min, list($max, $avg)) = [0, [1 => 67, 99, 0 => 100], 33];
-  // $min is 0, $max is 100, $avg is 67
-
-list($arr[1], $arr[0]) = [0, 1];
-  // $arr is [1 => 0, 0 => 1], in this order
-list($arr2[], $arr2[]) = [0, 1];
-  // $arr2 is [0, 1]
-
-list("one" => $one, "two" => $two) = ["one" => 1, "two" => 2];
-  // $one is 1, $two is 2
-list(
-    "one" => $one,
-    "two" => $two,
-) = [
-    "one" => 1,
-    "two" => 2,
-];
-  // $one is 1, $two is 2
-list(list("x" => $x1, "y" => $y1), list("x" => $x2, "y" => $y2)) = [
-    ["x" => 1, "y" => 2],
-    ["x" => 3, "y" => 4]
-];
-  // $x1 is 1, $y1 is 2, $x2 is 3, $y2 is 4
-list(0 => list($x1, $x2), 1 => list($x2, $y2)) = [[1, 2], [3, 4]];
-  // $x1 is 1, $y1 is 2, $x2 is 3, $y2 is 4
 ```
 
 #### print
@@ -3122,6 +2988,138 @@ $s["zz"] = "Q";   // warning; defaults to [0], and "Q" is stored there
 // -----------------------------------------
 class C { ... }
 $a = new C; // make $a point to the allocated object
+```
+
+#### list intrinsic
+
+**Syntax**
+
+<!-- GRAMMAR
+list-intrinsic:
+  'list' '(' list-expression-list ')'
+
+list-expression-list:
+  unkeyed-list-expression-list
+  keyed-list-expression-list ','?
+
+unkeyed-list-expression-list:
+  list-or-variable
+  ','
+  unkeyed-list-expression-list ',' list-or-variable?
+
+keyed-list-expression-list:
+  expression '=>' list-or-variable
+  keyed-list-expression-list ',' expression '=>' list-or-variable
+
+list-or-variable:
+  list-intrinsic
+  variable
+-->
+
+<pre>
+<i id="grammar-list-intrinsic">list-intrinsic:</i>
+   list   (   <i><a href="#grammar-list-expression-list">list-expression-list</a></i>   )
+
+<i id="grammar-list-expression-list">list-expression-list:</i>
+   <i><a href="#grammar-unkeyed-list-expression-list">unkeyed-list-expression-list</a></i>
+   <i><a href="#grammar-keyed-list-expression-list">keyed-list-expression-list</a></i>   ,<sub>opt</sub>
+
+<i id="grammar-unkeyed-list-expression-list">unkeyed-list-expression-list:</i>
+   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
+   ,
+   <i><a href="#grammar-unkeyed-list-expression-list">unkeyed-list-expression-list</a></i>   ,   <i><a href="#grammar-list-or-variable">list-or-variable</a></i><sub>opt</sub>
+
+<i id="grammar-keyed-list-expression-list">keyed-list-expression-list:</i>
+   <i><a href="#grammar-expression">expression</a></i>   =&gt;   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
+   <i><a href="#grammar-keyed-list-expression-list">keyed-list-expression-list</a></i>   ,   <i><a href="#grammar-expression">expression</a></i>   =&gt;   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
+
+<i id="grammar-list-or-variable">list-or-variable:</i>
+   <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
+   <i><a href="#grammar-variable">variable</a></i>
+</pre>
+
+**Constraints**
+
+*list-intrinsic* must be used as the left-hand operand in a
+[*simple-assignment-expression*](#simple-assignment) of which the right-hand
+operand must be an expression that designates an array or object implementing
+the `ArrayAccess` interface (called the *source array*).
+
+Each *variable* in *list-or-variable* must designate a writable variable (called
+the *target variable*).
+
+At least one of the elements of the *list-expression-list* must be non-empty.
+
+**Semantics**
+
+This intrinsic assigns one or more elements of the source array to the
+target variables. On success, it returns a copy of the source array. If the
+source array is not an array or object implementing `ArrayAccess` no
+assignments are performed and the return value is `NULL`.
+
+For *unkeyed-list-expression-list*, all elements in the source array having
+keys of type `string` are ignored.
+The element having an `int` key of 0 is assigned to the first target
+variable, the element having an `int` key of 1 is assigned to the second
+target variable, and so on, until all target variables have been
+assigned. Any other array elements are ignored. If there are
+fewer source array elements having int keys than there are target
+variables, the unassigned target variables are set to `NULL` and
+a non-fatal error is produced.
+
+For *keyed-list-expression-list*, each key-variable pair is handled in turn,
+with the key and variable being separated by the `=>` symbol.
+The element having the first key, with the key having been converted using the
+same rules as the [subscript operator](10-expressions.md#subscript-operator),
+is assigned to the frst target variable. This process is repeated for the
+second `=>` pair, if any, and so on. Any other array elements are ignored.
+If there is no array element with a given key, the unassigned target variable
+is set to `NULL` and a non-fatal error is produced.
+
+The assignments must occur in this order.
+
+Any target variable may be a list, in which case, the corresponding
+element is expected to be an array.
+
+If the source array elements and the target variables overlap in any
+way, the behavior is unspecified.
+
+**Examples**
+
+```PHP
+list($min, $max, $avg) = array(0, 100, 67);
+  // $min is 0, $max is 100, $avg is 67
+list($min, $max, $avg) = array(2 => 67, 1 => 100, 0 => 0);
+  // same as example above
+list($min, , $avg) = array(0, 100, 67);
+  // $min is 0, $avg is 67
+list($min, $max, $avg) = array(0, 2 => 100, 4 => 67);
+  // $min is 0, $max is NULL, $avg is 100
+list($min, list($max, $avg)) = [0, [1 => 67, 99, 0 => 100], 33];
+  // $min is 0, $max is 100, $avg is 67
+
+list($arr[1], $arr[0]) = [0, 1];
+  // $arr is [1 => 0, 0 => 1], in this order
+list($arr2[], $arr2[]) = [0, 1];
+  // $arr2 is [0, 1]
+
+list("one" => $one, "two" => $two) = ["one" => 1, "two" => 2];
+  // $one is 1, $two is 2
+list(
+    "one" => $one,
+    "two" => $two,
+) = [
+    "one" => 1,
+    "two" => 2,
+];
+  // $one is 1, $two is 2
+list(list("x" => $x1, "y" => $y1), list("x" => $x2, "y" => $y2)) = [
+    ["x" => 1, "y" => 2],
+    ["x" => 3, "y" => 4]
+];
+  // $x1 is 1, $y1 is 2, $x2 is 3, $y2 is 4
+list(0 => list($x1, $x2), 1 => list($x2, $y2)) = [[1, 2], [3, 4]];
+  // $x1 is 1, $y1 is 2, $x2 is 3, $y2 is 4
 ```
 
 ### byRef Assignment

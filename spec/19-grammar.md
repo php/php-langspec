@@ -389,7 +389,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-intrinsic-construct">intrinsic-construct:</i>
    <i><a href="#grammar-echo-intrinsic">echo-intrinsic</a></i>
-   <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
    <i><a href="#grammar-unset-intrinsic">unset-intrinsic</a></i>
 
 <i id="grammar-intrinsic-operator">intrinsic-operator:</i>
@@ -424,26 +423,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 <i id="grammar-variable-list">variable-list:</i>
    <i><a href="#grammar-variable">variable</a></i>
    <i><a href="#grammar-variable-list">variable-list</a></i>   ,   <i><a href="#grammar-variable">variable</a></i>
-
-<i id="grammar-list-intrinsic">list-intrinsic:</i>
-   list   (   <i><a href="#grammar-list-expression-list">list-expression-list</a></i>   )
-
-<i id="grammar-list-expression-list">list-expression-list:</i>
-   <i><a href="#grammar-unkeyed-list-expression-list">unkeyed-list-expression-list</a></i>
-   <i><a href="#grammar-keyed-list-expression-list">keyed-list-expression-list</a></i>   ,<sub>opt</sub>
-
-<i id="grammar-unkeyed-list-expression-list">unkeyed-list-expression-list:</i>
-   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
-   ,
-   <i><a href="#grammar-unkeyed-list-expression-list">unkeyed-list-expression-list</a></i>   ,   <i><a href="#grammar-list-or-variable">list-or-variable</a></i><sub>opt</sub>
-
-<i id="grammar-keyed-list-expression-list">keyed-list-expression-list:</i>
-   <i><a href="#grammar-expression">expression</a></i>   =&gt;   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
-   <i><a href="#grammar-keyed-list-expression-list">keyed-list-expression-list</a></i>   ,   <i><a href="#grammar-expression">expression</a></i>   =&gt;   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
-
-<i id="grammar-list-or-variable">list-or-variable:</i>
-   <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
-   <i><a href="#grammar-variable">variable</a></i>
 
 <i id="grammar-print-intrinsic">print-intrinsic:</i>
    print   <i><a href="#grammar-expression">expression</a></i>
@@ -676,6 +655,26 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 <i id="grammar-simple-assignment-expression">simple-assignment-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>   =   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
    <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>   =   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
+
+<i id="grammar-list-intrinsic">list-intrinsic:</i>
+   list   (   <i><a href="#grammar-list-expression-list">list-expression-list</a></i>   )
+
+<i id="grammar-list-expression-list">list-expression-list:</i>
+   <i><a href="#grammar-unkeyed-list-expression-list">unkeyed-list-expression-list</a></i>
+   <i><a href="#grammar-keyed-list-expression-list">keyed-list-expression-list</a></i>   ,<sub>opt</sub>
+
+<i id="grammar-unkeyed-list-expression-list">unkeyed-list-expression-list:</i>
+   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
+   ,
+   <i><a href="#grammar-unkeyed-list-expression-list">unkeyed-list-expression-list</a></i>   ,   <i><a href="#grammar-list-or-variable">list-or-variable</a></i><sub>opt</sub>
+
+<i id="grammar-keyed-list-expression-list">keyed-list-expression-list:</i>
+   <i><a href="#grammar-expression">expression</a></i>   =&gt;   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
+   <i><a href="#grammar-keyed-list-expression-list">keyed-list-expression-list</a></i>   ,   <i><a href="#grammar-expression">expression</a></i>   =&gt;   <i><a href="#grammar-list-or-variable">list-or-variable</a></i>
+
+<i id="grammar-list-or-variable">list-or-variable:</i>
+   <i><a href="#grammar-list-intrinsic">list-intrinsic</a></i>
+   <i><a href="#grammar-variable">variable</a></i>
 
 <i id="grammar-byref-assignment-expression">byref-assignment-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>   =   &amp;   <i><a href="#grammar-variable">variable</a></i>

@@ -562,10 +562,10 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    static
 
 <i id="grammar-exponentiation-expression">exponentiation-expression:</i>
-   <i><a href="#grammar-expression">expression</a></i>   **   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>   **   <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
 
 <i id="grammar-unary-expression">unary-expression:</i>
-   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>
+   <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
    <i><a href="#grammar-prefix-increment-expression">prefix-increment-expression</a></i>
    <i><a href="#grammar-prefix-decrement-expression">prefix-decrement-expression</a></i>
    <i><a href="#grammar-unary-op-expression">unary-op-expression</a></i>

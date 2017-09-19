@@ -125,7 +125,7 @@ is distributed without any warranty.
     - [Member Call Operator](10-expressions.md#member-call-operator)
     - [Postfix Increment and Decrement Operators](10-expressions.md#postfix-increment-and-decrement-operators)
     - [Scope-Resolution Operator](10-expressions.md#scope-resolution-operator)
-    - [Exponentiation Operator](10-expressions.md#exponentiation-operator)
+  - [Exponentiation Operator](10-expressions.md#exponentiation-operator)
   - [Unary Operators](10-expressions.md#unary-operators)
     - [General](10-expressions.md#general-4)
     - [Prefix Increment and Decrement Operators](10-expressions.md#prefix-increment-and-decrement-operators)

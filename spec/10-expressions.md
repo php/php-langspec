@@ -1803,18 +1803,18 @@ class Point
 }
 ```
 
-### Exponentiation Operator
+## Exponentiation Operator
 
 **Syntax**
 
 <!-- GRAMMAR
 exponentiation-expression:
-  expression '**' expression
+  postfix-expression '**' exponentiation-expression
 -->
 
 <pre>
 <i id="grammar-exponentiation-expression">exponentiation-expression:</i>
-   <i><a href="#grammar-expression">expression</a></i>   **   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>   **   <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
 </pre>
 
 **Semantics**
@@ -1830,7 +1830,9 @@ to type `int` or `float`, as appropriate. If both operands have non-negative
 integer values and the result can be represented as an `int`, the result has
 type `int`; otherwise, the result has type `float`.  If either or both operands
 were leading-numeric or non-numeric strings, a non-fatal error must be produced
-for each.  **Examples**
+for each.
+
+**Examples**
 
 ```PHP
 2**3;   // int with value 8
@@ -1846,7 +1848,7 @@ for each.  **Examples**
 
 <!-- GRAMMAR
 unary-expression:
-  postfix-expression
+  exponentiation-expression
   prefix-increment-expression
   prefix-decrement-expression
   unary-op-expression
@@ -1857,7 +1859,7 @@ unary-expression:
 
 <pre>
 <i id="grammar-unary-expression">unary-expression:</i>
-   <i><a href="#grammar-postfix-expression">postfix-expression</a></i>
+   <i><a href="#grammar-exponentiation-expression">exponentiation-expression</a></i>
    <i><a href="#grammar-prefix-increment-expression">prefix-increment-expression</a></i>
    <i><a href="#grammar-prefix-decrement-expression">prefix-decrement-expression</a></i>
    <i><a href="#grammar-unary-op-expression">unary-op-expression</a></i>

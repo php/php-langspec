@@ -2224,7 +2224,7 @@ instanceof-expression:
   instanceof-subject 'instanceof' class-type-designator
 
 instanceof-subject:
-  expression
+  unary-expression
 -->
 
 <pre>
@@ -2233,17 +2233,17 @@ instanceof-subject:
    <i><a href="#grammar-instanceof-subject">instanceof-subject</a></i>   instanceof   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>
 
 <i id="grammar-instanceof-subject">instanceof-subject:</i>
-   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-unary-expression">unary-expression</a></i>
 </pre>
 
 **Constraints**
 
-The *expression* in *instanceof-subject* must not be any form of literal.
+The *unary-expression* in *instanceof-subject* must not be any form of literal.
 
 **Semantics**
 
 Operator `instanceof` returns `TRUE` if the value designated by
-*expression* in *instanceof-subject* is an object having the type specified
+*unary-expression* in *instanceof-subject* is an object having the type specified
 by *class-type-designator*, is an object whose type is derived from that type,
 or is an object whose type implements the interface specified by *class-type-designator*.
 Otherwise, it returns `FALSE`.

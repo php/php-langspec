@@ -1294,7 +1294,7 @@ declare(encoding = 'ISO-8859-1'); // Latin-1 Western European
 declare(encoding = 'ISO-8859-5'); // Latin/Cyrillic
 ```
 
-## The `echo` statement
+## The `echo` Statement
 
 **Syntax**
 
@@ -1345,7 +1345,7 @@ $v3 = "qqq{$v2}zzz";
 echo "$v3\n";
 ```
 
-## The `unset` statement
+## The `unset` Statement
 
 **Syntax**
 

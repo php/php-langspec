@@ -849,6 +849,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-breakout-level">breakout-level:</i>
    <i><a href="#grammar-integer-literal">integer-literal</a></i>
+   (   <i><a href="#grammar-breakout-level">breakout-level</a></i>   )
 
 <i id="grammar-break-statement">break-statement:</i>
    break   <i><a href="#grammar-breakout-level">breakout-level</a></i><sub>opt</sub>   ;

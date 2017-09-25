@@ -840,7 +840,7 @@ breakout-level:
 
 <i id="grammar-breakout-level">breakout-level:</i>
    <i><a href="09-lexical-structure.md#grammar-integer-literal">integer-literal</a></i>
-   (   <i><a href="09-lexical-structure.md#grammar-integer-literal">integer-literal</a></i>   )
+   (   <i><a href="#grammar-breakout-level">breakout-level</a></i>   )
 </pre>
 
 **Constraints**

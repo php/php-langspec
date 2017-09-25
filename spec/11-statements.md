@@ -831,6 +831,7 @@ continue-statement:
 
 breakout-level:
   integer-literal
+  ( integer-literal )
 -->
 
 <pre>
@@ -839,6 +840,7 @@ breakout-level:
 
 <i id="grammar-breakout-level">breakout-level:</i>
    <i><a href="09-lexical-structure.md#grammar-integer-literal">integer-literal</a></i>
+   (   <i><a href="09-lexical-structure.md#grammar-integer-literal">integer-literal</a></i>   )
 </pre>
 
 **Constraints**

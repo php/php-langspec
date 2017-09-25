@@ -831,7 +831,7 @@ continue-statement:
 
 breakout-level:
   integer-literal
-  ( integer-literal )
+  '(' breakout-level ')'
 -->
 
 <pre>

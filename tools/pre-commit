@@ -1,0 +1,4 @@
+#!/bin/sh
+php tools/grammar.php && \
+php tools/toc.php && \
+php tools/check_refs.php

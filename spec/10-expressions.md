@@ -1536,8 +1536,8 @@ relative-scope:
 
 *qualified-name* must be the name of a class or interface type.
 
-*expression* must be a value of type string that contains the name
-of a class or interface type.
+*dereferencable-expression* must be a value of type string, which contains the name
+of a class or interface type, or an object.
 
 **Semantics**
 

@@ -111,8 +111,8 @@ Constant Name | Description
 `PHP_INT_SIZE` |  `int`; the number of bytes used to represent an integer.
 `PHP_FLOAT_DIG` | `int`; the number of decimal digits that can be rounded into a float and back without precision loss.
 `PHP_FLOAT_EPSILON` | `float`; the smallest representable positive number `x`, so that `x + 1.0 != 1.0`.
-`PHP_FLOAT_MIN` | `int`; the smallest representable floating point number.
-`PHP_FLOAT_MAX` | `int`; the largest representable floating point number.
+`PHP_FLOAT_MIN` | `float`; the smallest representable floating point number.
+`PHP_FLOAT_MAX` | `float`; the largest representable floating point number.
 `PHP_MAJOR_VERSION` | `int`; the current PHP major version
 `PHP_MANDIR`  | `string`; the installation location of the manual pages.
 `PHP_MAXPATHLEN` |  `int`; the maximum length of a fully qualified filename supported by this build.

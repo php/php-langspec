@@ -139,7 +139,7 @@ trait-select-and-alias-clause:
   trait-alias-as-clause ';'
 
 trait-select-insteadof-clause:
-  name 'insteadof' name
+  qualified-name '::' name 'insteadof' trait-name-list
 
 trait-alias-as-clause:
   name 'as' visibility-modifier? name
@@ -171,7 +171,7 @@ trait-alias-as-clause:
    <i><a href="#grammar-trait-alias-as-clause">trait-alias-as-clause</a></i>   ;
 
 <i id="grammar-trait-select-insteadof-clause">trait-select-insteadof-clause:</i>
-   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   insteadof   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>
+   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>   ::   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   insteadof   <i><a href="#grammar-trait-name-list">trait-name-list</a></i>
 
 <i id="grammar-trait-alias-as-clause">trait-alias-as-clause:</i>
    <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   as   <i><a href="14-classes.md#grammar-visibility-modifier">visibility-modifier</a></i><sub>opt</sub>   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>

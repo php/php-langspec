@@ -1095,7 +1095,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-trait-alias-as-clause">trait-alias-as-clause</a></i>   ;
 
 <i id="grammar-trait-select-insteadof-clause">trait-select-insteadof-clause:</i>
-   <i><a href="#grammar-name">name</a></i>   insteadof   <i><a href="#grammar-name">name</a></i>
+   <i><a href="#grammar-qualified-name">qualified-name</a></i>   ::   <i><a href="#grammar-name">name</a></i>   insteadof   <i><a href="#grammar-trait-name-list">trait-name-list</a></i>
 
 <i id="grammar-trait-alias-as-clause">trait-alias-as-clause:</i>
    <i><a href="#grammar-name">name</a></i>   as   <i><a href="#grammar-visibility-modifier">visibility-modifier</a></i><sub>opt</sub>   <i><a href="#grammar-name">name</a></i>

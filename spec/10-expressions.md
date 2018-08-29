@@ -2930,9 +2930,8 @@ At least one of the elements of the *list-expression-list* must be non-empty.
 **Semantics**
 
 This intrinsic assigns one or more elements of the source array to the
-target variables. On success, the target variable will be assigned to the
-corresponding value in the source array.  This can either be a reference
-or a copy of the value depening if `&` preceeds the variable. If the
+target variables.  Target variables may be assigned by reference.
+On success, it will return a copy of the source array. If the
 source array is not an array or object implementing `ArrayAccess` no
 assignments are performed and the return value is `NULL`.
 

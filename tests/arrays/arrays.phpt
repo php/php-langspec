@@ -108,8 +108,8 @@ foreach($v as $e)	// only has 3 elements ([3], [6], and [7]), not 8 ([0]-[7])
 }
 echo "\n";
 
-echo "\$v[1] is >".$v[1]."<\n"; var_dump($v1[1]); // access non-existant element
-echo "\$v[4] is >".$v[4]."<\n"; var_dump($v1[4]); // access non-existant element
+echo "\$v[1] is >".$v[1]."<\n"; var_dump($v1[1]); // access non-existent element
+echo "\$v[4] is >".$v[4]."<\n"; var_dump($v1[4]); // access non-existent element
 
 $v[1] = TRUE;		// increases array to 4 elements
 $v[4] = 99;			// increases array to 5 elements

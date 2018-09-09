@@ -35,7 +35,7 @@ function g(&$q)
          // to function f(), 0 passed
 
 var_dump($x);
-f($x);           // non-existant variable going in
+f($x);           // non-existent variable going in
 var_dump($x);
 
 $a = array(10, 20, 30);
@@ -44,10 +44,10 @@ var_dump($a);
 f($a[0]);
 var_dump($a);
 
-f($a[5]);      // non-existant element going in
+f($a[5]);      // non-existent element going in
 var_dump($a);
 
-f($a["red"]);  // non-existant element going in
+f($a["red"]);  // non-existent element going in
 var_dump($a);
 //*/
 ///*
@@ -68,7 +68,7 @@ function h(&$p)
          // to function f(), 0 passed
 
 var_dump($x);
-h($x);           // non-existant variable going in
+h($x);           // non-existent variable going in
 var_dump($x);
 
 $a = array(10, 20, 30);
@@ -77,10 +77,10 @@ var_dump($a);
 h($a[0]);
 var_dump($a);
 
-h($a[5]);      // non-existant element going in
+h($a[5]);      // non-existent element going in
 var_dump($a);
 
-h($a["red"]);  // non-existant element going in
+h($a["red"]);  // non-existent element going in
 var_dump($a);
 //*/
 ///*
@@ -102,11 +102,11 @@ $d = &k($a[0]);
 var_dump($d);
 var_dump($a);
 
-$d = &k($a[5]);      // non-existant element going in
+$d = &k($a[5]);      // non-existent element going in
 var_dump($d);
 var_dump($a);
 
-$d = &k($a["red"]);  // non-existant element going in
+$d = &k($a["red"]);  // non-existent element going in
 var_dump($d);
 var_dump($a);
 //*/

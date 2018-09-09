@@ -26,7 +26,7 @@ foreach ($v as $k => $e)
 	echo "key: ".$k.", value: ".$e."\n";
 }
 
-// try to access non-existant elements
+// try to access non-existent elements
 
 echo "[7] contains >".($v[7] == NULL ? "NULL" : "??")
 	."<, [12] contains >".($v[12] == NULL ? "NULL" : "??")."<\n";

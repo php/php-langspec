@@ -58,7 +58,7 @@ echo "Point count = " . Point2::getPointCount() . "\n";
 var_dump($p4 = clone $p1);
 echo "Point count = " . Point2::getPointCount() . "\n";
 
-echo "================= use chained cloning in a class heirarchy =================\n";
+echo "================= use chained cloning in a class hierarchy =================\n";
 
 class Employee
 {
@@ -154,7 +154,7 @@ object(Point2)#6 (2) {
   int(0)
 }
 Point count = 4
-================= use chained cloning in a class heirarchy =================
+================= use chained cloning in a class hierarchy =================
 object(Manager)#7 (2) {
   ["level":"Manager":private]=>
   int(23)

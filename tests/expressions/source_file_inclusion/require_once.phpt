@@ -11,7 +11,7 @@ PHP Spec test generated from ./expressions/source_file_inclusion/require_once.ph
 
 error_reporting(-1);
 
-// Try to require a non-existant file
+// Try to require a non-existent file
 
 //$inc = require_once('XXPositions.inc');
 //var_dump($inc);

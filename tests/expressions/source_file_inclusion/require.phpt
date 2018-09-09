@@ -17,7 +17,7 @@ echo "Inside file >" . __FILE__ . "< at line >" . __LINE__ .
 //var_dump(MY_MIN);
 //var_dump(MY_MAX);
 
-// Try to require a non-existant file
+// Try to require a non-existent file
 
 $fileName = 'unknown.inc';
 //$inc = require $fileName;

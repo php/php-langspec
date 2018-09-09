@@ -53,7 +53,7 @@ function f2($p1, $p2)
 		", \$p2 = ".($p2 == NULL ? "NULL" : $p2)."\n";
 }
 
-// if fewer arguments are passed than there are paramaters declared, an ArgumentCountError is thrown
+// if fewer arguments are passed than there are parameters declared, an ArgumentCountError is thrown
 
 try {
     f2();

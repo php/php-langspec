@@ -166,7 +166,7 @@ function g1(&$b)	// make $b alias whatever $a aliases
 	$b = new Point(5, 7);	// removes second alias from first point;
 							// then create first alias to second new point
 							// changing $b also changes $a as well, so $a's alias
-							// is also removed, alowing the destructor run
+							// is also removed, allowing the destructor run
 
 	echo "After 'new Point(5, 7)', \$b is $b\n";
 } // $b goes away, remove its alias from new point

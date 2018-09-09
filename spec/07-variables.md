@@ -344,9 +344,9 @@ function f(){
   echo "\$fs = $fs\n";  // $fs = 
   $fs = 5;              // assign 5 to the function static $fs (local variable is not modified)
   echo "\$fs = $fs\n";  // $fs = 5
-  global $fs;           // define a global variabel with name $fs
+  global $fs;           // define a global variable with name $fs
   echo "\$fs = $fs\n";  // $fs = 
-  $fs = 3;              // assign 3 to the global variable $fs (function static and local variabel is not modified
+  $fs = 3;              // assign 3 to the global variable $fs (function static and local variable is not modified
   echo "\$fs = $fs\n";  // $fs = 3
   static $fs; 
   ++$fs;                // increment function static $fs

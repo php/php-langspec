@@ -1195,7 +1195,7 @@ The *method-modifiers* must not contain `static` and must define public visibili
 
 If the [dynamic property](#dynamic-members) designated by `$name` exists, this
 instance method returns `TRUE`; otherwise, `FALSE` is returned. The speficis of
-how existance of the dynamic property is determined is left to the implementor of the method.
+how existence of the dynamic property is determined is left to the implementor of the method.
 
 Typically, `__isset` is called implicitly, when the intrinsic [`isset`](10-expressions.md#isset)
 or intrinsic [`empty`](10-expressions.md#empty) is called with an argument that designates
@@ -1997,7 +1997,7 @@ __PHP_Incomplete_Class
 }
 ```
 
-Object of this class can be serialized, however, any attemt to call its method or access its property
+Object of this class can be serialized, however, any attempt to call its method or access its property
 for any other operation except serialization will result in a fatal error.
 
 ### Class `stdClass`

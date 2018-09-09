@@ -4,7 +4,7 @@
 
 Explicit type conversion is performed using the [cast operator](10-expressions.md#cast-operator).
 If an operation or language construct expects operand of one type and a value of another type is given,
-implict (automatic) conversion will be performed. Same will happen with most internal functions, though some
+implicit (automatic) conversion will be performed. Same will happen with most internal functions, though some
 functions may do different things depending on argument type and thus would not perform the conversion.
 
 If an expression is converted to its own type, the type and value of the

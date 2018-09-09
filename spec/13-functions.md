@@ -17,7 +17,7 @@ case of an *outer function*, and an *inner function* defined within it.
 Until the outer function is called at least once, its inner function
 does not exist. Even if the outer function is called, if its runtime logic
 bypasses the definition of the inner function, that inner function still
-does not exist. The conditionally defined function comes into existance when
+does not exist. The conditionally defined function comes into existence when
 the execution flow reaches the point where the function is defined.
 
 Any function containing [`yield`](10-expressions.md#yield-operator) is a *generator function*.

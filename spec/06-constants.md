@@ -14,7 +14,8 @@ Specifically:
     name while that for a d-constant can contain any source character.
 -   The name of a c-constant is case-sensitive while that for a
     d-constant can be case-sensitive or case-insensitive based on the
-    value of the third argument passed to `define`.
+    value of the third argument passed to `define`. The definition of
+    case-insensitive constants is deprecated.
 -   If `define` is able to define the given name, it returns `TRUE`;
     otherwise, it returns `FALSE`.
 
@@ -30,7 +31,7 @@ string.
 ```PHP
 const MAX_HEIGHT = 10.5;              // define two (case-sensitive) c-constants
 const UPPER_LIMIT = MAX_HEIGHT;
-define('COEFFICIENT_1', 2.345, TRUE); // define a case-insensitive d-constant
+define('COEFFICIENT_1', 2.345, TRUE); // define a case-insensitive d-constant (deprecated)
 define('FAILURE', FALSE, FALSE);      // define a case-sensitive d-constant
 ```
 

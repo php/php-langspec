@@ -184,6 +184,8 @@ echo "CON1: " . C3::CON1 . "\n";	// use :: notation, as a const is implicitly st
 --EXPECTF--
 define STATUS1 succeeded; value is >1<
 define MIN succeeded; value is >10<
+
+Deprecated: define(): Declaration of case-insensitive constants is deprecated in %s on line %d
 define MAX succeeded; value is >20<
 define MY_PI succeeded; value is >3.1415926<
 define MY_COLOR succeeded; value is >red<

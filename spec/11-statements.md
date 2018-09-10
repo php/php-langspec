@@ -860,9 +860,11 @@ number `1` and containing statements having levels increasing by 1.
 A `continue` statement terminates the execution of one or more enclosing
 [iteration](#iteration-statements) or [`switch`](#the-switch-statement) statements,
 up to the specified level. If the statement at the *breakout-level* is an iteration statement,
-the next iteration (if any) of the next innermost enclosing iteration or switch statement is started.
+the next iteration (if any) of the iteration statement is started.
 If that statement is a `for` statement and it has a *for-end-of-loop*, its
-end-of-loop expression group for the current iteration is evaluated first. If
+end-of-loop expression group for the current iteration is evaluated first. If it
+is a `switch` statement, a warning is emitted and the behavior is the same as a
+[`break` statement](#the-break-statement) at the same *breakout-level*. If
 *breakout-level* is omitted, a level of 1 is assumed.
 
 A `continue` statement may break out of a construct that is fully

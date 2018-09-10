@@ -85,7 +85,8 @@ for ($i = 10; $i <= 40; $i +=10)
 	echo "\nJust beyond the switch";
 }
 echo "\n----------\n";
---EXPECT--
+--EXPECTF--
+Warning: "continue" targeting switch is equivalent to "break". Did you mean to use "continue 2"? in %s on line %d
 1 is odd
 3 is odd
 5 is odd

@@ -1117,7 +1117,11 @@ catch-clauses:
   catch-clauses catch-clause
 
 catch-clause:
-  'catch' '(' qualified-name variable-name ')' compound-statement
+  'catch' '(' catch-name-list variable-name ')' compound-statement
+
+catch-name-list:
+  qualified-name
+  catch-name-list '|' qualified-name
 
 finally-clause:
   'finally' compound-statement
@@ -1134,7 +1138,11 @@ finally-clause:
    <i><a href="#grammar-catch-clauses">catch-clauses</a></i>   <i><a href="#grammar-catch-clause">catch-clause</a></i>
 
 <i id="grammar-catch-clause">catch-clause:</i>
-   catch   (   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>   <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>   )   <i><a href="#grammar-compound-statement">compound-statement</a></i>
+   catch   (   <i><a href="#grammar-catch-name-list">catch-name-list</a></i>   <i><a href="09-lexical-structure.md#grammar-variable-name">variable-name</a></i>   )   <i><a href="#grammar-compound-statement">compound-statement</a></i>
+
+<i id="grammar-catch-name-list">catch-name-list:</i>
+   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
+   <i><a href="#grammar-catch-name-list">catch-name-list</a></i>   |   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>
 
 <i id="grammar-finally-clause">finally-clause:</i>
    finally   <i><a href="#grammar-compound-statement">compound-statement</a></i>
@@ -1142,9 +1150,8 @@ finally-clause:
 
 **Constraints**
 
-In a *catch-clause*, *parameter-declaration-list* must contain only one
-parameter, and its type must be [`Exception`](17-exception-handling.md#class-exception) or a type derived from
-that class, and that parameter must not be passed byRef.
+Each *qualified-name* inside a *catch-name-list* must name a type derivated from
+[`Exception`](17-exception-handling.md#class-exception).
 
 **Semantics**
 
@@ -1165,9 +1172,10 @@ try-block that encloses the call to the current function. This process
 continues until a catch-block is found that can handle the current
 exception.
 
-The matching is done by considering the class specified by *qualified-name*
-and comparing it to the type of the exception. If the exception is an
-[instance of](10-expressions.md#instanceof-operator) this class then the clause matches.
+The matching is done by considering the classes specified by *qualified-name*
+in *catch-name-list* and comparing it to the type of the exception. If the
+exception is an [instance of](10-expressions.md#instanceof-operator) one of
+the specified classes then the clause matches.
 
 If a matching catch-block is located, the Engine prepares to transfer
 control to the first statement of that catch-block. However, before

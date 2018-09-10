@@ -870,7 +870,11 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-catch-clauses">catch-clauses</a></i>   <i><a href="#grammar-catch-clause">catch-clause</a></i>
 
 <i id="grammar-catch-clause">catch-clause:</i>
-   catch   (   <i><a href="#grammar-qualified-name">qualified-name</a></i>   <i><a href="#grammar-variable-name">variable-name</a></i>   )   <i><a href="#grammar-compound-statement">compound-statement</a></i>
+   catch   (   <i><a href="#grammar-catch-name-list">catch-name-list</a></i>   <i><a href="#grammar-variable-name">variable-name</a></i>   )   <i><a href="#grammar-compound-statement">compound-statement</a></i>
+
+<i id="grammar-catch-name-list">catch-name-list:</i>
+   <i><a href="#grammar-qualified-name">qualified-name</a></i>
+   <i><a href="#grammar-catch-name-list">catch-name-list</a></i>   |   <i><a href="#grammar-qualified-name">qualified-name</a></i>
 
 <i id="grammar-finally-clause">finally-clause:</i>
    finally   <i><a href="#grammar-compound-statement">compound-statement</a></i>

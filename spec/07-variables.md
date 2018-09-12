@@ -69,14 +69,14 @@ echo NON_EXISTING_CONSTANT;     // uses 'NON_EXISTING_CONSTANT' as substitution
                                 // value and emits a warning stating that the
                                 // constant was undefined.
 
-echo NON_EXISTING_CONSTANT;     // same here, the constant is still undefined 
-                                // and 'NON_EXISTING_CONSTANT' is used as 
-                                // substitution value and a warning is emitted 
+echo NON_EXISTING_CONSTANT;     // same here, the constant is still undefined
+                                // and 'NON_EXISTING_CONSTANT' is used as
+                                // substitution value and a warning is emitted
                                 // again.
 
-echo MAX_LENGTH;                // same here due to a forward usage 
+echo MAX_LENGTH;                // same here due to a forward usage
                                 // (MAX_LENGTH is defined further below).
-                                // 'MAX_LENGTH' is used as substitution 
+                                // 'MAX_LENGTH' is used as substitution
                                 // value and a warning is emitted.
 
 echo \NON_EXISTING_CONSTANT;    // qualified use of undefined constant. Throws
@@ -138,7 +138,7 @@ See the recursive function example in [storage duration section](04-basic-concep
 <a name="undefined-local-variables"></a>
 **Undefined Local Variables**
 
-A distinction is made based on the context where an undefined local variable is used. 
+A distinction is made based on the context where an undefined local variable is used.
 
 *byVal Context*
 
@@ -162,7 +162,7 @@ Following some examples which outlines the behaviour with undefined local variab
 ```PHP
 // The following 4 cases outline the exceptions of undefined variables
 // used in byValue context where no notice is emitted.
-$a;        
+$a;
 isset($a);
 empty($a);
 $a ?? 'default Value';
@@ -170,45 +170,45 @@ $a ?? 'default Value';
 $a = 1;    // a VSlot for $a was created and 1 was assigned.
 
 $b = $c;   // a VSlot for $b was created and the value of $c was assigned to
-           // it. But because $c in turn was undefined, NULL was used as 
-           // substitution value instead. In addition, a notice was 
-           // emitted stating that $c was undefined. 
+           // it. But because $c in turn was undefined, NULL was used as
+           // substitution value instead. In addition, a notice was
+           // emitted stating that $c was undefined.
 
-$d = $c;   // a VSlot for $d was created and the value of $c was assigned to 
-           // it. But since $c is still undefined, NULL was used as 
-           // substitution value instead and another notice was emitted 
-           // stating $c was undefined. 
+$d = $c;   // a VSlot for $d was created and the value of $c was assigned to
+           // it. But since $c is still undefined, NULL was used as
+           // substitution value instead and another notice was emitted
+           // stating $c was undefined.
 
-$d + $e;   // $e was undefined and `NULL` was used as substitution value 
-           // instead. In addition, a notice was emitted stating that 
+$d + $e;   // $e was undefined and `NULL` was used as substitution value
+           // instead. In addition, a notice was emitted stating that
            // $e was undefined.
 
 $f = &$g;  // a VSlot for $f was created which points to the VSlot of $g.
-           // $g in turn was undefined but was defined implicitly because the 
+           // $g in turn was undefined but was defined implicitly because the
            // assignment was byRef. Thus a VSlot for $g was created and `NULL`
            // was assigned to it. A notice was *not* emitted.
 
-$h = $g;   // a VSlot for $h was created and the value of $g (which is NULL) 
+$h = $g;   // a VSlot for $h was created and the value of $g (which is NULL)
            // was assigned to it.
 
 function foo($x){}
 
-foo($i);   // $i was undefined and NULL was used as substitution value 
-           // instead. In addition, a notice was emitted stating that $i 
+foo($i);   // $i was undefined and NULL was used as substitution value
+           // instead. In addition, a notice was emitted stating that $i
            // was undefined.
 
-$j = $i;   // a VSlot for $j was created and the value of $i was assigned to 
-           // it. But because $i in turn was still undefined, NULL was used 
-           // as substitution value instead. Another notice was emitted 
+$j = $i;   // a VSlot for $j was created and the value of $i was assigned to
+           // it. But because $i in turn was still undefined, NULL was used
+           // as substitution value instead. Another notice was emitted
            // stating that $i was undefined.
 
 function bar(&$x){}
 
-bar($k);   // $k was undefined but implicitly defined because it was passed to 
-           // the function bar byRef. Thus a VSlot for $k was created and 
+bar($k);   // $k was undefined but implicitly defined because it was passed to
+           // the function bar byRef. Thus a VSlot for $k was created and
            // NULL was assigned to it. A notice was *not* emitted.
 
-$l = $k;   // a VSlot for $l was created and the value of $k (which is NULL) 
+$l = $k;   // a VSlot for $l was created and the value of $k (which is NULL)
            // was assigned to it.
 
 ```
@@ -230,7 +230,7 @@ array's name. An array element has allocated [storage duration](04-basic-concept
 
 **Undefined Array Elements**
 
-Similar to [undefined local variables](#undefined-local-variables), a distinction is made based on the context where an undefined array element is used. 
+Similar to [undefined local variables](#undefined-local-variables), a distinction is made based on the context where an undefined array element is used.
 
 *byValue Context*
 
@@ -246,19 +246,19 @@ PHP defines implicitly an undefined array element when it is accessed byRef, a V
 $colors = ["red", "white", "blue"]; // create array with 3 elements
 $colors[] = "green";                // insert a new element
 
-echo $colors[100];      // element with offset 100 is undefined and NULL is 
-                        // used as substitution value. Moreover, a notice is 
+echo $colors[100];      // element with offset 100 is undefined and NULL is
+                        // used as substitution value. Moreover, a notice is
                         // emitted stating that an undefined offset was used.
 
-echo $colors[100];      // element with offset 100 is still undefined and NULL 
-                        // is used as substitution value instead. Another 
+echo $colors[100];      // element with offset 100 is still undefined and NULL
+                        // is used as substitution value instead. Another
                         // notice is emitted.
 
-$b = &colors[100];      // a VSlot for $b is created which points to the array 
-                        // element with the offset 100. An array element with 
-                        // offset 100 was undefined but implicitly defined 
-                        // because the assignment is byRef. Thus a VSlot for 
-                        // the array element with offset 100 is created and 
+$b = &colors[100];      // a VSlot for $b is created which points to the array
+                        // element with the offset 100. An array element with
+                        // offset 100 was undefined but implicitly defined
+                        // because the assignment is byRef. Thus a VSlot for
+                        // the array element with offset 100 is created and
                         // NULL is assigned to it. A notice is *not* emitted.
 ```
 
@@ -335,20 +335,20 @@ Unlike the [local variable equivalent](#local-variables), function `f` outputs "
 calls.
 
 <a name="hidingNotice"></a>
-Be also aware that declaring a function static can hide a local variable and/or a global variable withe the same name. The value of the local or global variable is not taken over as initial value of the function static. Subsequent modifications of the variable only modify the function static and do not affect the local nor the global variable. An example:
+Be also aware that declaring a function static can hide a local variable and/or a global variable with the same name. The value of the local or global variable is not taken over as initial value of the function static. Subsequent modifications of the variable only modify the function static and do not affect the local nor the global variable. An example:
 
 ```PHP
 function f(){
   $fs = 10;             // assign 10 to the local variable $fs
   static $fs;           // define a function static with name $fs
-  echo "\$fs = $fs\n";  // $fs = 
+  echo "\$fs = $fs\n";  // $fs =
   $fs = 5;              // assign 5 to the function static $fs (local variable is not modified)
   echo "\$fs = $fs\n";  // $fs = 5
   global $fs;           // define a global variable with name $fs
-  echo "\$fs = $fs\n";  // $fs = 
+  echo "\$fs = $fs\n";  // $fs =
   $fs = 3;              // assign 3 to the global variable $fs (function static and local variable is not modified
   echo "\$fs = $fs\n";  // $fs = 3
-  static $fs; 
+  static $fs;
   ++$fs;                // increment function static $fs
   echo "\$fs = $fs\n";  // $fs = 6
 }

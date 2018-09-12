@@ -78,7 +78,7 @@ var_dump($v);
 
 echo "----------------------\n";
 
-var_dump(isset($obj->hidden));	// test if hidden exists and is accesible, or is dynamic
+var_dump(isset($obj->hidden));	// test if hidden exists and is accessible, or is dynamic
 
 echo "----------------------\n";
 
@@ -88,7 +88,7 @@ echo "hidden: $v\n";
 
 echo "----------------------\n";
 
-var_dump(isset($obj->hidden));	// test if hidden exists and is accesible, or is dynamic
+var_dump(isset($obj->hidden));	// test if hidden exists and is accessible, or is dynamic
 
 echo "----------------------\n";
 

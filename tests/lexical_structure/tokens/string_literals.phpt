@@ -143,7 +143,7 @@ echo "\$myC->p1 = >$myC->p1<\n";
 ///*
 // use brace-delimited expressions
 
-// braces can be use around varible names to stop a longer name being formed
+// braces can be use around variable names to stop a longer name being formed
 
 echo ">{$z}X|$z X|{$zz}_|$zz _|{$zzz}3|$zzz 3|{$zzzz}+|$zzzz +<\n";
 //*/

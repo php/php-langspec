@@ -31,12 +31,12 @@ class Point implements Serializable
 	public function __toString()
 	{
 		return 'ID:' . $this->id . '(' . $this->x . ',' . $this->y . ')';
-	}	
+	}
 
 	public function serialize()
 	{
 		echo "\nInside " . __METHOD__ . ", $this\n\n";
-		
+
 		return serialize(array('y' => $this->y, 'x' => $this->x));
 	}
 
@@ -84,12 +84,12 @@ class ColoredPoint extends Point implements Serializable
 	public function __toString()
 	{
 		return parent::__toString() . $this->color;
-	}	
+	}
 
 	public function serialize()
 	{
 		echo "\nInside " . __METHOD__ . ", $this\n\n";
-		
+
 		return serialize(array(
 			'color' => $this->color,
 			'baseData' => parent::serialize()

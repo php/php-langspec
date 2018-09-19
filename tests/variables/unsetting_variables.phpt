@@ -69,7 +69,7 @@ function f($p)
 		echo "f:2 \$sVar1 = " . $sVar1 . "\n";
 		++$sVar1;
 //		unset($sVar1);	// removes this alias; doesn't unset the inner static itself
-		
+
 		global $gVar1;
 		echo "f:2 \$gVar1 = " . $gVar1 . "\n";
 		$gVar1 = 25;

@@ -31,7 +31,7 @@ function g(&$q)
    $q = -10;
 }
 
-// f();  // PHP7.1, Fatal error: Uncaught ArgumentCountError: Too few arguments 
+// f();  // PHP7.1, Fatal error: Uncaught ArgumentCountError: Too few arguments
          // to function f(), 0 passed
 
 var_dump($x);
@@ -64,7 +64,7 @@ function h(&$p)
    var_dump($b);
 }
 
-// h();  // PHP7.1, Fatal error: Uncaught ArgumentCountError: Too few arguments 
+// h();  // PHP7.1, Fatal error: Uncaught ArgumentCountError: Too few arguments
          // to function f(), 0 passed
 
 var_dump($x);

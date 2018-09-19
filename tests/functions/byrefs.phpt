@@ -66,8 +66,8 @@ class C
 
 unset($a);
 var_dump($a);
-$a = new C;		// make $a an alias to the allocated object	
-//$a = &new C;	// use of & here is deprecated	
+$a = new C;		// make $a an alias to the allocated object
+//$a = &new C;	// use of & here is deprecated
 var_dump($a);
 $a->m = "abc";
 var_dump($a);

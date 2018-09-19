@@ -26,7 +26,7 @@ class Point
 	public function __toString()
 	{
 		return '(' . $this->x . ',' . $this->y . ')';
-	}	
+	}
 }
 
 $p = new Point;

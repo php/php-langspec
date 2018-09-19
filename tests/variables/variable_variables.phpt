@@ -130,20 +130,20 @@ echo "================== complex cases, [] ====================\n";
 
 $v = array(10, 20);
 $a = 'v';
-$$a[0] = 5;				
+$$a[0] = 5;
 
 var_dump($v);
 unset($v, $a);
 
 $v = array(10, 20);
 $a = 'v';
-${$a[0]} = 5;			
+${$a[0]} = 5;
 var_dump($v);
 unset($v, $a);
 
 $v = array(10, 20);
 $a = 'v';
-${$a}[0] = 5;			
+${$a}[0] = 5;
 var_dump($v);
 unset($v, $a);
 //*/

@@ -26,7 +26,7 @@ class Point
 	{
 		$this->x = $x;
 		$this->y = $y;
-	}	
+	}
 
 	public function translate($x, $y)
 	{
@@ -37,6 +37,6 @@ class Point
 	public function __toString()
 	{
 		return '(' . $this->x . ',' . $this->y . ')';
-	}	
+	}
 }
 --EXPECT--

@@ -8,9 +8,9 @@
 
 error_reporting(-1);
 
-class Point 
+class Point
 {
-	public function __construct($newX = 0, $newY = 0) 
+	public function __construct($newX = 0, $newY = 0)
 	{
 	}
 }

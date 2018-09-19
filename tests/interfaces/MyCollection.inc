@@ -8,7 +8,7 @@
 
 error_reporting(-1);
 
-interface MyCollection 
+interface MyCollection
 {
 	const MAX_NUMBER_ITEMS = 1000;
 

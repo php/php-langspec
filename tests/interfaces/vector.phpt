@@ -23,14 +23,14 @@ class MyVector implements ArrayAccess
 	public function offsetExists($offset)
 	{
 		echo "Inside " . __METHOD__ . " with offset >$offset<\n";
-		
+
 		return isset($this->elements[$offset]);
 	}
 
 	public function offsetSet($offset, $value)
 	{
 		echo "Inside " . __METHOD__ . " with offset >$offset<\n";
-		
+
 		if (is_null($offset))
 		{
 			$this->elements[] = $value;
@@ -58,7 +58,7 @@ class MyVector implements ArrayAccess
 	public function offsetUnset($offset)
 	{
 		echo "Inside " . __METHOD__ . " with offset >$offset<\n";
-		
+
 		unset($this->elements[$offset]);
 	}
 }

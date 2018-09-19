@@ -15,7 +15,7 @@ foreach($data as $line) {
             echo $filename, "\n";
             $counter++;
             $split_data[$filename] = '';
-        } 
+        }
         // sub-header
         $refname = trim(ltrim($line, '#'));
         $refname = str_replace(" ", "-", $refname);
@@ -30,7 +30,7 @@ foreach($data as $line) {
                 $filerefs[$filename][$refname] = $orig_refname;
             } else {
                 @$filecounts[$filename][$orig_refname]++;
-                $filerefs[$filename][$refname] = $orig_refname . "-" . $filecounts[$filename][$orig_refname]; 
+                $filerefs[$filename][$refname] = $orig_refname . "-" . $filecounts[$filename][$orig_refname];
             }
         }
         $references[$refname] = $filename;
@@ -39,8 +39,8 @@ foreach($data as $line) {
 }
 
 foreach($split_data as $filename => $contents) {
-    $contents = preg_replace_callback('@\[(.*?)\]\(#(.*?)\)@', function($data) use($references, $filename, $filerefs) { 
-        if(empty($references[$data[2]])) { 
+    $contents = preg_replace_callback('@\[(.*?)\]\(#(.*?)\)@', function($data) use($references, $filename, $filerefs) {
+        if(empty($references[$data[2]])) {
             return $data[0];
         }
         if($references[$data[2]]) {

@@ -52,7 +52,7 @@ function f2($p1 = 100, $p2 = 1.23, $p3)
 		", \$p3: ".($p3 == NULL ? "NULL" : $p3)."\n";
 }
 
-// if a non-default parameter is present and not all the arguments before it are provided, 
+// if a non-default parameter is present and not all the arguments before it are provided,
 // an ArgumentCountError is thrown
 
 try {
@@ -92,7 +92,7 @@ function f3($p1 = 100, $p2, $p3 = "abc")
 		", \$p3: ".($p3 == NULL ? "NULL" : $p3)."\n";
 }
 
-// if a non-default parameter is present and not all the arguments before it are provided, 
+// if a non-default parameter is present and not all the arguments before it are provided,
 // an ArgumentCountError is thrown
 
 try {
@@ -127,7 +127,7 @@ function f4($p1, $p2 = 1.23, $p3 = "abc")
 		", \$p3: ".($p3 == NULL ? "NULL" : $p3)."\n";
 }
 
-// if a non-default parameter is present and not all the arguments before it are provided, 
+// if a non-default parameter is present and not all the arguments before it are provided,
 // an ArgumentCountError is thrown
 
 try {

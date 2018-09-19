@@ -34,7 +34,7 @@ class Point
 	{
 		$this->x = $x;
 		$this->y = $y;
-	}	
+	}
 
 	public function translate($x, $y)
 	{

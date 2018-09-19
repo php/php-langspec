@@ -8,7 +8,7 @@
 
 error_reporting(-1);
 
-final class MathLibrary 
+final class MathLibrary
 {
 	private function __construct() {}	// disallows instantiation
 

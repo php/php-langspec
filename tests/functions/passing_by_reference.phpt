@@ -53,7 +53,7 @@ var_dump($a);
          // so using it will raise a fatal error."
 var_dump($a);
 
-// f();  // PHP7.1, Fatal error: Uncaught ArgumentCountError: Too few arguments 
+// f();  // PHP7.1, Fatal error: Uncaught ArgumentCountError: Too few arguments
          // to function f(), 0 passed
 //*/
 

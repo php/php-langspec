@@ -26,7 +26,7 @@ class Point2
 	public function __construct($x = 0, $y = 0)
 	{
 //		echo "Inside " . __METHOD__ . "\n";
-		
+
 		$this->x = $x;
 		$this->y = $y;
 		++self::$pointCount;
@@ -49,6 +49,6 @@ class Point2
 	public function __toString()
 	{
 		return '(' . $this->x . ',' . $this->y . ')';
-	}	
+	}
 }
 --EXPECT--

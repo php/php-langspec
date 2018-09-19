@@ -8,7 +8,7 @@
 
 error_reporting(-1);
 
-abstract class Vehicle 
+abstract class Vehicle
 {
 	public abstract function getMaxSpeed();
 

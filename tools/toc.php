@@ -31,4 +31,3 @@ foreach (spec_files() as $fileName => $path) {
 }
 
 file_put_contents($tocFile, "$prefix\n$output");
-

@@ -144,6 +144,3 @@ they can be combined meaningfully using bitwise operators.
 
 A constant may be defined inside or outside of functions, inside
 a [class](14-classes.md#constants), or inside an [interface](15-interfaces.md#constants).
-
-
-

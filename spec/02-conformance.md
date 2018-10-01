@@ -52,4 +52,3 @@ to exist in future revisions. Usually, they are old approaches that have
 been superseded by new ones, and use of the old approach is discouraged.
 (Examples of this include the use of braces ({ }) for subscripting, and
 the use of old-style constructor names).
-

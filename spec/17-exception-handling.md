@@ -148,5 +148,3 @@ parent class' constructor as their first operation to ensure the
 base-class part of the new object is initialized appropriately. They
 often also provide an augmented implementation of
 [`__toString()`](14-classes.md#method-__tostring).
-
-

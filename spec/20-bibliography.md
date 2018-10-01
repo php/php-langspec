@@ -10,4 +10,3 @@ IEEE Standard for Binary Floating-Point Arithmetic).
 
 The Unicode Consortium. *The Unicode Standard, Version 5.0*,
 [www.Unicode.org](http://www.Unicode.org)).
-

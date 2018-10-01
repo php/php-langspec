@@ -40,5 +40,3 @@ An array is created and initialized using the
 
 The value (and possibly the type) of an existing element is changed, and
 new elements are inserted, using the subscript operator [`[]`](10-expressions.md#subscript-operator).
-
-

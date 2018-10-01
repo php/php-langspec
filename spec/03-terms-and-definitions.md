@@ -64,5 +64,3 @@ apply:
 
 Other terms are defined throughout this specification, as needed, with
 the first usage being typeset *like this*.
-
-

@@ -209,6 +209,3 @@ Each distinct resource has a unique identity of some unspecified form.
 The library function [`is_resource`](http://www.php.net/is_resource) indicates if a given value is a
 resource, and the library function
 [`get_resource_type`](http://php.net/manual/function.get-resource-type.php) indicates the type of a resource.
-
-
-

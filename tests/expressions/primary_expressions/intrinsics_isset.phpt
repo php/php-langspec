@@ -15,6 +15,10 @@ echo "--------- TRUE -------------\n";
 
 $v = TRUE;
 var_dump(isset($v));
+echo "--------- TRUE -------------\n";
+
+$v = TRUE;
+var_dump(isset($v,));
 
 echo "--------- NULL -------------\n";
 
@@ -50,6 +54,8 @@ var_dump(isset($x1->m));
 $x2 = new X2;
 var_dump(isset($x2->m));
 --EXPECTF--
+--------- TRUE -------------
+bool(true)
 --------- TRUE -------------
 bool(true)
 --------- NULL -------------

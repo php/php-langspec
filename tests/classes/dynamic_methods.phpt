@@ -50,7 +50,7 @@ $obj = new Widget;
 $v = $obj->iDoit();
 $obj->__call('iDoit', []);
 
-$v = $obj->iMethod(10, TRUE, "abc");
+$v = $obj->iMethod(10, TRUE, "abc",);
 var_dump($v);
 $obj->__call('iMethod', array(10, TRUE, "abc"));
 $obj->__call('123#$%', []);
@@ -58,7 +58,7 @@ $obj->__call('123#$%', []);
 $v = Widget::sDoit();
 Widget::__callStatic('sDoit', []);
 
-$v = Widget::sMethod(NULL, 1.234);
+$v = Widget::sMethod(NULL, 1.234,);
 var_dump($v);
 Widget::__callStatic('sMethod', array(NULL, 1.234));
 Widget::__callStatic('[]{}', []);

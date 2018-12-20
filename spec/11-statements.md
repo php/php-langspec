@@ -1361,12 +1361,12 @@ echo "$v3\n";
 
 <!-- GRAMMAR
 unset-statement:
-  'unset' '(' variable-list ')' ';'
+  'unset' '(' variable-list ','? ')' ';'
 -->
 
 <pre>
 <i id="grammar-unset-statement">unset-statement:</i>
-   unset   (   <i><a href="10-expressions.md#grammar-variable-list">variable-list</a></i>   )   ;
+   unset   (   <i><a href="10-expressions.md#grammar-variable-list">variable-list</a></i>   ,<sub>opt</sub>   )   ;
 </pre>
 
 **Semantics**

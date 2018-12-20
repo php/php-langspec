@@ -35,7 +35,7 @@ echo $p . "\n";
 $p = new Point();
 echo $p . "\n";
 
-$p = new Point(100);
+$p = new Point(100,);
 echo $p . "\n";
 
 $p = new Point(1000, 2000);

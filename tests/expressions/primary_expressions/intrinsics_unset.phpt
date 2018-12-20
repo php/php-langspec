@@ -18,6 +18,13 @@ var_dump(isset($v));
 unset($v);
 var_dump(isset($v));
 
+echo "--------- TRUE -------------\n";
+
+$v = TRUE;
+var_dump(isset($v));
+unset($v,);
+var_dump(isset($v));
+
 echo "--------- NULL -------------\n";
 
 $v = NULL;
@@ -161,6 +168,9 @@ print_r($a);
 unset($a["Xx"]);
 print_r($a);
 --EXPECTF--
+--------- TRUE -------------
+bool(true)
+bool(false)
 --------- TRUE -------------
 bool(true)
 bool(false)

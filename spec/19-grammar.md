@@ -403,7 +403,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    die   (   <i><a href="#grammar-expression">expression</a></i><sub>opt</sub>   )
 
 <i id="grammar-isset-intrinsic">isset-intrinsic:</i>
-   isset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   )
+   isset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   ,<sub>opt</sub>   )
 
 <i id="grammar-variable-list">variable-list:</i>
    <i><a href="#grammar-variable">variable</a></i>
@@ -424,6 +424,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-object-creation-expression">object-creation-expression:</i>
    new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
+   new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,<sub>opt</sub>   )
    new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>
    new   class   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )   <i><a href="#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
    new   class   <i><a href="#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
@@ -468,7 +469,9 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-function-call-expression">function-call-expression:</i>
    <i><a href="#grammar-qualified-name">qualified-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
+   <i><a href="#grammar-qualified-name">qualified-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,   )
    <i><a href="#grammar-callable-expression">callable-expression</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
+   <i><a href="#grammar-callable-expression">callable-expression</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,   )
 
 <i id="grammar-argument-expression-list">argument-expression-list:</i>
    <i><a href="#grammar-argument-expression">argument-expression</a></i>
@@ -491,6 +494,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-member-call-expression">member-call-expression:</i>
    <i><a href="#grammar-dereferencable-expression">dereferencable-expression</a></i>   -&gt;   <i><a href="#grammar-member-name">member-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
+   <i><a href="#grammar-dereferencable-expression">dereferencable-expression</a></i>   -&gt;   <i><a href="#grammar-member-name">member-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,   )
 
 <i id="grammar-postfix-increment-expression">postfix-increment-expression:</i>
    <i><a href="#grammar-variable">variable</a></i>   ++
@@ -512,6 +516,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-scoped-call-expression">scoped-call-expression:</i>
    <i><a href="#grammar-scope-resolution-qualifier">scope-resolution-qualifier</a></i>   ::   <i><a href="#grammar-member-name">member-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
+   <i><a href="#grammar-scope-resolution-qualifier">scope-resolution-qualifier</a></i>   ::   <i><a href="#grammar-member-name">member-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,   )
 
 <i id="grammar-class-constant-access-expression">class-constant-access-expression:</i>
    <i><a href="#grammar-scope-resolution-qualifier">scope-resolution-qualifier</a></i>   ::   <i><a href="#grammar-name">name</a></i>
@@ -897,7 +902,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-expression-list">expression-list</a></i>   ,   <i><a href="#grammar-expression">expression</a></i>
 
 <i id="grammar-unset-statement">unset-statement:</i>
-   unset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   )   ;
+   unset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   ,<sub>opt</sub>   )   ;
 </pre>
 
 ### Functions

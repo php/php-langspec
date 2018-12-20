@@ -39,7 +39,7 @@ $f();			// call f1 indirectly via $f
 // f1() = 123;	// a function return is not an lvalue
 
 f1();
-f1(10);
+f1(10,);
 f1(TRUE, "green");
 f1(23.45, NULL, array(1,2,3));
 

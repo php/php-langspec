@@ -479,7 +479,7 @@ exit;
 
 <!-- GRAMMAR
 isset-intrinsic:
-  'isset' '(' variable-list ')'
+  'isset' '(' variable-list ','? ')'
 
 variable-list:
   variable
@@ -488,7 +488,7 @@ variable-list:
 
 <pre>
 <i id="grammar-isset-intrinsic">isset-intrinsic:</i>
-   isset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   )
+   isset   (   <i><a href="#grammar-variable-list">variable-list</a></i>   ,<sub>opt</sub>   )
 
 <i id="grammar-variable-list">variable-list:</i>
    <i><a href="#grammar-variable">variable</a></i>
@@ -655,6 +655,7 @@ class C
 <!-- GRAMMAR
 object-creation-expression:
   'new' class-type-designator '(' argument-expression-list? ')'
+  'new' class-type-designator '(' argument-expression-list ','? ')'
   'new' class-type-designator
   'new' 'class' '(' argument-expression-list? ')' class-base-clause? class-interface-clause? '{' class-member-declarations? '}'
   'new' 'class' class-base-clause? class-interface-clause? '{' class-member-declarations? '}'
@@ -676,6 +677,7 @@ new-variable:
 <pre>
 <i id="grammar-object-creation-expression">object-creation-expression:</i>
    new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
+   new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,<sub>opt</sub>   )
    new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>
    new   class   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )   <i><a href="14-classes.md#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="14-classes.md#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="14-classes.md#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
    new   class   <i><a href="14-classes.md#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="14-classes.md#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="14-classes.md#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
@@ -1044,7 +1046,9 @@ $x = $vect1[1];   // calls Vector::offsetGet(1)
 <!-- GRAMMAR
 function-call-expression:
   qualified-name '(' argument-expression-list? ')'
+  qualified-name '(' argument-expression-list ',' ')'
   callable-expression '(' argument-expression-list? ')'
+  callable-expression '(' argument-expression-list ',' ')'
 
 argument-expression-list:
   argument-expression
@@ -1061,7 +1065,9 @@ variadic-unpacking:
 <pre>
 <i id="grammar-function-call-expression">function-call-expression:</i>
    <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
+   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,   )
    <i><a href="#grammar-callable-expression">callable-expression</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
+   <i><a href="#grammar-callable-expression">callable-expression</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,   )
 
 <i id="grammar-argument-expression-list">argument-expression-list:</i>
    <i><a href="#grammar-argument-expression">argument-expression</a></i>
@@ -1263,11 +1269,13 @@ $c = $p1->color;  // turned into $c = $p1->__get("color");
 <!-- GRAMMAR
 member-call-expression:
   dereferencable-expression '->' member-name '(' argument-expression-list? ')'
+  dereferencable-expression '->' member-name '(' argument-expression-list ',' ')'
 -->
 
 <pre>
 <i id="grammar-member-call-expression">member-call-expression:</i>
    <i><a href="#grammar-dereferencable-expression">dereferencable-expression</a></i>   -&gt;   <i><a href="#grammar-member-name">member-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
+   <i><a href="#grammar-dereferencable-expression">dereferencable-expression</a></i>   -&gt;   <i><a href="#grammar-member-name">member-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,   )
 </pre>
 
 **Constraints**
@@ -1496,6 +1504,7 @@ scoped-property-access-expression:
 
 scoped-call-expression:
   scope-resolution-qualifier '::' member-name '(' argument-expression-list? ')'
+  scope-resolution-qualifier '::' member-name '(' argument-expression-list ',' ')'
 
 class-constant-access-expression:
   scope-resolution-qualifier '::' name
@@ -1517,6 +1526,7 @@ relative-scope:
 
 <i id="grammar-scoped-call-expression">scoped-call-expression:</i>
    <i><a href="#grammar-scope-resolution-qualifier">scope-resolution-qualifier</a></i>   ::   <i><a href="#grammar-member-name">member-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )
+   <i><a href="#grammar-scope-resolution-qualifier">scope-resolution-qualifier</a></i>   ::   <i><a href="#grammar-member-name">member-name</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,   )
 
 <i id="grammar-class-constant-access-expression">class-constant-access-expression:</i>
    <i><a href="#grammar-scope-resolution-qualifier">scope-resolution-qualifier</a></i>   ::   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>

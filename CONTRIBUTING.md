@@ -17,7 +17,7 @@ To combine these three steps you can instead execute `tools/pre-commit`. To
 automatically run it on every commit, create a symlink in the `.git/hooks` directory:
 
 ```sh
-ln -s -f ../../tools/pre-commit .git/hooks/pre-commit
+ln -s -f tools/pre-commit .git/hooks/pre-commit
 ```
 
 ## License for your Contributions

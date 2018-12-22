@@ -214,7 +214,7 @@ define COLORS succeeded
 Notice: Array to string conversion in %s/constants/constants.php on line 16
 ; value is >Array<
 
-Warning: Constants may only evaluate to scalar values or arrays in %s/constants/constants.php on line 13
+Warning: Constants may only evaluate to scalar values, arrays or resources in %s/constants/constants.php on line 13
 define MY_OBJECT failed; not defined
 
 Warning: fopen(Testfile.txt): failed to open stream: No such file or directory in %s/constants/constants.php on line 90

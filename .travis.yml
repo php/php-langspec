@@ -1,7 +1,7 @@
 language: php
 
 php:
-  - master
+  - 7.3
 
 script:
-  - REPORT_EXIT_STATUS=1 TEST_PHP_EXECUTABLE=~/.phpenv/versions/$(phpenv version-name)/bin/php php ~/.phpenv/versions/$(phpenv version-name)/lib/php/build/run-tests.php -c ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini -q -x --show-diff
+  - REPORT_EXIT_STATUS=1 php ~/.phpenv/versions/$(phpenv version-name)/lib/php/build/run-tests.php -P -c ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini -q -x --show-diff

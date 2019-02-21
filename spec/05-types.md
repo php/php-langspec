@@ -128,10 +128,10 @@ str-whitespace::
 
 str-whitespace-char::
   new-line
-  "Space character (U+0020)"
-  "Horizontal-tab character (U+0009)"
-  "Vertical-tab character (U+000B)"
-  "Form-feed character (U+000C)"
+  "Space character (0x20)"
+  "Horizontal-tab character (0x09)"
+  "Vertical-tab character (0x0B)"
+  "Form-feed character (0x0C)"
 
 str-number::
   digit-sequence
@@ -147,10 +147,10 @@ str-number::
 
 <i id="grammar-str-whitespace-char">str-whitespace-char::</i>
    <i><a href="09-lexical-structure.md#grammar-new-line">new-line</a></i>
-   Space character (U+0020)
-   Horizontal-tab character (U+0009)
-   Vertical-tab character (U+000B)
-   Form-feed character (U+000C)
+   Space character (0x20)
+   Horizontal-tab character (0x09)
+   Vertical-tab character (0x0B)
+   Form-feed character (0x0C)
 
 <i id="grammar-str-number">str-number::</i>
    <i><a href="09-lexical-structure.md#grammar-digit-sequence">digit-sequence</a></i>

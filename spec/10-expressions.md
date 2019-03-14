@@ -103,6 +103,7 @@ primary-expression:
   postfix-decrement-expression
   prefix-increment-expression
   prefix-decrement-expression
+  byref-assignment-expression
   shell-command-expression
   '(' expression ')'
 -->
@@ -121,6 +122,7 @@ primary-expression:
    <i><a href="#grammar-postfix-decrement-expression">postfix-decrement-expression</a></i>
    <i><a href="#grammar-prefix-increment-expression">prefix-increment-expression</a></i>
    <i><a href="#grammar-prefix-decrement-expression">prefix-decrement-expression</a></i>
+   <i><a href="#grammar-byref-assignment-expression">byref-assignment-expression</a></i>
    <i><a href="#grammar-shell-command-expression">shell-command-expression</a></i>
    (   <i><a href="#grammar-expression">expression</a></i>   )
 </pre>
@@ -2786,7 +2788,6 @@ function factorial($int)
 assignment-expression:
   conditional-expression
   simple-assignment-expression
-  byref-assignment-expression
   compound-assignment-expression
 -->
 
@@ -2794,7 +2795,6 @@ assignment-expression:
 <i id="grammar-assignment-expression">assignment-expression:</i>
    <i><a href="#grammar-conditional-expression">conditional-expression</a></i>
    <i><a href="#grammar-simple-assignment-expression">simple-assignment-expression</a></i>
-   <i><a href="#grammar-byref-assignment-expression">byref-assignment-expression</a></i>
    <i><a href="#grammar-compound-assignment-expression">compound-assignment-expression</a></i>
 </pre>
 

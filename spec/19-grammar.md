@@ -343,6 +343,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-postfix-decrement-expression">postfix-decrement-expression</a></i>
    <i><a href="#grammar-prefix-increment-expression">prefix-increment-expression</a></i>
    <i><a href="#grammar-prefix-decrement-expression">prefix-decrement-expression</a></i>
+   <i><a href="#grammar-byref-assignment-expression">byref-assignment-expression</a></i>
    <i><a href="#grammar-shell-command-expression">shell-command-expression</a></i>
    (   <i><a href="#grammar-expression">expression</a></i>   )
 
@@ -636,7 +637,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 <i id="grammar-assignment-expression">assignment-expression:</i>
    <i><a href="#grammar-conditional-expression">conditional-expression</a></i>
    <i><a href="#grammar-simple-assignment-expression">simple-assignment-expression</a></i>
-   <i><a href="#grammar-byref-assignment-expression">byref-assignment-expression</a></i>
    <i><a href="#grammar-compound-assignment-expression">compound-assignment-expression</a></i>
 
 <i id="grammar-simple-assignment-expression">simple-assignment-expression:</i>

@@ -389,7 +389,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-eval-intrinsic">eval-intrinsic</a></i>
    <i><a href="#grammar-exit-intrinsic">exit-intrinsic</a></i>
    <i><a href="#grammar-isset-intrinsic">isset-intrinsic</a></i>
-   <i><a href="#grammar-print-intrinsic">print-intrinsic</a></i>
 
 <i id="grammar-empty-intrinsic">empty-intrinsic:</i>
    empty   (   <i><a href="#grammar-expression">expression</a></i>   )
@@ -409,9 +408,6 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 <i id="grammar-variable-list">variable-list:</i>
    <i><a href="#grammar-variable">variable</a></i>
    <i><a href="#grammar-variable-list">variable-list</a></i>   ,   <i><a href="#grammar-variable">variable</a></i>
-
-<i id="grammar-print-intrinsic">print-intrinsic:</i>
-   print   <i><a href="#grammar-expression">expression</a></i>
 
 <i id="grammar-anonymous-function-creation-expression">anonymous-function-creation-expression:</i>
    static<sub>opt</sub>   function   &amp;<sub>opt</sub>   (   <i><a href="#grammar-parameter-declaration-list">parameter-declaration-list</a></i><sub>opt</sub>   )   <i><a href="#grammar-anonymous-function-use-clause">anonymous-function-use-clause</a></i><sub>opt</sub>   <i><a href="#grammar-return-type">return-type</a></i><sub>opt</sub>   <i><a href="#grammar-compound-statement">compound-statement</a></i>
@@ -680,6 +676,10 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    yield
    yield   <i><a href="#grammar-yield-expression">yield-expression</a></i>
    yield   <i><a href="#grammar-yield-from-expression">yield-from-expression</a></i>   =&gt;   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+
+<i id="grammar-print-expression">print-expression:</i>
+   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+   print   <i><a href="#grammar-print-expression">print-expression</a></i>
 
 <i id="grammar-logical-AND-expression-2">logical-AND-expression-2:</i>
    <i><a href="#grammar-yield-expression">yield-expression</a></i>

@@ -322,7 +322,6 @@ intrinsic:
   eval-intrinsic
   exit-intrinsic
   isset-intrinsic
-  print-intrinsic
 -->
 
 <pre>
@@ -331,7 +330,6 @@ intrinsic:
    <i><a href="#grammar-eval-intrinsic">eval-intrinsic</a></i>
    <i><a href="#grammar-exit-intrinsic">exit-intrinsic</a></i>
    <i><a href="#grammar-isset-intrinsic">isset-intrinsic</a></i>
-   <i><a href="#grammar-print-intrinsic">print-intrinsic</a></i>
 </pre>
 
 **Semantics**
@@ -519,48 +517,6 @@ $v = NULL;
 isset($v);     // results in FALSE
 $v1 = TRUE; $v2 = 12.3; $v3 = NULL;
 isset($v1, $v2, $v3);  // results in FALSE
-```
-
-#### print
-
-**Syntax**
-
-<!-- GRAMMAR
-print-intrinsic:
-  'print' expression
--->
-
-<pre>
-<i id="grammar-print-intrinsic">print-intrinsic:</i>
-   print   <i><a href="#grammar-expression">expression</a></i>
-</pre>
-
-**Constraints**
-
-*expression* value must be [convertable to a string](08-conversions.md#converting-to-string-type).
-In particular, it should not be an array and if it is an object, it must implement
-a [`__toString` method](14-classes.md#method-__tostring).
-
-**Semantics**
-
-After converting its *expression*'s value to a string, if necessary,
-`print` writes the resulting string to [`STDOUT`](06-constants.md#core-predefined-constants).
-Unlike [`echo`](11-statements.md#the-echo-statement), `print` can be used in any context
-allowing an expression. It always returns the value 1.
-
-See also: [double quoted strings](09-lexical-structure.md#double-quoted-string-literals) and
-[heredoc documents](09-lexical-structure.md#heredoc-string-literals), [conversion to string](08-conversions.md#converting-to-string-type).
-
-**Examples**
-
-```PHP
-$v1 = TRUE;
-$v2 = 123;
-print  '>>' . $v1 . '|' . $v2 . "<<\n";   // outputs ">>1|123<<"
-print ('>>' . $v1 . '|' . $v2 . "<<\n");  // outputs ">>1|123<<"
-$v3 = "qqq{$v2}zzz";
-print "$v3\n";            // outputs "qqq123zzz"
-$a > $b ? print "..." : print "...";
 ```
 
 ### Anonymous Function Creation
@@ -3217,6 +3173,50 @@ $g = g();
 foreach ($g as $yielded) {
     echo $yielded . "\n";   // Produces the values 1, 2, 3, and 4
 }
+```
+
+## Print expression
+
+**Syntax**
+
+<!-- GRAMMAR
+print-expression:
+  yield-expression
+  'print' print-expression
+-->
+
+<pre>
+<i id="grammar-print-expression">print-expression:</i>
+   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+   print   <i><a href="#grammar-print-expression">print-expression</a></i>
+</pre>
+
+**Constraints**
+
+*print-expression* value must be [convertable to a string](08-conversions.md#converting-to-string-type).
+In particular, it should not be an array and if it is an object, it must implement
+a [`__toString` method](14-classes.md#method-__tostring).
+
+**Semantics**
+
+After converting *print-expression*'s value into a string, if necessary,
+`print` writes the resulting string to [`STDOUT`](06-constants.md#core-predefined-constants).
+Unlike [`echo`](11-statements.md#the-echo-statement), `print` can be used in any context
+allowing an expression. It always returns the value 1.
+
+See also: [double quoted strings](09-lexical-structure.md#double-quoted-string-literals) and
+[heredoc documents](09-lexical-structure.md#heredoc-string-literals), [conversion to string](08-conversions.md#converting-to-string-type).
+
+**Examples**
+
+```PHP
+$v1 = TRUE;
+$v2 = 123;
+print  '>>' . $v1 . '|' . $v2 . "<<\n";   // outputs ">>1|123<<"
+print ('>>' . $v1 . '|' . $v2 . "<<\n");  // outputs ">>1|123<<"
+$v3 = "qqq{$v2}zzz";
+print "$v3\n";            // outputs "qqq123zzz"
+$a > $b ? print "..." : print "...";
 ```
 
 ## Logical AND Operator (form 2)

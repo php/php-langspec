@@ -563,7 +563,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-instanceof-subject">instanceof-subject</a></i>   instanceof   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>
 
 <i id="grammar-instanceof-subject">instanceof-subject:</i>
-   <i><a href="#grammar-unary-expression">unary-expression</a></i>
+   <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>
 
 <i id="grammar-logical-NOT-expression">logical-NOT-expression:</i>
    <i><a href="#grammar-instanceof-expression">instanceof-expression</a></i>

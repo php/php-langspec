@@ -3097,17 +3097,25 @@ $a[$i++] += 50; // $a[1] = 250, $i → 2
 **Syntax**
 
 <!-- GRAMMAR
+yield-from-expression:
+  'yield from' assignment-expression
+
 yield-expression:
-  assignment-expression
-  'yield' array-element-initializer
-  'yield from' expression
+  yield-from-expression
+  'yield'
+  'yield' yield-expression
+  'yield' yield-from-expression '=>' yield-expression
 -->
 
 <pre>
+<i id="grammar-yield-from-expression">yield-from-expression:</i>
+   yield from   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
+
 <i id="grammar-yield-expression">yield-expression:</i>
-   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
-   yield   <i><a href="#grammar-array-element-initializer">array-element-initializer</a></i>
-   yield from   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-yield-from-expression">yield-from-expression</a></i>
+   yield
+   yield   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+   yield   <i><a href="#grammar-yield-from-expression">yield-from-expression</a></i>   =&gt;   <i><a href="#grammar-yield-expression">yield-expression</a></i>
 </pre>
 
 **Semantics**
@@ -3127,22 +3135,13 @@ The `yield` operator produces the result `NULL` unless the method
 [`Generator->send`](14-classes.md#class-generator) was called to provide a result value. This
 operator has the side effect of generating the next value in the collection.
 
-Before being used, an *element-key* must have, or be converted to, type
-`int` or `string`. Keys with `float` or `bool` values, or numeric strings, are
-[converted to `int`](08-conversions.md#converting-to-integer-type). Values of all other key types are [converted to
-`string`](08-conversions.md#converting-to-string-type).
-
-If *element-key* is omitted from an *array-element-initializer*, an
+If the key is omitted from an a *yield-expression*, an
 element key of type `int` is associated with the corresponding
-*element-value*. The key associated is one more than the previously
+value. The key associated is one more than the previously
 assigned int key for this collection. However, if this is the first
-element in this collection with an `int` key, key zero is used. If
-*element-key* is provided, it is associated with the corresponding
-*element-value*. The resulting key/value pair is made available by
-`yield`.
+element in this collection with an `int` key, zero is used.
 
-If *array-element-initializer* is omitted, default int-key assignment is
-used and each value is `NULL`.
+If the value is also omitted, `NULL` will be used instead.
 
 If the generator function definition declares that it returns byRef,
 each value in a key/value pair is yielded byRef.
@@ -3151,15 +3150,15 @@ The following applies only to the `yield from` form:
 
 A generator function (referred to as a *delegating generator*) can delegate to another generator function (referred to as a *subgenerator*), a Traversable object, or an array, each of which is designated by *expression*.
 
-Each value yielded by *expression* is passed directly to the delegating generator's caller.
+Each value yielded by *assignment-expression* is passed directly to the delegating generator's caller.
 
-Each value sent to the delegating generator's `send` method is passed to the subgenerator's `send` method. If *expression* is not a generator function, any sent values are ignored.
+Each value sent to the delegating generator's `send` method is passed to the subgenerator's `send` method. If *assignment-expression* is not a generator function, any sent values are ignored.
 
-Exceptions thrown by *expression* are propagated up to the delegating generator.
+Exceptions thrown by *assignment-expression* are propagated up to the delegating generator.
 
 Upon traversable completion, `NULL` is returned to the delegating generator if the traversable is not a generator. If the traversable is a generator, its return value is sent to the delegating generator as the value of the `yield from` *expression*.
 
-An exception of type `Error` is thrown if *expression* evaluates to a generator that previously terminated with an uncaught exception, or it evaluates to something that is neither Traversable nor an array.
+An exception of type `Error` is thrown if *assignment-expression* evaluates to a generator that previously terminated with an uncaught exception, or it evaluates to something that is neither Traversable nor an array.
 
 **Examples**
 

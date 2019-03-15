@@ -672,10 +672,14 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 <i id="grammar-compound-assignment-operator">compound-assignment-operator: one of</i>
    **=   *=   /=   %=   +=   -=   .=   &lt;&lt;=   &gt;&gt;=   &amp;=   ^=   |=
 
+<i id="grammar-yield-from-expression">yield-from-expression:</i>
+   yield from   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
+
 <i id="grammar-yield-expression">yield-expression:</i>
-   <i><a href="#grammar-assignment-expression">assignment-expression</a></i>
-   yield   <i><a href="#grammar-array-element-initializer">array-element-initializer</a></i>
-   yield from   <i><a href="#grammar-expression">expression</a></i>
+   <i><a href="#grammar-yield-from-expression">yield-from-expression</a></i>
+   yield
+   yield   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+   yield   <i><a href="#grammar-yield-from-expression">yield-from-expression</a></i>   =&gt;   <i><a href="#grammar-yield-expression">yield-expression</a></i>
 
 <i id="grammar-logical-AND-expression-2">logical-AND-expression-2:</i>
    <i><a href="#grammar-yield-expression">yield-expression</a></i>

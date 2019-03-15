@@ -3,9 +3,6 @@
 ## General
 
 The grammar notation is described in [Grammars section](09-lexical-structure.md#grammars).
-PHP scripts are encoded as ASCII, but bytes 0x80 to 0xFF are allowed in some places, as defined in the grammar. 
-PHP scripts are parsed as a series of 8-bit bytes, rather than code points from Unicode or any other character repertoire. 
-Within this specification, bytes are represented by their ASCII interpretations where these are printable characters.
 
 ## Lexical Grammar
 
@@ -35,9 +32,9 @@ Within this specification, bytes are represented by their ASCII interpretations 
    Any source character except   <i><a href="#grammar-new-line">new-line</a></i>
 
 <i id="grammar-new-line">new-line::</i>
-   Carriage-return character (0x0D)
-   Line-feed character (0x0A)
-   Carriage-return character (0x0D) followed by line-feed character (0x0A)
+   Carriage-return character (U+000D)
+   Line-feed character (U+000A)
+   Carriage-return character (U+000D) followed by line-feed character (U+000A)
 
 <i id="grammar-delimited-comment">delimited-comment::</i>
    /*   No characters or any source character sequence except */   */
@@ -48,8 +45,8 @@ Within this specification, bytes are represented by their ASCII interpretations 
 
 <i id="grammar-white-space-character">white-space-character::</i>
    <i><a href="#grammar-new-line">new-line</a></i>
-   Space character (0x20)
-   Horizontal-tab character (0x09)
+   Space character (U+0020)
+   Horizontal-tab character (U+0009)
 
 <i id="grammar-token">token::</i>
    <i><a href="#grammar-variable-name">variable-name</a></i>
@@ -83,7 +80,7 @@ Within this specification, bytes are represented by their ASCII interpretations 
 
 <i id="grammar-name-nondigit">name-nondigit::</i>
    <i><a href="#grammar-nondigit">nondigit</a></i>
-   one of the characters 0x80–0xff
+   one of the characters U+0080–U+00ff
 
 <i id="grammar-nondigit">nondigit:: one of</i>
    _

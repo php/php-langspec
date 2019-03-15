@@ -145,9 +145,9 @@ input-character::
   "Any source character except" new-line
 
 new-line::
-  "Carriage-return character (0x0D)"
-  "Line-feed character (0x0A)"
-  "Carriage-return character (0x0D) followed by line-feed character (0x0A)"
+  "Carriage-return character (U+000D)"
+  "Line-feed character (U+000A)"
+  "Carriage-return character (U+000D) followed by line-feed character (U+000A)"
 
 delimited-comment::
   '/*' "No characters or any source character sequence except */" '*/'
@@ -170,9 +170,9 @@ delimited-comment::
    Any source character except   <i><a href="#grammar-new-line">new-line</a></i>
 
 <i id="grammar-new-line">new-line::</i>
-   Carriage-return character (0x0D)
-   Line-feed character (0x0A)
-   Carriage-return character (0x0D) followed by line-feed character (0x0A)
+   Carriage-return character (U+000D)
+   Line-feed character (U+000A)
+   Carriage-return character (U+000D) followed by line-feed character (U+000A)
 
 <i id="grammar-delimited-comment">delimited-comment::</i>
    /*   No characters or any source character sequence except */   */
@@ -212,8 +212,8 @@ white-space::
 
 white-space-character::
   new-line
-  "Space character (0x20)"
-  "Horizontal-tab character (0x09)"
+  "Space character (U+0020)"
+  "Horizontal-tab character (U+0009)"
 -->
 
 <pre>
@@ -223,8 +223,8 @@ white-space-character::
 
 <i id="grammar-white-space-character">white-space-character::</i>
    <i><a href="#grammar-new-line">new-line</a></i>
-   Space character (0x20)
-   Horizontal-tab character (0x09)
+   Space character (U+0020)
+   Horizontal-tab character (U+0009)
 </pre>
 
 **Semantics**
@@ -290,7 +290,7 @@ name::
 
 name-nondigit::
   nondigit
-  "one of the characters 0x80–0xff"
+  "one of the characters U+0080–U+00ff"
 
 nondigit:: one of
   '_'
@@ -324,7 +324,7 @@ nondigit:: one of
 
 <i id="grammar-name-nondigit">name-nondigit::</i>
    <i><a href="#grammar-nondigit">nondigit</a></i>
-   one of the characters 0x80–0xff
+   one of the characters U+0080–U+00ff
 
 <i id="grammar-nondigit">nondigit:: one of</i>
    _
@@ -344,7 +344,7 @@ Names are used to identify the following: [constants](06-constants.md#general),
 and names in [heredoc](#heredoc-string-literals) and [nowdoc comments](#nowdoc-string-literals).
 
 A *name* begins with an underscore (_), *name-nondigit*, or extended
-name character in the range 0x80–-0xff. Subsequent characters can
+name character in the range U+0080–-U+00ff. Subsequent characters can
 also include *digits*. A *variable name* is a name with a leading
 dollar ($).
 
@@ -704,7 +704,7 @@ b-prefix:: one of
 **Semantics**
 
 A single-quoted string literal is a string literal delimited by
-single-quotes (`'`, 0x27). The literal can contain any source character except
+single-quotes (`'`, U+0027). The literal can contain any source character except
 single-quote (`'`) and backslash (`\\`), which can only be represented by
 their corresponding escape sequence.
 
@@ -807,7 +807,7 @@ codepoint-digits::
 **Semantics**
 
 A double-quoted string literal is a string literal delimited by
-double-quotes (`"`, 0x22). The literal can contain any source character except
+double-quotes (`"`, U+0022). The literal can contain any source character except
 double-quote (`"`) and backslash (`\\`), which can only be represented by
 their corresponding escape sequence. Certain other (and sometimes
 non-printable) characters can also be expressed as escape sequences.
@@ -821,15 +821,15 @@ in the table below:
 
 Escape sequence | Character name | Unicode character
 --------------- | --------------| ------
-\$  | Dollar sign | 0x24
-\"  | Double quote | 0x22
-\\  | Backslash | 0x5C
-\e  | Escape | 0x1B
-\f  | Form feed | 0x0C
-\n  | New line | 0x0A
-\r  | Carriage Return | 0x0D
-\t  | Horizontal Tab | 0x09
-\v  | Vertical Tab | 0x0B
+\$  | Dollar sign | U+0024
+\"  | Double quote | U+0022
+\\  | Backslash | U+005C
+\e  | Escape | U+001B
+\f  | Form feed | U+000C
+\n  | New line | U+000A
+\r  | Carriage Return | U+000D
+\t  | Horizontal Tab | U+0009
+\v  | Vertical Tab | U+000B
 \ooo |  1–3-digit octal digit value ooo
 \xhh or \Xhh  | 1–2-digit hexadecimal digit value hh
 \u{xxxxxx} | UTF-8 encoding of Unicode codepoint U+xxxxxx | U+xxxxxx

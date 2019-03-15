@@ -3,7 +3,7 @@ PHP Spec test generated from ./lexical_structure/unicode_string_escape_sequence/
 --FILE--
 <?php
 
-var_dump("\u{61}"); // ASCII "a" - characters below 0x7F just encode as ASCII, as it's UTF-8
+var_dump("\u{61}"); // ASCII "a" - characters below U+007F just encode as ASCII, as it's UTF-8
 var_dump("\u{FF}"); // y with diaeresis
 var_dump("\u{ff}"); // case-insensitive
 var_dump("\u{2603}"); // Unicode snowman

@@ -1428,7 +1428,7 @@ shell-command-expression:
    `   <i><a href="09-lexical-structure.md#grammar-dq-char-sequence">dq-char-sequence</a></i><sub>opt</sub>   `
 </pre>
 
-where \` is the GRAVE ACCENT character U+0060, commonly referred to as a
+where \` is the GRAVE ACCENT character 0x60, commonly referred to as a
 *backtick*.
 
 **Semantics**
@@ -2804,9 +2804,9 @@ character from the right-hand operand is stored at the designated
 location; all other characters in the right-hand operand string are
 ignored.  If the designated location is beyond the end of the
 destination string, that string is extended to the new length with
-spaces (U+0020) added as padding beyond the old end and before the newly
+spaces (0x20) added as padding beyond the old end and before the newly
 added character. If the right-hand operand is an empty string, the null
-character \\0 (U+0000) is stored.
+character \\0 (0x00) is stored.
 
 **Examples**
 

@@ -5,16 +5,15 @@
 A [script](04-basic-concepts.md#program-structure) is an ordered sequence of characters. Typically, a
 script has a one-to-one correspondence with a file in a file system, but
 this correspondence is not required.
+PHP scripts are parsed as a series of 8-bit bytes, rather than code points from Unicode or any other character repertoire.
+Within this specification, bytes are represented by their ASCII interpretations where these are printable characters.
 
 Conceptually speaking, a script is translated using the following steps:
 
-1.  Transformation, which converts a script from a particular character
-    repertoire and encoding scheme into a sequence of 8-bit characters.
-
-2.  Lexical analysis, which translates a stream of input characters into
+1.  Lexical analysis, which translates a stream of input characters into
     a stream of tokens.
 
-3.  Syntactic analysis, which translates the stream of tokens into
+2.  Syntactic analysis, which translates the stream of tokens into
     executable code.
 
 Conforming implementations must accept scripts encoded with the UTF-8
@@ -145,9 +144,9 @@ input-character::
   "Any source character except" new-line
 
 new-line::
-  "Carriage-return character (U+000D)"
-  "Line-feed character (U+000A)"
-  "Carriage-return character (U+000D) followed by line-feed character (U+000A)"
+  "Carriage-return character (0x0D)"
+  "Line-feed character (0x0A)"
+  "Carriage-return character (0x0D) followed by line-feed character (0x0A)"
 
 delimited-comment::
   '/*' "No characters or any source character sequence except */" '*/'
@@ -170,9 +169,9 @@ delimited-comment::
    Any source character except   <i><a href="#grammar-new-line">new-line</a></i>
 
 <i id="grammar-new-line">new-line::</i>
-   Carriage-return character (U+000D)
-   Line-feed character (U+000A)
-   Carriage-return character (U+000D) followed by line-feed character (U+000A)
+   Carriage-return character (0x0D)
+   Line-feed character (0x0A)
+   Carriage-return character (0x0D) followed by line-feed character (0x0A)
 
 <i id="grammar-delimited-comment">delimited-comment::</i>
    /*   No characters or any source character sequence except */   */
@@ -212,8 +211,8 @@ white-space::
 
 white-space-character::
   new-line
-  "Space character (U+0020)"
-  "Horizontal-tab character (U+0009)"
+  "Space character (0x20)"
+  "Horizontal-tab character (0x09)"
 -->
 
 <pre>
@@ -223,8 +222,8 @@ white-space-character::
 
 <i id="grammar-white-space-character">white-space-character::</i>
    <i><a href="#grammar-new-line">new-line</a></i>
-   Space character (U+0020)
-   Horizontal-tab character (U+0009)
+   Space character (0x20)
+   Horizontal-tab character (0x09)
 </pre>
 
 **Semantics**
@@ -290,7 +289,7 @@ name::
 
 name-nondigit::
   nondigit
-  "one of the characters U+0080–U+00ff"
+  "one of the characters 0x80–0xff"
 
 nondigit:: one of
   '_'
@@ -324,7 +323,7 @@ nondigit:: one of
 
 <i id="grammar-name-nondigit">name-nondigit::</i>
    <i><a href="#grammar-nondigit">nondigit</a></i>
-   one of the characters U+0080–U+00ff
+   one of the characters 0x80–0xff
 
 <i id="grammar-nondigit">nondigit:: one of</i>
    _
@@ -344,7 +343,7 @@ Names are used to identify the following: [constants](06-constants.md#general),
 and names in [heredoc](#heredoc-string-literals) and [nowdoc comments](#nowdoc-string-literals).
 
 A *name* begins with an underscore (_), *name-nondigit*, or extended
-name character in the range U+0080–-U+00ff. Subsequent characters can
+name character in the range 0x80–-0xff. Subsequent characters can
 also include *digits*. A *variable name* is a name with a leading
 dollar ($).
 
@@ -704,7 +703,7 @@ b-prefix:: one of
 **Semantics**
 
 A single-quoted string literal is a string literal delimited by
-single-quotes (`'`, U+0027). The literal can contain any source character except
+single-quotes (`'`, 0x27). The literal can contain any source character except
 single-quote (`'`) and backslash (`\\`), which can only be represented by
 their corresponding escape sequence.
 
@@ -807,7 +806,7 @@ codepoint-digits::
 **Semantics**
 
 A double-quoted string literal is a string literal delimited by
-double-quotes (`"`, U+0022). The literal can contain any source character except
+double-quotes (`"`, 0x22). The literal can contain any source character except
 double-quote (`"`) and backslash (`\\`), which can only be represented by
 their corresponding escape sequence. Certain other (and sometimes
 non-printable) characters can also be expressed as escape sequences.
@@ -821,15 +820,15 @@ in the table below:
 
 Escape sequence | Character name | Unicode character
 --------------- | --------------| ------
-\$  | Dollar sign | U+0024
-\"  | Double quote | U+0022
-\\  | Backslash | U+005C
-\e  | Escape | U+001B
-\f  | Form feed | U+000C
-\n  | New line | U+000A
-\r  | Carriage Return | U+000D
-\t  | Horizontal Tab | U+0009
-\v  | Vertical Tab | U+000B
+\$  | Dollar sign | 0x24
+\"  | Double quote | 0x22
+\\  | Backslash | 0x5C
+\e  | Escape | 0x1B
+\f  | Form feed | 0x0C
+\n  | New line | 0x0A
+\r  | Carriage Return | 0x0D
+\t  | Horizontal Tab | 0x09
+\v  | Vertical Tab | 0x0B
 \ooo |  1–3-digit octal digit value ooo
 \xhh or \Xhh  | 1–2-digit hexadecimal digit value hh
 \u{xxxxxx} | UTF-8 encoding of Unicode codepoint U+xxxxxx | U+xxxxxx

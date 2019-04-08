@@ -30,11 +30,9 @@ function f1()
 }
 
 var_dump(f1());	// call f1, default return value is NULL
-f1;				// valid, but vacuous, as it has no side effect and its value is not used
-var_dump(f1);	// string with value "f1"
-$f = f1;		// assign this string to a variable
+$f = "f1";		// assign the name of the function to a variable
 $f();			// call f1 indirectly via $f
-//"f1"();			// call f1 via the string "f1" -- Can't be a string literal!!!
+"f1"();			// call f1 via the string "f1"
 
 // f1() = 123;	// a function return is not an lvalue
 
@@ -74,20 +72,14 @@ f2(10, 20, 30);	// pass 3 (> 2)
 
 function square($v) { return $v * $v; }
 echo "5 squared = ".square(5)."\n";
-var_dump($funct = square);
+$funct = "square";
 var_dump($funct(-2.3));
 
 echo strlen("abcedfg")."\n";
 --EXPECTF--
 f1: # arguments passed is 0
 NULL
-
-Warning: Use of undefined constant f1 - assumed 'f1' (this will throw an Error in a future version of PHP) in %s/functions/basics.php on line 30
-
-Warning: Use of undefined constant f1 - assumed 'f1' (this will throw an Error in a future version of PHP) in %s/functions/basics.php on line 31
-string(2) "f1"
-
-Warning: Use of undefined constant f1 - assumed 'f1' (this will throw an Error in a future version of PHP) in %s/functions/basics.php on line 32
+f1: # arguments passed is 0
 f1: # arguments passed is 0
 f1: # arguments passed is 0
 f1: # arguments passed is 1
@@ -106,8 +98,5 @@ Too few arguments to function f2(), 1 passed in %s on line %d and exactly 2 expe
 f2: $p1 = 10, $p2 = 20
 f2: $p1 = 10, $p2 = 20
 5 squared = 25
-
-Warning: Use of undefined constant square - assumed 'square' (this will throw an Error in a future version of PHP) in %s/functions/basics.php on line 74
-string(6) "square"
 float(5.29)
 7

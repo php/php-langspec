@@ -3235,13 +3235,13 @@ $a > $b ? print "..." : print "...";
 
 <!-- GRAMMAR
 logical-AND-expression-2:
-  yield-expression
+  print-expression
   logical-AND-expression-2 'and' yield-expression
 -->
 
 <pre>
 <i id="grammar-logical-AND-expression-2">logical-AND-expression-2:</i>
-   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+   <i><a href="#grammar-print-expression">print-expression</a></i>
    <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>   and   <i><a href="#grammar-yield-expression">yield-expression</a></i>
 </pre>
 

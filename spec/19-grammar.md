@@ -682,7 +682,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    print   <i><a href="#grammar-print-expression">print-expression</a></i>
 
 <i id="grammar-logical-AND-expression-2">logical-AND-expression-2:</i>
-   <i><a href="#grammar-yield-expression">yield-expression</a></i>
+   <i><a href="#grammar-print-expression">print-expression</a></i>
    <i><a href="#grammar-logical-AND-expression-2">logical-AND-expression-2</a></i>   and   <i><a href="#grammar-yield-expression">yield-expression</a></i>
 
 <i id="grammar-logical-exc-OR-expression">logical-exc-OR-expression:</i>

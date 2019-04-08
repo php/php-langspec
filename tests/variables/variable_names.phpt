@@ -25,7 +25,7 @@ ${TRUE} = 104;
 ${FALSE} = 105;
 ${NULL} = 106;
 
-${total} = 1000;		// allowed after warning: Use of undefined constant total - assumed 'total'
+//${total} = 1000;		// disallowed; undefined constant total
 //${t o tal} = 1000;	// disallowed; ill-formed expression
 //${+} = 1000;			// disallowed; ill-formed expression
 ${10 + 4} = 1000;		// allowed
@@ -53,9 +53,7 @@ print_globals();
 int(99)
 int(100)
 int(101)
-
-Warning: Use of undefined constant total - assumed 'total' (this will throw an Error in a future version of PHP) in %s/variables/variable_names.php on line 25
-array(12) {
+array(11) {
   ["argc"]=>
   int(1)
   ["v"]=>
@@ -70,8 +68,6 @@ array(12) {
   int(104)
   [""]=>
   int(106)
-  ["total"]=>
-  int(1000)
   [14]=>
   int(1000)
   ["abxy"]=>

@@ -34,9 +34,9 @@ function h($p1, $p2, $p3, $p4, $p5)
 
 // Create a table of function designators
 
-$funcTable = array(f, g, h);	// list of 3 functions
-var_dump($funcTable);			// array of 3 strings
-var_dump($funcTable[0]);		// a string
+$funcTable = array("f", "g", "h");  // list of 3 functions
+var_dump($funcTable);			    // array of 3 strings
+var_dump($funcTable[0]);		    // a string
 
 // Call all 3 functions indirectly through table
 
@@ -52,12 +52,6 @@ $funcTable[$i++]($i, ++$i, $i, $i = 12, --$i);	// function designator side effec
 // g: $p1 = 2, $p2 = 3, $p3 = 3, $p4 = 12, $p5 = 11
 --EXPECTF--
 f: $p1 = 0, $p2 = 1, $p3 = 1, $p4 = 12, $p5 = 11
-
-Warning: Use of undefined constant f - assumed 'f' (this will throw an Error in a future version of PHP) in %s/functions/order_of_evaluation.php on line 34
-
-Warning: Use of undefined constant g - assumed 'g' (this will throw an Error in a future version of PHP) in %s/functions/order_of_evaluation.php on line 34
-
-Warning: Use of undefined constant h - assumed 'h' (this will throw an Error in a future version of PHP) in %s/functions/order_of_evaluation.php on line 34
 array(3) {
   [0]=>
   string(1) "f"

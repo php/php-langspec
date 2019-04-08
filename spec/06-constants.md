@@ -12,10 +12,6 @@ Specifically:
 
 -   The name of a c-constant must comply with the lexical grammar for a
     name while that for a d-constant can contain any source character.
--   The name of a c-constant is case-sensitive while that for a
-    d-constant can be case-sensitive or case-insensitive based on the
-    value of the third argument passed to `define`. The definition of
-    case-insensitive constants is deprecated.
 -   If `define` is able to define the given name, it returns `TRUE`;
     otherwise, it returns `FALSE`.
 

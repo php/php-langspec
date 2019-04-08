@@ -11,9 +11,9 @@ PHP Spec test generated from ./constants/constants.php
 
 error_reporting(-1);
 
-function trace($name, $value, $b = FALSE)
+function trace($name, $value)
 {
-	$r = define($name, $value, $b);
+	$r = define($name, $value);
 	echo "define $name " . ($r ? "succeeded" : "failed");
 	if (defined($name))
 		echo "; value is >" . constant($name)  . "<\n";
@@ -26,7 +26,7 @@ function trace($name, $value, $b = FALSE)
 
 trace("STATUS1", TRUE);
 trace("MIN", 10);
-trace("MAX", 20, TRUE);		// HHVM Warning: Case insensitive constant names are not supported in HipHop
+trace("MAX", 20);
 trace("MY_PI", 3.1415926);
 trace("MY_COLOR", "red");
 trace("C1", NULL);
@@ -184,8 +184,6 @@ echo "CON1: " . C3::CON1 . "\n";	// use :: notation, as a const is implicitly st
 --EXPECTF--
 define STATUS1 succeeded; value is >1<
 define MIN succeeded; value is >10<
-
-Deprecated: define(): Declaration of case-insensitive constants is deprecated in %s on line %d
 define MAX succeeded; value is >20<
 define MY_PI succeeded; value is >3.1415926<
 define MY_COLOR succeeded; value is >red<
@@ -208,7 +206,9 @@ define #%& succeeded; value is >200<
 
 Notice: Constant MY_COLOR already defined in %s/constants/constants.php on line 13
 define MY_COLOR failed; value is >red<
-define TRUE succeeded; value is >999<
+
+Notice: Constant TRUE already defined in %s/constants/constants.php on line 13
+define TRUE failed; value is >1<
     TRUE's value:1
 define COLORS succeeded
 Notice: Array to string conversion in %s/constants/constants.php on line 16

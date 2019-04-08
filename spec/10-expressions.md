@@ -888,9 +888,8 @@ and value of the result is the type and value of that element;
 otherwise, the result is `NULL`.
 
 If *expression* is omitted, a new element is inserted. Its key has type
-`int` and is one more than the highest, previously assigned, non-negative
-`int` key for this array. If this is the first element with a non-negative
-`int` key, key `0` is used.
+`int` and is one more than the highest, previously assigned `int` key for
+this array. If this is the first element with an `int` key, key `0` is used.
 If the largest previously assigned `int` key is the largest integer value that can be represented,
 the new element is not added.
 The result is the added new element, or `NULL` if the element was not added.

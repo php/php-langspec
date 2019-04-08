@@ -11,7 +11,7 @@ var_dump($a);
 echo "------\n";
 
 $a = array(-30 => 33, -10 => -11);
-var_dump($a[] = 991);		// creates $a[0]
+var_dump($a[] = 991);		// creates $a[-9]
 var_dump($a);
 echo "------\n";
 
@@ -170,7 +170,7 @@ array(3) {
   int(33)
   [-10]=>
   int(-11)
-  [0]=>
+  [-9]=>
   int(991)
 }
 ------

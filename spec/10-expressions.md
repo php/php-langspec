@@ -1888,6 +1888,10 @@ cast-type: one of
    real   string   unset
 </pre>
 
+**Constaints**
+
+A *cast-type* of `unset` is no longer supported and results in a compile-time error.
+
 **Semantics**
 
 With the exception of the *cast-type* unset and binary (see below), the
@@ -1913,9 +1917,6 @@ A *cast-type* of `float`, `double`, or `real` results in a [conversion to type `
 A *cast-type* of `object` results in a [conversion to type `object`](08-conversions.md#converting-to-object-type).
 
 A *cast-type* of `string` results in a [conversion to type `string`](08-conversions.md#converting-to-string-type).
-
-A *cast-type* of `unset` always results in a value of `NULL`. (This use of
-`unset` should not be confused with the [`unset` statement](11-statements.md#the-unset-statement).
 
 **Examples**
 

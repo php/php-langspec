@@ -29,8 +29,10 @@ echo var_dump((binary)"");
 echo var_dump((binary)"abcdef");
 
 echo var_dump($v);
-echo var_dump((unset)$v);
-echo var_dump($v);
+
+// The (unset) cast is no longer supported
+//echo var_dump((unset)$v);
+//echo var_dump($v);
 //*/
 
 ///*
@@ -146,7 +148,6 @@ var_dump($binStr);
 $binStr = b"AaBb123$%^";
 var_dump($binStr);
 --EXPECTF--
-Deprecated: The (unset) cast is deprecated in %s on line %d
 bool(false)
 bool(false)
 int(0)
@@ -166,8 +167,6 @@ object(stdClass)#1 (1) {
 string(1) "0"
 string(0) ""
 string(6) "abcdef"
-int(0)
-NULL
 int(0)
 int(10)
    bool(true)
@@ -456,7 +455,7 @@ array(2) {
    int(1)
    float(1)
    
-Notice: Array to string conversion in %s/expressions/unary_operators/cast.php on line 50
+Notice: Array to string conversion in %s/expressions/unary_operators/cast.php on line %d
 string(5) "Array"
    array(2) {
   [5]=>
@@ -485,7 +484,7 @@ array(4) {
    int(1)
    float(1)
    
-Notice: Array to string conversion in %s/expressions/unary_operators/cast.php on line 50
+Notice: Array to string conversion in %s/expressions/unary_operators/cast.php on line %d
 string(5) "Array"
    array(4) {
   [0]=>
@@ -555,7 +554,7 @@ object(E)#3 (3) {
 $key: > E priv_prop<, len: 12, $val: ><
 $key: > * prot_prop<, len: 12, $val: >12.345<
 
-Notice: Array to string conversion in %s/expressions/unary_operators/cast.php on line 115
+Notice: Array to string conversion in %s/expressions/unary_operators/cast.php on line %d
 $key: >publ_prop<, len: 9, $val: >Array<
 ---------------
 resource(1) of type (stream)

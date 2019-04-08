@@ -238,9 +238,8 @@ trait T7
 	}
 }
 
-T7::f(); 	// calls f like a static function with class name being the trait name
+// T7::f(); 	// Static call to non-static method is not allowed
 
-echo "-------\n";
 T7::g();
 
 /*
@@ -336,10 +335,6 @@ $v = 1
 Inside T6::f
 $v = 2
 ===================== Using a Trait without a Class =========================
-%AInside T7
-Inside T7
-Inside T7::f
--------
 Inside T7
 Inside T7
 Inside T7::g

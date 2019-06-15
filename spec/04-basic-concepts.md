@@ -516,12 +516,12 @@ We can remove all these handles using `$a = NULL` and `$b = NULL`:
 ```
 [VSlot $a *]-->[VStore null]    [HStore Point [VSlot $x *] [VSlot $y *] (dead)]
                                                         |            |
-[VSlot $b *]-->[VStore null]    [VStore int 2 (dead)]&lt;--+            V
+[VSlot $b *]-->[VStore null]    [VStore int 2 (dead)]<--+            V
                                                           [VStore int 1 (dead)]
 
                                 [HStore Point [VSlot $x *] [VSlot $y *] (dead)]
                                                         |            |
-                                [VStore int 4 (dead)]&lt;--+            V
+                                [VStore int 4 (dead)]<--+            V
                                                         [VStore int 6 (dead)]
 ```
 
@@ -750,7 +750,7 @@ assignment of other types. Recall the `Point` class from [the examples](#value-a
                                                          V             V
                                                [VStore int 10]   [VStore Obj *]
                                                                              |
-                                [HStore Point [VSlot $x *] [VSlot $y *]]&lt;----+
+                                [HStore Point [VSlot $x *] [VSlot $y *]]<----+
                                                         |            |
                                                         V            V
                                             [VStore int 1]  [VStore int 3]
@@ -782,7 +782,7 @@ the value assignment `$b = $a`:
                        |             |                                          |
              +---------+   +---------+                                          |
              V             V                                                    |
-[VStore int 10] [VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *]]&lt;---+
+[VStore int 10] [VStore object *]-->[HStore Point [VSlot $x *] [VSlot $y *]]<---+
                                                             |            |
                                                             V            V
                                                  [VStore int 1]  [VStore int 3]
@@ -830,7 +830,7 @@ implementation. Here is the first possible outcome:
 ```
 [VSlot $a *]---->[VStore array *]---->[HStore Array [VSlot 0 *]]
                                                              |
-[VSlot $x *]-------------------------+   [VStore array *]&lt;---+
+[VSlot $x *]-------------------------+   [VStore array *]<---+
                                      |                 |
 [VSlot $b *]-->[VStore array *]      |                 V
                              |       |  [HStore Array [VSlot 0 *][VSlot 1 *]]
@@ -852,7 +852,7 @@ Here is the second possible outcome:
 ```
 [VSlot $a *]---->[VStore array *]---->[HStore Array [VSlot 0 *]]
                                                              |
-[VSlot $x *]-------------------------+  [VStore array *]&lt;----+
+[VSlot $x *]-------------------------+  [VStore array *]<----+
                                      |                |
 [VSlot $b *]-->[VStore array *]      |                V
                              |       |  [HStore Array [VSlot 0 *] [VSlot 1 *]]
@@ -939,7 +939,7 @@ $b = $a;
 ```
 [VSlot $a *]--->[VStore array *]--->[HStore Array [VSlot 0 *]]
                                       ^                    |
-                                      | [VStore array *]&lt;--+
+                                      | [VStore array *]<--+
 [VSlot $b *]--->[VStore Arr-D *]------+               |
                                                       V
                                         [HStore Array [VSlot 0 *] [VSlot 1 *]]
@@ -1036,7 +1036,7 @@ possible outcome:
 ```
 [VSlot $a *]---->[VStore array *]---->[HStore Array [VSlot 0 *]]
                                                              |
-[VSlot $b *]-->[VStore array *]          [VStore array *]&lt;---+
+[VSlot $b *]-->[VStore array *]          [VStore array *]<---+
                              |                         |
                              V                         V
   [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
@@ -1057,8 +1057,8 @@ Here is the third possible outcome:
 
 ```
 [VSlot $a *]---->[VStore array *-]---->[HStore Array [VSlot 0 *]]
-                                                            |
-[VSlot $b *]-->[VStore array *]           [VStore array *]&lt;---+
+                                                              |
+[VSlot $b *]-->[VStore array *]           [VStore array *]<---+
                              |                          |
                              V                          V
  [HStore Array [VSlot 0 *] [VSlot 1 *]]  [HStore Array [VSlot 0 *] [VSlot 1 *]]
@@ -1204,7 +1204,7 @@ Will result in:
                                                            |            |            |
                                                            V            V            |
                                                   [VStore int 1] [VStore int 3]      |
-[VSlot $b *]---------------->[VStore int 123]&lt;---------------------------------------+
+[VSlot $b *]---------------->[VStore int 123]<---------------------------------------+
 ```
 
 ### Argument Passing
@@ -1267,7 +1267,7 @@ some type(s) or to an instance of some other type.
                                                              V            V
                                                [VStore int 10] [VStore object *]
                                                                               |
-                                                        [HStore ...]&lt;---------+
+                                                        [HStore ...]<---------+
 ```
 
 Let us consider the result of `$b = clone $a`:
@@ -1279,7 +1279,7 @@ Let us consider the result of `$b = clone $a`:
                              |                  [VStore int 10] [VStore object *]
      +-----------------------+                                                 |
      V                                                                         |
-   [HStore Widget [VSlot $p1 *] [VSlot $p2 *]]              +--->[HStore ...]&lt;-+
+   [HStore Widget [VSlot $p1 *] [VSlot $p2 *]]              +--->[HStore ...]<-+
                              |             |                |
                              V             V                |
                  [VStore int 10] [VStore object *]----------+

@@ -254,7 +254,7 @@ echo $colors[100];      // element with offset 100 is still undefined and NULL
                         // is used as substitution value instead. Another
                         // notice is emitted.
 
-$b = &colors[100];      // a VSlot for $b is created which points to the array
+$b = &$colors[100];     // a VSlot for $b is created which points to the array
                         // element with the offset 100. An array element with
                         // offset 100 was undefined but implicitly defined
                         // because the assignment is byRef. Thus a VSlot for

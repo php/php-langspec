@@ -147,59 +147,59 @@ abc >=       10  result: bool(true)
 abc >        10  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 22
+Notice: Array to string conversion in %s on line %d
 10 >        Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 23
+Notice: Array to string conversion in %s on line %d
 Array <=       10  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 25
+Notice: Array to string conversion in %s on line %d
 10 >=       Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 26
+Notice: Array to string conversion in %s on line %d
 Array <        10  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 28
+Notice: Array to string conversion in %s on line %d
 10 <        Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 29
+Notice: Array to string conversion in %s on line %d
 Array >=       10  result: bool(true)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 31
+Notice: Array to string conversion in %s on line %d
 10 <=       Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 32
+Notice: Array to string conversion in %s on line %d
 Array >        10  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 22
+Notice: Array to string conversion in %s on line %d
 10 >        Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 23
+Notice: Array to string conversion in %s on line %d
 Array <=       10  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 25
+Notice: Array to string conversion in %s on line %d
 10 >=       Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 26
+Notice: Array to string conversion in %s on line %d
 Array <        10  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 28
+Notice: Array to string conversion in %s on line %d
 10 <        Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 29
+Notice: Array to string conversion in %s on line %d
 Array >=       10  result: bool(true)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 31
+Notice: Array to string conversion in %s on line %d
 10 <=       Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 32
+Notice: Array to string conversion in %s on line %d
 Array >        10  result: bool(true)
 =======
 -------------------------------------
@@ -312,59 +312,59 @@ abc >=       -5.1  result: bool(true)
 abc >        -5.1  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 22
+Notice: Array to string conversion in %s on line %d
 -5.1 >        Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 23
+Notice: Array to string conversion in %s on line %d
 Array <=       -5.1  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 25
+Notice: Array to string conversion in %s on line %d
 -5.1 >=       Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 26
+Notice: Array to string conversion in %s on line %d
 Array <        -5.1  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 28
+Notice: Array to string conversion in %s on line %d
 -5.1 <        Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 29
+Notice: Array to string conversion in %s on line %d
 Array >=       -5.1  result: bool(true)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 31
+Notice: Array to string conversion in %s on line %d
 -5.1 <=       Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 32
+Notice: Array to string conversion in %s on line %d
 Array >        -5.1  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 22
+Notice: Array to string conversion in %s on line %d
 -5.1 >        Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 23
+Notice: Array to string conversion in %s on line %d
 Array <=       -5.1  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 25
+Notice: Array to string conversion in %s on line %d
 -5.1 >=       Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 26
+Notice: Array to string conversion in %s on line %d
 Array <        -5.1  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 28
+Notice: Array to string conversion in %s on line %d
 -5.1 <        Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 29
+Notice: Array to string conversion in %s on line %d
 Array >=       -5.1  result: bool(true)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 31
+Notice: Array to string conversion in %s on line %d
 -5.1 <=       Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons4.php on line 32
+Notice: Array to string conversion in %s on line %d
 Array >        -5.1  result: bool(true)
 =======
 -------------------------------------

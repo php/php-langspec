@@ -123,10 +123,10 @@ string(3) "red"
 int(555)
 int(123)
 
-%ANotice: Undefined property: Point::$psProp in %s/expressions/postfix_operators/member_selection_operator.php on line 74
+%ANotice: Undefined property: Point::$psProp in %s on line %d
 NULL
 
-Notice: Undefined property: Point::$MYPI in %s/expressions/postfix_operators/member_selection_operator.php on line 78
+Notice: Undefined property: Point::$MYPI in %s on line %d
 NULL
 int(123)
 int(999)

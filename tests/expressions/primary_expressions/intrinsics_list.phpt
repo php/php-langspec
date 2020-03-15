@@ -181,7 +181,7 @@ int(100)
 bool(true)
 int(67)
 
-Notice: Undefined %s: 2 in %s/expressions/primary_expressions/intrinsics_list.php on line 57
+Notice: Undefined %s: 2 in %s on line %d
 $min: 100, $max: 500, $avg: 
 Array
 (
@@ -196,7 +196,7 @@ bool(false)
 NULL
 --------- test with sufficient array elements but not consecutive keys -------------
 
-Notice: Undefined %s: 1 in %s/expressions/primary_expressions/intrinsics_list.php on line 70
+Notice: Undefined %s: 1 in %s on line %d
 $min: 0, $max: , $avg: 100
 Array
 (
@@ -224,11 +224,11 @@ Array
 )
 --------- test with non-numeric array -------------
 
-Notice: Undefined %s: 0 in %s/expressions/primary_expressions/intrinsics_list.php on line 96
+Notice: Undefined %s: 0 in %s on line %d
 
-Notice: Undefined %s: 1 in %s/expressions/primary_expressions/intrinsics_list.php on line 96
+Notice: Undefined %s: 1 in %s on line %d
 
-Notice: Undefined %s: 2 in %s/expressions/primary_expressions/intrinsics_list.php on line 96
+Notice: Undefined %s: 2 in %s on line %d
 $min: , $max: , $avg: 
 Array
 (
@@ -241,7 +241,7 @@ bool(false)
 bool(false)
 --------- test with array element being an array -------------
 
-Notice: Undefined %s: 2 in %s/expressions/primary_expressions/intrinsics_list.php on line 107
+Notice: Undefined %s: 2 in %s on line %d
 Array
 (
     [0] => 0

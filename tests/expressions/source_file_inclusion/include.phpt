@@ -146,9 +146,9 @@ int(1)
 Inside file >%s/expressions/source_file_inclusion/include.php< at line >95<
 Inside test() in %s/expressions/source_file_inclusion/test.inc
 
-Notice: Undefined variable: v1 in %s/expressions/source_file_inclusion/test.inc on line 14
+Notice: Undefined variable: v1 in %s on line %d
 
-Notice: Undefined variable: v2 in %s/expressions/source_file_inclusion/test.inc on line 14
+Notice: Undefined variable: v2 in %s on line %d
 $v1: , $v2: 
 $local1: 100
 Inside file >%s/expressions/source_file_inclusion/include.php< at line >99<

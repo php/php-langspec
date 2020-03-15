@@ -112,9 +112,9 @@ bool(false)
 >naN< is not numeric
 >nan< is not numeric
 
-Notice: Undefined variable: t in %s/types/string/numeric_strings.php on line 38
+Notice: Undefined variable: t in %s on line %d
 
-Notice: Undefined variable: t in %s/types/string/numeric_strings.php on line 39
+Notice: Undefined variable: t in %s on line %d
 NULL
 string(3) "INF"
 string(4) "-INF"

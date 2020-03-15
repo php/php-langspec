@@ -91,7 +91,7 @@ f1: # arguments passed is 3
 	arg[0] = >23.45<
 	arg[1] = ><
 
-Notice: Array to string conversion in %s/functions/basics.php on line 25
+Notice: Array to string conversion in %s on line %d
 	arg[2] = >Array<
 Too few arguments to function f2(), 0 passed in %s on line %d and exactly 2 expected
 Too few arguments to function f2(), 1 passed in %s on line %d and exactly 2 expected

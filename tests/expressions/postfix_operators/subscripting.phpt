@@ -242,9 +242,9 @@ key: 0, value: 10
 key: 1, value: 20
 key: 2, value: 30
 
-Notice: Undefined offset: 7 in %s/expressions/postfix_operators/subscripting.php on line 28
+Notice: Undefined offset: 7 in %s on line %d
 
-Notice: Undefined offset: 12 in %s/expressions/postfix_operators/subscripting.php on line 29
+Notice: Undefined offset: 12 in %s on line %d
 [7] contains >NULL<, [12] contains >NULL<
 array(5) {
   [0]=>
@@ -317,25 +317,25 @@ array(3) {
   }
 }
 
-Notice: Array to string conversion in %s/expressions/postfix_operators/subscripting.php on line 57
+Notice: Array to string conversion in %s on line %d
 outer key: 0, outer value: Array
 inner key: 0, inner value: 2
 inner key: 1, inner value: 4
 inner key: 2, inner value: 6
 inner key: 3, inner value: 8
 
-Notice: Array to string conversion in %s/expressions/postfix_operators/subscripting.php on line 57
+Notice: Array to string conversion in %s on line %d
 outer key: 1, outer value: Array
 inner key: 0, inner value: 5
 inner key: 1, inner value: 10
 
-Notice: Array to string conversion in %s/expressions/postfix_operators/subscripting.php on line 57
+Notice: Array to string conversion in %s on line %d
 outer key: 2, outer value: Array
 inner key: 0, inner value: 100
 inner key: 1, inner value: 200
 inner key: 2, inner value: 300
 
-Notice: Array to string conversion in %s/expressions/postfix_operators/subscripting.php on line 64
+Notice: Array to string conversion in %s on line %d
 [0]: Array
 [0][2]: 6
 [1][1]: 10
@@ -362,14 +362,14 @@ NULL
 NULL
 string(1) "e"
 
-Notice: String offset cast occurred in %s/expressions/postfix_operators/subscripting.php on line 143
+Notice: String offset cast occurred in %s on line %d
 string(1) "e"
 string(1) "d"
 
-Notice: Uninitialized string offset: 10 in %s/expressions/postfix_operators/subscripting.php on line 145
+Notice: Uninitialized string offset: 10 in %s on line %d
 string(0) ""
 
-Warning: Illegal string offset 'abc' in %s/expressions/postfix_operators/subscripting.php on line 146
+Warning: Illegal string offset 'abc' in %s on line %d
 string(1) "r"
 string(1) "r"
 string(1) "r"
@@ -378,7 +378,7 @@ string(1) "r"
 string(3) "red"
 string(3) "rXd"
 
-Warning: Illegal string offset:  -5 in %s/expressions/postfix_operators/subscripting.php on line 161
+Warning: Illegal string offset:  -5 in %s on line %d
 string(3) "rXd"
 string(6) "rXd  Z"
 >d<
@@ -395,7 +395,7 @@ string(6) "MXd  Z"
 Warning: Cannot assign an empty string to a string offset in %s
 string(6) "MXd  Z"
 
-Warning: Illegal string offset 'zz' in %s/expressions/postfix_operators/subscripting.php on line 181
+Warning: Illegal string offset 'zz' in %s on line %d
 string(6) "QXd  Z"
 --------------------
 array(7) {

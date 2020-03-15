@@ -204,24 +204,24 @@ define CON22 succeeded; value is >65.3<
 define 36ABC succeeded; value is >100<
 define #%& succeeded; value is >200<
 
-Notice: Constant MY_COLOR already defined in %s/constants/constants.php on line 13
+Notice: Constant MY_COLOR already defined in %s on line %d
 define MY_COLOR failed; value is >red<
 
-Notice: Constant TRUE already defined in %s/constants/constants.php on line 13
+Notice: Constant TRUE already defined in %s on line %d
 define TRUE failed; value is >1<
     TRUE's value:1
 define COLORS succeeded
-Notice: Array to string conversion in %s/constants/constants.php on line 16
+Notice: Array to string conversion in %s on line %d
 ; value is >Array<
 
-Warning: Constants may only evaluate to scalar values, arrays or resources in %s/constants/constants.php on line 13
+Warning: Constants may only evaluate to scalar values, arrays or resources in %s on line %d
 define MY_OBJECT failed; not defined
 
-Warning: fopen(Testfile.txt): failed to open stream: No such file or directory in %s/constants/constants.php on line 90
+Warning: fopen(Testfile.txt): failed to open stream: No such file or directory in %s on line %d
 Can't open file
 define MY_RESOURCE succeeded; value is ><
 
-Notice: Constant MY_RESOURCE already defined in %s/constants/constants.php on line 13
+Notice: Constant MY_RESOURCE already defined in %s on line %d
 define MY_RESOURCE failed; value is ><
 define CON61 succeeded; value is >321<
 define CON63 succeeded; value is >321<

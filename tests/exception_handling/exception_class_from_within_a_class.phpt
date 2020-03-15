@@ -151,13 +151,13 @@ $o->fL1(10);
 --EXPECTF--
 L0: In try-block
 L0: In catch-block
-$e = >Exception: L0 Message in %s/exception_handling/exception_class_from_within_a_class.php:131
+$e = >Exception: L0 Message in %s%eexception_handling%eexception_class_from_within_a_class.php:131
 Stack trace:
 #0 {main}<
 getMessage:       >L0 Message<
 getCode:          >-1<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class_from_within_a_class.php<
+getFile:          >%s%eexception_handling%eexception_class_from_within_a_class.php<
 getLine:          >131<
 getTraceAsString: >#0 {main}<
 array(0) {
@@ -169,22 +169,22 @@ L0: Beyond try/catch/finally blocks
 L0: Calling fL1
 fL1: In try-block
 fL1: In catch-block
-$e = >Exception: fL1 Message in %s/exception_handling/exception_class_from_within_a_class.php:57
+$e = >Exception: fL1 Message in %s%eexception_handling%eexception_class_from_within_a_class.php:57
 Stack trace:
-#0 %s/exception_handling/exception_class_from_within_a_class.php(146): MyClass->fL1(10)
+#0 %s%eexception_handling%eexception_class_from_within_a_class.php(146): MyClass->fL1(10)
 #1 {main}<
 getMessage:       >fL1 Message<
 getCode:          >123<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class_from_within_a_class.php<
+getFile:          >%s%eexception_handling%eexception_class_from_within_a_class.php<
 getLine:          >57<
-getTraceAsString: >#0 %s/exception_handling/exception_class_from_within_a_class.php(146): MyClass->fL1(10)
+getTraceAsString: >#0 %s%eexception_handling%eexception_class_from_within_a_class.php(146): MyClass->fL1(10)
 #1 {main}<
 array(1) {
   [0]=>
   array(6) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_from_within_a_class.php"
+    string(%d) "%s%eexception_handling%eexception_class_from_within_a_class.php"
     ["line"]=>
     int(146)
     ["function"]=>
@@ -202,7 +202,7 @@ array(1) {
 }
 Trace Info:
 Key[0]:
-  Key[file] => >%s/exception_handling/exception_class_from_within_a_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class_from_within_a_class.php<
   Key[line] => >146<
   Key[function] => >fL1<
   Key[class] => >MyClass<
@@ -215,24 +215,24 @@ fL1: Beyond try/catch/finally blocks
 fL1: Calling fL2
 fL2: In try-block
 fL2: In catch-block
-$e = >Exception: fL2 Message in %s/exception_handling/exception_class_from_within_a_class.php:83
+$e = >Exception: fL2 Message in %s%eexception_handling%eexception_class_from_within_a_class.php:83
 Stack trace:
-#0 %s/exception_handling/exception_class_from_within_a_class.php(71): MyClass->fL2(2.3, -4.5)
-#1 %s/exception_handling/exception_class_from_within_a_class.php(146): MyClass->fL1(10)
+#0 %s%eexception_handling%eexception_class_from_within_a_class.php(71): MyClass->fL2(2.3, -4.5)
+#1 %s%eexception_handling%eexception_class_from_within_a_class.php(146): MyClass->fL1(10)
 #2 {main}<
 getMessage:       >fL2 Message<
 getCode:          >234<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class_from_within_a_class.php<
+getFile:          >%s%eexception_handling%eexception_class_from_within_a_class.php<
 getLine:          >83<
-getTraceAsString: >#0 %s/exception_handling/exception_class_from_within_a_class.php(71): MyClass->fL2(2.3, -4.5)
-#1 %s/exception_handling/exception_class_from_within_a_class.php(146): MyClass->fL1(10)
+getTraceAsString: >#0 %s%eexception_handling%eexception_class_from_within_a_class.php(71): MyClass->fL2(2.3, -4.5)
+#1 %s%eexception_handling%eexception_class_from_within_a_class.php(146): MyClass->fL1(10)
 #2 {main}<
 array(2) {
   [0]=>
   array(6) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_from_within_a_class.php"
+    string(%d) "%s%eexception_handling%eexception_class_from_within_a_class.php"
     ["line"]=>
     int(71)
     ["function"]=>
@@ -252,7 +252,7 @@ array(2) {
   [1]=>
   array(6) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_from_within_a_class.php"
+    string(%d) "%s%eexception_handling%eexception_class_from_within_a_class.php"
     ["line"]=>
     int(146)
     ["function"]=>
@@ -270,7 +270,7 @@ array(2) {
 }
 Trace Info:
 Key[0]:
-  Key[file] => >%s/exception_handling/exception_class_from_within_a_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class_from_within_a_class.php<
   Key[line] => >71<
   Key[function] => >fL2<
   Key[class] => >MyClass<
@@ -279,7 +279,7 @@ Key[0]:
     Key[0] => >2.3<
     Key[1] => >-4.5<
 Key[1]:
-  Key[file] => >%s/exception_handling/exception_class_from_within_a_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class_from_within_a_class.php<
   Key[line] => >146<
   Key[function] => >fL1<
   Key[class] => >MyClass<
@@ -292,26 +292,26 @@ fL2: Beyond try/catch/finally blocks
 fL2: Calling fL3
 fL3: In try-block
 fL3: In catch-block
-$e = >Exception: fL3 Message in %s/exception_handling/exception_class_from_within_a_class.php:109
+$e = >Exception: fL3 Message in %s%eexception_handling%eexception_class_from_within_a_class.php:109
 Stack trace:
-#0 %s/exception_handling/exception_class_from_within_a_class.php(97): MyClass->fL3('xyz', NULL, true)
-#1 %s/exception_handling/exception_class_from_within_a_class.php(71): MyClass->fL2(2.3, -4.5)
-#2 %s/exception_handling/exception_class_from_within_a_class.php(146): MyClass->fL1(10)
+#0 %s%eexception_handling%eexception_class_from_within_a_class.php(97): MyClass->fL3('xyz', NULL, true)
+#1 %s%eexception_handling%eexception_class_from_within_a_class.php(71): MyClass->fL2(2.3, -4.5)
+#2 %s%eexception_handling%eexception_class_from_within_a_class.php(146): MyClass->fL1(10)
 #3 {main}<
 getMessage:       >fL3 Message<
 getCode:          >345<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class_from_within_a_class.php<
+getFile:          >%s%eexception_handling%eexception_class_from_within_a_class.php<
 getLine:          >109<
-getTraceAsString: >#0 %s/exception_handling/exception_class_from_within_a_class.php(97): MyClass->fL3('xyz', NULL, true)
-#1 %s/exception_handling/exception_class_from_within_a_class.php(71): MyClass->fL2(2.3, -4.5)
-#2 %s/exception_handling/exception_class_from_within_a_class.php(146): MyClass->fL1(10)
+getTraceAsString: >#0 %s%eexception_handling%eexception_class_from_within_a_class.php(97): MyClass->fL3('xyz', NULL, true)
+#1 %s%eexception_handling%eexception_class_from_within_a_class.php(71): MyClass->fL2(2.3, -4.5)
+#2 %s%eexception_handling%eexception_class_from_within_a_class.php(146): MyClass->fL1(10)
 #3 {main}<
 array(3) {
   [0]=>
   array(6) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_from_within_a_class.php"
+    string(%d) "%s%eexception_handling%eexception_class_from_within_a_class.php"
     ["line"]=>
     int(97)
     ["function"]=>
@@ -333,7 +333,7 @@ array(3) {
   [1]=>
   array(6) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_from_within_a_class.php"
+    string(%d) "%s%eexception_handling%eexception_class_from_within_a_class.php"
     ["line"]=>
     int(71)
     ["function"]=>
@@ -353,7 +353,7 @@ array(3) {
   [2]=>
   array(6) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class_from_within_a_class.php"
+    string(%d) "%s%eexception_handling%eexception_class_from_within_a_class.php"
     ["line"]=>
     int(146)
     ["function"]=>
@@ -371,7 +371,7 @@ array(3) {
 }
 Trace Info:
 Key[0]:
-  Key[file] => >%s/exception_handling/exception_class_from_within_a_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class_from_within_a_class.php<
   Key[line] => >97<
   Key[function] => >fL3<
   Key[class] => >MyClass<
@@ -381,7 +381,7 @@ Key[0]:
     Key[1] => ><
     Key[2] => >1<
 Key[1]:
-  Key[file] => >%s/exception_handling/exception_class_from_within_a_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class_from_within_a_class.php<
   Key[line] => >71<
   Key[function] => >fL2<
   Key[class] => >MyClass<
@@ -390,7 +390,7 @@ Key[1]:
     Key[0] => >2.3<
     Key[1] => >-4.5<
 Key[2]:
-  Key[file] => >%s/exception_handling/exception_class_from_within_a_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class_from_within_a_class.php<
   Key[line] => >146<
   Key[function] => >fL1<
   Key[class] => >MyClass<

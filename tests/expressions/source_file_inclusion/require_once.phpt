@@ -72,8 +72,8 @@ int(1)
 ----------------------------------
 Array
 (
-    [0] => %s/expressions/source_file_inclusion/require_once.php
-    [1] => %s/expressions/source_file_inclusion/Positions.inc
-    [2] => %s/expressions/source_file_inclusion/Point.inc
-    [3] => %s/expressions/source_file_inclusion/Circle.inc
+    [0] => %s%eexpressions%esource_file_inclusion%erequire_once.php
+    [1] => %s%eexpressions%esource_file_inclusion%ePositions.inc
+    [2] => %s%eexpressions%esource_file_inclusion%ePoint.inc
+    [3] => %s%eexpressions%esource_file_inclusion%eCircle.inc
 )

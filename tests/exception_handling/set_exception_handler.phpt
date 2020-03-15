@@ -99,22 +99,22 @@ About to call f
 In try-block
 In finally-block
 In MyDefExHandler
-$e = >Exception: Watson, come here! in %s/exception_handling/set_exception_handler.php:73
+$e = >Exception: Watson, come here! in %s%eexception_handling%eset_exception_handler.php:73
 Stack trace:
-#0 %s/exception_handling/set_exception_handler.php(90): f(10, true)
+#0 %s%eexception_handling%eset_exception_handler.php(90): f(10, true)
 #1 {main}<
 getMessage:       >Watson, come here!<
 getCode:          >1234<
 getPrevious:      ><
-getFile:          >%s/exception_handling/set_exception_handler.php<
+getFile:          >%s%eexception_handling%eset_exception_handler.php<
 getLine:          >73<
-getTraceAsString: >#0 %s/exception_handling/set_exception_handler.php(90): f(10, true)
+getTraceAsString: >#0 %s%eexception_handling%eset_exception_handler.php(90): f(10, true)
 #1 {main}<
 array(1) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/set_exception_handler.php"
+    string(%d) "%s%eexception_handling%eset_exception_handler.php"
     ["line"]=>
     int(90)
     ["function"]=>
@@ -130,7 +130,7 @@ array(1) {
 }
 Trace Info:
 Key[0]:
-  Key[file] => >%s/exception_handling/set_exception_handler.php<
+  Key[file] => >%s%eexception_handling%eset_exception_handler.php<
   Key[line] => >90<
   Key[function] => >f<
   Key[args]:

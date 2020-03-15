@@ -19,7 +19,7 @@ var_dump($GLOBALS);
 int(1)
 array(1) {
   [0]=>
-  string(%d) "%s/variables/predefined_variables.php"
+  string(%d) "%s%evariables%epredefined_variables.php"
 }
 array(%d) {%a}
 array(%d) {%a}

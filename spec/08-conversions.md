@@ -14,7 +14,7 @@ Conversions to `resource` and `null` types can not be performed.
 
 ## Converting to Boolean Type
 
-The [result type] (http://www.php.net/manual/en/language.types.boolean.php#language.types.boolean.casting) is [`bool`](05-types.md#the-boolean-type).
+The [result type](http://www.php.net/manual/en/language.types.boolean.php#language.types.boolean.casting) is [`bool`](05-types.md#the-boolean-type).
 
 If the source type is `int` or `float`, then if the source value tests equal
 to 0, the result value is `FALSE`; otherwise, the result value is `TRUE`.

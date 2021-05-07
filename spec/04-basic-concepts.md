@@ -1001,7 +1001,7 @@ outcomes:
 ```
 [VSlot $a *]---->[VStore array *]---->[HStore Array [VSlot 0 *]]
                                                              |
-[VSlot $b *]-->[VStore array *]            [VStore Arr *]&lt;---+
+[VSlot $b *]-->[VStore array *]            [VStore Arr *]<---+
                              |                         |
       +----------------------+              +----------+
       V                                     V
@@ -1050,7 +1050,7 @@ possible outcome:
                                     |                   V   |
                                     | [VStore string 'hi']  |
                                     V                       |
- [VSlot $x *]--------------------->[VStore int 123]&lt;--------+
+ [VSlot $x *]--------------------->[VStore int 123]<--------+
 ```
 
 Here is the third possible outcome:
@@ -1068,11 +1068,11 @@ Here is the third possible outcome:
        V                                                     |              V
    [VStore Arr-D *]-->[HStore Array [VSlot 0 *] [VSlot 1 *]] | [VStore string 'hi']
                                              |           |   |
-                     [VStore int 123]&lt;-------+           |   |
+                     [VStore int 123]<-------+           |   |
                                                          V   |
                                        [VStore string 'hi']  |
                                                              |
- [VSlot $x *]--------------------->[VStore int 123]&lt;---------+
+ [VSlot $x *]--------------------->[VStore int 123]<---------+
 ```
 
 The second and third possible outcomes show what can possibly happen if

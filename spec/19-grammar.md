@@ -1119,8 +1119,8 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <pre>
 <i id="grammar-namespace-definition">namespace-definition:</i>
-   namespace   <i><a href="#grammar-name">name</a></i>   ;
-   namespace   <i><a href="#grammar-name">name</a></i><sub>opt</sub>   <i><a href="#grammar-compound-statement">compound-statement</a></i>
+   namespace   <i><a href="#grammar-namespace-name">namespace-name</a></i>   ;
+   namespace   <i><a href="#grammar-namespace-name">namespace-name</a></i><sub>opt</sub>   <i><a href="#grammar-compound-statement">compound-statement</a></i>
 
 <i id="grammar-namespace-use-declaration">namespace-use-declaration:</i>
    use   <i><a href="#grammar-namespace-function-or-const">namespace-function-or-const</a></i><sub>opt</sub>   <i><a href="#grammar-namespace-use-clauses">namespace-use-clauses</a></i>   ;

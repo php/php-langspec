@@ -38,14 +38,14 @@ prefixes are reserved for use by PHP.
 
 <!-- GRAMMAR
 namespace-definition:
-  'namespace' name ';'
-  'namespace' name? compound-statement
+  'namespace' namespace-name ';'
+  'namespace' namespace-name? compound-statement
 -->
 
 <pre>
 <i id="grammar-namespace-definition">namespace-definition:</i>
-   namespace   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   ;
-   namespace   <i><a href="09-lexical-structure.md#grammar-name">name</a></i><sub>opt</sub>   <i><a href="11-statements.md#grammar-compound-statement">compound-statement</a></i>
+   namespace   <i><a href="09-lexical-structure.md#grammar-namespace-name">namespace-name</a></i>   ;
+   namespace   <i><a href="09-lexical-structure.md#grammar-namespace-name">namespace-name</a></i><sub>opt</sub>   <i><a href="11-statements.md#grammar-compound-statement">compound-statement</a></i>
 </pre>
 
 **Constraints**

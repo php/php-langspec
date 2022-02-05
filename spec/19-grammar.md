@@ -170,7 +170,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-nowdoc-string-literal">nowdoc-string-literal</a></i>
 
 <i id="grammar-single-quoted-string-literal">single-quoted-string-literal::</i>
-   <i><a href="#grammar-b-prefix">b-prefix</a></i><sub>opt</sub>   '   <i><a href="#grammar-sq-char-sequence">sq-char-sequence</a></i><sub>opt</sub>   '
+   <i><a href="#grammar-b-prefix">b-prefix</a></i><sub>opt</sub>   &#039;   <i><a href="#grammar-sq-char-sequence">sq-char-sequence</a></i><sub>opt</sub>   &#039;
 
 <i id="grammar-sq-char-sequence">sq-char-sequence::</i>
    <i><a href="#grammar-sq-char">sq-char</a></i>
@@ -178,10 +178,10 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <i id="grammar-sq-char">sq-char::</i>
    <i><a href="#grammar-sq-escape-sequence">sq-escape-sequence</a></i>
-   \<sub>opt</sub>   any member of the source character set except single-quote (') or backslash (\)
+   \<sub>opt</sub>   any member of the source character set except single-quote (&#039;) or backslash (\)
 
 <i id="grammar-sq-escape-sequence">sq-escape-sequence:: one of</i>
-   \'   \\
+   \&#039;   \\
 
 <i id="grammar-b-prefix">b-prefix:: one of</i>
    b   B
@@ -271,7 +271,7 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    \\   \$   \e   \f   \n   \r   \t   \v
 
 <i id="grammar-nowdoc-string-literal">nowdoc-string-literal::</i>
-   <i><a href="#grammar-b-prefix">b-prefix</a></i><sub>opt</sub>   &lt;&lt;&lt;   '   <i><a href="#grammar-name">name</a></i>   '   <i><a href="#grammar-new-line">new-line</a></i>   <i><a href="#grammar-hd-body">hd-body</a></i><sub>opt</sub>   <i><a href="#grammar-name">name</a></i>   ;<sub>opt</sub>   <i><a href="#grammar-new-line">new-line</a></i>
+   <i><a href="#grammar-b-prefix">b-prefix</a></i><sub>opt</sub>   &lt;&lt;&lt;   &#039;   <i><a href="#grammar-name">name</a></i>   &#039;   <i><a href="#grammar-new-line">new-line</a></i>   <i><a href="#grammar-hd-body">hd-body</a></i><sub>opt</sub>   <i><a href="#grammar-name">name</a></i>   ;<sub>opt</sub>   <i><a href="#grammar-new-line">new-line</a></i>
 
 <i id="grammar-operator-or-punctuator">operator-or-punctuator:: one of</i>
    [   ]   (   )   {   }   .   -&gt;   ++   --   **   *   +   -   ~   !

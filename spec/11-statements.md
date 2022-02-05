@@ -1337,7 +1337,7 @@ a [`__toString` method](14-classes.md#method-__tostring).
 
 After converting each of its *expression*s' values to strings, if
 necessary, `echo` concatenates them in order given, and writes the
-resulting string to [`STDOUT`](06-constants.md#core-predefined-constants). Unlike [`print`](10-expressions.md#print), it does
+resulting string to [`STDOUT`](06-constants.md#core-predefined-constants). Unlike [`print`](10-expressions.md#print-expression), it does
 not produce a result.
 
 See also: [double quoted strings](09-lexical-structure.md#double-quoted-string-literals) and

@@ -73,7 +73,6 @@ Constant Name | Description
 `E_USER_NOTICE` | `int`; User-generated warning message. This is like an `E_NOTICE`, except that `E_USER_NOTICE` is generated in PHP code by using the library function [`trigger_error`](http://www.php.net/trigger_error).
 `E_USER_WARNING` |  `int`; User-generated warning message. This is like an `E_WARNING`, except that  `E_USER_WARNING` is generated in PHP code by using the library function [`trigger_error`](http://www.php.net/trigger_error).
 `E_WARNING` | `int`; Run-time warnings (non-fatal errors). Execution of the script is not halted.
-`E_USER_DEPRECATED` | `int`; User-generated warning message. This is like an `E_DEPRECATED`, except that `E_USER_DEPRECATED` is generated in PHP code by using the library function [`trigger_error`](http://www.php.net/trigger_error).
 `FALSE` |   `bool`; the case-insensitive Boolean value `FALSE`.
 `INF` | `float`; Infinity
 `M_1_PI` |  `float`; 1/pi

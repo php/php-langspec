@@ -10,11 +10,7 @@ Bug reports can be filed at:
 
 > [https://github.com/php/php-langspec/issues](https://github.com/php/php-langspec/issues)
 
-The upstream url of this repo is:
-
-    git@git.php.net:/php-langspec.git
-
-It is also mirrored on GitHub:
+The upstream URL of this repo is:
 
 > [https://github.com/php/php-langspec](https://github.com/php/php-langspec)
 

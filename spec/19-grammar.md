@@ -110,8 +110,11 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
    <i><a href="#grammar-decimal-literal">decimal-literal</a></i>   <i><a href="#grammar-digit">digit</a></i>
 
 <i id="grammar-octal-literal">octal-literal::</i>
-   0
+   <i><a href="#grammar-octal-prefix">octal-prefix</a></i>   <i><a href="#grammar-octal-digit">octal-digit</a></i>
    <i><a href="#grammar-octal-literal">octal-literal</a></i>   <i><a href="#grammar-octal-digit">octal-digit</a></i>
+
+<i id="grammar-octal-prefix">octal-prefix:: one of</i>
+   0   0o   0O
 
 <i id="grammar-hexadecimal-literal">hexadecimal-literal::</i>
    <i><a href="#grammar-hexadecimal-prefix">hexadecimal-prefix</a></i>   <i><a href="#grammar-hexadecimal-digit">hexadecimal-digit</a></i>

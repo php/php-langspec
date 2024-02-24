@@ -4,7 +4,7 @@ This repo contains the WIP PHP Language Specifications.
 
 To join the conversation, send a blank email to:
 
-> [standards-subscribe@lists.php.net](mailto:standards-subscribe@lists.php.net)
+> [standards+subscribe@lists.php.net](mailto:standards+subscribe@lists.php.net)
 
 Bug reports can be filed at:
 

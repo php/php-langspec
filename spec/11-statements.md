@@ -314,7 +314,7 @@ else  // this else does go with the outer if
 <!-- GRAMMAR
 switch-statement:
   'switch' '(' expression ')' '{' case-statements? '}'
-  'switch' '(' expression ')' ':' case-statements? 'endswitch;'
+  'switch' '(' expression ')' ':' case-statements? 'endswitch' ';'
 
 case-statements:
   case-statement case-statements?
@@ -334,7 +334,7 @@ case-default-label-terminator:
 <pre>
 <i id="grammar-switch-statement">switch-statement:</i>
    switch   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   {   <i><a href="#grammar-case-statements">case-statements</a></i><sub>opt</sub>   }
-   switch   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   :   <i><a href="#grammar-case-statements">case-statements</a></i><sub>opt</sub>   endswitch;
+   switch   (   <i><a href="10-expressions.md#grammar-expression">expression</a></i>   )   :   <i><a href="#grammar-case-statements">case-statements</a></i><sub>opt</sub>   endswitch   ;
 
 <i id="grammar-case-statements">case-statements:</i>
    <i><a href="#grammar-case-statement">case-statement</a></i>   <i><a href="#grammar-case-statements">case-statements</a></i><sub>opt</sub>

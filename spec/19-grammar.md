@@ -964,11 +964,16 @@ The grammar notation is described in [Grammars section](09-lexical-structure.md#
 
 <pre>
 <i id="grammar-class-declaration">class-declaration:</i>
-   <i><a href="#grammar-class-modifier">class-modifier</a></i><sub>opt</sub>   class   <i><a href="#grammar-name">name</a></i>   <i><a href="#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
+   <i><a href="#grammar-class-modifiers">class-modifiers</a></i><sub>opt</sub>   class   <i><a href="#grammar-name">name</a></i>   <i><a href="#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
+
+<i id="grammar-class-modifiers">class-modifiers:</i>
+   <i><a href="#grammar-class-modifier">class-modifier</a></i>
+   <i><a href="#grammar-class-modifiers">class-modifiers</a></i>   <i><a href="#grammar-class-modifier">class-modifier</a></i>
 
 <i id="grammar-class-modifier">class-modifier:</i>
    abstract
    final
+   readonly
 
 <i id="grammar-class-base-clause">class-base-clause:</i>
    extends   <i><a href="#grammar-qualified-name">qualified-name</a></i>

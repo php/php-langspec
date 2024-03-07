@@ -60,11 +60,16 @@ While PHP supports *anonymous class types*, such a type cannot be declared using
 
 <!-- GRAMMAR
 class-declaration:
-  class-modifier? 'class' name class-base-clause? class-interface-clause? '{' class-member-declarations? '}'
+  class-modifiers? 'class' name class-base-clause? class-interface-clause? '{' class-member-declarations? '}'
+
+class-modifiers:
+  class-modifier
+  class-modifiers class-modifier
 
 class-modifier:
   'abstract'
   'final'
+  'readonly'
 
 class-base-clause:
   'extends' qualified-name
@@ -76,11 +81,16 @@ class-interface-clause:
 
 <pre>
 <i id="grammar-class-declaration">class-declaration:</i>
-   <i><a href="#grammar-class-modifier">class-modifier</a></i><sub>opt</sub>   class   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   <i><a href="#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
+   <i><a href="#grammar-class-modifiers">class-modifiers</a></i><sub>opt</sub>   class   <i><a href="09-lexical-structure.md#grammar-name">name</a></i>   <i><a href="#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
+
+<i id="grammar-class-modifiers">class-modifiers:</i>
+   <i><a href="#grammar-class-modifier">class-modifier</a></i>
+   <i><a href="#grammar-class-modifiers">class-modifiers</a></i>   <i><a href="#grammar-class-modifier">class-modifier</a></i>
 
 <i id="grammar-class-modifier">class-modifier:</i>
    abstract
    final
+   readonly
 
 <i id="grammar-class-base-clause">class-base-clause:</i>
    extends   <i><a href="09-lexical-structure.md#grammar-qualified-name">qualified-name</a></i>

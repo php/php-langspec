@@ -616,6 +616,7 @@ object-creation-expression:
   'new' class-type-designator '(' argument-expression-list ','? ')'
   'new' class-type-designator
   'new' 'class' '(' argument-expression-list? ')' class-base-clause? class-interface-clause? '{' class-member-declarations? '}'
+  'new' 'class' '(' argument-expression-list ','? ')' class-base-clause? class-interface-clause? '{' class-member-declarations? '}'
   'new' 'class' class-base-clause? class-interface-clause? '{' class-member-declarations? '}'
 
 class-type-designator:
@@ -638,6 +639,7 @@ new-variable:
    new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,<sub>opt</sub>   )
    new   <i><a href="#grammar-class-type-designator">class-type-designator</a></i>
    new   class   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i><sub>opt</sub>   )   <i><a href="14-classes.md#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="14-classes.md#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="14-classes.md#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
+   new   class   (   <i><a href="#grammar-argument-expression-list">argument-expression-list</a></i>   ,<sub>opt</sub>   )   <i><a href="14-classes.md#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="14-classes.md#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="14-classes.md#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
    new   class   <i><a href="14-classes.md#grammar-class-base-clause">class-base-clause</a></i><sub>opt</sub>   <i><a href="14-classes.md#grammar-class-interface-clause">class-interface-clause</a></i><sub>opt</sub>   {   <i><a href="14-classes.md#grammar-class-member-declarations">class-member-declarations</a></i><sub>opt</sub>   }
 
 <i id="grammar-class-type-designator">class-type-designator:</i>

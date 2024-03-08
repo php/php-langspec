@@ -489,8 +489,15 @@ property-declaration:
 
 property-modifier:
   'var'
-  visibility-modifier static-modifier?
-  static-modifier visibility-modifier?
+  visibility-modifier property-modifiers?
+  property-modifiers visibility-modifier?
+
+property-modifiers:
+  readonly-modifier
+  static-modifier
+
+readonly-modifier:
+  'readonly'
 
 visibility-modifier:
   'public'
@@ -517,8 +524,15 @@ property-initializer:
 
 <i id="grammar-property-modifier">property-modifier:</i>
    var
-   <i><a href="#grammar-visibility-modifier">visibility-modifier</a></i>   <i><a href="#grammar-static-modifier">static-modifier</a></i><sub>opt</sub>
-   <i><a href="#grammar-static-modifier">static-modifier</a></i>   <i><a href="#grammar-visibility-modifier">visibility-modifier</a></i><sub>opt</sub>
+   <i><a href="#grammar-visibility-modifier">visibility-modifier</a></i>   <i><a href="#grammar-property-modifiers">property-modifiers</a></i><sub>opt</sub>
+   <i><a href="#grammar-property-modifiers">property-modifiers</a></i>   <i><a href="#grammar-visibility-modifier">visibility-modifier</a></i><sub>opt</sub>
+
+<i id="grammar-property-modifiers">property-modifiers:</i>
+   <i><a href="#grammar-readonly-modifier">readonly-modifier</a></i>
+   <i><a href="#grammar-static-modifier">static-modifier</a></i>
+
+<i id="grammar-readonly-modifier">readonly-modifier:</i>
+   readonly
 
 <i id="grammar-visibility-modifier">visibility-modifier:</i>
    public

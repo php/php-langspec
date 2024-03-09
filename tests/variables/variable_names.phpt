@@ -77,6 +77,6 @@ array(11) {
   ["argv"]=>
   array(1) {
     [0]=>
-    string(%d) "%s/tests/variables/variable_names.php"
+    string(%d) "%s%etests%evariables%evariable_names.php"
   }
 }

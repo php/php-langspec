@@ -107,17 +107,17 @@ echo "----------------------------------\n";
 
 print_r(get_included_files());
 --EXPECTF--
-Inside file >%s/expressions/source_file_inclusion/include.php< at line >11< with namespace ><
+Inside file >%s%eexpressions%esource_file_inclusion%einclude.php< at line >11< with namespace ><
 
 Warning: %a
 include file does not exist
 ================= xxx =================
-Inside file >%s/expressions/source_file_inclusion/limits.inc< at line >14< with namespace >MyInclude<
+Inside file >%s%eexpressions%esource_file_inclusion%elimits.inc< at line >14< with namespace >MyInclude<
 int(1)
-Inside file >%s/expressions/source_file_inclusion/include.php< at line >29< with namespace ><
-Inside file >%s/expressions/source_file_inclusion/mycolors.inc< at line >13< with namespace >MyColors<
+Inside file >%s%eexpressions%esource_file_inclusion%einclude.php< at line >29< with namespace ><
+Inside file >%s%eexpressions%esource_file_inclusion%emycolors.inc< at line >13< with namespace >MyColors<
 int(1)
-Inside file >%s/expressions/source_file_inclusion/include.php< at line >37< with namespace ><
+Inside file >%s%eexpressions%esource_file_inclusion%einclude.php< at line >37< with namespace ><
 ----------------------------------
 MY_MIN is not defined
 ----------------------------------
@@ -126,40 +126,40 @@ NULL
 int(987)
 ----------------------------------
 ----------------------------------
-Inside file >%s/expressions/source_file_inclusion/include.php< at line >86<
+Inside file >%s%eexpressions%esource_file_inclusion%einclude.php< at line >86<
 ----------------------------------
 int(100)
 ====
 Array
 (
-    [0] => %s/expressions/source_file_inclusion/include.php
-    [1] => %s/expressions/source_file_inclusion/limits.inc
-    [2] => %s/expressions/source_file_inclusion/mycolors.inc
-    [3] => %s/expressions/source_file_inclusion/return_none.inc
-    [4] => %s/expressions/source_file_inclusion/return_without_value.inc
-    [5] => %s/expressions/source_file_inclusion/return_with_value.inc
-    [6] => %s/expressions/source_file_inclusion/test.inc
+    [0] => %s%eexpressions%esource_file_inclusion%einclude.php
+    [1] => %s%eexpressions%esource_file_inclusion%elimits.inc
+    [2] => %s%eexpressions%esource_file_inclusion%emycolors.inc
+    [3] => %s%eexpressions%esource_file_inclusion%ereturn_none.inc
+    [4] => %s%eexpressions%esource_file_inclusion%ereturn_without_value.inc
+    [5] => %s%eexpressions%esource_file_inclusion%ereturn_with_value.inc
+    [6] => %s%eexpressions%esource_file_inclusion%etest.inc
 )
 ====
 int(1)
 ----------------------------------
-Inside file >%s/expressions/source_file_inclusion/include.php< at line >95<
-Inside test() in %s/expressions/source_file_inclusion/test.inc
+Inside file >%s%eexpressions%esource_file_inclusion%einclude.php< at line >95<
+Inside test() in %s%eexpressions%esource_file_inclusion%etest.inc
 
-Notice: Undefined variable: v1 in %s/expressions/source_file_inclusion/test.inc on line 14
+Notice: Undefined variable: v1 in %s on line %d
 
-Notice: Undefined variable: v2 in %s/expressions/source_file_inclusion/test.inc on line 14
+Notice: Undefined variable: v2 in %s on line %d
 $v1: , $v2: 
 $local1: 100
-Inside file >%s/expressions/source_file_inclusion/include.php< at line >99<
+Inside file >%s%eexpressions%esource_file_inclusion%einclude.php< at line >99<
 ----------------------------------
 Array
 (
-    [0] => %s/expressions/source_file_inclusion/include.php
-    [1] => %s/expressions/source_file_inclusion/limits.inc
-    [2] => %s/expressions/source_file_inclusion/mycolors.inc
-    [3] => %s/expressions/source_file_inclusion/return_none.inc
-    [4] => %s/expressions/source_file_inclusion/return_without_value.inc
-    [5] => %s/expressions/source_file_inclusion/return_with_value.inc
-    [6] => %s/expressions/source_file_inclusion/test.inc
+    [0] => %s%eexpressions%esource_file_inclusion%einclude.php
+    [1] => %s%eexpressions%esource_file_inclusion%elimits.inc
+    [2] => %s%eexpressions%esource_file_inclusion%emycolors.inc
+    [3] => %s%eexpressions%esource_file_inclusion%ereturn_none.inc
+    [4] => %s%eexpressions%esource_file_inclusion%ereturn_without_value.inc
+    [5] => %s%eexpressions%esource_file_inclusion%ereturn_with_value.inc
+    [6] => %s%eexpressions%esource_file_inclusion%etest.inc
 )

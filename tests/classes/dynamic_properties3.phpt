@@ -43,7 +43,7 @@ var_dump($c);
 --EXPECTF--
 get
 
-Notice: Undefined property: C::$prop in %s/classes/dynamic_properties3.php on line 15
+Notice: Undefined property: C::$prop in %s on line %d
 set
 int(123)
 object(C)#1 (1) {

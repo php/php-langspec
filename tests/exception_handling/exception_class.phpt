@@ -145,13 +145,13 @@ fL1(10);
 --EXPECTF--
 L0: In try-block
 L0: In catch-block
-$e = >Exception: L0 Message in %s/exception_handling/exception_class.php:127
+$e = >Exception: L0 Message in %s%eexception_handling%eexception_class.php:127
 Stack trace:
 #0 {main}<
 getMessage:       >L0 Message<
 getCode:          >-1<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class.php<
+getFile:          >%s%eexception_handling%eexception_class.php<
 getLine:          >127<
 getTraceAsString: >#0 {main}<
 array(0) {
@@ -163,22 +163,22 @@ L0: Beyond try/catch/finally blocks
 L0: Calling fL1
 fL1: In try-block
 fL1: In catch-block
-$e = >Exception: fL1 Message in %s/exception_handling/exception_class.php:55
+$e = >Exception: fL1 Message in %s%eexception_handling%eexception_class.php:55
 Stack trace:
-#0 %s/exception_handling/exception_class.php(140): fL1(10)
+#0 %s%eexception_handling%eexception_class.php(140): fL1(10)
 #1 {main}<
 getMessage:       >fL1 Message<
 getCode:          >123<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class.php<
+getFile:          >%s%eexception_handling%eexception_class.php<
 getLine:          >55<
-getTraceAsString: >#0 %s/exception_handling/exception_class.php(140): fL1(10)
+getTraceAsString: >#0 %s%eexception_handling%eexception_class.php(140): fL1(10)
 #1 {main}<
 array(1) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class.php"
+    string(%d) "%s%eexception_handling%eexception_class.php"
     ["line"]=>
     int(140)
     ["function"]=>
@@ -192,7 +192,7 @@ array(1) {
 }
 Trace Info:
 Key[0]:
-  Key[file] => >%s/exception_handling/exception_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class.php<
   Key[line] => >140<
   Key[function] => >fL1<
   Key[args]:
@@ -203,24 +203,24 @@ fL1: Beyond try/catch/finally blocks
 fL1: Calling fL2
 fL2: In try-block
 fL2: In catch-block
-$e = >Exception: fL2 Message in %s/exception_handling/exception_class.php:81
+$e = >Exception: fL2 Message in %s%eexception_handling%eexception_class.php:81
 Stack trace:
-#0 %s/exception_handling/exception_class.php(69): fL2(2.3, -4.5)
-#1 %s/exception_handling/exception_class.php(140): fL1(10)
+#0 %s%eexception_handling%eexception_class.php(69): fL2(2.3, -4.5)
+#1 %s%eexception_handling%eexception_class.php(140): fL1(10)
 #2 {main}<
 getMessage:       >fL2 Message<
 getCode:          >234<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class.php<
+getFile:          >%s%eexception_handling%eexception_class.php<
 getLine:          >81<
-getTraceAsString: >#0 %s/exception_handling/exception_class.php(69): fL2(2.3, -4.5)
-#1 %s/exception_handling/exception_class.php(140): fL1(10)
+getTraceAsString: >#0 %s%eexception_handling%eexception_class.php(69): fL2(2.3, -4.5)
+#1 %s%eexception_handling%eexception_class.php(140): fL1(10)
 #2 {main}<
 array(2) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class.php"
+    string(%d) "%s%eexception_handling%eexception_class.php"
     ["line"]=>
     int(69)
     ["function"]=>
@@ -236,7 +236,7 @@ array(2) {
   [1]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class.php"
+    string(%d) "%s%eexception_handling%eexception_class.php"
     ["line"]=>
     int(140)
     ["function"]=>
@@ -250,14 +250,14 @@ array(2) {
 }
 Trace Info:
 Key[0]:
-  Key[file] => >%s/exception_handling/exception_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class.php<
   Key[line] => >69<
   Key[function] => >fL2<
   Key[args]:
     Key[0] => >2.3<
     Key[1] => >-4.5<
 Key[1]:
-  Key[file] => >%s/exception_handling/exception_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class.php<
   Key[line] => >140<
   Key[function] => >fL1<
   Key[args]:
@@ -268,26 +268,26 @@ fL2: Beyond try/catch/finally blocks
 fL2: Calling fL3
 fL3: In try-block
 fL3: In catch-block
-$e = >Exception: fL3 Message in %s/exception_handling/exception_class.php:107
+$e = >Exception: fL3 Message in %s%eexception_handling%eexception_class.php:107
 Stack trace:
-#0 %s/exception_handling/exception_class.php(95): fL3('xyz', NULL, true)
-#1 %s/exception_handling/exception_class.php(69): fL2(2.3, -4.5)
-#2 %s/exception_handling/exception_class.php(140): fL1(10)
+#0 %s%eexception_handling%eexception_class.php(95): fL3('xyz', NULL, true)
+#1 %s%eexception_handling%eexception_class.php(69): fL2(2.3, -4.5)
+#2 %s%eexception_handling%eexception_class.php(140): fL1(10)
 #3 {main}<
 getMessage:       >fL3 Message<
 getCode:          >345<
 getPrevious:      ><
-getFile:          >%s/exception_handling/exception_class.php<
+getFile:          >%s%eexception_handling%eexception_class.php<
 getLine:          >107<
-getTraceAsString: >#0 %s/exception_handling/exception_class.php(95): fL3('xyz', NULL, true)
-#1 %s/exception_handling/exception_class.php(69): fL2(2.3, -4.5)
-#2 %s/exception_handling/exception_class.php(140): fL1(10)
+getTraceAsString: >#0 %s%eexception_handling%eexception_class.php(95): fL3('xyz', NULL, true)
+#1 %s%eexception_handling%eexception_class.php(69): fL2(2.3, -4.5)
+#2 %s%eexception_handling%eexception_class.php(140): fL1(10)
 #3 {main}<
 array(3) {
   [0]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class.php"
+    string(%d) "%s%eexception_handling%eexception_class.php"
     ["line"]=>
     int(95)
     ["function"]=>
@@ -305,7 +305,7 @@ array(3) {
   [1]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class.php"
+    string(%d) "%s%eexception_handling%eexception_class.php"
     ["line"]=>
     int(69)
     ["function"]=>
@@ -321,7 +321,7 @@ array(3) {
   [2]=>
   array(4) {
     ["file"]=>
-    string(%d) "%s/exception_handling/exception_class.php"
+    string(%d) "%s%eexception_handling%eexception_class.php"
     ["line"]=>
     int(140)
     ["function"]=>
@@ -335,7 +335,7 @@ array(3) {
 }
 Trace Info:
 Key[0]:
-  Key[file] => >%s/exception_handling/exception_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class.php<
   Key[line] => >95<
   Key[function] => >fL3<
   Key[args]:
@@ -343,14 +343,14 @@ Key[0]:
     Key[1] => ><
     Key[2] => >1<
 Key[1]:
-  Key[file] => >%s/exception_handling/exception_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class.php<
   Key[line] => >69<
   Key[function] => >fL2<
   Key[args]:
     Key[0] => >2.3<
     Key[1] => >-4.5<
 Key[2]:
-  Key[file] => >%s/exception_handling/exception_class.php<
+  Key[file] => >%s%eexception_handling%eexception_class.php<
   Key[line] => >140<
   Key[function] => >fL1<
   Key[args]:

@@ -198,45 +198,45 @@ string(8) "blue sky"
 >NAN<--- o/p from string substition
 >NaN<--- using o/p from sprintf with hard-coded precision
 
-Notice: Undefined variable: zX in %s/lexical_structure/tokens/string_literals.php on line 88
+Notice: Undefined variable: zX in %s on line %d
 
-Notice: Undefined variable: zz_ in %s/lexical_structure/tokens/string_literals.php on line 88
+Notice: Undefined variable: zz_ in %s on line %d
 
-Notice: Undefined variable: zzz3 in %s/lexical_structure/tokens/string_literals.php on line 88
+Notice: Undefined variable: zzz3 in %s on line %d
 >|-34 X||ABC _||1 3|5.67E+14+|5.67E+14 +<
 
-Notice: Undefined variable: zX in %s/lexical_structure/tokens/string_literals.php on line 90
+Notice: Undefined variable: zX in %s on line %d
 string(0) ""
 
-Notice: Undefined variable: zz_ in %s/lexical_structure/tokens/string_literals.php on line 91
+Notice: Undefined variable: zz_ in %s on line %d
 string(0) ""
 
-Notice: Undefined variable: zzz3 in %s/lexical_structure/tokens/string_literals.php on line 92
+Notice: Undefined variable: zzz3 in %s on line %d
 string(0) ""
 string(9) "5.67E+14+"
 >$1|$&<
 
-Notice: Array to string conversion in %s/lexical_structure/tokens/string_literals.php on line 103
+Notice: Array to string conversion in %s on line %d
 \colors contains >Array<
 \colors[1] contains >white<
 
-Notice: Array to string conversion in %s/lexical_structure/tokens/string_literals.php on line 105
+Notice: Array to string conversion in %s on line %d
 \colors[1] contains >Array [1]<
 string(5) "white"
 
-Notice: Undefined index: 01 in %s/lexical_structure/tokens/string_literals.php on line 109
+Notice: Undefined index: 01 in %s on line %d
 string(0) ""
 
-Notice: Undefined index: 0x1 in %s/lexical_structure/tokens/string_literals.php on line 110
+Notice: Undefined index: 0x1 in %s on line %d
 string(0) ""
 
-Notice: Undefined index: 0X1 in %s/lexical_structure/tokens/string_literals.php on line 111
+Notice: Undefined index: 0X1 in %s on line %d
 string(0) ""
 $colors[2] contains >blue<
 
-Notice: Array to string conversion in %s/lexical_structure/tokens/string_literals.php on line 123
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/lexical_structure/tokens/string_literals.php on line 123
+Notice: Array to string conversion in %s on line %d
 >Array|Array<
 $myC->p1 = >2<
 >-34X|-34 X|ABC_|ABC _|13|1 3|5.67E+14+|5.67E+14 +<

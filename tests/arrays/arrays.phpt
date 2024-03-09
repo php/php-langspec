@@ -398,16 +398,16 @@ array(3) {
 }
 123 6 13 
 
-Notice: Undefined %s: 1 in %s/arrays/arrays.php on line 108
+Notice: Undefined %s: 1 in %s on line %d
 $v[1] is ><
 
-Notice: Undefined variable: v1 in %s/arrays/arrays.php on line 108
+Notice: Undefined variable: v1 in %s on line %d
 NULL
 
-Notice: Undefined %s: 4 in %s/arrays/arrays.php on line 109
+Notice: Undefined %s: 4 in %s on line %d
 $v[4] is ><
 
-Notice: Undefined variable: v1 in %s/arrays/arrays.php on line 109
+Notice: Undefined variable: v1 in %s on line %d
 NULL
 array(5) {
   [7]=>

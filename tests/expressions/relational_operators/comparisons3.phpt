@@ -227,107 +227,107 @@ abc >        1  result: bool(false)
 abc >  (bool)1  result: bool(false)
 =======
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 22
+Notice: Array to string conversion in %s on line %d
 1 >        Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 23
+Notice: Array to string conversion in %s on line %d
 1 >  (bool)Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 24
+Notice: Array to string conversion in %s on line %d
 Array <=       1  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 25
+Notice: Array to string conversion in %s on line %d
 Array <= (bool)1  result: bool(true)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 27
+Notice: Array to string conversion in %s on line %d
 1 >=       Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 28
+Notice: Array to string conversion in %s on line %d
 1 >= (bool)Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 29
+Notice: Array to string conversion in %s on line %d
 Array <        1  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 30
+Notice: Array to string conversion in %s on line %d
 Array <  (bool)1  result: bool(true)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 32
+Notice: Array to string conversion in %s on line %d
 1 <        Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 33
+Notice: Array to string conversion in %s on line %d
 1 <  (bool)Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 34
+Notice: Array to string conversion in %s on line %d
 Array >=       1  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 35
+Notice: Array to string conversion in %s on line %d
 Array >= (bool)1  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 37
+Notice: Array to string conversion in %s on line %d
 1 <=       Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 38
+Notice: Array to string conversion in %s on line %d
 1 <= (bool)Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 39
+Notice: Array to string conversion in %s on line %d
 Array >        1  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 40
+Notice: Array to string conversion in %s on line %d
 Array >  (bool)1  result: bool(false)
 =======
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 22
+Notice: Array to string conversion in %s on line %d
 1 >        Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 23
+Notice: Array to string conversion in %s on line %d
 1 >  (bool)Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 24
+Notice: Array to string conversion in %s on line %d
 Array <=       1  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 25
+Notice: Array to string conversion in %s on line %d
 Array <= (bool)1  result: bool(true)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 27
+Notice: Array to string conversion in %s on line %d
 1 >=       Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 28
+Notice: Array to string conversion in %s on line %d
 1 >= (bool)Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 29
+Notice: Array to string conversion in %s on line %d
 Array <        1  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 30
+Notice: Array to string conversion in %s on line %d
 Array <  (bool)1  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 32
+Notice: Array to string conversion in %s on line %d
 1 <        Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 33
+Notice: Array to string conversion in %s on line %d
 1 <  (bool)Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 34
+Notice: Array to string conversion in %s on line %d
 Array >=       1  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 35
+Notice: Array to string conversion in %s on line %d
 Array >= (bool)1  result: bool(true)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 37
+Notice: Array to string conversion in %s on line %d
 1 <=       Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 38
+Notice: Array to string conversion in %s on line %d
 1 <= (bool)Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 39
+Notice: Array to string conversion in %s on line %d
 Array >        1  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 40
+Notice: Array to string conversion in %s on line %d
 Array >  (bool)1  result: bool(false)
 =======
 -------------------------------------
@@ -512,107 +512,107 @@ abc >          result: bool(true)
 abc >  (bool)  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 22
+Notice: Array to string conversion in %s on line %d
  >        Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 23
+Notice: Array to string conversion in %s on line %d
  >  (bool)Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 24
+Notice: Array to string conversion in %s on line %d
 Array <=         result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 25
+Notice: Array to string conversion in %s on line %d
 Array <= (bool)  result: bool(true)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 27
+Notice: Array to string conversion in %s on line %d
  >=       Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 28
+Notice: Array to string conversion in %s on line %d
  >= (bool)Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 29
+Notice: Array to string conversion in %s on line %d
 Array <          result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 30
+Notice: Array to string conversion in %s on line %d
 Array <  (bool)  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 32
+Notice: Array to string conversion in %s on line %d
  <        Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 33
+Notice: Array to string conversion in %s on line %d
  <  (bool)Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 34
+Notice: Array to string conversion in %s on line %d
 Array >=         result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 35
+Notice: Array to string conversion in %s on line %d
 Array >= (bool)  result: bool(true)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 37
+Notice: Array to string conversion in %s on line %d
  <=       Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 38
+Notice: Array to string conversion in %s on line %d
  <= (bool)Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 39
+Notice: Array to string conversion in %s on line %d
 Array >          result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 40
+Notice: Array to string conversion in %s on line %d
 Array >  (bool)  result: bool(false)
 =======
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 22
+Notice: Array to string conversion in %s on line %d
  >        Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 23
+Notice: Array to string conversion in %s on line %d
  >  (bool)Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 24
+Notice: Array to string conversion in %s on line %d
 Array <=         result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 25
+Notice: Array to string conversion in %s on line %d
 Array <= (bool)  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 27
+Notice: Array to string conversion in %s on line %d
  >=       Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 28
+Notice: Array to string conversion in %s on line %d
  >= (bool)Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 29
+Notice: Array to string conversion in %s on line %d
 Array <          result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 30
+Notice: Array to string conversion in %s on line %d
 Array <  (bool)  result: bool(false)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 32
+Notice: Array to string conversion in %s on line %d
  <        Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 33
+Notice: Array to string conversion in %s on line %d
  <  (bool)Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 34
+Notice: Array to string conversion in %s on line %d
 Array >=         result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 35
+Notice: Array to string conversion in %s on line %d
 Array >= (bool)  result: bool(true)
 ---
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 37
+Notice: Array to string conversion in %s on line %d
  <=       Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 38
+Notice: Array to string conversion in %s on line %d
  <= (bool)Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 39
+Notice: Array to string conversion in %s on line %d
 Array >          result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/relational_operators/comparisons3.php on line 40
+Notice: Array to string conversion in %s on line %d
 Array >  (bool)  result: bool(true)
 =======
 -------------------------------------

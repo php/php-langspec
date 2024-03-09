@@ -141,9 +141,9 @@ $datePlus1->xx();
 include_once('includefile.inc');
 --EXPECTF--
 __LINE__: int(17)
-__FILE__: string(%d) "%s/constants/core_predefined_constants.php"
-__DIR__: string(%d) "%s/constants"
-string(%d) "%s/constants"
+__FILE__: string(%d) "%s%econstants%ecore_predefined_constants.php"
+__DIR__: string(%d) "%s%econstants"
+string(%d) "%s%econstants"
 __LINE__: int(24)
 __NAMESPACE__: string(0) ""
 -----------------------------------------
@@ -191,8 +191,8 @@ __CLASS__: string(8) "DatePlus"
 Inside DatePlus::xx
 __FUNCTION__: string(2) "xx"
 Inside includefile.php
-string(%d) "%s/constants/includefile.inc"
-string(%d) "%s/constants"
+string(%d) "%s%econstants%eincludefile.inc"
+string(%d) "%s%econstants"
 Inside Date::__destruct
 __FUNCTION__: string(10) "__destruct"
 Inside Date::__destruct

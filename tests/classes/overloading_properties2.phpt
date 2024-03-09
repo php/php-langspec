@@ -19,5 +19,5 @@ unset($p->color);		// remove the property "color"
 --EXPECTF--
 bool(false)
 
-Notice: Undefined property: Point::$color in %s/classes/overloading_properties2.php on line 9
+Notice: Undefined property: Point::$color in %s on line %d
 NULL

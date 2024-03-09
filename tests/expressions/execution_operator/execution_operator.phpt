@@ -11,15 +11,17 @@ PHP Spec test generated from ./expressions/execution_operator/execution_operator
 
 error_reporting(-1);
 
+$ls = (substr(PHP_OS, 0, 3) != 'WIN') ? 'ls' : 'dir';
+
 ///*
 // $result = `dir *.*`;
-$result = `ls`;
+$result = `$ls`;
 var_dump($result);
 //*/
 
 ///*
 // $result = `dir *.* >dirlist.txt`;
-$result = `ls >dirlist.txt`;
+$result = `$ls >dirlist.txt`;
 var_dump($result);
 unlink('dirlist.txt');
 //*/
@@ -28,7 +30,7 @@ unlink('dirlist.txt');
 $d = "dir";
 $f = "*.*";
 // $result = `$d {$f}`;
-$result = `ls`;
+$result = `$ls`;
 var_dump($result);
 //*/
 

@@ -198,35 +198,35 @@ bool(false)
  !==  abc  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 37
+Notice: Array to string conversion in %s on line %d
  ==   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 38
+Notice: Array to string conversion in %s on line %d
  !=   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 39
+Notice: Array to string conversion in %s on line %d
  <>   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 40
+Notice: Array to string conversion in %s on line %d
  ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 41
+Notice: Array to string conversion in %s on line %d
  !==  Array  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 37
+Notice: Array to string conversion in %s on line %d
  ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 38
+Notice: Array to string conversion in %s on line %d
  !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 39
+Notice: Array to string conversion in %s on line %d
  <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 40
+Notice: Array to string conversion in %s on line %d
  ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 41
+Notice: Array to string conversion in %s on line %d
  !==  Array  result: bool(true)
 =======
 -------------------------------------
@@ -364,35 +364,35 @@ aa !==  AB  result: bool(true)
 1 !==  abc  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 81
+Notice: Array to string conversion in %s on line %d
 1 ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 82
+Notice: Array to string conversion in %s on line %d
 1 !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 83
+Notice: Array to string conversion in %s on line %d
 1 <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 84
+Notice: Array to string conversion in %s on line %d
 1 ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 85
+Notice: Array to string conversion in %s on line %d
 1 !==  Array  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 81
+Notice: Array to string conversion in %s on line %d
 1 ==   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 82
+Notice: Array to string conversion in %s on line %d
 1 !=   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 83
+Notice: Array to string conversion in %s on line %d
 1 <>   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 84
+Notice: Array to string conversion in %s on line %d
 1 ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 85
+Notice: Array to string conversion in %s on line %d
 1 !==  Array  result: bool(true)
 =======
 -------------------------------------
@@ -451,35 +451,35 @@ Notice: Array to string conversion in %s/expressions/equality_operators/comparis
  !==  abc  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 81
+Notice: Array to string conversion in %s on line %d
  ==   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 82
+Notice: Array to string conversion in %s on line %d
  !=   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 83
+Notice: Array to string conversion in %s on line %d
  <>   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 84
+Notice: Array to string conversion in %s on line %d
  ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 85
+Notice: Array to string conversion in %s on line %d
  !==  Array  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 81
+Notice: Array to string conversion in %s on line %d
  ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 82
+Notice: Array to string conversion in %s on line %d
  !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 83
+Notice: Array to string conversion in %s on line %d
  <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 84
+Notice: Array to string conversion in %s on line %d
  ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 85
+Notice: Array to string conversion in %s on line %d
  !==  Array  result: bool(true)
 =======
 -------------------------------------
@@ -540,35 +540,35 @@ Notice: Array to string conversion in %s/expressions/equality_operators/comparis
 10 !==  abc  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 103
+Notice: Array to string conversion in %s on line %d
 10 ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 104
+Notice: Array to string conversion in %s on line %d
 10 !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 105
+Notice: Array to string conversion in %s on line %d
 10 <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 106
+Notice: Array to string conversion in %s on line %d
 10 ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 107
+Notice: Array to string conversion in %s on line %d
 10 !==  Array  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 103
+Notice: Array to string conversion in %s on line %d
 10 ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 104
+Notice: Array to string conversion in %s on line %d
 10 !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 105
+Notice: Array to string conversion in %s on line %d
 10 <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 106
+Notice: Array to string conversion in %s on line %d
 10 ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 107
+Notice: Array to string conversion in %s on line %d
 10 !==  Array  result: bool(true)
 =======
 -------------------------------------
@@ -627,247 +627,247 @@ Notice: Array to string conversion in %s/expressions/equality_operators/comparis
 -5.1 !==  abc  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 103
+Notice: Array to string conversion in %s on line %d
 -5.1 ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 104
+Notice: Array to string conversion in %s on line %d
 -5.1 !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 105
+Notice: Array to string conversion in %s on line %d
 -5.1 <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 106
+Notice: Array to string conversion in %s on line %d
 -5.1 ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 107
+Notice: Array to string conversion in %s on line %d
 -5.1 !==  Array  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 103
+Notice: Array to string conversion in %s on line %d
 -5.1 ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 104
+Notice: Array to string conversion in %s on line %d
 -5.1 !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 105
+Notice: Array to string conversion in %s on line %d
 -5.1 <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 106
+Notice: Array to string conversion in %s on line %d
 -5.1 ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 107
+Notice: Array to string conversion in %s on line %d
 -5.1 !==  Array  result: bool(true)
 =======
 -------------------------------------
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 Array ==   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 Array !=   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 Array <>   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 Array ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 Array !==  Array  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 Array ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 Array !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 Array <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 Array ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 Array !==  Array  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 Array ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 Array !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 Array <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 Array ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 Array !==  Array  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 Array ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 Array !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 Array <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 Array ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 Array !==  Array  result: bool(true)
 =======
 -------------------------------------
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 Array ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 Array !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 Array <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 Array ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 Array !==  Array  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 Array ==   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 Array !=   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 Array <>   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 Array ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 Array !==  Array  result: bool(true)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 Array ==   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 Array !=   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 Array <>   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 Array ===  Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 Array !==  Array  result: bool(false)
 =======
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 125
+Notice: Array to string conversion in %s on line %d
 Array ==   Array  result: bool(true)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 126
+Notice: Array to string conversion in %s on line %d
 Array !=   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 127
+Notice: Array to string conversion in %s on line %d
 Array <>   Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 128
+Notice: Array to string conversion in %s on line %d
 Array ===  Array  result: bool(false)
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/equality_operators/comparisons.php on line 129
+Notice: Array to string conversion in %s on line %d
 Array !==  Array  result: bool(true)
 =======
 -------------------------------------

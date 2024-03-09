@@ -160,11 +160,11 @@ int(1234)
 
 int(1234)
 
-Notice: Undefined variable: c in %s/functions/byrefs.php on line 53
+Notice: Undefined variable: c in %s on line %d
 NULL
 
 
-Notice: Undefined variable: a in %s/functions/byrefs.php on line 65
+Notice: Undefined variable: a in %s on line %d
 NULL
 object(C)#1 (1) {
   ["m"]=>
@@ -194,7 +194,7 @@ object(C)#1 (1) {
 }
 
 
-Notice: Undefined variable: a in %s/functions/byrefs.php on line 84
+Notice: Undefined variable: a in %s on line %d
 NULL
 object(C)#1 (1) {
   ["m"]=>

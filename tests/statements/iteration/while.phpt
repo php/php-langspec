@@ -58,14 +58,14 @@ while (TRUE)
 10	100
 1
 
-Notice: Undefined variable: done in %s/statements/iteration/while.php on line 3%d
+Notice: Undefined variable: done in %s on line %d%d
 2
 
-Notice: Undefined variable: done in %s/statements/iteration/while.php on line 3%d
+Notice: Undefined variable: done in %s on line %d%d
 3
 
-Notice: Undefined variable: done in %s/statements/iteration/while.php on line 3%d
+Notice: Undefined variable: done in %s on line %d%d
 4
 
-Notice: Undefined variable: done in %s/statements/iteration/while.php on line 3%d
+Notice: Undefined variable: done in %s on line %d%d
 5

@@ -261,6 +261,6 @@ object(C1)#1 (1) {
   string(1) "v"
 }
 
-Warning: Creating default object from empty value in %s/variables/variable_variables.php on line 183
+Warning: Creating default object from empty value in %s on line %d
 ----------------------
 $xxx = 777

@@ -23,11 +23,11 @@ var_dump($infile);
 $infile = @fopen("NoSuchFile.txt", 'r');
 var_dump($infile);
 --EXPECTF--
-Warning:%sNo such file or directory in %s/types/resource/resource_from_fopen.php on line 11
+Warning:%sNo such file or directory in %s on line %d
 bool(false)
 
 
 
-Warning:%sNo such file or directory in %s/types/resource/resource_from_fopen.php on line 17
+Warning:%sNo such file or directory in %s on line %d
 bool(false)
 bool(false)

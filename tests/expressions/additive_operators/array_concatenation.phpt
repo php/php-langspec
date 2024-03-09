@@ -63,9 +63,9 @@ var_dump($a1);
 var_dump($a2);
 //*/
 --EXPECTF--
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 >Array< + >Array<, result: array(3) {
   [0]=>
   int(1)
@@ -75,9 +75,9 @@ Notice: Array to string conversion in %s/expressions/additive_operators/array_co
   string(3) "red"
 }
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 >Array< + >Array<, result: array(3) {
   [0]=>
   int(1)
@@ -87,9 +87,9 @@ Notice: Array to string conversion in %s/expressions/additive_operators/array_co
   string(3) "red"
 }
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 >Array< + >Array<, result: array(4) {
   [0]=>
   int(1)
@@ -102,9 +102,9 @@ Notice: Array to string conversion in %s/expressions/additive_operators/array_co
 }
 -------------------------------------
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 >Array< + >Array<, result: array(3) {
   [0]=>
   NULL
@@ -114,17 +114,17 @@ Notice: Array to string conversion in %s/expressions/additive_operators/array_co
   string(3) "red"
 }
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 >Array< + >Array<, result: array(1) {
   [0]=>
   NULL
 }
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 >Array< + >Array<, result: array(3) {
   [0]=>
   NULL
@@ -135,9 +135,9 @@ Notice: Array to string conversion in %s/expressions/additive_operators/array_co
 }
 -------------------------------------
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 >Array< + >Array<, result: array(4) {
   [4]=>
   int(-5)
@@ -149,9 +149,9 @@ Notice: Array to string conversion in %s/expressions/additive_operators/array_co
   string(3) "red"
 }
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 >Array< + >Array<, result: array(3) {
   [4]=>
   int(-5)
@@ -161,9 +161,9 @@ Notice: Array to string conversion in %s/expressions/additive_operators/array_co
   NULL
 }
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 
-Notice: Array to string conversion in %s/expressions/additive_operators/array_concatenation.php on line 18
+Notice: Array to string conversion in %s on line %d
 >Array< + >Array<, result: array(2) {
   [4]=>
   int(-5)

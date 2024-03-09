@@ -325,14 +325,14 @@ int(107)
 Inside C10::offsetGet
 int(1000)
 
-Notice: Indirect modification of overloaded element of C10 has no effect in %s/expressions/postfix_operators/subscripting_2.php on line 117
+Notice: Indirect modification of overloaded element of C10 has no effect in %s on line %d
 int(100)
 ------
 
 Inside C10::offsetGet
 int(1000)
 
-Notice: Indirect modification of overloaded element of C10 has no effect in %s/expressions/postfix_operators/subscripting_2.php on line 119
+Notice: Indirect modification of overloaded element of C10 has no effect in %s on line %d
 int(99)
 ====== object without index; simple assignment =========
 
@@ -387,19 +387,19 @@ object(C10)#1 (0) {
 Inside C10::offsetGet
 NULL
 
-Notice: Indirect modification of overloaded element of C10 has no effect in %s/expressions/postfix_operators/subscripting_2.php on line 146
+Notice: Indirect modification of overloaded element of C10 has no effect in %s on line %d
 int(100)
 ------
 
 Inside C10::offsetGet
 NULL
 
-Notice: Indirect modification of overloaded element of C10 has no effect in %s/expressions/postfix_operators/subscripting_2.php on line 148
+Notice: Indirect modification of overloaded element of C10 has no effect in %s on line %d
 int(101)
 ------
 
 Inside C10::offsetGet
 NULL
 
-Notice: Indirect modification of overloaded element of C10 has no effect in %s/expressions/postfix_operators/subscripting_2.php on line 151
+Notice: Indirect modification of overloaded element of C10 has no effect in %s on line %d
 int(99)

@@ -101,7 +101,7 @@ declared: 987
 ----------------------
 Getting 'hidden'
 
-Notice: Undefined property via __get(): hidden in %s/classes/overloading_play.php on line 71 in %s/classes/overloading_play.php on line 34
+Notice: Undefined property via __get(): hidden in %s on line %d in %s on line %d
 NULL
 ----------------------
 Is 'hidden' set?

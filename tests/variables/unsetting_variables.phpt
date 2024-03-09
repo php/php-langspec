@@ -149,13 +149,13 @@ f:1 $gVar1 = 25
 --- Back at top-level
 --- Inside f, block-level 1
 
-Notice: Constant CON3 already defined in %s/variables/unsetting_variables.php on line 47
+Notice: Constant CON3 already defined in %s on line %d
 f:1 CON1 = 1
 f:1 CON2 = 2
 f:1 CON3 = 3
 --- Inside f, block-level 2
 
-Notice: Constant CON4 already defined in %s/variables/unsetting_variables.php on line 56
+Notice: Constant CON4 already defined in %s on line %d
 f:2 CON1 = 1
 f:2 CON2 = 2
 f:2 CON3 = 3

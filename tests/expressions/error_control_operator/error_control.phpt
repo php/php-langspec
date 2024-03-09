@@ -44,6 +44,6 @@ echo "Done\n";
 int(-1)
 int(-1)
 
-Notice: Undefined variable: y in %s/expressions/error_control_operator/error_control.php on line 14
+Notice: Undefined variable: y in %s on line %d
 int(-1)
 Done

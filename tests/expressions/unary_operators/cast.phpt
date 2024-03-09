@@ -455,7 +455,7 @@ array(2) {
    int(1)
    float(1)
    
-Notice: Array to string conversion in %s/expressions/unary_operators/cast.php on line %d
+Notice: Array to string conversion in %s%eexpressions%eunary_operators%ecast.php on line %d
 string(5) "Array"
    array(2) {
   [5]=>
@@ -484,7 +484,7 @@ array(4) {
    int(1)
    float(1)
    
-Notice: Array to string conversion in %s/expressions/unary_operators/cast.php on line %d
+Notice: Array to string conversion in %s%eexpressions%eunary_operators%ecast.php on line %d
 string(5) "Array"
    array(4) {
   [0]=>
@@ -554,7 +554,7 @@ object(E)#3 (3) {
 $key: > E priv_prop<, len: 12, $val: ><
 $key: > * prot_prop<, len: 12, $val: >12.345<
 
-Notice: Array to string conversion in %s/expressions/unary_operators/cast.php on line %d
+Notice: Array to string conversion in %s%eexpressions%eunary_operators%ecast.php on line %d
 $key: >publ_prop<, len: 9, $val: >Array<
 ---------------
 resource(1) of type (stream)

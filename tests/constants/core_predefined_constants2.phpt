@@ -75,7 +75,7 @@ PHP_DEBUG: %s
 PHP_MAXPATHLEN: int(%d)
 PHP_OS: string(%d) "%s"
 PHP_SAPI: string(3) "cli"
-PHP_EOL: string(1) "
+PHP_EOL: string(%d) "
 "
 DEFAULT_INCLUDE_PATH: string(%d) "%S"
 PEAR_INSTALL_DIR: string(%d) "%S"
@@ -88,7 +88,7 @@ PHP_DATADIR: string(%d) "%S"
 PHP_SYSCONFDIR: string(%d) "%S"
 PHP_CONFIG_FILE_PATH: string(%d) "%S"
 PHP_CONFIG_FILE_SCAN_DIR: string(%d) "%S"
-PHP_SHLIB_SUFFIX: string(2) "so"
+PHP_SHLIB_SUFFIX: string(%d) "%S"
 E_ERROR: int(1)
 E_WARNING: int(2)
 E_PARSE: int(4)

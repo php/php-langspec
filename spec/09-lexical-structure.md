@@ -440,8 +440,11 @@ decimal-literal::
   decimal-literal digit
 
 octal-literal::
-  '0'
+  octal-prefix octal-digit
   octal-literal octal-digit
+
+octal-prefix:: one of
+  '0' '0o' '0O'
 
 hexadecimal-literal::
   hexadecimal-prefix hexadecimal-digit
@@ -487,8 +490,11 @@ binary-digit:: one of
    <i><a href="#grammar-decimal-literal">decimal-literal</a></i>   <i><a href="#grammar-digit">digit</a></i>
 
 <i id="grammar-octal-literal">octal-literal::</i>
-   0
+   <i><a href="#grammar-octal-prefix">octal-prefix</a></i>   <i><a href="#grammar-octal-digit">octal-digit</a></i>
    <i><a href="#grammar-octal-literal">octal-literal</a></i>   <i><a href="#grammar-octal-digit">octal-digit</a></i>
+
+<i id="grammar-octal-prefix">octal-prefix:: one of</i>
+   0   0o   0O
 
 <i id="grammar-hexadecimal-literal">hexadecimal-literal::</i>
    <i><a href="#grammar-hexadecimal-prefix">hexadecimal-prefix</a></i>   <i><a href="#grammar-hexadecimal-digit">hexadecimal-digit</a></i>
